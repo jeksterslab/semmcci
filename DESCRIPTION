@@ -1,0 +1,34 @@
+Package: semmcci
+Version: 0.9.0
+Title: Monte Carlo Confidence Intervals
+Authors@R:
+    person(
+        given = "Ivan Jacob Agaloos",
+        family = "Pesigan",
+        role = c("aut", "cre"),
+        email = "i.j.a.pesigan@connect.um.edu.mo",
+        comment = c(ORCID = "0000-0003-4818-8420")
+    )
+Description: Monte Carlo confidence intervals.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Language: en-US
+LazyData: true
+VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)
+URL: https://github.com/jeksterslabds/semmcci
+BugReports: https://github.com/jeksterslabds/semmcci/issues
+SystemRequirements:
+	git
+Depends:
+	R (>= 3.5.0)
+Imports:
+	utils,
+	stats,
+    MASS,
+    lavaan
+Suggests:
+	knitr,
+	rmarkdown,
+	testthat
+RoxygenNote: 7.1.1

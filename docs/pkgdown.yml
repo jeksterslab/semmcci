@@ -1,0 +1,12 @@
+pandoc: 2.11.0.4
+pkgdown: 1.6.1
+pkgdown_sha: ~
+articles:
+  examples: examples.html
+  semmcci: semmcci.html
+  tests/test_mc: test_mc.html
+last_built: 2020-12-04T10:31Z
+urls:
+  reference: https://github.com/jeksterslabds/semmcci//reference
+  article: https://github.com/jeksterslabds/semmcci//articles
+

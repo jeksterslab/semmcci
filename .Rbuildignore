@@ -1,0 +1,16 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^.*\.yml$
+^LICENSE\.md$
+^data_raw$
+^semmcci.Rproj$
+^NEWS.md$
+^.travis.yml$
+^.covrignore$
+^appveyor.yml$
+^_pkgdown.yml$
+^docs$
+^README\.Rmd$
+^README\.md$
+^README\.html$
+^Makefile$

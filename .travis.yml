@@ -1,0 +1,19 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+language: r
+r:
+- oldrel
+- release
+- devel
+os:
+- linux
+- osx
+jobs:
+  exclude:
+  # macOS binary packages not available for r-devel
+  - r: devel
+    os: osx
+cache: packages
+before_install:
+- Rscript -e 'if (!require("covr")) install.packages("covr")'
+after_success:
+- Rscript -e 'covr::codecov()'
