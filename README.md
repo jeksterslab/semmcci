@@ -1,9 +1,17 @@
 semmcci
 ================
 Ivan Jacob Agaloos Pesigan
-2020-12-04
+2020-12-21
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- badges: start -->
+
+[![Travis build
+status](https://travis-ci.com/jeksterslabds/semmcci.svg?branch=master)](https://travis-ci.com/jeksterslabds/semmcci)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/jeksterslabds/semmcci?branch=master&svg=true)](https://ci.appveyor.com/project/jeksterslabds/semmcci)
+[![codecov](https://codecov.io/github/jeksterslabds/semmcci/branch/master/graphs/badge.svg)](https://codecov.io/github/jeksterslabds/semmcci)
+<!-- badges: end -->
 
 ## Monte Carlo Confidence Intervals
 
@@ -83,8 +91,8 @@ mc(fit)
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
-    #>       est     se ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95
-    #> ab 0.1916 0.0194  0.1332 0.1443 0.1553  0.2307  0.2436   0.2563
+    #>       est    se ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95
+    #> ab 0.2667 0.023  0.1948 0.2104 0.2231  0.3133   0.329   0.3473
 
 ## More Information
 

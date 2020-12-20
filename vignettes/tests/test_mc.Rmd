@@ -133,9 +133,9 @@ test_that("object is not of class lavaan", {
 })
 test_that("no defined parameter", {
   model <- "
-  y ~ cp * x + b * m
-  m ~ a * x
-"
+    y ~ cp * x + b * m
+    m ~ a * x
+  "
   object <- sem(
     data = data,
     model = model
