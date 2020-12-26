@@ -18,13 +18,15 @@ knitr::opts_chunk$set(
 )
 ```
 
-This vignette presents three examples
+This vignette presents four examples
 of generating Monte Carlo confidence intervals
 for parameters defined using the `:=` operator
 in the structural equation modeling software `lavaan`.
 The first example involves a simple mediation model.
 The second example involves a serial mediation model.
 The third example involves missing data.
+The fourth examples involves the standardized indirect effect
+in a simple mediation model.
 
 ```{r}
 library(semmcci)
@@ -64,7 +66,7 @@ model <- "
   y ~ cp * x + b * m
   m ~ a * x
   indirect := a * b
-  direct := cp 
+  direct := cp
   total := cp + (a * b)
 "
 ```
@@ -226,3 +228,99 @@ mc(
   plot = TRUE
 )
 ```
+
+## Example 4: The Standardized Simple Mediation Model
+
+In this example, confidence intervals for the standardized indirect effect
+are generated.
+
+### Data
+
+```{r}
+n <- 1000
+x <- rnorm(n = n)
+m <- 0.50 * x + rnorm(n = n)
+y <- 0.25 * x + 0.50 * m + rnorm(n = n)
+data <- data.frame(
+  x,
+  m,
+  y
+)
+```
+
+### Model Specification
+
+The standardized indirect effect in a simple mediation model
+involves paths $a$, and $b$,
+and the standard deviations of $x$ and $y$.
+It is given by
+
+\begin{equation}
+  a b
+  \frac{s_x}{s_y}
+\end{equation}
+
+\noindent where
+
+\begin{equation}
+  s_x
+  =
+  \sqrt{
+    s_{x}^{2}
+  }
+\end{equation}
+
+\noindent and
+
+\begin{equation}
+  s_y
+  =
+  \sqrt{
+    c^{\prime 2} s_{x}^{2}
+    + a^2 b^2 s_{x}^{2}
+    + b^2 s_{e_{m}}^{2}
+    + 2 c^{\prime} b a s_{x}^{2}
+    + s_{e_{y}}^{2}
+  }
+\end{equation}
+
+\noindent where
+
+\noindent $s_{e_{y}}^{2}$ and $s_{e_{m}}^{2}$ are the residual variances
+in the regression equations.
+
+The standardized indirect effect can be defined using the `:=` operator
+and the name parameters in the model.
+
+```{r}
+model <- "
+  y ~ cp * x + b * m
+  m ~ a * x
+  x ~~ var_x * x
+  m ~~ var_em * m
+  y ~~ var_ey * y
+  std := a * b * (sqrt(var_x) / sqrt(cp^2 * var_x + a^2 * b^2 * var_x + b^2 * var_em + 2 * cp * b * a * var_x + var_ey))
+"
+```
+
+### Model Fitting
+
+```{r}
+fit <- sem(
+  data = data,
+  model = model
+)
+summary(fit)
+```
+
+### Monte Carlo Confidence Intervals
+
+```{r}
+mc(
+  object = fit,
+  R = 20000L,
+  alpha = c(0.001, 0.01, 0.05),
+  plot = TRUE
+)
+```
+
