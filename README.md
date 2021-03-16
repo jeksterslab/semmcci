@@ -40,11 +40,7 @@ n <- 1000
 x <- rnorm(n = n)
 m <- 0.50 * x + rnorm(n = n)
 y <- 0.25 * x + 0.50 * m + rnorm(n = n)
-data <- data.frame(
-  x,
-  m,
-  y
-)
+data <- data.frame(x, m, y)
 ```
 
 ### Model Specification in lavaan
@@ -92,7 +88,7 @@ mc(fit)
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
     #>       est     se     R ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95
-    #> ab 0.2654 0.0234 20000  0.1901 0.2094 0.2213  0.3124  0.3281   0.3464
+    #> ab 0.3035 0.0248 20000  0.2256 0.2432 0.2564  0.3535  0.3704    0.389
 
 ## More Information
 

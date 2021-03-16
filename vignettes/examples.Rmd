@@ -46,11 +46,7 @@ n <- 1000
 x <- rnorm(n = n)
 m <- 0.50 * x + rnorm(n = n)
 y <- 0.25 * x + 0.50 * m + rnorm(n = n)
-data <- data.frame(
-  x,
-  m,
-  y
-)
+data <- data.frame(x, m, y)
 ```
 
 ### Model Specification
@@ -111,12 +107,7 @@ x <- rnorm(n = n)
 m1 <- 0.50 * x + rnorm(n = n)
 m2 <- 0.15 * x + 0.50 * m1 + rnorm(n = n)
 y <- 0.10 * x + 0.05 * m1 + 0.50 * m2 + rnorm(n = n)
-data <- data.frame(
-  x,
-  m1,
-  m2,
-  y
-)
+data <- data.frame(x, m1, m2, y)
 ```
 
 ### Model Specification
@@ -179,11 +170,7 @@ n <- 1000
 x <- rnorm(n = n)
 m <- 0.50 * x + rnorm(n = n)
 y <- 0.25 * x + 0.50 * m + rnorm(n = n)
-data <- data.frame(
-  x,
-  m,
-  y
-)
+data <- data.frame(x, m, y)
 
 # Create data set with missing values.
 
@@ -241,11 +228,7 @@ n <- 1000
 x <- rnorm(n = n)
 m <- 0.50 * x + rnorm(n = n)
 y <- 0.25 * x + 0.50 * m + rnorm(n = n)
-data <- data.frame(
-  x,
-  m,
-  y
-)
+data <- data.frame(x, m, y)
 ```
 
 ### Model Specification
