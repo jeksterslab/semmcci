@@ -169,21 +169,21 @@
 <span class="co">#&gt; Regressions:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
 <span class="co">#&gt;   y ~                                                 </span>
-<span class="co">#&gt;     x         (cp)    0.277    0.036    7.753    0.000</span>
-<span class="co">#&gt;     m          (b)    0.475    0.031   15.245    0.000</span>
+<span class="co">#&gt;     x         (cp)    0.245    0.034    7.206    0.000</span>
+<span class="co">#&gt;     m          (b)    0.469    0.030   15.446    0.000</span>
 <span class="co">#&gt;   m ~                                                 </span>
-<span class="co">#&gt;     x          (a)    0.534    0.032   16.667    0.000</span>
+<span class="co">#&gt;     x          (a)    0.454    0.032   14.018    0.000</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Variances:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
-<span class="co">#&gt;    .y                 0.970    0.043   22.361    0.000</span>
-<span class="co">#&gt;    .m                 0.999    0.045   22.361    0.000</span>
+<span class="co">#&gt;    .y                 0.973    0.044   22.361    0.000</span>
+<span class="co">#&gt;    .m                 1.054    0.047   22.361    0.000</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Defined Parameters:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
-<span class="co">#&gt;     indirect          0.254    0.023   11.249    0.000</span>
-<span class="co">#&gt;     direct            0.277    0.036    7.753    0.000</span>
-<span class="co">#&gt;     total             0.530    0.035   15.133    0.000</span></code></pre></div>
+<span class="co">#&gt;     indirect          0.213    0.021   10.381    0.000</span>
+<span class="co">#&gt;     direct            0.245    0.034    7.206    0.000</span>
+<span class="co">#&gt;     total             0.458    0.035   13.235    0.000</span></code></pre></div>
 </div>
 <div id="monte-carlo-confidence-intervals" class="section level3">
 <h3 class="hasAnchor">
@@ -198,9 +198,9 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="examples_files/figure-html/unnamed-chunk-6-1.png" width="700"><img src="examples_files/figure-html/unnamed-chunk-6-2.png" width="700"><img src="examples_files/figure-html/unnamed-chunk-6-3.png" width="700"></p>
 <pre><code>#&gt;             est     se     R ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95
-#&gt; indirect 0.2537 0.0225 20000  0.1865 0.1987 0.2108  0.2987  0.3146   0.3339
-#&gt; direct   0.2767 0.0358 20000  0.1623 0.1849 0.2067  0.3475  0.3694   0.3918
-#&gt; total    0.5304 0.0351 20000  0.4115 0.4383 0.4614  0.5985  0.6209   0.6447</code></pre>
+#&gt; indirect 0.2128 0.0204 20000  0.1515 0.1634 0.1744  0.2547  0.2685   0.2859
+#&gt; direct   0.2450 0.0339 20000  0.1372 0.1598 0.1784  0.3118  0.3320   0.3535
+#&gt; total    0.4579 0.0344 20000  0.3455 0.3686 0.3908  0.5247  0.5454   0.5713</code></pre>
 </div>
 </div>
 <div id="example-2-the-serial-mediation-model" class="section level2">
@@ -280,27 +280,27 @@
 <span class="co">#&gt; Regressions:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
 <span class="co">#&gt;   y ~                                                 </span>
-<span class="co">#&gt;     x         (cp)    0.112    0.036    3.128    0.002</span>
-<span class="co">#&gt;     m1        (b1)    0.026    0.035    0.753    0.451</span>
-<span class="co">#&gt;     m2        (b2)    0.522    0.031   16.614    0.000</span>
+<span class="co">#&gt;     x         (cp)    0.065    0.036    1.803    0.071</span>
+<span class="co">#&gt;     m1        (b1)    0.027    0.034    0.798    0.425</span>
+<span class="co">#&gt;     m2        (b2)    0.524    0.030   17.592    0.000</span>
 <span class="co">#&gt;   m2 ~                                                </span>
-<span class="co">#&gt;     x         (a2)    0.129    0.036    3.598    0.000</span>
-<span class="co">#&gt;     m1         (k)    0.510    0.031   16.305    0.000</span>
+<span class="co">#&gt;     x         (a2)    0.098    0.038    2.577    0.010</span>
+<span class="co">#&gt;     m1         (k)    0.489    0.033   14.966    0.000</span>
 <span class="co">#&gt;   m1 ~                                                </span>
-<span class="co">#&gt;     x         (a1)    0.505    0.033   15.522    0.000</span>
+<span class="co">#&gt;     x         (a1)    0.528    0.033   16.062    0.000</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Variances:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
-<span class="co">#&gt;    .y                 1.007    0.045   22.361    0.000</span>
-<span class="co">#&gt;    .m2                1.021    0.046   22.361    0.000</span>
-<span class="co">#&gt;    .m1                1.045    0.047   22.361    0.000</span>
+<span class="co">#&gt;    .y                 0.998    0.045   22.361    0.000</span>
+<span class="co">#&gt;    .m2                1.123    0.050   22.361    0.000</span>
+<span class="co">#&gt;    .m1                1.054    0.047   22.361    0.000</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Defined Parameters:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
-<span class="co">#&gt;     a1kb2             0.134    0.014    9.311    0.000</span>
-<span class="co">#&gt;     a1k               0.257    0.023   11.243    0.000</span>
-<span class="co">#&gt;     a2b2              0.067    0.019    3.516    0.000</span>
-<span class="co">#&gt;     kb2               0.266    0.023   11.637    0.000</span></code></pre></div>
+<span class="co">#&gt;     a1kb2             0.135    0.015    9.296    0.000</span>
+<span class="co">#&gt;     a1k               0.258    0.024   10.950    0.000</span>
+<span class="co">#&gt;     a2b2              0.051    0.020    2.549    0.011</span>
+<span class="co">#&gt;     kb2               0.256    0.022   11.399    0.000</span></code></pre></div>
 </div>
 <div id="monte-carlo-confidence-intervals-1" class="section level3">
 <h3 class="hasAnchor">
@@ -313,11 +313,11 @@
   plot <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="examples_files/figure-html/unnamed-chunk-10-1.png" width="700"><img src="examples_files/figure-html/unnamed-chunk-10-2.png" width="700"><img src="examples_files/figure-html/unnamed-chunk-10-3.png" width="700"><img src="examples_files/figure-html/unnamed-chunk-10-4.png" width="700"></p>
-<pre><code>#&gt;          est     se     R ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95
-#&gt; a1kb2 0.1343 0.0144 20000  0.0932 0.1002 0.1074  0.1639  0.1734   0.1858
-#&gt; a1k   0.2574 0.0229 20000  0.1878 0.2020 0.2136  0.3036  0.3187   0.3360
-#&gt; a2b2  0.0673 0.0192 20000  0.0055 0.0188 0.0305  0.1056  0.1180   0.1355
-#&gt; kb2   0.2660 0.0227 20000  0.1932 0.2104 0.2226  0.3119  0.3260   0.3443</code></pre>
+<pre><code>#&gt;          est     se     R ci_0.05  ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95
+#&gt; a1kb2 0.1352 0.0146 20000  0.0940  0.1008 0.1082  0.1653  0.1759   0.1898
+#&gt; a1k   0.2579 0.0235 20000  0.1865  0.2012 0.2134  0.3051  0.3199   0.3407
+#&gt; a2b2  0.0514 0.0202 20000 -0.0159 -0.0002 0.0118  0.0909  0.1042   0.1212
+#&gt; kb2   0.2562 0.0225 20000  0.1899  0.2007 0.2135  0.3018  0.3163   0.3352</code></pre>
 </div>
 </div>
 <div id="example-3-missing-data" class="section level2">
@@ -390,26 +390,26 @@
 <span class="co">#&gt; Regressions:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
 <span class="co">#&gt;   y ~                                                 </span>
-<span class="co">#&gt;     x         (cp)    0.247    0.038    6.436    0.000</span>
-<span class="co">#&gt;     m          (b)    0.524    0.034   15.516    0.000</span>
+<span class="co">#&gt;     x         (cp)    0.200    0.039    5.139    0.000</span>
+<span class="co">#&gt;     m          (b)    0.495    0.035   14.205    0.000</span>
 <span class="co">#&gt;   m ~                                                 </span>
-<span class="co">#&gt;     x          (a)    0.503    0.034   14.673    0.000</span>
+<span class="co">#&gt;     x          (a)    0.486    0.033   14.615    0.000</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Intercepts:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
-<span class="co">#&gt;    .y                 0.001    0.032    0.038    0.970</span>
-<span class="co">#&gt;    .m                 0.058    0.033    1.769    0.077</span>
-<span class="co">#&gt;     x                -0.014    0.033   -0.443    0.658</span>
+<span class="co">#&gt;    .y                 0.057    0.033    1.752    0.080</span>
+<span class="co">#&gt;    .m                -0.022    0.033   -0.663    0.507</span>
+<span class="co">#&gt;     x                 0.028    0.033    0.846    0.397</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Variances:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
-<span class="co">#&gt;    .y                 0.908    0.044   20.586    0.000</span>
-<span class="co">#&gt;    .m                 0.984    0.047   20.785    0.000</span>
-<span class="co">#&gt;     x                 0.987    0.046   21.323    0.000</span>
+<span class="co">#&gt;    .y                 0.937    0.045   20.644    0.000</span>
+<span class="co">#&gt;    .m                 0.969    0.047   20.828    0.000</span>
+<span class="co">#&gt;     x                 1.027    0.048   21.268    0.000</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Defined Parameters:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
-<span class="co">#&gt;     ab                0.263    0.025   10.665    0.000</span></code></pre></div>
+<span class="co">#&gt;     ab                0.240    0.024   10.233    0.000</span></code></pre></div>
 </div>
 <div id="monte-carlo-confidence-intervals-2" class="section level3">
 <h3 class="hasAnchor">
@@ -423,7 +423,7 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="examples_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
 <pre><code>#&gt;       est     se     R ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95
-#&gt; ab 0.2631 0.0246 20000  0.1904 0.2041 0.2171  0.3135  0.3303   0.3503</code></pre>
+#&gt; ab 0.2405 0.0233 20000  0.1709 0.1847 0.1965  0.2884  0.3038   0.3217</code></pre>
 </div>
 </div>
 <div id="example-4-the-standardized-simple-mediation-model" class="section level2">
@@ -494,7 +494,7 @@
   model <span class="op">=</span> <span class="va">model</span>
 <span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span>
-<span class="co">#&gt; lavaan 0.6-8 ended normally after 13 iterations</span>
+<span class="co">#&gt; lavaan 0.6-8 ended normally after 14 iterations</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;   Estimator                                         ML</span>
 <span class="co">#&gt;   Optimization method                           NLMINB</span>
@@ -516,20 +516,20 @@
 <span class="co">#&gt; Regressions:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
 <span class="co">#&gt;   y ~                                                 </span>
-<span class="co">#&gt;     x         (cp)    0.252    0.035    7.139    0.000</span>
-<span class="co">#&gt;     m          (b)    0.510    0.032   16.116    0.000</span>
+<span class="co">#&gt;     x         (cp)    0.261    0.034    7.662    0.000</span>
+<span class="co">#&gt;     m          (b)    0.463    0.031   15.168    0.000</span>
 <span class="co">#&gt;   m ~                                                 </span>
-<span class="co">#&gt;     x          (a)    0.458    0.032   14.259    0.000</span>
+<span class="co">#&gt;     x          (a)    0.499    0.032   15.783    0.000</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Variances:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
-<span class="co">#&gt;     x       (vr_x)    0.921    0.041   22.361    0.000</span>
-<span class="co">#&gt;    .m       (vr_m)    0.949    0.042   22.361    0.000</span>
-<span class="co">#&gt;    .y       (vr_y)    0.951    0.043   22.361    0.000</span>
+<span class="co">#&gt;     x       (vr_x)    0.963    0.043   22.361    0.000</span>
+<span class="co">#&gt;    .m       (vr_m)    0.961    0.043   22.361    0.000</span>
+<span class="co">#&gt;    .y       (vr_y)    0.897    0.040   22.361    0.000</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Defined Parameters:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
-<span class="co">#&gt;     std               0.188    0.016   11.512    0.000</span></code></pre></div>
+<span class="co">#&gt;     std               0.196    0.017   11.796    0.000</span></code></pre></div>
 </div>
 <div id="monte-carlo-confidence-intervals-3" class="section level3">
 <h3 class="hasAnchor">
@@ -543,7 +543,7 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="examples_files/figure-html/unnamed-chunk-18-1.png" width="700"></p>
 <pre><code>#&gt;        est     se     R ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95
-#&gt; std 0.1884 0.0163 20000  0.1368 0.1471  0.157  0.2207  0.2314   0.2453</code></pre>
+#&gt; std 0.1961 0.0166 20000  0.1455  0.155 0.1643  0.2295  0.2401   0.2519</code></pre>
 </div>
 </div>
   </div>
