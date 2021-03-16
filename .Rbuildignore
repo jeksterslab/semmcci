@@ -9,8 +9,8 @@
 ^README\.html$
 ^README\.md$
 ^\.Rproj\.user$
+^\.github$
 ^_pkgdown.yml$
-^appveyor.yml$
 ^data_raw$
 ^docs$
 ^semmcci.Rproj$

@@ -6,10 +6,10 @@ Ivan Jacob Agaloos Pesigan
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
 
+[![R build
+status](https://github.com/jeksterslab/semmcci/workflows/R-CMD-check/badge.svg?branch=master)](https://github.com/jeksterslab/semmcci/actions?workflow=R-CMD-check)
 [![Travis build
 status](https://travis-ci.com/jeksterslab/semmcci.svg?branch=master)](https://travis-ci.com/jeksterslab/semmcci)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/jeksterslab/semmcci?branch=master&svg=true)](https://ci.appveyor.com/project/jeksterslab/semmcci)
 [![codecov](https://codecov.io/github/jeksterslab/semmcci/branch/master/graphs/badge.svg)](https://codecov.io/github/jeksterslab/semmcci)
 <!-- badges: end -->
 
@@ -92,7 +92,7 @@ mc(fit)
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
     #>       est     se     R ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95
-    #> ab 0.2409 0.0222 20000  0.1738 0.1869 0.1988  0.2862  0.3009   0.3206
+    #> ab 0.2455 0.0217 20000  0.1774 0.1921  0.204  0.2894  0.3035   0.3214
 
 ## More Information
 

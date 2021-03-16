@@ -20,6 +20,12 @@ knitr::opts_chunk$set(
 )
 ```
 
+<!-- badges: start -->
+[![R build status](https://github.com/jeksterslab/semmcci/workflows/R-CMD-check/badge.svg?branch=master)](https://github.com/jeksterslab/semmcci/actions?workflow=R-CMD-check)
+[![Travis build status](https://travis-ci.com/jeksterslab/semmcci.svg?branch=master)](https://travis-ci.com/jeksterslab/semmcci)
+[![codecov](https://codecov.io/github/jeksterslab/semmcci/branch/master/graphs/badge.svg)](https://codecov.io/github/jeksterslab/semmcci) 
+<!-- badges: end -->
+
 ## Monte Carlo Confidence Intervals
 
 `semmcci` calculates Monte Carlo confidence intervals
