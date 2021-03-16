@@ -27,16 +27,16 @@ for parameters defined using the `:=` operator
 in the structural equation modeling package `lavaan`.
 The output of `lavaan` is passed as the first argument
 to the `mc` function in `semmcci`
-in order to generate Monte Carlo confidence intervals
+to generate Monte Carlo confidence intervals
 for defined parameter/s.
 
 ## Installation
 
-You can install the released version of `semmcci` from [GitHub](https://github.com/jeksterslabds/semmcci) with:
+You can install the released version of `semmcci` from [GitHub](https://github.com/jeksterslab/semmcci) with:
 
 ```r
 library(devtools)
-install_github("jeksterslabds/semmcci")
+install_github("jeksterslab/semmcci")
 ```
 
 ## Example
@@ -62,7 +62,7 @@ using the `lavaan` model syntax.
 In this example, we look at a simple mediation model
 where `x` is the predictor, `m` is the mediator, and `y` is the dependent variable.
 The indirect effect is defined by the product of the slopes
-of paths `x` to `m` labelled as `a` and `m` to `y` labelled as `b`.
+of paths `x` to `m` labeled as `a` and `m` to `y` labeled as `b`.
 We are interested in the confidence intervals of `ab`
 defined as the product of `a` and `b` using the `:=` operator.
 
@@ -88,7 +88,7 @@ fit <- sem(
 
 ### Monte Carlo Method Confidence Intervals
 
-We can now construct confidence intervals around `ab` by passing `fit` to the `mc` function.
+We can now construct confidence intervals around `ab` by passing `fit` as an argument to the `mc` function.
 
 ```{r}
 library(semmcci)
@@ -97,5 +97,5 @@ mc(fit)
 
 ## More Information
 
-See [GitHub Pages](https://jeksterslabds.github.io/semmcci/index.html)
+See [GitHub Pages](https://jeksterslab.github.io/semmcci/index.html)
 for package documentation.

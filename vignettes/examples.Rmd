@@ -25,7 +25,7 @@ in the structural equation modeling software `lavaan`.
 The first example involves a simple mediation model.
 The second example involves a serial mediation model.
 The third example involves missing data.
-The fourth examples involves the standardized indirect effect
+The fourth example involves the standardized indirect effect
 in a simple mediation model.
 
 ```{r}
@@ -56,7 +56,7 @@ data <- data.frame(
 ### Model Specification
 
 The indirect effect is defined by the product of the slopes
-of paths `x` to `m` labelled as `a` and `m` to `y` labelled as `b`.
+of paths `x` to `m` labeled as `a` and `m` to `y` labeled as `b`.
 In this example, we are interested in the confidence intervals of `ab`
 defined as the product of `a` and `b` using the `:=` operator
 in the `lavaan` model syntax.
@@ -290,7 +290,7 @@ It is given by
 in the regression equations.
 
 The standardized indirect effect can be defined using the `:=` operator
-and the name parameters in the model.
+and the named parameters in the model.
 
 ```{r}
 model <- "

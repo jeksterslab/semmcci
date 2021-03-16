@@ -40,7 +40,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -71,8 +71,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/jeksterslabds/semmcci/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/jeksterslab/semmcci/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -86,16 +86,15 @@
 
       
 
-      </header><script src="semmcci_files/header-attrs-2.5/header-attrs.js"></script><link href="semmcci_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="semmcci_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="semmcci_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to semmcci</h1>
                         <h4 class="author">Ivan Jacob Agaloos Pesigan</h4>
             
-            <h4 class="date">2020-12-26</h4>
+            <h4 class="date">2021-03-16</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/jeksterslabds/semmcci/blob/master/vignettes/semmcci.Rmd"><code>vignettes/semmcci.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jeksterslab/semmcci/blob/master/vignettes/semmcci.Rmd"><code>vignettes/semmcci.Rmd</code></a></small>
       <div class="hidden name"><code>semmcci.Rmd</code></div>
 
     </div>
@@ -105,15 +104,15 @@
 <div id="monte-carlo-confidence-intervals" class="section level2">
 <h2 class="hasAnchor">
 <a href="#monte-carlo-confidence-intervals" class="anchor"></a>Monte Carlo Confidence Intervals</h2>
-<p><code>semmcci</code> calculates Monte Carlo confidence intervals for parameters defined using the <code>:=</code> operator in the structural equation modeling package <code>lavaan</code>. The output of <code>lavaan</code> is passed as the first argument to the <code>mc</code> function in <code>semmcci</code> in order to generate Monte Carlo confidence intervals for defined parameter/s.</p>
+<p><code>semmcci</code> calculates Monte Carlo confidence intervals for parameters defined using the <code>:=</code> operator in the structural equation modeling package <code>lavaan</code>. The output of <code>lavaan</code> is passed as the first argument to the <code>mc</code> function in <code>semmcci</code> to generate Monte Carlo confidence intervals for defined parameter/s.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of <code>semmcci</code> from <a href="https://github.com/jeksterslabds/semmcci">GitHub</a> with:</p>
+<p>You can install the released version of <code>semmcci</code> from <a href="https://github.com/jeksterslab/semmcci">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span>
-<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"jeksterslabds/semmcci"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"jeksterslab/semmcci"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
@@ -135,7 +134,7 @@
 <div id="model-specification-in-lavaan" class="section level3">
 <h3 class="hasAnchor">
 <a href="#model-specification-in-lavaan" class="anchor"></a>Model Specification in lavaan</h3>
-<p>The first step is to define a <code>lavaan</code> model using the <code>lavaan</code> model syntax. In this example, we look at a simple mediation model where <code>x</code> is the predictor, <code>m</code> is the mediator, and <code>y</code> is the dependent variable. The indirect effect is defined by the product of the slopes of paths <code>x</code> to <code>m</code> labelled as <code>a</code> and <code>m</code> to <code>y</code> labelled as <code>b</code>. We are interested in the confidence intervals of <code>ab</code> defined as the product of <code>a</code> and <code>b</code> using the <code>:=</code> operator.</p>
+<p>The first step is to define a <code>lavaan</code> model using the <code>lavaan</code> model syntax. In this example, we look at a simple mediation model where <code>x</code> is the predictor, <code>m</code> is the mediator, and <code>y</code> is the dependent variable. The indirect effect is defined by the product of the slopes of paths <code>x</code> to <code>m</code> labeled as <code>a</code> and <code>m</code> to <code>y</code> labeled as <code>b</code>. We are interested in the confidence intervals of <code>ab</code> defined as the product of <code>a</code> and <code>b</code> using the <code>:=</code> operator.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">model</span> <span class="op">&lt;-</span> <span class="st">"
   y ~ x + b * m
@@ -148,9 +147,9 @@
 <a href="#model-fitting-in-lavaan" class="anchor"></a>Model Fitting in lavaan</h3>
 <p>We can now fit the model and save the <code>lavaan</code> object to <code>fit</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://lavaan.org">lavaan</a></span><span class="op">)</span>
-<span class="co">#&gt; This is lavaan 0.6-7</span>
-<span class="co">#&gt; lavaan is BETA software! Please report any bugs.</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lavaan.ugent.be">lavaan</a></span><span class="op">)</span>
+<span class="co">#&gt; This is lavaan 0.6-8</span>
+<span class="co">#&gt; lavaan is FREE software! Please report any bugs.</span>
 <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lavaan/man/sem.html">sem</a></span><span class="op">(</span>
   model <span class="op">=</span> <span class="va">model</span>,
   data <span class="op">=</span> <span class="va">data</span>
@@ -159,19 +158,19 @@
 <div id="monte-carlo-method-confidence-intervals" class="section level3">
 <h3 class="hasAnchor">
 <a href="#monte-carlo-method-confidence-intervals" class="anchor"></a>Monte Carlo Method Confidence Intervals</h3>
-<p>We can now construct confidence intervals around <code>ab</code> by passing <code>fit</code> to the <code>mc</code> function.</p>
+<p>We can now construct confidence intervals around <code>ab</code> by passing <code>fit</code> as an argument to the <code>mc</code> function.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslabds/semmcci">semmcci</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/semmcci">semmcci</a></span><span class="op">)</span>
 <span class="fu"><a href="../reference/mc.html">mc</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></code></pre></div>
 <p><img src="semmcci_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
-<pre><code>#&gt;       est     se ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95
-#&gt; ab 0.2807 0.0239  0.2076 0.2237 0.2357  0.3294  0.3469   0.3665</code></pre>
+<pre><code>#&gt;       est     se     R ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95
+#&gt; ab 0.2242 0.0211 20000  0.1569 0.1729 0.1847  0.2668   0.281   0.2959</code></pre>
 </div>
 </div>
 <div id="more-information" class="section level2">
 <h2 class="hasAnchor">
 <a href="#more-information" class="anchor"></a>More Information</h2>
-<p>See <a href="https://jeksterslabds.github.io/semmcci/index.html">GitHub Pages</a> for package documentation.</p>
+<p>See <a href="https://jeksterslab.github.io/semmcci/index.html">GitHub Pages</a> for package documentation.</p>
 </div>
   </div>
 

@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -70,8 +70,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/jeksterslabds/semmcci/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/jeksterslab/semmcci/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -85,16 +85,15 @@
 
       
 
-      </header><script src="test_mc_files/header-attrs-2.5/header-attrs.js"></script><link href="test_mc_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="test_mc_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="test_mc_files/header-attrs-2.6/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Test: mc</h1>
                         <h4 class="author">Ivan Jacob Agaloos Pesigan</h4>
             
-            <h4 class="date">2020-12-26</h4>
+            <h4 class="date">2021-03-16</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/jeksterslabds/semmcci/blob/master/vignettes/tests/test_mc.Rmd"><code>vignettes/tests/test_mc.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jeksterslab/semmcci/blob/master/vignettes/tests/test_mc.Rmd"><code>vignettes/tests/test_mc.Rmd</code></a></small>
       <div class="hidden name"><code>test_mc.Rmd</code></div>
 
     </div>
@@ -105,10 +104,10 @@
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://testthat.r-lib.org">testthat</a></span><span class="op">)</span>
 <span class="fu"><a href="https://testthat.r-lib.org/reference/context.html">context</a></span><span class="op">(</span><span class="st">"Test mc."</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslabds/semmcci">semmcci</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://lavaan.org">lavaan</a></span><span class="op">)</span>
-<span class="co">#&gt; This is lavaan 0.6-7</span>
-<span class="co">#&gt; lavaan is BETA software! Please report any bugs.</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/semmcci">semmcci</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lavaan.ugent.be">lavaan</a></span><span class="op">)</span>
+<span class="co">#&gt; This is lavaan 0.6-8</span>
+<span class="co">#&gt; lavaan is FREE software! Please report any bugs.</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">MASS</a></span><span class="op">)</span>
 <span class="va">theta_hit</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">lo</span>,
                       <span class="va">theta</span>,
@@ -159,8 +158,8 @@
   plot <span class="op">=</span> <span class="cn">TRUE</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="test_mc_files/figure-html/Monte%20Carlo-1.png" width="100%"></p>
-<pre><code>#&gt;     est     se ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95
-#&gt; ab 0.26 0.0516  0.1097 0.1382 0.1648  0.3679  0.4043   0.4579</code></pre>
+<pre><code>#&gt;     est     se     R ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95
+#&gt; ab 0.26 0.0519 20000  0.1097 0.1379 0.1642  0.3677  0.4048   0.4422</code></pre>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://testthat.r-lib.org/reference/test_that.html">test_that</a></span><span class="op">(</span><span class="st">"99.9% CI"</span>, <span class="op">{</span>
   <span class="fu"><a href="https://testthat.r-lib.org/reference/logical-expectations.html">expect_true</a></span><span class="op">(</span>
@@ -171,7 +170,7 @@
     <span class="op">)</span>
   <span class="op">)</span>
 <span class="op">}</span><span class="op">)</span>
-<span class="co">#&gt; Test passed 🎊</span>
+<span class="co">#&gt; Test passed 🥳</span>
 <span class="fu"><a href="https://testthat.r-lib.org/reference/test_that.html">test_that</a></span><span class="op">(</span><span class="st">"99% CI"</span>, <span class="op">{</span>
   <span class="fu"><a href="https://testthat.r-lib.org/reference/logical-expectations.html">expect_true</a></span><span class="op">(</span>
     <span class="fu">theta_hit</span><span class="op">(</span>
@@ -181,7 +180,7 @@
     <span class="op">)</span>
   <span class="op">)</span>
 <span class="op">}</span><span class="op">)</span>
-<span class="co">#&gt; Test passed 🎉</span>
+<span class="co">#&gt; Test passed 🌈</span>
 <span class="fu"><a href="https://testthat.r-lib.org/reference/test_that.html">test_that</a></span><span class="op">(</span><span class="st">"95% CI"</span>, <span class="op">{</span>
   <span class="fu"><a href="https://testthat.r-lib.org/reference/logical-expectations.html">expect_true</a></span><span class="op">(</span>
     <span class="fu">theta_hit</span><span class="op">(</span>
@@ -191,7 +190,7 @@
     <span class="op">)</span>
   <span class="op">)</span>
 <span class="op">}</span><span class="op">)</span>
-<span class="co">#&gt; Test passed 🥇</span>
+<span class="co">#&gt; Test passed 😀</span>
 <span class="fu"><a href="https://testthat.r-lib.org/reference/test_that.html">test_that</a></span><span class="op">(</span><span class="st">"object is not of class lavaan"</span>, <span class="op">{</span>
   <span class="fu"><a href="https://testthat.r-lib.org/reference/expect_error.html">expect_error</a></span><span class="op">(</span>
     <span class="fu"><a href="../../reference/mc.html">mc</a></span><span class="op">(</span>

@@ -16,8 +16,8 @@ Language: en-US
 LazyData: true
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
-URL: https://github.com/jeksterslabds/semmcci
-BugReports: https://github.com/jeksterslabds/semmcci/issues
+URL: https://github.com/jeksterslab/semmcci
+BugReports: https://github.com/jeksterslab/semmcci/issues
 SystemRequirements:
 	git
 Depends:

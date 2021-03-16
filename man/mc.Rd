@@ -24,8 +24,9 @@ If \code{TRUE}, plots the sampling distribution of the defined parameter estimat
 \value{
 Returns a matrix with the following columns:
 \describe{
-\item{est}{Estimate of indirect effect.}
-\item{se}{Standard error of Monte Carlo simulated indirect effect.}
+\item{est}{Parameter estimate.}
+\item{se}{Standard error of Monte Carlo sampling distribution.}
+\item{R}{Number of Monte Carlo replications.}
 \item{limits}{Confidence limits \eqn{\frac{\alpha}{2} , 1 - \frac{\alpha}{2}}.}
 }
 }

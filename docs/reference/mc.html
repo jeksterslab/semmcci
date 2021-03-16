@@ -81,7 +81,7 @@ for parameters defined using the := operator in lavaan." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -112,8 +112,8 @@ for parameters defined using the := operator in lavaan." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/jeksterslabds/semmcci/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/jeksterslab/semmcci/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -131,7 +131,7 @@ for parameters defined using the := operator in lavaan." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Monte Carlo Confidence Intervals</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jeksterslabds/semmcci/blob/master/R/mc.R'><code>R/mc.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/jeksterslab/semmcci/blob/master/R/mc.R'><code>R/mc.R</code></a></small>
     <div class="hidden name"><code>mc.Rd</code></div>
     </div>
 
@@ -172,8 +172,9 @@ If <code>TRUE</code>, plots the sampling distribution of the defined parameter e
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Returns a matrix with the following columns:</p><dl>
-<dt>est</dt><dd><p>Estimate of indirect effect.</p></dd>
-<dt>se</dt><dd><p>Standard error of Monte Carlo simulated indirect effect.</p></dd>
+<dt>est</dt><dd><p>Parameter estimate.</p></dd>
+<dt>se</dt><dd><p>Standard error of Monte Carlo sampling distribution.</p></dd>
+<dt>R</dt><dd><p>Number of Monte Carlo replications.</p></dd>
 <dt>limits</dt><dd><p>Confidence limits \(\frac{\alpha}{2} , 1 - \frac{\alpha}{2}\).</p></dd>
 
 </dl>
@@ -183,9 +184,10 @@ If <code>TRUE</code>, plots the sampling distribution of the defined parameter e
     <p>Ivan Jacob Agaloos Pesigan</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/jeksterslabds/semmcci'>semmcci</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://lavaan.org'>lavaan</a></span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>This is lavaan 0.6-7</span></div><div class='output co'>#&gt; <span class='message'>lavaan is BETA software! Please report any bugs.</span></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/jeksterslab/semmcci'>semmcci</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://lavaan.ugent.be'>lavaan</a></span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>This is lavaan 0.6-8</span>
+#&gt; <span class='message'>lavaan is FREE software! Please report any bugs.</span></div><div class='input'>
 <span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>1000</span>
 <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>n</span><span class='op'>)</span>
 <span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fl'>0.50</span> <span class='op'>*</span> <span class='va'>x</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>n</span><span class='op'>)</span>
@@ -213,8 +215,8 @@ If <code>TRUE</code>, plots the sampling distribution of the defined parameter e
   alpha <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.001</span>, <span class='fl'>0.01</span>, <span class='fl'>0.05</span><span class='op'>)</span>,
   plot <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span>
-</div><div class='img'><img src='mc-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt;       est     se ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95
-#&gt; ab 0.2614 0.0229  0.1899 0.2048 0.2182  0.3076  0.3221   0.3412</div></pre>
+</div><div class='img'><img src='mc-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt;       est     se     R ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95
+#&gt; ab 0.2614 0.0229 20000  0.1899 0.2048 0.2182  0.3076  0.3221   0.3412</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

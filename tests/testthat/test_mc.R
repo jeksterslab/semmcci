@@ -1,9 +1,3 @@
-
-
-
-
-
-
 #' ---
 #' title: "Test: mc"
 #' author: "Ivan Jacob Agaloos Pesigan"

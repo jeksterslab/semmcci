@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://github.com/jeksterslabds/semmcci//index.html</loc>
+    <loc>https://github.com/jeksterslab/semmcci//index.html</loc>
   </url>
   <url>
-    <loc>https://github.com/jeksterslabds/semmcci//reference/mc.html</loc>
+    <loc>https://github.com/jeksterslab/semmcci//reference/mc.html</loc>
   </url>
   <url>
-    <loc>https://github.com/jeksterslabds/semmcci//articles/examples.html</loc>
+    <loc>https://github.com/jeksterslab/semmcci//reference/semmcci.html</loc>
   </url>
   <url>
-    <loc>https://github.com/jeksterslabds/semmcci//articles/semmcci.html</loc>
+    <loc>https://github.com/jeksterslab/semmcci//articles/examples.html</loc>
   </url>
   <url>
-    <loc>https://github.com/jeksterslabds/semmcci//articles/tests/test_mc.html</loc>
+    <loc>https://github.com/jeksterslab/semmcci//articles/semmcci.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/jeksterslab/semmcci//articles/tests/test_mc.html</loc>
   </url>
 </urlset>
