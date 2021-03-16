@@ -19,16 +19,16 @@ Roxygen: list(markdown = TRUE)
 URL: https://github.com/jeksterslab/semmcci
 BugReports: https://github.com/jeksterslab/semmcci/issues
 SystemRequirements:
-	git
+    git
 Depends:
-	R (>= 3.5.0)
+    R (>= 3.0.0)
 Imports:
-	utils,
-	stats,
+    utils,
+    stats,
     MASS,
     lavaan
 Suggests:
-	knitr,
-	rmarkdown,
-	testthat
+    knitr,
+    rmarkdown,
+    testthat
 RoxygenNote: 7.1.1
