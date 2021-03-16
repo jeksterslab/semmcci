@@ -7,11 +7,6 @@
 #'
 #' @family Monte Carlo method functions
 #' @keywords mc
-#' @importFrom lavaan coef
-#' @importFrom lavaan vcov
-#' @importFrom graphics hist
-#' @importFrom stats var
-#' @importFrom MASS mvrnorm
 #' @param object lavaan object
 #'   with defined parameters using the `:=` operator
 #'   in the [lavaan] model syntax.
@@ -24,8 +19,9 @@
 #'  If `TRUE`, plots the sampling distribution of the defined parameter estimate/s.
 #' @return Returns a matrix with the following columns:
 #'   \describe{
-#'     \item{est}{Estimate of indirect effect.}
-#'     \item{se}{Standard error of Monte Carlo simulated indirect effect.}
+#'     \item{est}{Parameter estimate.}
+#'     \item{se}{Standard error of Monte Carlo sampling distribution.}
+#'     \item{R}{Number of Monte Carlo replications.}
 #'     \item{limits}{Confidence limits \eqn{\frac{\alpha}{2} , 1 - \frac{\alpha}{2}}.}
 #'   }
 #' @examples
@@ -70,8 +66,8 @@ mc <- function(object,
     )
   }
   R <- as.integer(R)
-  mu <- coef(object)
-  Sigma <- vcov(object)
+  mu <- lavaan::coef(object)
+  Sigma <- lavaan::vcov(object)
   tryCatch(
     {
       thetahat <- object@Model@def.function(mu)
@@ -82,7 +78,7 @@ mc <- function(object,
       )
     }
   )
-  thetahatstar <- mvrnorm(
+  thetahatstar <- MASS::mvrnorm(
     n = R,
     mu = mu,
     Sigma = Sigma
@@ -97,14 +93,14 @@ mc <- function(object,
     what = "rbind",
     args = thetahatstar
   )
-  se <- sqrt(diag(var(thetahatstar)))
+  se <- sqrt(diag(stats::var(thetahatstar)))
   ci <- vector(
     mode = "list",
     length = dim(thetahatstar)[2]
   )
   for (i in 1:dim(thetahatstar)[2]) {
     if (plot) {
-      hist(
+      graphics::hist(
         thetahatstar[, i],
         main = paste("Histogram of", colnames(thetahatstar)[i]),
         xlab = colnames(thetahatstar)[i]
@@ -130,27 +126,29 @@ mc <- function(object,
   invisible(ci)
 }
 
-#' @importFrom stats sd quantile
 .pcci <- function(thetahatstar,
                   thetahat,
                   alpha = c(0.001, 0.01, 0.05)) {
   thetahatstar <- as.vector(thetahatstar)
+  thetahatstar <- thetahatstar[stats::complete.cases(thetahatstar)]
   alpha <- sort(alpha)
   prob_ll <- alpha / 2
   prob_ul <- rev(1 - prob_ll)
   probs <- c(prob_ll, prob_ul)
-  ci <- quantile(
+  ci <- stats::quantile(
     x = thetahatstar,
     probs = probs
   )
   out <- c(
     thetahat,
-    sd(thetahatstar),
+    stats::sd(thetahatstar),
+    length(thetahatstar),
     ci
   )
   names(out) <- c(
     "est",
     "se",
+    "R",
     paste0(
       "ci_",
       probs * 100
