@@ -159,7 +159,7 @@
 <span class="op">)</span></code></pre></div>
 <p><img src="test_mc_files/figure-html/Monte%20Carlo-1.png" width="100%"></p>
 <pre><code>#&gt;     est     se     R ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95
-#&gt; ab 0.26 0.0519 20000  0.1128 0.1396 0.1645  0.3683  0.4046   0.4513</code></pre>
+#&gt; ab 0.26 0.0519 20000  0.1164 0.1389 0.1634  0.3664  0.4052    0.449</code></pre>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://testthat.r-lib.org/reference/test_that.html">test_that</a></span><span class="op">(</span><span class="st">"99.9% CI"</span>, <span class="op">{</span>
   <span class="fu"><a href="https://testthat.r-lib.org/reference/logical-expectations.html">expect_true</a></span><span class="op">(</span>
@@ -180,7 +180,7 @@
     <span class="op">)</span>
   <span class="op">)</span>
 <span class="op">}</span><span class="op">)</span>
-<span class="co">#&gt; Test passed 🥇</span>
+<span class="co">#&gt; Test passed 🎉</span>
 <span class="fu"><a href="https://testthat.r-lib.org/reference/test_that.html">test_that</a></span><span class="op">(</span><span class="st">"95% CI"</span>, <span class="op">{</span>
   <span class="fu"><a href="https://testthat.r-lib.org/reference/logical-expectations.html">expect_true</a></span><span class="op">(</span>
     <span class="fu">theta_hit</span><span class="op">(</span>
@@ -190,7 +190,7 @@
     <span class="op">)</span>
   <span class="op">)</span>
 <span class="op">}</span><span class="op">)</span>
-<span class="co">#&gt; Test passed 😀</span>
+<span class="co">#&gt; Test passed 🎊</span>
 <span class="fu"><a href="https://testthat.r-lib.org/reference/test_that.html">test_that</a></span><span class="op">(</span><span class="st">"object is not of class lavaan"</span>, <span class="op">{</span>
   <span class="fu"><a href="https://testthat.r-lib.org/reference/expect_error.html">expect_error</a></span><span class="op">(</span>
     <span class="fu"><a href="../../reference/mc.html">mc</a></span><span class="op">(</span>
@@ -214,7 +214,7 @@
     <span class="op">)</span>
   <span class="op">)</span>
 <span class="op">}</span><span class="op">)</span>
-<span class="co">#&gt; Test passed 😀</span></code></pre></div>
+<span class="co">#&gt; Test passed 🎉</span></code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -192,11 +192,7 @@ If <code>TRUE</code>, plots the sampling distribution of the defined parameter e
 <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>n</span><span class='op'>)</span>
 <span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fl'>0.50</span> <span class='op'>*</span> <span class='va'>x</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>n</span><span class='op'>)</span>
 <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fl'>0.25</span> <span class='op'>*</span> <span class='va'>x</span> <span class='op'>+</span> <span class='fl'>0.50</span> <span class='op'>*</span> <span class='va'>m</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>n</span><span class='op'>)</span>
-<span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
-  <span class='va'>x</span>,
-  <span class='va'>m</span>,
-  <span class='va'>y</span>
-<span class='op'>)</span>
+<span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>m</span>, <span class='va'>y</span><span class='op'>)</span>
 <span class='va'>model</span> <span class='op'>&lt;-</span> <span class='st'>"
   y ~ cp * x + b * m
   m ~ a * x

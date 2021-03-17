@@ -42,11 +42,7 @@ n <- 1000
 x <- rnorm(n = n)
 m <- 0.50 * x + rnorm(n = n)
 y <- 0.25 * x + 0.50 * m + rnorm(n = n)
-data <- data.frame(
-  x,
-  m,
-  y
-)
+data <- data.frame(x, m, y)
 model <- "
   y ~ cp * x + b * m
   m ~ a * x

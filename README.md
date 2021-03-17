@@ -88,7 +88,7 @@ mc(fit)
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
     #>       est     se     R ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95
-    #> ab 0.3035 0.0248 20000  0.2256 0.2432 0.2564  0.3535  0.3704    0.389
+    #> ab 0.2209 0.0216 20000  0.1556 0.1682 0.1801  0.2648  0.2798   0.2975
 
 ## More Information
 
