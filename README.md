@@ -1,7 +1,7 @@
 semmcci
 ================
 Ivan Jacob Agaloos Pesigan
-2021-03-16
+2021-03-17
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
@@ -87,8 +87,8 @@ mc(fit)
 
 <img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
-    #>       est     se     R ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95
-    #> ab 0.2209 0.0216 20000  0.1556 0.1682 0.1801  0.2648  0.2798   0.2975
+    #>       est    se     R ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95
+    #> ab 0.2667 0.023 20000  0.1988 0.2097 0.2226   0.313  0.3285   0.3495
 
 ## More Information
 
