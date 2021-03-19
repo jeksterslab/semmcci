@@ -151,7 +151,7 @@ mc <- function(object,
     mode = "list",
     length = dim(thetahatstar)[2]
   )
-  for (i in 1:dim(thetahatstar)[2]) {
+  for (i in seq_len(dim(thetahatstar)[2])) {
     ci[[i]] <- .pcci(
       thetahatstar = thetahatstar[, i],
       thetahat = thetahat[[i]],
