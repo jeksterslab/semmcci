@@ -90,7 +90,8 @@ We can now construct confidence intervals around `ab` by passing `fit` as an arg
 
 ```{r}
 library(semmcci)
-mc(fit)
+out <- mc(fit)
+print(out)
 ```
 
 ## More Information

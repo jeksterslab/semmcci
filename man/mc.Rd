@@ -4,12 +4,10 @@
 \alias{mc}
 \title{Monte Carlo Confidence Intervals}
 \usage{
-mc(object, R = 20000L, alpha = c(0.001, 0.01, 0.05), plot = TRUE)
+mc(object, R = 2000L, alpha = c(0.001, 0.01, 0.05), par = FALSE, ncores = NULL)
 }
 \arguments{
-\item{object}{lavaan object
-with defined parameters using the \verb{:=} operator
-in the \link{lavaan} model syntax.}
+\item{object}{object of class \code{lavaan}.}
 
 \item{R}{Integer.
 Number of Monte Carlo replications.}
@@ -18,49 +16,62 @@ Number of Monte Carlo replications.}
 Significance level \eqn{\alpha}.
 Default value is \code{alpha = c(0.001, 0.01, 0.05)}.}
 
-\item{plot}{Logical.
-If \code{TRUE}, plots the sampling distribution of the defined parameter estimate/s.}
-}
-\value{
-Returns a matrix with the following columns:
-\describe{
-\item{est}{Parameter estimate.}
-\item{se}{Standard error of Monte Carlo sampling distribution.}
-\item{R}{Number of Monte Carlo replications.}
-\item{limits}{Confidence limits \eqn{\frac{\alpha}{2} , 1 - \frac{\alpha}{2}}.}
-}
+\item{par}{Logical.
+If \code{par = TRUE}, use multiple cores.}
+
+\item{ncores}{Integer.
+Number of cores to use if \code{par = TRUE}.}
 }
 \description{
-Calculates Monte Carlo confidence intervals
-for parameters defined using the \verb{:=} operator in \link{lavaan}.
+Calculates Monte Carlo confidence intervals.
+}
+\details{
+An empirical sampling distribution of parameter estimates
+is generated using the fitted model given by
+
+\deqn{
+    \hat{\boldsymbol{\theta}}^{\ast}
+    \sim
+    \mathcal{N}_{p}
+    \left(
+      \boldsymbol{\mu} = \hat{\boldsymbol{\theta}},
+      \boldsymbol{\Sigma} = \mathrm{Cov}
+      \left( \hat{\boldsymbol{\theta}} \right)
+    \right) .
+  }
+
+Confidence intervals are generated
+using the empirical sampling distribution.
 }
 \examples{
 library(semmcci)
 library(lavaan)
 
+# Generate Data ------------------------------------------------------------
 n <- 1000
 x <- rnorm(n = n)
 m <- 0.50 * x + rnorm(n = n)
 y <- 0.25 * x + 0.50 * m + rnorm(n = n)
 data <- data.frame(x, m, y)
+
+# Fit Model in lavaan ------------------------------------------------------
 model <- "
   y ~ cp * x + b * m
   m ~ a * x
   ab := a * b
 "
-object <- sem(
+fit <- sem(
   data = data,
   model = model
 )
 
-# Monte Carlo
-
-mc(
-  object = object,
-  R = 20000L,
-  alpha = c(0.001, 0.01, 0.05),
-  plot = TRUE
+# Monte Carlo --------------------------------------------------------------
+mc <- mc(
+  fit,
+  R = 100L, # use a large value e.g., 20000L for actual research
+  alpha = c(0.001, 0.01, 0.05)
 )
+print(mc)
 }
 \author{
 Ivan Jacob Agaloos Pesigan

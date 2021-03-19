@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Monte Carlo Confidence Intervals — mc • semmcci</title>
+<title>Standardized Monte Carlo Confidence Intervals — std • semmcci</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Monte Carlo Confidence Intervals — mc" />
-<meta property="og:description" content="Calculates Monte Carlo confidence intervals." />
+<meta property="og:title" content="Standardized Monte Carlo Confidence Intervals — std" />
+<meta property="og:description" content="Calculates standardized Monte Carlo confidence intervals." />
 
 
 
@@ -129,28 +129,40 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Monte Carlo Confidence Intervals</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jeksterslab/semmcci/blob/master/R/mc.R'><code>R/mc.R</code></a></small>
-    <div class="hidden name"><code>mc.Rd</code></div>
+    <h1>Standardized Monte Carlo Confidence Intervals</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jeksterslab/semmcci/blob/master/R/std.R'><code>R/std.R</code></a></small>
+    <div class="hidden name"><code>std.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Calculates Monte Carlo confidence intervals.</p>
+    <p>Calculates standardized Monte Carlo confidence intervals.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mc</span><span class='op'>(</span><span class='va'>object</span>, R <span class='op'>=</span> <span class='fl'>2000L</span>, alpha <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.001</span>, <span class='fl'>0.01</span>, <span class='fl'>0.05</span><span class='op'>)</span>, par <span class='op'>=</span> <span class='cn'>FALSE</span>, ncores <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>std</span><span class='op'>(</span>
+  <span class='va'>object</span>,
+  type <span class='op'>=</span> <span class='st'>"std.all"</span>,
+  alpha <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.001</span>, <span class='fl'>0.01</span>, <span class='fl'>0.05</span><span class='op'>)</span>,
+  par <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  ncores <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p>object of class <code>lavaan</code>.</p></td>
+      <td><p>object of class <code>semmcci</code>.
+The output of <code><a href='mc.html'>semmcci::mc</a></code>.</p></td>
     </tr>
     <tr>
-      <th>R</th>
-      <td><p>Integer.
-Number of Monte Carlo replications.</p></td>
+      <th>type</th>
+      <td><p>If <code>"std.lv"</code>, the standardized estimates are
+on the variances of the (continuous) latent variables only.
+If <code>"std.all"</code>, the standardized estimates are based
+on both the variances of both (continuous) observed and latent variables.
+If <code>"std.nox"</code>, the standardized estimates are based
+on both the variances of both (continuous) observed and latent variables, 
+but not the variances of exogenous covariates.</p></td>
     </tr>
     <tr>
       <th>alpha</th>
@@ -172,20 +184,10 @@ Number of cores to use if <code>par = TRUE</code>.</p></td>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>An empirical sampling distribution of parameter estimates
-is generated using the fitted model given by</p>
-<p>$$
-    \hat{\boldsymbol{\theta}}^{\ast}
-    \sim
-    \mathcal{N}_{p}
-    \left(
-      \boldsymbol{\mu} = \hat{\boldsymbol{\theta}},
-      \boldsymbol{\Sigma} = \mathrm{Cov}
-      \left( \hat{\boldsymbol{\theta}} \right)
-    \right) .
-  $$</p>
-<p>Confidence intervals are generated
-using the empirical sampling distribution.</p>
+    <p>The empirical sampling distribution
+of parameter estimates from the argument <code>object</code> are standardized.
+Confidence intervals are generated
+using the standardized empirical sampling distribution.</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Ivan Jacob Agaloos Pesigan</p>
@@ -193,8 +195,7 @@ using the empirical sampling distribution.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/jeksterslab/semmcci'>semmcci</a></span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://lavaan.ugent.be'>lavaan</a></span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>This is lavaan 0.6-8</span>
-#&gt; <span class='message'>lavaan is FREE software! Please report any bugs.</span></div><div class='input'>
+
 <span class='co'># Generate Data ------------------------------------------------------------</span>
 <span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>1000</span>
 <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>n</span><span class='op'>)</span>
@@ -210,25 +211,29 @@ using the empirical sampling distribution.</p>
 "</span>
 <span class='va'>fit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/lavaan/man/sem.html'>sem</a></span><span class='op'>(</span>
   data <span class='op'>=</span> <span class='va'>data</span>,
-  model <span class='op'>=</span> <span class='va'>model</span>
+  model <span class='op'>=</span> <span class='va'>model</span>,
+  fixed.x <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span>
 
 <span class='co'># Monte Carlo --------------------------------------------------------------</span>
-<span class='va'>mc</span> <span class='op'>&lt;-</span> <span class='fu'>mc</span><span class='op'>(</span>
+<span class='va'>mc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='mc.html'>mc</a></span><span class='op'>(</span>
   <span class='va'>fit</span>,
   R <span class='op'>=</span> <span class='fl'>100L</span>, <span class='co'># use a large value e.g., 20000L for actual research</span>
   alpha <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.001</span>, <span class='fl'>0.01</span>, <span class='fl'>0.05</span><span class='op'>)</span>
 <span class='op'>)</span>
-<span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>mc</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Monte Carlo Confidence Intervals
+
+<span class='co'># Standardized Monte Carlo -------------------------------------------------</span>
+<span class='va'>std</span> <span class='op'>&lt;-</span> <span class='fu'>std</span><span class='op'>(</span><span class='va'>mc</span><span class='op'>)</span>
+<span class='fu'><a href='print.html'>print</a></span><span class='op'>(</span><span class='va'>std</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Standardized Monte Carlo Confidence Intervals
 #&gt;         est     se   R ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95
-#&gt; cp   0.3190 0.0346 100  0.2462 0.2504 0.2579  0.3828  0.4018   0.4129
-#&gt; b    0.4822 0.0291 100  0.4180 0.4208 0.4263  0.5432  0.5522   0.5556
-#&gt; a    0.5421 0.0314 100  0.4333 0.4407 0.4768  0.5896  0.6064   0.6096
-#&gt; y~~y 0.9948 0.0444 100  0.8946 0.8948 0.8977  1.0746  1.1005   1.1077
-#&gt; m~~m 0.9331 0.0373 100  0.8327 0.8373 0.8584  1.0046  1.0211   1.0264
-#&gt; x~~x 0.9990     NA  NA      NA     NA     NA      NA      NA       NA
-#&gt; ab   0.2614 0.0223 100  0.2093 0.2100 0.2143  0.3009  0.3086   0.3089</div></pre>
+#&gt; cp   0.1986 0.0295 100  0.1225 0.1269 0.1383  0.2549  0.2623   0.2644
+#&gt; b    0.4550 0.0316 100  0.3581 0.3726 0.4058  0.5165  0.5228   0.5231
+#&gt; a    0.4440 0.0243 100  0.3872 0.3886 0.4016  0.4960  0.5039   0.5042
+#&gt; y~~y 0.6732 0.0306 100  0.5845 0.5966 0.6212  0.7392  0.7544   0.7587
+#&gt; m~~m 0.8029 0.0332 100  0.7337 0.7351 0.7432  0.8666  0.8744   0.8801
+#&gt; x~~x 1.0000 0.0422 100  0.9039 0.9110 0.9313  1.0785  1.0855   1.0865
+#&gt; ab   0.2020 0.0174 100  0.1651 0.1671 0.1722  0.2399  0.2467   0.2487</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
