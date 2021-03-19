@@ -2,6 +2,7 @@
 ^.*\.yml$
 ^.covrignore$
 ^.travis.yml$
+^.notes$
 ^LICENSE\.md$
 ^Makefile$
 ^NEWS.md$
