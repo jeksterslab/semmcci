@@ -66,3 +66,6 @@ data_raw/*.md
 
 # R Environment Variables
 .Renviron
+
+# Notes
+.notes/*
