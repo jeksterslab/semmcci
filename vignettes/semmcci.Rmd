@@ -28,13 +28,11 @@ knitr::opts_chunk$set(
 
 ## Monte Carlo Confidence Intervals
 
-`semmcci` calculates Monte Carlo confidence intervals
-for parameters defined using the `:=` operator
-in the structural equation modeling package `lavaan`.
-The output of `lavaan` is passed as the first argument
+`semmcci` calculates Monte Carlo confidence intervals.
+The output of the structural equation modeling package `lavaan`
+is passed as the first argument
 to the `mc` function in `semmcci`
-to generate Monte Carlo confidence intervals
-for defined parameter/s.
+to generate Monte Carlo confidence intervals.
 
 ## Installation
 

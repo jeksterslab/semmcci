@@ -1,7 +1,7 @@
 semmcci
 ================
 Ivan Jacob Agaloos Pesigan
-2021-03-19
+2021-03-20
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
@@ -15,11 +15,10 @@ status](https://travis-ci.com/jeksterslab/semmcci.svg?branch=master)](https://tr
 
 ## Monte Carlo Confidence Intervals
 
-`semmcci` calculates Monte Carlo confidence intervals for parameters
-defined using the `:=` operator in the structural equation modeling
-package `lavaan`. The output of `lavaan` is passed as the first argument
-to the `mc` function in `semmcci` to generate Monte Carlo confidence
-intervals for defined parameter/s.
+`semmcci` calculates Monte Carlo confidence intervals. The output of the
+structural equation modeling package `lavaan` is passed as the first
+argument to the `mc` function in `semmcci` to generate Monte Carlo
+confidence intervals.
 
 ## Installation
 
@@ -86,13 +85,13 @@ out <- mc(fit)
 semmcci::print(out)
 #> Monte Carlo Confidence Intervals
 #>         est     se    R ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95
-#> y~x  0.2882 0.0359 2000  0.1690 0.1976 0.2163  0.3597  0.3762   0.3981
-#> b    0.5333 0.0321 2000  0.4271 0.4478 0.4688  0.5951  0.6126   0.6278
-#> a    0.5204 0.0323 2000  0.4172 0.4385 0.4580  0.5811  0.6021   0.6407
-#> y~~y 0.9881 0.0431 2000  0.8546 0.8823 0.9048  1.0693  1.0941   1.1287
-#> m~~m 0.9706 0.0437 2000  0.8203 0.8626 0.8809  1.0530  1.0747   1.0849
-#> x~~x 0.9355     NA   NA      NA     NA     NA      NA      NA       NA
-#> ab   0.2775 0.0240 2000  0.2078 0.2185 0.2320  0.3241  0.3435   0.3686
+#> y~x  0.2506 0.0353 2000  0.1266 0.1624 0.1817  0.3219  0.3462   0.3684
+#> b    0.4977 0.0325 2000  0.4038 0.4171 0.4333  0.5611  0.5818   0.5966
+#> a    0.5151 0.0303 2000  0.4157 0.4333 0.4528  0.5715  0.5906   0.6062
+#> y~~y 1.0691 0.0476 2000  0.9269 0.9472 0.9745  1.1577  1.1944   1.2135
+#> m~~m 1.0556 0.0468 2000  0.8936 0.9332 0.9691  1.1513  1.1722   1.1921
+#> x~~x 1.0618     NA   NA      NA     NA     NA      NA      NA       NA
+#> ab   0.2564 0.0225 2000  0.1817 0.1974 0.2128  0.3014  0.3160   0.3324
 ```
 
 ## More Information

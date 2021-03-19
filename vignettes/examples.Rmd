@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 
 This vignette presents four examples
 of generating Monte Carlo confidence intervals
-in the structural equation modeling software `lavaan`.
+using the `semmci` package.
 The first example involves a simple mediation model.
 The second example involves a serial mediation model.
 The third example involves missing data.
