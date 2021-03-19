@@ -170,21 +170,21 @@
 <span class="co">#&gt; Regressions:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
 <span class="co">#&gt;   y ~                                                 </span>
-<span class="co">#&gt;     x         (cp)    0.233    0.036    6.473    0.000</span>
-<span class="co">#&gt;     m          (b)    0.514    0.032   15.904    0.000</span>
+<span class="co">#&gt;     x         (cp)    0.261    0.036    7.211    0.000</span>
+<span class="co">#&gt;     m          (b)    0.476    0.032   15.098    0.000</span>
 <span class="co">#&gt;   m ~                                                 </span>
-<span class="co">#&gt;     x          (a)    0.490    0.032   15.538    0.000</span>
+<span class="co">#&gt;     x          (a)    0.586    0.031   18.737    0.000</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Variances:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
-<span class="co">#&gt;    .y                 1.038    0.046   22.361    0.000</span>
-<span class="co">#&gt;    .m                 0.991    0.044   22.361    0.000</span>
+<span class="co">#&gt;    .y                 0.962    0.043   22.361    0.000</span>
+<span class="co">#&gt;    .m                 0.969    0.043   22.361    0.000</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Defined Parameters:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
-<span class="co">#&gt;     indirect          0.252    0.023   11.114    0.000</span>
-<span class="co">#&gt;     direct            0.233    0.036    6.473    0.000</span>
-<span class="co">#&gt;     total             0.485    0.036   13.424    0.000</span></code></pre></div>
+<span class="co">#&gt;     indirect          0.279    0.024   11.756    0.000</span>
+<span class="co">#&gt;     direct            0.261    0.036    7.211    0.000</span>
+<span class="co">#&gt;     total             0.540    0.035   15.636    0.000</span></code></pre></div>
 </div>
 <div id="monte-carlo-confidence-intervals" class="section level3">
 <h3 class="hasAnchor">
@@ -199,15 +199,15 @@
 <span class="fu"><a href="../reference/print.html">print</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span>
 <span class="co">#&gt; Monte Carlo Confidence Intervals</span>
 <span class="co">#&gt;             est     se   R ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95</span>
-<span class="co">#&gt; cp       0.2327 0.0366 100  0.1440 0.1471 0.1565  0.2941  0.3217   0.3248</span>
-<span class="co">#&gt; b        0.5145 0.0318 100  0.4489 0.4492 0.4538  0.5798  0.5860   0.5898</span>
-<span class="co">#&gt; a        0.4901 0.0285 100  0.4236 0.4241 0.4339  0.5452  0.5597   0.5712</span>
-<span class="co">#&gt; y~~y     1.0376 0.0449 100  0.9278 0.9296 0.9473  1.1312  1.1436   1.1461</span>
-<span class="co">#&gt; m~~m     0.9915 0.0440 100  0.8794 0.8933 0.9137  1.0738  1.1017   1.1030</span>
-<span class="co">#&gt; x~~x     0.9967     NA  NA      NA     NA     NA      NA      NA       NA</span>
-<span class="co">#&gt; indirect 0.2521 0.0209 100  0.2098 0.2119 0.2147  0.2947  0.2992   0.3004</span>
-<span class="co">#&gt; direct   0.2327 0.0366 100  0.1440 0.1471 0.1565  0.2941  0.3217   0.3248</span>
-<span class="co">#&gt; total    0.4848 0.0353 100  0.4064 0.4115 0.4234  0.5586  0.5635   0.5652</span></code></pre></div>
+<span class="co">#&gt; cp       0.2610 0.0318 100  0.2004 0.2013 0.2127  0.3184  0.3715   0.3943</span>
+<span class="co">#&gt; b        0.4756 0.0335 100  0.3869 0.3917 0.4066  0.5358  0.5519   0.5577</span>
+<span class="co">#&gt; a        0.5857 0.0324 100  0.5094 0.5121 0.5197  0.6447  0.6637   0.6696</span>
+<span class="co">#&gt; y~~y     0.9621 0.0428 100  0.8645 0.8683 0.8738  1.0349  1.0436   1.0463</span>
+<span class="co">#&gt; m~~m     0.9694 0.0438 100  0.8543 0.8590 0.8868  1.0521  1.0813   1.0844</span>
+<span class="co">#&gt; x~~x     0.9922     NA  NA      NA     NA     NA      NA      NA       NA</span>
+<span class="co">#&gt; indirect 0.2786 0.0260 100  0.2157 0.2201 0.2290  0.3287  0.3348   0.3376</span>
+<span class="co">#&gt; direct   0.2610 0.0318 100  0.2004 0.2013 0.2127  0.3184  0.3715   0.3943</span>
+<span class="co">#&gt; total    0.5395 0.0350 100  0.4540 0.4588 0.4762  0.6050  0.6396   0.6580</span></code></pre></div>
 </div>
 </div>
 <div id="example-2-the-serial-mediation-model" class="section level2">
@@ -260,7 +260,7 @@
   model <span class="op">=</span> <span class="va">model</span>
 <span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span>
-<span class="co">#&gt; lavaan 0.6-8 ended normally after 15 iterations</span>
+<span class="co">#&gt; lavaan 0.6-8 ended normally after 14 iterations</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;   Estimator                                         ML</span>
 <span class="co">#&gt;   Optimization method                           NLMINB</span>
@@ -282,27 +282,27 @@
 <span class="co">#&gt; Regressions:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
 <span class="co">#&gt;   y ~                                                 </span>
-<span class="co">#&gt;     x         (cp)    0.076    0.036    2.131    0.033</span>
-<span class="co">#&gt;     m1        (b1)    0.043    0.034    1.245    0.213</span>
-<span class="co">#&gt;     m2        (b2)    0.531    0.032   16.766    0.000</span>
+<span class="co">#&gt;     x         (cp)    0.106    0.036    2.964    0.003</span>
+<span class="co">#&gt;     m1        (b1)    0.107    0.035    3.020    0.003</span>
+<span class="co">#&gt;     m2        (b2)    0.460    0.032   14.299    0.000</span>
 <span class="co">#&gt;   m2 ~                                                </span>
-<span class="co">#&gt;     x         (a2)    0.185    0.035    5.243    0.000</span>
-<span class="co">#&gt;     m1         (k)    0.464    0.031   14.928    0.000</span>
+<span class="co">#&gt;     x         (a2)    0.177    0.035    5.118    0.000</span>
+<span class="co">#&gt;     m1         (k)    0.456    0.032   14.363    0.000</span>
 <span class="co">#&gt;   m1 ~                                                </span>
-<span class="co">#&gt;     x         (a1)    0.510    0.032   15.859    0.000</span>
+<span class="co">#&gt;     x         (a1)    0.495    0.031   16.124    0.000</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Variances:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
-<span class="co">#&gt;    .y                 0.951    0.043   22.361    0.000</span>
-<span class="co">#&gt;    .m2                0.950    0.042   22.361    0.000</span>
-<span class="co">#&gt;    .m1                0.983    0.044   22.361    0.000</span>
+<span class="co">#&gt;    .y                 0.999    0.045   22.361    0.000</span>
+<span class="co">#&gt;    .m2                0.966    0.043   22.361    0.000</span>
+<span class="co">#&gt;    .m1                0.958    0.043   22.361    0.000</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Defined Parameters:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
-<span class="co">#&gt;     a1kb2             0.126    0.014    9.121    0.000</span>
-<span class="co">#&gt;     a1k               0.237    0.022   10.870    0.000</span>
-<span class="co">#&gt;     a2b2              0.098    0.020    5.004    0.000</span>
-<span class="co">#&gt;     kb2               0.246    0.022   11.149    0.000</span></code></pre></div>
+<span class="co">#&gt;     a1kb2             0.104    0.012    8.580    0.000</span>
+<span class="co">#&gt;     a1k               0.226    0.021   10.725    0.000</span>
+<span class="co">#&gt;     a2b2              0.081    0.017    4.819    0.000</span>
+<span class="co">#&gt;     kb2               0.210    0.021   10.133    0.000</span></code></pre></div>
 </div>
 <div id="monte-carlo-confidence-intervals-1" class="section level3">
 <h3 class="hasAnchor">
@@ -317,21 +317,21 @@
 <span class="op">)</span>
 <span class="fu"><a href="../reference/print.html">print</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span>
 <span class="co">#&gt; Monte Carlo Confidence Intervals</span>
-<span class="co">#&gt;           est     se   R ci_0.05  ci_0.5  ci_2.5 ci_97.5 ci_99.5 ci_99.95</span>
-<span class="co">#&gt; cp     0.0764 0.0333 100  0.0076  0.0137  0.0218  0.1310  0.1458   0.1555</span>
-<span class="co">#&gt; b1     0.0428 0.0329 100 -0.0343 -0.0329 -0.0199  0.1173  0.1212   0.1225</span>
-<span class="co">#&gt; b2     0.5305 0.0326 100  0.4571  0.4586  0.4707  0.5924  0.5965   0.5981</span>
-<span class="co">#&gt; a2     0.1854 0.0355 100  0.1043  0.1058  0.1213  0.2454  0.2626   0.2742</span>
-<span class="co">#&gt; k      0.4642 0.0330 100  0.3611  0.3756  0.4038  0.5190  0.5300   0.5384</span>
-<span class="co">#&gt; a1     0.5099 0.0333 100  0.4362  0.4403  0.4463  0.5613  0.6006   0.6025</span>
-<span class="co">#&gt; y~~y   0.9512 0.0401 100  0.8607  0.8623  0.8795  1.0351  1.0453   1.0462</span>
-<span class="co">#&gt; m2~~m2 0.9501 0.0433 100  0.8082  0.8238  0.8561  1.0281  1.0387   1.0417</span>
-<span class="co">#&gt; m1~~m1 0.9827 0.0417 100  0.8723  0.8889  0.9136  1.0709  1.0998   1.1031</span>
-<span class="co">#&gt; x~~x   0.9507     NA  NA      NA      NA      NA      NA      NA       NA</span>
-<span class="co">#&gt; a1kb2  0.1256 0.0140 100  0.0935  0.0959  0.1020  0.1551  0.1611   0.1653</span>
-<span class="co">#&gt; a1k    0.2367 0.0230 100  0.1746  0.1820  0.1954  0.2789  0.2966   0.3019</span>
-<span class="co">#&gt; a2b2   0.0984 0.0199 100  0.0540  0.0554  0.0653  0.1321  0.1512   0.1615</span>
-<span class="co">#&gt; kb2    0.2463 0.0227 100  0.1935  0.1983  0.2110  0.2956  0.2976   0.2991</span></code></pre></div>
+<span class="co">#&gt;           est     se   R ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95</span>
+<span class="co">#&gt; cp     0.1056 0.0358 100  0.0319 0.0335 0.0450  0.1793  0.1879   0.1902</span>
+<span class="co">#&gt; b1     0.1071 0.0330 100  0.0199 0.0307 0.0471  0.1700  0.2036   0.2192</span>
+<span class="co">#&gt; b2     0.4596 0.0325 100  0.3918 0.3930 0.3990  0.5144  0.5302   0.5398</span>
+<span class="co">#&gt; a2     0.1770 0.0401 100  0.0932 0.0959 0.1010  0.2545  0.2777   0.2955</span>
+<span class="co">#&gt; k      0.4563 0.0354 100  0.3803 0.3852 0.3932  0.5188  0.5560   0.5685</span>
+<span class="co">#&gt; a1     0.4946 0.0287 100  0.4306 0.4346 0.4403  0.5434  0.5543   0.5582</span>
+<span class="co">#&gt; y~~y   0.9987 0.0473 100  0.8868 0.8964 0.9124  1.0829  1.0975   1.1027</span>
+<span class="co">#&gt; m2~~m2 0.9665 0.0444 100  0.8825 0.8826 0.8886  1.0442  1.0534   1.0602</span>
+<span class="co">#&gt; m1~~m1 0.9577 0.0490 100  0.8406 0.8500 0.8620  1.0464  1.0836   1.1004</span>
+<span class="co">#&gt; x~~x   1.0178     NA  NA      NA     NA     NA      NA      NA       NA</span>
+<span class="co">#&gt; a1kb2  0.1037 0.0120 100  0.0752 0.0768 0.0789  0.1230  0.1334   0.1397</span>
+<span class="co">#&gt; a1k    0.2257 0.0223 100  0.1699 0.1769 0.1870  0.2681  0.2874   0.2902</span>
+<span class="co">#&gt; a2b2   0.0814 0.0192 100  0.0411 0.0419 0.0441  0.1196  0.1263   0.1283</span>
+<span class="co">#&gt; kb2    0.2097 0.0212 100  0.1558 0.1617 0.1702  0.2498  0.2676   0.2747</span></code></pre></div>
 </div>
 </div>
 <div id="example-3-missing-data" class="section level2">
@@ -377,7 +377,7 @@
   fixed.x <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span>
-<span class="co">#&gt; lavaan 0.6-8 ended normally after 14 iterations</span>
+<span class="co">#&gt; lavaan 0.6-8 ended normally after 12 iterations</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;   Estimator                                         ML</span>
 <span class="co">#&gt;   Optimization method                           NLMINB</span>
@@ -400,26 +400,26 @@
 <span class="co">#&gt; Regressions:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
 <span class="co">#&gt;   y ~                                                 </span>
-<span class="co">#&gt;     x         (cp)    0.276    0.043    6.490    0.000</span>
-<span class="co">#&gt;     m          (b)    0.496    0.034   14.392    0.000</span>
+<span class="co">#&gt;     x         (cp)    0.286    0.039    7.411    0.000</span>
+<span class="co">#&gt;     m          (b)    0.518    0.034   15.108    0.000</span>
 <span class="co">#&gt;   m ~                                                 </span>
-<span class="co">#&gt;     x          (a)    0.499    0.037   13.395    0.000</span>
+<span class="co">#&gt;     x          (a)    0.533    0.033   16.122    0.000</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Intercepts:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
-<span class="co">#&gt;    .y                 0.035    0.034    1.019    0.308</span>
-<span class="co">#&gt;    .m                 0.071    0.034    2.111    0.035</span>
-<span class="co">#&gt;     x                 0.030    0.031    0.983    0.325</span>
+<span class="co">#&gt;    .y                 0.053    0.032    1.633    0.102</span>
+<span class="co">#&gt;    .m                -0.046    0.032   -1.442    0.149</span>
+<span class="co">#&gt;     x                 0.007    0.032    0.209    0.834</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Variances:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
-<span class="co">#&gt;    .y                 0.999    0.048   20.701    0.000</span>
-<span class="co">#&gt;    .m                 1.023    0.049   20.984    0.000</span>
-<span class="co">#&gt;     x                 0.860    0.040   21.326    0.000</span>
+<span class="co">#&gt;    .y                 0.902    0.044   20.560    0.000</span>
+<span class="co">#&gt;    .m                 0.933    0.045   20.817    0.000</span>
+<span class="co">#&gt;     x                 0.976    0.046   21.350    0.000</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Defined Parameters:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
-<span class="co">#&gt;     ab                0.248    0.025    9.875    0.000</span></code></pre></div>
+<span class="co">#&gt;     ab                0.276    0.025   11.105    0.000</span></code></pre></div>
 </div>
 <div id="monte-carlo-confidence-intervals-2" class="section level3">
 <h3 class="hasAnchor">
@@ -434,17 +434,17 @@
 <span class="op">)</span>
 <span class="fu"><a href="../reference/print.html">print</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span>
 <span class="co">#&gt; Monte Carlo Confidence Intervals</span>
-<span class="co">#&gt;         est     se   R ci_0.05  ci_0.5  ci_2.5 ci_97.5 ci_99.5 ci_99.95</span>
-<span class="co">#&gt; cp   0.2761 0.0445 100  0.1696  0.1701  0.1830  0.3636  0.3756   0.3809</span>
-<span class="co">#&gt; b    0.4957 0.0358 100  0.3877  0.3994  0.4166  0.5522  0.5651   0.5663</span>
-<span class="co">#&gt; a    0.4994 0.0348 100  0.4334  0.4362  0.4409  0.5621  0.5959   0.5998</span>
-<span class="co">#&gt; y~~y 0.9989 0.0455 100  0.8537  0.8728  0.9038  1.0708  1.0793   1.0833</span>
-<span class="co">#&gt; m~~m 1.0226 0.0511 100  0.9269  0.9282  0.9374  1.1361  1.1480   1.1497</span>
-<span class="co">#&gt; x~~x 0.8595 0.0414 100  0.7247  0.7424  0.7739  0.9267  0.9532   0.9718</span>
-<span class="co">#&gt; y~1  0.0346 0.0336 100 -0.0574 -0.0487 -0.0307  0.0968  0.1123   0.1223</span>
-<span class="co">#&gt; m~1  0.0712 0.0336 100 -0.0088 -0.0040  0.0075  0.1343  0.1453   0.1499</span>
-<span class="co">#&gt; x~1  0.0301 0.0312 100 -0.0676 -0.0584 -0.0399  0.0831  0.0885   0.0891</span>
-<span class="co">#&gt; ab   0.2476 0.0256 100  0.1944  0.1946  0.2031  0.2907  0.3192   0.3221</span></code></pre></div>
+<span class="co">#&gt;          est     se   R ci_0.05  ci_0.5  ci_2.5 ci_97.5 ci_99.5 ci_99.95</span>
+<span class="co">#&gt; cp    0.2861 0.0384 100  0.1933  0.1936  0.2020  0.3632  0.3701   0.3703</span>
+<span class="co">#&gt; b     0.5180 0.0347 100  0.4392  0.4404  0.4447  0.5832  0.5939   0.5942</span>
+<span class="co">#&gt; a     0.5329 0.0345 100  0.4704  0.4722  0.4786  0.6101  0.6246   0.6290</span>
+<span class="co">#&gt; y~~y  0.9020 0.0455 100  0.7763  0.7902  0.8253  0.9870  1.0353   1.0493</span>
+<span class="co">#&gt; m~~m  0.9328 0.0447 100  0.8271  0.8383  0.8511  1.0135  1.0252   1.0348</span>
+<span class="co">#&gt; x~~x  0.9763 0.0454 100  0.8720  0.8787  0.8918  1.0772  1.1078   1.1271</span>
+<span class="co">#&gt; y~1   0.0527 0.0354 100 -0.0398 -0.0265 -0.0051  0.1344  0.1460   0.1495</span>
+<span class="co">#&gt; m~1  -0.0465 0.0298 100 -0.1120 -0.1116 -0.1054  0.0054  0.0276   0.0352</span>
+<span class="co">#&gt; x~1   0.0068 0.0295 100 -0.0711 -0.0615 -0.0403  0.0709  0.0783   0.0791</span>
+<span class="co">#&gt; ab    0.2761 0.0261 100  0.2158  0.2196  0.2336  0.3285  0.3433   0.3504</span></code></pre></div>
 </div>
 </div>
 <div id="example-4-a-the-standardized-simple-mediation-model---version-a" class="section level2">
@@ -483,7 +483,7 @@
   fixed.x <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span>
-<span class="co">#&gt; lavaan 0.6-8 ended normally after 11 iterations</span>
+<span class="co">#&gt; lavaan 0.6-8 ended normally after 12 iterations</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;   Estimator                                         ML</span>
 <span class="co">#&gt;   Optimization method                           NLMINB</span>
@@ -505,22 +505,22 @@
 <span class="co">#&gt; Regressions:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
 <span class="co">#&gt;   y ~                                                 </span>
-<span class="co">#&gt;     x         (cp)    0.227    0.034    6.719    0.000</span>
-<span class="co">#&gt;     m          (b)    0.459    0.031   14.693    0.000</span>
+<span class="co">#&gt;     x         (cp)    0.284    0.034    8.397    0.000</span>
+<span class="co">#&gt;     m          (b)    0.445    0.031   14.394    0.000</span>
 <span class="co">#&gt;   m ~                                                 </span>
-<span class="co">#&gt;     x          (a)    0.490    0.031   16.028    0.000</span>
+<span class="co">#&gt;     x          (a)    0.514    0.031   16.798    0.000</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Variances:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
-<span class="co">#&gt;    .y                 0.951    0.043   22.361    0.000</span>
-<span class="co">#&gt;    .m                 0.975    0.044   22.361    0.000</span>
-<span class="co">#&gt;     x                 1.043    0.047   22.361    0.000</span>
+<span class="co">#&gt;    .y                 0.980    0.044   22.361    0.000</span>
+<span class="co">#&gt;    .m                 1.026    0.046   22.361    0.000</span>
+<span class="co">#&gt;     x                 1.094    0.049   22.361    0.000</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Defined Parameters:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
-<span class="co">#&gt;     indirect          0.225    0.021   10.831    0.000</span>
-<span class="co">#&gt;     direct            0.227    0.034    6.719    0.000</span>
-<span class="co">#&gt;     total             0.452    0.033   13.585    0.000</span></code></pre></div>
+<span class="co">#&gt;     indirect          0.229    0.021   10.930    0.000</span>
+<span class="co">#&gt;     direct            0.284    0.034    8.397    0.000</span>
+<span class="co">#&gt;     total             0.513    0.033   15.612    0.000</span></code></pre></div>
 </div>
 <div id="monte-carlo-confidence-intervals-3" class="section level3">
 <h3 class="hasAnchor">
@@ -538,15 +538,15 @@
 <span class="fu"><a href="../reference/print.html">print</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span>
 <span class="co">#&gt; Standardized Monte Carlo Confidence Intervals</span>
 <span class="co">#&gt;             est     se   R ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95</span>
-<span class="co">#&gt; cp       0.1985 0.0306 100  0.1250 0.1306 0.1422  0.2484  0.2657   0.2752</span>
-<span class="co">#&gt; b        0.4340 0.0259 100  0.3764 0.3803 0.3895  0.4866  0.4962   0.4979</span>
-<span class="co">#&gt; a        0.4521 0.0313 100  0.3697 0.3769 0.3886  0.5094  0.5145   0.5172</span>
-<span class="co">#&gt; y~~y     0.6943 0.0320 100  0.6035 0.6102 0.6407  0.7620  0.7679   0.7688</span>
-<span class="co">#&gt; m~~m     0.7956 0.0357 100  0.6989 0.7165 0.7376  0.8652  0.8947   0.9020</span>
-<span class="co">#&gt; x~~x     1.0000 0.0464 100  0.8798 0.8910 0.9107  1.0752  1.1078   1.1196</span>
-<span class="co">#&gt; indirect 0.1962 0.0165 100  0.1587 0.1590 0.1624  0.2308  0.2357   0.2369</span>
-<span class="co">#&gt; direct   0.1985 0.0306 100  0.1250 0.1306 0.1422  0.2484  0.2657   0.2752</span>
-<span class="co">#&gt; total    0.3947 0.0287 100  0.3020 0.3134 0.3338  0.4352  0.4591   0.4627</span></code></pre></div>
+<span class="co">#&gt; cp       0.2454 0.0301 100  0.1803 0.1859 0.1951  0.3014  0.3108   0.3132</span>
+<span class="co">#&gt; b        0.4206 0.0288 100  0.3485 0.3535 0.3618  0.4674  0.4824   0.4937</span>
+<span class="co">#&gt; a        0.4691 0.0293 100  0.3943 0.3964 0.4116  0.5232  0.5324   0.5328</span>
+<span class="co">#&gt; y~~y     0.6660 0.0299 100  0.6022 0.6033 0.6160  0.7276  0.7453   0.7560</span>
+<span class="co">#&gt; m~~m     0.7799 0.0349 100  0.6803 0.6873 0.7034  0.8479  0.8619   0.8636</span>
+<span class="co">#&gt; x~~x     1.0000 0.0456 100  0.9031 0.9093 0.9189  1.0937  1.1160   1.1171</span>
+<span class="co">#&gt; indirect 0.1973 0.0175 100  0.1637 0.1638 0.1648  0.2274  0.2353   0.2417</span>
+<span class="co">#&gt; direct   0.2454 0.0301 100  0.1803 0.1859 0.1951  0.3014  0.3108   0.3132</span>
+<span class="co">#&gt; total    0.4427 0.0287 100  0.3678 0.3724 0.3898  0.5034  0.5079   0.5086</span></code></pre></div>
 </div>
 </div>
 <div id="example-4-b-the-standardized-simple-mediation-model---version-b" class="section level2">
@@ -604,7 +604,7 @@
   fixed.x <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span>
-<span class="co">#&gt; lavaan 0.6-8 ended normally after 14 iterations</span>
+<span class="co">#&gt; lavaan 0.6-8 ended normally after 15 iterations</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;   Estimator                                         ML</span>
 <span class="co">#&gt;   Optimization method                           NLMINB</span>
@@ -626,20 +626,20 @@
 <span class="co">#&gt; Regressions:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
 <span class="co">#&gt;   y ~                                                 </span>
-<span class="co">#&gt;     x         (cp)    0.227    0.034    6.719    0.000</span>
-<span class="co">#&gt;     m          (b)    0.459    0.031   14.693    0.000</span>
+<span class="co">#&gt;     x         (cp)    0.284    0.034    8.397    0.000</span>
+<span class="co">#&gt;     m          (b)    0.445    0.031   14.394    0.000</span>
 <span class="co">#&gt;   m ~                                                 </span>
-<span class="co">#&gt;     x          (a)    0.490    0.031   16.028    0.000</span>
+<span class="co">#&gt;     x          (a)    0.514    0.031   16.798    0.000</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Variances:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
-<span class="co">#&gt;     x       (vr_x)    1.043    0.047   22.361    0.000</span>
-<span class="co">#&gt;    .m       (vr_m)    0.975    0.044   22.361    0.000</span>
-<span class="co">#&gt;    .y       (vr_y)    0.951    0.043   22.361    0.000</span>
+<span class="co">#&gt;     x       (vr_x)    1.094    0.049   22.361    0.000</span>
+<span class="co">#&gt;    .m       (vr_m)    1.026    0.046   22.361    0.000</span>
+<span class="co">#&gt;    .y       (vr_y)    0.980    0.044   22.361    0.000</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Defined Parameters:</span>
 <span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
-<span class="co">#&gt;     std               0.196    0.017   11.643    0.000</span></code></pre></div>
+<span class="co">#&gt;     std               0.197    0.017   11.766    0.000</span></code></pre></div>
 </div>
 <div id="monte-carlo-confidence-intervals-4" class="section level3">
 <h3 class="hasAnchor">
@@ -655,13 +655,13 @@
 <span class="fu"><a href="../reference/print.html">print</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span>
 <span class="co">#&gt; Monte Carlo Confidence Intervals</span>
 <span class="co">#&gt;           est     se   R ci_0.05 ci_0.5 ci_2.5 ci_97.5 ci_99.5 ci_99.95</span>
-<span class="co">#&gt; cp     0.2274 0.0346 100  0.1288 0.1417 0.1614  0.2829  0.2894   0.2915</span>
-<span class="co">#&gt; b      0.4589 0.0311 100  0.3914 0.3998 0.4120  0.5220  0.5268   0.5282</span>
-<span class="co">#&gt; a      0.4899 0.0317 100  0.4078 0.4101 0.4185  0.5445  0.5543   0.5582</span>
-<span class="co">#&gt; var_x  1.0434 0.0531 100  0.8659 0.8867 0.9321  1.1286  1.1504   1.1521</span>
-<span class="co">#&gt; var_em 0.9746 0.0436 100  0.8774 0.8784 0.8915  1.0536  1.0777   1.0860</span>
-<span class="co">#&gt; var_ey 0.9506 0.0469 100  0.8245 0.8303 0.8601  1.0326  1.0519   1.0624</span>
-<span class="co">#&gt; std    0.1962 0.0160 100  0.1589 0.1604 0.1632  0.2223  0.2260   0.2281</span></code></pre></div>
+<span class="co">#&gt; cp     0.2845 0.0336 100  0.2146 0.2150 0.2272  0.3575  0.3858   0.3947</span>
+<span class="co">#&gt; b      0.4449 0.0337 100  0.3680 0.3714 0.3804  0.4984  0.5046   0.5081</span>
+<span class="co">#&gt; a      0.5143 0.0306 100  0.4266 0.4318 0.4448  0.5697  0.5790   0.5791</span>
+<span class="co">#&gt; var_x  1.0943 0.0493 100  0.9757 0.9794 0.9927  1.1805  1.1856   1.1870</span>
+<span class="co">#&gt; var_em 1.0257 0.0479 100  0.9162 0.9202 0.9501  1.1234  1.1378   1.1480</span>
+<span class="co">#&gt; var_ey 0.9797 0.0391 100  0.8860 0.8914 0.9008  1.0533  1.0989   1.1084</span>
+<span class="co">#&gt; std    0.1973 0.0177 100  0.1438 0.1500 0.1635  0.2287  0.2308   0.2313</span></code></pre></div>
 </div>
 </div>
   </div>
