@@ -2,106 +2,156 @@
 #'
 #' @title Monte Carlo Confidence Intervals
 #'
-#' @description Calculates Monte Carlo confidence intervals
-#'   for parameters defined using the `:=` operator in [lavaan].
+#' @description Calculates Monte Carlo confidence intervals.
+#'
+#' @details An empirical sampling distribution of parameter estimates
+#'   is generated using the fitted model given by
+#'
+#'   \deqn{
+#'     \hat{\boldsymbol{\theta}}^{\ast}
+#'     \sim
+#'     \mathcal{N}_{p}
+#'     \left(
+#'       \boldsymbol{\mu} = \hat{\boldsymbol{\theta}},
+#'       \boldsymbol{\Sigma} = \mathrm{Cov}
+#'       \left( \hat{\boldsymbol{\theta}} \right)
+#'     \right) .
+#'   }
+#'
+#'   Confidence intervals are generated
+#'   using the empirical sampling distribution.
 #'
 #' @family Monte Carlo method functions
 #' @keywords mc
-#' @param object lavaan object
-#'   with defined parameters using the `:=` operator
-#'   in the [lavaan] model syntax.
+#' @param object object of class `lavaan`.
 #' @param R Integer.
 #'   Number of Monte Carlo replications.
 #' @param alpha Numeric vector.
 #'   Significance level \eqn{\alpha}.
 #'   Default value is `alpha = c(0.001, 0.01, 0.05)`.
-#' @param plot Logical.
-#'  If `TRUE`, plots the sampling distribution of the defined parameter estimate/s.
-#' @return Returns a matrix with the following columns:
-#'   \describe{
-#'     \item{est}{Parameter estimate.}
-#'     \item{se}{Standard error of Monte Carlo sampling distribution.}
-#'     \item{R}{Number of Monte Carlo replications.}
-#'     \item{limits}{Confidence limits \eqn{\frac{\alpha}{2} , 1 - \frac{\alpha}{2}}.}
-#'   }
+#' @param par Logical.
+#'   If `par = TRUE`, use multiple cores.
+#' @param ncores Integer.
+#'   Number of cores to use if `par = TRUE`.
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
 #'
+#' # Generate Data ------------------------------------------------------------
 #' n <- 1000
 #' x <- rnorm(n = n)
 #' m <- 0.50 * x + rnorm(n = n)
 #' y <- 0.25 * x + 0.50 * m + rnorm(n = n)
 #' data <- data.frame(x, m, y)
+#'
+#' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
 #'   y ~ cp * x + b * m
 #'   m ~ a * x
 #'   ab := a * b
 #' "
-#' object <- sem(
+#' fit <- sem(
 #'   data = data,
 #'   model = model
 #' )
 #'
-#' # Monte Carlo
-#'
-#' mc(
-#'   object = object,
-#'   R = 20000L,
-#'   alpha = c(0.001, 0.01, 0.05),
-#'   plot = TRUE
+#' # Monte Carlo --------------------------------------------------------------
+#' mc <- mc(
+#'   fit,
+#'   R = 100L, # use a large value e.g., 20000L for actual research
+#'   alpha = c(0.001, 0.01, 0.05)
 #' )
+#' print(mc)
 #' @export
 mc <- function(object,
-               R = 20000L,
+               R = 2000L,
                alpha = c(0.001, 0.01, 0.05),
-               plot = TRUE) {
-  if (class(object) != "lavaan") {
-    stop(
-      "The `object` argument should be of class `lavaan`."
+               par = FALSE,
+               ncores = NULL) {
+  stopifnot(
+    methods::is(
+      object,
+      "lavaan"
     )
-  }
+  )
+  # extract all estimates including fixed parameters
+  thetahat <- .thetahat(object)
+  # set up Monte Carlo
   R <- as.integer(R)
   mu <- lavaan::coef(object)
   Sigma <- lavaan::vcov(object)
-  tryCatch(
-    {
-      thetahat <- object@Model@def.function(mu)
-    },
-    error = function(e) {
-      stop(
-        "Make sure you have defined parameters using `:=` in your lavaan model syntax."
-      )
-    }
-  )
-  thetahatstar <- MASS::mvrnorm(
+  # sampling distribution
+  thetahatstar_orig <- MASS::mvrnorm(
     n = R,
     mu = mu,
     Sigma = Sigma
   )
-  thetahatstar <- lapply(
-    X = 1:nrow(thetahatstar),
-    FUN = .def,
-    object = object,
-    thetahatstar = thetahatstar
-  )
-  thetahatstar <- do.call(
+  # generate defined parameters
+  foo <- function(i) {
+    return(
+      object@Model@def.function(
+        thetahatstar_orig[i, ]
+      )
+    )
+  }
+  if (par) {
+    if (is.null(ncores)) {
+      ncores <- parallel::detectCores()
+    }
+    cl <- parallel::makeCluster(ncores)
+    thetahatstar_def <- parallel::parLapply(
+      cl = cl,
+      X = seq_len(dim(thetahatstar_orig)[1]),
+      fun = foo
+    )
+    parallel::stopCluster(cl)
+  } else {
+    thetahatstar_def <- lapply(
+      X = seq_len(dim(thetahatstar_orig)[1]),
+      FUN = foo
+    )
+  }
+  thetahatstar_def <- do.call(
     what = "rbind",
-    args = thetahatstar
+    args = thetahatstar_def
   )
+  thetahatstar <- cbind(
+    thetahatstar_orig,
+    thetahatstar_def
+  )
+  # thetahat_free
+  thetahat_free <- thetahat[colnames(thetahatstar)]
+  # add fixed parameters to sampling distribution
+  index <- !(names(thetahat) %in% names(thetahat_free))
+  fixed <- thetahat[index]
+  fixed_names <- names(thetahat[index])
+  if (length(fixed) > 0) {
+    append <- vector(
+      mode = "list",
+      length = length(fixed)
+    )
+    for (i in length(fixed)) {
+      append[[i]] <- as.matrix(
+        rep(
+          x = fixed[[i]],
+          length = dim(thetahatstar)[1]
+        )
+      )
+      colnames(append[[i]]) <- fixed_names[i]
+      thetahatstar <- cbind(
+        thetahatstar,
+        append[[i]]
+      )
+    }
+  }
+  thetahatstar <- thetahatstar[, names(thetahat)]
+  # inferences
   se <- sqrt(diag(stats::var(thetahatstar)))
   ci <- vector(
     mode = "list",
     length = dim(thetahatstar)[2]
   )
   for (i in 1:dim(thetahatstar)[2]) {
-    if (plot) {
-      graphics::hist(
-        thetahatstar[, i],
-        main = paste("Histogram of", colnames(thetahatstar)[i]),
-        xlab = colnames(thetahatstar)[i]
-      )
-    }
     ci[[i]] <- .pcci(
       thetahatstar = thetahatstar[, i],
       thetahat = thetahat[[i]],
@@ -113,48 +163,36 @@ mc <- function(object,
     args = ci
   )
   rownames(ci) <- colnames(thetahatstar)
-  print(
-    round(
-      ci,
-      digits = 4
+  # put NA to rows of fixed parameters
+  if (length(fixed) > 0) {
+    ci_rownames <- rownames(ci)
+    ci_colnames <- colnames(ci)
+    ci_colnames <- ifelse(
+      test = ci_colnames == "est",
+      yes = NA,
+      no = ci_colnames
     )
+    ci_colnames <- ci_colnames[stats::complete.cases(ci_colnames)]
+    for (i in seq_along(ci_rownames)) {
+      for (j in seq_along(fixed_names)) {
+        if (ci_rownames[i] == fixed_names[j]) {
+          ci[i, ci_colnames] <- NA
+        }
+      }
+    }
+  }
+  out <- list(
+    lavaan = object,
+    mu = mu,
+    Sigma = Sigma,
+    thetahat = thetahat,
+    thetahat.free = thetahat_free,
+    thetahatstar = thetahatstar,
+    ci = ci
   )
-  invisible(ci)
-}
-
-.pcci <- function(thetahatstar,
-                  thetahat,
-                  alpha = c(0.001, 0.01, 0.05)) {
-  thetahatstar <- as.vector(thetahatstar)
-  thetahatstar <- thetahatstar[stats::complete.cases(thetahatstar)]
-  alpha <- sort(alpha)
-  prob_ll <- alpha / 2
-  prob_ul <- rev(1 - prob_ll)
-  probs <- c(prob_ll, prob_ul)
-  ci <- stats::quantile(
-    x = thetahatstar,
-    probs = probs
+  class(out) <- c(
+    "mc",
+    class(out)
   )
-  out <- c(
-    thetahat,
-    stats::sd(thetahatstar),
-    length(thetahatstar),
-    ci
-  )
-  names(out) <- c(
-    "est",
-    "se",
-    "R",
-    paste0(
-      "ci_",
-      probs * 100
-    )
-  )
-  out
-}
-
-.def <- function(i,
-                 object,
-                 thetahatstar) {
-  object@Model@def.function(thetahatstar[i, ])
+  invisible(out)
 }
