@@ -26,7 +26,8 @@ Imports:
     utils,
     stats,
     MASS,
-    lavaan
+    lavaan,
+    methods
 Suggests:
     knitr,
     rmarkdown,
