@@ -4,7 +4,13 @@
 \alias{mc}
 \title{Monte Carlo Confidence Intervals}
 \usage{
-mc(object, R = 2000L, alpha = c(0.001, 0.01, 0.05), par = FALSE, ncores = NULL)
+mc(
+  object,
+  R = 20000L,
+  alpha = c(0.001, 0.01, 0.05),
+  par = FALSE,
+  ncores = NULL
+)
 }
 \arguments{
 \item{object}{object of class \code{lavaan}.}

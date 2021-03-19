@@ -138,7 +138,13 @@
     <p>Calculates Monte Carlo confidence intervals.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mc</span><span class='op'>(</span><span class='va'>object</span>, R <span class='op'>=</span> <span class='fl'>2000L</span>, alpha <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.001</span>, <span class='fl'>0.01</span>, <span class='fl'>0.05</span><span class='op'>)</span>, par <span class='op'>=</span> <span class='cn'>FALSE</span>, ncores <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>mc</span><span class='op'>(</span>
+  <span class='va'>object</span>,
+  R <span class='op'>=</span> <span class='fl'>20000L</span>,
+  alpha <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.001</span>, <span class='fl'>0.01</span>, <span class='fl'>0.05</span><span class='op'>)</span>,
+  par <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  ncores <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

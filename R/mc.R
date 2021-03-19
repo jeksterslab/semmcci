@@ -64,7 +64,7 @@
 #' print(mc)
 #' @export
 mc <- function(object,
-               R = 2000L,
+               R = 20000L,
                alpha = c(0.001, 0.01, 0.05),
                par = FALSE,
                ncores = NULL) {
