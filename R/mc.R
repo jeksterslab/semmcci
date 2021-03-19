@@ -33,6 +33,7 @@
 #'   If `par = TRUE`, use multiple cores.
 #' @param ncores Integer.
 #'   Number of cores to use if `par = TRUE`.
+#'   If unspecified, uses the output of `parallel::detectCores()`.
 #' @examples
 #' library(semmcci)
 #' library(lavaan)

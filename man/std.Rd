@@ -32,7 +32,8 @@ Default value is \code{alpha = c(0.001, 0.01, 0.05)}.}
 If \code{par = TRUE}, use multiple cores.}
 
 \item{ncores}{Integer.
-Number of cores to use if \code{par = TRUE}.}
+Number of cores to use if \code{par = TRUE}.
+If unspecified, uses the output of \code{parallel::detectCores()}.}
 }
 \description{
 Calculates standardized Monte Carlo confidence intervals.
