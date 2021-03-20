@@ -79,6 +79,23 @@ mc <- mc(
   alpha = c(0.001, 0.01, 0.05)
 )
 print(mc)
+# Fit Model in lavaan ------------------------------------------------------
+model <- "
+  y ~ cp * x + b * m
+  m ~ a * x
+"
+fit <- sem(
+  data = data,
+  model = model
+)
+
+# Monte Carlo --------------------------------------------------------------
+mc <- mc(
+  fit,
+  R = 100L, # use a large value e.g., 20000L for actual research
+  alpha = c(0.001, 0.01, 0.05)
+)
+print(mc)
 }
 \author{
 Ivan Jacob Agaloos Pesigan
