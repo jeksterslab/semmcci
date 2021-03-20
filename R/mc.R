@@ -63,6 +63,23 @@
 #'   alpha = c(0.001, 0.01, 0.05)
 #' )
 #' print(mc)
+#' # Fit Model in lavaan ------------------------------------------------------
+#' model <- "
+#'   y ~ cp * x + b * m
+#'   m ~ a * x
+#' "
+#' fit <- sem(
+#'   data = data,
+#'   model = model
+#' )
+#'
+#' # Monte Carlo --------------------------------------------------------------
+#' mc <- mc(
+#'   fit,
+#'   R = 100L, # use a large value e.g., 20000L for actual research
+#'   alpha = c(0.001, 0.01, 0.05)
+#' )
+#' print(mc)
 #' @export
 mc <- function(object,
                R = 20000L,
@@ -81,45 +98,48 @@ mc <- function(object,
   R <- as.integer(R)
   mu <- lavaan::coef(object)
   Sigma <- lavaan::vcov(object)
-  # sampling distribution
   thetahatstar_orig <- MASS::mvrnorm(
     n = R,
     mu = mu,
     Sigma = Sigma
   )
   # generate defined parameters
-  foo <- function(i) {
-    return(
-      object@Model@def.function(
-        thetahatstar_orig[i, ]
+  if (":=" %in% object@ParTable$op) {
+    foo <- function(i) {
+      return(
+        object@Model@def.function(
+          thetahatstar_orig[i, ]
+        )
       )
-    )
-  }
-  if (par) {
-    if (is.null(ncores)) {
-      ncores <- parallel::detectCores()
     }
-    cl <- parallel::makeCluster(ncores)
-    thetahatstar_def <- parallel::parLapply(
-      cl = cl,
-      X = seq_len(dim(thetahatstar_orig)[1]),
-      fun = foo
+    if (par) {
+      if (is.null(ncores)) {
+        ncores <- parallel::detectCores()
+      }
+      cl <- parallel::makeCluster(ncores)
+      thetahatstar_def <- parallel::parLapply(
+        cl = cl,
+        X = seq_len(dim(thetahatstar_orig)[1]),
+        fun = foo
+      )
+      parallel::stopCluster(cl)
+    } else {
+      thetahatstar_def <- lapply(
+        X = seq_len(dim(thetahatstar_orig)[1]),
+        FUN = foo
+      )
+    }
+    thetahatstar_def <- do.call(
+      what = "rbind",
+      args = thetahatstar_def
     )
-    parallel::stopCluster(cl)
+    thetahatstar <- cbind(
+      thetahatstar_orig,
+      thetahatstar_def
+    )
   } else {
-    thetahatstar_def <- lapply(
-      X = seq_len(dim(thetahatstar_orig)[1]),
-      FUN = foo
-    )
+    thetahatstar <- thetahatstar_orig
   }
-  thetahatstar_def <- do.call(
-    what = "rbind",
-    args = thetahatstar_def
-  )
-  thetahatstar <- cbind(
-    thetahatstar_orig,
-    thetahatstar_def
-  )
   # thetahat_free
   thetahat_free <- thetahat[colnames(thetahatstar)]
   # add fixed parameters to sampling distribution
