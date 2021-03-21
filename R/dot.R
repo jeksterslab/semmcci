@@ -44,5 +44,12 @@
   )
   thetahat <- object@ParTable$est
   names(thetahat) <- thetahat_names
+  # remove paremeters with op `==`
+  for (i in seq_along(thetahat)) {
+    if (object@ParTable$op[i] == "==") {
+      thetahat[i] <- NA
+    }
+  }
+  thetahat <- thetahat[stats::complete.cases(thetahat)]
   return(thetahat)
 }
