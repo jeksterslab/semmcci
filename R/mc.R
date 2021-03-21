@@ -87,8 +87,8 @@ mc <- function(object,
     Sigma = Sigma
   )
   # generate defined parameters
-  if (":=" %in% object@ParTable$op) {
-    foo <- function(i) {
+  if (length(thetahat$def) > 0) {
+    def <- function(i) {
       return(
         object@Model@def.function(
           thetahatstar_orig[i, ]
@@ -103,13 +103,13 @@ mc <- function(object,
       thetahatstar_def <- parallel::parLapply(
         cl = cl,
         X = seq_len(dim(thetahatstar_orig)[1]),
-        fun = foo
+        fun = def
       )
       parallel::stopCluster(cl)
     } else {
       thetahatstar_def <- lapply(
         X = seq_len(dim(thetahatstar_orig)[1]),
-        FUN = foo
+        FUN = def
       )
     }
     thetahatstar_def <- do.call(
@@ -123,36 +123,94 @@ mc <- function(object,
   } else {
     thetahatstar <- thetahatstar_orig
   }
-  # thetahat_free
-  thetahat_free <- thetahat[colnames(thetahatstar)]
-  # add fixed parameters to sampling distribution
-  index <- !(names(thetahat) %in% names(thetahat_free))
-  fixed <- thetahat[index]
-  fixed_names <- names(thetahat[index])
-  if (length(fixed) > 0) {
-    append <- vector(
-      mode = "list",
-      length = length(fixed)
-    )
-    for (i in length(fixed)) {
-      append[[i]] <- as.matrix(
-        rep(
-          x = fixed[[i]],
-          length = dim(thetahatstar)[1]
-        )
+  # generate equality
+  if (length(thetahat$ceq) > 0) {
+    ceq <- function(i) {
+      out <- object@Model@ceq.function(
+        thetahatstar[i, ]
       )
-      colnames(append[[i]]) <- fixed_names[i]
-      thetahatstar <- cbind(
-        thetahatstar,
-        append[[i]]
+      names(out) <- paste0(thetahat$ceq, "_ceq")
+      return(out)
+    }
+    if (par) {
+      if (is.null(ncores)) {
+        ncores <- parallel::detectCores()
+      }
+      cl <- parallel::makeCluster(ncores)
+      thetahatstar_ceq <- parallel::parLapply(
+        cl = cl,
+        X = seq_len(dim(thetahatstar)[1]),
+        fun = ceq
+      )
+      parallel::stopCluster(cl)
+    } else {
+      thetahatstar_ceq <- lapply(
+        X = seq_len(dim(thetahatstar)[1]),
+        FUN = ceq
       )
     }
+    thetahatstar_ceq <- do.call(
+      what = "rbind",
+      args = thetahatstar_ceq
+    )
+    thetahatstar <- cbind(
+      thetahatstar,
+      thetahatstar_ceq
+    )
   }
-  # remove elements in thetahat not in thetahatstar
-  thetahatstar_names <- colnames(thetahatstar)
-  thetahat_names <- names(thetahat)
-  thetahat <- thetahat[thetahat_names %in% thetahatstar_names]
-  thetahatstar <- thetahatstar[, names(thetahat)]
+  # generate inequality
+  if (length(thetahat$cin) > 0) {
+    cin <- function(i) {
+      out <- object@Model@cin.function(
+        thetahatstar[i, ]
+      )
+      names(out) <- paste0(thetahat$cin, "_cin")
+      return(out)
+    }
+    if (par) {
+      if (is.null(ncores)) {
+        ncores <- parallel::detectCores()
+      }
+      cl <- parallel::makeCluster(ncores)
+      thetahatstar_cin <- parallel::parLapply(
+        cl = cl,
+        X = seq_len(dim(thetahatstar)[1]),
+        fun = cin
+      )
+      parallel::stopCluster(cl)
+    } else {
+      thetahatstar_cin <- lapply(
+        X = seq_len(dim(thetahatstar)[1]),
+        FUN = cin
+      )
+    }
+    thetahatstar_cin <- do.call(
+      what = "rbind",
+      args = thetahatstar_cin
+    )
+    thetahatstar <- cbind(
+      thetahatstar,
+      thetahatstar_cin
+    )
+  }
+  # generate fixed
+  if (length(thetahat$fixed) > 0) {
+    fixed <- matrix(
+      NA,
+      ncol = length(thetahat$fixed),
+      nrow = dim(thetahatstar)[1]
+    )
+    colnames(fixed) <- thetahat$fixed
+    for (i in seq_len(dim(fixed)[2])) {
+      fixed[, i] <- thetahat$est[thetahat$fixed[[i]]]
+    }
+    thetahatstar <- cbind(
+      thetahatstar,
+      fixed
+    )
+  }
+  # rearrange
+  thetahatstar <- thetahatstar[, thetahat$labels]
   # inferences
   se <- sqrt(diag(stats::var(thetahatstar)))
   ci <- vector(
@@ -162,7 +220,7 @@ mc <- function(object,
   for (i in seq_len(dim(thetahatstar)[2])) {
     ci[[i]] <- .pcci(
       thetahatstar = thetahatstar[, i],
-      thetahat = thetahat[[i]],
+      thetahat = thetahat$est[[i]],
       alpha = alpha
     )
   }
@@ -172,7 +230,7 @@ mc <- function(object,
   )
   rownames(ci) <- colnames(thetahatstar)
   # put NA to rows of fixed parameters
-  if (length(fixed) > 0) {
+  if (length(thetahat$fixed) > 0) {
     ci_rownames <- rownames(ci)
     ci_colnames <- colnames(ci)
     ci_colnames <- ifelse(
@@ -182,8 +240,8 @@ mc <- function(object,
     )
     ci_colnames <- ci_colnames[stats::complete.cases(ci_colnames)]
     for (i in seq_along(ci_rownames)) {
-      for (j in seq_along(fixed_names)) {
-        if (ci_rownames[i] == fixed_names[j]) {
+      for (j in seq_along(thetahat$fixed)) {
+        if (ci_rownames[i] == thetahat$fixed[j]) {
           ci[i, ci_colnames] <- NA
         }
       }
@@ -194,7 +252,6 @@ mc <- function(object,
     mu = mu,
     Sigma = Sigma,
     thetahat = thetahat,
-    thetahat.free = thetahat_free,
     thetahatstar = thetahatstar,
     ci = ci
   )
