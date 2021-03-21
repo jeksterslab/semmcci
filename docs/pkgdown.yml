@@ -5,7 +5,7 @@ articles:
   examples: examples.html
   semmcci: semmcci.html
   tests/test: test.html
-last_built: 2021-03-21T14:28Z
+last_built: 2021-03-21T18:07Z
 urls:
   reference: https://github.com/jeksterslab/semmcci//reference
   article: https://github.com/jeksterslab/semmcci//articles
