@@ -148,6 +148,10 @@ mc <- function(object,
       )
     }
   }
+  # remove elements in thetahat not in thetahatstar
+  thetahatstar_names <- colnames(thetahatstar)
+  thetahat_names <- names(thetahat)
+  thetahat <- thetahat[thetahat_names %in% thetahatstar_names]
   thetahatstar <- thetahatstar[, names(thetahat)]
   # inferences
   se <- sqrt(diag(stats::var(thetahatstar)))
