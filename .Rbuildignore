@@ -1,8 +1,8 @@
 ^.*\.Rproj$
 ^.*\.yml$
 ^.covrignore$
-^.travis.yml$
 ^.notes$
+^.travis.yml$
 ^LICENSE\.md$
 ^Makefile$
 ^NEWS.md$
@@ -15,3 +15,4 @@
 ^data_raw$
 ^docs$
 ^semmcci.Rproj$
+^tests-extended$
