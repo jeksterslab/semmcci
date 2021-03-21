@@ -65,7 +65,10 @@ std <- function(object,
       se = FALSE,
       zstat = FALSE,
       pvalue = FALSE,
-      ci = FALSE
+      ci = FALSE,
+      remove.eq = FALSE,
+      remove.ineq = FALSE,
+      remove.def = FALSE
     )[, "est.std"]
   )
   names(thetahat) <- colnames(object$thetahatstar)
@@ -124,11 +127,7 @@ std <- function(object,
   )
   rownames(ci) <- colnames(thetahatstar)
   # put NA to rows of fixed parameters
-  thetahat_free <- thetahat[names(object$thetahat.free)]
-  index <- !(names(thetahat) %in% names(thetahat_free))
-  fixed <- thetahat[index]
-  fixed_names <- names(thetahat[index])
-  if (length(fixed) > 0) {
+  if (length(object$thetahat$fixed) > 0) {
     ci_rownames <- rownames(ci)
     ci_colnames <- colnames(ci)
     ci_colnames <- ifelse(
@@ -138,8 +137,8 @@ std <- function(object,
     )
     ci_colnames <- ci_colnames[stats::complete.cases(ci_colnames)]
     for (i in seq_along(ci_rownames)) {
-      for (j in seq_along(fixed_names)) {
-        if (ci_rownames[i] == fixed_names[j]) {
+      for (j in seq_along(object$thetahat$fixed)) {
+        if (ci_rownames[i] == object$thetahat$fixed[j]) {
           ci[i, ci_colnames] <- NA
         }
       }
@@ -150,11 +149,9 @@ std <- function(object,
     mu = object$mu,
     Sigma = object$Sigma,
     thetahat = object$thetahat,
-    thetahat.free = object$thetahat.free,
     thetahatstar = object$thetahatstar,
     ci = object$ci,
     thetahat.std = thetahat,
-    thetahat.free.std = thetahat_free,
     thetahatstar.std = thetahatstar,
     ci.std = ci
   )
