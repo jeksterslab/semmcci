@@ -1,6 +1,6 @@
 # MIT License
 
-Copyright (c) 2021 Ivan Jacob Agaloos Pesigan
+Copyright (c) 2022 Ivan Jacob Agaloos Pesigan
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -1,2 +1,5 @@
 destination: docs
 url: https://github.com/jeksterslab/semmcci/
+
+template:
+  bootstrap: 5

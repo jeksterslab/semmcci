@@ -1,30 +1,27 @@
 Package: semmcci
-Version: 0.9.0
-Title: Monte Carlo Confidence Intervals
-Authors@R:
-    person(
-        given = "Ivan Jacob Agaloos",
-        family = "Pesigan",
-        role = c("aut", "cre"),
-        email = "i.j.a.pesigan@connect.um.edu.mo",
-        comment = c(ORCID = "0000-0003-4818-8420")
-    )
-Description: Monte Carlo confidence intervals.
-License: MIT + file LICENSE
-Encoding: UTF-8
-Language: en-US
-LazyData: true
-ByteCompile: true
-VignetteBuilder: knitr
-Roxygen: list(markdown = TRUE)
+Title: Monte Carlo Confidence Intervals in Structural Equation Modeling
+Version: 0.9.1
+Authors@R: 
+    person(given = "Ivan Jacob Agaloos",
+           family = "Pesigan",
+           role = c("aut", "cre"),
+           email = "r.jeksterslab@gmail.com",
+           comment = c(ORCID = "0000-0003-4818-8420"))
+Description: semmcci calculates Monte Carlo confidence intervals
+    for parameters defined using the := operator
+    in the structural equation modeling package lavaan.
+    The output of lavaan is passed as the first argument
+    to the mc function in semmcci
+    to generate Monte Carlo confidence intervals
+    for defined parameter/s.
 URL: https://github.com/jeksterslab/semmcci
 BugReports: https://github.com/jeksterslab/semmcci/issues
-SystemRequirements:
-    git
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
 Depends:
-    R (>= 3.0.0)
-Imports:
-    utils,
+    R (>= 3.0.0),
     stats,
     MASS,
     lavaan,
@@ -33,4 +30,4 @@ Suggests:
     knitr,
     rmarkdown,
     testthat
-RoxygenNote: 7.1.1
+VignetteBuilder: knitr

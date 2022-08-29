@@ -1,0 +1,106 @@
+<<include = FALSE>>=
+root <- rprojroot::is_rstudio_project
+source(
+    root$find_file(
+        "latex",
+        "r-scripts",
+        "knitr.R"
+    )
+)
+@
+
+\documentclass{article}
+
+\input{latex/preamble/preamble}
+
+\Sexpr{
+    .PreambleBiblatex(
+        path = root$find_file(
+            "latex",
+            "bib"
+        )
+    )
+}
+
+\title{semmcci: Monte Carlo Confidence Intervals}
+\author{Ivan Jacob Agaloos Pesigan}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Description}
+
+\texttt{semmcci} calculates Monte Carlo confidence intervals
+for parameters defined using the \texttt{:=} operator
+in the structural equation modeling package \texttt{lavaan}.
+The output of \texttt{lavaan} is passed as the first argument
+to the \texttt{mc} function in \texttt{semmcci}
+to generate Monte Carlo confidence intervals
+for defined parameter/s.
+
+\section*{Installation}
+
+You can install the released version of
+\texttt{semmcci}
+from
+\href{https://github.com/jeksterslab/semmcci}{GitHub}
+with:
+
+<<eval = FALSE>>=
+install.packages("remotes")
+remotes::install_github("jeksterslab/semmcci")
+@
+
+\section*{Example}
+
+<<eval = FALSE>>=
+library(semmcci)
+library(lavaan)
+@
+
+<<>>=
+n <- 1000
+x <- rnorm(n = n)
+m <- 0.50 * x + rnorm(n = n)
+y <- 0.25 * x + 0.50 * m + rnorm(n = n)
+data <- data.frame(x, m, y)
+@
+
+<<>>=
+model <- "
+  y ~ x + b * m
+  m ~ a * x
+  x ~~ x
+  ab := a * b
+"
+@
+
+<<>>=
+fit <- lavaan::sem(
+  model = model,
+  data = data
+)
+@
+
+<<>>=
+out <- mc(fit)
+print(out)
+@
+
+\section*{More Information}
+
+See
+\href{https://jeksterslab.github.io/semmcci/index.html}{GitHub Pages}
+for package documentation.
+
+\nocite{Lib-R-Manual-2022}
+
+\nocite{Lib-Mediation-Monte-Carlo-Method-MacKinnon-2004}
+
+\nocite{Lib-Mediation-Monte-Carlo-Method-Preacher-2012}
+
+\printbibliography
+
+\end{document}

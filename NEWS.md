@@ -1,5 +1,5 @@
-# semmcci 0.9.0
+# semmcci 0.9.1
 
 ## Major changes
 
-* This is the first release of semmcci.
+* Add news here...

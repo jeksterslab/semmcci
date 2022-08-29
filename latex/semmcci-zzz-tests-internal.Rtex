@@ -1,0 +1,96 @@
+<<include = FALSE>>=
+root <- rprojroot::is_rstudio_project
+source(
+    root$find_file(
+        "latex",
+        "r-scripts",
+        "knitr.R"
+    )
+)
+@
+
+\documentclass{article}
+
+\input{latex/preamble/preamble}
+
+\Sexpr{
+    .PreambleBiblatex(
+        path = root$find_file(
+            "latex",
+            "bib"
+        )
+    )
+}
+
+\renewcommand{\baselinestretch}{1}
+
+\title{semmcci: Internal Tests}
+\author{Ivan Jacob Agaloos Pesigan}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Tests}
+
+<<>>=
+source(
+    root$find_file(
+        "latex",
+        "r-scripts",
+        "tests.R"
+    )
+)
+@
+
+\section*{Environment}
+
+<<>>=
+ls()
+@
+
+\section*{Class}
+
+<<>>=
+unique(
+    lapply(
+        X = ls(),
+        FUN = function(x) {
+            class(
+                eval(
+                    parse(
+                        text = x
+                    )
+                )
+            )
+        }
+    )
+)
+@
+
+\newpage
+
+<<>>=
+lapply(
+    X = ls(),
+    FUN = function(x) {
+        paste(
+            class(
+                x = eval(
+                    parse(
+                        text = x
+                    )
+                )
+            ),
+            x
+        )
+    }
+)
+@
+
+\nocite{Lib-R-Manual-2022}
+
+\printbibliography
+
+\end{document}

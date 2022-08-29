@@ -1,0 +1,8 @@
+mkdir -p ~/.vim/pack/plugins/start
+cd ~/.vim/pack/plugins/start
+
+# vim-slime
+git clone https://github.com/jpalardy/vim-slime.git
+
+# julia-vim
+git clone https://github.com/JuliaEditorSupport/julia-vim.git

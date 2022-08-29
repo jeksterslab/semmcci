@@ -12,46 +12,15 @@
 *-Ex.R
 
 # Output files from R CMD build
-/*.tar.gz
+# /*.tar.gz
+# allow package build to be version controlled
+!/*.tar.gz
 
 # Output files from R CMD check
 /*.Rcheck/
 
 # RStudio files
 .Rproj.user/
-
-# produced vignettes
-vignettes/*.html
-vignettes/*.pdf
-vignettes/*.md
-vignettes/articles/*.html
-vignettes/articles/*.pdf
-vignettes/articles/*.md
-vignettes/examples/*.html
-vignettes/examples/*.pdf
-vignettes/examples/*.md
-vignettes/notes/*.html
-vignettes/notes/*.pdf
-vignettes/notes/*.md
-vignettes/references/*.html
-vignettes/references/*.pdf
-vignettes/references/*.md
-vignettes/resources/*.html
-vignettes/resources/*.pdf
-vignettes/resources/*.md
-vignettes/tests/*.html
-vignettes/tests/*.pdf
-vignettes/tests/*.md
-
-# produced tests
-tests/testthat/*.html
-tests/testthat/*.pdf
-tests/testthat/*.md
-
-# produced data_raw
-data_raw/*.html
-data_raw/*.pdf
-data_raw/*.md
 
 # OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
 .httr-oauth
@@ -67,5 +36,17 @@ data_raw/*.md
 # R Environment Variables
 .Renviron
 
-# Notes
-.notes/*
+# Mac
+.DS_Store
+
+# secrets
+*secrets*
+
+# clone github repo script
+.clone.sh
+
+# hpc
+hpc*
+
+# local-linux
+local-linux*
