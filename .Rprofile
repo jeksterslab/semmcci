@@ -1,15 +1,7 @@
-# Options
 options(menu.graphics = FALSE)
-# Set repos
-local({
-  r <- getOption("repos")
-  r["CRAN"] <- "https://cran.rstudio.com/"
-  options(repos = r)
-})
-.libPaths(
-  ".library",
-  include.site = FALSE
-)
+options(repos = c(REPO_NAME = "https://packagemanager.rstudio.com/all/__linux__/focal/latest"))
+
+.libPaths("/cloud/project/.library")
 .First <- function() {
   if (interactive()) {
     options(

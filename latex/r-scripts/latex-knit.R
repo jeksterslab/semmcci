@@ -1,7 +1,7 @@
 LatexKnit <- function() {
   root <- rprojroot::is_rstudio_project
-  detritus_folder <- root$find_file(
-    "detritus"
+  dot_detritus_folder <- root$find_file(
+    ".detritus"
   )
   Rtex_files <- list.files(
     root$find_file(
@@ -23,7 +23,8 @@ LatexKnit <- function() {
         knitr::knit(
           input = i,
           output = file.path(
-            detritus_folder,
+            dot_detritus_folder,
+            "tex",
             tex_file
           )
         )

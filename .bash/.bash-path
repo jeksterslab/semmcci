@@ -1,0 +1,3 @@
+#====[ path ]===================================================================
+export PATH="$HOME/.TinyTeX/bin/x86_64-linux:$PATH"
+export PATH="$HOME/.local/julia/bin:$PATH"

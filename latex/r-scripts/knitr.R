@@ -2,7 +2,7 @@
 root <- rprojroot::is_rstudio_project
 source(
   root$find_file(
-    "r-load-all",
+    ".r-load-all",
     "r-load-all.R"
   )
 )

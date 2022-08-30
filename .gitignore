@@ -44,9 +44,3 @@
 
 # clone github repo script
 .clone.sh
-
-# hpc
-hpc*
-
-# local-linux
-local-linux*

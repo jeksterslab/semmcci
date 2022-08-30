@@ -1,4 +1,4 @@
-$ENV{'TEXINPUTS'}='./latex//:' . $ENV{'TEXINPUTS'}; 
+$ENV{'TEXINPUTS'}='./latex//:' . $ENV{'TEXINPUTS'};
 
 # Settings
 $xdvipdfmx = "xdvipdfmx -z 6 -i dvipdfmx-unsafe.cfg -o %D %O %S";
@@ -60,6 +60,12 @@ sub overleaf_post_process {
     return if !($qpdf_exit_code == 0 || $qpdf_exit_code == 3);
     print "Renaming optimised file to $output_file\n";
     rename($optimised_file, $output_file);
+
+    print "Extracting xref table for $output_file\n";
+    my $xref_file = "${output_file}xref";
+    system("$qpdf --show-xref ${output_file} > ${xref_file}");
+    $qpdf_xref_exit_code = ($? >> 8);
+    print "qpdf --show-xref exit code=$qpdf_xref_exit_code\n";
 }
 
 ##############

@@ -1,7 +1,8 @@
 # See options
 # https://yihui.org/knitr/options/
-detritus_figures_folder <- file.path(
-  detritus_folder, # see r-load-all/r-load-all.R
+tex_figures_folder <- file.path(
+  dot_detritus_folder, # see .r-load-all/r-load-all.R
+  "tex",
   paste0(
     "tex-fig-",
     paste0(
@@ -14,13 +15,13 @@ detritus_figures_folder <- file.path(
     )
   )
 )
-dir.create(detritus_figures_folder)
+dir.create(tex_figures_folder)
 knitr_options_default <- list(
   collapse = TRUE,
   comment = "#>",
   fig.width = 6,
   fig.height = 6,
-  fig.path = detritus_figures_folder,
+  fig.path = tex_figures_folder,
   out.width = "100%",
   dev = "pdf",
   dev.args = list(
@@ -30,5 +31,5 @@ knitr_options_default <- list(
   )
 )
 rm(
-  detritus_figures_folder
+  tex_figures_folder
 )
