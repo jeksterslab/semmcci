@@ -1,10 +1,10 @@
-#' Print Value
+#' Print Method for Object of Class `semmcci`
 #'
-#' @param x an object used to select a method.
+#' @author Ivan Jacob Agaloos Pesigan
+#' @param x an object of class `semmcci`.
 #' @param digits Integer indicating the number of decimal places to display.
 #' @param ... further arguments passed to or from other methods.
-#' @keywords internal
-#' @noRd
+#' @export
 print.semmcci <- function(x,
                           digits = 4,
                           ...) {
@@ -12,13 +12,13 @@ print.semmcci <- function(x,
   base::print(round(x$ci, digits = digits))
 }
 
-#' Print Value
+#' Print Method for Object of Class `semmcci_std`
 #'
-#' @param x an object used to select a method.
+#' @author Ivan Jacob Agaloos Pesigan
+#' @param x an object of class `semmcci_std`.
 #' @param digits Integer indicating the number of decimal places to display.
 #' @param ... further arguments passed to or from other methods.
-#' @keywords internal
-#' @noRd
+#' @export
 print.semmcci_std <- function(x,
                               digits = 4,
                               ...) {

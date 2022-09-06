@@ -1,28 +1,40 @@
-<<include = FALSE>>=
-root <- rprojroot::is_rstudio_project
-source(
-    root$find_file(
-        "latex",
-        "r-scripts",
-        "knitr.R"
-    )
-)
-@
-
 \documentclass{article}
 
 \input{latex/preamble/preamble}
 
-\Sexpr{
-    .PreambleBiblatex(
-        path = root$find_file(
-            "latex",
-            "bib"
-        ),
-        style = "reading",
-        map = FALSE
-    )
-}
+%% begin.rcode
+% #| label = "root",
+% #| include = FALSE
+% root <- rprojroot::is_rstudio_project
+%% end.rcode
+
+%% begin.rcode
+% #| label = "knitr",
+% #| include = FALSE,
+% #| file = root$find_file(
+% #|   "latex",
+% #|   "r-scripts",
+% #|   "knitr.R"
+% #| )
+%% end.rcode
+
+%% begin.rcode
+% #| label = "biblatex",
+% #| echo = FALSE,
+% #| warning = FALSE,
+% #| results = "asis"
+% cat(
+%   .PreambleBiblatexCombined(
+%     path = root$find_file(
+%       "latex",
+%       "bib"
+%     ),
+%     output_path = root$find_file(
+%       "latex"
+%     )
+%   )
+% )
+%% end.rcode
 
 \title{semmcci: References}
 \author{Ivan Jacob Agaloos Pesigan}

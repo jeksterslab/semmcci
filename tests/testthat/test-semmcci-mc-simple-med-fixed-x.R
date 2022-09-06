@@ -45,7 +45,6 @@ lapply(
       mu = lavaan::coef(fit),
       Sigma = lavaan::vcov(fit)
     )
-
     answer <- cbind(
       answer,
       `x~~x` = result["x~~x", "est"],
@@ -75,10 +74,10 @@ lapply(
       paste(text, "coefs"),
       {
         testthat::expect_true(
-          all(abs(coefs - as.vector(result[, "est"])) <= 0.05)
+          all(abs(coefs - as.vector(result[, "est"])) <= tol)
         )
         testthat::expect_true(
-          all(abs(coefs - expected) <= 0.01)
+          all(abs(coefs - expected) <= tol)
         )
       }
     )
@@ -94,6 +93,6 @@ lapply(
   n = 100000,
   R = 20000L,
   alpha = 0.05,
-  tol = 0.01,
+  tol = 0.05,
   text = "test-semmcci-mc-simple-med-fixed-x"
 )

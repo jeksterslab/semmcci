@@ -8,6 +8,7 @@
 #'   using the standardized empirical sampling distribution.
 #'
 #' @author Ivan Jacob Agaloos Pesigan
+#' @inheritParams lavaan::standardizedSolution
 #' @inheritParams mc
 #' @param object object of class `semmcci`.
 #'   The output of `semmcci::mc`.
@@ -54,17 +55,18 @@
 #' )
 #'
 #' # Standardized Monte Carlo -------------------------------------------------
-#' output_std <- mc_std(output)
+#' output_std <- mc_std_lav(output)
 #' print(output_std)
 #' @importFrom methods is
 #' @importFrom lavaan standardizedSolution
 #' @importFrom parallel detectCores makeCluster parLapply stopCluster
 #' @importFrom stats var complete.cases
 #' @export
-mc_std <- function(object,
-                   alpha = c(0.001, 0.01, 0.05),
-                   par = FALSE,
-                   ncores = NULL) {
+mc_std_lav <- function(object,
+                       type = "std.all",
+                       alpha = c(0.001, 0.01, 0.05),
+                       par = FALSE,
+                       ncores = NULL) {
   stopifnot(
     methods::is(
       object,
@@ -74,7 +76,7 @@ mc_std <- function(object,
   thetahat <- as.vector(
     lavaan::standardizedSolution(
       object = object$lavaan,
-      type = "std.all",
+      type = type,
       se = FALSE,
       zstat = FALSE,
       pvalue = FALSE,
@@ -85,10 +87,25 @@ mc_std <- function(object,
     )[, "est.std"]
   )
   names(thetahat) <- colnames(object$thetahatstar)
+  i_free <- lavaan::parameterTable(object$lavaan)$free > 0
   foo <- function(i) {
-    .std_lav(
-      est = object$thetahatstar[i, ],
-      object = object$lavaan
+    GLIST_i <- lavaan::lav_model_set_parameters(
+      lavmodel = object$lavaan@Model,
+      x = object$thetahatstar[i, i_free]
+    )@GLIST
+    return(
+      as.vector(
+        lavaan::standardizedSolution(
+          object = object$lavaan,
+          type = type,
+          est = object$thetahatstar[i, ],
+          GLIST = GLIST_i,
+          se = FALSE,
+          zstat = FALSE,
+          pvalue = FALSE,
+          ci = FALSE
+        )[, "est.std"]
+      )
     )
   }
   if (par) {

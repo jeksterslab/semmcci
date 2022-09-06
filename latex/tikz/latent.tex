@@ -1,0 +1,126 @@
+\documentclass[tikz, border=1mm]{standalone}
+
+\begin{document}
+
+\usetikzlibrary{
+	er,
+	arrows,
+	positioning
+}
+
+\begin{tikzpicture}[
+		auto,
+		node distance = 15mm and 15mm,
+		latent/.style = {
+			ellipse,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum size = 15mm,
+			align = center
+		},
+		manifest/.style = {
+			rectangle,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum width = 15mm,
+			minimum height = 10mm
+		},
+		inv/.style = {
+			rectangle,
+			draw=none,
+			fill=none,
+			inner sep = 0pt,
+			minimum width = 15mm,
+			minimum height = 10mm
+		},
+		error/.style = {
+			ellipse,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum size = 7mm,
+			align = center
+		},
+		mean/.style={
+			regular polygon,
+			regular polygon sides = 3,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum width = 7mm,
+			minimum height = 7mm
+		},
+		path/.style = {
+			->,
+			thick,
+			>=stealth'
+		},
+		cov/.style = {
+			<->,
+			thick,
+			>=stealth'
+		},
+	]
+	\node[latent] (X) {$X$};
+	\node[latent] (M) [above right = of X] {$M$};
+	\node[latent] (Y) [below right = of M] {$Y$};
+	\node[manifest] (X2) [left = of X] {$X_{2}$};
+	\node[manifest] (X1) [above = of X2] {$X_{1}$};
+	\node[manifest] (X3) [below = of X2] {$X_{3}$};
+	\node[manifest] (X5) [above = of M] {$X_{5}$};
+	\node[manifest] (X4) [left = of X5] {$X_{4}$};
+	\node[manifest] (X6) [right = of X5] {$X_{6}$};
+	\node[manifest] (X8) [right = of Y] {$X_{8}$};
+	\node[manifest] (X7) [above = of X8] {$X_{7}$};
+	\node[manifest] (X9) [below = of X8] {$X_{9}$};
+    \node[error] (varepsilonX1) [left = of X1] {$\varepsilon_{X_{1}}$};
+    \node[error] (varepsilonX2) [left = of X2] {$\varepsilon_{X_{2}}$};
+    \node[error] (varepsilonX3) [left = of X3] {$\varepsilon_{X_{3}}$};
+    \node[error] (varepsilonX4) [above = of X4] {$\varepsilon_{X_{4}}$};
+    \node[error] (varepsilonX5) [above = of X5] {$\varepsilon_{X_{5}}$};
+    \node[error] (varepsilonX6) [above = of X6] {$\varepsilon_{X_{6}}$};
+    \node[error] (varepsilonX7) [right = of X7] {$\varepsilon_{X_{7}}$};
+    \node[error] (varepsilonX8) [right = of X8] {$\varepsilon_{X_{8}}$};
+    \node[error] (varepsilonX9) [right = of X9] {$\varepsilon_{X_{9}}$};
+    \node[error] (varepsilonM) [right = of M] {$\varepsilon_{M}$};
+    \node[error] (varepsilonY) [below = of Y] {$\varepsilon_{Y}$};
+    \draw[path] (X) to node[above] {$\lambda_{1}$} (X1);	
+    \draw[path] (X) to node[above] {$\lambda_{2}$} (X2);	
+    \draw[path] (X) to node[above] {$\lambda_{3}$} (X3);	
+    \draw[path] (M) to node[right] {$\lambda_{4}$} (X4);	
+    \draw[path] (M) to node[right] {$\lambda_{5}$} (X5);	
+    \draw[path] (M) to node[right] {$\lambda_{6}$} (X6);	
+    \draw[path] (Y) to node[above] {$\lambda_{7}$} (X7);	
+    \draw[path] (Y) to node[above] {$\lambda_{8}$} (X8);	
+    \draw[path] (Y) to node[above] {$\lambda_{9}$} (X9);
+    \draw[path] (X) to node[above] {$\alpha$} (M);	
+    \draw[path] (M) to node[above] {$\beta$} (Y);	
+    \draw[path] (X) to node[above] {$\tau^{\prime}$} (Y);	
+    \draw[path] (varepsilonX1) to node[above] {$1$} (X1);
+    \draw[path] (varepsilonX2) to node[above] {$1$} (X2);
+    \draw[path] (varepsilonX3) to node[above] {$1$} (X3);
+    \draw[path] (varepsilonX4) to node[left] {$1$} (X4);
+    \draw[path] (varepsilonX5) to node[left] {$1$} (X5);
+    \draw[path] (varepsilonX6) to node[left] {$1$} (X6);
+    \draw[path] (varepsilonX7) to node[above] {$1$} (X7);
+    \draw[path] (varepsilonX8) to node[above] {$1$} (X8);
+    \draw[path] (varepsilonX9) to node[above] {$1$} (X9);
+    \draw[path] (varepsilonM) to node[above] {$1$} (M);
+    \draw[path] (varepsilonY) to node[above] {$1$} (Y);
+    \draw[cov] (X) to[out = -70, in = -110, looseness = 5] node[below] {$\sigma_{X}^{2}$} (X);
+	\draw[cov] (varepsilonX1) to[out = -290, in = -250, looseness = 5] node[above] {$\sigma^{2}_{\varepsilon_{X_{1}}}$} (varepsilonX1);
+	\draw[cov] (varepsilonX2) to[out = -290, in = -250, looseness = 5] node[above] {$\sigma^{2}_{\varepsilon_{X_{2}}}$} (varepsilonX2);
+	\draw[cov] (varepsilonX3) to[out = -290, in = -250, looseness = 5] node[above] {$\sigma^{2}_{\varepsilon_{X_{3}}}$} (varepsilonX3);
+	\draw[cov] (varepsilonX4) to[out = -290, in = -250, looseness = 5] node[above] {$\sigma^{2}_{\varepsilon_{X_{4}}}$} (varepsilonX4);
+	\draw[cov] (varepsilonX5) to[out = -290, in = -250, looseness = 5] node[above] {$\sigma^{2}_{\varepsilon_{X_{5}}}$} (varepsilonX5);
+	\draw[cov] (varepsilonX6) to[out = -290, in = -250, looseness = 5] node[above] {$\sigma^{2}_{\varepsilon_{X_{6}}}$} (varepsilonX6);
+	\draw[cov] (varepsilonX7) to[out = -290, in = -250, looseness = 5] node[above] {$\sigma^{2}_{\varepsilon_{X_{7}}}$} (varepsilonX7);
+	\draw[cov] (varepsilonX8) to[out = -290, in = -250, looseness = 5] node[above] {$\sigma^{2}_{\varepsilon_{X_{8}}}$} (varepsilonX8);
+	\draw[cov] (varepsilonX9) to[out = -290, in = -250, looseness = 5] node[above] {$\sigma^{2}_{\varepsilon_{X_{9}}}$} (varepsilonX9);
+	\draw[cov] (varepsilonM) to[out = -290, in = -250, looseness = 5] node[above] {$\sigma^{2}_{\varepsilon_{M}}$} (varepsilonM);
+    \draw[cov] (varepsilonY) to[out = 290, in = 250, looseness = 5] node[below] {$\sigma^{2}_{\varepsilon_{Y}}$} (varepsilonY);
+\end{tikzpicture}
+
+\end{document}

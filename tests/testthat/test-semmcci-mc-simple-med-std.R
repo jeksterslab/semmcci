@@ -1,7 +1,12 @@
 ## ---- test-semmcci-mc-simple-med-std
 lapply(
   X = 1,
-  FUN = function(i, n, R, alpha, tol, text) {
+  FUN = function(i,
+                 n,
+                 R,
+                 alpha,
+                 tol,
+                 text) {
     message(text)
     column_names <- c(
       "est",
@@ -9,15 +14,30 @@ lapply(
       "ll",
       "ul"
     )
-    seed <- sample.int(n = .Machine$integer.max, size = 1)
-    coefs <- stats::runif(n = 3, min = 0.0, max = 0.5)
+    seed <- sample.int(
+      n = .Machine$integer.max,
+      size = 1
+    )
+    coefs <- stats::runif(
+      n = 3,
+      min = 0.0,
+      max = 0.5
+    )
     cp <- coefs[1]
     b <- coefs[2]
     a <- coefs[3]
-    coefs <- c(coefs, 1, 1, 1, a * b)
-    x <- rnorm(n = n)
-    m <- a * x + rnorm(n = n)
-    y <- cp * x + b * m + rnorm(n = n)
+    sigma2ey <- 1 - b^2 - cp^2 - 2 * a * b * cp
+    sigma2em <- 1 - a^2
+    sigma2x <- 1
+    coefs <- c(
+      cp = cp,
+      b = b,
+      a = a,
+      ab = a * b
+    )
+    x <- rnorm(n = n, sd = sqrt(sigma2x))
+    m <- a * x + rnorm(n = n, sd = sqrt(sigma2em))
+    y <- cp * x + b * m + rnorm(n = n, sd = sqrt(sigma2ey))
     data <- data.frame(x, m, y)
     model <- "
       y ~ cp * x + b * m
@@ -32,6 +52,7 @@ lapply(
       model = model,
       fixed.x = FALSE
     )
+    coefs <- lavaan::standardizedSolution(fit)$est.std
     set.seed(seed)
     unstd <- mc(
       fit,
@@ -39,11 +60,11 @@ lapply(
       alpha = alpha
     )
     result <- mc_std(
-      unstd
+      unstd,
+      alpha = alpha
     )$ci.std
     result <- result[, c(1, 2, 4, 5)]
     colnames(result) <- column_names
-    print(result)
     set.seed(seed)
     answer <- MASS::mvrnorm(
       n = R,
@@ -51,8 +72,22 @@ lapply(
       Sigma = lavaan::vcov(fit)
     )
     sigma2x_mc <- answer[, "sigma2x"]
-    sigma2m_mc <- answer[, "sigma2em"] + answer[, "sigma2x"] * answer[, "a"]^2
-    sigma2y_mc <- answer[, "sigma2ey"] + answer[, "sigma2em"] * answer[, "b"]^2 + answer[, "sigma2x"] * (answer[, "cp"] + answer[, "b"] * answer[, "a"])^2
+    sigma2m_mc <- (
+      answer[, "sigma2em"]
+    ) + (
+      answer[, "sigma2x"] * answer[, "a"]^2
+    )
+    sigma2y_mc <- (
+      answer[, "sigma2ey"]
+    ) + (
+      answer[, "sigma2em"] * answer[, "b"]^2
+    ) + (
+      answer[, "cp"]^2 * answer[, "sigma2x"]
+    ) + (
+      answer[, "a"]^2 * answer[, "b"]^2 * answer[, "sigma2x"]
+    ) + (
+      2 * answer[, "a"] * answer[, "b"] * answer[, "cp"] * answer[, "sigma2x"]
+    )
     cp_mc <- (
       sqrt(
         sigma2x_mc
@@ -74,32 +109,14 @@ lapply(
         sigma2m_mc
       )
     ) * answer[, "a"]
-    ab_mc <- answer[, "a"] * answer[, "b"] * (
-      sqrt(
-        sigma2x_mc
-      ) / sqrt(
-        sigma2y_mc
-      )
-    )
-    # ab_mc <- a_mc * b_mc
-    # sigma2x_mc <- answer[,  "sigma2x"] / answer[,  "sigma2x"]
-    # sigma2em_mc <- 1 - a_mc^2
-    # sigma2ey_mc <- 1 - (
-    #  sigma2em_mc * b_mc^2 + sigma2x_mc * (cp_mc + b_mc * a_mc)^2
-    # )
+    ab_mc <- a_mc * b_mc
     answer <- cbind(
-      answer,
+      cp = cp_mc,
+      b = b_mc,
+      a = a_mc,
       ab = ab_mc
     )
-    answer[, "cp"] <- cp_mc
-    answer[, "b"] <- b_mc
-    answer[, "a"] <- a_mc
-    # answer[, "sigma2x"] <- sigma2x_mc
-    # answer[, "sigma2em"] <- sigma2em_mc
-    # answer[, "sigma2ey"] <- sigma2ey_mc
     expected <- colMeans(answer)
-    print(coefs)
-    print(expected)
     se <- sqrt(diag(stats::var(answer)))
     prob_ll <- alpha / 2
     prob_ul <- 1 - prob_ll
@@ -113,35 +130,34 @@ lapply(
       args = answer
     )
     answer <- cbind(
-      est = result[, "est"],
+      est = result[c(1, 2, 3, 7), "est"],
       se = se,
       answer
     )
     colnames(answer) <- column_names
-    print(answer)
-    #    testthat::test_that(
-    #      paste(text, "coefs"),
-    #      {
-    #        testthat::expect_true(
-    #          all(abs(coefs - as.vector(result[, "est"])) <= 0.01)
-    #        )
-    #        testthat::expect_true(
-    #          all(abs(coefs - expected) <= 0.01)
-    #        )
-    #      }
-    #    )
-    #    testthat::test_that(
-    #      paste(text),
-    #      {
-    #        testthat::expect_true(
-    #          all.equal(answer, result)
-    #        )
-    #      }
-    #    )
+    testthat::test_that(
+      paste(text, "coefs"),
+      {
+        testthat::expect_true(
+          all(abs(coefs - as.vector(result[, "est"])) <= tol)
+        )
+        testthat::expect_true(
+          all(abs(coefs[c(1, 2, 3, 7)] - expected) <= tol)
+        )
+      }
+    )
+    testthat::test_that(
+      paste(text),
+      {
+        testthat::expect_true(
+          all.equal(answer, result[c(1, 2, 3, 7), ])
+        )
+      }
+    )
   },
-  n = 1000,
-  R = 100,
+  n = 100L,
+  R = 100L,
   alpha = 0.05,
-  tol = 0.01,
+  tol = 0.05,
   text = "test-semmcci-mc-simple-med-std"
 )

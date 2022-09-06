@@ -47,7 +47,7 @@ root_folder <- basename(
 )
 home_folder <- Sys.getenv("HOME")
 detritus_folder <- root$find_file(
-  "detritus"
+  ".detritus"
 )
 dir.create(
   detritus_folder,
