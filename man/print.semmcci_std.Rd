@@ -36,11 +36,7 @@ model <- "
   m ~ a * x
   ab := a * b
 "
-fit <- sem(
-  data = data,
-  model = model,
-  fixed.x = FALSE
-)
+fit <- sem(data = data, model = model, fixed.x = FALSE)
 
 # Monte Carlo --------------------------------------------------------------
 output <- MC(
@@ -50,8 +46,7 @@ output <- MC(
 )
 
 # Standardized Monte Carlo -------------------------------------------------
-out <- MCStd(output)
-print(out)
+print(MCStd(output))
 }
 \author{
 Ivan Jacob Agaloos Pesigan

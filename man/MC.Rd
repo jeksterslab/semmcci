@@ -82,10 +82,7 @@ model <- "
   m ~ a * x
   ab := a * b
 "
-fit <- sem(
-  data = data,
-  model = model
-)
+fit <- sem(data = data, model = model)
 
 # Monte Carlo --------------------------------------------------------------
 MC(

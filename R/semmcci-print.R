@@ -22,18 +22,16 @@
 #'   m ~ a * x
 #'   ab := a * b
 #' "
-#' fit <- sem(
-#'   data = data,
-#'   model = model
-#' )
+#' fit <- sem(data = data, model = model)
 #'
 #' # Monte Carlo --------------------------------------------------------------
-#' out <- MC(
-#'   fit,
-#'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = c(0.001, 0.01, 0.05)
+#' print(
+#'   MC(
+#'     fit,
+#'     R = 100L, # use a large value e.g., 20000L for actual research
+#'     alpha = c(0.001, 0.01, 0.05)
+#'   )
 #' )
-#' print(out)
 #' @keywords method
 #' @export
 print.semmcci <- function(x,
@@ -67,11 +65,7 @@ print.semmcci <- function(x,
 #'   m ~ a * x
 #'   ab := a * b
 #' "
-#' fit <- sem(
-#'   data = data,
-#'   model = model,
-#'   fixed.x = FALSE
-#' )
+#' fit <- sem(data = data, model = model, fixed.x = FALSE)
 #'
 #' # Monte Carlo --------------------------------------------------------------
 #' output <- MC(
@@ -81,8 +75,7 @@ print.semmcci <- function(x,
 #' )
 #'
 #' # Standardized Monte Carlo -------------------------------------------------
-#' out <- MCStd(output)
-#' print(out)
+#' print(MCStd(output))
 #' @keywords method
 #' @export
 print.semmcci_std <- function(x,

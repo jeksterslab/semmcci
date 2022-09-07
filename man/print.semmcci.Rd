@@ -36,18 +36,16 @@ model <- "
   m ~ a * x
   ab := a * b
 "
-fit <- sem(
-  data = data,
-  model = model
-)
+fit <- sem(data = data, model = model)
 
 # Monte Carlo --------------------------------------------------------------
-out <- MC(
-  fit,
-  R = 100L, # use a large value e.g., 20000L for actual research
-  alpha = c(0.001, 0.01, 0.05)
+print(
+  MC(
+    fit,
+    R = 100L, # use a large value e.g., 20000L for actual research
+    alpha = c(0.001, 0.01, 0.05)
+  )
 )
-print(out)
 }
 \author{
 Ivan Jacob Agaloos Pesigan
