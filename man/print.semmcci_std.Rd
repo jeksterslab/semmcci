@@ -19,6 +19,40 @@ Returns a matrix of estimates, standard errors and confidence intervals.
 \description{
 Print Method for Object of Class \code{semmcci_std}
 }
+\examples{
+library(semmcci)
+library(lavaan)
+
+# Generate Data ------------------------------------------------------------
+n <- 1000
+x <- rnorm(n = n)
+m <- 0.50 * x + rnorm(n = n)
+y <- 0.25 * x + 0.50 * m + rnorm(n = n)
+data <- data.frame(x, m, y)
+
+# Fit Model in lavaan ------------------------------------------------------
+model <- "
+  y ~ cp * x + b * m
+  m ~ a * x
+  ab := a * b
+"
+fit <- sem(
+  data = data,
+  model = model,
+  fixed.x = FALSE
+)
+
+# Monte Carlo --------------------------------------------------------------
+output <- MC(
+  fit,
+  R = 100L, # use a large value e.g., 20000L for actual research
+  alpha = c(0.001, 0.01, 0.05)
+)
+
+# Standardized Monte Carlo -------------------------------------------------
+out <- MCStd(output)
+print(out)
+}
 \author{
 Ivan Jacob Agaloos Pesigan
 }
