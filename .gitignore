@@ -36,6 +36,9 @@
 # R Environment Variables
 .Renviron
 
+# R profile
+.Rprofile
+
 # Mac
 .DS_Store
 

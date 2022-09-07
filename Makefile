@@ -108,6 +108,7 @@ tinytex:
 
 latex:
 	@Rscript -e "source('latex/r-scripts/latex-make.R'); LatexMake(clean = TRUE)"
+	@rm -rf _detritus
 	@echo "Run 'make tinytex' if the process failed."
 
 # cleaning

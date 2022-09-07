@@ -1,7 +1,10 @@
 # See options
 # https://yihui.org/knitr/options/
+root <- rprojroot::is_rstudio_project
 tex_figures_folder <- file.path(
-  dot_detritus_folder, # see .r-load-all/r-load-all.R
+  root$find_file(
+    ".detritus"
+  ),
   "tex",
   paste0(
     "tex-fig-",
