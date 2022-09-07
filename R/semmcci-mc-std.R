@@ -85,9 +85,10 @@ mc_std <- function(object,
     )[, "est.std"]
   )
   names(thetahat) <- colnames(object$thetahatstar)
+  i_free <- lavaan::parameterTable(object$lavaan)$free > 0
   foo <- function(i) {
     .std_lav(
-      est = object$thetahatstar[i, ],
+      est = object$thetahatstar[i, i_free],
       object = object$lavaan
     )
   }
