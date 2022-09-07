@@ -3,9 +3,10 @@
 #' @title semmcci: Monte Carlo Confidence Intervals
 #' in Structural Equation Modeling
 #'
-#' @description `semmcci` calculates Monte Carlo confidence intervals
-#' for free and defined parameters
-#' in the structural equation modeling package `lavaan`.
+#' @description Monte Carlo confidence intervals for free and defined parameters
+#' in models fitted in the the structural equation modeling package `lavaan`
+#' can be generated using the `semmcci` package.
+#' The package has two main functions, namely, `MC()` and `MCStd()`.
 #' The output of `lavaan` is passed as the first argument
 #' to the `MC()` function to generate Monte Carlo confidence intervals.
 #' Monte Carlo confidence intervals for the standardized estimates
@@ -13,24 +14,24 @@
 #' to the `MCStd()` function.
 #'
 #' @references
-#' MacKinnon, D. P., Lockwood, C. M., \& Williams, J. (2004).
+#' MacKinnon, D. P., Lockwood, C. M., & Williams, J. (2004).
 #' Confidence limits for the indirect effect:
 #' Distribution of the product and resampling methods.
 #' *Multivariate Behavioral Research*, *39*(1), 99–128.
 #' \doi{10.1207/s15327906mbr3901_4}
 #'
-#' Preacher, K. J., \& Selig, J. P. (2012).
+#' Preacher, K. J., & Selig, J. P. (2012).
 #' Advantages of Monte Carlo confidence intervals for indirect effects.
 #' *Communication Methods and Measures*, *6*(2), 77–98.
 #' \doi{10.1080/19312458.2012.679848}
 #'
-#' Tofighi, D., \& Kelley, K. (2019).
+#' Tofighi, D., & Kelley, K. (2019).
 #' Indirect effects in sequential mediation models:
 #' Evaluating methods for hypothesis testing and confidence interval formation.
 #' *Multivariate Behavioral Research*, *55*(2), 188–210.
 #' \doi{10.1080/00273171.2019.1618545}
 #'
-#' Tofighi, D., \& MacKinnon, D. P. (2015).
+#' Tofighi, D., & MacKinnon, D. P. (2015).
 #' Monte Carlo confidence intervals for complex functions of indirect effects.
 #' *Structural Equation Modeling: A Multidisciplinary Journal*, *23*(2), 194–205.
 #' \doi{10.1080/10705511.2015.1057284}

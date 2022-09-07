@@ -13,9 +13,10 @@ Authors@R: c(
            email = "shufai.cheung@gmail.com",
            comment = c(ORCID = "0000-0002-9871-9448"))
     )
-Description: semmcci calculates Monte Carlo confidence intervals
-    for free and defined parameters
-    in the structural equation modeling package lavaan.
+Description: Monte Carlo confidence intervals for free and defined parameters
+    in models fitted in the the structural equation modeling package lavaan
+    can be generated using the semmcci package.
+    The package has two main functions, namely, MC() and MCStd().
     The output of lavaan is passed as the first argument
     to the MC() function to generate Monte Carlo confidence intervals.
     Monte Carlo confidence intervals for the standardized estimates
@@ -37,5 +38,4 @@ Suggests:
     knitr,
     rmarkdown,
     testthat
-VignetteBuilder: knitr
 RoxygenNote: 7.2.1
