@@ -91,6 +91,8 @@ cran:
 #	rhub::check_for_cran(email = 'r.jeksterslab@gmail.com')
 
 site:
+	@Rscript -e "pkgdown::init_site()"
+	@Rscript -e "pkgdown::build_articles()"
 	@Rscript -e "pkgdown::build_site()"
 
 build:
