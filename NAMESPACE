@@ -2,9 +2,8 @@
 
 S3method(print,semmcci)
 S3method(print,semmcci_std)
-export(mc)
-export(mc_std)
-export(mc_std_lav)
+export(MC)
+export(MCStd)
 importFrom(MASS,mvrnorm)
 importFrom(lavaan,coef)
 importFrom(lavaan,lav_model_get_parameters)

@@ -1,14 +1,13 @@
-#' lavaan matrices to RAM matrices
+#' lavaan to RAM matrices
 #'
-#' Converts a list of lavaan matrices to a list of
-#' RAM matrices.
+#' Converts a list of lavaan matrices to a list of RAM matrices.
 #'
 #' @author Shu Fai Cheung
-#' @return A list of A, S, F, and M RAM matrices.
 #' @param lav_mod A list of lavaan model matrices for one group.
-#' @keywords internal
+#' @return A list of A, S, F, and M RAM matrices.
+#' @keywords matrix internal
 #' @noRd
-.lav_mod_to_ram <- function(lav_mod) {
+.Lav2RAM <- function(lav_mod) {
   ov_names <- rownames(lav_mod$theta)
   lv_names <- rownames(lav_mod$psi)
   lv_names <- lv_names[!(lv_names %in% ov_names)]
@@ -80,7 +79,6 @@
     mM[, rownames(lav_mod$alpha)] <- NA
   }
 
-  # Output
   list(
     A = mA,
     S = mS,

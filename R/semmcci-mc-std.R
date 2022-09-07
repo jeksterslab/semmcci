@@ -1,27 +1,29 @@
 #' Standardized Monte Carlo Confidence Intervals
 #'
-#' Calculates standardized Monte Carlo confidence intervals.
+#' Calculates standardized Monte Carlo confidence intervals
+#' for free and defined parameters.
 #'
 #' The empirical sampling distribution
-#'   of parameter estimates from the argument `object` are standardized.
-#'   Confidence intervals are generated
-#'   using the standardized empirical sampling distribution.
+#' of parameter estimates from the argument `object` is standardized.
+#' Confidence intervals are generated
+#' using the standardized empirical sampling distribution.
 #'
 #' @author Ivan Jacob Agaloos Pesigan
-#' @inheritParams mc
+#' @inheritParams MC
 #' @param object object of class `semmcci`.
-#'   The output of `semmcci::mc`.
-#' @return Returns a list with the following elements:
+#'   Output of the `MC()` function.
+#' @return Returns an object of class `semmcci_std`
+#' which is a list with the following elements:
 #' \itemize{
-#'   \item{`lavaan`}{`lavaan` object}
-#'   \item{`mu`}{Mean vector used in the Monte Carlo simulation}
-#'   \item{`Sigma`}{Variance-covariance matrix used in the Monte Carlo simulation}
-#'   \item{`thetahat`}{Parameter estimates}
-#'   \item{`thetahatstar`}{Sampling distribution of parameter estimates}
-#'   \item{`ci`}{Confidence intervals}
-#'   \item{`thetahat.std`}{Standardized parameter estimates}
-#'   \item{`thetahatstar.std`}{Standardized sampling distribution of parameter estimates}
-#'   \item{`ci.std`}{Standardized confidence intervals}
+#'   \item{`lavaan`}{`lavaan` object.}
+#'   \item{`mu`}{Mean vector used in the Monte Carlo simulation.}
+#'   \item{`Sigma`}{Variance-covariance matrix used in the Monte Carlo simulation.}
+#'   \item{`thetahat`}{Parameter estimates.}
+#'   \item{`thetahatstar`}{Sampling distribution of parameter estimates.}
+#'   \item{`ci`}{Confidence intervals.}
+#'   \item{`thetahat.std`}{Standardized parameter estimates.}
+#'   \item{`thetahatstar.std`}{Standardized sampling distribution of parameter estimates.}
+#'   \item{`ci.std`}{Standardized confidence intervals.}
 #' }
 #' @examples
 #' library(semmcci)
@@ -47,24 +49,23 @@
 #' )
 #'
 #' # Monte Carlo --------------------------------------------------------------
-#' output <- mc(
+#' output <- MC(
 #'   fit,
 #'   R = 100L, # use a large value e.g., 20000L for actual research
 #'   alpha = c(0.001, 0.01, 0.05)
 #' )
 #'
 #' # Standardized Monte Carlo -------------------------------------------------
-#' output_std <- mc_std(output)
-#' print(output_std)
+#' MCStd(output)
 #' @importFrom methods is
 #' @importFrom lavaan standardizedSolution
 #' @importFrom parallel detectCores makeCluster parLapply stopCluster
 #' @importFrom stats var complete.cases
 #' @export
-mc_std <- function(object,
-                   alpha = c(0.001, 0.01, 0.05),
-                   par = FALSE,
-                   ncores = NULL) {
+MCStd <- function(object,
+                  alpha = c(0.001, 0.01, 0.05),
+                  par = FALSE,
+                  ncores = NULL) {
   stopifnot(
     methods::is(
       object,
@@ -87,7 +88,7 @@ mc_std <- function(object,
   names(thetahat) <- colnames(object$thetahatstar)
   i_free <- lavaan::parameterTable(object$lavaan)$free > 0
   foo <- function(i) {
-    .std_lav(
+    .StdLav(
       est = object$thetahatstar[i, i_free],
       object = object$lavaan
     )
@@ -120,7 +121,7 @@ mc_std <- function(object,
     length = dim(thetahatstar)[2]
   )
   for (i in seq_len(dim(thetahatstar)[2])) {
-    ci[[i]] <- .pcci(
+    ci[[i]] <- .PCCI(
       thetahatstar = thetahatstar[, i],
       thetahat = thetahat[[i]],
       alpha = alpha

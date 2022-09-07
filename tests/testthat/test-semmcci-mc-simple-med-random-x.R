@@ -33,7 +33,7 @@ lapply(
       fixed.x = FALSE
     )
     set.seed(seed)
-    result <- mc(
+    result <- MC(
       fit,
       R = R,
       alpha = alpha

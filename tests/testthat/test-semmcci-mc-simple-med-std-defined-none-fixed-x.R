@@ -40,13 +40,13 @@ lapply(
       fixed.x = TRUE
     )
     set.seed(seed)
-    results_unstd <- mc(
+    results_unstd <- MC(
       fit,
       R = 10L,
       alpha = c(0.001, 0.01, 0.05)
     )
     results_unstd$thetahatstar[3, ] <- lavaan::parameterEstimates(fit)$est
-    results <- mc_std(results_unstd)
+    results <- MCStd(results_unstd)
     testthat::test_that(
       text,
       {

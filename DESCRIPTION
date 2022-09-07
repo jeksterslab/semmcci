@@ -1,19 +1,23 @@
 Package: semmcci
 Title: Monte Carlo Confidence Intervals in Structural Equation Modeling
 Version: 0.9.1
-Authors@R: 
+Authors@R: c(
     person(given = "Ivan Jacob Agaloos",
            family = "Pesigan",
            role = c("aut", "cre"),
            email = "r.jeksterslab@gmail.com",
-           comment = c(ORCID = "0000-0003-4818-8420"))
+           comment = c(ORCID = "0000-0003-4818-8420")),
+    person(given = "Shu Fai",
+           family = "Cheung",
+           role = "ctb",
+           email = "shufai.cheung@gmail.com",
+           comment = c(ORCID = "0000-0002-9871-9448"))
+    )
 Description: semmcci calculates Monte Carlo confidence intervals
-    for parameters defined using the := operator
+    for free and defined parameters
     in the structural equation modeling package lavaan.
     The output of lavaan is passed as the first argument
-    to the mc function in semmcci
-    to generate Monte Carlo confidence intervals
-    for defined parameter/s.
+    to the MC() function.
 URL: https://github.com/jeksterslab/semmcci
 BugReports: https://github.com/jeksterslab/semmcci/issues
 License: MIT + file LICENSE

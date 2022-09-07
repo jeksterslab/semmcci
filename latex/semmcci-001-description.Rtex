@@ -101,7 +101,7 @@ with:
 %% end.rcode
 
 %% begin.rcode
-% out <- mc(fit)
+% out <- MC(fit)
 % print(out)
 %% end.rcode
 

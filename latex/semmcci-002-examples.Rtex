@@ -116,7 +116,7 @@ The \texttt{fit} \texttt{lavaan} object can then be passed to the \texttt{mc} fu
 to generate Monte Carlo confidence intervals for defined parameters.
 
 %% begin.rcode
-% mc(
+% MC(
 %   fit,
 %   R = 100L, # use a large value e.g., 20000L for actual research
 %   alpha = c(0.001, 0.01, 0.05)
@@ -186,7 +186,7 @@ in the \texttt{lavaan} model syntax.
 %% begin.rcode
 % # The argument `par = TRUE` can be specified to use multiple cores for a faster implementation.
 % # The number of cores to use can be specified with `ncores`.
-% mc(
+% MC(
 %   fit,
 %   R = 100L, # use a large value e.g., 20000L for actual research
 %   alpha = c(0.001, 0.01, 0.05)
@@ -244,7 +244,7 @@ Since there are missing values in \texttt{x}, we also set \texttt{fixed.x = FALS
 %% begin.rcode
 % # The argument `par = TRUE` can be specified to use multiple cores for a faster implementation.
 % # The number of cores to use can be specified with `ncores`.
-% mc(
+% MC(
 %   fit,
 %   R = 100L, # use a large value e.g., 20000L for actual research
 %   alpha = c(0.001, 0.01, 0.05)
@@ -293,14 +293,14 @@ are generated using \texttt{mc\_std}.
 
 %% begin.rcode
 % # The argument `par = TRUE` can be specified to use multiple cores for a faster implementation
-% # for both `mc` and `mc_std`.
+% # for both `MC` and `MCStd`.
 % # The number of cores to use can be specified with `ncores`.
-% out <- mc(
+% out <- MC(
 %   fit,
 %   R = 100L, # use a large value e.g., 20000L for actual research
 %   alpha = c(0.001, 0.01, 0.05)
 % )
-% mc_std(out)
+% MCStd(out)
 %% end.rcode
 
 \section{Example 4.b: The Standardized Simple Mediation Model - Version b}
@@ -385,7 +385,7 @@ and the named parameters in the model.
 %% begin.rcode
 % # The argument `par = TRUE` can be specified to use multiple cores for a faster implementation.
 % # The number of cores to use can be specified with `ncores`.
-% mc(
+% MC(
 %   fit,
 %   R = 100L, # use a large value e.g., 20000L for actual research
 %   alpha = c(0.001, 0.01, 0.05)

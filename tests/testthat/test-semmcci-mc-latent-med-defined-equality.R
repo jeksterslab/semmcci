@@ -23,7 +23,7 @@ lapply(
       data = data
     )
     set.seed(seed)
-    results <- mc(
+    results <- MC(
       fit,
       R = 10L,
       alpha = c(0.001, 0.01, 0.05)

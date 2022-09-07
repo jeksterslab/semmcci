@@ -3,7 +3,9 @@
 #' @author Ivan Jacob Agaloos Pesigan
 #' @param x an object of class `semmcci`.
 #' @param digits Integer indicating the number of decimal places to display.
-#' @param ... further arguments passed to or from other methods.
+#' @param ... further arguments.
+#' @return Returns a matrix of estimates, standard errors and confidence intervals.
+#' @keywords method
 #' @export
 print.semmcci <- function(x,
                           digits = 4,
@@ -17,7 +19,9 @@ print.semmcci <- function(x,
 #' @author Ivan Jacob Agaloos Pesigan
 #' @param x an object of class `semmcci_std`.
 #' @param digits Integer indicating the number of decimal places to display.
-#' @param ... further arguments passed to or from other methods.
+#' @param ... further arguments.
+#' @return Returns a matrix of estimates, standard errors and confidence intervals.
+#' @keywords method
 #' @export
 print.semmcci_std <- function(x,
                               digits = 4,

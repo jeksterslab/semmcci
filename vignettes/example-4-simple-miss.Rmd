@@ -1,12 +1,12 @@
 ---
-title: "Example 2: The Serial Mediation Model"
+title: "Example 4: The Simple Mediation Model with Missing Data"
 author: "Ivan Jacob Agaloos Pesigan"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{Example 2: The Serial Mediation Model}
+  %\VignetteIndexEntry{Example 4: The Simple Mediation Model with Missing Data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -18,8 +18,8 @@ knitr::opts_chunk$set(
 )
 ```
 
-This is an example of a serial mediation model with two mediators
-where `X` is the predictor, `M1` is the first mediator, `M2` is the second mediator,
+This is an example of a simple mediation model with missing data
+where `X` is the predictor, `M` is the mediator,
 and `Y` is the dependent variable.
 
 ```{r, message = FALSE}
@@ -32,44 +32,44 @@ library(lavaan)
 ```{r}
 n <- 1000
 X <- rnorm(n = n)
-M1 <- 0.50 * X + rnorm(n = n)
-M2 <- 0.15 * X + 0.50 * M1 + rnorm(n = n)
-Y <- 0.10 * X + 0.05 * M1 + 0.50 * M2 + rnorm(n = n)
-data <- data.frame(X, M1, M2, Y)
+M <- 0.50 * X + rnorm(n = n)
+Y <- 0.25 * X + 0.50 * M + rnorm(n = n)
+data <- data.frame(X, M, Y)
+
+# Create data set with missing values.
+
+miss <- sample(1:dim(data)[1], 300)
+data[miss[1:100], "X"] <- NA
+data[miss[101:200], "M"] <- NA
+data[miss[201:300], "Y"] <- NA
 ```
 
 ## Model Specification
 
-We can define several indirect effects in this example:
-
-  - $X \rightarrow M1 \rightarrow M2 \rightarrow Y$
-  - $X \rightarrow M1 \rightarrow M2$
-  - $X \rightarrow M1 \rightarrow Y$
-  - $M1 \rightarrow M2 \rightarrow Y$
-
-These indirect effects are defined using the `:=` operator
+The indirect effect is defined by the product of the slopes
+of paths `X` to `M` labeled as `a` and `M` to `Y` labeled as `b`.
+In this example, we are interested in the confidence intervals of `ab`
+defined as the product of `a` and `b` using the `:=` operator
 in the `lavaan` model syntax.
 
 ```{r}
 model <- "
-  Y ~ cp * X + b1 * M1 + b2 * M2
-  M2 ~ a2 * X + k * M1
-  M1 ~ a1 * X
-  # X -> M1 -> M2 -> Y
-  a1kb2 := a1 * k * b2
-  # X -> M1 -> M2
-  a1k := a1 * k
-  # X -> M1 -> Y
-  a2b2 := a2 * b2
-  # M1 -> M2 -> Y
-  kb2 := k * b2
+  Y ~ cp * X + b * M
+  M ~ a * X
+  indirect := a * b
+  direct := cp
+  total := cp + (a * b)
 "
 ```
 
 ## Model Fitting
 
+We can now fit the model using the `sem()` function from `lavaan`.
+We are using `missing = "fiml"` to handle missing data in `lavaan`.
+Since there are missing values in `x`, we also set `fixed.x = FALSE`.
+
 ```{r}
-fit <- sem(data = data, model = model)
+fit <- sem(data = data, model = model, missing = "fiml", fixed.x = FALSE)
 ```
 
 ## Monte Carlo Confidence Intervals

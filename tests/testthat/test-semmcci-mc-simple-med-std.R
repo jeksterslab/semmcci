@@ -54,12 +54,12 @@ lapply(
     )
     coefs <- lavaan::standardizedSolution(fit)$est.std
     set.seed(seed)
-    unstd <- mc(
+    unstd <- MC(
       fit,
       R = R,
       alpha = alpha
     )
-    result <- mc_std(
+    result <- MCStd(
       unstd,
       alpha = alpha
     )$ci.std

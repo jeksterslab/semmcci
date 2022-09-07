@@ -1,21 +1,17 @@
-#' @title Standardized Solution from RAM Matrices
+#' Standardized Solution from RAM Matrices
 #'
-#' @description Computes the standardized solution using RAM
-#'   matrices
+#' Computes the standardized solution from RAM matrices.
 #'
-#' Can not yet find the standardized solution for the means
+#' @details Standardized solution for the means is not yet supported.
 #'
 #' @author Shu Fai Cheung
-#' @return A list of RAM matrices with the standardized
-#'   solution.
-#'
 #' @param ram_est A list of RAM matrices for one group, with
 #'   unstandardized estimates.
-#'
-#'
-#' @keywords internal
+#' @return A list of RAM matrices with the standardized
+#'   solution.
+#' @keywords matrix standardized internal
 #' @noRd
-.std_ram <- function(ram_est) {
+.StdRAM <- function(ram_est) {
   mA <- ram_est$A
   mS <- ram_est$S
   iA <- diag(nrow(mA))

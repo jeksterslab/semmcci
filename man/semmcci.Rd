@@ -3,15 +3,37 @@
 \docType{package}
 \name{semmcci}
 \alias{semmcci}
-\title{semmcci: Monte Carlo Confidence Intervals}
+\title{semmcci: Monte Carlo Confidence Intervals
+in Structural Equation Modeling}
 \description{
 \code{semmcci} calculates Monte Carlo confidence intervals
-for parameters defined using the \verb{:=} operator
+for free and defined parameters
 in the structural equation modeling package \code{lavaan}.
 The output of \code{lavaan} is passed as the first argument
-to the \code{mc} function in \code{semmcci}
-to generate Monte Carlo confidence intervals
-for defined parameter/s.
+to the \code{MC()} function.
+}
+\references{
+MacKinnon, D. P., Lockwood, C. M., \& Williams, J. (2004).
+Confidence limits for the indirect effect:
+Distribution of the product and resampling methods.
+\emph{Multivariate Behavioral Research}, \emph{39}(1), 99–128.
+\doi{10.1207/s15327906mbr3901_4}
+
+Preacher, K. J., \& Selig, J. P. (2012).
+Advantages of Monte Carlo confidence intervals for indirect effects.
+\emph{Communication Methods and Measures}, \emph{6}(2), 77–98.
+\doi{10.1080/19312458.2012.679848}
+
+Tofighi, D., \& Kelley, K. (2019).
+Indirect effects in sequential mediation models:
+Evaluating methods for hypothesis testing and confidence interval formation.
+\emph{Multivariate Behavioral Research}, \emph{55}(2), 188–210.
+\doi{10.1080/00273171.2019.1618545}
+
+Tofighi, D., \& MacKinnon, D. P. (2015).
+Monte Carlo confidence intervals for complex functions of indirect effects.
+\emph{Structural Equation Modeling: A Multidisciplinary Journal}, \emph{23}(2), 194–205.
+\doi{10.1080/10705511.2015.1057284}
 }
 \author{
 Ivan Jacob Agaloos Pesigan

@@ -1,21 +1,21 @@
-#' RAM matrices to lavaan matrices
+#' RAM to lavaan matrices
 #'
-#' Converts a list of RAM matrices to a list of
-#' lavaan matrices.
+#' Converts a list of RAM matrices to a list of `lavaan` matrices.
 #'
 #' @author Shu Fai Cheung
 #' @return A list of lavaan matrices.
 #' @param ram_mod A list of RAM model matrices for one group.
-#' @param lav_mod A list of lavaan model matrices for one
+#' @param lav_mod A list of `lavaan` model matrices for one
 #'   group. They will be used as holders of the output.
 #' @param standardized If `TRUE`, the `psi` and `beta` matrices
 #'  contain the correlations. Default is `FALSE`.
+#' @return A list of `lavaan` model matrices for one group.
 #' @importFrom stats cov2cor
-#' @keywords internal
+#' @keywords matrix internal
 #' @noRd
-.ram_to_lav_mod <- function(ram,
-                            lav_mod,
-                            standardized = FALSE) {
+.RAM2Lav <- function(ram,
+                     lav_mod,
+                     standardized = FALSE) {
   ov_names <- rownames(lav_mod$theta)
   lv_names <- rownames(lav_mod$psi)
   lv_names <- lv_names[!(lv_names %in% ov_names)]

@@ -9,10 +9,11 @@
 #' @param alpha Numeric vector.
 #'   Significance level \eqn{\alpha}.
 #'   Default value is `alpha = c(0.001, 0.01, 0.05)`.
+#' @return Returns a matrix of estimates, standard errors, and confidence intervals.
 #' @importFrom stats complete.cases quantile sd
 #' @keywords internal
 #' @noRd
-.pcci <- function(thetahatstar,
+.PCCI <- function(thetahatstar,
                   thetahat,
                   alpha = c(0.001, 0.01, 0.05)) {
   thetahatstar <- as.vector(thetahatstar)

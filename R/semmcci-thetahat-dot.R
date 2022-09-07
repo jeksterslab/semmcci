@@ -3,10 +3,20 @@
 #' @author Ivan Jacob Agaloos Pesigan
 #'
 #' @param object object of class `lavaan`.
+#' @return Returns a list with the following elements
+#' \itemize{
+#'   \item{`est`}{Parameter estimates.}
+#'   \item{`names`}{Parameter names.}
+#'   \item{`labels`}{Parameter labels.}
+#'   \item{`def`}{Defined parameters.}
+#'   \item{`ceq`}{Equality constraints.}
+#'   \item{`cin`}{Inequality constraints.}
+#'   \item{`fixed`}{Fixed parameters.}
+#' }
 #' @importFrom stats complete.cases
-#' @keywords internal
+#' @keywords parameters internal
 #' @noRd
-.thetahat <- function(object) {
+.ThetaHat <- function(object) {
   # extract all estimates including fixed parameters
   thetahat.names <- paste0(
     object@ParTable$lhs,

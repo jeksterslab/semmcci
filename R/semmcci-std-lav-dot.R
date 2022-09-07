@@ -1,20 +1,20 @@
 #' Standardized Solution from lavaan
 #'
-#' Computes the standardized solution for a lavaan
-#' object with user supplied parameter vector
+#' Computes the standardized solution for a `lavaan`
+#' object with user supplied parameter vector.
 #'
-#' @return A vector of the standardized solution, of the same
-#'  length as the number of rows in the parameter table
+#' @details Standardized solution for the means is not yet supported.
 #'
-#' Does not yet support standardized solution for means.
 #' @author Shu Fai Cheung
 #' @param est A vector of parameters.
 #' @param object object of class `lavaan`.
+#' @return A vector of the standardized solution, of the same
+#'  length as the number of rows in the parameter table.
 #' @importFrom lavaan lav_model_set_parameters lav_model_get_parameters
-#' @keywords internal
+#' @keywords matrix standardized internal
 #' @noRd
-.std_lav <- function(est,
-                     object) {
+.StdLav <- function(est,
+                    object) {
   lav_model <- object@Model
 
   # Set parameters
@@ -55,14 +55,14 @@
 
   ram <- lapply(
     X = glist_new,
-    FUN = .lav_mod_to_ram
+    FUN = .Lav2RAM
   )
   ram_std <- lapply(
     X = ram,
-    FUN = .std_ram
+    FUN = .StdRAM
   )
   glist_std <- mapply(
-    FUN = .ram_to_lav_mod,
+    FUN = .RAM2Lav,
     ram_std,
     glist_new,
     MoreArgs = list(

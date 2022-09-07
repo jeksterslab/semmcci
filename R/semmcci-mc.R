@@ -1,23 +1,27 @@
 #' Monte Carlo Confidence Intervals
 #'
-#' Calculates Monte Carlo confidence intervals.
+#' Calculates Monte Carlo confidence intervals
+#' for free and defined parameters
 #'
-#' A sampling distribution of parameter estimates
-#'   is generated using the fitted model given by
+#' A sampling distribution of parameter estimates is generated
+#' from the multivariate normal distribution
+#' using the parameter estimates and the sampling variance-covariance matrix.
 #'
-#'   \deqn{
-#'     \hat{\boldsymbol{\theta}}^{\ast}
-#'     \sim
-#'     \mathcal{N}_{p}
-#'     \left(
-#'       \boldsymbol{\mu} = \hat{\boldsymbol{\theta}},
-#'       \boldsymbol{\Sigma} = \mathrm{Cov}
-#'       \left( \hat{\boldsymbol{\theta}} \right)
-#'     \right) .
-#'   }
+#' \deqn{
+#'   \hat{\boldsymbol{\theta}}^{\ast}
+#'   \sim
+#'   \mathcal{N}
+#'   \left(
+#'     \boldsymbol{\mu} = \hat{\boldsymbol{\theta}},
+#'     \boldsymbol{\Sigma} = \mathrm{Cov}
+#'     \left( \hat{\boldsymbol{\theta}} \right)
+#'   \right)
+#' }
 #'
-#'   Confidence intervals are generated
-#'   using the generated sampling distribution.
+#' Confidence intervals for free and defined parameters
+#' are generated using the simulated sampling distribution.
+#' Parameters can be defined using the `:=` operator
+#' in the `lavaan` model syntax.
 #'
 #' @author Ivan Jacob Agaloos Pesigan
 #'
@@ -32,14 +36,14 @@
 #' @param ncores Positive integer.
 #'   Number of cores to use if `par = TRUE`.
 #'   If unspecified, uses the output of `parallel::detectCores()`.
-#' @return Returns a list with the following elements:
+#' @return Returns an object of class `semmcci` which is a list with the following elements:
 #' \itemize{
-#'   \item{`lavaan`}{`lavaan` object}
-#'   \item{`mu`}{Mean vector used in the Monte Carlo simulation}
-#'   \item{`Sigma`}{Variance-covariance matrix used in the Monte Carlo simulation}
-#'   \item{`thetahat`}{Parameter estimates}
-#'   \item{`thetahatstar`}{Sampling distribution of parameter estimates}
-#'   \item{`ci`}{Confidence intervals}
+#'   \item{`lavaan`}{`lavaan` object.}
+#'   \item{`mu`}{Mean vector used in the Monte Carlo simulation.}
+#'   \item{`Sigma`}{Variance-covariance matrix used in the Monte Carlo simulation.}
+#'   \item{`thetahat`}{Parameter estimates.}
+#'   \item{`thetahatstar`}{Sampling distribution of parameter estimates.}
+#'   \item{`ci`}{Confidence intervals.}
 #' }
 #' @examples
 #' library(semmcci)
@@ -64,19 +68,18 @@
 #' )
 #'
 #' # Monte Carlo --------------------------------------------------------------
-#' mc <- mc(
+#' MC(
 #'   fit,
 #'   R = 100L, # use a large value e.g., 20000L for actual research
 #'   alpha = c(0.001, 0.01, 0.05)
 #' )
-#' print(mc)
 #' @importFrom methods is
 #' @importFrom lavaan coef vcov
 #' @importFrom MASS mvrnorm
 #' @importFrom parallel detectCores makeCluster parLapply stopCluster
 #' @importFrom stats var complete.cases
 #' @export
-mc <- function(object,
+MC <- function(object,
                R = 20000L,
                alpha = c(0.001, 0.01, 0.05),
                par = FALSE,
@@ -88,7 +91,7 @@ mc <- function(object,
     )
   )
   # extract all estimates including fixed parameters
-  thetahat <- .thetahat(object)
+  thetahat <- .ThetaHat(object)
   # set up Monte Carlo
   R <- as.integer(R)
   mu <- lavaan::coef(object)
@@ -230,7 +233,7 @@ mc <- function(object,
     length = dim(thetahatstar)[2]
   )
   for (i in seq_len(dim(thetahatstar)[2])) {
-    ci[[i]] <- .pcci(
+    ci[[i]] <- .PCCI(
       thetahatstar = thetahatstar[, i],
       thetahat = thetahat$est[[i]],
       alpha = alpha

@@ -11,7 +11,10 @@
 
 \item{digits}{Integer indicating the number of decimal places to display.}
 
-\item{...}{further arguments passed to or from other methods.}
+\item{...}{further arguments.}
+}
+\value{
+Returns a matrix of estimates, standard errors and confidence intervals.
 }
 \description{
 Print Method for Object of Class \code{semmcci_std}
@@ -19,3 +22,4 @@ Print Method for Object of Class \code{semmcci_std}
 \author{
 Ivan Jacob Agaloos Pesigan
 }
+\keyword{method}
