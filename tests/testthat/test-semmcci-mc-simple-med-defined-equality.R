@@ -29,7 +29,8 @@ lapply(
     model <- "
       y ~ cp * x + b * m
       m ~ a * x
-      asq := a^2
+      a == b
+      ab := a * b
     "
     fit <- lavaan::sem(
       data = data,
@@ -50,23 +51,23 @@ lapply(
     )
     answers <- cbind(
       answers,
-      asq = answers[, "a"]^2
+      ab = answers[, "a"] * answers[, "b"]
     )
     testthat::test_that(
       text,
       {
         testthat::expect_equal(
-          results$thetahatstar[, 1:7],
+          results$thetahatstar[, c(1:6, 8)],
           answers
         )
         testthat::expect_equal(
-          results$thetahat$est[1:7],
+          results$thetahat$est[c(1:6, 8)],
           lavaan::parameterEstimates(fit)$est,
           check.attributes = FALSE
         )
         testthat::expect_equal(
-          results$ci["asq", "0.05%"],
-          quantile(answers[, "asq"], .0005),
+          results$ci["ab", "0.05%"],
+          quantile(answers[, "ab"], .0005),
           check.attributes = FALSE
         )
       }

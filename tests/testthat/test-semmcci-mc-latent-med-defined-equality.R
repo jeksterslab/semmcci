@@ -11,11 +11,14 @@ lapply(
     )
     data <- lavaan::HolzingerSwineford1939
     model <- "
-      visual  =~ x1 + x2 + x3
-      textual =~ x4 + x5 + x6
-      speed   =~ x7 + x8 + x9
+      visual =~ x1 + a1 * x2 + a2 * x3
+      textual =~ x4 + b1 * x5 + b2 * x6
+      speed =~ x7 + c1 * x8 + c2*x9
       textual ~ a * visual
       speed ~ b * textual
+      a1 == a2
+      b1 == b2
+      c1 == c2
       ab := a * b
     "
     fit <- lavaan::sem(
@@ -46,7 +49,7 @@ lapply(
           answers
         )
         testthat::expect_equal(
-          results$thetahat$est,
+          results$thetahat$est[c(1:23, 27)],
           lavaan::parameterEstimates(fit)$est,
           check.attributes = FALSE
         )

@@ -30,3 +30,6 @@
 ^latex$
 ^latexmkrc$
 ^vignettes$
+^semmcci\.Rcheck$
+^semmcci.*\.tar\.gz$
+^semmcci.*\.tgz$
