@@ -22,7 +22,8 @@ knitr::opts_chunk$set(
 )
 ```
 
-This is an example of a serial mediation model with two mediators
+In this example, the Monte Carlo method is used to generate confidence intervals
+for the indirect effects in a serial mediation model with two mediators
 where `X` is the predictor, `M1` is the first mediator, `M2` is the second mediator,
 and `Y` is the dependent variable.
 

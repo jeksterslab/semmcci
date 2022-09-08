@@ -74,7 +74,7 @@ lint:
 	@Rscript -e "lintr::lint_dir('.tests-external')"
 
 README.md: README.Rmd R/*.R
-	@Rscript -e "rmarkdown::render('README.Rmd')"
+	@Rscript -e "devtools::build_readme()"
 
 man/*.Rd: R/*.R
 	@Rscript -e "devtools::document()"

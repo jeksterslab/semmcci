@@ -22,9 +22,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-This is an example of a simple mediation model with missing data
-where `X` is the predictor, `M` is the mediator,
-and `Y` is the dependent variable.
+In this example, the Monte Carlo method is used to generate confidence intervals
+for the indirect effect in a simple mediation model with missing data
+where `X` is the predictor, `M` is the mediator, and `Y` is the dependent variable.
 
 ```{r, message = FALSE}
 library(semmcci)
@@ -52,7 +52,7 @@ data[miss[201:300], "Y"] <- NA
 
 The indirect effect is defined by the product of the slopes
 of paths `X` to `M` labeled as `a` and `M` to `Y` labeled as `b`.
-In this example, we are interested in the confidence intervals of `ab`
+In this example, we are interested in the confidence intervals of `indirect`
 defined as the product of `a` and `b` using the `:=` operator
 in the `lavaan` model syntax.
 
