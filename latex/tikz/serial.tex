@@ -61,22 +61,22 @@
 	\node[manifest] (M1) [above right = of X] {$M_{1}$};
 	\node[manifest] (M2) [right = of M1] {$M_{2}$};
 	\node[manifest] (Y) [below right = of M2] {$Y$};
-	\node[error] (varepsilonM1) [above = of M1] {$\varepsilon_{M_{1}}$};
-	\node[error] (varepsilonM2) [above = of M2] {$\varepsilon_{M_{2}}$};
-	\node[error] (varepsilonY) [above = of Y] {$\varepsilon_{Y}$};
-	\draw[path] (M1) to node[above] {$\delta$} (M2);
-	\draw[path] (M1) to node[above] {$\beta_{1}$} (Y);
-	\draw[path] (M2) to node[above] {$\beta_{2}$} (Y);
-	\draw[path] (X) to node {$\tau^{\prime}$} (Y);
-	\draw[path] (X) to node {$\alpha_{1}$} (M1);
-	\draw[path] (X) to node {$\alpha_{2}$} (M2);
-	\draw[path] (varepsilonM1) to node {$1$} (M1);
-	\draw[path] (varepsilonM2) to node {$1$} (M2);
-	\draw[path] (varepsilonY) to node {$1$} (Y);
-	\draw[cov] (X) to[out = 70, in = 110, looseness = 5] node[above] {$\sigma_{X}^{2}$} (X);
-	\draw[cov] (varepsilonM1) to[out = -290, in = -250, looseness = 5] node[above] {$\sigma^{2}_{\varepsilon_{M_{1}}}$} (varepsilonM1);
-	\draw[cov] (varepsilonM2) to[out = -290, in = -250, looseness = 5] node[above] {$\sigma^{2}_{\varepsilon_{M_{2}}}$} (varepsilonM2);
-	\draw[cov] (varepsilonY) to[out = -290, in = -250, looseness = 5] node[above] {$\sigma^{2}_{\varepsilon_{Y}}$} (varepsilonY);
+	\node[error] (eM1) [above = of M1] {$e_{M_{1}}$};
+	\node[error] (eM2) [above = of M2] {$e_{M_{2}}$};
+	\node[error] (eY) [above = of Y] {$e_{Y}$};
+	\draw[path] (M1) to node[above] {$k$} (M2);
+	\draw[path] (M1) to node[above] {$b_{1}$} (Y);
+	\draw[path] (M2) to node[above] {$b_{2}$} (Y);
+	\draw[path] (X) to node {$c^{\prime}$} (Y);
+	\draw[path] (X) to node {$a_{1}$} (M1);
+	\draw[path] (X) to node {$a_{2}$} (M2);
+	\draw[path] (eM1) to node {$1$} (M1);
+	\draw[path] (eM2) to node {$1$} (M2);
+	\draw[path] (eY) to node {$1$} (Y);
+	\draw[cov] (X) to[out = 70, in = 110, looseness = 5] node[above] {$s_{X}^{2}$} (X);
+	\draw[cov] (eM1) to[out = -290, in = -250, looseness = 5] node[above] {$s^{2}_{e_{M_{1}}}$} (eM1);
+	\draw[cov] (eM2) to[out = -290, in = -250, looseness = 5] node[above] {$s^{2}_{e_{M_{2}}}$} (eM2);
+	\draw[cov] (eY) to[out = -290, in = -250, looseness = 5] node[above] {$s^{2}_{e_{Y}}$} (eY);
 \end{tikzpicture}
 
 \end{document}

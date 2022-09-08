@@ -60,16 +60,16 @@
 	\node[manifest] (X) {$X$};
 	\node[manifest] (M) [above right = of X] {$M$};
 	\node[manifest] (Y) [below right = of M] {$Y$};
-	\node[error] (varepsilonM) [above = of M] {$\varepsilon_{M}$};
-	\node[error] (varepsilonY) [above = of Y] {$\varepsilon_{Y}$};
+	\node[error] (eM) [above = of M] {$e_{M}$};
+	\node[error] (eY) [above = of Y] {$e_{Y}$};
 	\draw[path] (M) to node[above] {$b$} (Y);
 	\draw[path] (X) to node {$c^{\prime}$} (Y);
 	\draw[path] (X) to node {$a$} (M);
-	\draw[path] (varepsilonM) to node {$1$} (M);
-	\draw[path] (varepsilonY) to node {$1$} (Y);
-	\draw[cov] (X) to[out = 70, in = 110, looseness = 5] node[above] {$\sigma_{X}^{2}$} (X);
-	\draw[cov] (varepsilonM) to[out = -290, in = -250, looseness = 5] node[above] {$\sigma^{2}_{\varepsilon_{M}}$} (varepsilonM);
-	\draw[cov] (varepsilonY) to[out = -290, in = -250, looseness = 5] node[above] {$\sigma^{2}_{\varepsilon_{Y}}$} (varepsilonY);
+	\draw[path] (eM) to node {$1$} (M);
+	\draw[path] (eY) to node {$1$} (Y);
+	\draw[cov] (X) to[out = 70, in = 110, looseness = 5] node[above] {$s_{X}^{2}$} (X);
+	\draw[cov] (eM) to[out = -290, in = -250, looseness = 5] node[above] {$s^{2}_{e_{M}}$} (eM);
+	\draw[cov] (eY) to[out = -290, in = -250, looseness = 5] node[above] {$s^{2}_{e_{Y}}$} (eY);
 \end{tikzpicture}
 
 \end{document}
