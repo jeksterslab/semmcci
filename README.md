@@ -8,6 +8,7 @@ Ivan Jacob Agaloos Pesigan
 
 [![R-CMD-check](https://github.com/jeksterslab/semmcci/workflows/R-CMD-check/badge.svg)](https://github.com/jeksterslab/semmcci/actions)
 [![test-coverage](https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yaml)
+[![codecov](https://codecov.io/gh/jeksterslab/semmcci/branch/main/graph/badge.svg?token=KVLUET3DJ6)](https://codecov.io/gh/jeksterslab/semmcci)
 [![pkgdown](https://github.com/jeksterslab/semmcci/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/pkgdown.yaml)
 <!-- badges: end -->
 
