@@ -252,23 +252,23 @@ MC <- function(object,
   )
   rownames(ci) <- colnames(thetahatstar)
   # put NA to rows of fixed parameters
-  if (length(thetahat$fixed) > 0) {
-    ci_rownames <- rownames(ci)
-    ci_colnames <- colnames(ci)
-    ci_colnames <- ifelse(
-      test = ci_colnames == "est",
-      yes = NA,
-      no = ci_colnames
-    )
-    ci_colnames <- ci_colnames[stats::complete.cases(ci_colnames)]
-    # for (i in seq_along(ci_rownames)) {
-    #   for (j in seq_along(thetahat$fixed)) {
-    #     if (ci_rownames[i] == thetahat$fixed[j]) {
-    #       ci[i, ci_colnames] <- NA
-    #     }
-    #   }
-    # }
-  }
+  # if (length(thetahat$fixed) > 0) {
+  # ci_rownames <- rownames(ci)
+  # ci_colnames <- colnames(ci)
+  # ci_colnames <- ifelse(
+  #  test = ci_colnames == "est",
+  #  yes = NA,
+  #  no = ci_colnames
+  # )
+  # ci_colnames <- ci_colnames[stats::complete.cases(ci_colnames)]
+  # for (i in seq_along(ci_rownames)) {
+  #   for (j in seq_along(thetahat$fixed)) {
+  #     if (ci_rownames[i] == thetahat$fixed[j]) {
+  #       ci[i, ci_colnames] <- NA
+  #     }
+  #   }
+  # }
+  # }
   out <- list(
     lavaan = object,
     mu = mu,
