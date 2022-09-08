@@ -69,7 +69,7 @@ lapply(
       answer
     )
     colnames(answer) <- column_names
-    answer["x~~x", "se"] <- answer["x~~x", "ll"] <- answer["x~~x", "ul"] <- NA
+    # answer["x~~x", "se"] <- answer["x~~x", "ll"] <- answer["x~~x", "ul"] <- NA
     testthat::test_that(
       paste(text, "coefs"),
       {

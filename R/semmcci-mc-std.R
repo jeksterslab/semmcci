@@ -4,7 +4,8 @@
 #' for free and defined parameters.
 #'
 #' The empirical sampling distribution
-#' of parameter estimates from the argument `object` is standardized.
+#' of parameter estimates from the argument `object` is standardized,
+#' that is, each randomly generated vector of parameters is standardized.
 #' Confidence intervals are generated
 #' using the standardized empirical sampling distribution.
 #'
@@ -25,6 +26,15 @@
 #'   \item{`thetahatstar.std`}{Standardized sampling distribution of parameter estimates.}
 #'   \item{`ci.std`}{Standardized confidence intervals.}
 #' }
+#' The list element `ci.std` is a matrix with the following columns:
+#' \itemize{
+#'   \item{`est`}{Standardized parameter estimates.}
+#'   \item{`se`}{Standard errors or the square root of the diagonals of the standardized Monte Carlo sampling distribution of parameter estimates.}
+#'   \item{`R`}{Number of Monte Carlo replications.}
+#'   \item{...}{Percentiles that correspond to the confidence intervals defined by `alpha`.}
+#' }
+#' Note that the rows in `ci` correspond to the standardized model parameters.
+#' Parameters with zero standard errors and constant confidence limits are fixed parameters.
 #' @examples
 #' library(semmcci)
 #' library(lavaan)

@@ -1,7 +1,7 @@
 semmcci
 ================
 Ivan Jacob Agaloos Pesigan
-2022-09-07
+2022-09-08
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
@@ -14,8 +14,8 @@ Ivan Jacob Agaloos Pesigan
 ## Description
 
 Monte Carlo confidence intervals for free and defined parameters in
-models fitted in the the structural equation modeling package `lavaan`
-can be generated using the `semmcci` package. The package has two main
+models fitted in the structural equation modeling package `lavaan` can
+be generated using the `semmcci` package. The package has two main
 functions, namely, `MC()` and `MCStd()`. The output of `lavaan` is
 passed as the first argument to the `MC()` function to generate Monte
 Carlo confidence intervals. Monte Carlo confidence intervals for the
@@ -56,7 +56,7 @@ data <- data.frame(X, M, Y)
 
 The indirect effect is defined by the product of the slopes of paths `X`
 to `M` labeled as `a` and `M` to `Y` labeled as `b`. In this example, we
-are interested in the confidence intervals of `ab` defined as the
+are interested in the confidence intervals of `indirect` defined as the
 product of `a` and `b` using the `:=` operator in the `lavaan` model
 syntax.
 
@@ -80,22 +80,22 @@ fit <- sem(data = data, model = model)
 
 ### Monte Carlo Confidence Intervals
 
-The `fit` `lavaan` object can then be passed to the `MC()` function from
-`semmcci` to generate Monte Carlo confidence intervals.
+The `fit` `lavaan` object can then be passed to the `MC()` function to
+generate Monte Carlo confidence intervals.
 
 ``` r
 MC(fit, R = 20000L, alpha = c(0.001, 0.01, 0.05))
 #> Monte Carlo Confidence Intervals
 #>             est     se     R  0.05%   0.5%   2.5%  97.5%  99.5% 99.95%
-#> cp       0.2398 0.0350 20000 0.1224 0.1485 0.1707 0.3078 0.3288 0.3567
-#> b        0.5485 0.0322 20000 0.4470 0.4664 0.4849 0.6113 0.6314 0.6532
-#> a        0.4759 0.0312 20000 0.3728 0.3959 0.4148 0.5371 0.5573 0.5798
-#> Y~~Y     1.0573 0.0471 20000 0.9007 0.9346 0.9649 1.1489 1.1772 1.2127
-#> M~~M     1.0177 0.0453 20000 0.8711 0.9007 0.9296 1.1063 1.1363 1.1671
-#> X~~X     1.0395     NA    NA     NA     NA     NA     NA     NA     NA
-#> indirect 0.2610 0.0231 20000 0.1903 0.2047 0.2175 0.3083 0.3228 0.3423
-#> direct   0.2398 0.0350 20000 0.1224 0.1485 0.1707 0.3078 0.3288 0.3567
-#> total    0.5008 0.0358 20000 0.3821 0.4100 0.4301 0.5709 0.5922 0.6215
+#> cp       0.2077 0.0356 20000 0.0926 0.1143 0.1382 0.2773 0.2984 0.3267
+#> b        0.5163 0.0314 20000 0.4080 0.4354 0.4549 0.5779 0.5961 0.6204
+#> a        0.4978 0.0324 20000 0.3904 0.4133 0.4346 0.5610 0.5801 0.6030
+#> Y~~Y     0.9955 0.0448 20000 0.8520 0.8818 0.9076 1.0839 1.1119 1.1447
+#> M~~M     1.0115 0.0449 20000 0.8679 0.8952 0.9238 1.0994 1.1256 1.1579
+#> X~~X     0.9703     NA    NA     NA     NA     NA     NA     NA     NA
+#> indirect 0.2570 0.0228 20000 0.1845 0.2014 0.2140 0.3030 0.3164 0.3358
+#> direct   0.2077 0.0356 20000 0.0926 0.1143 0.1382 0.2773 0.2984 0.3267
+#> total    0.4647 0.0362 20000 0.3445 0.3716 0.3929 0.5361 0.5568 0.5771
 ```
 
 ### Standardized Monte Carlo Confidence Intervals
@@ -113,15 +113,15 @@ unstd <- MC(fit, R = 20000L, alpha = c(0.001, 0.01, 0.05))
 MCStd(unstd)
 #> Standardized Monte Carlo Confidence Intervals
 #>             est     se     R  0.05%   0.5%   2.5%  97.5%  99.5% 99.95%
-#> cp       0.1918 0.0278 20000 0.1033 0.1201 0.1370 0.2461 0.2635 0.2815
-#> b        0.4818 0.0254 20000 0.3938 0.4160 0.4317 0.5307 0.5461 0.5626
-#> a        0.4334 0.0257 20000 0.3465 0.3643 0.3819 0.4827 0.4982 0.5150
-#> Y~~Y     0.6510 0.0244 20000 0.5689 0.5866 0.6027 0.6975 0.7125 0.7351
-#> M~~M     0.8121 0.0223 20000 0.7347 0.7518 0.7670 0.8542 0.8673 0.8799
+#> cp       0.1685 0.0286 20000 0.0720 0.0946 0.1129 0.2245 0.2423 0.2585
+#> b        0.4757 0.0262 20000 0.3874 0.4056 0.4232 0.5261 0.5435 0.5564
+#> a        0.4382 0.0256 20000 0.3477 0.3703 0.3876 0.4878 0.5023 0.5222
+#> Y~~Y     0.6751 0.0246 20000 0.5935 0.6098 0.6242 0.7217 0.7359 0.7533
+#> M~~M     0.8079 0.0224 20000 0.7273 0.7477 0.7620 0.8497 0.8629 0.8791
 #> X~~X     1.0000 0.0000 20000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
-#> indirect 0.2088 0.0169 20000 0.1552 0.1669 0.1763 0.2423 0.2532 0.2673
-#> direct   0.1918 0.0278 20000 0.1033 0.1201 0.1370 0.2461 0.2635 0.2815
-#> total    0.4006 0.0265 20000 0.3078 0.3301 0.3473 0.4508 0.4673 0.4827
+#> indirect 0.2085 0.0172 20000 0.1545 0.1650 0.1755 0.2430 0.2537 0.2682
+#> direct   0.1685 0.0286 20000 0.0720 0.0946 0.1129 0.2245 0.2423 0.2585
+#> total    0.3770 0.0273 20000 0.2829 0.3065 0.3234 0.4305 0.4463 0.4633
 ```
 
 ## More Information

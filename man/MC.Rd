@@ -39,6 +39,15 @@ Returns an object of class \code{semmcci} which is a list with the following ele
 \item{\code{thetahatstar}}{Sampling distribution of parameter estimates.}
 \item{\code{ci}}{Confidence intervals.}
 }
+The list element \code{ci} is a matrix with the following columns:
+\itemize{
+\item{\code{est}}{Parameter estimates.}
+\item{\code{se}}{Standard errors or the square root of the diagonals of the Monte Carlo sampling distribution of parameter estimates.}
+\item{\code{R}}{Number of Monte Carlo replications.}
+\item{...}{Percentiles that correspond to the confidence intervals defined by \code{alpha}.}
+}
+Note that the rows in \code{ci} correspond to the model parameters.
+Parameters with zero standard errors and constant confidence limits are fixed parameters.
 }
 \description{
 Calculates Monte Carlo confidence intervals

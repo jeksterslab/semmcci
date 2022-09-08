@@ -45,6 +45,15 @@
 #'   \item{`thetahatstar`}{Sampling distribution of parameter estimates.}
 #'   \item{`ci`}{Confidence intervals.}
 #' }
+#' The list element `ci` is a matrix with the following columns:
+#' \itemize{
+#'   \item{`est`}{Parameter estimates.}
+#'   \item{`se`}{Standard errors or the square root of the diagonals of the Monte Carlo sampling distribution of parameter estimates.}
+#'   \item{`R`}{Number of Monte Carlo replications.}
+#'   \item{...}{Percentiles that correspond to the confidence intervals defined by `alpha`.}
+#' }
+#' Note that the rows in `ci` correspond to the model parameters.
+#' Parameters with zero standard errors and constant confidence limits are fixed parameters.
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
@@ -251,13 +260,13 @@ MC <- function(object,
       no = ci_colnames
     )
     ci_colnames <- ci_colnames[stats::complete.cases(ci_colnames)]
-    for (i in seq_along(ci_rownames)) {
-      for (j in seq_along(thetahat$fixed)) {
-        if (ci_rownames[i] == thetahat$fixed[j]) {
-          ci[i, ci_colnames] <- NA
-        }
-      }
-    }
+    # for (i in seq_along(ci_rownames)) {
+    #   for (j in seq_along(thetahat$fixed)) {
+    #     if (ci_rownames[i] == thetahat$fixed[j]) {
+    #       ci[i, ci_colnames] <- NA
+    #     }
+    #   }
+    # }
   }
   out <- list(
     lavaan = object,

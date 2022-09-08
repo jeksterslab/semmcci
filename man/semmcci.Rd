@@ -7,7 +7,7 @@
 in Structural Equation Modeling}
 \description{
 Monte Carlo confidence intervals for free and defined parameters
-in models fitted in the the structural equation modeling package \code{lavaan}
+in models fitted in the structural equation modeling package \code{lavaan}
 can be generated using the \code{semmcci} package.
 The package has two main functions, namely, \code{MC()} and \code{MCStd()}.
 The output of \code{lavaan} is passed as the first argument

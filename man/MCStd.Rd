@@ -35,6 +35,15 @@ which is a list with the following elements:
 \item{\code{thetahatstar.std}}{Standardized sampling distribution of parameter estimates.}
 \item{\code{ci.std}}{Standardized confidence intervals.}
 }
+The list element \code{ci.std} is a matrix with the following columns:
+\itemize{
+\item{\code{est}}{Standardized parameter estimates.}
+\item{\code{se}}{Standard errors or the square root of the diagonals of the standardized Monte Carlo sampling distribution of parameter estimates.}
+\item{\code{R}}{Number of Monte Carlo replications.}
+\item{...}{Percentiles that correspond to the confidence intervals defined by \code{alpha}.}
+}
+Note that the rows in \code{ci} correspond to the standardized model parameters.
+Parameters with zero standard errors and constant confidence limits are fixed parameters.
 }
 \description{
 Calculates standardized Monte Carlo confidence intervals
@@ -42,7 +51,8 @@ for free and defined parameters.
 }
 \details{
 The empirical sampling distribution
-of parameter estimates from the argument \code{object} is standardized.
+of parameter estimates from the argument \code{object} is standardized,
+that is, each randomly generated vector of parameters is standardized.
 Confidence intervals are generated
 using the standardized empirical sampling distribution.
 }

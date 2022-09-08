@@ -4,7 +4,7 @@
 #' in Structural Equation Modeling
 #'
 #' @description Monte Carlo confidence intervals for free and defined parameters
-#' in models fitted in the the structural equation modeling package `lavaan`
+#' in models fitted in the structural equation modeling package `lavaan`
 #' can be generated using the `semmcci` package.
 #' The package has two main functions, namely, `MC()` and `MCStd()`.
 #' The output of `lavaan` is passed as the first argument
