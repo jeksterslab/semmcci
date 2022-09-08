@@ -46,6 +46,15 @@ install.packages("remotes")
 remotes::install_github("jeksterslab/semmcci")
 ```
 
+## The Monte Carlo Method
+
+In the Monte Carlo method, a sampling distribution of parameter estimates is generated
+from the multivariate normal distribution
+using the parameter estimates and the sampling variance-covariance matrix.
+Confidence intervals for defined parameters are generated
+by obtaining percentiles corresponding to 100(1 - &#945;)% from the generated sampling distribution,
+where &#945; is the significance level.
+
 ## Example
 
 A common application of the Monte Carlo method

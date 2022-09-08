@@ -4,6 +4,17 @@ url: https://github.com/jeksterslab/semmcci/
 template:
   bootstrap: 5
 
+reference:
+- title: Package
+  contents:
+  - has_keyword("package")
+- title: Monte Carlo Confidence Intervals
+  contents:
+  - has_keyword("mc")
+- title: Methods
+  contents:
+  - has_keyword("method")
+
 articles:
 - title: Examples
   navbar: Examples

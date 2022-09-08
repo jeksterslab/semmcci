@@ -84,6 +84,7 @@
 #' @importFrom MASS mvrnorm
 #' @importFrom parallel detectCores makeCluster parLapply stopCluster
 #' @importFrom stats var complete.cases
+#' @keywords mc
 #' @export
 MC <- function(object,
                R = 20000L,
