@@ -5,15 +5,10 @@ template:
   bootstrap: 5
 
 articles:
-- title: "Example 1: The Simple Mediation Model"
+- title: Examples
+  navbar: Examples
   contents:
   - example-1-simple
-- title: "Example 2: The Serial Mediation Model"
-  contents:
   - example-2-serial
-- title: "Example 3: The Latent Variable Simple Mediation Model"
-  contents:
   - example-3-latent
-- title: "Example 4: The Simple Mediation Model with Missing Data"
-  contents:
   - example-4-simple-miss

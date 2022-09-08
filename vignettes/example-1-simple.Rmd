@@ -12,6 +12,10 @@ vignette: >
 ---
 
 ```{r, include = FALSE}
+set.seed(42)
+```
+
+```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -22,74 +26,8 @@ This is an example of a simple mediation model
 where `X` is the predictor, `M` is the mediator,
 and `Y` is the dependent variable.
 
-```{tikz, model, echo = FALSE, fig.cap = "The Simple Mediation Model", fig.ext = 'png', cache = FALSE}
-\usetikzlibrary{
-	er,
-	arrows,
-	positioning
-}
-
-\begin{tikzpicture}[
-		auto,
-		node distance = 20mm,
-		manifest/.style = {
-			rectangle,
-			draw,
-			thick,
-			inner sep = 0pt,
-			minimum width = 15mm,
-			minimum height = 10mm
-		},
-		inv/.style = {
-			rectangle,
-			draw=none,
-			fill=none,
-			inner sep = 0pt,
-			minimum width = 15mm,
-			minimum height = 10mm
-		},
-		error/.style = {
-			ellipse,
-			draw,
-			thick,
-			inner sep = 0pt,
-			minimum size = 7mm,
-			align = center
-		},
-		mean/.style={
-			regular polygon,
-			regular polygon sides = 3,
-			draw,
-			thick,
-			inner sep = 0pt,
-			minimum width = 7mm,
-			minimum height = 7mm
-		},
-		path/.style = {
-			->,
-			thick,
-			>=stealth'
-		},
-		cov/.style = {
-			<->,
-			thick,
-			>=stealth'
-		},
-	]
-	\node[manifest] (X) {$X$};
-	\node[manifest] (M) [above right = of X] {$M$};
-	\node[manifest] (Y) [below right = of M] {$Y$};
-	\node[error] (eM) [above = of M] {$e_{M}$};
-	\node[error] (eY) [above = of Y] {$e_{Y}$};
-	\draw[path] (M) to node[above] {$b$} (Y);
-	\draw[path] (X) to node {$c^{\prime}$} (Y);
-	\draw[path] (X) to node {$a$} (M);
-	\draw[path] (eM) to node {$1$} (M);
-	\draw[path] (eY) to node {$1$} (Y);
-	\draw[cov] (X) to[out = 70, in = 110, looseness = 5] node[above] {$s_{X}^{2}$} (X);
-	\draw[cov] (eM) to[out = -290, in = -250, looseness = 5] node[above] {$s^{2}_{e_{M}}$} (eM);
-	\draw[cov] (eY) to[out = -290, in = -250, looseness = 5] node[above] {$s^{2}_{e_{Y}}$} (eY);
-\end{tikzpicture}
+```{r, echo = FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/jeksterslab/semmcci/main/latex/figures/png/simple.png")
 ```
 
 ```{r, message = FALSE}

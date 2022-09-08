@@ -12,6 +12,10 @@ vignette: >
 ---
 
 ```{r, include = FALSE}
+set.seed(42)
+```
+
+```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
