@@ -23,3 +23,8 @@ articles:
   - example-2-serial
   - example-3-latent
   - example-4-simple-miss
+  - example-5-regression
+- title: Benchmark
+  navbar: Benchmark
+  contents:
+  - benchmark

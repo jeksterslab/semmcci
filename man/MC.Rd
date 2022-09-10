@@ -4,13 +4,7 @@
 \alias{MC}
 \title{Monte Carlo Confidence Intervals}
 \usage{
-MC(
-  object,
-  R = 20000L,
-  alpha = c(0.001, 0.01, 0.05),
-  par = FALSE,
-  ncores = NULL
-)
+MC(object, R = 20000L, alpha = c(0.001, 0.01, 0.05))
 }
 \arguments{
 \item{object}{object of class \code{lavaan}.}
@@ -21,13 +15,6 @@ Number of Monte Carlo replications.}
 \item{alpha}{Numeric vector.
 Significance level \eqn{\alpha}.
 Default value is \code{alpha = c(0.001, 0.01, 0.05)}.}
-
-\item{par}{Logical.
-If \code{par = TRUE}, use multiple cores.}
-
-\item{ncores}{Positive integer.
-Number of cores to use if \code{par = TRUE}.
-If unspecified, uses the output of \code{parallel::detectCores()}.}
 }
 \value{
 Returns an object of class \code{semmcci} which is a list with the following elements:

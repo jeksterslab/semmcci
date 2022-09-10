@@ -73,6 +73,9 @@ lint:
 	@Rscript -e "lintr::lint_dir('.tests-benchmark')"
 	@Rscript -e "lintr::lint_dir('.tests-external')"
 
+cov:
+	@Rscript -e "covr::package_coverage()"
+
 README.md: README.Rmd R/*.R
 	@Rscript -e "devtools::build_readme()"
 

@@ -9,16 +9,16 @@ pkg <- c(
   "ggplot2",
   "knitr",
   "lintr",
+  "magick",
   "microbenchmark",
+  "pdftools",
   "pkgdown",
   "remotes",
-  "rhub",
   "rmarkdown",
   "rprojroot",
   "styler",
   "testthat",
-  "tidyverse",
-  "tinytex"
+  "tidyverse"
 )
 ################################################################################
 # ====[ library ]================================================================

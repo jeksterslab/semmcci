@@ -51,6 +51,6 @@ lapply(
       }
     )
   },
-  n = 1000L,
+  n = 100L,
   text = "test-semmcci-mc-latent-med-std-defined-none"
 )

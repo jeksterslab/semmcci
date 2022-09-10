@@ -6,7 +6,8 @@ args <- commandArgs(trailingOnly = TRUE)
 pkg <- c(
   "rstudio/tinytex",
   "r-lib/cli",
-  "r-lib/devtools"
+  "r-lib/devtools",
+  "r-hub/rhub"
 )
 ################################################################################
 # ====[ library ]================================================================

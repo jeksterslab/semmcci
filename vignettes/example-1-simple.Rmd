@@ -11,11 +11,13 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
+```{r}
+#| include = FALSE
 set.seed(42)
 ```
 
-```{r, include = FALSE}
+```{r}
+#| include = FALSE
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -30,11 +32,83 @@ through a mediating variable `M`.
 This mediating or indirect effect
 is a product of path coefficients from the fitted model.
 
-```{r, echo = FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/jeksterslab/semmcci/main/latex/figures/png/simple.png")
+
+```{tikz}
+#| echo = FALSE, 
+#| fig.cap = "The Simple Mediation Model", 
+#| fig.ext = 'png', 
+#| cache = FALSE
+\usetikzlibrary{
+	er,
+	arrows,
+	positioning
+}
+
+\begin{tikzpicture}[
+		auto,
+		node distance = 20mm,
+		manifest/.style = {
+			rectangle,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum width = 15mm,
+			minimum height = 10mm
+		},
+		inv/.style = {
+			rectangle,
+			draw=none,
+			fill=none,
+			inner sep = 0pt,
+			minimum width = 15mm,
+			minimum height = 10mm
+		},
+		error/.style = {
+			ellipse,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum size = 7mm,
+			align = center
+		},
+		mean/.style={
+			regular polygon,
+			regular polygon sides = 3,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum width = 7mm,
+			minimum height = 7mm
+		},
+		path/.style = {
+			->,
+			thick,
+			>=stealth'
+		},
+		cov/.style = {
+			<->,
+			thick,
+			>=stealth'
+		},
+	]
+	\node[manifest] (X) {$X$};
+	\node[manifest] (M) [above right = of X] {$M$};
+	\node[manifest] (Y) [below right = of M] {$Y$};
+	\node[error] (eM) [above = of M] {$e_{M}$};
+	\node[error] (eY) [above = of Y] {$e_{Y}$};
+	\draw[path] (M) to node[above] {$b$} (Y);
+	\draw[path] (X) to node {$c^{\prime}$} (Y);
+	\draw[path] (X) to node {$a$} (M);
+	\draw[path] (eM) to node {$1$} (M);
+	\draw[path] (eY) to node {$1$} (Y);
+	\draw[cov] (X) to[out = 70, in = 110, looseness = 5] node[above] {$s_{X}^{2}$} (X);
+	\draw[cov] (eM) to[out = -290, in = -250, looseness = 5] node[above] {$s^{2}_{e_{M}}$} (eM);
+	\draw[cov] (eY) to[out = -290, in = -250, looseness = 5] node[above] {$s^{2}_{e_{Y}}$} (eY);
+\end{tikzpicture}
 ```
 
-```{r, message = FALSE}
+```{r}
+#| message = FALSE
 library(semmcci)
 library(lavaan)
 ```
@@ -147,10 +221,10 @@ and the named parameters in the model.
 model <- "
   Y ~ cp * X + b * M
   M ~ a * X
-  X ~~ ssq_X * X
-  M ~~ ssq_eM * M
-  Y ~~ ssq_eY * Y
-  indirect_std := a * b * (sqrt(ssq_X) / sqrt(cp^2 * ssq_X + a^2 * b^2 * ssq_X + b^2 * ssq_eM + 2 * cp * b * a * ssq_X + ssq_eY))
+  X ~~ s2_X * X
+  M ~~ s2_eM * M
+  Y ~~ s2_eY * Y
+  indirect_std := a * b * (sqrt(s2_X) / sqrt(cp^2 * s2_X + a^2 * b^2 * s2_X + b^2 * s2_eM + 2 * cp * b * a * s2_X + s2_eY))
 "
 ```
 

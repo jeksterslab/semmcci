@@ -1,4 +1,4 @@
-## ---- test-semmcci-mc-simple-med-std-defined-none-fixed-x
+## ---- test-semmcci-mc-simple-med-std-defined-none-random-x
 lapply(
   X = 1,
   FUN = function(i,
@@ -37,7 +37,7 @@ lapply(
     fit <- lavaan::sem(
       data = data,
       model = model,
-      fixed.x = TRUE
+      fixed.x = FALSE
     )
     set.seed(seed)
     results_unstd <- MC(
@@ -68,6 +68,6 @@ lapply(
       }
     )
   },
-  n = 1000L,
-  text = "test-semmcci-mc-simple-med-std-defined-none-fixed-x"
+  n = 100L,
+  text = "test-semmcci-mc-simple-med-std-defined-none-random-x"
 )

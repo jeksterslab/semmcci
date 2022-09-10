@@ -33,7 +33,7 @@
 #'   \item{`R`}{Number of Monte Carlo replications.}
 #'   \item{...}{Percentiles that correspond to the confidence intervals defined by `alpha`.}
 #' }
-#' Note that the rows in `ci` correspond to the standardized model parameters.
+#' Note that the rows in `ci.std` correspond to the standardized model parameters.
 #' Parameters with zero standard errors and constant confidence limits are fixed parameters.
 #' @examples
 #' library(semmcci)
@@ -63,22 +63,20 @@
 #'
 #' # Standardized Monte Carlo -------------------------------------------------
 #' MCStd(output)
-#' @importFrom methods is
 #' @importFrom lavaan standardizedSolution
-#' @importFrom parallel detectCores makeCluster parLapply stopCluster
-#' @importFrom stats var complete.cases
 #' @keywords mc
 #' @export
 MCStd <- function(object,
-                  alpha = c(0.001, 0.01, 0.05),
-                  par = FALSE,
-                  ncores = NULL) {
+                  alpha = c(0.001, 0.01, 0.05)) {
   stopifnot(
     methods::is(
       object,
       "semmcci"
     )
   )
+  # if (object$lavaan@pta$ngroups > 1) {
+  #   stop("Multiple groups analysis is not yet supported.")
+  # }
   thetahat <- as.vector(
     lavaan::standardizedSolution(
       object = object$lavaan,
@@ -95,28 +93,17 @@ MCStd <- function(object,
   names(thetahat) <- colnames(object$thetahatstar)
   i_free <- lavaan::parameterTable(object$lavaan)$free > 0
   foo <- function(i) {
-    .StdLav(
-      est = object$thetahatstar[i, i_free],
-      object = object$lavaan
+    return(
+      .StdLav(
+        est = object$thetahatstar[i, i_free],
+        object = object$lavaan
+      )
     )
   }
-  if (par) {
-    if (is.null(ncores)) {
-      ncores <- parallel::detectCores()
-    }
-    cl <- parallel::makeCluster(ncores)
-    thetahatstar <- parallel::parLapply(
-      cl = cl,
-      X = seq_len(dim(object$thetahatstar)[1]),
-      fun = foo
-    )
-    parallel::stopCluster(cl)
-  } else {
-    thetahatstar <- lapply(
-      X = seq_len(dim(object$thetahatstar)[1]),
-      FUN = foo
-    )
-  }
+  thetahatstar <- lapply(
+    X = seq_len(dim(object$thetahatstar)[1]),
+    FUN = foo
+  )
   thetahatstar <- do.call(
     what = "rbind",
     args = thetahatstar
@@ -139,24 +126,8 @@ MCStd <- function(object,
     args = ci
   )
   rownames(ci) <- colnames(thetahatstar)
-  # put NA to rows of fixed parameters
-  # if (length(object$thetahat$fixed) > 0) {
-  #  ci_rownames <- rownames(ci)
-  #  ci_colnames <- colnames(ci)
-  #  ci_colnames <- ifelse(
-  #    test = ci_colnames == "est",
-  #    yes = NA,
-  #    no = ci_colnames
-  #  )
-  #  ci_colnames <- ci_colnames[stats::complete.cases(ci_colnames)]
-  #  for (i in seq_along(ci_rownames)) {
-  #    for (j in seq_along(object$thetahat$fixed)) {
-  #      if (ci_rownames[i] == object$thetahat$fixed[j]) {
-  #        ci[i, ci_colnames] <- NA
-  #      }
-  #    }
-  #  }
-  # }
+  ci <- ci[which(object$thetahat$op != "~1"), ]
+  ci <- ci[which(!rownames(ci) %in% object$thetahat$fixed), ]
   out <- list(
     lavaan = object$lavaan,
     mu = object$mu,

@@ -31,11 +31,6 @@
 #' @param alpha Numeric vector.
 #'   Significance level \eqn{\alpha}.
 #'   Default value is `alpha = c(0.001, 0.01, 0.05)`.
-#' @param par Logical.
-#'   If `par = TRUE`, use multiple cores.
-#' @param ncores Positive integer.
-#'   Number of cores to use if `par = TRUE`.
-#'   If unspecified, uses the output of `parallel::detectCores()`.
 #' @return Returns an object of class `semmcci` which is a list with the following elements:
 #' \itemize{
 #'   \item{`lavaan`}{`lavaan` object.}
@@ -82,21 +77,21 @@
 #' @importFrom methods is
 #' @importFrom lavaan coef vcov
 #' @importFrom MASS mvrnorm
-#' @importFrom parallel detectCores makeCluster parLapply stopCluster
 #' @importFrom stats var complete.cases
 #' @keywords mc
 #' @export
 MC <- function(object,
                R = 20000L,
-               alpha = c(0.001, 0.01, 0.05),
-               par = FALSE,
-               ncores = NULL) {
+               alpha = c(0.001, 0.01, 0.05)) {
   stopifnot(
     methods::is(
       object,
       "lavaan"
     )
   )
+  if (object@pta$nlevels > 1) {
+    stop("Multilevel analysis is not yet supported.")
+  }
   # extract all estimates including fixed parameters
   thetahat <- .ThetaHat(object)
   # set up Monte Carlo
@@ -117,23 +112,10 @@ MC <- function(object,
         )
       )
     }
-    if (par) {
-      if (is.null(ncores)) {
-        ncores <- parallel::detectCores()
-      }
-      cl <- parallel::makeCluster(ncores)
-      thetahatstar_def <- parallel::parLapply(
-        cl = cl,
-        X = seq_len(dim(thetahatstar_orig)[1]),
-        fun = def
-      )
-      parallel::stopCluster(cl)
-    } else {
-      thetahatstar_def <- lapply(
-        X = seq_len(dim(thetahatstar_orig)[1]),
-        FUN = def
-      )
-    }
+    thetahatstar_def <- lapply(
+      X = seq_len(dim(thetahatstar_orig)[1]),
+      FUN = def
+    )
     thetahatstar_def <- do.call(
       what = "rbind",
       args = thetahatstar_def
@@ -154,23 +136,10 @@ MC <- function(object,
       names(out) <- paste0(thetahat$ceq, "_ceq")
       return(out)
     }
-    if (par) {
-      if (is.null(ncores)) {
-        ncores <- parallel::detectCores()
-      }
-      cl <- parallel::makeCluster(ncores)
-      thetahatstar_ceq <- parallel::parLapply(
-        cl = cl,
-        X = seq_len(dim(thetahatstar)[1]),
-        fun = ceq
-      )
-      parallel::stopCluster(cl)
-    } else {
-      thetahatstar_ceq <- lapply(
-        X = seq_len(dim(thetahatstar)[1]),
-        FUN = ceq
-      )
-    }
+    thetahatstar_ceq <- lapply(
+      X = seq_len(dim(thetahatstar)[1]),
+      FUN = ceq
+    )
     thetahatstar_ceq <- do.call(
       what = "rbind",
       args = thetahatstar_ceq
@@ -189,23 +158,10 @@ MC <- function(object,
       names(out) <- paste0(thetahat$cin, "_cin")
       return(out)
     }
-    if (par) {
-      if (is.null(ncores)) {
-        ncores <- parallel::detectCores()
-      }
-      cl <- parallel::makeCluster(ncores)
-      thetahatstar_cin <- parallel::parLapply(
-        cl = cl,
-        X = seq_len(dim(thetahatstar)[1]),
-        fun = cin
-      )
-      parallel::stopCluster(cl)
-    } else {
-      thetahatstar_cin <- lapply(
-        X = seq_len(dim(thetahatstar)[1]),
-        FUN = cin
-      )
-    }
+    thetahatstar_cin <- lapply(
+      X = seq_len(dim(thetahatstar)[1]),
+      FUN = cin
+    )
     thetahatstar_cin <- do.call(
       what = "rbind",
       args = thetahatstar_cin
@@ -251,24 +207,7 @@ MC <- function(object,
     args = ci
   )
   rownames(ci) <- colnames(thetahatstar)
-  # put NA to rows of fixed parameters
-  # if (length(thetahat$fixed) > 0) {
-  # ci_rownames <- rownames(ci)
-  # ci_colnames <- colnames(ci)
-  # ci_colnames <- ifelse(
-  #  test = ci_colnames == "est",
-  #  yes = NA,
-  #  no = ci_colnames
-  # )
-  # ci_colnames <- ci_colnames[stats::complete.cases(ci_colnames)]
-  # for (i in seq_along(ci_rownames)) {
-  #   for (j in seq_along(thetahat$fixed)) {
-  #     if (ci_rownames[i] == thetahat$fixed[j]) {
-  #       ci[i, ci_colnames] <- NA
-  #     }
-  #   }
-  # }
-  # }
+  ci <- ci[which(!rownames(ci) %in% thetahat$fixed), ]
   out <- list(
     lavaan = object,
     mu = mu,

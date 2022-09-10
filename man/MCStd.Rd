@@ -4,7 +4,7 @@
 \alias{MCStd}
 \title{Standardized Monte Carlo Confidence Intervals}
 \usage{
-MCStd(object, alpha = c(0.001, 0.01, 0.05), par = FALSE, ncores = NULL)
+MCStd(object, alpha = c(0.001, 0.01, 0.05))
 }
 \arguments{
 \item{object}{object of class \code{semmcci}.
@@ -13,13 +13,6 @@ Output of the \code{MC()} function.}
 \item{alpha}{Numeric vector.
 Significance level \eqn{\alpha}.
 Default value is \code{alpha = c(0.001, 0.01, 0.05)}.}
-
-\item{par}{Logical.
-If \code{par = TRUE}, use multiple cores.}
-
-\item{ncores}{Positive integer.
-Number of cores to use if \code{par = TRUE}.
-If unspecified, uses the output of \code{parallel::detectCores()}.}
 }
 \value{
 Returns an object of class \code{semmcci_std}
@@ -42,7 +35,7 @@ The list element \code{ci.std} is a matrix with the following columns:
 \item{\code{R}}{Number of Monte Carlo replications.}
 \item{...}{Percentiles that correspond to the confidence intervals defined by \code{alpha}.}
 }
-Note that the rows in \code{ci} correspond to the standardized model parameters.
+Note that the rows in \code{ci.std} correspond to the standardized model parameters.
 Parameters with zero standard errors and constant confidence limits are fixed parameters.
 }
 \description{
