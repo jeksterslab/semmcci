@@ -11,7 +11,7 @@ MCStd(object, alpha = c(0.001, 0.01, 0.05))
 Output of the \code{MC()} function.}
 
 \item{alpha}{Numeric vector.
-Significance level \eqn{\alpha}.
+Significance level.
 Default value is \code{alpha = c(0.001, 0.01, 0.05)}.}
 }
 \value{

@@ -21,8 +21,8 @@ In the Monte Carlo method, a sampling distribution of #' parameter estimates is 
 from the multivariate normal distribution
 using the parameter estimates and the sampling variance-#' covariance matrix.
 Confidence intervals for defined parameters are generated
-by obtaining percentiles corresponding to \eqn{100(1 - \alpha)\%} from the generated sampling distribution,
-where \eqn{\alpha} is the significance level.
+by obtaining percentiles corresponding to 100(1 - \code{alpha})\\% from the generated sampling distribution,
+where \code{alpha} is the significance level.
 }
 \references{
 MacKinnon, D. P., Lockwood, C. M., & Williams, J. (2004).

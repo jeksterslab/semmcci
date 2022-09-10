@@ -1,4 +1,4 @@
-.PHONY: all term termconda root remotes env github arch jammy focal win deps style lint check cran site build install rpkg tinytex latex rclean rcleanall clean termclean deepclean
+.PHONY: all term termconda root remotes env github arch jammy focal win deps style lint cov check cran site build install rpkg tinytex latex rhub rhublocal rclean rcleanall clean termclean deepclean
 
 all: clean deps style man/*.Rd check build install README.md site
 
@@ -88,11 +88,6 @@ check:
 cran:
 	@Rscript -e "devtools::check(cran = TRUE)"
 
-# RUN INTERACTIVELY
-# rhub:
-#	rhub::validate_email(email = 'r.jeksterslab@gmail.com', token = 'TOKEN')
-#	rhub::check_for_cran(email = 'r.jeksterslab@gmail.com')
-
 site:
 	@Rscript -e "pkgdown::build_site()"
 
@@ -113,6 +108,14 @@ latex:
 	@Rscript -e "source('latex/r-scripts/latex-make.R'); LatexMake(clean = TRUE)"
 	@rm -rf _detritus
 	@echo "Run 'make tinytex' if the process failed."
+
+# rhub
+
+rhub:
+	@Rscript .r-hub/check-for-cran.R
+
+rhublocal:
+	@Rscript .r-hub/local-check-linux-images.R
 
 # cleaning
 

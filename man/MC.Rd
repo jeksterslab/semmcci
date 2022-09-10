@@ -13,7 +13,7 @@ MC(object, R = 20000L, alpha = c(0.001, 0.01, 0.05))
 Number of Monte Carlo replications.}
 
 \item{alpha}{Numeric vector.
-Significance level \eqn{\alpha}.
+Significance level.
 Default value is \code{alpha = c(0.001, 0.01, 0.05)}.}
 }
 \value{
@@ -44,18 +44,6 @@ for free and defined parameters
 A sampling distribution of parameter estimates is generated
 from the multivariate normal distribution
 using the parameter estimates and the sampling variance-covariance matrix.
-
-\deqn{
-  \hat{\boldsymbol{\theta}}^{\ast}
-  \sim
-  \mathcal{N}
-  \left(
-    \boldsymbol{\mu} = \hat{\boldsymbol{\theta}},
-    \boldsymbol{\Sigma} = \mathrm{Cov}
-    \left( \hat{\boldsymbol{\theta}} \right)
-  \right)
-}
-
 Confidence intervals for free and defined parameters
 are generated using the simulated sampling distribution.
 Parameters can be defined using the \verb{:=} operator

@@ -12,7 +12,7 @@ for free and defined parameters"><!-- mathjax --><script src="https://cdnjs.clou
     
     <a class="navbar-brand me-2" href="../index.html">semmcci</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,7 +84,7 @@ Number of Monte Carlo replications.</p></dd>
 
 <dt>alpha</dt>
 <dd><p>Numeric vector.
-Significance level \(\alpha\).
+Significance level.
 Default value is <code>alpha = c(0.001, 0.01, 0.05)</code>.</p></dd>
 
 </dl></div>
@@ -109,18 +109,8 @@ Parameters with zero standard errors and constant confidence limits are fixed pa
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>A sampling distribution of parameter estimates is generated
 from the multivariate normal distribution
-using the parameter estimates and the sampling variance-covariance matrix.</p>
-<p>$$
-  \hat{\boldsymbol{\theta}}^{\ast}
-  \sim
-  \mathcal{N}
-  \left(
-    \boldsymbol{\mu} = \hat{\boldsymbol{\theta}},
-    \boldsymbol{\Sigma} = \mathrm{Cov}
-    \left( \hat{\boldsymbol{\theta}} \right)
-  \right)
-$$</p>
-<p>Confidence intervals for free and defined parameters
+using the parameter estimates and the sampling variance-covariance matrix.
+Confidence intervals for free and defined parameters
 are generated using the simulated sampling distribution.
 Parameters can be defined using the <code>:=</code> operator
 in the <code>lavaan</code> model syntax.</p>
@@ -158,12 +148,12 @@ in the <code>lavaan</code> model syntax.</p>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Monte Carlo Confidence Intervals</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         est     se   R  0.05%   0.5%   2.5%  97.5%  99.5% 99.95%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp   0.2262 0.0388 100 0.1428 0.1452 0.1535 0.2892 0.3216 0.3302</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b    0.5342 0.0286 100 0.4641 0.4663 0.4921 0.5922 0.6142 0.6212</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a    0.5260 0.0303 100 0.4426 0.4574 0.4779 0.5905 0.5991 0.5998</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y~~y 0.9887 0.0470 100 0.8683 0.8719 0.8937 1.0795 1.0973 1.1078</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> m~~m 1.0537 0.0444 100 0.9658 0.9672 0.9747 1.1289 1.1571 1.1700</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ab   0.2810 0.0233 100 0.2245 0.2265 0.2373 0.3292 0.3370 0.3414</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp   0.1907 0.0316 100 0.1184 0.1205 0.1270 0.2461 0.2641 0.2723</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b    0.5126 0.0324 100 0.4382 0.4403 0.4477 0.5680 0.5894 0.5975</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a    0.4830 0.0355 100 0.4081 0.4086 0.4189 0.5525 0.5584 0.5590</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y~~y 0.9849 0.0406 100 0.8866 0.8907 0.9100 1.0658 1.0785 1.0839</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m~~m 1.0958 0.0487 100 1.0115 1.0147 1.0254 1.1978 1.2239 1.2310</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ab   0.2476 0.0246 100 0.1959 0.1977 0.2028 0.2954 0.3076 0.3081</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
