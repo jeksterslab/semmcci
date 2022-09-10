@@ -9,7 +9,6 @@ Ivan Jacob Agaloos Pesigan
 [![R-CMD-check](https://github.com/jeksterslab/semmcci/workflows/R-CMD-check/badge.svg)](https://github.com/jeksterslab/semmcci/actions)
 [![test-coverage](https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yaml)
 [![codecov](https://codecov.io/gh/jeksterslab/semmcci/branch/main/graph/badge.svg?token=KVLUET3DJ6)](https://codecov.io/gh/jeksterslab/semmcci)
-[![pkgdown](https://github.com/jeksterslab/semmcci/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/pkgdown.yaml)
 <!-- badges: end -->
 
 ## Description
@@ -32,6 +31,11 @@ You can install the released version of `semmcci` from
 install.packages("remotes")
 remotes::install_github("jeksterslab/semmcci")
 ```
+
+## More Information
+
+See [GitHub Pages](https://jeksterslab.github.io/semmcci/index.html) for
+package documentation.
 
 ## The Monte Carlo Method
 
@@ -100,14 +104,14 @@ generate Monte Carlo confidence intervals.
 MC(fit, R = 20000L, alpha = c(0.001, 0.01, 0.05))
 #> Monte Carlo Confidence Intervals
 #>             est     se     R  0.05%   0.5%   2.5%  97.5%  99.5% 99.95%
-#> cp       0.2614 0.0356 20000 0.1469 0.1714 0.1919 0.3311 0.3518 0.3806
-#> b        0.5124 0.0318 20000 0.4053 0.4316 0.4500 0.5751 0.5946 0.6176
-#> a        0.4939 0.0317 20000 0.3892 0.4130 0.4324 0.5564 0.5761 0.5970
-#> Y~~Y     0.9856 0.0440 20000 0.8373 0.8691 0.8983 1.0714 1.0969 1.1281
-#> M~~M     0.9691 0.0433 20000 0.8293 0.8572 0.8843 1.0547 1.0795 1.1166
-#> indirect 0.2531 0.0225 20000 0.1827 0.1982 0.2101 0.2990 0.3134 0.3315
-#> direct   0.2614 0.0356 20000 0.1469 0.1714 0.1919 0.3311 0.3518 0.3806
-#> total    0.5144 0.0358 20000 0.4030 0.4224 0.4441 0.5854 0.6074 0.6339
+#> cp       0.2613 0.0354 20000 0.1425 0.1705 0.1911 0.3304 0.3511 0.3719
+#> b        0.5020 0.0317 20000 0.3941 0.4184 0.4392 0.5631 0.5817 0.6047
+#> a        0.5102 0.0317 20000 0.4069 0.4286 0.4478 0.5720 0.5884 0.6125
+#> Y~~Y     0.9682 0.0434 20000 0.8234 0.8588 0.8830 1.0538 1.0815 1.1099
+#> M~~M     0.9649 0.0436 20000 0.8318 0.8538 0.8801 1.0510 1.0770 1.1116
+#> indirect 0.2561 0.0227 20000 0.1855 0.2004 0.2126 0.3016 0.3165 0.3345
+#> direct   0.2613 0.0354 20000 0.1425 0.1705 0.1911 0.3304 0.3511 0.3719
+#> total    0.5175 0.0354 20000 0.4028 0.4263 0.4471 0.5860 0.6094 0.6278
 ```
 
 ### Standardized Monte Carlo Confidence Intervals
@@ -125,18 +129,13 @@ unstd <- MC(fit, R = 20000L, alpha = c(0.001, 0.01, 0.05))
 MCStd(unstd)
 #> Standardized Monte Carlo Confidence Intervals
 #>             est     se     R  0.05%   0.5%   2.5%  97.5%  99.5% 99.95%
-#> cp       0.2093 0.0282 20000 0.1163 0.1359 0.1538 0.2639 0.2794 0.3009
-#> b        0.4598 0.0262 20000 0.3704 0.3912 0.4071 0.5099 0.5248 0.5431
-#> a        0.4406 0.0257 20000 0.3528 0.3738 0.3898 0.4902 0.5056 0.5237
-#> Y~~Y     0.6600 0.0243 20000 0.5819 0.5963 0.6115 0.7068 0.7216 0.7374
-#> M~~M     0.8058 0.0227 20000 0.7257 0.7443 0.7597 0.8480 0.8602 0.8755
+#> cp       0.2127 0.0285 20000 0.1177 0.1380 0.1577 0.2692 0.2858 0.3021
+#> b        0.4567 0.0263 20000 0.3633 0.3863 0.4033 0.5066 0.5225 0.5381
+#> a        0.4565 0.0251 20000 0.3692 0.3898 0.4064 0.5043 0.5190 0.5319
+#> Y~~Y     0.6575 0.0241 20000 0.5746 0.5940 0.6096 0.7038 0.7178 0.7368
+#> M~~M     0.7916 0.0228 20000 0.7171 0.7307 0.7456 0.8348 0.8480 0.8637
 #> X~~X     1.0000 0.0000 20000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
-#> indirect 0.2026 0.0168 20000 0.1518 0.1604 0.1701 0.2362 0.2469 0.2583
-#> direct   0.2093 0.0282 20000 0.1163 0.1359 0.1538 0.2639 0.2794 0.3009
-#> total    0.4119 0.0263 20000 0.3248 0.3427 0.3587 0.4619 0.4781 0.4953
+#> indirect 0.2085 0.0169 20000 0.1551 0.1659 0.1752 0.2423 0.2529 0.2630
+#> direct   0.2127 0.0285 20000 0.1177 0.1380 0.1577 0.2692 0.2858 0.3021
+#> total    0.4212 0.0260 20000 0.3388 0.3532 0.3692 0.4712 0.4861 0.5041
 ```
-
-## More Information
-
-See [GitHub Pages](https://jeksterslab.github.io/semmcci/index.html) for
-package documentation.

@@ -20,7 +20,6 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/jeksterslab/semmcci/workflows/R-CMD-check/badge.svg)](https://github.com/jeksterslab/semmcci/actions)
 [![test-coverage](https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yaml)
 [![codecov](https://codecov.io/gh/jeksterslab/semmcci/branch/main/graph/badge.svg?token=KVLUET3DJ6)](https://codecov.io/gh/jeksterslab/semmcci)
-[![pkgdown](https://github.com/jeksterslab/semmcci/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/pkgdown.yaml)
 <!-- badges: end -->
 
 ## Description
@@ -46,6 +45,12 @@ from
 install.packages("remotes")
 remotes::install_github("jeksterslab/semmcci")
 ```
+
+## More Information
+
+See
+[GitHub Pages](https://jeksterslab.github.io/semmcci/index.html)
+for package documentation.
 
 ## The Monte Carlo Method
 
@@ -127,9 +132,3 @@ fit <- sem(data = data, model = model, fixed.x = FALSE)
 unstd <- MC(fit, R = 20000L, alpha = c(0.001, 0.01, 0.05))
 MCStd(unstd)
 ```
-
-## More Information
-
-See
-[GitHub Pages](https://jeksterslab.github.io/semmcci/index.html)
-for package documentation.
