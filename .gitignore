@@ -47,3 +47,6 @@
 
 # clone github repo script
 .clone.sh
+semmcci.Rcheck/
+semmcci*.tar.gz
+semmcci*.tgz
