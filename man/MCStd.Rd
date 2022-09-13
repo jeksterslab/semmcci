@@ -4,7 +4,13 @@
 \alias{MCStd}
 \title{Standardized Monte Carlo Confidence Intervals}
 \usage{
-MCStd(object, alpha = c(0.001, 0.01, 0.05))
+MCStd(
+  object,
+  alpha = c(0.001, 0.01, 0.05),
+  type = "std.all",
+  par = FALSE,
+  ncores = NULL
+)
 }
 \arguments{
 \item{object}{object of class \code{semmcci}.
@@ -13,6 +19,21 @@ Output of the \code{MC()} function.}
 \item{alpha}{Numeric vector.
 Significance level.
 Default value is \code{alpha = c(0.001, 0.01, 0.05)}.}
+
+\item{type}{If \code{"std.lv"}, the standardized estimates are
+on the variances of the (continuous) latent variables only.
+If \code{"std.all"}, the standardized estimates are based
+on both the variances of both (continuous) observed and latent variables.
+If \code{"std.nox"}, the standardized estimates are based
+on both the variances of both (continuous) observed and latent variables, 
+but not the variances of exogenous covariates.}
+
+\item{par}{Logical.
+If \code{par = TRUE}, use multiple cores.}
+
+\item{ncores}{Positive integer.
+Number of cores to use if \code{par = TRUE}.
+If unspecified, uses \code{ncores = parallel::detectCores()}.}
 }
 \value{
 Returns an object of class \code{semmcci_std}
@@ -36,7 +57,6 @@ The list element \code{ci.std} is a matrix with the following columns:
 \item{...}{Percentiles that correspond to the confidence intervals defined by \code{alpha}.}
 }
 Note that the rows in \code{ci.std} correspond to the standardized model parameters.
-Parameters with zero standard errors and constant confidence limits are fixed parameters.
 }
 \description{
 Calculates standardized Monte Carlo confidence intervals
@@ -46,6 +66,7 @@ for free and defined parameters.
 The empirical sampling distribution
 of parameter estimates from the argument \code{object} is standardized,
 that is, each randomly generated vector of parameters is standardized.
+Defined parameters are computed from the standardized component parameters.
 Confidence intervals are generated
 using the standardized empirical sampling distribution.
 }

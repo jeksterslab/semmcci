@@ -4,7 +4,14 @@
 \alias{MC}
 \title{Monte Carlo Confidence Intervals}
 \usage{
-MC(object, R = 20000L, alpha = c(0.001, 0.01, 0.05))
+MC(
+  object,
+  R = 20000L,
+  alpha = c(0.001, 0.01, 0.05),
+  neg_var = TRUE,
+  par = FALSE,
+  ncores = NULL
+)
 }
 \arguments{
 \item{object}{object of class \code{lavaan}.}
@@ -15,6 +22,18 @@ Number of Monte Carlo replications.}
 \item{alpha}{Numeric vector.
 Significance level.
 Default value is \code{alpha = c(0.001, 0.01, 0.05)}.}
+
+\item{neg_var}{Logical.
+Default is \code{TRUE}.
+If \code{TRUE}, free variances less than or equal to zero are allowed.
+If \code{FALSE}, generate sampling distribution without free variances less than or equal to zero.}
+
+\item{par}{Logical.
+If \code{par = TRUE}, use multiple cores.}
+
+\item{ncores}{Positive integer.
+Number of cores to use if \code{par = TRUE}.
+If unspecified, uses \code{ncores = parallel::detectCores()}.}
 }
 \value{
 Returns an object of class \code{semmcci} which is a list with the following elements:
@@ -34,7 +53,6 @@ The list element \code{ci} is a matrix with the following columns:
 \item{...}{Percentiles that correspond to the confidence intervals defined by \code{alpha}.}
 }
 Note that the rows in \code{ci} correspond to the model parameters.
-Parameters with zero standard errors and constant confidence limits are fixed parameters.
 }
 \description{
 Calculates Monte Carlo confidence intervals

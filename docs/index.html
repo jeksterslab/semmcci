@@ -44,7 +44,7 @@
     
     <a class="navbar-brand me-2" href="index.html">semmcci</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,7 +95,7 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="semmcci">semmcci<a class="anchor" aria-label="anchor" href="#semmcci"></a>
 </h1></div>
-<p>Ivan Jacob Agaloos Pesigan 2022-09-12</p>
+<p>Ivan Jacob Agaloos Pesigan 2022-09-13</p>
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
 
@@ -167,14 +167,14 @@
 <code class="sourceCode R"><span><span class="fu"><a href="reference/MC.html">MC</a></span><span class="op">(</span><span class="va">fit</span>, R <span class="op">=</span> <span class="fl">20000L</span>, alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;             est     se     R  0.05%   0.5%   2.5%  97.5%  99.5% 99.95%</span></span>
-<span><span class="co">#&gt; cp       0.2970 0.0361 20000 0.1805 0.2046 0.2262 0.3670 0.3868 0.4156</span></span>
-<span><span class="co">#&gt; b        0.5748 0.0323 20000 0.4663 0.4907 0.5120 0.6385 0.6578 0.6784</span></span>
-<span><span class="co">#&gt; a        0.5205 0.0312 20000 0.4133 0.4392 0.4592 0.5816 0.6013 0.6222</span></span>
-<span><span class="co">#&gt; Y~~Y     0.9883 0.0441 20000 0.8360 0.8751 0.9016 1.0741 1.1020 1.1342</span></span>
-<span><span class="co">#&gt; M~~M     0.9489 0.0423 20000 0.8104 0.8407 0.8656 1.0320 1.0558 1.0882</span></span>
-<span><span class="co">#&gt; indirect 0.2992 0.0246 20000 0.2230 0.2393 0.2529 0.3486 0.3656 0.3876</span></span>
-<span><span class="co">#&gt; direct   0.2970 0.0361 20000 0.1805 0.2046 0.2262 0.3670 0.3868 0.4156</span></span>
-<span><span class="co">#&gt; total    0.5962 0.0367 20000 0.4680 0.5018 0.5240 0.6677 0.6911 0.7144</span></span></code></pre></div>
+<span><span class="co">#&gt; cp       0.2373 0.0365 20000 0.1212 0.1436 0.1663 0.3089 0.3300 0.3515</span></span>
+<span><span class="co">#&gt; b        0.4817 0.0328 20000 0.3746 0.3977 0.4181 0.5470 0.5668 0.5836</span></span>
+<span><span class="co">#&gt; a        0.5098 0.0311 20000 0.4078 0.4296 0.4484 0.5713 0.5905 0.6119</span></span>
+<span><span class="co">#&gt; Y~~Y     1.0581 0.0476 20000 0.9044 0.9372 0.9653 1.1522 1.1808 1.2107</span></span>
+<span><span class="co">#&gt; M~~M     0.9712 0.0438 20000 0.8218 0.8576 0.8859 1.0572 1.0858 1.1174</span></span>
+<span><span class="co">#&gt; indirect 0.2456 0.0226 20000 0.1728 0.1915 0.2030 0.2914 0.3073 0.3242</span></span>
+<span><span class="co">#&gt; direct   0.2373 0.0365 20000 0.1212 0.1436 0.1663 0.3089 0.3300 0.3515</span></span>
+<span><span class="co">#&gt; total    0.4829 0.0359 20000 0.3633 0.3899 0.4137 0.5539 0.5738 0.5997</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="standardized-monte-carlo-confidence-intervals">Standardized Monte Carlo Confidence Intervals<a class="anchor" aria-label="anchor" href="#standardized-monte-carlo-confidence-intervals"></a>
@@ -183,21 +183,25 @@
 <blockquote>
 <p><strong>Note:</strong> We recommend setting <code>fixed.x = FALSE</code> when generating standardized estimates and confidence intervals to model the variances and covariances of the predictors if they are assumed to be random.</p>
 </blockquote>
+<blockquote>
+<p><strong>Note:</strong> We recommend setting <code>par = TRUE</code> and <code>ncores</code> to the number of cores to use when generating standardized estimates and confidence intervals in order to speed up the process.</p>
+</blockquote>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lavaan/man/sem.html" class="external-link">sem</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data</span>, model <span class="op">=</span> <span class="va">model</span>, fixed.x <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="va">unstd</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/MC.html">MC</a></span><span class="op">(</span><span class="va">fit</span>, R <span class="op">=</span> <span class="fl">20000L</span>, alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/MCStd.html">MCStd</a></span><span class="op">(</span><span class="va">unstd</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Standardized Monte Carlo Confidence Intervals</span></span>
-<span><span class="co">#&gt;             est     se     R  0.05%   0.5%   2.5%  97.5%  99.5% 99.95%</span></span>
-<span><span class="co">#&gt; cp       0.2284 0.0274 20000 0.1382 0.1579 0.1750 0.2816 0.2992 0.3198</span></span>
-<span><span class="co">#&gt; b        0.4931 0.0250 20000 0.4104 0.4276 0.4431 0.5414 0.5554 0.5718</span></span>
-<span><span class="co">#&gt; a        0.4667 0.0248 20000 0.3874 0.4035 0.4172 0.5150 0.5288 0.5470</span></span>
-<span><span class="co">#&gt; Y~~Y     0.5995 0.0239 20000 0.5201 0.5378 0.5523 0.6458 0.6603 0.6756</span></span>
-<span><span class="co">#&gt; M~~M     0.7822 0.0231 20000 0.7008 0.7204 0.7348 0.8259 0.8372 0.8499</span></span>
-<span><span class="co">#&gt; X~~X     1.0000 0.0000 20000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000</span></span>
-<span><span class="co">#&gt; indirect 0.2302 0.0172 20000 0.1778 0.1863 0.1966 0.2645 0.2755 0.2876</span></span>
-<span><span class="co">#&gt; direct   0.2284 0.0274 20000 0.1382 0.1579 0.1750 0.2816 0.2992 0.3198</span></span>
-<span><span class="co">#&gt; total    0.4586 0.0251 20000 0.3722 0.3917 0.4086 0.5063 0.5198 0.5374</span></span></code></pre></div>
+<span><span class="va">unstd</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/MC.html">MC</a></span><span class="op">(</span><span class="va">fit</span>, R <span class="op">=</span> <span class="fl">20000L</span>, alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/MCStd.html">MCStd</a></span><span class="op">(</span><span class="va">unstd</span>, par <span class="op">=</span> <span class="cn">TRUE</span>, ncores <span class="op">=</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html" class="external-link">detectCores</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Standardized Monte Carlo Confidence Intervals</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             est     se     R  0.05%   0.5%   2.5%  97.5%  99.5% 99.95%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; cp       0.1930 0.0296 20000 0.0896 0.1147 0.1339 0.2501 0.2682 0.2890</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; b        0.4340 0.0276 20000 0.3419 0.3626 0.3794 0.4875 0.5049 0.5235</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; a        0.4602 0.0251 20000 0.3750 0.3945 0.4102 0.5091 0.5233 0.5392</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Y~~Y     0.6972 0.0242 20000 0.6131 0.6322 0.6481 0.7431 0.7573 0.7768</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; M~~M     0.7882 0.0231 20000 0.7093 0.7262 0.7408 0.8317 0.8444 0.8594</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; X~~X     1.0000 0.0000 20000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; indirect 0.1998 0.0170 20000 0.1453 0.1576 0.1671 0.2340 0.2450 0.2573</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; direct   0.1930 0.0296 20000 0.0896 0.1147 0.1339 0.2501 0.2682 0.2890</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; total    0.3928 0.0271 20000 0.3038 0.3214 0.3383 0.4444 0.4604 0.4809</span></span></code></pre></div>
 </div>
 </div>
 </div>

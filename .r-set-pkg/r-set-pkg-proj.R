@@ -6,6 +6,7 @@ args <- commandArgs(trailingOnly = TRUE)
 pkg <- c(
   "MASS",
   "lavaan",
+  "pbapply",
   "microbenchmark"
 )
 ################################################################################

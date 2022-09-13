@@ -12,7 +12,7 @@ for free and defined parameters."><!-- mathjax --><script src="https://cdnjs.clo
     
     <a class="navbar-brand me-2" href="../index.html">semmcci</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,7 +68,13 @@ for free and defined parameters.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">MCStd</span><span class="op">(</span><span class="va">object</span>, alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">MCStd</span><span class="op">(</span></span>
+<span>  <span class="va">object</span>,</span>
+<span>  alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"std.all"</span>,</span>
+<span>  par <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  ncores <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -82,6 +88,27 @@ Output of the <code><a href="MC.html">MC()</a></code> function.</p></dd>
 <dd><p>Numeric vector.
 Significance level.
 Default value is <code>alpha = c(0.001, 0.01, 0.05)</code>.</p></dd>
+
+
+<dt>type</dt>
+<dd><p>If <code>"std.lv"</code>, the standardized estimates are
+on the variances of the (continuous) latent variables only.
+If <code>"std.all"</code>, the standardized estimates are based
+on both the variances of both (continuous) observed and latent variables.
+If <code>"std.nox"</code>, the standardized estimates are based
+on both the variances of both (continuous) observed and latent variables, 
+but not the variances of exogenous covariates.</p></dd>
+
+
+<dt>par</dt>
+<dd><p>Logical.
+If <code>par = TRUE</code>, use multiple cores.</p></dd>
+
+
+<dt>ncores</dt>
+<dd><p>Positive integer.
+Number of cores to use if <code>par = TRUE</code>.
+If unspecified, uses <code>ncores = parallel::detectCores()</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -104,14 +131,14 @@ Default value is <code>alpha = c(0.001, 0.01, 0.05)</code>.</p></dd>
 <li><p><code>se</code>Standard errors or the square root of the diagonals of the standardized Monte Carlo sampling distribution of parameter estimates.</p></li>
 <li><p><code>R</code>Number of Monte Carlo replications.</p></li>
 <li><p>...Percentiles that correspond to the confidence intervals defined by <code>alpha</code>.</p></li>
-</ul><p>Note that the rows in <code>ci.std</code> correspond to the standardized model parameters.
-Parameters with zero standard errors and constant confidence limits are fixed parameters.</p>
+</ul><p>Note that the rows in <code>ci.std</code> correspond to the standardized model parameters.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The empirical sampling distribution
 of parameter estimates from the argument <code>object</code> is standardized,
 that is, each randomly generated vector of parameters is standardized.
+Defined parameters are computed from the standardized component parameters.
 Confidence intervals are generated
 using the standardized empirical sampling distribution.</p>
     </div>
@@ -151,13 +178,13 @@ using the standardized empirical sampling distribution.</p>
 <span class="r-in"><span><span class="fu">MCStd</span><span class="op">(</span><span class="va">output</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standardized Monte Carlo Confidence Intervals</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         est     se   R  0.05%   0.5%   2.5%  97.5%  99.5% 99.95%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp   0.1690 0.0258 100 0.1073 0.1104 0.1252 0.2146 0.2301 0.2368</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b    0.4667 0.0272 100 0.4062 0.4066 0.4126 0.5124 0.5240 0.5246</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a    0.4184 0.0282 100 0.3473 0.3510 0.3646 0.4728 0.4899 0.4908</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y~~y 0.6876 0.0261 100 0.6259 0.6278 0.6340 0.7327 0.7384 0.7410</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> m~~m 0.8249 0.0236 100 0.7591 0.7600 0.7765 0.8671 0.8768 0.8794</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp   0.2190 0.0235 100 0.1725 0.1742 0.1783 0.2686 0.2778 0.2795</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b    0.4396 0.0277 100 0.3611 0.3616 0.3712 0.4765 0.4933 0.5033</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a    0.4463 0.0247 100 0.3773 0.3818 0.4055 0.4883 0.5023 0.5026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y~~y 0.6729 0.0229 100 0.6253 0.6306 0.6374 0.7284 0.7345 0.7365</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m~~m 0.8008 0.0220 100 0.7474 0.7477 0.7616 0.8356 0.8542 0.8576</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> x~~x 1.0000 0.0000 100 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ab   0.1953 0.0181 100 0.1513 0.1517 0.1575 0.2305 0.2345 0.2367</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ab   0.1962 0.0168 100 0.1489 0.1548 0.1625 0.2225 0.2270 0.2291</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

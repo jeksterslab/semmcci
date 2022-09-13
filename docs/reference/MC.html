@@ -12,7 +12,7 @@ for free and defined parameters"><!-- mathjax --><script src="https://cdnjs.clou
     
     <a class="navbar-brand me-2" href="../index.html">semmcci</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,7 +68,14 @@ for free and defined parameters</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">MC</span><span class="op">(</span><span class="va">object</span>, R <span class="op">=</span> <span class="fl">20000L</span>, alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">MC</span><span class="op">(</span></span>
+<span>  <span class="va">object</span>,</span>
+<span>  R <span class="op">=</span> <span class="fl">20000L</span>,</span>
+<span>  alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span><span class="op">)</span>,</span>
+<span>  neg_var <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  par <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  ncores <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -87,6 +94,24 @@ Number of Monte Carlo replications.</p></dd>
 Significance level.
 Default value is <code>alpha = c(0.001, 0.01, 0.05)</code>.</p></dd>
 
+
+<dt>neg_var</dt>
+<dd><p>Logical.
+Default is <code>TRUE</code>.
+If <code>TRUE</code>, free variances less than or equal to zero are allowed.
+If <code>FALSE</code>, generate sampling distribution without free variances less than or equal to zero.</p></dd>
+
+
+<dt>par</dt>
+<dd><p>Logical.
+If <code>par = TRUE</code>, use multiple cores.</p></dd>
+
+
+<dt>ncores</dt>
+<dd><p>Positive integer.
+Number of cores to use if <code>par = TRUE</code>.
+If unspecified, uses <code>ncores = parallel::detectCores()</code>.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -102,8 +127,7 @@ Default value is <code>alpha = c(0.001, 0.01, 0.05)</code>.</p></dd>
 <li><p><code>se</code>Standard errors or the square root of the diagonals of the Monte Carlo sampling distribution of parameter estimates.</p></li>
 <li><p><code>R</code>Number of Monte Carlo replications.</p></li>
 <li><p>...Percentiles that correspond to the confidence intervals defined by <code>alpha</code>.</p></li>
-</ul><p>Note that the rows in <code>ci</code> correspond to the model parameters.
-Parameters with zero standard errors and constant confidence limits are fixed parameters.</p>
+</ul><p>Note that the rows in <code>ci</code> correspond to the model parameters.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -148,12 +172,12 @@ in the <code>lavaan</code> model syntax.</p>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Monte Carlo Confidence Intervals</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         est     se   R  0.05%   0.5%   2.5%  97.5%  99.5% 99.95%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp   0.2549 0.0346 100 0.1715 0.1742 0.1901 0.3229 0.3494 0.3684</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b    0.5095 0.0338 100 0.4192 0.4197 0.4361 0.5633 0.5838 0.5955</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a    0.4591 0.0275 100 0.3904 0.3915 0.4011 0.5029 0.5149 0.5191</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y~~y 0.9875 0.0455 100 0.8914 0.8928 0.8979 1.0706 1.1004 1.1132</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> m~~m 0.9145 0.0433 100 0.8011 0.8086 0.8288 0.9872 1.0008 1.0117</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ab   0.2339 0.0212 100 0.1809 0.1826 0.1879 0.2694 0.2775 0.2821</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp   0.2317 0.0355 100 0.1491 0.1519 0.1660 0.3046 0.3146 0.3201</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b    0.4871 0.0322 100 0.3979 0.3984 0.4205 0.5480 0.5597 0.5687</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a    0.5118 0.0300 100 0.4209 0.4294 0.4518 0.5669 0.5719 0.5751</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y~~y 1.0512 0.0498 100 0.8983 0.9116 0.9431 1.1287 1.1340 1.1362</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m~~m 1.0436 0.0476 100 0.9256 0.9356 0.9496 1.1388 1.1528 1.1601</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ab   0.2493 0.0216 100 0.1895 0.1906 0.2031 0.2932 0.3009 0.3013</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

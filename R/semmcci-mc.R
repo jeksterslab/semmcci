@@ -19,6 +19,15 @@
 #' @param alpha Numeric vector.
 #'   Significance level.
 #'   Default value is `alpha = c(0.001, 0.01, 0.05)`.
+#' @param neg_var Logical.
+#'   Default is `TRUE`.
+#'   If `TRUE`, free variances less than or equal to zero are allowed.
+#'   If `FALSE`, generate sampling distribution without free variances less than or equal to zero.
+#' @param par Logical.
+#'   If `par = TRUE`, use multiple cores.
+#' @param ncores Positive integer.
+#'   Number of cores to use if `par = TRUE`.
+#'   If unspecified, uses `ncores = parallel::detectCores()`.
 #' @return Returns an object of class `semmcci` which is a list with the following elements:
 #' \itemize{
 #'   \item{`lavaan`}{`lavaan` object.}
@@ -36,7 +45,6 @@
 #'   \item{...}{Percentiles that correspond to the confidence intervals defined by `alpha`.}
 #' }
 #' Note that the rows in `ci` correspond to the model parameters.
-#' Parameters with zero standard errors and constant confidence limits are fixed parameters.
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
@@ -66,30 +74,70 @@
 #' @importFrom lavaan coef vcov
 #' @importFrom MASS mvrnorm
 #' @importFrom stats var complete.cases
+#' @importFrom pbapply pblapply
 #' @keywords mc
 #' @export
 MC <- function(object,
                R = 20000L,
-               alpha = c(0.001, 0.01, 0.05)) {
+               alpha = c(0.001, 0.01, 0.05),
+               neg_var = TRUE,
+               par = FALSE,
+               ncores = NULL) {
   stopifnot(
     methods::is(
       object,
       "lavaan"
     )
   )
-  if (object@pta$nlevels > 1) {
-    stop("Multilevel analysis is not yet supported.")
+  if (par) {
+    if (is.null(ncores)) {
+      ncores <- parallel::detectCores()
+    }
+    cl <- parallel::makeCluster(ncores)
+    pkgs <- c(
+      "lavaan",
+      "semmcci"
+    )
+    parallel::clusterExport(
+      cl = cl,
+      varlist = "pkgs",
+      envir = environment()
+    )
+    parallel::clusterEvalQ(
+      cl = cl,
+      expr = {
+        sapply(
+          X = pkgs,
+          FUN = function(x) {
+            library(
+              package = x,
+              character.only = TRUE
+            )
+          }
+        )
+      }
+    )
+    parallel::clusterExport(
+      cl = cl,
+      varlist = ls(envir = parent.frame()),
+      envir = environment()
+    )
+    on.exit(
+      parallel::stopCluster(cl),
+      add = TRUE
+    )
+  } else {
+    cl <- NULL
   }
-  # extract all estimates including fixed parameters
-  thetahat <- .ThetaHat(object)
   # set up Monte Carlo
-  R <- as.integer(R)
-  mu <- lavaan::coef(object)
-  Sigma <- lavaan::vcov(object)
-  thetahatstar_orig <- MASS::mvrnorm(
-    n = R,
-    mu = mu,
-    Sigma = Sigma
+  thetahatstar_orig <- .ThetaHatStar(
+    object = object,
+    R = R,
+    neg_var = neg_var
+  )
+  # extract all estimates including fixed parameters
+  thetahat <- .ThetaHat(
+    object = object
   )
   # generate defined parameters
   if (length(thetahat$def) > 0) {
@@ -100,9 +148,10 @@ MC <- function(object,
         )
       )
     }
-    thetahatstar_def <- lapply(
+    thetahatstar_def <- pbapply::pblapply(
       X = seq_len(dim(thetahatstar_orig)[1]),
-      FUN = def
+      FUN = def,
+      cl = cl
     )
     thetahatstar_def <- do.call(
       what = "rbind",
@@ -124,9 +173,10 @@ MC <- function(object,
       names(out) <- paste0(thetahat$ceq, "_ceq")
       return(out)
     }
-    thetahatstar_ceq <- lapply(
+    thetahatstar_ceq <- pbapply::pblapply(
       X = seq_len(dim(thetahatstar)[1]),
-      FUN = ceq
+      FUN = ceq,
+      cl = cl
     )
     thetahatstar_ceq <- do.call(
       what = "rbind",
@@ -146,9 +196,10 @@ MC <- function(object,
       names(out) <- paste0(thetahat$cin, "_cin")
       return(out)
     }
-    thetahatstar_cin <- lapply(
+    thetahatstar_cin <- pbapply::pblapply(
       X = seq_len(dim(thetahatstar)[1]),
-      FUN = cin
+      FUN = cin,
+      cl = cl
     )
     thetahatstar_cin <- do.call(
       what = "rbind",
@@ -176,7 +227,7 @@ MC <- function(object,
     )
   }
   # rearrange
-  thetahatstar <- thetahatstar[, thetahat$labels]
+  thetahatstar <- thetahatstar[, thetahat$par_names]
   # inferences
   se <- sqrt(diag(stats::var(thetahatstar)))
   ci <- vector(
@@ -196,10 +247,11 @@ MC <- function(object,
   )
   rownames(ci) <- colnames(thetahatstar)
   ci <- ci[which(!rownames(ci) %in% thetahat$fixed), ]
+  # output
   out <- list(
     lavaan = object,
-    mu = mu,
-    Sigma = Sigma,
+    mu = lavaan::coef(object),
+    Sigma = lavaan::vcov(object),
     thetahat = thetahat,
     thetahatstar = thetahatstar,
     ci = ci
@@ -208,5 +260,5 @@ MC <- function(object,
     "semmcci",
     class(out)
   )
-  out
+  return(out)
 }

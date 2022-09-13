@@ -6,11 +6,13 @@
 #' The empirical sampling distribution
 #' of parameter estimates from the argument `object` is standardized,
 #' that is, each randomly generated vector of parameters is standardized.
+#' Defined parameters are computed from the standardized component parameters.
 #' Confidence intervals are generated
 #' using the standardized empirical sampling distribution.
 #'
 #' @author Ivan Jacob Agaloos Pesigan
 #' @inheritParams MC
+#' @inheritParams lavaan::standardizedSolution
 #' @param object object of class `semmcci`.
 #'   Output of the `MC()` function.
 #' @return Returns an object of class `semmcci_std`
@@ -34,7 +36,6 @@
 #'   \item{...}{Percentiles that correspond to the confidence intervals defined by `alpha`.}
 #' }
 #' Note that the rows in `ci.std` correspond to the standardized model parameters.
-#' Parameters with zero standard errors and constant confidence limits are fixed parameters.
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
@@ -67,20 +68,60 @@
 #' @keywords mc
 #' @export
 MCStd <- function(object,
-                  alpha = c(0.001, 0.01, 0.05)) {
+                  alpha = c(0.001, 0.01, 0.05),
+                  type = "std.all",
+                  par = FALSE,
+                  ncores = NULL) {
   stopifnot(
     methods::is(
       object,
       "semmcci"
     )
   )
-  # if (object$lavaan@pta$ngroups > 1) {
-  #   stop("Multiple groups analysis is not yet supported.")
-  # }
+  if (par) {
+    if (is.null(ncores)) {
+      ncores <- parallel::detectCores()
+    }
+    cl <- parallel::makeCluster(ncores)
+    pkgs <- c(
+      "lavaan",
+      "semmcci"
+    )
+    parallel::clusterExport(
+      cl = cl,
+      varlist = "pkgs",
+      envir = environment()
+    )
+    parallel::clusterEvalQ(
+      cl = cl,
+      expr = {
+        sapply(
+          X = pkgs,
+          FUN = function(x) {
+            library(
+              package = x,
+              character.only = TRUE
+            )
+          }
+        )
+      }
+    )
+    parallel::clusterExport(
+      cl = cl,
+      varlist = ls(envir = parent.frame()),
+      envir = environment()
+    )
+    on.exit(
+      parallel::stopCluster(cl),
+      add = TRUE
+    )
+  } else {
+    cl <- NULL
+  }
   thetahat <- as.vector(
     lavaan::standardizedSolution(
       object = object$lavaan,
-      type = "std.all",
+      type = type,
       se = FALSE,
       zstat = FALSE,
       pvalue = FALSE,
@@ -91,18 +132,31 @@ MCStd <- function(object,
     )[, "est.std"]
   )
   names(thetahat) <- colnames(object$thetahatstar)
-  i_free <- lavaan::parameterTable(object$lavaan)$free > 0
+  i_free <- object$lavaan@ParTable$free > 0
   foo <- function(i) {
+    GLIST_i <- lavaan::lav_model_set_parameters(
+      lavmodel = object$lavaan@Model,
+      x = object$thetahatstar[i, i_free]
+    )@GLIST
     return(
-      .StdLav(
-        est = object$thetahatstar[i, i_free],
-        object = object$lavaan
+      as.vector(
+        lavaan::standardizedSolution(
+          object = object$lavaan,
+          type = type,
+          est = object$thetahatstar[i, ],
+          GLIST = GLIST_i,
+          se = FALSE,
+          zstat = FALSE,
+          pvalue = FALSE,
+          ci = FALSE
+        )[, "est.std"]
       )
     )
   }
-  thetahatstar <- lapply(
+  thetahatstar <- pbapply::pblapply(
     X = seq_len(dim(object$thetahatstar)[1]),
-    FUN = foo
+    FUN = foo,
+    cl = cl
   )
   thetahatstar <- do.call(
     what = "rbind",
@@ -126,7 +180,7 @@ MCStd <- function(object,
     args = ci
   )
   rownames(ci) <- colnames(thetahatstar)
-  ci <- ci[which(object$thetahat$op != "~1"), ]
+  # ci <- ci[which(object$lavaan@ParTable$op != "~1"), ]
   ci <- ci[which(!rownames(ci) %in% object$thetahat$fixed), ]
   out <- list(
     lavaan = object$lavaan,
@@ -143,5 +197,5 @@ MCStd <- function(object,
     "semmcci_std",
     class(out)
   )
-  out
+  return(out)
 }

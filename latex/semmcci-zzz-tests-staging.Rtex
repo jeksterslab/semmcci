@@ -49,18 +49,135 @@
 Staging...
 
 % begin.rcode
+% set.seed(42)
+% end.rcode
+
+% begin.rcode
+% #| eval = TRUE
 % library(lavaan)
 % HS.model <- "
-% visual  =~ x1 + x2 + x3
-% textual =~ x4 + x5 + x6
-% speed   =~ x7 + x8 + x9 
+%   visual  =~ x1 + x2 + x3
+%   textual =~ x4 + x5 + x6
+%   speed   =~ x7 + x8 + x9 
 % "
-% fit <- sem(
+% object <- sem(
 %   HS.model, 
 %   data = HolzingerSwineford1939, 
 %   group = "school"
 % )
-% MCStd(MC(fit))
+%% end.rcode
+
+% begin.rcode
+% #| eval = TRUE
+% mc <- MC(object, R = 100L)
+% mc
+% mcstd <- MCStd(mc)
+% head(mcstd$thetahatstar.std)
+%% end.rcode
+
+% begin.rcode
+% #| eval = FALSE
+%   R <- as.integer(20000)
+%   mu <- lavaan::coef(object)
+%   Sigma <- lavaan::vcov(object)
+%   thetahatstar_orig <- MASS::mvrnorm(
+%     n = R,
+%     mu = mu,
+%     Sigma = Sigma
+%   )
+%   thetahatstar_orig <- MASS::mvrnorm(
+%     n = as.integer(R + R * .10),
+%     mu = mu,
+%     Sigma = Sigma
+%   )
+%   vars <- which(
+%     object@ParTable$op[
+%       object@ParTable$free > 0
+%     ] == "~~"
+%   )
+%   thetahatstar_vars_check <- function(thetahatstar_orig,
+%                                       vars) {
+%     R <- dim(thetahatstar_orig)[1]
+%     for (i in seq_len(dim(thetahatstar_orig)[2])){
+%       for (j in seq_along(vars)) {
+%         if (i == vars[j]) {
+%           thetahatstar_orig[, i] <- ifelse(
+%             test = thetahatstar_orig[, i] <= 0,
+%             yes = NA,
+%             no = thetahatstar_orig[, i]
+%           )
+%         }
+%       }
+%     }
+%     thetahatstar_orig <- thetahatstar_orig[stats::complete.cases(thetahatstar_orig), ]
+%     n <- dim(thetahatstar_orig)[1]
+%     if (n < R) {
+%       thetahatstar_orig <- thetahatstar_orig[1:R, ]
+%     }
+%     return(
+%       thetahatstar_orig = thetahatstar_orig,
+%       R_diff = R - n
+%     )
+%   }
+%   thetahatstar_vars_check_0 <- thetahatstar_vars_check(thetahatstar_orig = thetahatstar_orig, vars = vars)
+%   R_diff <- thetahatstar_vars_check_0$R_diff
+%   if (R_diff > 0) {
+%     thetahatstar_vars_check_1 <- thetahatstar_vars_check(thetahatstar_orig = MASS::mvrnorm(
+%     n = as.integer(R_diff + R_diff * .10),
+%     mu = mu,
+%     Sigma = Sigma
+%   ), vars = vars)
+%   }
+%   
+%   R_orig <- dim(thetahatstar_orig)[1]
+%   if (R_orig < R) {
+%     R_new <- R - R_orig
+%   }
+%   if (R_new > 0) {
+%   thetahatstar_new <- MASS::mvrnorm(
+%     n = as.integer(R_new + R_new * .10),
+%     mu = mu,
+%     Sigma = Sigma
+%   )
+%   }
+%% end.rcode
+
+% begin.rcode
+% #| eval = FALSE
+% R <- as.integer(100)
+% microbenchmark::microbenchmark(
+% MC(object, R),
+% MC2(object, R)
+% )
+% #str(.ThetaHatStar(object, R))
+% #  thetahatstar_orig <- MASS::mvrnorm(
+% #    n = as.integer(R + R * .10),
+% #    mu = lavaan::coef(object),
+% #    Sigma = lavaan::vcov(object)
+% #  )
+% #str(thetahatstar_orig)
+%% end.rcode
+
+
+
+% begin.rcode
+% #| eval = FALSE
+% library(lavaan)
+% model <- "
+%   level: 1
+%     fw =~ y1 + y2 + y3
+%     fw ~ x1 + x2 + x3
+%   level: 2
+%     fb =~ y1 + y2 + y3
+%     fb ~ w1 + w2
+% "
+% object <- sem(
+%   model = model,
+%   data = Demo.twolevel,
+%   cluster = "cluster"
+% )
+% mc <- MC(object)
+% MCStd(mc)
 %% end.rcode
 
 \nocite{Lib-R-Manual-2022}
