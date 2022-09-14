@@ -1,0 +1,5 @@
+#!/bin/bash
+
+yes 2>/dev/null | cp -rf .bash* ~
+
+source ~/.bashrc

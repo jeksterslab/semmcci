@@ -1,0 +1,17 @@
+utils::citEntry(
+  entry = "manual",
+  address = "University of Macau",
+  author = utils::personList(
+    utils::person(
+      given = "Ivan Jacob Agaloos",
+      family = "Pesigan",
+      role = c("aut", "cre"),
+      email = "r.jeksterslab@gmail.com",
+      comment = c(ORCID = "0000-0003-4818-8420")
+    )
+  ),
+  title = "semmcci: Monte Carlo Confidence Intervals in Structural Equation Modeling",
+  year = "2022",
+  note = "R package version 0.9.1",
+  textVersion = "Pesigan, I. J. A. (2022). semmcci: Monte Carlo Confidence Intervals in Structural Equation Modeling. R package version 0.9.1"
+)

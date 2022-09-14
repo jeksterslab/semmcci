@@ -1,0 +1,30 @@
+destination: docs
+url: https://github.com/jeksterslab/semmcci/
+
+template:
+  bootstrap: 5
+
+reference:
+- title: Package
+  contents:
+  - has_keyword("package")
+- title: Monte Carlo Confidence Intervals
+  contents:
+  - has_keyword("mc")
+- title: Methods
+  contents:
+  - has_keyword("method")
+
+articles:
+- title: Examples
+  navbar: Examples
+  contents:
+  - example-1-simple
+  - example-2-serial
+  - example-3-latent
+  - example-4-simple-miss
+  - example-5-regression
+- title: Benchmark
+  navbar: Benchmark
+  contents:
+  - benchmark

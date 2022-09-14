@@ -1,0 +1,82 @@
+\documentclass[tikz, border=1mm]{standalone}
+
+% convert -density 300 serial.pdf -quality 100 -background white -alpha remove -alpha off serial.png
+
+\begin{document}
+
+\usetikzlibrary{
+	er,
+	arrows,
+	positioning
+}
+
+\begin{tikzpicture}[
+		auto,
+		node distance = 20mm,
+		manifest/.style = {
+			rectangle,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum width = 15mm,
+			minimum height = 10mm
+		},
+		inv/.style = {
+			rectangle,
+			draw=none,
+			fill=none,
+			inner sep = 0pt,
+			minimum width = 15mm,
+			minimum height = 10mm
+		},
+		error/.style = {
+			ellipse,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum size = 7mm,
+			align = center
+		},
+		mean/.style={
+			regular polygon,
+			regular polygon sides = 3,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum width = 7mm,
+			minimum height = 7mm
+		},
+		path/.style = {
+			->,
+			thick,
+			>=stealth'
+		},
+		cov/.style = {
+			<->,
+			thick,
+			>=stealth'
+		},
+	]
+	\node[manifest] (X) {$X$};
+	\node[manifest] (M1) [above right = of X] {$M_{1}$};
+	\node[manifest] (M2) [right = of M1] {$M_{2}$};
+	\node[manifest] (Y) [below right = of M2] {$Y$};
+	\node[error] (eM1) [above = of M1] {$e_{M_{1}}$};
+	\node[error] (eM2) [above = of M2] {$e_{M_{2}}$};
+	\node[error] (eY) [above = of Y] {$e_{Y}$};
+	\draw[path] (M1) to node[above] {$k$} (M2);
+	\draw[path] (M1) to node[above] {$b_{1}$} (Y);
+	\draw[path] (M2) to node[above] {$b_{2}$} (Y);
+	\draw[path] (X) to node {$c^{\prime}$} (Y);
+	\draw[path] (X) to node {$a_{1}$} (M1);
+	\draw[path] (X) to node {$a_{2}$} (M2);
+	\draw[path] (eM1) to node {$1$} (M1);
+	\draw[path] (eM2) to node {$1$} (M2);
+	\draw[path] (eY) to node {$1$} (Y);
+	\draw[cov] (X) to[out = 70, in = 110, looseness = 5] node[above] {$s_{X}^{2}$} (X);
+	\draw[cov] (eM1) to[out = -290, in = -250, looseness = 5] node[above] {$s^{2}_{e_{M_{1}}}$} (eM1);
+	\draw[cov] (eM2) to[out = -290, in = -250, looseness = 5] node[above] {$s^{2}_{e_{M_{2}}}$} (eM2);
+	\draw[cov] (eY) to[out = -290, in = -250, looseness = 5] node[above] {$s^{2}_{e_{Y}}$} (eY);
+\end{tikzpicture}
+
+\end{document}
