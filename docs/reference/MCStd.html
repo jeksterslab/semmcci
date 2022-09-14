@@ -12,7 +12,7 @@ for free and defined parameters."><!-- mathjax --><script src="https://cdnjs.clo
     
     <a class="navbar-brand me-2" href="../index.html">semmcci</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,27 +91,58 @@ Default value is <code>alpha = c(0.001, 0.01, 0.05)</code>.</p></dd>
 <p>Returns an object of class <code>semmcci_std</code></p>
 
 
-<p>which is a list with the following elements:</p><ul><li><p><code>lavaan</code><code>lavaan</code> object.</p></li>
-<li><p><code>mu</code>Mean vector used in the Monte Carlo simulation.</p></li>
-<li><p><code>Sigma</code>Variance-covariance matrix used in the Monte Carlo simulation.</p></li>
-<li><p><code>thetahat</code>Parameter estimates.</p></li>
-<li><p><code>thetahatstar</code>Sampling distribution of parameter estimates.</p></li>
-<li><p><code>ci</code>Confidence intervals.</p></li>
-<li><p><code>thetahat.std</code>Standardized parameter estimates.</p></li>
-<li><p><code>thetahatstar.std</code>Standardized sampling distribution of parameter estimates.</p></li>
-<li><p><code>ci.std</code>Standardized confidence intervals.</p></li>
-</ul><p>The list element <code>ci.std</code> is a matrix with the following columns:</p><ul><li><p><code>est</code>Standardized parameter estimates.</p></li>
-<li><p><code>se</code>Standard errors or the square root of the diagonals of the standardized Monte Carlo sampling distribution of parameter estimates.</p></li>
-<li><p><code>R</code>Number of Monte Carlo replications.</p></li>
-<li><p>...Percentiles that correspond to the confidence intervals defined by <code>alpha</code>.</p></li>
-</ul><p>Note that the rows in <code>ci.std</code> correspond to the standardized model parameters.
-Parameters with zero standard errors and constant confidence limits are fixed parameters.</p>
+<p>which is a list with the following elements:</p><dl><dt><code>R</code></dt>
+<dd><p>Number of Monte Carlo replications.</p></dd>
+
+<dt><code>alpha</code></dt>
+<dd><p>Significance level specified.</p></dd>
+
+<dt><code>lavaan</code></dt>
+<dd><p><code>lavaan</code> object.</p></dd>
+
+<dt><code>mvn</code></dt>
+<dd><p>Method used to generate multivariate normal random variates.</p></dd>
+
+<dt><code>thetahat</code></dt>
+<dd><p>Parameter estimates.</p></dd>
+
+<dt><code>thetahatstar</code></dt>
+<dd><p>Sampling distribution of parameter estimates.</p></dd>
+
+<dt><code>ci</code></dt>
+<dd><p>Confidence intervals.</p></dd>
+
+<dt><code>thetahat_std</code></dt>
+<dd><p>Standardized parameter estimates.</p></dd>
+
+<dt><code>thetahatstar_std</code></dt>
+<dd><p>Standardized sampling distribution of parameter estimates.</p></dd>
+
+<dt><code>ci_std</code></dt>
+<dd><p>Standardized confidence intervals.</p></dd>
+
+
+</dl><p>The list element <code>ci_std</code> is a matrix with the following columns:</p><dl><dt><code>est</code></dt>
+<dd><p>Standardized parameter estimates.</p></dd>
+
+<dt><code>se</code></dt>
+<dd><p>Standard errors or the square root of the diagonals of the standardized Monte Carlo sampling distribution of parameter estimates.</p></dd>
+
+<dt><code>R</code></dt>
+<dd><p>Number of valid Monte Carlo replications.</p></dd>
+
+<dt>...</dt>
+<dd><p>Percentiles that correspond to the confidence intervals defined by <code>alpha</code>.</p></dd>
+
+
+</dl><p>Note that the rows in <code>ci_std</code> correspond to the standardized model parameters.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The empirical sampling distribution
 of parameter estimates from the argument <code>object</code> is standardized,
 that is, each randomly generated vector of parameters is standardized.
+Defined parameters are computed from the standardized component parameters.
 Confidence intervals are generated
 using the standardized empirical sampling distribution.</p>
     </div>
@@ -151,13 +182,13 @@ using the standardized empirical sampling distribution.</p>
 <span class="r-in"><span><span class="fu">MCStd</span><span class="op">(</span><span class="va">output</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standardized Monte Carlo Confidence Intervals</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         est     se   R  0.05%   0.5%   2.5%  97.5%  99.5% 99.95%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp   0.1690 0.0258 100 0.1073 0.1104 0.1252 0.2146 0.2301 0.2368</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b    0.4667 0.0272 100 0.4062 0.4066 0.4126 0.5124 0.5240 0.5246</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a    0.4184 0.0282 100 0.3473 0.3510 0.3646 0.4728 0.4899 0.4908</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y~~y 0.6876 0.0261 100 0.6259 0.6278 0.6340 0.7327 0.7384 0.7410</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> m~~m 0.8249 0.0236 100 0.7591 0.7600 0.7765 0.8671 0.8768 0.8794</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp   0.1846 0.0260 100 0.1130 0.1197 0.1399 0.2339 0.2425 0.2480</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b    0.5007 0.0250 100 0.4263 0.4335 0.4525 0.5478 0.5524 0.5540</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a    0.4507 0.0227 100 0.4041 0.4042 0.4077 0.4986 0.5146 0.5161</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y~~y 0.6320 0.0230 100 0.5493 0.5670 0.5878 0.6719 0.6921 0.7015</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m~~m 0.7968 0.0207 100 0.7337 0.7352 0.7513 0.8338 0.8366 0.8367</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> x~~x 1.0000 0.0000 100 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ab   0.1953 0.0181 100 0.1513 0.1517 0.1575 0.2305 0.2345 0.2367</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ab   0.2257 0.0169 100 0.1886 0.1911 0.1990 0.2664 0.2731 0.2757</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

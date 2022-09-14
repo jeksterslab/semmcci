@@ -2,13 +2,11 @@
 lapply(
   X = 1,
   FUN = function(i,
-                 n,
+                 R,
+                 tol,
                  text) {
     message(text)
-    seed <- sample.int(
-      n = .Machine$integer.max,
-      size = 1
-    )
+    seed <- 42
     data <- lavaan::HolzingerSwineford1939
     model <- "
       visual  =~ x1 + x2 + x3
@@ -24,7 +22,7 @@ lapply(
     set.seed(seed)
     results_unstd <- MC(
       fit,
-      R = 10L,
+      R = R,
       alpha = c(0.001, 0.01, 0.05)
     )
     # insert original estimate on the third row
@@ -39,18 +37,19 @@ lapply(
           check.attributes = FALSE
         )
         testthat::expect_equal(
-          results$thetahatstar.std[3, ],
+          results$thetahatstar_std[3, ],
           lavaan::standardizedSolution(fit)$est.std,
           check.attributes = FALSE
         )
         testthat::expect_equal(
-          results$ci.std["textual~visual", "0.05%"],
-          quantile(results$thetahatstar.std[, "textual~visual"], .0005),
+          results$ci_std["textual~visual", "0.05%"],
+          quantile(results$thetahatstar_std[, "textual~visual"], .0005),
           check.attributes = FALSE
         )
       }
     )
   },
-  n = 100L,
+  R = 1000L,
+  tol = 0.05,
   text = "test-semmcci-mc-latent-med-std-defined-none"
 )

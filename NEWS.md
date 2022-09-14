@@ -1,11 +1,19 @@
+# semmcci 1.0.2
+
+## Patch
+
+* Random variates from the multivatiate normal distribution are generated using the Choleslky decomposition of the sampling variance-covariance matrix. Eigen decomposition is used when Choleslky decomposition fails.
+* `NA` is returned if the calculation of the defined parameter fails in `MC()`.
+* `NA` is returned if standardization fails in `MCStd()`.
+
 # semmcci 1.0.1
 
-## Minor changes
+## Patch
 
 * Added a reference in the DESCRIPTION file.
 
 # semmcci 1.0.0
 
-## Major changes
+## Major
 
 * Initial CRAN submission.

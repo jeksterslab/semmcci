@@ -18,23 +18,23 @@ Default value is \code{alpha = c(0.001, 0.01, 0.05)}.}
 }
 \value{
 Returns an object of class \code{semmcci} which is a list with the following elements:
-\itemize{
+\describe{
+\item{\code{R}}{Number of Monte Carlo replications.}
+\item{\code{alpha}}{Significance level specified.}
 \item{\code{lavaan}}{\code{lavaan} object.}
-\item{\code{mu}}{Mean vector used in the Monte Carlo simulation.}
-\item{\code{Sigma}}{Variance-covariance matrix used in the Monte Carlo simulation.}
+\item{\code{mvn}}{Method used to generate multivariate normal random variates.}
 \item{\code{thetahat}}{Parameter estimates.}
 \item{\code{thetahatstar}}{Sampling distribution of parameter estimates.}
 \item{\code{ci}}{Confidence intervals.}
 }
 The list element \code{ci} is a matrix with the following columns:
-\itemize{
+\describe{
 \item{\code{est}}{Parameter estimates.}
 \item{\code{se}}{Standard errors or the square root of the diagonals of the Monte Carlo sampling distribution of parameter estimates.}
-\item{\code{R}}{Number of Monte Carlo replications.}
+\item{\code{R}}{Number of valid Monte Carlo replications.}
 \item{...}{Percentiles that correspond to the confidence intervals defined by \code{alpha}.}
 }
 Note that the rows in \code{ci} correspond to the model parameters.
-Parameters with zero standard errors and constant confidence limits are fixed parameters.
 }
 \description{
 Calculates Monte Carlo confidence intervals

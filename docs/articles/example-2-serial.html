@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">semmcci</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,7 +83,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2022-09-12</h4>
+            <h4 data-toc-skip class="date">2022-09-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/semmcci/blob/HEAD/vignettes/example-2-serial.Rmd"><code>vignettes/example-2-serial.Rmd</code></a></small>
       <div class="d-none name"><code>example-2-serial.Rmd</code></div>
@@ -162,19 +162,19 @@ Monte Carlo confidence intervals.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/MC.html">MC</a></span><span class="op">(</span><span class="va">fit</span>, R <span class="op">=</span> <span class="fl">20000L</span>, alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;           est     se     R   0.05%    0.5%   2.5%  97.5%  99.5% 99.95%</span></span>
-<span><span class="co">#&gt; cp     0.0868 0.0355 20000 -0.0298 -0.0053 0.0169 0.1554 0.1778 0.2017</span></span>
-<span><span class="co">#&gt; b1     0.1190 0.0350 20000  0.0087  0.0290 0.0513 0.1880 0.2095 0.2301</span></span>
-<span><span class="co">#&gt; b2     0.4809 0.0305 20000  0.3807  0.4022 0.4215 0.5404 0.5587 0.5832</span></span>
-<span><span class="co">#&gt; a2     0.1373 0.0364 20000  0.0152  0.0447 0.0660 0.2092 0.2325 0.2580</span></span>
-<span><span class="co">#&gt; k      0.4817 0.0331 20000  0.3739  0.3974 0.4166 0.5469 0.5672 0.5883</span></span>
-<span><span class="co">#&gt; a1     0.5098 0.0310 20000  0.4082  0.4295 0.4483 0.5700 0.5895 0.6108</span></span>
-<span><span class="co">#&gt; Y~~Y   0.9744 0.0439 20000  0.8263  0.8606 0.8885 1.0603 1.0885 1.1184</span></span>
-<span><span class="co">#&gt; M2~~M2 1.0581 0.0477 20000  0.9042  0.9346 0.9641 1.1510 1.1797 1.2124</span></span>
-<span><span class="co">#&gt; M1~~M1 0.9712 0.0431 20000  0.8373  0.8610 0.8872 1.0563 1.0825 1.1114</span></span>
-<span><span class="co">#&gt; a1kb2  0.1181 0.0132 20000  0.0795  0.0860 0.0931 0.1452 0.1543 0.1631</span></span>
-<span><span class="co">#&gt; a1k    0.2456 0.0226 20000  0.1773  0.1894 0.2022 0.2908 0.3057 0.3202</span></span>
-<span><span class="co">#&gt; a2b2   0.0660 0.0180 20000  0.0068  0.0210 0.0315 0.1022 0.1137 0.1269</span></span>
-<span><span class="co">#&gt; kb2    0.2317 0.0217 20000  0.1654  0.1789 0.1902 0.2751 0.2897 0.3110</span></span></code></pre></div>
+<span><span class="co">#&gt; cp     0.0868 0.0356 20000 -0.0281 -0.0054 0.0166 0.1561 0.1776 0.2020</span></span>
+<span><span class="co">#&gt; b1     0.1190 0.0353 20000  0.0003  0.0295 0.0505 0.1880 0.2085 0.2364</span></span>
+<span><span class="co">#&gt; b2     0.4809 0.0303 20000  0.3832  0.4025 0.4217 0.5400 0.5605 0.5807</span></span>
+<span><span class="co">#&gt; a2     0.1373 0.0365 20000  0.0174  0.0432 0.0654 0.2096 0.2320 0.2573</span></span>
+<span><span class="co">#&gt; k      0.4817 0.0332 20000  0.3761  0.3954 0.4168 0.5462 0.5680 0.5910</span></span>
+<span><span class="co">#&gt; a1     0.5098 0.0311 20000  0.4076  0.4307 0.4493 0.5706 0.5895 0.6120</span></span>
+<span><span class="co">#&gt; Y~~Y   0.9744 0.0435 20000  0.8320  0.8618 0.8883 1.0587 1.0860 1.1158</span></span>
+<span><span class="co">#&gt; M2~~M2 1.0581 0.0473 20000  0.8970  0.9350 0.9644 1.1509 1.1794 1.2109</span></span>
+<span><span class="co">#&gt; M1~~M1 0.9712 0.0438 20000  0.8245  0.8543 0.8840 1.0561 1.0827 1.1112</span></span>
+<span><span class="co">#&gt; a1kb2  0.1181 0.0132 20000  0.0793  0.0870 0.0935 0.1452 0.1551 0.1677</span></span>
+<span><span class="co">#&gt; a1k    0.2456 0.0226 20000  0.1751  0.1901 0.2027 0.2912 0.3065 0.3255</span></span>
+<span><span class="co">#&gt; a2b2   0.0660 0.0180 20000  0.0084  0.0204 0.0311 0.1022 0.1140 0.1259</span></span>
+<span><span class="co">#&gt; kb2    0.2317 0.0216 20000  0.1685  0.1784 0.1907 0.2750 0.2908 0.3056</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="standardized-monte-carlo-confidence-intervals">Standardized Monte Carlo Confidence Intervals<a class="anchor" aria-label="anchor" href="#standardized-monte-carlo-confidence-intervals"></a>
@@ -190,24 +190,25 @@ predictors if they are assumed to be random.</p>
 </blockquote>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lavaan/man/sem.html" class="external-link">sem</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">data</span>, model <span class="op">=</span> <span class="va">model</span>, fixed.x <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span><span class="va">unstd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MC.html">MC</a></span><span class="op">(</span><span class="va">fit</span>, R <span class="op">=</span> <span class="fl">20000L</span>, alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/MCStd.html">MCStd</a></span><span class="op">(</span><span class="va">unstd</span><span class="op">)</span></span>
+<span><span class="va">unstd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MC.html">MC</a></span><span class="op">(</span><span class="va">fit</span>, R <span class="op">=</span> <span class="fl">20000L</span>, alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/MCStd.html">MCStd</a></span><span class="op">(</span><span class="va">unstd</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Standardized Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;           est     se     R   0.05%    0.5%   2.5%  97.5%  99.5% 99.95%</span></span>
-<span><span class="co">#&gt; cp     0.0723 0.0291 20000 -0.0227 -0.0036 0.0148 0.1291 0.1455 0.1645</span></span>
-<span><span class="co">#&gt; b1     0.1098 0.0317 20000  0.0073  0.0298 0.0487 0.1720 0.1906 0.2176</span></span>
-<span><span class="co">#&gt; b2     0.4779 0.0273 20000  0.3866  0.4049 0.4231 0.5300 0.5469 0.5640</span></span>
-<span><span class="co">#&gt; a2     0.1151 0.0306 20000  0.0133  0.0339 0.0545 0.1746 0.1932 0.2160</span></span>
-<span><span class="co">#&gt; k      0.4470 0.0283 20000  0.3453  0.3734 0.3914 0.5019 0.5174 0.5368</span></span>
-<span><span class="co">#&gt; a1     0.4602 0.0249 20000  0.3764  0.3951 0.4103 0.5087 0.5238 0.5428</span></span>
-<span><span class="co">#&gt; Y~~Y   0.6725 0.0243 20000  0.5910  0.6091 0.6236 0.7181 0.7326 0.7464</span></span>
-<span><span class="co">#&gt; M2~~M2 0.7396 0.0239 20000  0.6543  0.6753 0.6913 0.7840 0.7974 0.8117</span></span>
-<span><span class="co">#&gt; M1~~M1 0.7882 0.0229 20000  0.7054  0.7257 0.7412 0.8317 0.8439 0.8583</span></span>
+<span><span class="co">#&gt; cp     0.0723 0.0296 20000 -0.0241 -0.0046 0.0146 0.1302 0.1485 0.1684</span></span>
+<span><span class="co">#&gt; b1     0.1098 0.0321 20000 -0.0002  0.0268 0.0467 0.1724 0.1925 0.2177</span></span>
+<span><span class="co">#&gt; b2     0.4779 0.0274 20000  0.3880  0.4080 0.4239 0.5306 0.5454 0.5673</span></span>
+<span><span class="co">#&gt; a2     0.1151 0.0307 20000  0.0116  0.0353 0.0548 0.1741 0.1937 0.2187</span></span>
+<span><span class="co">#&gt; k      0.4470 0.0282 20000  0.3551  0.3725 0.3914 0.5022 0.5188 0.5369</span></span>
+<span><span class="co">#&gt; a1     0.4602 0.0248 20000  0.3744  0.3939 0.4104 0.5077 0.5213 0.5360</span></span>
+<span><span class="co">#&gt; Y~~Y   0.6725 0.0241 20000  0.5873  0.6083 0.6234 0.7186 0.7317 0.7433</span></span>
+<span><span class="co">#&gt; M2~~M2 0.7396 0.0239 20000  0.6503  0.6756 0.6914 0.7847 0.7978 0.8104</span></span>
+<span><span class="co">#&gt; M1~~M1 0.7882 0.0228 20000  0.7127  0.7282 0.7423 0.8316 0.8448 0.8598</span></span>
 <span><span class="co">#&gt; X~~X   1.0000 0.0000 20000  1.0000  1.0000 1.0000 1.0000 1.0000 1.0000</span></span>
-<span><span class="co">#&gt; a1kb2  0.0983 0.0104 20000  0.0673  0.0729 0.0788 0.1195 0.1271 0.1364</span></span>
-<span><span class="co">#&gt; a1k    0.2057 0.0177 20000  0.1501  0.1620 0.1718 0.2409 0.2529 0.2684</span></span>
-<span><span class="co">#&gt; a2b2   0.0550 0.0149 20000  0.0062  0.0160 0.0259 0.0844 0.0946 0.1045</span></span>
-<span><span class="co">#&gt; kb2    0.2136 0.0187 20000  0.1551  0.1672 0.1777 0.2516 0.2627 0.2769</span></span></code></pre></div>
+<span><span class="co">#&gt; a1kb2  0.0983 0.0103 20000  0.0669  0.0733 0.0790 0.1192 0.1269 0.1359</span></span>
+<span><span class="co">#&gt; a1k    0.2057 0.0175 20000  0.1516  0.1618 0.1720 0.2408 0.2518 0.2653</span></span>
+<span><span class="co">#&gt; a2b2   0.0550 0.0150 20000  0.0054  0.0167 0.0260 0.0847 0.0947 0.1059</span></span>
+<span><span class="co">#&gt; kb2    0.2136 0.0186 20000  0.1551  0.1678 0.1777 0.2504 0.2626 0.2794</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

@@ -9,7 +9,7 @@
 #' @param alpha Numeric vector.
 #'   Significance level.
 #'   Default value is `alpha = c(0.001, 0.01, 0.05)`.
-#' @return Returns a matrix of estimates, standard errors, and confidence intervals.
+#' @return Returns a matrix of estimates, standard errors, number of Monte Carlo replications, and confidence intervals.
 #' @importFrom stats complete.cases quantile sd
 #' @keywords internal
 #' @noRd
@@ -41,5 +41,5 @@
       "%"
     )
   )
-  ci
+  return(ci)
 }

@@ -6,6 +6,7 @@
 #' The empirical sampling distribution
 #' of parameter estimates from the argument `object` is standardized,
 #' that is, each randomly generated vector of parameters is standardized.
+#' Defined parameters are computed from the standardized component parameters.
 #' Confidence intervals are generated
 #' using the standardized empirical sampling distribution.
 #'
@@ -15,26 +16,26 @@
 #'   Output of the `MC()` function.
 #' @return Returns an object of class `semmcci_std`
 #' which is a list with the following elements:
-#' \itemize{
+#' \describe{
+#'   \item{`R`}{Number of Monte Carlo replications.}
+#'   \item{`alpha`}{Significance level specified.}
 #'   \item{`lavaan`}{`lavaan` object.}
-#'   \item{`mu`}{Mean vector used in the Monte Carlo simulation.}
-#'   \item{`Sigma`}{Variance-covariance matrix used in the Monte Carlo simulation.}
+#'   \item{`mvn`}{Method used to generate multivariate normal random variates.}
 #'   \item{`thetahat`}{Parameter estimates.}
 #'   \item{`thetahatstar`}{Sampling distribution of parameter estimates.}
 #'   \item{`ci`}{Confidence intervals.}
-#'   \item{`thetahat.std`}{Standardized parameter estimates.}
-#'   \item{`thetahatstar.std`}{Standardized sampling distribution of parameter estimates.}
-#'   \item{`ci.std`}{Standardized confidence intervals.}
+#'   \item{`thetahat_std`}{Standardized parameter estimates.}
+#'   \item{`thetahatstar_std`}{Standardized sampling distribution of parameter estimates.}
+#'   \item{`ci_std`}{Standardized confidence intervals.}
 #' }
-#' The list element `ci.std` is a matrix with the following columns:
-#' \itemize{
+#' The list element `ci_std` is a matrix with the following columns:
+#' \describe{
 #'   \item{`est`}{Standardized parameter estimates.}
 #'   \item{`se`}{Standard errors or the square root of the diagonals of the standardized Monte Carlo sampling distribution of parameter estimates.}
-#'   \item{`R`}{Number of Monte Carlo replications.}
+#'   \item{`R`}{Number of valid Monte Carlo replications.}
 #'   \item{...}{Percentiles that correspond to the confidence intervals defined by `alpha`.}
 #' }
-#' Note that the rows in `ci.std` correspond to the standardized model parameters.
-#' Parameters with zero standard errors and constant confidence limits are fixed parameters.
+#' Note that the rows in `ci_std` correspond to the standardized model parameters.
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
@@ -74,10 +75,7 @@ MCStd <- function(object,
       "semmcci"
     )
   )
-  # if (object$lavaan@pta$ngroups > 1) {
-  #   stop("Multiple groups analysis is not yet supported.")
-  # }
-  thetahat <- as.vector(
+  thetahat_std <- as.vector(
     lavaan::standardizedSolution(
       object = object$lavaan,
       type = "std.all",
@@ -90,58 +88,81 @@ MCStd <- function(object,
       remove.def = FALSE
     )[, "est.std"]
   )
-  names(thetahat) <- colnames(object$thetahatstar)
-  i_free <- lavaan::parameterTable(object$lavaan)$free > 0
-  foo <- function(i) {
-    return(
-      .StdLav(
-        est = object$thetahatstar[i, i_free],
-        object = object$lavaan
-      )
+  names(thetahat_std) <- colnames(object$thetahatstar)
+  i_free <- object$lavaan@ParTable$free > 0
+  foo <- function(i, p) {
+    tryCatch(
+      {
+        return(
+          .StdLav(
+            est = object$thetahatstar[i, i_free],
+            object = object$lavaan
+          )
+        )
+      },
+      warning = function(w) {
+        return(
+          rep(
+            x = NA,
+            times = p
+          )
+        )
+      },
+      error = function(e) {
+        return(
+          rep(
+            x = NA,
+            times = p
+          )
+        )
+      }
     )
   }
-  thetahatstar <- lapply(
+  thetahatstar_std <- lapply(
     X = seq_len(dim(object$thetahatstar)[1]),
-    FUN = foo
+    FUN = foo,
+    p = length(thetahat_std)
   )
-  thetahatstar <- do.call(
+  thetahatstar_std <- do.call(
     what = "rbind",
-    args = thetahatstar
+    args = thetahatstar_std
   )
-  colnames(thetahatstar) <- colnames(object$thetahatstar)
-  se <- sqrt(diag(stats::var(thetahatstar)))
-  ci <- vector(
+  colnames(thetahatstar_std) <- colnames(object$thetahatstar)
+  # remove rows with NAs
+  thetahatstar_std <- thetahatstar_std[stats::complete.cases(thetahatstar_std), ]
+  se <- sqrt(diag(stats::var(thetahatstar_std)))
+  ci_std <- vector(
     mode = "list",
-    length = dim(thetahatstar)[2]
+    length = dim(thetahatstar_std)[2]
   )
-  for (i in seq_len(dim(thetahatstar)[2])) {
-    ci[[i]] <- .PCCI(
-      thetahatstar = thetahatstar[, i],
-      thetahat = thetahat[[i]],
+  for (i in seq_len(dim(thetahatstar_std)[2])) {
+    ci_std[[i]] <- .PCCI(
+      thetahatstar = thetahatstar_std[, i],
+      thetahat = thetahat_std[[i]],
       alpha = alpha
     )
   }
-  ci <- do.call(
+  ci_std <- do.call(
     what = "rbind",
-    args = ci
+    args = ci_std
   )
-  rownames(ci) <- colnames(thetahatstar)
-  ci <- ci[which(object$thetahat$op != "~1"), ]
-  ci <- ci[which(!rownames(ci) %in% object$thetahat$fixed), ]
+  rownames(ci_std) <- colnames(thetahatstar_std)
+  ci_std <- ci_std[which(object$lavaan@ParTable$op != "~1"), ]
+  ci_std <- ci_std[which(!rownames(ci_std) %in% object$thetahat$fixed), ]
   out <- list(
+    R = object$R,
+    alpha = object$alpha,
     lavaan = object$lavaan,
-    mu = object$mu,
-    Sigma = object$Sigma,
+    mvn = object$mvn,
     thetahat = object$thetahat,
     thetahatstar = object$thetahatstar,
     ci = object$ci,
-    thetahat.std = thetahat,
-    thetahatstar.std = thetahatstar,
-    ci.std = ci
+    thetahatstar_std = thetahatstar_std,
+    ci_std = ci_std
   )
   class(out) <- c(
     "semmcci_std",
     class(out)
   )
-  out
+  return(out)
 }

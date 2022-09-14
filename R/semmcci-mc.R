@@ -20,23 +20,23 @@
 #'   Significance level.
 #'   Default value is `alpha = c(0.001, 0.01, 0.05)`.
 #' @return Returns an object of class `semmcci` which is a list with the following elements:
-#' \itemize{
+#' \describe{
+#'   \item{`R`}{Number of Monte Carlo replications.}
+#'   \item{`alpha`}{Significance level specified.}
 #'   \item{`lavaan`}{`lavaan` object.}
-#'   \item{`mu`}{Mean vector used in the Monte Carlo simulation.}
-#'   \item{`Sigma`}{Variance-covariance matrix used in the Monte Carlo simulation.}
+#'   \item{`mvn`}{Method used to generate multivariate normal random variates.}
 #'   \item{`thetahat`}{Parameter estimates.}
 #'   \item{`thetahatstar`}{Sampling distribution of parameter estimates.}
 #'   \item{`ci`}{Confidence intervals.}
 #' }
 #' The list element `ci` is a matrix with the following columns:
-#' \itemize{
+#' \describe{
 #'   \item{`est`}{Parameter estimates.}
 #'   \item{`se`}{Standard errors or the square root of the diagonals of the Monte Carlo sampling distribution of parameter estimates.}
-#'   \item{`R`}{Number of Monte Carlo replications.}
+#'   \item{`R`}{Number of valid Monte Carlo replications.}
 #'   \item{...}{Percentiles that correspond to the confidence intervals defined by `alpha`.}
 #' }
 #' Note that the rows in `ci` correspond to the model parameters.
-#' Parameters with zero standard errors and constant confidence limits are fixed parameters.
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
@@ -64,7 +64,6 @@
 #' )
 #' @importFrom methods is
 #' @importFrom lavaan coef vcov
-#' @importFrom MASS mvrnorm
 #' @importFrom stats var complete.cases
 #' @keywords mc
 #' @export
@@ -77,27 +76,77 @@ MC <- function(object,
       "lavaan"
     )
   )
-  if (object@pta$nlevels > 1) {
-    stop("Multilevel analysis is not yet supported.")
-  }
-  # extract all estimates including fixed parameters
-  thetahat <- .ThetaHat(object)
   # set up Monte Carlo
-  R <- as.integer(R)
-  mu <- lavaan::coef(object)
-  Sigma <- lavaan::vcov(object)
-  thetahatstar_orig <- MASS::mvrnorm(
-    n = R,
-    mu = mu,
-    Sigma = Sigma
+  location <- lavaan::coef(object)
+  scale <- lavaan::vcov(object)
+  k <- length(location)
+  n <- R
+  norm <- matrix(
+    data = stats::rnorm(
+      n = n * k
+    ),
+    nrow = n,
+    ncol = k
+  )
+  tryCatch(
+    {
+      thetahatstar_orig <- .MVNChol(
+        norm = norm,
+        mat = chol(scale)
+      )
+      mvn <- "chol"
+    },
+    error = function(e) {
+      eig <- eigen(
+        scale,
+        symmetric = TRUE,
+        only.values = FALSE
+      )
+      if (
+        !all(
+          eig$values >= 1e-06 * abs(eig$values[1])
+        )
+      ) {
+        stop(
+          "The sampling variance-covariance matrix is nonpositive definite."
+        )
+      }
+      thetahatstar_orig <- .MVNEigen(
+        norm = norm,
+        mat = eig
+      )
+      mvn <- "eigen"
+    }
+  )
+  thetahatstar_orig <- thetahatstar_orig + rep(
+    x = location,
+    times = rep(
+      x = n,
+      times = k
+    )
+  )
+  colnames(thetahatstar_orig) <- names(location)
+  # extract all estimates including fixed parameters
+  thetahat <- .ThetaHat(
+    object = object
   )
   # generate defined parameters
   if (length(thetahat$def) > 0) {
     def <- function(i) {
-      return(
-        object@Model@def.function(
-          thetahatstar_orig[i, ]
-        )
+      tryCatch(
+        {
+          return(
+            object@Model@def.function(
+              thetahatstar_orig[i, ]
+            )
+          )
+        },
+        warning = function(w) {
+          return(NA)
+        },
+        error = function(e) {
+          return(NA)
+        }
       )
     }
     thetahatstar_def <- lapply(
@@ -176,7 +225,9 @@ MC <- function(object,
     )
   }
   # rearrange
-  thetahatstar <- thetahatstar[, thetahat$labels]
+  thetahatstar <- thetahatstar[, thetahat$par_names]
+  # remove rows with NAs
+  thetahatstar <- thetahatstar[stats::complete.cases(thetahatstar), ]
   # inferences
   se <- sqrt(diag(stats::var(thetahatstar)))
   ci <- vector(
@@ -196,10 +247,12 @@ MC <- function(object,
   )
   rownames(ci) <- colnames(thetahatstar)
   ci <- ci[which(!rownames(ci) %in% thetahat$fixed), ]
+  # output
   out <- list(
+    R = R,
+    alpha = alpha,
     lavaan = object,
-    mu = mu,
-    Sigma = Sigma,
+    mvn = mvn,
     thetahat = thetahat,
     thetahatstar = thetahatstar,
     ci = ci
@@ -208,5 +261,5 @@ MC <- function(object,
     "semmcci",
     class(out)
   )
-  out
+  return(out)
 }

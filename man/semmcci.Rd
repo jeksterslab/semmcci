@@ -22,7 +22,7 @@ a sampling distribution of parameter estimates is generated
 from the multivariate normal distribution
 using the parameter estimates and the sampling variance-covariance matrix.
 Confidence intervals for defined parameters are generated
-by obtaining percentiles corresponding to 100(1 - \code{alpha})\\%
+by obtaining percentiles corresponding to 100(1 - \code{alpha})\%
 from the generated sampling distribution,
 where \code{alpha} is the significance level.
 }
