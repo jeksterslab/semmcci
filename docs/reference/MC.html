@@ -12,7 +12,7 @@ for free and defined parameters"><!-- mathjax --><script src="https://cdnjs.clou
     
     <a class="navbar-brand me-2" href="../index.html">semmcci</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,18 +92,42 @@ Default value is <code>alpha = c(0.001, 0.01, 0.05)</code>.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>Returns an object of class <code>semmcci</code> which is a list with the following elements:</p><ul><li><p><code>lavaan</code><code>lavaan</code> object.</p></li>
-<li><p><code>mu</code>Mean vector used in the Monte Carlo simulation.</p></li>
-<li><p><code>Sigma</code>Variance-covariance matrix used in the Monte Carlo simulation.</p></li>
-<li><p><code>thetahat</code>Parameter estimates.</p></li>
-<li><p><code>thetahatstar</code>Sampling distribution of parameter estimates.</p></li>
-<li><p><code>ci</code>Confidence intervals.</p></li>
-</ul><p>The list element <code>ci</code> is a matrix with the following columns:</p><ul><li><p><code>est</code>Parameter estimates.</p></li>
-<li><p><code>se</code>Standard errors or the square root of the diagonals of the Monte Carlo sampling distribution of parameter estimates.</p></li>
-<li><p><code>R</code>Number of Monte Carlo replications.</p></li>
-<li><p>...Percentiles that correspond to the confidence intervals defined by <code>alpha</code>.</p></li>
-</ul><p>Note that the rows in <code>ci</code> correspond to the model parameters.
-Parameters with zero standard errors and constant confidence limits are fixed parameters.</p>
+<p>Returns an object of class <code>semmcci</code> which is a list with the following elements:</p><dl><dt><code>R</code></dt>
+<dd><p>Number of Monte Carlo replications.</p></dd>
+
+<dt><code>alpha</code></dt>
+<dd><p>Significance level specified.</p></dd>
+
+<dt><code>lavaan</code></dt>
+<dd><p><code>lavaan</code> object.</p></dd>
+
+<dt><code>mvn</code></dt>
+<dd><p>Method used to generate multivariate normal random variates.</p></dd>
+
+<dt><code>thetahat</code></dt>
+<dd><p>Parameter estimates.</p></dd>
+
+<dt><code>thetahatstar</code></dt>
+<dd><p>Sampling distribution of parameter estimates.</p></dd>
+
+<dt><code>ci</code></dt>
+<dd><p>Confidence intervals.</p></dd>
+
+
+</dl><p>The list element <code>ci</code> is a matrix with the following columns:</p><dl><dt><code>est</code></dt>
+<dd><p>Parameter estimates.</p></dd>
+
+<dt><code>se</code></dt>
+<dd><p>Standard errors or the square root of the diagonals of the Monte Carlo sampling distribution of parameter estimates.</p></dd>
+
+<dt><code>R</code></dt>
+<dd><p>Number of valid Monte Carlo replications.</p></dd>
+
+<dt>...</dt>
+<dd><p>Percentiles that correspond to the confidence intervals defined by <code>alpha</code>.</p></dd>
+
+
+</dl><p>Note that the rows in <code>ci</code> correspond to the model parameters.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -148,12 +172,12 @@ in the <code>lavaan</code> model syntax.</p>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Monte Carlo Confidence Intervals</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         est     se   R  0.05%   0.5%   2.5%  97.5%  99.5% 99.95%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp   0.2549 0.0346 100 0.1715 0.1742 0.1901 0.3229 0.3494 0.3684</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b    0.5095 0.0338 100 0.4192 0.4197 0.4361 0.5633 0.5838 0.5955</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a    0.4591 0.0275 100 0.3904 0.3915 0.4011 0.5029 0.5149 0.5191</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> y~~y 0.9875 0.0455 100 0.8914 0.8928 0.8979 1.0706 1.1004 1.1132</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> m~~m 0.9145 0.0433 100 0.8011 0.8086 0.8288 0.9872 1.0008 1.0117</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ab   0.2339 0.0212 100 0.1809 0.1826 0.1879 0.2694 0.2775 0.2821</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp   0.2282 0.0339 100 0.1513 0.1522 0.1576 0.2910 0.3045 0.3150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b    0.4796 0.0286 100 0.3951 0.3985 0.4205 0.5259 0.5339 0.5357</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a    0.5277 0.0366 100 0.4496 0.4521 0.4670 0.5934 0.6021 0.6057</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> y~~y 1.0077 0.0435 100 0.9072 0.9127 0.9329 1.0940 1.1189 1.1255</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> m~~m 1.0412 0.0458 100 0.9142 0.9153 0.9689 1.1260 1.1372 1.1385</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ab   0.2531 0.0240 100 0.1895 0.1977 0.2097 0.2973 0.3067 0.3091</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

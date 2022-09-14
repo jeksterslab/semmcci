@@ -38,7 +38,7 @@
 
 \renewcommand{\baselinestretch}{1}
 
-\title{semmcci: Staging}
+\title{semmcci: External Tests}
 \author{Ivan Jacob Agaloos Pesigan}
 \date{}
 
@@ -46,21 +46,43 @@
 
 \maketitle
 
-Staging...
+\section*{Tests}
 
-% begin.rcode
-% library(lavaan)
-% HS.model <- "
-% visual  =~ x1 + x2 + x3
-% textual =~ x4 + x5 + x6
-% speed   =~ x7 + x8 + x9 
-% "
-% fit <- sem(
-%   HS.model, 
-%   data = HolzingerSwineford1939, 
-%   group = "school"
+%% begin.rcode
+% #| file = root$find_file(
+% #|   "latex",
+% #|   "r-scripts",
+% #|   "tests-external.R"
+% #| ),
+% #| echo = FALSE
+%% end.rcode
+
+\newpage
+
+\section*{Environment}
+
+%% begin.rcode
+% ls()
+%% end.rcode
+
+\newpage
+
+\section*{Class}
+
+%% begin.rcode
+% #| echo = FALSE
+% lapply(
+%   X = ls(),
+%   FUN = function(x) {
+%     class(
+%       eval(
+%         parse(
+%           text = x
+%         )
+%       )
+%     )
+%   }
 % )
-% MCStd(MC(fit))
 %% end.rcode
 
 \nocite{Lib-R-Manual-2022}

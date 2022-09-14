@@ -18,7 +18,7 @@
 #' from the multivariate normal distribution
 #' using the parameter estimates and the sampling variance-covariance matrix.
 #' Confidence intervals for defined parameters are generated
-#' by obtaining percentiles corresponding to 100(1 - `alpha`)\%
+#' by obtaining percentiles corresponding to 100(1 - `alpha`)%
 #' from the generated sampling distribution,
 #' where `alpha` is the significance level.
 #'

@@ -14,7 +14,7 @@
 \item{...}{further arguments.}
 }
 \value{
-Returns a matrix of estimates, standard errors and confidence intervals.
+Returns a matrix of estimates, standard errors, number of Monte Carlo replications, and confidence intervals.
 }
 \description{
 Print Method for Object of Class \code{semmcci_std}

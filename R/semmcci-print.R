@@ -4,7 +4,7 @@
 #' @param x an object of class `semmcci`.
 #' @param digits Integer indicating the number of decimal places to display.
 #' @param ... further arguments.
-#' @return Returns a matrix of estimates, standard errors and confidence intervals.
+#' @return Returns a matrix of estimates, standard errors, number of Monte Carlo replications, and confidence intervals.
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
@@ -47,7 +47,7 @@ print.semmcci <- function(x,
 #' @param x an object of class `semmcci_std`.
 #' @param digits Integer indicating the number of decimal places to display.
 #' @param ... further arguments.
-#' @return Returns a matrix of estimates, standard errors and confidence intervals.
+#' @return Returns a matrix of estimates, standard errors, number of Monte Carlo replications, and confidence intervals.
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
@@ -82,5 +82,5 @@ print.semmcci_std <- function(x,
                               digits = 4,
                               ...) {
   cat("Standardized Monte Carlo Confidence Intervals\n")
-  base::print(round(x$ci.std, digits = digits))
+  base::print(round(x$ci_std, digits = digits))
 }

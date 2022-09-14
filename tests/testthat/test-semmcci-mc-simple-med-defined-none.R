@@ -3,21 +3,15 @@ lapply(
   X = 1,
   FUN = function(i,
                  n,
+                 R,
+                 tol,
                  text) {
-    R <- 10L
     message(text)
-    seed <- sample.int(
-      n = .Machine$integer.max,
-      size = 1
-    )
-    coefs <- stats::runif(
-      n = 3,
-      min = 0.0,
-      max = 0.5
-    )
-    cp <- coefs[1]
-    b <- coefs[2]
-    a <- coefs[3]
+    seed <- 42
+    set.seed(seed)
+    cp <- 0.00
+    b <- 0.10
+    a <- 0.10
     sigma2ey <- 1 - b^2 - cp^2 - 2 * a * b * cp
     sigma2em <- 1 - a^2
     sigma2x <- 1
@@ -53,22 +47,20 @@ lapply(
       text,
       {
         testthat::expect_equal(
-          results$thetahatstar,
-          answers
-        )
-        testthat::expect_equal(
           results$thetahat$est,
           lavaan::parameterEstimates(fit)$est,
           check.attributes = FALSE
         )
-        testthat::expect_equal(
-          results$ci["cp", "0.05%"],
-          quantile(answers[, "cp"], .0005),
-          check.attributes = FALSE
+        testthat::expect_true(
+          abs(
+            results$ci["cp", "0.05%"] - quantile(answers[, "cp"], .0005)
+          ) <= tol
         )
       }
     )
   },
-  n = 100L,
+  n = 1000L,
+  R = 1000L,
+  tol = 0.05,
   text = "test-semmcci-mc-simple-med-defined-none"
 )

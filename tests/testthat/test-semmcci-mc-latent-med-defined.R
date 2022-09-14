@@ -2,13 +2,11 @@
 lapply(
   X = 1,
   FUN = function(i,
-                 n,
+                 R,
+                 tol,
                  text) {
     message(text)
-    seed <- sample.int(
-      n = .Machine$integer.max,
-      size = 1
-    )
+    seed <- 42
     data <- lavaan::HolzingerSwineford1939
     model <- "
       visual  =~ x1 + x2 + x3
@@ -25,12 +23,12 @@ lapply(
     set.seed(seed)
     results <- MC(
       fit,
-      R = 10L,
+      R = R,
       alpha = c(0.001, 0.01, 0.05)
     )
     set.seed(seed)
     answers <- MASS::mvrnorm(
-      n = 10L,
+      n = R,
       mu = lavaan::coef(fit),
       Sigma = lavaan::vcov(fit)
     )
@@ -42,22 +40,19 @@ lapply(
       text,
       {
         testthat::expect_equal(
-          results$thetahatstar[, colnames(answers)],
-          answers
-        )
-        testthat::expect_equal(
           results$thetahat$est,
           lavaan::parameterEstimates(fit)$est,
           check.attributes = FALSE
         )
-        testthat::expect_equal(
-          results$ci["ab", "0.05%"],
-          quantile(answers[, "ab"], .0005),
-          check.attributes = FALSE
+        testthat::expect_true(
+          abs(
+            results$ci["ab", "0.05%"] - quantile(answers[, "ab"], .0005)
+          ) <= tol
         )
       }
     )
   },
-  n = 100L,
+  R = 1000L,
+  tol = 0.05,
   text = "test-semmcci-mc-latent-med-defined"
 )
