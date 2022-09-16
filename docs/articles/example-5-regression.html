@@ -83,7 +83,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2022-09-14</h4>
+            <h4 data-toc-skip class="date">2022-09-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/semmcci/blob/HEAD/vignettes/example-5-regression.Rmd"><code>vignettes/example-5-regression.Rmd</code></a></small>
       <div class="d-none name"><code>example-5-regression.Rmd</code></div>
@@ -99,8 +99,8 @@ Agaloos Pesigan</h4>
 \end{equation}\]</span></p>
 <p>where <span class="math inline">\(Y\)</span> is the regressand
 variable, <span class="math inline">\(X_{1} \cdots X_{j} \cdots
-X_{p}\)</span> are the <span class="math inline">\(p\)</span>
-regressors, and <span class="math inline">\(\varepsilon\)</span> is the
+X_{p}\)</span> are the <span class="math inline">\(p\)</span> regressor
+variables, and <span class="math inline">\(\varepsilon\)</span> is the
 stochastic error term with expected value of zero and variance <span class="math inline">\(\sigma^{2}\)</span>.</p>
 <div class="figure">
 <img src="example-5-regression_files/figure-html/unnamed-chunk-3-1.png" alt="The Multiple Regression Model" width="700"><p class="caption">
@@ -123,7 +123,7 @@ The Multiple Regression Model
 <div class="section level2">
 <h2 id="model-specification">Model Specification<a class="anchor" aria-label="anchor" href="#model-specification"></a>
 </h2>
-<p>We regress <code>X1</code> and <code>X2</code> on <code>Y</code>.</p>
+<p>We regress <code>Y</code> on <code>X1</code> and <code>X2</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="st">"</span></span>
 <span><span class="st">  Y ~ X1 + X2</span></span>

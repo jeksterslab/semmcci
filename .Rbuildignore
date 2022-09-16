@@ -3,6 +3,7 @@
 .*\.Rproj$
 .*\.html$
 .*\.md$
+.*\.pdf$
 .*\.sh$
 .*\.tar\.gz$
 .*\.tar\.xz$

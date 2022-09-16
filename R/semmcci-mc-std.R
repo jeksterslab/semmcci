@@ -129,7 +129,7 @@ MCStd <- function(object,
   )
   colnames(thetahatstar_std) <- colnames(object$thetahatstar)
   # remove rows with NAs
-  thetahatstar_std <- thetahatstar_std[stats::complete.cases(thetahatstar_std), ]
+  # thetahatstar_std <- thetahatstar_std[stats::complete.cases(thetahatstar_std), ]
   se <- sqrt(diag(stats::var(thetahatstar_std)))
   ci_std <- vector(
     mode = "list",

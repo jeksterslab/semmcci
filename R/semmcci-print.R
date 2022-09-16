@@ -37,6 +37,8 @@
 print.semmcci <- function(x,
                           digits = 4,
                           ...) {
+  op <- options(digits = digits)
+  on.exit(options(op))
   cat("Monte Carlo Confidence Intervals\n")
   base::print(round(x$ci, digits = digits))
 }

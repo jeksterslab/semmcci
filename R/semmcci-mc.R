@@ -96,28 +96,33 @@ MC <- function(object,
       )
       mvn <- "chol"
     },
+    warning = function(w) {
+      mvn <- "eigen"
+    },
     error = function(e) {
-      eig <- eigen(
-        scale,
-        symmetric = TRUE,
-        only.values = FALSE
-      )
-      if (
-        !all(
-          eig$values >= 1e-06 * abs(eig$values[1])
-        )
-      ) {
-        stop(
-          "The sampling variance-covariance matrix is nonpositive definite."
-        )
-      }
-      thetahatstar_orig <- .MVNEigen(
-        norm = norm,
-        mat = eig
-      )
       mvn <- "eigen"
     }
   )
+  if (mvn == "eigen") {
+    eig <- eigen(
+      scale,
+      symmetric = TRUE,
+      only.values = FALSE
+    )
+    if (
+      !all(
+        eig$values >= 1e-06 * abs(eig$values[1])
+      )
+    ) {
+      stop(
+        "The sampling variance-covariance matrix is nonpositive definite."
+      )
+    }
+    thetahatstar_orig <- .MVNEigen(
+      norm = norm,
+      mat = eig
+    )
+  }
   thetahatstar_orig <- thetahatstar_orig + rep(
     x = location,
     times = rep(
@@ -227,7 +232,7 @@ MC <- function(object,
   # rearrange
   thetahatstar <- thetahatstar[, thetahat$par_names]
   # remove rows with NAs
-  thetahatstar <- thetahatstar[stats::complete.cases(thetahatstar), ]
+  # thetahatstar <- thetahatstar[stats::complete.cases(thetahatstar), ]
   # inferences
   se <- sqrt(diag(stats::var(thetahatstar)))
   ci <- vector(

@@ -2,7 +2,7 @@
 
 ## Patch
 
-* Random variates from the multivatiate normal distribution are generated using the Choleslky decomposition of the sampling variance-covariance matrix. Eigen decomposition is used when Choleslky decomposition fails.
+* Random variates from the multivatiate normal distribution are generated using the Cholesky decomposition of the sampling variance-covariance matrix. Eigen decomposition is used when Cholesky decomposition fails.
 * `NA` is returned if the calculation of the defined parameter fails in `MC()`.
 * `NA` is returned if standardization fails in `MCStd()`.
 

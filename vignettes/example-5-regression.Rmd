@@ -30,7 +30,7 @@ The multiple regression model is given by
     Y = \beta_{0} + \beta_{1} X_{1} + \cdots + \beta_{j} X_{j} + \cdots + \beta_{p} X_{p} + \varepsilon, \quad j = \left\{ 1, 2, \cdots p \right\}
 \end{equation}
 
-where $Y$ is the regressand variable, $X_{1} \cdots X_{j} \cdots X_{p}$ are the $p$ regressors, and $\varepsilon$ is the stochastic error term with expected value of zero and variance $\sigma^{2}$.
+where $Y$ is the regressand variable, $X_{1} \cdots X_{j} \cdots X_{p}$ are the $p$ regressor variables, and $\varepsilon$ is the stochastic error term with expected value of zero and variance $\sigma^{2}$.
 
 ```{tikz}
 #| echo = FALSE, 
@@ -129,7 +129,7 @@ data <- data.frame(X1, X2, Y)
 
 ## Model Specification
 
-We regress `X1` and `X2` on `Y`.
+We regress `Y` on `X1` and `X2`.
 
 ```{r}
 model <- "
