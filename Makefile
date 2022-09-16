@@ -1,6 +1,6 @@
 .PHONY: all term termconda root remotes env github arch jammy focal win deps style lint cov check cran site build install rpkg tinytex latex rhub rhublocal rclean rcleanall clean termclean deepclean
 
-all: clean deps style man/*.Rd check build install README.md site
+all: clean deps style man/*.Rd check build install README.md site manual
 
 # terminal
 
@@ -116,6 +116,11 @@ rhub:
 
 rhublocal:
 	@Rscript .r-hub/local-check-linux-images.R
+
+# manual
+
+manual:
+	@Rscript .r-hub/manual.R
 
 # cleaning
 

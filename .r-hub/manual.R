@@ -1,5 +1,5 @@
-# find root directory
-root <- rprojroot::is_rstudio_project
+pack <- "semmcci"
+path <- find.package(pack)
 system(
   paste(
     shQuote(
@@ -11,11 +11,7 @@ system(
     "CMD",
     "Rd2pdf",
     shQuote(
-      dirname(
-        root$find_file(
-          "project.Rproj"
-        )
-      )
+      path
     )
   )
 )
