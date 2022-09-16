@@ -47,3 +47,9 @@
 
 # clone github repo script
 .clone.sh
+
+# latex
+latexmkrc
+semmcci.Rcheck/
+semmcci*.tar.gz
+semmcci*.tgz
