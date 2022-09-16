@@ -50,6 +50,3 @@
 
 # latex
 latexmkrc
-semmcci.Rcheck/
-semmcci*.tar.gz
-semmcci*.tgz
