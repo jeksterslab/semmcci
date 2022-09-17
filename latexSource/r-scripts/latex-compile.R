@@ -5,7 +5,7 @@ LatexCompile <- function(clean = TRUE) {
     "tex"
   )
   pdf_folder <- root$find_file(
-    "latex",
+    "latexSource",
     "pdf"
   )
   try(

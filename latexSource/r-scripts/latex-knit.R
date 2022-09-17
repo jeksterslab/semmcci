@@ -5,7 +5,7 @@ LatexKnit <- function() {
   )
   Rtex_files <- list.files(
     root$find_file(
-      "latex"
+      "latexSource"
     ),
     pattern = "\\.Rtex$",
     full.names = TRUE,

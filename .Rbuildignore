@@ -28,6 +28,5 @@
 ^\.tests-.*$
 ^\.vim$
 ^docs$
-^latex$
-^latexmkrc$
+^latex.*$
 ^vignettes$

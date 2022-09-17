@@ -8,14 +8,14 @@ source(
 )
 source(
   root$find_file(
-    "latex",
+    "latexSource",
     "r-scripts",
     "knitr-options-default.R"
   )
 )
 source(
   root$find_file(
-    "latex",
+    "latexSource",
     "r-scripts",
     "knitr-options-custom.R"
   )
