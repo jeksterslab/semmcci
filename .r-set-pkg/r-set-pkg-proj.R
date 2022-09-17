@@ -58,4 +58,3 @@ for (i in seq_along(pkg)) {
     )
   }
 }
-

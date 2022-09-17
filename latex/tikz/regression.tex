@@ -1,0 +1,82 @@
+\documentclass[tikz, border=1mm]{standalone}
+
+% convert -density 300 regression.pdf -quality 100 -background white -alpha remove -alpha off regression.png
+
+\usepackage{tikz}
+
+\begin{document}
+
+\usetikzlibrary{
+	er,
+	arrows,
+	positioning
+}
+
+\begin{tikzpicture}[
+		auto,
+		node distance = 15mm and 50mm,
+		manifest/.style = {
+			rectangle,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum width = 15mm,
+			minimum height = 10mm
+		},
+		inv/.style = {
+			rectangle,
+			draw=none,
+			fill=none,
+			inner sep = 0pt,
+			minimum width = 15mm,
+			minimum height = 10mm
+		},
+		error/.style = {
+			ellipse,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum size = 7mm,
+			align = center
+		},
+		mean/.style={
+			regular polygon,
+			regular polygon sides = 3,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum width = 7mm,
+			minimum height = 7mm
+		},
+		path/.style = {
+			->,
+			thick,
+			>=stealth'
+		},
+		cov/.style = {
+			<->,
+			thick,
+			>=stealth'
+		},
+	]
+	\node[manifest] (X1) {$X_{1}$};
+	\node[inv] (vdots1) [below = of X1] {$\vdots$};
+	\node[manifest] (Xj) [below = of vdots1] {$X_{j}$};
+	\node[inv] (vdots2) [below = of Xj] {$\vdots$};
+	\node[manifest] (Xp) [below = of vdots2] {$X_{p}$};
+	\node[manifest] (Y) [left = of Xj] {$Y$};
+	\node[error] (varepsilon) [below = of Y] {$\varepsilon$};
+	\draw[path] (X1) to node[above] {$\beta_{1}$} (Y);
+	\draw[path] (Xj) to node {$\beta_{j}$} (Y);
+	\draw[path] (Xp) to node {$\beta_{p}$} (Y);
+	\draw[path] (varepsilon) to node {$1$} (Y);
+	\draw[cov] (X1) to[out = 70, in = 110, looseness = 5] node[above] {$\sigma_{X_{1}}^{2}$} (X1);
+	\draw[cov] (Xj) to[out = 70, in = 110, looseness = 5] node[above] {$\sigma_{X_{j}}^{2}$} (Xj);
+	\draw[cov] (Xp) to[out = 70, in = 110, looseness = 5] node[above] {$\sigma_{X_{p}}^{2}$} (Xp);
+	\draw[cov] (varepsilon) to[out = 290, in = 250, looseness = 5] node[below] {$\sigma^{2}$} (varepsilon);
+	\draw[cov] (X1) to[out = 360, in = 360, looseness = 0.5] node[right] {$\sigma_{X_{1}, X_{j}}$} (Xj);
+	\draw[cov] (Xj) to[out = 360, in = 360, looseness = 0.5] node[right] {$\sigma_{X_{j}, X_{p}}$} (Xp);
+	\draw[cov] (X1) to[out = 360, in = 360, looseness = 1] node[right] {$\sigma_{X_{1}, X_{p}}$} (Xp);
+\end{tikzpicture}
+
+\end{document}

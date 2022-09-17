@@ -47,6 +47,3 @@
 
 # clone github repo script
 .clone.sh
-
-# latex
-latexmkrc

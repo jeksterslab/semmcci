@@ -13,8 +13,20 @@ vignette: >
 
 ```{r}
 #| include = FALSE
-root <- rprojroot::is_rstudio_project
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+#| include = FALSE
 set.seed(42)
+```
+
+```{r}
+#| include = FALSE
+root <- rprojroot::is_rstudio_project
 ```
 
 ```{r}
@@ -125,7 +137,7 @@ The `fit` `lavaan` object can then be passed to the `MC()` function from `semmcc
 to generate Monte Carlo confidence intervals.
 
 ```{r}
-MC(fit, R = R, alpha = c(0.001, 0.01, 0.05))
+MC(fit, R = 500, alpha = c(0.001, 0.01, 0.05))
 ```
 
 ## Nonparametric Bootstrap Confidence Intervals
@@ -142,7 +154,7 @@ parameterEstimates(
     missing = "fiml",
     fixed.x = FALSE,
     se = "bootstrap",
-    bootstrap = B
+    bootstrap = 500
   )
 )
 ```
@@ -234,6 +246,7 @@ summary(benchmark01, unit = "relative")
 ### Plot
 
 ```{r}
+#| benchmark01,
 #| message = FALSE,
 #| warning = FALSE
 ggplot2::autoplot(benchmark01)
@@ -319,6 +332,7 @@ summary(benchmark02, unit = "relative")
 ### Plot
 
 ```{r}
+#| benchmark02,
 #| message = FALSE,
 #| warning = FALSE
 ggplot2::autoplot(benchmark02)

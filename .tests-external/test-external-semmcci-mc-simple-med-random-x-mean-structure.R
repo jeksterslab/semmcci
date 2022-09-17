@@ -97,4 +97,3 @@ lapply(
   tol = 0.05,
   text = "test-semmcci-mc-simple-med-random-x-mean-structure"
 )
-
