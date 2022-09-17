@@ -5,9 +5,6 @@ template:
   bootstrap: 5
 
 reference:
-- title: Package
-  contents:
-  - has_keyword("package")
 - title: Monte Carlo Confidence Intervals
   contents:
   - has_keyword("mc")
