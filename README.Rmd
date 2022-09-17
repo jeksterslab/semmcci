@@ -42,8 +42,9 @@ remotes::install_github("jeksterslab/semmcci")
 
 ## Documentation
 
-See [GitHub Pages](https://jeksterslab.github.io/semmcci/index.html) for
-package documentation.
+See
+[GitHub Pages](https://jeksterslab.github.io/semmcci/index.html)
+for the package documentation.
 
 ## Description
 
