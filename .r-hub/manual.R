@@ -1,3 +1,9 @@
+root <- rprojroot::is_rstudio_project
+unlink(
+  root$find_file(
+    "semmcci.pdf"
+  )
+)
 pack <- "semmcci"
 path <- find.package(pack)
 system(
