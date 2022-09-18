@@ -30,7 +30,4 @@
 ^docs$
 ^latex.*$
 ^vignettes/.*\.orig$
-^vignettes$
-^semmcci\.Rcheck$
-^semmcci.*\.tar\.gz$
-^semmcci.*\.tgz$
+

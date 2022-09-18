@@ -249,7 +249,6 @@ summary(benchmark01, unit = "relative")
 #| benchmark01,
 #| message = FALSE,
 #| warning = FALSE
-ggplot2::autoplot(benchmark01)
 boxplot(benchmark01)
 ```
 
@@ -335,6 +334,5 @@ summary(benchmark02, unit = "relative")
 #| benchmark02,
 #| message = FALSE,
 #| warning = FALSE
-ggplot2::autoplot(benchmark02)
 boxplot(benchmark02)
 ```
