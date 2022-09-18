@@ -2,14 +2,14 @@ LatexMake <- function(clean = TRUE) {
   root <- rprojroot::is_rstudio_project
   source(
     root$find_file(
-      "latexSource",
+      "latexsrc",
       "r-scripts",
       "latex-knit.R"
     )
   )
   source(
     root$find_file(
-      "latexSource",
+      "latexsrc",
       "r-scripts",
       "latex-compile.R"
     )

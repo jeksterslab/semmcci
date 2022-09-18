@@ -12,7 +12,7 @@ Monte Carlo confidence intervals for free and defined parameters in models fitte
 Useful links:
 \itemize{
   \item \url{https://github.com/jeksterslab/semmcci}
-  \item \url{https://jeksterslab.github.io/semmcci}
+  \item \url{https://jeksterslab.github.io/semmcci/}
   \item Report bugs at \url{https://github.com/jeksterslab/semmcci/issues}
 }
 

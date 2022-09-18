@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\input{latex/preamble/preamble}
+\input{latexsrc/preamble/preamble}
 
 %% begin.rcode
 % #| label = "root",
@@ -12,7 +12,7 @@
 % #| label = "knitr",
 % #| include = FALSE,
 % #| file = root$find_file(
-% #|   "latex",
+% #|   "latexsrc",
 % #|   "r-scripts",
 % #|   "knitr.R"
 % #| )
@@ -26,11 +26,11 @@
 % cat(
 %   .PreambleBiblatexCombined(
 %     path = root$find_file(
-%       "latex",
+%       "latexsrc",
 %       "bib"
 %     ),
 %     output_path = root$find_file(
-%       "latex"
+%       "latexsrc"
 %     )
 %   )
 % )
@@ -38,7 +38,7 @@
 
 \renewcommand{\baselinestretch}{1}
 
-\title{semmcci: External Tests}
+\title{semmcci: Internal Tests}
 \author{Ivan Jacob Agaloos Pesigan}
 \date{}
 
@@ -50,9 +50,9 @@
 
 %% begin.rcode
 % #| file = root$find_file(
-% #|   "latex",
+% #|   "latexsrc",
 % #|   "r-scripts",
-% #|   "tests-external.R"
+% #|   "tests.R"
 % #| ),
 % #| echo = FALSE
 %% end.rcode

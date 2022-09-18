@@ -30,4 +30,3 @@
 ^docs$
 ^latex.*$
 ^vignettes/.*\.orig$
-^vignettes$

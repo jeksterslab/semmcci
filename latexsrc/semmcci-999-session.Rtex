@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\input{latex/preamble/preamble}
+\input{latexsrc/preamble/preamble}
 
 %% begin.rcode
 % #| label = "root",
@@ -12,7 +12,7 @@
 % #| label = "knitr",
 % #| include = FALSE,
 % #| file = root$find_file(
-% #|   "latex",
+% #|   "latexsrc",
 % #|   "r-scripts",
 % #|   "knitr.R"
 % #| )
@@ -26,11 +26,11 @@
 % cat(
 %   .PreambleBiblatexCombined(
 %     path = root$find_file(
-%       "latex",
+%       "latexsrc",
 %       "bib"
 %     ),
 %     output_path = root$find_file(
-%       "latex"
+%       "latexsrc"
 %     )
 %   )
 % )

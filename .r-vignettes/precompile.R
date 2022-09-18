@@ -13,6 +13,11 @@ orig <- list.files(
   recursive = FALSE
 )
 if (length(orig) > 0) {
+  file.copy(
+    from = file.path(vignettes_source, orig),
+    to = vignettes_folder,
+    overwrite = TRUE
+  )
   target <- gsub(
     pattern = "\\.orig$",
     replacement = "",
@@ -20,7 +25,7 @@ if (length(orig) > 0) {
   )
   for (i in seq_along(orig)) {
     knitr::knit(
-      file.path(vignettes_source, orig[i]),
+      file.path(vignettes_folder, orig[i]),
       file.path(vignettes_folder, target[i])
     )
   }

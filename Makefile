@@ -1,6 +1,6 @@
-.PHONY: all term termconda root remotes env github arch jammy focal win deps style lint cov check cran site build install rpkg tinytex latex rhub rhublocal rclean rcleanall clean termclean deepclean
+.PHONY: all term termconda root remotes env github arch jammy focal win deps style lint cov check cran site build install vignettes rpkg tinytex latex rhub rhublocal rclean rcleanall clean termclean deepclean
 
-all: clean deps style man/*.Rd check build install README.md site manual
+all: clean deps style man/*.Rd check build install README.md vignettes site manual
 
 # terminal
 
@@ -21,6 +21,7 @@ remotes:
 
 env:
 	@Rscript .r-set-env/r-set-env.R $(PWD)
+	@Rscript .r-buildignore/r-buildignore.R
 
 github:
 	@Rscript .r-set-pkg/r-set-pkg-dev-github.R $(PWD)
@@ -97,7 +98,10 @@ build:
 install:
 	@Rscript -e "devtools::install(pkg = '.')"
 
-rpkg: deps style README.md man/*.Rd check build install site
+rpkg: deps style README.md man/*.Rd check build install vignettes site
+
+vignettes:
+	@Rscript .r-vignettes/precompile.R
 
 # latex related
 
@@ -105,7 +109,7 @@ tinytex:
 	@Rscript -e "tinytex::install_tinytex(bundle = 'TinyTeX-2', force = TRUE)"
 
 latex:
-	@Rscript -e "source('latex/r-scripts/latex-make.R'); LatexMake(clean = TRUE)"
+	@Rscript -e "source('latexsrc/r-scripts/latex-make.R'); LatexMake(clean = TRUE)"
 	@rm -rf _detritus
 	@echo "Run 'make tinytex' if the process failed."
 
@@ -153,7 +157,7 @@ deepclean: clean termclean rcleanall
 	@rm -rf .detritus
 	@rm -rf docs
 	@rm -rf julia
-	@rm -rf latex
+	@rm -rf latexsrc
 	@rm -rf .log
 	@rm -rf .r-*
 	@rm -rf .sim

@@ -1,6 +1,6 @@
 \documentclass{article}
 
-\input{latex/preamble/preamble}
+\input{latexsrc/preamble/preamble}
 
 %% begin.rcode
 % #| label = "root",
@@ -12,7 +12,7 @@
 % #| label = "knitr",
 % #| include = FALSE,
 % #| file = root$find_file(
-% #|   "latex",
+% #|   "latexsrc",
 % #|   "r-scripts",
 % #|   "knitr.R"
 % #| )
@@ -26,17 +26,19 @@
 % cat(
 %   .PreambleBiblatexCombined(
 %     path = root$find_file(
-%       "latex",
+%       "latexsrc",
 %       "bib"
 %     ),
 %     output_path = root$find_file(
-%       "latex"
+%       "latexsrc"
 %     )
 %   )
 % )
 %% end.rcode
 
-\title{semmcci: References}
+\renewcommand{\baselinestretch}{1}
+
+\title{semmcci: External Tests}
 \author{Ivan Jacob Agaloos Pesigan}
 \date{}
 
@@ -44,7 +46,46 @@
 
 \maketitle
 
-\nocite{*}
+\section*{Tests}
+
+%% begin.rcode
+% #| file = root$find_file(
+% #|   "latexsrc",
+% #|   "r-scripts",
+% #|   "tests-external.R"
+% #| ),
+% #| echo = FALSE
+%% end.rcode
+
+\newpage
+
+\section*{Environment}
+
+%% begin.rcode
+% ls()
+%% end.rcode
+
+\newpage
+
+\section*{Class}
+
+%% begin.rcode
+% #| echo = FALSE
+% lapply(
+%   X = ls(),
+%   FUN = function(x) {
+%     class(
+%       eval(
+%         parse(
+%           text = x
+%         )
+%       )
+%     )
+%   }
+% )
+%% end.rcode
+
+\nocite{Lib-R-Manual-2022}
 
 \printbibliography
 
