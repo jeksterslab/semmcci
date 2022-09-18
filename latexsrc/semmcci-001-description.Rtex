@@ -98,7 +98,7 @@ This mediating or indirect effect
 is a product of path coefficients from the fitted model.
 
 %% begin.rcode
-% #| eval = FALSE
+% #| message = FALSE
 % library(semmcci)
 % library(lavaan)
 %% end.rcode
