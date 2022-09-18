@@ -2,14 +2,14 @@ pandoc: '2.18'
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
-  benchmark: benchmark/benchmark.html
-  example-1-simple: example-1-simple/example-1-simple.html
-  example-2-serial: example-2-serial/example-2-serial.html
-  example-3-latent: example-3-latent/example-3-latent.html
-  example-4-simple-miss: example-4-simple-miss/example-4-simple-miss.html
-  example-5-regression: example-5-regression/example-5-regression.html
+  benchmark: benchmark.html
+  example-1-simple: example-1-simple.html
+  example-2-serial: example-2-serial.html
+  example-3-latent: example-3-latent.html
+  example-4-simple-miss: example-4-simple-miss.html
+  example-5-regression: example-5-regression.html
   semmcci: semmcci.html
-last_built: 2022-09-18T16:13Z
+last_built: 2022-09-18T16:22Z
 urls:
   reference: https://github.com/jeksterslab/semmcci/reference
   article: https://github.com/jeksterslab/semmcci/articles
