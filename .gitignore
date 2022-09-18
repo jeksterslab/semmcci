@@ -44,3 +44,6 @@
 
 # secrets
 *secrets*
+semmcci.Rcheck/
+semmcci*.tar.gz
+semmcci*.tgz
