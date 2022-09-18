@@ -16,11 +16,11 @@ articles:
 - title: Examples
   navbar: Examples
   contents:
-  - "example-1-simple/example-1-simple"
-  - "example-2-serial/example-2-serial"
-  - "example-3-latent/example-3-latent"
-  - "example-4-simple-miss/example-4-simple-miss"
-  - "example-5-regression/example-5-regression"
+  - example-1-simple/example-1-simple
+  - example-2-serial/example-2-serial
+  - example-3-latent/example-3-latent
+  - example-4-simple-miss/example-4-simple-miss
+  - example-5-regression/example-5-regression
 - title: Benchmark
   navbar: Benchmark
   contents:
