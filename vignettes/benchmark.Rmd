@@ -1,7 +1,7 @@
 ---
 title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "`r Sys.Date()`"
+date: "2022-09-18"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -11,38 +11,20 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r}
-#| include = FALSE
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
 
-```{r}
-#| include = FALSE
-set.seed(42)
-```
 
-```{r}
-#| include = FALSE
-root <- rprojroot::is_rstudio_project
-```
 
-```{r}
-#| include = FALSE
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
+
+
+
+
 
 We compare the Monte Carlo (MC) method with nonparametric bootstrapping (NB) using the simple mediation model with missing data.
 One advantage of MC over NB is speed.
 This is because the model is only fitted once in MC whereas it is fitted many times in NB.
 
-```{r}
-#| message = FALSE
+
+```r
 library(semmcci)
 library(lavaan)
 library(microbenchmark)
@@ -50,45 +32,18 @@ library(microbenchmark)
 
 ## Arguments
 
-```{r}
-#| include = FALSE
-production <- TRUE
-if (production) {
-  R <- 5000L
-  B <- 5000L
-} else {
-  R <- 10L
-  B <- 10L
-}
-```
 
-```{r}
-#| echo = FALSE
-variables <- c(
-  "R",
-  "B"
-)
-values <- c(
-  R,
-  B
-)
-notes <- c(
-  "Number of Monte Carlo replications.",
-  "Number of bootstrap samples."
-)
-tab <- cbind(
-  Variables = variables,
-  Values = values,
-  Notes = notes
-)
-knitr::kable(
-  x = tab
-)
-```
+
+
+|Variables |Values |Notes                               |
+|:---------|:------|:-----------------------------------|
+|R         |5000   |Number of Monte Carlo replications. |
+|B         |5000   |Number of bootstrap samples.        |
 
 ## Data
 
-```{r}
+
+```r
 n <- 1000
 X <- rnorm(n = n)
 M <- 0.50 * X + rnorm(n = n)
@@ -111,7 +66,8 @@ In this example, we are interested in the confidence intervals of `indirect`
 defined as the product of `a` and `b` using the `:=` operator
 in the `lavaan` model syntax.
 
-```{r}
+
+```r
 model <- "
   Y ~ cp * X + b * M
   M ~ a * X
@@ -127,7 +83,8 @@ We can now fit the model using the `sem()` function from `lavaan`.
 We are using `missing = "fiml"` to handle missing data in `lavaan`.
 Since there are missing values in `x`, we also set `fixed.x = FALSE`.
 
-```{r}
+
+```r
 fit <- sem(data = data, model = model, missing = "fiml", fixed.x = FALSE)
 ```
 
@@ -136,17 +93,31 @@ fit <- sem(data = data, model = model, missing = "fiml", fixed.x = FALSE)
 The `fit` `lavaan` object can then be passed to the `MC()` function from `semmcci`
 to generate Monte Carlo confidence intervals.
 
-```{r}
+
+```r
 MC(fit, R = 500, alpha = c(0.001, 0.01, 0.05))
+#> Monte Carlo Confidence Intervals
+#>              est     se   R   0.05%    0.5%    2.5%  97.5%  99.5% 99.95%
+#> cp        0.2286 0.0410 500  0.1231  0.1311  0.1503 0.3061 0.3322 0.3505
+#> b         0.4895 0.0364 500  0.3820  0.3972  0.4175 0.5615 0.5802 0.5833
+#> a         0.5039 0.0336 500  0.4169  0.4191  0.4392 0.5721 0.5893 0.6028
+#> Y~~Y      1.0664 0.0519 500  0.9024  0.9358  0.9660 1.1657 1.1956 1.2016
+#> M~~M      0.9896 0.0480 500  0.8603  0.8721  0.9013 1.0876 1.1083 1.1399
+#> X~~X      1.0335 0.0497 500  0.9190  0.9273  0.9352 1.1285 1.1488 1.1802
+#> Y~1       0.0090 0.0349 500 -0.0964 -0.0802 -0.0579 0.0764 0.0900 0.1142
+#> M~1      -0.0126 0.0311 500 -0.1334 -0.0862 -0.0702 0.0501 0.0608 0.0920
+#> X~1      -0.0294 0.0343 500 -0.1295 -0.1164 -0.1000 0.0423 0.0606 0.0732
+#> indirect  0.2467 0.0247 500  0.1704  0.1835  0.1992 0.2905 0.3110 0.3175
+#> direct    0.2286 0.0410 500  0.1231  0.1311  0.1503 0.3061 0.3322 0.3505
+#> total     0.4753 0.0402 500  0.3643  0.3769  0.3952 0.5470 0.5743 0.6196
 ```
 
 ## Nonparametric Bootstrap Confidence Intervals
 
 Nonparametric bootstrap confidence intervals can be generated in `lavaan` using the following.
 
-```{r}
-#| message = FALSE,
-#| warning = FALSE
+
+```r
 parameterEstimates(
   sem(
     data = data,
@@ -157,55 +128,27 @@ parameterEstimates(
     bootstrap = 500
   )
 )
+#>         lhs op      rhs    label    est    se      z pvalue ci.lower ci.upper
+#> 1         Y  ~        X       cp  0.229 0.042  5.464  0.000    0.142    0.311
+#> 2         Y  ~        M        b  0.490 0.035 13.929  0.000    0.420    0.556
+#> 3         M  ~        X        a  0.504 0.034 14.816  0.000    0.435    0.566
+#> 4         Y ~~        Y           1.066 0.050 21.463  0.000    0.968    1.158
+#> 5         M ~~        M           0.990 0.049 20.313  0.000    0.888    1.086
+#> 6         X ~~        X           1.033 0.049 20.970  0.000    0.944    1.140
+#> 7         Y ~1                    0.009 0.036  0.246  0.806   -0.057    0.081
+#> 8         M ~1                   -0.013 0.033 -0.379  0.705   -0.075    0.052
+#> 9         X ~1                   -0.029 0.035 -0.847  0.397   -0.101    0.034
+#> 10 indirect :=      a*b indirect  0.247 0.024 10.260  0.000    0.198    0.294
+#> 11   direct :=       cp   direct  0.229 0.042  5.458  0.000    0.142    0.311
+#> 12    total := cp+(a*b)    total  0.475 0.040 11.950  0.000    0.396    0.552
 ```
 
 ## Benchmark
 
-```{r}
-#| echo = FALSE,
-#| message = FALSE,
-#| warning = FALSE
-benchmark01_file <- root$find_file(
-  ".data-raw",
-  "benchmark01.Rds"
-)
-if (!file.exists(benchmark01_file)) {
-  benchmark01 <- microbenchmark(
-    MC = {
-      fit <- sem(
-        data = data,
-        model = model,
-        missing = "fiml",
-        fixed.x = FALSE
-      )
-      MC(
-        fit,
-        R = R
-      )
-    },
-    NB = sem(
-      data = data,
-      model = model,
-      missing = "fiml",
-      fixed.x = FALSE,
-      se = "bootstrap",
-      bootstrap = B
-    ),
-    times = 10
-  )
-  saveRDS(
-    object = benchmark01,
-    file = benchmark01_file,
-    compress = "xz"
-  )
-}
-benchmark01 <- readRDS(
-  file = benchmark01_file
-)
-```
 
-```{r}
-#| eval = FALSE
+
+
+```r
 benchmark01 <- microbenchmark(
   MC = {
     fit <- sem(
@@ -233,72 +176,33 @@ benchmark01 <- microbenchmark(
 
 ### Summary of Benchmark Results
 
-```{r}
+
+```r
 summary(benchmark01)
+#>   expr         min          lq        mean      median          uq         max
+#> 1   MC    165.2084    167.3945    175.2107    173.3639    183.1616    188.5087
+#> 2   NB 118004.1084 118418.5625 118523.1858 118557.4567 118771.0982 118970.6300
+#>   neval
+#> 1    10
+#> 2    10
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
 
-```{r}
+
+```r
 summary(benchmark01, unit = "relative")
-```
-
-### Plot
-
-```{r}
-#| benchmark01,
-#| message = FALSE,
-#| warning = FALSE
-boxplot(benchmark01)
+#>   expr      min       lq     mean   median       uq      max neval
+#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
+#> 2   NB 714.2742 707.4221 676.4609 683.8649 648.4498 631.1148    10
 ```
 
 ## Benchmark - Monte Carlo Method with Precalculated Estimates
 
-```{r}
-#| echo = FALSE,
-#| message = FALSE,
-#| warning = FALSE
-benchmark02_file <- root$find_file(
-  ".data-raw",
-  "benchmark02.Rds"
-)
-if (!file.exists(benchmark02_file)) {
-  benchmark02 <- microbenchmark(
-    MC = {
-      fit <- sem(
-        data = data,
-        model = model,
-        missing = "fiml",
-        fixed.x = FALSE
-      )
-      MC(
-        fit,
-        R = R
-      )
-    },
-    NB = sem(
-      data = data,
-      model = model,
-      missing = "fiml",
-      fixed.x = FALSE,
-      se = "bootstrap",
-      bootstrap = B
-    ),
-    times = 10
-  )
-  saveRDS(
-    object = benchmark02,
-    file = benchmark02_file,
-    compress = "xz"
-  )
-}
-benchmark02 <- readRDS(
-  file = benchmark02_file
-)
-```
 
-```{r}
-#| eval = FALSE
+
+
+```r
 benchmark02 <- microbenchmark(
   MC = MC(
     fit,
@@ -318,21 +222,23 @@ benchmark02 <- microbenchmark(
 
 ### Summary of Benchmark Results
 
-```{r}
+
+```r
 summary(benchmark02)
+#>   expr         min         lq        mean      median          uq        max
+#> 1   MC    157.6788    166.287    177.2849    175.7493    185.0847    210.917
+#> 2   NB 118627.1229 118829.004 119073.5468 119120.7629 119281.5891 119440.962
+#>   neval
+#> 1    10
+#> 2    10
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
 
-```{r}
+
+```r
 summary(benchmark02, unit = "relative")
-```
-
-### Plot
-
-```{r}
-#| benchmark02,
-#| message = FALSE,
-#| warning = FALSE
-boxplot(benchmark02)
+#>   expr      min       lq     mean   median       uq      max neval
+#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
+#> 2   NB 752.3341 714.6019 671.6509 677.7881 644.4704 566.2937    10
 ```

@@ -1,0 +1,320 @@
+---
+title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping"
+author: "Ivan Jacob Agaloos Pesigan"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r}
+#| include = FALSE
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+#| include = FALSE
+set.seed(42)
+```
+
+```{r}
+#| include = FALSE
+root <- rprojroot::is_rstudio_project
+```
+
+```{r}
+#| include = FALSE
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+We compare the Monte Carlo (MC) method with nonparametric bootstrapping (NB) using the simple mediation model with missing data.
+One advantage of MC over NB is speed.
+This is because the model is only fitted once in MC whereas it is fitted many times in NB.
+
+```{r}
+#| message = FALSE
+library(semmcci)
+library(lavaan)
+library(microbenchmark)
+```
+
+## Arguments
+
+```{r}
+#| include = FALSE
+production <- TRUE
+if (production) {
+  R <- 5000L
+  B <- 5000L
+} else {
+  R <- 10L
+  B <- 10L
+}
+```
+
+```{r}
+#| echo = FALSE
+variables <- c(
+  "R",
+  "B"
+)
+values <- c(
+  R,
+  B
+)
+notes <- c(
+  "Number of Monte Carlo replications.",
+  "Number of bootstrap samples."
+)
+tab <- cbind(
+  Variables = variables,
+  Values = values,
+  Notes = notes
+)
+knitr::kable(
+  x = tab
+)
+```
+
+## Data
+
+```{r}
+n <- 1000
+X <- rnorm(n = n)
+M <- 0.50 * X + rnorm(n = n)
+Y <- 0.25 * X + 0.50 * M + rnorm(n = n)
+data <- data.frame(X, M, Y)
+
+# Create data set with missing values.
+
+miss <- sample(1:dim(data)[1], 300)
+data[miss[1:100], "X"] <- NA
+data[miss[101:200], "M"] <- NA
+data[miss[201:300], "Y"] <- NA
+```
+
+## Model Specification
+
+The indirect effect is defined by the product of the slopes
+of paths `X` to `M` labeled as `a` and `M` to `Y` labeled as `b`.
+In this example, we are interested in the confidence intervals of `indirect`
+defined as the product of `a` and `b` using the `:=` operator
+in the `lavaan` model syntax.
+
+```{r}
+model <- "
+  Y ~ cp * X + b * M
+  M ~ a * X
+  indirect := a * b
+  direct := cp
+  total := cp + (a * b)
+"
+```
+
+## Model Fitting
+
+We can now fit the model using the `sem()` function from `lavaan`.
+We are using `missing = "fiml"` to handle missing data in `lavaan`.
+Since there are missing values in `x`, we also set `fixed.x = FALSE`.
+
+```{r}
+fit <- sem(data = data, model = model, missing = "fiml", fixed.x = FALSE)
+```
+
+## Monte Carlo Confidence Intervals
+
+The `fit` `lavaan` object can then be passed to the `MC()` function from `semmcci`
+to generate Monte Carlo confidence intervals.
+
+```{r}
+MC(fit, R = 500, alpha = c(0.001, 0.01, 0.05))
+```
+
+## Nonparametric Bootstrap Confidence Intervals
+
+Nonparametric bootstrap confidence intervals can be generated in `lavaan` using the following.
+
+```{r}
+#| message = FALSE,
+#| warning = FALSE
+parameterEstimates(
+  sem(
+    data = data,
+    model = model,
+    missing = "fiml",
+    fixed.x = FALSE,
+    se = "bootstrap",
+    bootstrap = 500
+  )
+)
+```
+
+## Benchmark
+
+```{r}
+#| echo = FALSE,
+#| message = FALSE,
+#| warning = FALSE
+benchmark01_file <- root$find_file(
+  ".data-raw",
+  "benchmark01.Rds"
+)
+if (!file.exists(benchmark01_file)) {
+  benchmark01 <- microbenchmark(
+    MC = {
+      fit <- sem(
+        data = data,
+        model = model,
+        missing = "fiml",
+        fixed.x = FALSE
+      )
+      MC(
+        fit,
+        R = R
+      )
+    },
+    NB = sem(
+      data = data,
+      model = model,
+      missing = "fiml",
+      fixed.x = FALSE,
+      se = "bootstrap",
+      bootstrap = B
+    ),
+    times = 10
+  )
+  saveRDS(
+    object = benchmark01,
+    file = benchmark01_file,
+    compress = "xz"
+  )
+}
+benchmark01 <- readRDS(
+  file = benchmark01_file
+)
+```
+
+```{r}
+#| eval = FALSE
+benchmark01 <- microbenchmark(
+  MC = {
+    fit <- sem(
+      data = data,
+      model = model,
+      missing = "fiml",
+      fixed.x = FALSE
+    )
+    MC(
+      fit,
+      R = R
+    )
+  },
+  NB = sem(
+    data = data,
+    model = model,
+    missing = "fiml",
+    fixed.x = FALSE,
+    se = "bootstrap",
+    bootstrap = B
+  ),
+  times = 10
+)
+```
+
+### Summary of Benchmark Results
+
+```{r}
+summary(benchmark01)
+```
+
+### Summary of Benchmark Results Relative to the Faster Method
+
+```{r}
+summary(benchmark01, unit = "relative")
+```
+
+## Benchmark - Monte Carlo Method with Precalculated Estimates
+
+```{r}
+#| echo = FALSE,
+#| message = FALSE,
+#| warning = FALSE
+benchmark02_file <- root$find_file(
+  ".data-raw",
+  "benchmark02.Rds"
+)
+if (!file.exists(benchmark02_file)) {
+  benchmark02 <- microbenchmark(
+    MC = {
+      fit <- sem(
+        data = data,
+        model = model,
+        missing = "fiml",
+        fixed.x = FALSE
+      )
+      MC(
+        fit,
+        R = R
+      )
+    },
+    NB = sem(
+      data = data,
+      model = model,
+      missing = "fiml",
+      fixed.x = FALSE,
+      se = "bootstrap",
+      bootstrap = B
+    ),
+    times = 10
+  )
+  saveRDS(
+    object = benchmark02,
+    file = benchmark02_file,
+    compress = "xz"
+  )
+}
+benchmark02 <- readRDS(
+  file = benchmark02_file
+)
+```
+
+```{r}
+#| eval = FALSE
+benchmark02 <- microbenchmark(
+  MC = MC(
+    fit,
+    R = R
+  ),
+  NB = sem(
+    data = data,
+    model = model,
+    missing = "fiml",
+    fixed.x = FALSE,
+    se = "bootstrap",
+    bootstrap = B
+  ),
+  times = 10
+)
+```
+
+### Summary of Benchmark Results
+
+```{r}
+summary(benchmark02)
+```
+
+### Summary of Benchmark Results Relative to the Faster Method
+
+```{r}
+summary(benchmark02, unit = "relative")
+```
