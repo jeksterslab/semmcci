@@ -37,10 +37,11 @@
 print.semmcci <- function(x,
                           digits = 4,
                           ...) {
-  op <- options(digits = digits)
-  on.exit(options(op))
+  old <- options()
+  on.exit(options(old))
+  options(digits = digits)
   cat("Monte Carlo Confidence Intervals\n")
-  base::print(round(x$ci, digits = digits))
+  base::print(x$ci)
 }
 
 #' Print Method for Object of Class `semmcci_std`
@@ -84,5 +85,10 @@ print.semmcci_std <- function(x,
                               digits = 4,
                               ...) {
   cat("Standardized Monte Carlo Confidence Intervals\n")
-  base::print(round(x$ci_std, digits = digits))
+  base::print(
+    round(
+      x$ci_std,
+      digits = digits
+    )
+  )
 }
