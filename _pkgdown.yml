@@ -5,7 +5,7 @@ template:
   bootstrap: 5
 
 reference:
-- title: Monte Carlo Confidence Intervals
+- title: Functions
   contents:
   - has_keyword("mc")
 - title: Methods
