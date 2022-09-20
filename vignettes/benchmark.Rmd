@@ -30,16 +30,6 @@ library(lavaan)
 library(microbenchmark)
 ```
 
-## Arguments
-
-
-
-
-|Variables |Values |Notes                               |
-|:---------|:------|:-----------------------------------|
-|R         |5000   |Number of Monte Carlo replications. |
-|B         |5000   |Number of bootstrap samples.        |
-
 ## Data
 
 
@@ -157,6 +147,16 @@ parameterEstimates(
 ```
 
 ## Benchmark
+
+### Arguments
+
+
+
+
+|Variables |Values |Notes                               |
+|:---------|:------|:-----------------------------------|
+|R         |5000   |Number of Monte Carlo replications. |
+|B         |5000   |Number of bootstrap samples.        |
 
 
 

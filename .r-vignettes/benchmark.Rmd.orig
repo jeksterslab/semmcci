@@ -48,44 +48,6 @@ library(lavaan)
 library(microbenchmark)
 ```
 
-## Arguments
-
-```{r}
-#| include = FALSE
-production <- TRUE
-if (production) {
-  R <- 5000L
-  B <- 5000L
-} else {
-  R <- 10L
-  B <- 10L
-}
-```
-
-```{r}
-#| echo = FALSE
-variables <- c(
-  "R",
-  "B"
-)
-values <- c(
-  R,
-  B
-)
-notes <- c(
-  "Number of Monte Carlo replications.",
-  "Number of bootstrap samples."
-)
-tab <- cbind(
-  Variables = variables,
-  Values = values,
-  Notes = notes
-)
-knitr::kable(
-  x = tab
-)
-```
-
 ## Data
 
 ```{r}
@@ -160,6 +122,44 @@ parameterEstimates(
 ```
 
 ## Benchmark
+
+### Arguments
+
+```{r}
+#| include = FALSE
+production <- TRUE
+if (production) {
+  R <- 5000L
+  B <- 5000L
+} else {
+  R <- 10L
+  B <- 10L
+}
+```
+
+```{r}
+#| echo = FALSE
+variables <- c(
+  "R",
+  "B"
+)
+values <- c(
+  R,
+  B
+)
+notes <- c(
+  "Number of Monte Carlo replications.",
+  "Number of bootstrap samples."
+)
+tab <- cbind(
+  Variables = variables,
+  Values = values,
+  Notes = notes
+)
+knitr::kable(
+  x = tab
+)
+```
 
 ```{r}
 #| echo = FALSE,
