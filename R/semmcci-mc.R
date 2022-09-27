@@ -27,16 +27,7 @@
 #'   \item{`mvn`}{Method used to generate multivariate normal random variates.}
 #'   \item{`thetahat`}{Parameter estimates.}
 #'   \item{`thetahatstar`}{Sampling distribution of parameter estimates.}
-#'   \item{`ci`}{Confidence intervals.}
 #' }
-#' The list element `ci` is a matrix with the following columns:
-#' \describe{
-#'   \item{`est`}{Parameter estimates.}
-#'   \item{`se`}{Standard errors or the square root of the diagonals of the Monte Carlo sampling distribution of parameter estimates.}
-#'   \item{`R`}{Number of valid Monte Carlo replications.}
-#'   \item{...}{Percentiles that correspond to the confidence intervals defined by `alpha`.}
-#' }
-#' Note that the rows in `ci` correspond to the model parameters.
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
@@ -63,7 +54,6 @@
 #'   alpha = c(0.001, 0.01, 0.05)
 #' )
 #' @importFrom methods is
-#' @importFrom lavaan coef vcov
 #' @importFrom stats var complete.cases
 #' @keywords mc
 #' @export
@@ -234,24 +224,24 @@ MC <- function(object,
   # remove rows with NAs
   # thetahatstar <- thetahatstar[stats::complete.cases(thetahatstar), ]
   # inferences
-  se <- sqrt(diag(stats::var(thetahatstar)))
-  ci <- vector(
-    mode = "list",
-    length = dim(thetahatstar)[2]
-  )
-  for (i in seq_len(dim(thetahatstar)[2])) {
-    ci[[i]] <- .PCCI(
-      thetahatstar = thetahatstar[, i],
-      thetahat = thetahat$est[[i]],
-      alpha = alpha
-    )
-  }
-  ci <- do.call(
-    what = "rbind",
-    args = ci
-  )
-  rownames(ci) <- colnames(thetahatstar)
-  ci <- ci[which(!rownames(ci) %in% thetahat$fixed), ]
+  #   se <- sqrt(diag(stats::var(thetahatstar)))
+  #   ci <- vector(
+  #     mode = "list",
+  #     length = dim(thetahatstar)[2]
+  #   )
+  #   for (i in seq_len(dim(thetahatstar)[2])) {
+  #     ci[[i]] <- .PCCI(
+  #       thetahatstar = thetahatstar[, i],
+  #       thetahat = thetahat$est[[i]],
+  #       alpha = alpha
+  #     )
+  #   }
+  #   ci <- do.call(
+  #     what = "rbind",
+  #     args = ci
+  #   )
+  #   rownames(ci) <- colnames(thetahatstar)
+  #   ci <- ci[which(!rownames(ci) %in% thetahat$fixed), ]
   # output
   out <- list(
     R = R,
@@ -259,8 +249,8 @@ MC <- function(object,
     lavaan = object,
     mvn = mvn,
     thetahat = thetahat,
-    thetahatstar = thetahatstar,
-    ci = ci
+    thetahatstar = thetahatstar
+    # ci = ci
   )
   class(out) <- c(
     "semmcci",

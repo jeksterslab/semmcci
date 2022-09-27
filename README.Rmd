@@ -37,7 +37,7 @@ You can install the development version of `semmcci` from
 [GitHub](https://github.com/jeksterslab/semmcci) with:
 
 ```r
-install.packages("remotes")
+if (!require("remotes")) install.packages("remotes")
 remotes::install_github("jeksterslab/semmcci")
 ```
 

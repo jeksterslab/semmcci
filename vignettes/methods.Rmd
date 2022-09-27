@@ -1,0 +1,140 @@
+---
+title: "semmcci: Methods"
+author: "Ivan Jacob Agaloos Pesigan"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{semmcci: Methods}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r}
+#| include = FALSE
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r}
+#| include = FALSE
+set.seed(42)
+```
+
+```{r}
+#| message = FALSE
+library(semmcci)
+library(lavaan)
+```
+
+## Data
+
+```{r}
+n <- 1000
+X <- rnorm(n = n)
+M <- 0.50 * X + rnorm(n = n)
+Y <- 0.25 * X + 0.50 * M + rnorm(n = n)
+data <- data.frame(X, M, Y)
+```
+
+## Model Specification
+
+```{r}
+model <- "
+  Y ~ cp * X + b * M
+  M ~ a * X
+  indirect := a * b
+  direct := cp
+  total := cp + (a * b)
+"
+```
+
+## Model Fitting
+
+```{r}
+fit <- sem(data = data, model = model)
+```
+
+## Monte Carlo Confidence Intervals
+
+```{r}
+unstd <- MC(fit, R = 20000L, alpha = c(0.001, 0.01, 0.05))
+```
+
+## Methods
+
+### print
+
+```{r}
+print(unstd)
+```
+
+### summary
+
+```{r}
+summary(unstd)
+```
+
+### coef
+
+```{r}
+coef(unstd)
+```
+
+### vcov
+
+```{r}
+vcov(unstd)
+```
+
+### confint
+
+```{r}
+confint(unstd, level = 0.95)
+```
+
+## Standardized Monte Carlo Confidence Intervals
+
+```{r}
+fit <- sem(data = data, model = model, fixed.x = FALSE)
+unstd <- MC(fit, R = 20000L, alpha = c(0.001, 0.01, 0.05))
+```
+
+```{r}
+std <- MCStd(unstd)
+```
+
+## Methods
+
+### print
+
+```{r}
+print(std)
+```
+
+### summary
+
+```{r}
+summary(std)
+```
+
+### coef
+
+```{r}
+coef(std)
+```
+
+### vcov
+
+```{r}
+vcov(std)
+```
+
+### confint
+
+```{r}
+confint(std, level = 0.95)
+```

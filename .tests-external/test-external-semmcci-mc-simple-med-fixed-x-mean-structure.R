@@ -40,13 +40,15 @@ lapply(
       meanstructure = TRUE
     )
     set.seed(seed)
-    result <- MC(
-      fit,
-      R = R,
-      alpha = alpha
-    )$ci
-    result <- result[, c(1, 2, 4, 5)]
-    colnames(result) <- column_names
+    results <- .MCCI(
+      MC(
+        fit,
+        R = R,
+        alpha = alpha
+      )
+    )
+    results <- results[, c(1, 2, 4, 5)]
+    colnames(results) <- column_names
     set.seed(seed)
     answer <- MASS::mvrnorm(
       n = R,
@@ -57,7 +59,7 @@ lapply(
       answer,
       ab = answer[, "a"] * answer[, "b"]
     )
-    answer <- answer[, rownames(result)]
+    answer <- answer[, rownames(results)]
     expected <- colMeans(answer)
     se <- sqrt(diag(stats::var(answer)))
     prob_ll <- alpha / 2
@@ -72,7 +74,7 @@ lapply(
       args = answer
     )
     answer <- cbind(
-      est = result[, "est"],
+      est = results[, "est"],
       se = se,
       answer
     )
@@ -81,7 +83,7 @@ lapply(
       paste(text, "coefs"),
       {
         testthat::expect_true(
-          all(abs(coefs - as.vector(result[, "est"])) <= tol)
+          all(abs(coefs - as.vector(results[, "est"])) <= tol)
         )
         testthat::expect_true(
           all(abs(coefs - expected) <= tol)

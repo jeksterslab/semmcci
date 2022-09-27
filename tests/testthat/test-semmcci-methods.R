@@ -1,4 +1,4 @@
-## ---- test-semmcci-mc-print
+## ---- test-semmcci-mc-methods
 lapply(
   X = 1,
   FUN = function(i,
@@ -23,9 +23,18 @@ lapply(
       R = R,
       alpha = c(0.001, 0.01, 0.05)
     )
+    std <- MCStd(unstd)
     print.semmcci(unstd)
-    print.semmcci_std(MCStd(unstd))
+    print.semmccistd(std)
+    summary.semmcci(unstd)
+    summary.semmccistd(std)
+    coef.semmcci(unstd)
+    coef.semmccistd(std)
+    vcov.semmcci(unstd)
+    vcov.semmccistd(std)
+    confint.semmcci(unstd)
+    confint.semmccistd(std)
   },
   R = 100L,
-  text = "test-semmcci-mc-print"
+  text = "test-semmcci-mc-methods"
 )

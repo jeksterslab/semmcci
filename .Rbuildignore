@@ -31,3 +31,6 @@
 ^latex.*$
 ^vignettes/.*\.orig$
 
+^semmcci\.Rcheck$
+^semmcci.*\.tar\.gz$
+^semmcci.*\.tgz$

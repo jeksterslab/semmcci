@@ -21,6 +21,10 @@ articles:
   - example-3-latent
   - example-4-simple-miss
   - example-5-regression
+- title: Methods
+  navbar: Methods
+  contents:
+  - methods
 - title: Benchmark
   navbar: Benchmark
   contents:

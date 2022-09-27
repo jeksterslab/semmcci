@@ -43,7 +43,7 @@ lapply(
           check.attributes = FALSE
         )
         testthat::expect_equal(
-          results$ci_std["ab", "0.05%"],
+          .MCCI(results)["ab", "0.05%"],
           quantile(results$thetahatstar_std[, "ab"], .0005),
           check.attributes = FALSE
         )

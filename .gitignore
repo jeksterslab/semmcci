@@ -47,3 +47,6 @@
 
 # docs
 docs
+semmcci.Rcheck/
+semmcci*.tar.gz
+semmcci*.tgz

@@ -53,7 +53,7 @@ lapply(
         )
         testthat::expect_true(
           abs(
-            results$ci["cp", "0.05%"] - quantile(answers[, "cp"], .0005)
+            .MCCI(results)["cp", "0.05%"] - quantile(answers[, "cp"], .0005)
           ) <= tol
         )
       }

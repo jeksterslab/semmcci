@@ -14,7 +14,7 @@
 #' @inheritParams MC
 #' @param object object of class `semmcci`.
 #'   Output of the `MC()` function.
-#' @return Returns an object of class `semmcci_std`
+#' @return Returns an object of class `semmccistd`
 #' which is a list with the following elements:
 #' \describe{
 #'   \item{`R`}{Number of Monte Carlo replications.}
@@ -26,16 +26,7 @@
 #'   \item{`ci`}{Confidence intervals.}
 #'   \item{`thetahat_std`}{Standardized parameter estimates.}
 #'   \item{`thetahatstar_std`}{Standardized sampling distribution of parameter estimates.}
-#'   \item{`ci_std`}{Standardized confidence intervals.}
 #' }
-#' The list element `ci_std` is a matrix with the following columns:
-#' \describe{
-#'   \item{`est`}{Standardized parameter estimates.}
-#'   \item{`se`}{Standard errors or the square root of the diagonals of the standardized Monte Carlo sampling distribution of parameter estimates.}
-#'   \item{`R`}{Number of valid Monte Carlo replications.}
-#'   \item{...}{Percentiles that correspond to the confidence intervals defined by `alpha`.}
-#' }
-#' Note that the rows in `ci_std` correspond to the standardized model parameters.
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
@@ -130,25 +121,25 @@ MCStd <- function(object,
   colnames(thetahatstar_std) <- colnames(object$thetahatstar)
   # remove rows with NAs
   # thetahatstar_std <- thetahatstar_std[stats::complete.cases(thetahatstar_std), ]
-  se <- sqrt(diag(stats::var(thetahatstar_std)))
-  ci_std <- vector(
-    mode = "list",
-    length = dim(thetahatstar_std)[2]
-  )
-  for (i in seq_len(dim(thetahatstar_std)[2])) {
-    ci_std[[i]] <- .PCCI(
-      thetahatstar = thetahatstar_std[, i],
-      thetahat = thetahat_std[[i]],
-      alpha = alpha
-    )
-  }
-  ci_std <- do.call(
-    what = "rbind",
-    args = ci_std
-  )
-  rownames(ci_std) <- colnames(thetahatstar_std)
-  ci_std <- ci_std[which(object$lavaan@ParTable$op != "~1"), ]
-  ci_std <- ci_std[which(!rownames(ci_std) %in% object$thetahat$fixed), ]
+  #   se <- sqrt(diag(stats::var(thetahatstar_std)))
+  #   ci_std <- vector(
+  #     mode = "list",
+  #     length = dim(thetahatstar_std)[2]
+  #   )
+  #   for (i in seq_len(dim(thetahatstar_std)[2])) {
+  #     ci_std[[i]] <- .PCCI(
+  #       thetahatstar = thetahatstar_std[, i],
+  #       thetahat = thetahat_std[[i]],
+  #       alpha = alpha
+  #     )
+  #   }
+  #   ci_std <- do.call(
+  #     what = "rbind",
+  #     args = ci_std
+  #   )
+  #   rownames(ci_std) <- colnames(thetahatstar_std)
+  #   ci_std <- ci_std[which(object$lavaan@ParTable$op != "~1"), ]
+  #   ci_std <- ci_std[which(!rownames(ci_std) %in% object$thetahat$fixed), ]
   out <- list(
     R = object$R,
     alpha = object$alpha,
@@ -157,11 +148,12 @@ MCStd <- function(object,
     thetahat = object$thetahat,
     thetahatstar = object$thetahatstar,
     ci = object$ci,
-    thetahatstar_std = thetahatstar_std,
-    ci_std = ci_std
+    thetahat_std = thetahat_std,
+    thetahatstar_std = thetahatstar_std
+    # ci_std = ci_std
   )
   class(out) <- c(
-    "semmcci_std",
+    "semmccistd",
     class(out)
   )
   return(out)

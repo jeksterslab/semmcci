@@ -15,7 +15,7 @@ Significance level.
 Default value is \code{alpha = c(0.001, 0.01, 0.05)}.}
 }
 \value{
-Returns an object of class \code{semmcci_std}
+Returns an object of class \code{semmccistd}
 which is a list with the following elements:
 \describe{
 \item{\code{R}}{Number of Monte Carlo replications.}
@@ -27,16 +27,7 @@ which is a list with the following elements:
 \item{\code{ci}}{Confidence intervals.}
 \item{\code{thetahat_std}}{Standardized parameter estimates.}
 \item{\code{thetahatstar_std}}{Standardized sampling distribution of parameter estimates.}
-\item{\code{ci_std}}{Standardized confidence intervals.}
 }
-The list element \code{ci_std} is a matrix with the following columns:
-\describe{
-\item{\code{est}}{Standardized parameter estimates.}
-\item{\code{se}}{Standard errors or the square root of the diagonals of the standardized Monte Carlo sampling distribution of parameter estimates.}
-\item{\code{R}}{Number of valid Monte Carlo replications.}
-\item{...}{Percentiles that correspond to the confidence intervals defined by \code{alpha}.}
-}
-Note that the rows in \code{ci_std} correspond to the standardized model parameters.
 }
 \description{
 Calculates standardized Monte Carlo confidence intervals

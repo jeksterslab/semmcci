@@ -42,7 +42,7 @@ lapply(
           check.attributes = FALSE
         )
         testthat::expect_equal(
-          results$ci_std["textual~visual", "0.05%"],
+          .MCCI(results)["textual~visual", "0.05%"],
           quantile(results$thetahatstar_std[, "textual~visual"], .0005),
           check.attributes = FALSE
         )

@@ -59,12 +59,14 @@ lapply(
       R = R,
       alpha = alpha
     )
-    result <- MCStd(
-      unstd,
-      alpha = alpha
-    )$ci_std
-    result <- result[, c(1, 2, 4, 5)]
-    colnames(result) <- column_names
+    results <- .MCCI(
+      MCStd(
+        unstd,
+        alpha = alpha
+      )
+    )
+    results <- results[, c(1, 2, 4, 5)]
+    colnames(results) <- column_names
     set.seed(seed)
     answer <- MASS::mvrnorm(
       n = R,
@@ -133,7 +135,7 @@ lapply(
       args = answer
     )
     answer <- cbind(
-      est = result[, "est"],
+      est = results[, "est"],
       se = se,
       answer
     )
@@ -142,7 +144,7 @@ lapply(
       paste(text, "coefs"),
       {
         testthat::expect_true(
-          all(abs(coefs - as.vector(result[, "est"])) <= tol)
+          all(abs(coefs - as.vector(results[, "est"])) <= tol)
         )
         testthat::expect_true(
           all(abs(coefs - expected) <= tol)

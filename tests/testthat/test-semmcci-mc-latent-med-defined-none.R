@@ -40,7 +40,7 @@ lapply(
         )
         testthat::expect_true(
           abs(
-            results$ci["visual~~textual", "0.05%"] - quantile(answers[, "visual~~textual"], .0005)
+            .MCCI(results)["visual~~textual", "0.05%"] - quantile(answers[, "visual~~textual"], .0005)
           ) <= tol
         )
       }
