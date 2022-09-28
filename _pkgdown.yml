@@ -16,11 +16,11 @@ articles:
 - title: Examples
   navbar: Examples
   contents:
-  - example-1-simple
-  - example-2-serial
-  - example-3-latent
-  - example-4-simple-miss
-  - example-5-regression
+  - example_1_simple
+  - example_2_serial
+  - example_3_latent
+  - example_4_simple_miss
+  - example_5_regression
 - title: Methods
   navbar: Methods
   contents:

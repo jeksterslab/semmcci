@@ -29,4 +29,3 @@
 ^\.vim$
 ^docs$
 ^latex.*$
-^vignettes/.*\.orig$

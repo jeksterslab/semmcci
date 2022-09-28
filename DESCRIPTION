@@ -39,5 +39,4 @@ Suggests:
     rmarkdown,
     testthat,
     MASS
-VignetteBuilder: knitr
 RoxygenNote: 7.2.1

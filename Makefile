@@ -1,6 +1,6 @@
 .PHONY: all term termconda root remotes env github arch jammy focal win deps style lint cov check cran site build install vignettes rpkg tinytex latex rhub rhublocal rclean rcleanall clean termclean deepclean
 
-all: clean deps style man/*.Rd check build install README.md vignettes site manual
+all: clean deps style man/*.Rd vignettes check build install README.md site manual
 
 # terminal
 
@@ -22,6 +22,7 @@ remotes:
 env:
 	@Rscript .r-set-env/r-set-env.R $(PWD)
 	@Rscript .r-buildignore/r-buildignore.R
+	@grep "\S" .Rbuildignore
 
 github:
 	@Rscript .r-set-pkg/r-set-pkg-dev-github.R $(PWD)
@@ -63,12 +64,15 @@ style:
 
 lint:
 	@Rscript -e "lintr::lint_dir('R')"
+	@Rscript -e "lintr::lint_dir('.r-buildignore')"
 	@Rscript -e "lintr::lint_dir('.r-dependencies')"
+	@Rscript -e "lintr::lint_dir('.r-hub')"
 	@Rscript -e "lintr::lint_dir('.r-load-all')"
 	@Rscript -e "lintr::lint_dir('.r-misc')"
 	@Rscript -e "lintr::lint_dir('.r-set-env')"
 	@Rscript -e "lintr::lint_dir('.r-set-pkg')"
 	@Rscript -e "lintr::lint_dir('.r-set-profile')"
+	@Rscript -e "lintr::lint_dir('.r-vignettes')"
 	@Rscript -e "lintr::lint_dir('.r-writeup')"
 	@Rscript -e "lintr::lint_dir('tests')"
 	@Rscript -e "lintr::lint_dir('.tests-benchmark')"
@@ -93,15 +97,18 @@ site:
 	@Rscript -e "pkgdown::build_site()"
 
 build:
-	@Rscript -e "devtools::build(path = '.')"
+	@Rscript -e "devtools::build(path = '.', vignettes = FALSE)"
 
 install:
 	@Rscript -e "devtools::install(pkg = '.')"
 
-rpkg: deps style README.md man/*.Rd check build install vignettes site
+rpkg: deps style README.md man/*.Rd vignettes check build install site
 
 vignettes:
 	@Rscript .r-vignettes/precompile.R
+	@rm -rf vignettes/*.orig
+	@Rscript -e "devtools::build_vignettes(pkg = '.')"
+	@Rscript -e "tools::compactPDF()"
 
 # latex related
 
@@ -131,6 +138,7 @@ manual:
 clean:
 	@rm -rf README.html
 	@rm -rf README.md
+	@rm -rf doc/*
 	@rm -rf docs/*
 	@rm -rf man/*
 	@rm -rf NAMESPACE
@@ -155,6 +163,7 @@ deepclean: clean termclean rcleanall
 	@rm -rf .bin
 	@rm -rf .data*
 	@rm -rf .detritus
+	@rm -rf doc
 	@rm -rf docs
 	@rm -rf julia
 	@rm -rf latexsrc
