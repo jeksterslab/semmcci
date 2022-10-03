@@ -1,6 +1,6 @@
 .PHONY: all term termconda root remotes env github arch jammy focal win deps style lint cov check cran site build install vignettes rpkg tinytex latex rhub rhublocal rclean rcleanall clean termclean deepclean
 
-all: clean deps style man/*.Rd vignettes check build install README.md site manual
+all: clean deps style man/*.Rd check build install vignettes README.md site manual
 
 # terminal
 
