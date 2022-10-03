@@ -11,7 +11,7 @@
 
 ## Patch
 
-* Added a reference in the DESCRIPTION file.
+* Initial CRAN release.
 
 # semmcci 1.0.0
 
