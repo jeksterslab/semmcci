@@ -1,7 +1,7 @@
 semmcci
 ================
 Ivan Jacob Agaloos Pesigan
-2022-10-03
+2022-10-04
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
@@ -30,11 +30,6 @@ You can install the development version of `semmcci` from
 if (!require("remotes")) install.packages("remotes")
 remotes::install_github("jeksterslab/semmcci")
 ```
-
-## Documentation
-
-See [GitHub Pages](https://jeksterslab.github.io/semmcci/index.html) for
-package documentation.
 
 ## Description
 
@@ -150,3 +145,8 @@ MCStd(unstd)
 #> direct   0.1930 0.0294 20000 0.0958 0.1171 0.1355 0.2496 0.2682 0.2904
 #> total    0.3928 0.0268 20000 0.3011 0.3220 0.3389 0.4439 0.4602 0.4785
 ```
+
+## Documentation
+
+See [GitHub Pages](https://jeksterslab.github.io/semmcci/index.html) for
+package documentation.

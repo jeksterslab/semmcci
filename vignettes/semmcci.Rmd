@@ -64,7 +64,7 @@ and the sampling variance-covariance matrix $\mathrm{Var} \left( \hat{\boldsymbo
     \right)
 \end{equation}
 
-Confidence intervals for defined parameters $g \left( \hat{\boldsymbol{\theta}} \right)$ are generated
+Confidence intervals for defined parameters $\mathbf{g} \left( \hat{\boldsymbol{\theta}} \right)$ are generated
 by obtaining percentiles corresponding to $100(1 - \alpha)\%$
 from the generated sampling distribution,
 where $\alpha$ is the significance level.

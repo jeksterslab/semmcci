@@ -41,11 +41,6 @@ if (!require("remotes")) install.packages("remotes")
 remotes::install_github("jeksterslab/semmcci")
 ```
 
-## Documentation
-
-See [GitHub Pages](https://jeksterslab.github.io/semmcci/index.html) for
-package documentation.
-
 ## Description
 
 In the Monte Carlo method, a sampling distribution of parameter
@@ -138,3 +133,8 @@ unstd <- MC(fit, R = 20000L, alpha = c(0.001, 0.01, 0.05))
 ```{r}
 MCStd(unstd)
 ```
+
+## Documentation
+
+See [GitHub Pages](https://jeksterslab.github.io/semmcci/index.html) for
+package documentation.
