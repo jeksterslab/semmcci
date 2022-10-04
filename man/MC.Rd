@@ -4,7 +4,7 @@
 \alias{MC}
 \title{Monte Carlo Confidence Intervals}
 \usage{
-MC(object, R = 20000L, alpha = c(0.001, 0.01, 0.05))
+MC(object, R = 20000L, alpha = c(0.001, 0.01, 0.05), cholesky = NULL)
 }
 \arguments{
 \item{object}{object of class \code{lavaan}.}
@@ -15,6 +15,11 @@ Number of Monte Carlo replications.}
 \item{alpha}{Numeric vector.
 Significance level.
 Default value is \code{alpha = c(0.001, 0.01, 0.05)}.}
+
+\item{cholesky}{Logical.
+If \code{TRUE}, use Cholesky decomposition to generate multivariate normal data.
+If \code{FALSE}, use eigen decomposition to generate multivariate normal data.
+If \code{NULL}, use Cholesky decomposition first and on failure use eigen decomposition to generate multivariate normal data.}
 }
 \value{
 Returns an object of class \code{semmcci} which is a list with the following elements:

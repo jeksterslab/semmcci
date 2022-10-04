@@ -1,6 +1,8 @@
 # semmcci 1.0.2.9000
 
-## Development Version
+## Patch
+
+* Added `cholesky` argument in `MC()`.
 
 # semmcci 1.0.2
 

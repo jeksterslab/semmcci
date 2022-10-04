@@ -19,6 +19,10 @@
 #' @param alpha Numeric vector.
 #'   Significance level.
 #'   Default value is `alpha = c(0.001, 0.01, 0.05)`.
+#' @param cholesky Logical.
+#'   If `TRUE`, use Cholesky decomposition to generate multivariate normal data.
+#'   If `FALSE`, use eigen decomposition to generate multivariate normal data.
+#'   If `NULL`, use Cholesky decomposition first and on failure use eigen decomposition to generate multivariate normal data.
 #' @return Returns an object of class `semmcci` which is a list with the following elements:
 #' \describe{
 #'   \item{`R`}{Number of Monte Carlo replications.}
@@ -59,7 +63,8 @@
 #' @export
 MC <- function(object,
                R = 20000L,
-               alpha = c(0.001, 0.01, 0.05)) {
+               alpha = c(0.001, 0.01, 0.05),
+               cholesky = NULL) {
   stopifnot(
     methods::is(
       object,
@@ -78,30 +83,58 @@ MC <- function(object,
     nrow = n,
     ncol = k
   )
-  tryCatch(
-    {
-      thetahatstar_orig <- .MVNChol(
-        norm = norm,
-        mat = chol(scale)
-      )
-      mvn <- "chol"
-    },
-    warning = function(w) {
-      mvn <- "eigen"
-    },
-    error = function(e) {
-      mvn <- "eigen"
+  run_chol <- FALSE
+  run_eigen <- FALSE
+  if (is.null(cholesky)) {
+    run_chol <- TRUE
+  } else {
+    if (cholesky) {
+      run_chol <- TRUE
+    } else {
+      run_eigen <- TRUE
     }
-  )
-  if (mvn == "eigen") {
-    eig <- eigen(
+  }
+  if (run_chol) {
+    tryCatch(
+      {
+        thetahatstar_orig <- .MVNChol(
+          norm = norm,
+          mat = chol(scale)
+        )
+        mvn <- "chol"
+      },
+      warning = function(w) {
+        if (is.null(cholesky)) {
+          run_eigen <- TRUE
+        }
+        if (cholesky) {
+          stop(
+            "Error in Cholesky decomposition. Try using `cholesky = FALSE`."
+          )
+        }
+      },
+      error = function(e) {
+        if (is.null(cholesky)) {
+          run_eigen <- TRUE
+        }
+        if (cholesky) {
+          stop(
+            "Error in Cholesky decomposition. Try using `cholesky = FALSE`."
+          )
+        }
+      }
+    )
+  }
+  if (run_eigen) {
+    mat <- eigen(
       scale,
       symmetric = TRUE,
       only.values = FALSE
     )
+    mvn <- "eigen"
     if (
       !all(
-        eig$values >= 1e-06 * abs(eig$values[1])
+        mat$values >= 1e-06 * abs(mat$values[1])
       )
     ) {
       stop(
@@ -110,9 +143,44 @@ MC <- function(object,
     }
     thetahatstar_orig <- .MVNEigen(
       norm = norm,
-      mat = eig
+      mat = mat
     )
   }
+  # tryCatch(
+  #  {
+  #    thetahatstar_orig <- .MVNChol(
+  #      norm = norm,
+  #      mat = chol(scale)
+  #    )
+  #    mvn <- "chol"
+  #  },
+  #  warning = function(w) {
+  #    mvn <- "eigen"
+  #  },
+  #  error = function(e) {
+  #    mvn <- "eigen"
+  #  }
+  # )
+  # if (mvn == "eigen") {
+  #  eig <- eigen(
+  #    scale,
+  #    symmetric = TRUE,
+  #    only.values = FALSE
+  #  )
+  #  if (
+  #    !all(
+  #      eig$values >= 1e-06 * abs(eig$values[1])
+  #    )
+  #  ) {
+  #    stop(
+  #        "The sampling variance-covariance matrix is nonpositive definite."
+  #    )
+  #  }
+  #  thetahatstar_orig <- .MVNEigen(
+  #    norm = norm,
+  #    mat = eig
+  #  )
+  # }
   thetahatstar_orig <- thetahatstar_orig + rep(
     x = location,
     times = rep(
