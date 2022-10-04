@@ -21,7 +21,7 @@ which is a list with the following elements:
 \item{\code{R}}{Number of Monte Carlo replications.}
 \item{\code{alpha}}{Significance level specified.}
 \item{\code{lavaan}}{\code{lavaan} object.}
-\item{\code{mvn}}{Method used to generate multivariate normal random variates.}
+\item{\code{decomposition}}{Matrix decomposition used to generate multivariate normal random variates.}
 \item{\code{thetahat}}{Parameter estimates.}
 \item{\code{thetahatstar}}{Sampling distribution of parameter estimates.}
 \item{\code{ci}}{Confidence intervals.}

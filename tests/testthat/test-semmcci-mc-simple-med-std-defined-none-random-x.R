@@ -3,6 +3,7 @@ lapply(
   X = 1,
   FUN = function(i,
                  n,
+                 R,
                  text) {
     message(text)
     seed <- 42
@@ -33,34 +34,123 @@ lapply(
       fixed.x = FALSE
     )
     set.seed(seed)
-    results_unstd <- MC(
+    results_unstd_null <- MC(
       fit,
-      R = 10L,
-      alpha = c(0.001, 0.01, 0.05)
+      R = R,
+      alpha = c(0.001, 0.01, 0.05),
+      decomposition = NULL
     )
-    results_unstd$thetahatstar[3, ] <- lavaan::parameterEstimates(fit)$est
-    results <- MCStd(results_unstd)
+    results_unstd_null$thetahatstar[3, ] <- lavaan::parameterEstimates(fit)$est
+    results_null <- MCStd(results_unstd_null)
+    set.seed(seed)
+    results_unstd_chol <- MC(
+      fit,
+      R = R,
+      alpha = c(0.001, 0.01, 0.05),
+      decomposition = "chol"
+    )
+    results_unstd_chol$thetahatstar[3, ] <- lavaan::parameterEstimates(fit)$est
+    results_chol <- MCStd(results_unstd_chol)
+    set.seed(seed)
+    results_unstd_eigen <- MC(
+      fit,
+      R = R,
+      alpha = c(0.001, 0.01, 0.05),
+      decomposition = "eigen"
+    )
+    results_unstd_eigen$thetahatstar[3, ] <- lavaan::parameterEstimates(fit)$est
+    results_eigen <- MCStd(results_unstd_eigen)
+    set.seed(seed)
+    results_unstd_svd <- MC(
+      fit,
+      R = R,
+      alpha = c(0.001, 0.01, 0.05),
+      decomposition = "svd"
+    )
+    results_unstd_svd$thetahatstar[3, ] <- lavaan::parameterEstimates(fit)$est
+    results_svd <- MCStd(results_unstd_svd)
     testthat::test_that(
-      text,
+      paste(text, "NULL"),
       {
         testthat::expect_equal(
-          results$thetahat$est,
+          results_null$thetahat$est,
           lavaan::parameterEstimates(fit)$est,
           check.attributes = FALSE
         )
         testthat::expect_equal(
-          results$thetahatstar_std[3, ],
+          results_null$thetahatstar_std[3, ],
           lavaan::standardizedSolution(fit)$est.std,
           check.attributes = FALSE
         )
         testthat::expect_equal(
-          .MCCI(results)["cp", "0.05%"],
-          quantile(results$thetahatstar_std[, "cp"], .0005),
+          .MCCI(results_null)["cp", "97.5%"],
+          quantile(results_null$thetahatstar_std[, "cp"], .975, na.rm = TRUE),
+          check.attributes = FALSE
+        )
+      }
+    )
+    testthat::test_that(
+      paste(text, "chol"),
+      {
+        testthat::expect_equal(
+          results_chol$thetahat$est,
+          lavaan::parameterEstimates(fit)$est,
+          check.attributes = FALSE
+        )
+        testthat::expect_equal(
+          results_chol$thetahatstar_std[3, ],
+          lavaan::standardizedSolution(fit)$est.std,
+          check.attributes = FALSE
+        )
+        testthat::expect_equal(
+          .MCCI(results_chol)["cp", "97.5%"],
+          quantile(results_chol$thetahatstar_std[, "cp"], .975, na.rm = TRUE),
+          check.attributes = FALSE
+        )
+      }
+    )
+    testthat::test_that(
+      paste(text, "eigen"),
+      {
+        testthat::expect_equal(
+          results_eigen$thetahat$est,
+          lavaan::parameterEstimates(fit)$est,
+          check.attributes = FALSE
+        )
+        testthat::expect_equal(
+          results_eigen$thetahatstar_std[3, ],
+          lavaan::standardizedSolution(fit)$est.std,
+          check.attributes = FALSE
+        )
+        testthat::expect_equal(
+          .MCCI(results_eigen)["cp", "97.5%"],
+          quantile(results_eigen$thetahatstar_std[, "cp"], .975, na.rm = TRUE),
+          check.attributes = FALSE
+        )
+      }
+    )
+    testthat::test_that(
+      paste(text, "svd"),
+      {
+        testthat::expect_equal(
+          results_svd$thetahat$est,
+          lavaan::parameterEstimates(fit)$est,
+          check.attributes = FALSE
+        )
+        testthat::expect_equal(
+          results_svd$thetahatstar_std[3, ],
+          lavaan::standardizedSolution(fit)$est.std,
+          check.attributes = FALSE
+        )
+        testthat::expect_equal(
+          .MCCI(results_svd)["cp", "97.5%"],
+          quantile(results_svd$thetahatstar_std[, "cp"], .975, na.rm = TRUE),
           check.attributes = FALSE
         )
       }
     )
   },
   n = 1000L,
+  R = 5000L,
   text = "test-semmcci-mc-simple-med-std-defined-none-random-x"
 )

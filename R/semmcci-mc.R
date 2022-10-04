@@ -19,16 +19,24 @@
 #' @param alpha Numeric vector.
 #'   Significance level.
 #'   Default value is `alpha = c(0.001, 0.01, 0.05)`.
-#' @param cholesky Logical.
-#'   If `TRUE`, use Cholesky decomposition to generate multivariate normal data.
-#'   If `FALSE`, use eigen decomposition to generate multivariate normal data.
-#'   If `NULL`, use Cholesky decomposition first and on failure use eigen decomposition to generate multivariate normal data.
+#' @param decomposition Character string.
+#'   Matrix decomposition of the sampling variance-covariance matrix for the data generation.
+#'   If `decomposition = "chol"`, use Cholesky decomposition.
+#'   If `decomposition = "eigen"`, use eigenvalue decomposition.
+#'   If `decomposition = "svd"`, use singular value decomposition.
+#'   If `decomposition = NULL`, try Cholesky decomposition.
+#'   If Cholesky decomposition fails, try eigenvalue decomposition.
+#'   Finally, if eigenvalue decomposition fails, try singular value decomposition.
+#' @param pd Logical.
+#'   If `pd = TRUE`, check if the sampling variance-covariance matrix is positive definite using `tol`.
+#' @param tol Numeric.
+#'   Tolerance used to test for positive definite matrix.
 #' @return Returns an object of class `semmcci` which is a list with the following elements:
 #' \describe{
 #'   \item{`R`}{Number of Monte Carlo replications.}
 #'   \item{`alpha`}{Significance level specified.}
 #'   \item{`lavaan`}{`lavaan` object.}
-#'   \item{`mvn`}{Method used to generate multivariate normal random variates.}
+#'   \item{`decomposition`}{Matrix decomposition used to generate multivariate normal random variates.}
 #'   \item{`thetahat`}{Parameter estimates.}
 #'   \item{`thetahatstar`}{Sampling distribution of parameter estimates.}
 #' }
@@ -64,7 +72,9 @@
 MC <- function(object,
                R = 20000L,
                alpha = c(0.001, 0.01, 0.05),
-               cholesky = NULL) {
+               decomposition = NULL,
+               pd = TRUE,
+               tol = 1e-06) {
   stopifnot(
     methods::is(
       object,
@@ -72,123 +82,16 @@ MC <- function(object,
     )
   )
   # set up Monte Carlo
-  location <- lavaan::coef(object)
-  scale <- lavaan::vcov(object)
-  k <- length(location)
-  n <- R
-  norm <- matrix(
-    data = stats::rnorm(
-      n = n * k
-    ),
-    nrow = n,
-    ncol = k
+  thetahatstar <- .ThetaStar(
+    R = R,
+    scale = lavaan::vcov(object),
+    location = lavaan::coef(object),
+    decomposition = decomposition,
+    pd = pd,
+    tol = tol
   )
-  run_chol <- FALSE
-  run_eigen <- FALSE
-  if (is.null(cholesky)) {
-    run_chol <- TRUE
-  } else {
-    if (cholesky) {
-      run_chol <- TRUE
-    } else {
-      run_eigen <- TRUE
-    }
-  }
-  if (run_chol) {
-    tryCatch(
-      {
-        thetahatstar_orig <- .MVNChol(
-          norm = norm,
-          mat = chol(scale)
-        )
-        mvn <- "chol"
-      },
-      warning = function(w) {
-        if (is.null(cholesky)) {
-          run_eigen <- TRUE
-        }
-        if (cholesky) {
-          stop(
-            "Error in Cholesky decomposition. Try using `cholesky = FALSE`."
-          )
-        }
-      },
-      error = function(e) {
-        if (is.null(cholesky)) {
-          run_eigen <- TRUE
-        }
-        if (cholesky) {
-          stop(
-            "Error in Cholesky decomposition. Try using `cholesky = FALSE`."
-          )
-        }
-      }
-    )
-  }
-  if (run_eigen) {
-    mat <- eigen(
-      scale,
-      symmetric = TRUE,
-      only.values = FALSE
-    )
-    mvn <- "eigen"
-    if (
-      !all(
-        mat$values >= 1e-06 * abs(mat$values[1])
-      )
-    ) {
-      stop(
-        "The sampling variance-covariance matrix is nonpositive definite."
-      )
-    }
-    thetahatstar_orig <- .MVNEigen(
-      norm = norm,
-      mat = mat
-    )
-  }
-  # tryCatch(
-  #  {
-  #    thetahatstar_orig <- .MVNChol(
-  #      norm = norm,
-  #      mat = chol(scale)
-  #    )
-  #    mvn <- "chol"
-  #  },
-  #  warning = function(w) {
-  #    mvn <- "eigen"
-  #  },
-  #  error = function(e) {
-  #    mvn <- "eigen"
-  #  }
-  # )
-  # if (mvn == "eigen") {
-  #  eig <- eigen(
-  #    scale,
-  #    symmetric = TRUE,
-  #    only.values = FALSE
-  #  )
-  #  if (
-  #    !all(
-  #      eig$values >= 1e-06 * abs(eig$values[1])
-  #    )
-  #  ) {
-  #    stop(
-  #        "The sampling variance-covariance matrix is nonpositive definite."
-  #    )
-  #  }
-  #  thetahatstar_orig <- .MVNEigen(
-  #    norm = norm,
-  #    mat = eig
-  #  )
-  # }
-  thetahatstar_orig <- thetahatstar_orig + rep(
-    x = location,
-    times = rep(
-      x = n,
-      times = k
-    )
-  )
-  colnames(thetahatstar_orig) <- names(location)
+  thetahatstar_orig <- thetahatstar$thetahatstar
+  decomposition <- thetahatstar$decomposition
   # extract all estimates including fixed parameters
   thetahat <- .ThetaHat(
     object = object
@@ -289,36 +192,14 @@ MC <- function(object,
   }
   # rearrange
   thetahatstar <- thetahatstar[, thetahat$par_names]
-  # remove rows with NAs
-  # thetahatstar <- thetahatstar[stats::complete.cases(thetahatstar), ]
-  # inferences
-  #   se <- sqrt(diag(stats::var(thetahatstar)))
-  #   ci <- vector(
-  #     mode = "list",
-  #     length = dim(thetahatstar)[2]
-  #   )
-  #   for (i in seq_len(dim(thetahatstar)[2])) {
-  #     ci[[i]] <- .PCCI(
-  #       thetahatstar = thetahatstar[, i],
-  #       thetahat = thetahat$est[[i]],
-  #       alpha = alpha
-  #     )
-  #   }
-  #   ci <- do.call(
-  #     what = "rbind",
-  #     args = ci
-  #   )
-  #   rownames(ci) <- colnames(thetahatstar)
-  #   ci <- ci[which(!rownames(ci) %in% thetahat$fixed), ]
   # output
   out <- list(
     R = R,
     alpha = alpha,
     lavaan = object,
-    mvn = mvn,
+    decomposition = decomposition,
     thetahat = thetahat,
     thetahatstar = thetahatstar
-    # ci = ci
   )
   class(out) <- c(
     "semmcci",

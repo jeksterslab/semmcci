@@ -2,7 +2,7 @@
 
 ## Patch
 
-* Added `cholesky` argument in `MC()`.
+* Added `decomposition`, `pd`, and `tol` arguments in `MC()`.
 
 # semmcci 1.0.2
 

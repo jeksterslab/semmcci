@@ -108,7 +108,6 @@ vignettes:
 	@Rscript .r-vignettes/precompile.R
 	@rm -rf vignettes/*.orig
 	@Rscript -e "devtools::build_vignettes(pkg = '.')"
-	@Rscript -e "tools::compactPDF()"
 
 # latex related
 

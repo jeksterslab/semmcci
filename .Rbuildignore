@@ -30,3 +30,6 @@
 ^docs$
 ^latex.*$
 ^vignettes$
+^semmcci\.Rcheck$
+^semmcci.*\.tar\.gz$
+^semmcci.*\.tgz$

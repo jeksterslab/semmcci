@@ -4,7 +4,14 @@
 \alias{MC}
 \title{Monte Carlo Confidence Intervals}
 \usage{
-MC(object, R = 20000L, alpha = c(0.001, 0.01, 0.05), cholesky = NULL)
+MC(
+  object,
+  R = 20000L,
+  alpha = c(0.001, 0.01, 0.05),
+  decomposition = NULL,
+  pd = TRUE,
+  tol = 1e-06
+)
 }
 \arguments{
 \item{object}{object of class \code{lavaan}.}
@@ -16,10 +23,20 @@ Number of Monte Carlo replications.}
 Significance level.
 Default value is \code{alpha = c(0.001, 0.01, 0.05)}.}
 
-\item{cholesky}{Logical.
-If \code{TRUE}, use Cholesky decomposition to generate multivariate normal data.
-If \code{FALSE}, use eigen decomposition to generate multivariate normal data.
-If \code{NULL}, use Cholesky decomposition first and on failure use eigen decomposition to generate multivariate normal data.}
+\item{decomposition}{Character string.
+Matrix decomposition of the sampling variance-covariance matrix for the data generation.
+If \code{decomposition = "chol"}, use Cholesky decomposition.
+If \code{decomposition = "eigen"}, use eigenvalue decomposition.
+If \code{decomposition = "svd"}, use singular value decomposition.
+If \code{decomposition = NULL}, try Cholesky decomposition.
+If Cholesky decomposition fails, try eigenvalue decomposition.
+Finally, if eigenvalue decomposition fails, try singular value decomposition.}
+
+\item{pd}{Logical.
+If \code{pd = TRUE}, check if the sampling variance-covariance matrix is positive definite using \code{tol}.}
+
+\item{tol}{Numeric.
+Tolerance used to test for positive definite matrix.}
 }
 \value{
 Returns an object of class \code{semmcci} which is a list with the following elements:
@@ -27,7 +44,7 @@ Returns an object of class \code{semmcci} which is a list with the following ele
 \item{\code{R}}{Number of Monte Carlo replications.}
 \item{\code{alpha}}{Significance level specified.}
 \item{\code{lavaan}}{\code{lavaan} object.}
-\item{\code{mvn}}{Method used to generate multivariate normal random variates.}
+\item{\code{decomposition}}{Matrix decomposition used to generate multivariate normal random variates.}
 \item{\code{thetahat}}{Parameter estimates.}
 \item{\code{thetahatstar}}{Sampling distribution of parameter estimates.}
 }

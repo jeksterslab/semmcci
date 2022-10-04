@@ -31,10 +31,32 @@ lapply(
       fixed.x = FALSE
     )
     set.seed(seed)
-    results <- MC(
+    results_null <- MC(
       fit,
       R = R,
-      alpha = c(0.001, 0.01, 0.05)
+      alpha = c(0.001, 0.01, 0.05),
+      decomposition = NULL
+    )
+    set.seed(seed)
+    results_chol <- MC(
+      fit,
+      R = R,
+      alpha = c(0.001, 0.01, 0.05),
+      decomposition = "chol"
+    )
+    set.seed(seed)
+    results_eigen <- MC(
+      fit,
+      R = R,
+      alpha = c(0.001, 0.01, 0.05),
+      decomposition = "eigen"
+    )
+    set.seed(seed)
+    results_svd <- MC(
+      fit,
+      R = R,
+      alpha = c(0.001, 0.01, 0.05),
+      decomposition = "svd"
     )
     set.seed(seed)
     answers <- MASS::mvrnorm(
@@ -47,23 +69,68 @@ lapply(
       ab = answers[, "a"] * answers[, "b"]
     )
     testthat::test_that(
-      text,
+      paste(text, "NULL"),
       {
         testthat::expect_equal(
-          results$thetahat$est[c(1:6, 8)],
+          results_null$thetahat$est[c(1:6, 8)],
           lavaan::parameterEstimates(fit)$est,
           check.attributes = FALSE
         )
         testthat::expect_true(
           abs(
-            .MCCI(results)["ab", "0.05%"] - quantile(answers[, "ab"], .0005)
+            .MCCI(results_null)["ab", "97.5%"] - quantile(answers[, "ab"], .975, na.rm = TRUE)
+          ) <= tol
+        )
+      }
+    )
+    testthat::test_that(
+      paste(text, "chol"),
+      {
+        testthat::expect_equal(
+          results_chol$thetahat$est[c(1:6, 8)],
+          lavaan::parameterEstimates(fit)$est,
+          check.attributes = FALSE
+        )
+        testthat::expect_true(
+          abs(
+            .MCCI(results_chol)["ab", "97.5%"] - quantile(answers[, "ab"], .975, na.rm = TRUE)
+          ) <= tol
+        )
+      }
+    )
+    testthat::test_that(
+      paste(text, "eigen"),
+      {
+        testthat::expect_equal(
+          results_eigen$thetahat$est[c(1:6, 8)],
+          lavaan::parameterEstimates(fit)$est,
+          check.attributes = FALSE
+        )
+        testthat::expect_true(
+          abs(
+            .MCCI(results_eigen)["ab", "97.5%"] - quantile(answers[, "ab"], .975, na.rm = TRUE)
+          ) <= tol
+        )
+      }
+    )
+    testthat::test_that(
+      paste(text, "svd"),
+      {
+        testthat::expect_equal(
+          results_svd$thetahat$est[c(1:6, 8)],
+          lavaan::parameterEstimates(fit)$est,
+          check.attributes = FALSE
+        )
+        testthat::expect_true(
+          abs(
+            .MCCI(results_svd)["ab", "97.5%"] - quantile(answers[, "ab"], .975, na.rm = TRUE)
           ) <= tol
         )
       }
     )
   },
   n = 1000L,
-  R = 1000L,
+  R = 5000L,
   tol = 0.05,
   text = "test-semmcci-mc-simple-med-defined-equality"
 )

@@ -39,6 +39,16 @@ lapply(
         times = k
       )
     )
+    y3 <- .MVNSVD(
+      norm = norm,
+      mat = svd(Sigma)
+    ) + rep(
+      x = mu,
+      times = rep(
+        x = n,
+        times = k
+      )
+    )
     testthat::test_that(
       paste(text, "means", "y1"),
       {
@@ -82,6 +92,18 @@ lapply(
           all(
             abs(
               stats::cov(y2) - Sigma
+            ) <= tol
+          )
+        )
+      }
+    )
+    testthat::test_that(
+      paste(text, "covariances", "y3"),
+      {
+        testthat::expect_true(
+          all(
+            abs(
+              stats::cov(y3) - Sigma
             ) <= tol
           )
         )

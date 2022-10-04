@@ -180,7 +180,8 @@ if (!file.exists(benchmark01_file)) {
       )
       MC(
         fit,
-        R = R
+        R = R,
+        pd = FALSE
       )
     },
     NB = sem(
@@ -216,7 +217,8 @@ benchmark01 <- microbenchmark(
     )
     MC(
       fit,
-      R = R
+      R = R,
+      pd = FALSE
     )
   },
   NB = sem(
@@ -264,7 +266,8 @@ if (!file.exists(benchmark02_file)) {
       )
       MC(
         fit,
-        R = R
+        R = R, 
+        pd = FALSE
       )
     },
     NB = sem(
@@ -293,7 +296,8 @@ benchmark02 <- readRDS(
 benchmark02 <- microbenchmark(
   MC = MC(
     fit,
-    R = R
+    R = R, 
+    pd = FALSE
   ),
   NB = sem(
     data = data,

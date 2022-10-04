@@ -20,7 +20,7 @@
 #'   \item{`R`}{Number of Monte Carlo replications.}
 #'   \item{`alpha`}{Significance level specified.}
 #'   \item{`lavaan`}{`lavaan` object.}
-#'   \item{`mvn`}{Method used to generate multivariate normal random variates.}
+#'   \item{`decomposition`}{Matrix decomposition used to generate multivariate normal random variates.}
 #'   \item{`thetahat`}{Parameter estimates.}
 #'   \item{`thetahatstar`}{Sampling distribution of parameter estimates.}
 #'   \item{`ci`}{Confidence intervals.}
@@ -119,38 +119,15 @@ MCStd <- function(object,
     args = thetahatstar_std
   )
   colnames(thetahatstar_std) <- colnames(object$thetahatstar)
-  # remove rows with NAs
-  # thetahatstar_std <- thetahatstar_std[stats::complete.cases(thetahatstar_std), ]
-  #   se <- sqrt(diag(stats::var(thetahatstar_std)))
-  #   ci_std <- vector(
-  #     mode = "list",
-  #     length = dim(thetahatstar_std)[2]
-  #   )
-  #   for (i in seq_len(dim(thetahatstar_std)[2])) {
-  #     ci_std[[i]] <- .PCCI(
-  #       thetahatstar = thetahatstar_std[, i],
-  #       thetahat = thetahat_std[[i]],
-  #       alpha = alpha
-  #     )
-  #   }
-  #   ci_std <- do.call(
-  #     what = "rbind",
-  #     args = ci_std
-  #   )
-  #   rownames(ci_std) <- colnames(thetahatstar_std)
-  #   ci_std <- ci_std[which(object$lavaan@ParTable$op != "~1"), ]
-  #   ci_std <- ci_std[which(!rownames(ci_std) %in% object$thetahat$fixed), ]
   out <- list(
     R = object$R,
     alpha = object$alpha,
     lavaan = object$lavaan,
-    mvn = object$mvn,
+    decomposition = object$decomposition,
     thetahat = object$thetahat,
     thetahatstar = object$thetahatstar,
-    ci = object$ci,
     thetahat_std = thetahat_std,
     thetahatstar_std = thetahatstar_std
-    # ci_std = ci_std
   )
   class(out) <- c(
     "semmccistd",
