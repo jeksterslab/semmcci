@@ -130,7 +130,7 @@ lapply(
     )
   },
   n = 1000L,
-  R = 5000L,
+  R = 2000L,
   tol = 0.05,
   text = "test-semmcci-mc-simple-med-defined-inequality"
 )

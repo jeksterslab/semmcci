@@ -151,6 +151,6 @@ lapply(
     )
   },
   n = 1000L,
-  R = 5000L,
+  R = 2000L,
   text = "test-semmcci-mc-simple-med-std-defined-none-random-x"
 )

@@ -141,7 +141,7 @@ lapply(
       }
     )
   },
-  R = 5000L,
+  R = 2000L,
   tol = 0.05,
   text = "test-semmcci-mc-latent-med-std-defined"
 )

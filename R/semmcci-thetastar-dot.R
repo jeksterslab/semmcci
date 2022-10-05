@@ -62,54 +62,52 @@
   if (is.null(decomposition)) {
     run_chol <- TRUE
   } else {
-    switch(
-      EXPR = decomposition,
-      chol = {
-        run_chol <- TRUE
-      },
-      eigen = {
-        run_eigen <- TRUE
-      },
-      svd = {
-        run_svd <- TRUE
-      },
-      {
-        stop(
-          "Invalid value for the argument `decomposition`."
-        )
-      }
+    stopifnot(
+      decomposition %in% c(
+        "chol",
+        "eigen",
+        "svd"
+      )
     )
+    if (decomposition == "chol") {
+      run_chol <- TRUE
+    }
+    if (decomposition == "eigen") {
+      run_eigen <- TRUE
+    }
+    if (decomposition == "svd") {
+      run_svd <- TRUE
+    }
   }
   if (run_chol) {
-    tryCatch(
+    mat <- tryCatch(
       {
-        output <- .MVNChol(
-          norm = norm,
-          mat = chol(scale)
-        )
-        mvn <- "chol"
+        chol(scale)
       },
       warning = function(w) {
-        if (is.null(decomposition)) {
-          run_eigen <- TRUE
-        }
-        if (decomposition == "chol") {
-          stop(
-            "Error in Cholesky decomposition. Try using `decomposition = \"eigen\"`."
-          )
-        }
+        return(NULL)
       },
       error = function(e) {
-        if (is.null(decomposition)) {
-          run_eigen <- TRUE
-        }
+        return(NULL)
+      }
+    )
+    if (is.null(mat)) {
+      if (is.null(decomposition)) {
+        run_eigen <- TRUE
+      } else {
         if (decomposition == "chol") {
           stop(
             "Error in Cholesky decomposition. Try using `decomposition = \"eigen\"`."
           )
         }
       }
-    )
+    } else {
+      output <- .MVNChol(
+        norm = norm,
+        mat = mat
+      )
+      mvn <- "chol"
+    }
   }
   if (run_eigen) {
     if (!pd) {
@@ -125,11 +123,12 @@
       if (npd) {
         if (is.null(decomposition)) {
           run_svd <- TRUE
-        }
-        if (decomposition == "eigen") {
-          stop(
-            "Error in eigenvalue decomposition. Try using `decomposition = \"svd\"`."
-          )
+        } else {
+          if (decomposition == "eigen") {
+            stop(
+              "Error in eigenvalue decomposition. Try using `decomposition = \"svd\"`."
+            )
+          }
         }
       }
     }
