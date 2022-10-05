@@ -36,7 +36,7 @@ Finally, if eigenvalue decomposition fails, try singular value decomposition.}
 If \code{pd = TRUE}, check if the sampling variance-covariance matrix is positive definite using \code{tol}.}
 
 \item{tol}{Numeric.
-Tolerance used to test for positive definite matrix.}
+Tolerance used for \code{pd}..}
 }
 \value{
 Returns an object of class \code{semmcci} which is a list with the following elements:

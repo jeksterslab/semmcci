@@ -180,9 +180,9 @@ benchmark01 <- microbenchmark(
 
 ```r
 summary(benchmark01)
-#>   expr         min          lq        mean      median          uq         max
-#> 1   MC    177.4242    178.9201    188.0705    184.6975    193.2428    214.6368
-#> 2   NB 149691.5489 151619.4326 154973.0185 154837.3559 155263.1159 168755.2303
+#>   expr          min          lq        mean      median         uq         max
+#> 1   MC     874.0746    1053.948    1247.246    1312.224    1383.13    1601.706
+#> 2   NB 1785380.3942 1915407.292 1999746.237 1993583.296 2107510.41 2296289.259
 #>   neval
 #> 1    10
 #> 2    10
@@ -193,9 +193,9 @@ summary(benchmark01)
 
 ```r
 summary(benchmark01, unit = "relative")
-#>   expr      min      lq     mean   median       uq      max neval
-#> 1   MC   1.0000   1.000   1.0000   1.0000   1.0000   1.0000    10
-#> 2   NB 843.6931 847.414 824.0156 838.3293 803.4613 786.2362    10
+#>   expr      min       lq    mean  median       uq      max neval
+#> 1   MC    1.000    1.000    1.00    1.00    1.000    1.000    10
+#> 2   NB 2042.595 1817.365 1603.33 1519.24 1523.726 1433.652    10
 ```
 
 ## Benchmark - Monte Carlo Method with Precalculated Estimates
@@ -204,6 +204,12 @@ summary(benchmark01, unit = "relative")
 
 
 ```r
+fit <- sem(
+  data = data,
+  model = model,
+  missing = "fiml",
+  fixed.x = FALSE
+)
 benchmark02 <- microbenchmark(
   MC = MC(
     fit,
@@ -227,12 +233,12 @@ benchmark02 <- microbenchmark(
 
 ```r
 summary(benchmark02, unit = "ms")
-#>   expr         min          lq       mean      median          uq         max
-#> 1   MC    164.6154    168.2468    178.485    177.4893    181.5776    209.4896
-#> 2   NB 149654.1798 150364.0634 151564.272 150535.0608 150896.9666 157305.1859
-#>   neval
-#> 1    10
-#> 2    10
+#>   expr          min           lq         mean       median           uq
+#> 1   MC     90.82535     93.19854     110.0867     115.1972     119.8872
+#> 2   NB 173797.87023 249535.13159 1293839.6056 1779847.1648 1794582.4825
+#>            max neval
+#> 1     129.8102    10
+#> 2 1843392.3483    10
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
@@ -241,6 +247,6 @@ summary(benchmark02, unit = "ms")
 ```r
 summary(benchmark02, unit = "relative")
 #>   expr      min       lq     mean   median       uq      max neval
-#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
-#> 2   NB 909.1142 893.7113 849.1709 848.1358 831.0331 750.8973    10
+#> 1   MC    1.000    1.000     1.00     1.00     1.00     1.00    10
+#> 2   NB 1913.539 2677.458 11752.92 15450.44 14968.93 14200.67    10
 ```

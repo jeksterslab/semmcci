@@ -77,16 +77,27 @@ MCStd <- function(object,
       remove.eq = FALSE,
       remove.ineq = FALSE,
       remove.def = FALSE
-    )[, "est.std"]
+    )[
+      ,
+      "est.std"
+    ]
   )
-  names(thetahat_std) <- colnames(object$thetahatstar)
+  names(
+    thetahat_std
+  ) <- colnames(
+    object$thetahatstar
+  )
   i_free <- object$lavaan@ParTable$free > 0
-  foo <- function(i, p) {
+  foo <- function(i,
+                  p) {
     tryCatch(
       {
         return(
           .StdLav(
-            est = object$thetahatstar[i, i_free],
+            est = object$thetahatstar[
+              i,
+              i_free
+            ],
             object = object$lavaan
           )
         )
@@ -110,15 +121,25 @@ MCStd <- function(object,
     )
   }
   thetahatstar_std <- lapply(
-    X = seq_len(dim(object$thetahatstar)[1]),
+    X = seq_len(
+      dim(
+        object$thetahatstar
+      )[1]
+    ),
     FUN = foo,
-    p = length(thetahat_std)
+    p = length(
+      thetahat_std
+    )
   )
   thetahatstar_std <- do.call(
     what = "rbind",
     args = thetahatstar_std
   )
-  colnames(thetahatstar_std) <- colnames(object$thetahatstar)
+  colnames(
+    thetahatstar_std
+  ) <- colnames(
+    object$thetahatstar
+  )
   out <- list(
     R = object$R,
     alpha = object$alpha,

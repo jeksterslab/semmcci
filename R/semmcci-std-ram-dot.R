@@ -16,9 +16,21 @@
   mS <- ram_est$S
   iA <- diag(nrow(mA))
   Binv <- solve(iA - mA)
-  sdinv <- diag((diag(Binv %*% mS %*% t(Binv)))^(-.5))
-  mAz <- sdinv %*% mA %*% solve(sdinv)
-  mSz <- sdinv %*% mS %*% sdinv
+  sdinv <- diag(
+    (
+      diag(
+        Binv %*% mS %*% t(
+          Binv
+        )
+      )
+    )^(-.5)
+  )
+  mAz <- (
+    sdinv %*% mA %*% solve(sdinv)
+  )
+  mSz <- (
+    sdinv %*% mS %*% sdinv
+  )
   colnames(mAz) <- rownames(mAz) <- colnames(mA)
   colnames(mSz) <- rownames(mSz) <- colnames(mS)
   mMz <- ram_est$M

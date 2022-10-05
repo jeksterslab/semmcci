@@ -251,25 +251,23 @@ summary(benchmark01, unit = "relative")
 #| echo = FALSE,
 #| message = FALSE,
 #| warning = FALSE
+fit <- sem(
+  data = data,
+  model = model,
+  missing = "fiml",
+  fixed.x = FALSE
+)
 benchmark02_file <- root$find_file(
   ".data-raw",
   "benchmark02.Rds"
 )
 if (!file.exists(benchmark02_file)) {
   benchmark02 <- microbenchmark(
-    MC = {
-      fit <- sem(
-        data = data,
-        model = model,
-        missing = "fiml",
-        fixed.x = FALSE
-      )
-      MC(
-        fit,
-        R = R, 
-        pd = FALSE
-      )
-    },
+    MC = MC(
+      fit,
+      R = R, 
+      pd = FALSE
+    ),
     NB = sem(
       data = data,
       model = model,
@@ -293,6 +291,12 @@ benchmark02 <- readRDS(
 
 ```{r}
 #| eval = FALSE
+fit <- sem(
+  data = data,
+  model = model,
+  missing = "fiml",
+  fixed.x = FALSE
+)
 benchmark02 <- microbenchmark(
   MC = MC(
     fit,

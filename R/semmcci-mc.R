@@ -30,7 +30,7 @@
 #' @param pd Logical.
 #'   If `pd = TRUE`, check if the sampling variance-covariance matrix is positive definite using `tol`.
 #' @param tol Numeric.
-#'   Tolerance used to test for positive definite matrix.
+#'   Tolerance used for `pd`..
 #' @return Returns an object of class `semmcci` which is a list with the following elements:
 #' \describe{
 #'   \item{`R`}{Number of Monte Carlo replications.}
@@ -103,7 +103,9 @@ MC <- function(object,
         {
           return(
             object@Model@def.function(
-              thetahatstar_orig[i, ]
+              thetahatstar_orig[
+                i,
+              ]
             )
           )
         },
@@ -116,7 +118,11 @@ MC <- function(object,
       )
     }
     thetahatstar_def <- lapply(
-      X = seq_len(dim(thetahatstar_orig)[1]),
+      X = seq_len(
+        dim(
+          thetahatstar_orig
+        )[1]
+      ),
       FUN = def
     )
     thetahatstar_def <- do.call(
@@ -134,13 +140,22 @@ MC <- function(object,
   if (length(thetahat$ceq) > 0) {
     ceq <- function(i) {
       out <- object@Model@ceq.function(
-        thetahatstar[i, ]
+        thetahatstar[
+          i,
+        ]
       )
-      names(out) <- paste0(thetahat$ceq, "_ceq")
+      names(out) <- paste0(
+        thetahat$ceq,
+        "_ceq"
+      )
       return(out)
     }
     thetahatstar_ceq <- lapply(
-      X = seq_len(dim(thetahatstar)[1]),
+      X = seq_len(
+        dim(
+          thetahatstar
+        )[1]
+      ),
       FUN = ceq
     )
     thetahatstar_ceq <- do.call(
@@ -156,13 +171,22 @@ MC <- function(object,
   if (length(thetahat$cin) > 0) {
     cin <- function(i) {
       out <- object@Model@cin.function(
-        thetahatstar[i, ]
+        thetahatstar[
+          i,
+        ]
       )
-      names(out) <- paste0(thetahat$cin, "_cin")
+      names(out) <- paste0(
+        thetahat$cin,
+        "_cin"
+      )
       return(out)
     }
     thetahatstar_cin <- lapply(
-      X = seq_len(dim(thetahatstar)[1]),
+      X = seq_len(
+        dim(
+          thetahatstar
+        )[1]
+      ),
       FUN = cin
     )
     thetahatstar_cin <- do.call(
@@ -178,12 +202,23 @@ MC <- function(object,
   if (length(thetahat$fixed) > 0) {
     fixed <- matrix(
       NA,
-      ncol = length(thetahat$fixed),
-      nrow = dim(thetahatstar)[1]
+      ncol = length(
+        thetahat$fixed
+      ),
+      nrow = dim(
+        thetahatstar
+      )[1]
     )
-    colnames(fixed) <- thetahat$fixed
+    colnames(
+      fixed
+    ) <- thetahat$fixed
     for (i in seq_len(dim(fixed)[2])) {
-      fixed[, i] <- thetahat$est[thetahat$fixed[[i]]]
+      fixed[
+        ,
+        i
+      ] <- thetahat$est[
+        thetahat$fixed[[i]]
+      ]
     }
     thetahatstar <- cbind(
       thetahatstar,
@@ -191,7 +226,10 @@ MC <- function(object,
     )
   }
   # rearrange
-  thetahatstar <- thetahatstar[, thetahat$par_names]
+  thetahatstar <- thetahatstar[
+    ,
+    thetahat$par_names
+  ]
   # output
   out <- list(
     R = R,

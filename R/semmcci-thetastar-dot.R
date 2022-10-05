@@ -17,7 +17,7 @@
 #' @param pd Logical.
 #'   If `pd = TRUE`, check if the sampling variance-covariance matrix is positive definite using `tol`.
 #' @param tol Numeric.
-#'   Tolerance used to test for positive definite matrix.
+#'   Tolerance used for `pd`..
 #' @return Returns a list with the following elements:
 #' \describe{
 #'   \item{`thetahatstar`}{Sampling distribution of parameter estimates.}
@@ -155,7 +155,11 @@
       times = k
     )
   )
-  colnames(output) <- names(location)
+  colnames(
+    output
+  ) <- names(
+    location
+  )
   return(
     list(
       thetahatstar = output,

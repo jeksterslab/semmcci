@@ -17,7 +17,9 @@
 #' @noRd
 .ThetaHat <- function(object) {
   # extract all estimates including fixed parameters
-  thetahat_names_free <- names(lavaan::coef(object))
+  thetahat_names_free <- names(
+    lavaan::coef(object)
+  )
   thetahat_eq <- paste0(
     object@ParTable$lhs,
     object@ParTable$op,
@@ -32,7 +34,9 @@
   )
   for (i in seq_along(object@ParTable$free)) {
     if (object@ParTable$free[i] > 0) {
-      thetahat_names[i] <- thetahat_names_free[object@ParTable$free[i]]
+      thetahat_names[i] <- thetahat_names_free[
+        object@ParTable$free[i]
+      ]
     }
   }
   thetahat_est <- object@ParTable$est
@@ -48,7 +52,14 @@
       )
       thetahat_ceq[i] <- object@ParTable$lhs[i]
     }
-    if (object@ParTable$op[i] %in% c(">", "<", ">=", "<=")) {
+    if (
+      object@ParTable$op[i] %in% c(
+        ">",
+        "<",
+        ">=",
+        "<="
+      )
+    ) {
       thetahat_names[i] <- paste0(
         object@ParTable$lhs[i],
         "_cin"
@@ -60,7 +71,16 @@
     }
     if (object@ParTable$free[i] == 0) {
       fixed <- TRUE
-      if (object@ParTable$op[i] %in% c(":=", "==", ">", "<", ">=", "<=")) {
+      if (
+        object@ParTable$op[i] %in% c(
+          ":=",
+          "==",
+          ">",
+          "<",
+          ">=",
+          "<="
+        )
+      ) {
         fixed <- FALSE
       }
       if (fixed) {
@@ -68,11 +88,21 @@
       }
     }
   }
-  names(thetahat_est) <- thetahat_names
-  def <- thetahat_def[stats::complete.cases(thetahat_def)]
-  ceq <- thetahat_ceq[stats::complete.cases(thetahat_ceq)]
-  cin <- thetahat_cin[stats::complete.cases(thetahat_cin)]
-  fixed <- thetahat_fixed[stats::complete.cases(thetahat_fixed)]
+  names(
+    thetahat_est
+  ) <- thetahat_names
+  def <- thetahat_def[
+    stats::complete.cases(thetahat_def)
+  ]
+  ceq <- thetahat_ceq[
+    stats::complete.cases(thetahat_ceq)
+  ]
+  cin <- thetahat_cin[
+    stats::complete.cases(thetahat_cin)
+  ]
+  fixed <- thetahat_fixed[
+    stats::complete.cases(thetahat_fixed)
+  ]
   return(
     list(
       est = thetahat_est,
