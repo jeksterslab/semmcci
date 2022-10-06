@@ -1,7 +1,7 @@
 ---
 title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2022-10-05"
+date: "2022-10-06"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -35,17 +35,24 @@ library(microbenchmark)
 
 ```r
 n <- 1000
+a <- 0.50
+b <- 0.50
+cp <- 0.25
+s2_eM <- 1 - a^2
+s2_eY <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_eM - 2 * cp * a * b
+eM <- rnorm(n = n, mean = 0, sd = sqrt(s2_eM))
+eY <- rnorm(n = n, mean = 0, sd = sqrt(s2_eY))
 X <- rnorm(n = n)
-M <- 0.50 * X + rnorm(n = n)
-Y <- 0.25 * X + 0.50 * M + rnorm(n = n)
-data <- data.frame(X, M, Y)
+M <- a * X + eM
+Y <- cp * X + b * M + eY
+df <- data.frame(X, M, Y)
 
 # Create data set with missing values.
 
-miss <- sample(1:dim(data)[1], 300)
-data[miss[1:100], "X"] <- NA
-data[miss[101:200], "M"] <- NA
-data[miss[201:300], "Y"] <- NA
+miss <- sample(1:dim(df)[1], 300)
+df[miss[1:100], "X"] <- NA
+df[miss[101:200], "M"] <- NA
+df[miss[201:300], "Y"] <- NA
 ```
 
 ## Model Specification
@@ -75,7 +82,7 @@ Since there are missing values in `x`, we also set `fixed.x = FALSE`.
 
 
 ```r
-fit <- sem(data = data, model = model, missing = "fiml", fixed.x = FALSE)
+fit <- sem(data = df, model = model, missing = "fiml", fixed.x = FALSE)
 ```
 
 ## Monte Carlo Confidence Intervals
@@ -88,18 +95,18 @@ to generate Monte Carlo confidence intervals.
 MC(fit, R = 500, alpha = c(0.001, 0.01, 0.05))
 #> Monte Carlo Confidence Intervals
 #>              est     se   R   0.05%    0.5%    2.5%  97.5%  99.5% 99.95%
-#> cp        0.2286 0.0410 500  0.1231  0.1311  0.1503 0.3061 0.3322 0.3505
-#> b         0.4895 0.0364 500  0.3820  0.3972  0.4175 0.5615 0.5802 0.5833
-#> a         0.5039 0.0336 500  0.4169  0.4191  0.4392 0.5721 0.5893 0.6028
-#> Y~~Y      1.0664 0.0519 500  0.9024  0.9358  0.9660 1.1657 1.1956 1.2016
-#> M~~M      0.9896 0.0480 500  0.8603  0.8721  0.9013 1.0876 1.1083 1.1399
-#> X~~X      1.0335 0.0497 500  0.9190  0.9273  0.9352 1.1285 1.1488 1.1802
-#> Y~1       0.0090 0.0349 500 -0.0964 -0.0802 -0.0579 0.0764 0.0900 0.1142
-#> M~1      -0.0126 0.0311 500 -0.1334 -0.0862 -0.0702 0.0501 0.0608 0.0920
-#> X~1      -0.0294 0.0343 500 -0.1295 -0.1164 -0.1000 0.0423 0.0606 0.0732
-#> indirect  0.2467 0.0247 500  0.1704  0.1835  0.1992 0.2905 0.3110 0.3175
-#> direct    0.2286 0.0410 500  0.1231  0.1311  0.1503 0.3061 0.3322 0.3505
-#> total     0.4753 0.0402 500  0.3643  0.3769  0.3952 0.5470 0.5743 0.6196
+#> cp        0.2335 0.0300 500  0.1564  0.1622  0.1763 0.2902 0.3092 0.3226
+#> b         0.5112 0.0299 500  0.4221  0.4372  0.4521 0.5702 0.5866 0.5883
+#> a         0.4809 0.0287 500  0.4064  0.4086  0.4257 0.5390 0.5538 0.5651
+#> Y~~Y      0.5542 0.0272 500  0.4683  0.4857  0.5016 0.6060 0.6219 0.6251
+#> M~~M      0.7564 0.0365 500  0.6580  0.6674  0.6896 0.8307 0.8470 0.8711
+#> X~~X      1.0591 0.0508 500  0.9423  0.9502  0.9586 1.1564 1.1771 1.2089
+#> Y~1      -0.0127 0.0253 500 -0.0895 -0.0770 -0.0621 0.0356 0.0462 0.0631
+#> M~1      -0.0223 0.0270 500 -0.1274 -0.0862 -0.0728 0.0318 0.0422 0.0672
+#> X~1       0.0025 0.0347 500 -0.0983 -0.0853 -0.0689 0.0750 0.0931 0.1062
+#> indirect  0.2458 0.0205 500  0.1817  0.1938  0.2051 0.2834 0.2991 0.3055
+#> direct    0.2335 0.0300 500  0.1564  0.1622  0.1763 0.2902 0.3092 0.3226
+#> total     0.4794 0.0302 500  0.3954  0.4025  0.4182 0.5338 0.5531 0.5872
 ```
 
 ## Nonparametric Bootstrap Confidence Intervals
@@ -110,7 +117,7 @@ Nonparametric bootstrap confidence intervals can be generated in `lavaan` using 
 ```r
 parameterEstimates(
   sem(
-    data = data,
+    data = df,
     model = model,
     missing = "fiml",
     fixed.x = FALSE,
@@ -119,18 +126,18 @@ parameterEstimates(
   )
 )
 #>         lhs op      rhs    label    est    se      z pvalue ci.lower ci.upper
-#> 1         Y  ~        X       cp  0.229 0.042  5.464  0.000    0.142    0.311
-#> 2         Y  ~        M        b  0.490 0.035 13.929  0.000    0.420    0.556
-#> 3         M  ~        X        a  0.504 0.034 14.816  0.000    0.435    0.566
-#> 4         Y ~~        Y           1.066 0.050 21.463  0.000    0.968    1.158
-#> 5         M ~~        M           0.990 0.049 20.313  0.000    0.888    1.086
-#> 6         X ~~        X           1.033 0.049 20.970  0.000    0.944    1.140
-#> 7         Y ~1                    0.009 0.036  0.246  0.806   -0.057    0.081
-#> 8         M ~1                   -0.013 0.033 -0.379  0.705   -0.075    0.052
-#> 9         X ~1                   -0.029 0.035 -0.847  0.397   -0.101    0.034
-#> 10 indirect :=      a*b indirect  0.247 0.024 10.260  0.000    0.198    0.294
-#> 11   direct :=       cp   direct  0.229 0.042  5.458  0.000    0.142    0.311
-#> 12    total := cp+(a*b)    total  0.475 0.040 11.950  0.000    0.396    0.552
+#> 1         Y  ~        X       cp  0.234 0.028  8.297  0.000    0.181    0.288
+#> 2         Y  ~        M        b  0.511 0.030 16.782  0.000    0.450    0.571
+#> 3         M  ~        X        a  0.481 0.030 16.250  0.000    0.424    0.537
+#> 4         Y ~~        Y           0.554 0.028 19.715  0.000    0.493    0.607
+#> 5         M ~~        M           0.756 0.037 20.582  0.000    0.688    0.827
+#> 6         X ~~        X           1.059 0.049 21.397  0.000    0.958    1.160
+#> 7         Y ~1                   -0.013 0.026 -0.493  0.622   -0.061    0.037
+#> 8         M ~1                   -0.022 0.029 -0.765  0.444   -0.080    0.035
+#> 9         X ~1                    0.002 0.034  0.073  0.942   -0.063    0.070
+#> 10 indirect :=      a*b indirect  0.246 0.020 12.050  0.000    0.207    0.286
+#> 11   direct :=       cp   direct  0.234 0.028  8.289  0.000    0.181    0.288
+#> 12    total := cp+(a*b)    total  0.479 0.027 17.493  0.000    0.428    0.533
 ```
 
 ## Benchmark
@@ -152,7 +159,7 @@ parameterEstimates(
 benchmark01 <- microbenchmark(
   MC = {
     fit <- sem(
-      data = data,
+      data = df,
       model = model,
       missing = "fiml",
       fixed.x = FALSE
@@ -164,7 +171,7 @@ benchmark01 <- microbenchmark(
     )
   },
   NB = sem(
-    data = data,
+    data = df,
     model = model,
     missing = "fiml",
     fixed.x = FALSE,
@@ -180,12 +187,12 @@ benchmark01 <- microbenchmark(
 
 ```r
 summary(benchmark01)
-#>   expr          min          lq        mean      median         uq         max
-#> 1   MC     874.0746    1053.948    1247.246    1312.224    1383.13    1601.706
-#> 2   NB 1785380.3942 1915407.292 1999746.237 1993583.296 2107510.41 2296289.259
-#>   neval
-#> 1    10
-#> 2    10
+#>   expr         min          lq        mean      median           uq
+#> 1   MC    171.9604    230.2257    487.0947    564.2418     703.9379
+#> 2   NB 177368.1972 425576.4500 814563.1895 773428.3591 1223464.6827
+#>            max neval
+#> 1     802.4407    10
+#> 2 1634099.3323    10
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
@@ -193,9 +200,9 @@ summary(benchmark01)
 
 ```r
 summary(benchmark01, unit = "relative")
-#>   expr      min       lq    mean  median       uq      max neval
-#> 1   MC    1.000    1.000    1.00    1.00    1.000    1.000    10
-#> 2   NB 2042.595 1817.365 1603.33 1519.24 1523.726 1433.652    10
+#>   expr      min       lq     mean   median       uq      max neval
+#> 1   MC    1.000    1.000    1.000    1.000    1.000    1.000    10
+#> 2   NB 1031.448 1848.518 1672.289 1370.739 1738.029 2036.411    10
 ```
 
 ## Benchmark - Monte Carlo Method with Precalculated Estimates
@@ -205,7 +212,7 @@ summary(benchmark01, unit = "relative")
 
 ```r
 fit <- sem(
-  data = data,
+  data = df,
   model = model,
   missing = "fiml",
   fixed.x = FALSE
@@ -217,7 +224,7 @@ benchmark02 <- microbenchmark(
     pd = FALSE
   ),
   NB = sem(
-    data = data,
+    data = df,
     model = model,
     missing = "fiml",
     fixed.x = FALSE,
@@ -234,11 +241,11 @@ benchmark02 <- microbenchmark(
 ```r
 summary(benchmark02, unit = "ms")
 #>   expr          min           lq         mean       median           uq
-#> 1   MC     90.82535     93.19854     110.0867     115.1972     119.8872
-#> 2   NB 173797.87023 249535.13159 1293839.6056 1779847.1648 1794582.4825
-#>            max neval
-#> 1     129.8102    10
-#> 2 1843392.3483    10
+#> 1   MC     88.95872     91.17736     98.60695     94.34717     96.26893
+#> 2   NB 141926.77476 158590.09952 173447.74246 172720.64197 184538.22442
+#>           max neval
+#> 1    144.0017    10
+#> 2 222729.2522    10
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
@@ -247,6 +254,6 @@ summary(benchmark02, unit = "ms")
 ```r
 summary(benchmark02, unit = "relative")
 #>   expr      min       lq     mean   median       uq      max neval
-#> 1   MC    1.000    1.000     1.00     1.00     1.00     1.00    10
-#> 2   NB 1913.539 2677.458 11752.92 15450.44 14968.93 14200.67    10
+#> 1   MC    1.000    1.000    1.000    1.000    1.000    1.000    10
+#> 2   NB 1595.423 1739.358 1758.981 1830.692 1916.903 1546.713    10
 ```
