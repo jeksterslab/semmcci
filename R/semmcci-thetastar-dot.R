@@ -29,8 +29,11 @@
                        scale,
                        location,
                        decomposition = NULL,
-                       pd = TRUE,
+                       pd = FALSE,
                        tol = 1e-06) {
+  if (is.null(decomposition)) {
+    pd <- FALSE
+  }
   if (pd) {
     mat <- eigen(
       scale,

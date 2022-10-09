@@ -8,7 +8,7 @@ MC(
   object,
   R = 20000L,
   alpha = c(0.001, 0.01, 0.05),
-  decomposition = NULL,
+  decomposition = "chol",
   pd = TRUE,
   tol = 1e-06
 )
@@ -33,7 +33,7 @@ If Cholesky decomposition fails, try eigenvalue decomposition.
 Finally, if eigenvalue decomposition fails, try singular value decomposition.}
 
 \item{pd}{Logical.
-If \code{pd = TRUE}, check if the sampling variance-covariance matrix is positive definite using \code{tol}.}
+If \code{pd = TRUE}, check if the sampling variance-covariance matrix is positive definite using \code{tol} if \code{decomposition \%in\% c("eigen", "svd")}.}
 
 \item{tol}{Numeric.
 Tolerance used for \code{pd}..}

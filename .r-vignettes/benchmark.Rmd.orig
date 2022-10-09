@@ -243,7 +243,7 @@ benchmark01 <- microbenchmark(
 ### Summary of Benchmark Results
 
 ```{r}
-summary(benchmark01)
+summary(benchmark01, unit = "ms")
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method

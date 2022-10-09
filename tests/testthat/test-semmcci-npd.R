@@ -14,20 +14,6 @@ lapply(
       ncol = 3
     )
     testthat::test_that(
-      paste(text, "NULL"),
-      {
-        testthat::expect_error(
-          semmcci:::.ThetaStar(
-            R = 2000L,
-            scale = scale,
-            location = location,
-            decomposition = NULL,
-            pd = TRUE
-          )
-        )
-      }
-    )
-    testthat::test_that(
       paste(text, "chol"),
       {
         testthat::expect_error(
@@ -74,8 +60,7 @@ lapply(
       R = 2000L,
       scale = scale,
       location = location,
-      decomposition = NULL,
-      pd = FALSE
+      decomposition = NULL
     )
   },
   text = "test-semmcci-npd"

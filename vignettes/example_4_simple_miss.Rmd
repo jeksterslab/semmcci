@@ -41,13 +41,13 @@ n <- 1000
 a <- 0.50
 b <- 0.50
 cp <- 0.25
-s2_eM <- 1 - a^2
-s2_eY <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_eM - 2 * cp * a * b
-eM <- rnorm(n = n, mean = 0, sd = sqrt(s2_eM))
-eY <- rnorm(n = n, mean = 0, sd = sqrt(s2_eY))
+s2_em <- 1 - a^2
+s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
+em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
+ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
 X <- rnorm(n = n)
-M <- a * X + eM
-Y <- cp * X + b * M + eY
+M <- a * X + em
+Y <- cp * X + b * M + ey
 df <- data.frame(X, M, Y)
 
 # Create data set with missing values.

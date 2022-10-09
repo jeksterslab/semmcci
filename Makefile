@@ -1,4 +1,4 @@
-.PHONY: all term termconda root remotes env github arch jammy focal win deps style lint cov check cran site build install vignettes rpkg tinytex latex rhub rhublocal rclean rcleanall clean termclean deepclean
+.PHONY: all term termconda root remotes env github arch jammy focal win deps style lint cov check cran site build install vignettes rpkg tinytex latex rhub rhublocal rclean rcleanall clean termclean deepclean sif
 
 all: clean deps style man/*.Rd check build install vignettes README.md site manual
 
@@ -12,6 +12,9 @@ termconda: term
 	@(cd .bash && make conda)
 
 # system
+
+sif:
+	@sudo -E bash .r-sif/apptainer.sh
 
 root:
 	@Rscript .r-set-pkg/r-set-pkg-rprojroot.R $(PWD)
@@ -60,23 +63,10 @@ deps:
 	@Rscript .data-process/data-process.R
 
 style:
-	@Rscript -e "styler::style_dir(exclude_dirs = c('.library', '.notes'), filetype = c('.R', '.Rmd'))"
+	@Rscript .r-lint/r-lint.R
 
 lint:
-	@Rscript -e "lintr::lint_dir('R')"
-	@Rscript -e "lintr::lint_dir('.r-buildignore')"
-	@Rscript -e "lintr::lint_dir('.r-dependencies')"
-	@Rscript -e "lintr::lint_dir('.r-hub')"
-	@Rscript -e "lintr::lint_dir('.r-load-all')"
-	@Rscript -e "lintr::lint_dir('.r-misc')"
-	@Rscript -e "lintr::lint_dir('.r-set-env')"
-	@Rscript -e "lintr::lint_dir('.r-set-pkg')"
-	@Rscript -e "lintr::lint_dir('.r-set-profile')"
-	@Rscript -e "lintr::lint_dir('.r-vignettes')"
-	@Rscript -e "lintr::lint_dir('.r-writeup')"
-	@Rscript -e "lintr::lint_dir('tests')"
-	@Rscript -e "lintr::lint_dir('.tests-benchmark')"
-	@Rscript -e "lintr::lint_dir('.tests-external')"
+	@Rscript .r-lint/r-lint.R
 
 cov:
 	@Rscript -e "covr::package_coverage()"

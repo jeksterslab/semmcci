@@ -5,6 +5,7 @@
 .*\.md$
 .*\.pdf$
 .*\.sh$
+.*\.sif$
 .*\.tar\.gz$
 .*\.tar\.xz$
 .*\.tgz$
@@ -20,6 +21,7 @@
 ^\.git.*$
 ^\.julia$
 ^\.library$
+^\.lintr$
 ^\.log$
 ^\.notes$
 ^\.r-.*$

@@ -1,0 +1,13 @@
+Bootstrap: docker
+From: rocker/tidyverse:latest
+
+%environment
+    export PATH="/opt/bin/x86_64-linux:${PATH}"
+
+%post
+    R -q -e "install.packages('tinytex')"
+    R -q -e "tinytex::install_tinytex( \
+        bundle = 'TinyTeX-2',          \
+        force = TRUE,                  \
+        dir = '/opt'                   \
+    )"

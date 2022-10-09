@@ -12,34 +12,34 @@
 #' @keywords matrix standardized internal
 #' @noRd
 .StdRAM <- function(ram_est) {
-  mA <- ram_est$A
-  mS <- ram_est$S
-  iA <- diag(nrow(mA))
-  Binv <- solve(iA - mA)
+  a_mat <- ram_est$A
+  s_mat <- ram_est$S
+  iden <- diag(nrow(a_mat))
+  b_inv <- solve(iden - a_mat)
   sdinv <- diag(
     (
       diag(
-        Binv %*% mS %*% t(
-          Binv
+        b_inv %*% s_mat %*% t(
+          b_inv
         )
       )
     )^(-.5)
   )
-  mAz <- (
-    sdinv %*% mA %*% solve(sdinv)
+  a_matz <- (
+    sdinv %*% a_mat %*% solve(sdinv)
   )
-  mSz <- (
-    sdinv %*% mS %*% sdinv
+  s_matz <- (
+    sdinv %*% s_mat %*% sdinv
   )
-  colnames(mAz) <- rownames(mAz) <- colnames(mA)
-  colnames(mSz) <- rownames(mSz) <- colnames(mS)
-  mMz <- ram_est$M
+  colnames(a_matz) <- rownames(a_matz) <- colnames(a_mat)
+  colnames(s_matz) <- rownames(s_matz) <- colnames(s_mat)
+  m_matz <- ram_est$M
   # TODO: Mz of x = Mz / (SD of x)
-  mMz[] <- 0
+  m_matz[] <- 0
   list(
-    A = mAz,
-    S = mSz,
+    A = a_matz,
+    S = s_matz,
     F = ram_est$F,
-    M = mMz
+    M = m_matz
   )
 }

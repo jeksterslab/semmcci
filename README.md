@@ -1,7 +1,7 @@
 semmcci
 ================
 Ivan Jacob Agaloos Pesigan
-2022-10-06
+2022-10-09
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
@@ -12,6 +12,7 @@ Status](https://www.r-pkg.org/badges/version/semmcci)](https://cran.r-project.or
 Status](https://jeksterslab.r-universe.dev/badges/semmcci)](https://jeksterslab.r-universe.dev)
 [![R-CMD-check](https://github.com/jeksterslab/semmcci/workflows/R-CMD-check/badge.svg)](https://github.com/jeksterslab/semmcci/actions)
 [![test-coverage](https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yaml)
+[![lint](https://github.com/jeksterslab/semmcci/actions/workflows/lint.yaml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/lint.yaml)
 [![codecov](https://codecov.io/gh/jeksterslab/semmcci/branch/main/graph/badge.svg?token=KVLUET3DJ6)](https://codecov.io/gh/jeksterslab/semmcci)
 <!-- badges: end -->
 
@@ -66,10 +67,17 @@ library(lavaan)
 
 ``` r
 n <- 1000
+a <- 0.50
+b <- 0.50
+cp <- 0.25
+s2_em <- 1 - a^2
+s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
+em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
+ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
 X <- rnorm(n = n)
-M <- 0.50 * X + rnorm(n = n)
-Y <- 0.25 * X + 0.50 * M + rnorm(n = n)
-data <- data.frame(X, M, Y)
+M <- a * X + em
+Y <- cp * X + b * M + ey
+df <- data.frame(X, M, Y)
 ```
 
 ### Model Specification
@@ -95,7 +103,7 @@ model <- "
 We can now fit the model using the `sem()` function from `lavaan`.
 
 ``` r
-fit <- sem(data = data, model = model)
+fit <- sem(data = df, model = model)
 ```
 
 ### Monte Carlo Confidence Intervals
@@ -107,14 +115,14 @@ generate Monte Carlo confidence intervals.
 MC(fit, R = 20000L, alpha = c(0.001, 0.01, 0.05))
 #> Monte Carlo Confidence Intervals
 #>             est     se     R  0.05%   0.5%   2.5%  97.5%  99.5% 99.95%
-#> cp       0.2373 0.0368 20000 0.1194 0.1426 0.1647 0.3091 0.3308 0.3561
-#> b        0.4817 0.0334 20000 0.3734 0.3979 0.4165 0.5471 0.5667 0.5930
-#> a        0.5098 0.0308 20000 0.4094 0.4305 0.4491 0.5702 0.5886 0.6057
-#> Y~~Y     1.0581 0.0473 20000 0.9029 0.9361 0.9647 1.1517 1.1809 1.2134
-#> M~~M     0.9712 0.0438 20000 0.8350 0.8594 0.8851 1.0556 1.0841 1.1115
-#> indirect 0.2456 0.0225 20000 0.1777 0.1914 0.2029 0.2914 0.3071 0.3227
-#> direct   0.2373 0.0368 20000 0.1194 0.1426 0.1647 0.3091 0.3308 0.3561
-#> total    0.4829 0.0359 20000 0.3687 0.3915 0.4130 0.5528 0.5746 0.6026
+#> cp       0.2333 0.0263 20000 0.1490 0.1655 0.1813 0.2846 0.3002 0.3183
+#> b        0.5082 0.0273 20000 0.4205 0.4397 0.4549 0.5616 0.5779 0.6004
+#> a        0.4820 0.0264 20000 0.3959 0.4140 0.4299 0.5337 0.5495 0.5642
+#> Y~~Y     0.5462 0.0244 20000 0.4660 0.4832 0.4979 0.5944 0.6095 0.6263
+#> M~~M     0.7527 0.0339 20000 0.6471 0.6660 0.6859 0.8181 0.8402 0.8613
+#> indirect 0.2449 0.0187 20000 0.1878 0.1995 0.2091 0.2829 0.2958 0.3085
+#> direct   0.2333 0.0263 20000 0.1490 0.1655 0.1813 0.2846 0.3002 0.3183
+#> total    0.4782 0.0265 20000 0.3930 0.4100 0.4262 0.5302 0.5463 0.5652
 ```
 
 ### Standardized Monte Carlo Confidence Intervals
@@ -127,7 +135,7 @@ passing the result of the `MC()` function to `MCStd()`.
 > and covariances of the predictors if they are assumed to be random.
 
 ``` r
-fit <- sem(data = data, model = model, fixed.x = FALSE)
+fit <- sem(data = df, model = model, fixed.x = FALSE)
 unstd <- MC(fit, R = 20000L, alpha = c(0.001, 0.01, 0.05))
 ```
 
@@ -135,15 +143,15 @@ unstd <- MC(fit, R = 20000L, alpha = c(0.001, 0.01, 0.05))
 MCStd(unstd)
 #> Standardized Monte Carlo Confidence Intervals
 #>             est     se     R  0.05%   0.5%   2.5%  97.5%  99.5% 99.95%
-#> cp       0.1930 0.0294 20000 0.0958 0.1171 0.1355 0.2496 0.2682 0.2904
-#> b        0.4340 0.0274 20000 0.3395 0.3615 0.3801 0.4868 0.5028 0.5217
-#> a        0.4602 0.0249 20000 0.3699 0.3931 0.4098 0.5075 0.5209 0.5379
-#> Y~~Y     0.6972 0.0242 20000 0.6152 0.6320 0.6482 0.7430 0.7571 0.7733
-#> M~~M     0.7882 0.0229 20000 0.7107 0.7286 0.7424 0.8320 0.8455 0.8632
+#> cp       0.2422 0.0268 20000 0.1553 0.1726 0.1899 0.2935 0.3107 0.3309
+#> b        0.5123 0.0245 20000 0.4271 0.4474 0.4642 0.5595 0.5738 0.5920
+#> a        0.4963 0.0239 20000 0.4093 0.4315 0.4480 0.5413 0.5546 0.5707
+#> Y~~Y     0.5558 0.0234 20000 0.4798 0.4945 0.5094 0.6009 0.6154 0.6321
+#> M~~M     0.7537 0.0236 20000 0.6743 0.6924 0.7070 0.7993 0.8138 0.8325
 #> X~~X     1.0000 0.0000 20000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
-#> indirect 0.1998 0.0170 20000 0.1473 0.1570 0.1674 0.2335 0.2444 0.2578
-#> direct   0.1930 0.0294 20000 0.0958 0.1171 0.1355 0.2496 0.2682 0.2904
-#> total    0.3928 0.0268 20000 0.3011 0.3220 0.3389 0.4439 0.4602 0.4785
+#> indirect 0.2542 0.0174 20000 0.1982 0.2101 0.2205 0.2882 0.2996 0.3120
+#> direct   0.2422 0.0268 20000 0.1553 0.1726 0.1899 0.2935 0.3107 0.3309
+#> total    0.4964 0.0239 20000 0.4168 0.4327 0.4480 0.5413 0.5556 0.5715
 ```
 
 ## Documentation

@@ -49,4 +49,7 @@
 docs
 doc
 
+# sif
+*.sif
+
 # etc

@@ -17,19 +17,19 @@
   k <- length(all_names)
 
   # Initialize the matrices
-  mA <- matrix(
+  a_mat <- matrix(
     data = 0,
     nrow = k,
     ncol = k
   )
-  colnames(mA) <- rownames(mA) <- all_names
-  mS <- matrix(
+  colnames(a_mat) <- rownames(a_mat) <- all_names
+  s_mat <- matrix(
     data = 0,
     nrow = k,
     ncol = k
   )
-  colnames(mS) <- rownames(mS) <- all_names
-  mF <- cbind(
+  colnames(s_mat) <- rownames(s_mat) <- all_names
+  f_mat <- cbind(
     diag(p),
     matrix(
       data = 0,
@@ -37,52 +37,52 @@
       ncol = q
     )
   )
-  colnames(mF) <- all_names
-  rownames(mF) <- ov_names
-  mM <- matrix(
+  colnames(f_mat) <- all_names
+  rownames(f_mat) <- ov_names
+  m_mat <- matrix(
     data = 0,
     nrow = 1,
     ncol = p + q
   )
-  colnames(mM) <- all_names
+  colnames(m_mat) <- all_names
 
   # Theta to S
   theta_names <- rownames(lav_mod$theta)
-  mS[theta_names, theta_names] <- lav_mod$theta
+  s_mat[theta_names, theta_names] <- lav_mod$theta
 
   # Psi to S
   psi_names <- rownames(lav_mod$psi)
-  mS[psi_names, psi_names] <- lav_mod$psi
+  s_mat[psi_names, psi_names] <- lav_mod$psi
 
   # Lambda to A
   lambda_rnames <- rownames(lav_mod$lambda)
   lambda_cnames <- colnames(lav_mod$lambda)
-  mA[lambda_rnames, lambda_cnames] <- lav_mod$lambda
+  a_mat[lambda_rnames, lambda_cnames] <- lav_mod$lambda
 
   # Beta to A
   if (!is.null(lav_mod$beta)) {
     beta_names <- rownames(lav_mod$beta)
-    mA[beta_names, beta_names] <- lav_mod$beta
+    a_mat[beta_names, beta_names] <- lav_mod$beta
   }
 
   # Nu to M
   if (!is.null(lav_mod$nu)) {
-    mM[, rownames(lav_mod$nu)] <- lav_mod$nu
+    m_mat[, rownames(lav_mod$nu)] <- lav_mod$nu
   } else {
-    mM[, rownames(lav_mod$nu)] <- NA
+    m_mat[, rownames(lav_mod$nu)] <- NA
   }
 
   # Alpha to M
   if (!is.null(lav_mod$alpha)) {
-    mM[, rownames(lav_mod$alpha)] <- lav_mod$alpha
+    m_mat[, rownames(lav_mod$alpha)] <- lav_mod$alpha
   } else {
-    mM[, rownames(lav_mod$alpha)] <- NA
+    m_mat[, rownames(lav_mod$alpha)] <- NA
   }
 
   list(
-    A = mA,
-    S = mS,
-    F = mF,
-    M = mM
+    A = a_mat,
+    S = s_mat,
+    F = f_mat,
+    M = m_mat
   )
 }

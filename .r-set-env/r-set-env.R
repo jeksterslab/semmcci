@@ -70,17 +70,17 @@ dir.create(
 ################################################################################
 # ====[ profile ]================================================================
 ################################################################################
-dot_Rprofile_file <- root$find_file(
+dot_rprofile_file <- root$find_file(
   ".Rprofile"
 )
-Sys.setenv(R_PROFILE_USER = dot_Rprofile_file)
+Sys.setenv(R_PROFILE_USER = dot_rprofile_file)
 ################################################################################
 # ====[ history ]================================================================
 ################################################################################
-dot_Rhistory_file <- root$find_file(
+dot_rhistory_file <- root$find_file(
   ".Rhistory"
 )
-Sys.setenv(R_HISTFILE = dot_Rhistory_file)
+Sys.setenv(R_HISTFILE = dot_rhistory_file)
 ################################################################################
 # ====[ write ]==================================================================
 ################################################################################
@@ -97,16 +97,16 @@ value <- c(
   #  paste0("\"", tmpdir_folder, "\""),
   #  paste0("\"", tmpdir_folder, "\""),
   #  paste0("\"", tmpdir_folder, "\""),
-  paste0("\"", dot_Rprofile_file, "\""),
-  paste0("\"", dot_Rhistory_file, "\"")
+  paste0("\"", dot_rprofile_file, "\""),
+  paste0("\"", dot_rhistory_file, "\"")
 )
-dot_Renviron_contents <- paste(
+dot_renviron_contents <- paste(
   key,
   value,
   sep = "="
 )
-dot_Renviron_contents <- c(
-  dot_Renviron_contents,
+dot_renviron_contents <- c(
+  dot_renviron_contents,
   "R_COMPLETION=TRUE"
 )
 ################################################################################
@@ -123,20 +123,20 @@ source(
   )
 )
 if (file.exists(r_env_secrets)) {
-  dot_Renviron_contents <- c(
-    dot_Renviron_contents,
+  dot_renviron_contents <- c(
+    dot_renviron_contents,
     readLines(r_env_secrets)
   )
 }
 ################################################################################
 # ====[ write file ]=============================================================
 ################################################################################
-dot_Renviron_file <- root$find_file(
+dot_renviron_file <- root$find_file(
   ".Renviron"
 )
-con <- file(dot_Renviron_file)
+con <- file(dot_renviron_file)
 writeLines(
-  text = dot_Renviron_contents,
+  text = dot_renviron_contents,
   con = con
 )
 close(con)

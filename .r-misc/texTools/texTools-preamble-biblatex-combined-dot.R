@@ -54,12 +54,12 @@
         output_path,
         "bib.bib"
       )
-      fileConn <- file(output_file)
+      con <- file(output_file)
       writeLines(
         text = bibs,
-        con = fileConn
+        con = con
       )
-      close(fileConn)
+      close(con)
       biblatex <- paste0(
         "\n",
         "\\usepackage[",

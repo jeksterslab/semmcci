@@ -28,7 +28,7 @@
 #'   If Cholesky decomposition fails, try eigenvalue decomposition.
 #'   Finally, if eigenvalue decomposition fails, try singular value decomposition.
 #' @param pd Logical.
-#'   If `pd = TRUE`, check if the sampling variance-covariance matrix is positive definite using `tol`.
+#'   If `pd = TRUE`, check if the sampling variance-covariance matrix is positive definite using `tol` if `decomposition %in% c("eigen", "svd")`.
 #' @param tol Numeric.
 #'   Tolerance used for `pd`..
 #' @return Returns an object of class `semmcci` which is a list with the following elements:
@@ -72,7 +72,7 @@
 MC <- function(object,
                R = 20000L,
                alpha = c(0.001, 0.01, 0.05),
-               decomposition = NULL,
+               decomposition = "chol",
                pd = TRUE,
                tol = 1e-06) {
   stopifnot(
@@ -81,6 +81,11 @@ MC <- function(object,
       "lavaan"
     )
   )
+  if (!is.null(decomposition)) {
+    if (decomposition == "chol") {
+      pd <- FALSE
+    }
+  }
   # set up Monte Carlo
   thetahatstar <- .ThetaStar(
     R = R,
