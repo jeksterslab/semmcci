@@ -17,7 +17,21 @@ filetype <- c(
   ".Rmd"
 )
 
-
+cat("\nlatexsrc/r-scripts\n")
+latexsrc <- root$find_file(
+  "latexsrc",
+  "r-scripts"
+)
+styler::style_dir(
+  latexsrc,
+  filetype = filetype
+)
+lintr::lint_dir(
+  latexsrc,
+  lintr::object_name_linter(
+    styles = styles
+  )
+)
 
 cat("\n.r-*\n")
 dot_r <- dirs[grep(pattern = "^\\.r-.*$", x = dirs)]
