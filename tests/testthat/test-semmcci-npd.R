@@ -25,6 +25,15 @@ lapply(
             pd = FALSE
           )
         )
+        testthat::expect_error(
+          semmcci:::.ThetaStar(
+            R = 2000L,
+            scale = scale,
+            location = location,
+            decomposition = "chol",
+            pd = TRUE
+          )
+        )
       }
     )
     testthat::test_that(
@@ -37,6 +46,29 @@ lapply(
             location = location,
             decomposition = "eigen",
             pd = FALSE
+          )
+        )
+        testthat::expect_error(
+          semmcci:::.ThetaStar(
+            R = 2000L,
+            scale = scale,
+            location = location,
+            decomposition = "eigen",
+            pd = TRUE
+          )
+        )
+      }
+    )
+    testthat::test_that(
+      paste(text, "svd"),
+      {
+        testthat::expect_error(
+          semmcci:::.ThetaStar(
+            R = 2000L,
+            scale = scale,
+            location = location,
+            decomposition = "svd",
+            pd = TRUE
           )
         )
       }
