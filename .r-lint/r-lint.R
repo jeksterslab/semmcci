@@ -17,14 +17,21 @@ filetype <- c(
   ".Rmd"
 )
 
+styler::style_dir(
+  root_folder,
+  exclude_dirs = c(
+    "packrat",
+    "renv",
+    ".library",
+    ".notes"
+  ),
+  filetype = filetype
+)
+
 cat("\nlatexsrc/r-scripts\n")
 latexsrc <- root$find_file(
   "latexsrc",
   "r-scripts"
-)
-styler::style_dir(
-  latexsrc,
-  filetype = filetype
 )
 lintr::lint_dir(
   latexsrc,
@@ -38,10 +45,6 @@ dot_r <- dirs[grep(pattern = "^\\.r-.*$", x = dirs)]
 lapply(
   X = dot_r,
   FUN = function(path) {
-    styler::style_dir(
-      file.path(root_folder, path),
-      filetype = filetype
-    )
     lintr::lint_dir(
       file.path(root_folder, path),
       lintr::object_name_linter(
@@ -56,10 +59,6 @@ dot_tests <- dirs[grep(pattern = "^\\.tests-.*$", x = dirs)]
 lapply(
   X = dot_tests,
   FUN = function(path) {
-    styler::style_dir(
-      file.path(root_folder, path),
-      filetype = filetype
-    )
     lintr::lint_dir(
       file.path(root_folder, path),
       lintr::object_name_linter(
@@ -70,10 +69,6 @@ lapply(
 )
 
 cat("\nvignettes\n")
-styler::style_dir(
-  file.path(root_folder, "vignettes"),
-  filetype = filetype
-)
 lintr::lint_dir(
   file.path(root_folder, "vignettes"),
   lintr::object_name_linter(
@@ -82,10 +77,6 @@ lintr::lint_dir(
 )
 
 cat("\ntests\n")
-styler::style_dir(
-  file.path(root_folder, "tests"),
-  filetype = filetype
-)
 lintr::lint_dir(
   file.path(root_folder, "tests"),
   lintr::object_name_linter(
@@ -94,10 +85,6 @@ lintr::lint_dir(
 )
 
 cat("\nR\n")
-styler::style_dir(
-  file.path(root_folder, "R"),
-  filetype = filetype
-)
 lintr::lint_dir(
   file.path(root_folder, "R"),
   lintr::object_name_linter(
