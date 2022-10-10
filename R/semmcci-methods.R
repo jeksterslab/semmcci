@@ -11,18 +11,27 @@
 #'
 #' # Generate Data ------------------------------------------------------------
 #' n <- 1000
-#' x <- rnorm(n = n)
-#' m <- 0.50 * x + rnorm(n = n)
-#' y <- 0.25 * x + 0.50 * m + rnorm(n = n)
-#' data <- data.frame(x, m, y)
+#' a <- 0.50
+#' b <- 0.50
+#' cp <- 0.25
+#' s2_em <- 1 - a^2
+#' s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
+#' em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
+#' ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
+#' X <- rnorm(n = n)
+#' M <- a * X + em
+#' Y <- cp * X + b * M + ey
+#' df <- data.frame(X, M, Y)
 #'
 #' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
-#'   y ~ cp * x + b * m
-#'   m ~ a * x
-#'   ab := a * b
+#'   Y ~ cp * X + b * M
+#'   M ~ a * X
+#'   indirect := a * b
+#'   direct := cp
+#'   total := cp + (a * b)
 #' "
-#' fit <- sem(data = data, model = model)
+#' fit <- sem(data = df, model = model)
 #'
 #' # Monte Carlo --------------------------------------------------------------
 #' unstd <- MC(
@@ -58,18 +67,27 @@ print.semmcci <- function(x,
 #'
 #' # Generate Data ------------------------------------------------------------
 #' n <- 1000
-#' x <- rnorm(n = n)
-#' m <- 0.50 * x + rnorm(n = n)
-#' y <- 0.25 * x + 0.50 * m + rnorm(n = n)
-#' data <- data.frame(x, m, y)
+#' a <- 0.50
+#' b <- 0.50
+#' cp <- 0.25
+#' s2_em <- 1 - a^2
+#' s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
+#' em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
+#' ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
+#' X <- rnorm(n = n)
+#' M <- a * X + em
+#' Y <- cp * X + b * M + ey
+#' df <- data.frame(X, M, Y)
 #'
 #' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
-#'   y ~ cp * x + b * m
-#'   m ~ a * x
-#'   ab := a * b
+#'   Y ~ cp * X + b * M
+#'   M ~ a * X
+#'   indirect := a * b
+#'   direct := cp
+#'   total := cp + (a * b)
 #' "
-#' fit <- sem(data = data, model = model, fixed.x = FALSE)
+#' fit <- sem(data = df, model = model, fixed.x = FALSE)
 #'
 #' # Monte Carlo --------------------------------------------------------------
 #' unstd <- MC(
@@ -109,18 +127,27 @@ print.semmccistd <- function(x,
 #'
 #' # Generate Data ------------------------------------------------------------
 #' n <- 1000
-#' x <- rnorm(n = n)
-#' m <- 0.50 * x + rnorm(n = n)
-#' y <- 0.25 * x + 0.50 * m + rnorm(n = n)
-#' data <- data.frame(x, m, y)
+#' a <- 0.50
+#' b <- 0.50
+#' cp <- 0.25
+#' s2_em <- 1 - a^2
+#' s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
+#' em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
+#' ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
+#' X <- rnorm(n = n)
+#' M <- a * X + em
+#' Y <- cp * X + b * M + ey
+#' df <- data.frame(X, M, Y)
 #'
 #' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
-#'   y ~ cp * x + b * m
-#'   m ~ a * x
-#'   ab := a * b
+#'   Y ~ cp * X + b * M
+#'   M ~ a * X
+#'   indirect := a * b
+#'   direct := cp
+#'   total := cp + (a * b)
 #' "
-#' fit <- sem(data = data, model = model)
+#' fit <- sem(data = df, model = model)
 #'
 #' # Monte Carlo --------------------------------------------------------------
 #' unstd <- MC(
@@ -157,18 +184,27 @@ summary.semmcci <- function(object,
 #'
 #' # Generate Data ------------------------------------------------------------
 #' n <- 1000
-#' x <- rnorm(n = n)
-#' m <- 0.50 * x + rnorm(n = n)
-#' y <- 0.25 * x + 0.50 * m + rnorm(n = n)
-#' data <- data.frame(x, m, y)
+#' a <- 0.50
+#' b <- 0.50
+#' cp <- 0.25
+#' s2_em <- 1 - a^2
+#' s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
+#' em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
+#' ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
+#' X <- rnorm(n = n)
+#' M <- a * X + em
+#' Y <- cp * X + b * M + ey
+#' df <- data.frame(X, M, Y)
 #'
 #' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
-#'   y ~ cp * x + b * m
-#'   m ~ a * x
-#'   ab := a * b
+#'   Y ~ cp * X + b * M
+#'   M ~ a * X
+#'   indirect := a * b
+#'   direct := cp
+#'   total := cp + (a * b)
 #' "
-#' fit <- sem(data = data, model = model, fixed.x = FALSE)
+#' fit <- sem(data = df, model = model, fixed.x = FALSE)
 #'
 #' # Monte Carlo --------------------------------------------------------------
 #' unstd <- MC(
@@ -207,18 +243,27 @@ summary.semmccistd <- function(object,
 #'
 #' # Generate Data ------------------------------------------------------------
 #' n <- 1000
-#' x <- rnorm(n = n)
-#' m <- 0.50 * x + rnorm(n = n)
-#' y <- 0.25 * x + 0.50 * m + rnorm(n = n)
-#' data <- data.frame(x, m, y)
+#' a <- 0.50
+#' b <- 0.50
+#' cp <- 0.25
+#' s2_em <- 1 - a^2
+#' s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
+#' em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
+#' ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
+#' X <- rnorm(n = n)
+#' M <- a * X + em
+#' Y <- cp * X + b * M + ey
+#' df <- data.frame(X, M, Y)
 #'
 #' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
-#'   y ~ cp * x + b * m
-#'   m ~ a * x
-#'   ab := a * b
+#'   Y ~ cp * X + b * M
+#'   M ~ a * X
+#'   indirect := a * b
+#'   direct := cp
+#'   total := cp + (a * b)
 #' "
-#' fit <- sem(data = data, model = model, fixed.x = FALSE)
+#' fit <- sem(data = df, model = model)
 #'
 #' # Monte Carlo --------------------------------------------------------------
 #' unstd <- MC(
@@ -248,18 +293,27 @@ coef.semmcci <- function(object,
 #'
 #' # Generate Data ------------------------------------------------------------
 #' n <- 1000
-#' x <- rnorm(n = n)
-#' m <- 0.50 * x + rnorm(n = n)
-#' y <- 0.25 * x + 0.50 * m + rnorm(n = n)
-#' data <- data.frame(x, m, y)
+#' a <- 0.50
+#' b <- 0.50
+#' cp <- 0.25
+#' s2_em <- 1 - a^2
+#' s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
+#' em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
+#' ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
+#' X <- rnorm(n = n)
+#' M <- a * X + em
+#' Y <- cp * X + b * M + ey
+#' df <- data.frame(X, M, Y)
 #'
 #' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
-#'   y ~ cp * x + b * m
-#'   m ~ a * x
-#'   ab := a * b
+#'   Y ~ cp * X + b * M
+#'   M ~ a * X
+#'   indirect := a * b
+#'   direct := cp
+#'   total := cp + (a * b)
 #' "
-#' fit <- sem(data = data, model = model, fixed.x = FALSE)
+#' fit <- sem(data = df, model = model, fixed.x = FALSE)
 #'
 #' # Monte Carlo --------------------------------------------------------------
 #' unstd <- MC(
@@ -292,18 +346,27 @@ coef.semmccistd <- function(object,
 #'
 #' # Generate Data ------------------------------------------------------------
 #' n <- 1000
-#' x <- rnorm(n = n)
-#' m <- 0.50 * x + rnorm(n = n)
-#' y <- 0.25 * x + 0.50 * m + rnorm(n = n)
-#' data <- data.frame(x, m, y)
+#' a <- 0.50
+#' b <- 0.50
+#' cp <- 0.25
+#' s2_em <- 1 - a^2
+#' s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
+#' em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
+#' ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
+#' X <- rnorm(n = n)
+#' M <- a * X + em
+#' Y <- cp * X + b * M + ey
+#' df <- data.frame(X, M, Y)
 #'
 #' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
-#'   y ~ cp * x + b * m
-#'   m ~ a * x
-#'   ab := a * b
+#'   Y ~ cp * X + b * M
+#'   M ~ a * X
+#'   indirect := a * b
+#'   direct := cp
+#'   total := cp + (a * b)
 #' "
-#' fit <- sem(data = data, model = model, fixed.x = FALSE)
+#' fit <- sem(data = df, model = model)
 #'
 #' # Monte Carlo --------------------------------------------------------------
 #' unstd <- MC(
@@ -335,18 +398,27 @@ vcov.semmcci <- function(object,
 #'
 #' # Generate Data ------------------------------------------------------------
 #' n <- 1000
-#' x <- rnorm(n = n)
-#' m <- 0.50 * x + rnorm(n = n)
-#' y <- 0.25 * x + 0.50 * m + rnorm(n = n)
-#' data <- data.frame(x, m, y)
+#' a <- 0.50
+#' b <- 0.50
+#' cp <- 0.25
+#' s2_em <- 1 - a^2
+#' s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
+#' em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
+#' ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
+#' X <- rnorm(n = n)
+#' M <- a * X + em
+#' Y <- cp * X + b * M + ey
+#' df <- data.frame(X, M, Y)
 #'
 #' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
-#'   y ~ cp * x + b * m
-#'   m ~ a * x
-#'   ab := a * b
+#'   Y ~ cp * X + b * M
+#'   M ~ a * X
+#'   indirect := a * b
+#'   direct := cp
+#'   total := cp + (a * b)
 #' "
-#' fit <- sem(data = data, model = model, fixed.x = FALSE)
+#' fit <- sem(data = df, model = model, fixed.x = FALSE)
 #'
 #' # Monte Carlo --------------------------------------------------------------
 #' unstd <- MC(
@@ -384,18 +456,27 @@ vcov.semmccistd <- function(object,
 #'
 #' # Generate Data ------------------------------------------------------------
 #' n <- 1000
-#' x <- rnorm(n = n)
-#' m <- 0.50 * x + rnorm(n = n)
-#' y <- 0.25 * x + 0.50 * m + rnorm(n = n)
-#' data <- data.frame(x, m, y)
+#' a <- 0.50
+#' b <- 0.50
+#' cp <- 0.25
+#' s2_em <- 1 - a^2
+#' s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
+#' em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
+#' ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
+#' X <- rnorm(n = n)
+#' M <- a * X + em
+#' Y <- cp * X + b * M + ey
+#' df <- data.frame(X, M, Y)
 #'
 #' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
-#'   y ~ cp * x + b * m
-#'   m ~ a * x
-#'   ab := a * b
+#'   Y ~ cp * X + b * M
+#'   M ~ a * X
+#'   indirect := a * b
+#'   direct := cp
+#'   total := cp + (a * b)
 #' "
-#' fit <- sem(data = data, model = model, fixed.x = FALSE)
+#' fit <- sem(data = df, model = model)
 #'
 #' # Monte Carlo --------------------------------------------------------------
 #' unstd <- MC(
@@ -440,18 +521,27 @@ confint.semmcci <- function(object,
 #'
 #' # Generate Data ------------------------------------------------------------
 #' n <- 1000
-#' x <- rnorm(n = n)
-#' m <- 0.50 * x + rnorm(n = n)
-#' y <- 0.25 * x + 0.50 * m + rnorm(n = n)
-#' data <- data.frame(x, m, y)
+#' a <- 0.50
+#' b <- 0.50
+#' cp <- 0.25
+#' s2_em <- 1 - a^2
+#' s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
+#' em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
+#' ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
+#' X <- rnorm(n = n)
+#' M <- a * X + em
+#' Y <- cp * X + b * M + ey
+#' df <- data.frame(X, M, Y)
 #'
 #' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
-#'   y ~ cp * x + b * m
-#'   m ~ a * x
-#'   ab := a * b
+#'   Y ~ cp * X + b * M
+#'   M ~ a * X
+#'   indirect := a * b
+#'   direct := cp
+#'   total := cp + (a * b)
 #' "
-#' fit <- sem(data = data, model = model, fixed.x = FALSE)
+#' fit <- sem(data = df, model = model, fixed.x = FALSE)
 #'
 #' # Monte Carlo --------------------------------------------------------------
 #' unstd <- MC(
