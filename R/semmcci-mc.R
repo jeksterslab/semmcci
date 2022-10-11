@@ -74,8 +74,6 @@
 #'   R = 100L, # use a large value e.g., 20000L for actual research
 #'   alpha = c(0.001, 0.01, 0.05)
 #' )
-#' @importFrom methods is
-#' @importFrom stats var complete.cases
 #' @keywords mc
 #' @export
 MC <- function(object,

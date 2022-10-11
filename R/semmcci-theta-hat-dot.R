@@ -12,7 +12,6 @@
 #'   \item{`cin`}{Inequality constraints.}
 #'   \item{`fixed`}{Fixed parameters.}
 #' }
-#' @importFrom stats complete.cases
 #' @keywords parameters internal
 #' @noRd
 .ThetaHat <- function(object) {

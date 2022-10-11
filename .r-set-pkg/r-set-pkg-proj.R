@@ -6,7 +6,8 @@ args <- commandArgs(trailingOnly = TRUE)
 pkg <- c(
   "lavaan",
   "MASS",
-  "microbenchmark"
+  "microbenchmark",
+  "semmcci"
 )
 ################################################################################
 # ====[ library ]================================================================

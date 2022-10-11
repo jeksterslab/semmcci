@@ -10,7 +10,6 @@
 #' @param object object of class `lavaan`.
 #' @return A vector of the standardized solution, of the same
 #'  length as the number of rows in the parameter table.
-#' @importFrom lavaan lav_model_set_parameters lav_model_get_parameters
 #' @keywords matrix standardized internal
 #' @noRd
 .StdLav <- function(est,

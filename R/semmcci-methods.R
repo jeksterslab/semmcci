@@ -273,7 +273,6 @@ summary.semmccistd <- function(object,
 #' )
 #' coef(unstd)
 #' @keywords method
-#' @importFrom stats coef
 #' @export
 coef.semmcci <- function(object,
                          ...) {
@@ -326,7 +325,6 @@ coef.semmcci <- function(object,
 #' std <- MCStd(unstd)
 #' coef(std)
 #' @keywords method
-#' @importFrom stats coef
 #' @export
 coef.semmccistd <- function(object,
                             ...) {
@@ -376,7 +374,6 @@ coef.semmccistd <- function(object,
 #' )
 #' vcov(unstd)
 #' @keywords method
-#' @importFrom stats vcov
 #' @export
 vcov.semmcci <- function(object,
                          ...) {
@@ -431,7 +428,6 @@ vcov.semmcci <- function(object,
 #' std <- MCStd(unstd)
 #' vcov(std)
 #' @keywords method
-#' @importFrom stats vcov
 #' @export
 vcov.semmccistd <- function(object,
                             ...) {

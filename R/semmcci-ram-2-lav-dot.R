@@ -10,7 +10,6 @@
 #' @param standardized If `TRUE`, the `psi` and `beta` matrices
 #'  contain the correlations. Default is `FALSE`.
 #' @return A list of `lavaan` model matrices for one group.
-#' @importFrom stats cov2cor
 #' @keywords matrix internal
 #' @noRd
 .RAM2Lav <- function(ram,

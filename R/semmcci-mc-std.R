@@ -64,7 +64,6 @@
 #'
 #' # Standardized Monte Carlo -------------------------------------------------
 #' MCStd(output)
-#' @importFrom lavaan standardizedSolution
 #' @keywords mc
 #' @export
 MCStd <- function(object,
