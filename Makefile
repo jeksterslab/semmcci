@@ -132,6 +132,8 @@ clean:
 	@rm -rf man/*
 	@rm -rf NAMESPACE
 	@rm -rf latex/pdf/*.*
+	@rm -rf fig-vignettes-*
+	@rm -rf vignettes/fig-vignettes-*
 	@rm -rf .data-process/*.Rds
 	@find .detritus/ -type f -not -name '.gitignore' -delete
 

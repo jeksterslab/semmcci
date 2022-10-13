@@ -15,6 +15,7 @@ vignette: >
 #| include = FALSE
 knitr::opts_chunk$set(
   collapse = TRUE,
+  fig.path = "fig-vignettes-benchmark-",
   comment = "#>"
 )
 ```
@@ -252,6 +253,16 @@ summary(benchmark01, unit = "ms")
 summary(benchmark01, unit = "relative")
 ```
 
+## Plot
+
+```{r}
+#| fig.cap = "",
+#| echo = FALSE,
+#| warning = FALSE,
+#| message = FALSE
+boxplot(benchmark01)
+```
+
 ## Benchmark - Monte Carlo Method with Precalculated Estimates
 
 ```{r}
@@ -332,4 +343,14 @@ summary(benchmark02, unit = "ms")
 
 ```{r}
 summary(benchmark02, unit = "relative")
+```
+
+## Plot
+
+```{r}
+#| fig.cap = "",
+#| echo = FALSE,
+#| warning = FALSE,
+#| message = FALSE
+boxplot(benchmark02)
 ```

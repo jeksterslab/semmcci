@@ -1,4 +1,9 @@
 root <- rprojroot::is_rstudio_project
+root_folder <- dirname(
+  root$find_file(
+    "project.Rproj"
+  )
+)
 vignettes_folder <- root$find_file(
   "vignettes"
 )
@@ -29,4 +34,19 @@ if (length(orig) > 0) {
       file.path(vignettes_folder, target[i])
     )
   }
+}
+figs <- list.files(
+  path = root_folder,
+  pattern = "^fig-vignettes-.",
+  full.names = FALSE,
+  all.files = TRUE,
+  recursive = FALSE
+)
+if (length(figs) > 0) {
+  file.copy(
+    from = figs,
+    to = vignettes_folder,
+    overwrite = TRUE
+  )
+  unlink(figs)
 }
