@@ -16,6 +16,8 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   fig.path = "fig-vignettes-benchmark-",
+  fig.width = 11,
+  fig.height = 8,
   comment = "#>"
 )
 ```

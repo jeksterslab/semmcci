@@ -13,6 +13,7 @@ pkg <- c(
   "microbenchmark",
   "pdftools",
   "pkgdown",
+  "ragg",
   "remotes",
   "rmarkdown",
   "rprojroot",
