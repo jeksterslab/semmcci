@@ -16,8 +16,11 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   fig.path = "fig-vignettes-benchmark-",
+  fig.cap = "",
   fig.width = 11,
   fig.height = 8,
+  fig.retina = 2,
+  dpi = 300,
   comment = "#>"
 )
 ```
@@ -258,7 +261,6 @@ summary(benchmark01, unit = "relative")
 ## Plot
 
 ```{r}
-#| fig.cap = "",
 #| echo = FALSE,
 #| warning = FALSE,
 #| message = FALSE
@@ -350,7 +352,6 @@ summary(benchmark02, unit = "relative")
 ## Plot
 
 ```{r}
-#| fig.cap = "",
 #| echo = FALSE,
 #| warning = FALSE,
 #| message = FALSE

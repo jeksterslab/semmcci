@@ -1,6 +1,15 @@
-.PHONY: all term termconda root remotes env github arch jammy focal win deps style lint cov check cran site build install vignettes rpkg tinytex latex rhub rhublocal rclean rcleanall clean termclean deepclean sif
+.PHONY: r all sys sif term termconda root remotes env pkg deps style lint cov readme document check cran site build install vignettes tinytex latex manual clean termclean rclean rcleanall deepclean
 
-all: clean deps style man/*.Rd check build install vignettes README.md site manual
+r: clean pkg deps style document check build install vignettes readme site manual
+
+all: r latex
+
+sys: term tinytex
+
+# apptainer
+
+sif:
+	@sudo -E bash .r-sif/apptainer.sh
 
 # terminal
 
@@ -11,10 +20,7 @@ term: termclean
 termconda: term
 	@(cd .bash && make conda)
 
-# system
-
-sif:
-	@sudo -E bash .r-sif/apptainer.sh
+# R package related
 
 root:
 	@Rscript .r-set-pkg/r-set-pkg-rprojroot.R $(PWD)
@@ -25,37 +31,15 @@ remotes:
 env:
 	@Rscript .r-set-env/r-set-env.R $(PWD)
 	@Rscript .r-buildignore/r-buildignore.R
-	@grep "\S" .Rbuildignore
-
-github:
+	@grep -q "\S" .Rbuildignore
+	@Rscript .r-set-profile/r-set-profile.R $(PWD)
+	
+pkg: clean env
+	@Rscript .r-set-pkg/r-set-pkg-dev.R $(PWD)
 	@Rscript .r-set-pkg/r-set-pkg-dev-github.R $(PWD)
+	@Rscript .r-set-pkg/r-set-pkg-proj.R $(PWD)
 	@Rscript .r-set-pkg/r-set-pkg-proj-github.R $(PWD)
-
-sysarch:
-	@bash .sys/sys-arch/sys-arch.sh
-
-sysubuntu:
-	@bash .sys/sys-ubuntu/sys-ubuntu.sh
-
-arch: clean env github
-	@Rscript .r-set-profile/r-set-profile.R $(PWD) arch
-	@Rscript .r-set-pkg/r-set-pkg-dev.R $(PWD) arch
-	@Rscript .r-set-pkg/r-set-pkg-proj.R $(PWD) arch
-	@Rscript .r-set-pkg/r-set-pkg-proj-version.R $(PWD) arch
-
-jammy: clean env github
-	@Rscript .r-set-profile/r-set-profile.R $(PWD) jammy
-	@Rscript .r-set-pkg/r-set-pkg-dev.R $(PWD) jammy
-	@Rscript .r-set-pkg/r-set-pkg-proj.R $(PWD) jammy
-	@Rscript .r-set-pkg/r-set-pkg-proj-version.R $(PWD) jammy
-
-focal: clean env github
-	@Rscript .r-set-profile/r-set-profile.R $(PWD) focal
-	@Rscript .r-set-pkg/r-set-pkg-dev.R $(PWD) focal
-	@Rscript .r-set-pkg/r-set-pkg-proj.R $(PWD) focal
-	@Rscript .r-set-pkg/r-set-pkg-proj-version.R $(PWD) focal
-
-# R package related
+	@Rscript .r-set-pkg/r-set-pkg-proj-version.R $(PWD)
 
 deps:
 	@find .r-dependencies -name \*.R -exec cp {} R \;
@@ -71,10 +55,10 @@ lint:
 cov:
 	@Rscript -e "covr::package_coverage()"
 
-README.md: README.Rmd R/*.R
+readme:
 	@Rscript -e "devtools::build_readme()"
 
-man/*.Rd: R/*.R
+document:
 	@Rscript -e "devtools::document()"
 
 check:
@@ -92,8 +76,6 @@ build:
 install:
 	@Rscript -e "devtools::install(pkg = '.')"
 
-rpkg: deps style README.md man/*.Rd vignettes check build install site
-
 vignettes:
 	@Rscript .r-vignettes/precompile.R
 	@rm -rf vignettes/*.orig
@@ -102,20 +84,11 @@ vignettes:
 # latex related
 
 tinytex:
-	@Rscript -e "tinytex::install_tinytex(bundle = 'TinyTeX-2', force = TRUE)"
+	@Rscript .r-tinytex/r-tinytex.R $(PWD)
 
 latex:
 	@Rscript -e "source('latexsrc/r-scripts/latex-make.R'); LatexMake(clean = TRUE)"
 	@rm -rf _detritus
-	@echo "Run 'make tinytex' if the process failed."
-
-# rhub
-
-rhub:
-	@Rscript .r-hub/check-for-cran.R
-
-rhublocal:
-	@Rscript .r-hub/local-check-linux-images.R
 
 # manual
 

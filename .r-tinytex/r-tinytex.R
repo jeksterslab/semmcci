@@ -1,28 +1,6 @@
 #!/usr/bin/env Rscript
 args <- commandArgs(trailingOnly = TRUE)
 ################################################################################
-# ====[ development packages ]==================================================
-################################################################################
-pkg <- c(
-  "covr",
-  "devtools",
-  "ggplot2",
-  "knitr",
-  "lintr",
-  "magick",
-  "microbenchmark",
-  "pdftools",
-  "pkgdown",
-  "ragg",
-  "remotes",
-  "rmarkdown",
-  "rprojroot",
-  "styler",
-  "testthat",
-  "tidyverse",
-  "qpdf"
-)
-################################################################################
 # ====[ library ]================================================================
 ################################################################################
 dot_library_folder <- file.path(
@@ -41,33 +19,25 @@ Sys.setenv(
   R_LIBS_USER = dot_library_folder
 )
 ################################################################################
-# ====[ rprojroot ]=============================================================
+# ====[ remotes ]===============================================================
 ################################################################################
 installed <- installed.packages()
 pkg_installed <- installed[, "Package"]
-if (!("rprojroot" %in% pkg_installed)) {
+if (!("remotes" %in% pkg_installed)) {
   install.packages(
-    "rprojroot",
+    "remotes",
     repos = c(REPO_NAME = "https://packagemanager.rstudio.com/all/latest"),
     lib = dot_library_folder
   )
 }
-root <- rprojroot::is_rstudio_project
 ################################################################################
-# ====[ install ]===============================================================
+# ====[ tinytex ]===============================================================
 ################################################################################
-source(
-  root$find_file(
-    ".r-set-pkg",
-    "r-set-pkg-repo.R"
-  )
+remotes::install_github(
+  repo = "rstudio/tinytex",
+  lib = dot_library_folder
 )
-for (i in seq_along(pkg)) {
-  if (!(pkg[i] %in% pkg_installed)) {
-    install.packages(
-      pkg[i],
-      repos = repos,
-      lib = dot_library_folder
-    )
-  }
-}
+tinytex::install_tinytex(
+  bundle = "TinyTeX-2",
+  force = TRUE
+)

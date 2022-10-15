@@ -54,19 +54,6 @@ dir.create(
   showWarnings = FALSE,
   recursive = TRUE
 )
-# tmpdir_folder <- root$find_file(
-#  home_folder,
-#  "tmp",
-#  root_folder
-# )
-# dir.create(
-#  tmpdir_folder,
-#  showWarnings = FALSE,
-#  recursive = TRUE
-# )
-# Sys.setenv(TMPDIR = tmpdir_folder)
-# Sys.setenv(TEMP = tmpdir_folder)
-# Sys.setenv(TMP = tmpdir_folder)
 ################################################################################
 # ====[ profile ]================================================================
 ################################################################################

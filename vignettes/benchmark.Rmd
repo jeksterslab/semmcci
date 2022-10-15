@@ -1,7 +1,7 @@
 ---
 title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2022-10-14"
+date: "2022-10-15"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -207,7 +207,7 @@ summary(benchmark01, unit = "relative")
 
 ## Plot
 
-![](fig-vignettes-benchmark-unnamed-chunk-17-1.png)
+<img src="fig-vignettes-benchmark-unnamed-chunk-17-1.png" width="3300" />
 
 ## Benchmark - Monte Carlo Method with Precalculated Estimates
 
@@ -264,4 +264,4 @@ summary(benchmark02, unit = "relative")
 
 ## Plot
 
-![](fig-vignettes-benchmark-unnamed-chunk-22-1.png)
+<img src="fig-vignettes-benchmark-unnamed-chunk-22-1.png" width="3300" />

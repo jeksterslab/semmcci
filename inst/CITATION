@@ -1,17 +1,52 @@
-utils::citEntry(
-  entry = "manual",
-  address = "University of Macau",
-  author = utils::personList(
-    utils::person(
-      given = "Ivan Jacob Agaloos",
-      family = "Pesigan",
-      role = c("aut", "cre"),
-      email = "r.jeksterslab@gmail.com",
-      comment = c(ORCID = "0000-0003-4818-8420")
-    )
+year <- 2022
+author_text <- "Pesigan, I. J. A. & Cheung, S. F."
+pkg <- meta$Package
+title <- meta$Title
+version <- meta$Version
+author <- c(
+  person(
+    given = "Ivan Jacob Agaloos",
+    family = "Pesigan",
+    role = c("aut", "cre", "cph"),
+    email = "r.jeksterslab@gmail.com",
+    comment = c(ORCID = "0000-0003-4818-8420")
   ),
-  title = "semmcci: Monte Carlo Confidence Intervals in Structural Equation Modeling",
-  year = "2022",
-  note = "R package version 1.0.2",
-  textVersion = "Pesigan, I. J. A. (2022). semmcci: Monte Carlo Confidence Intervals in Structural Equation Modeling. R package version 1.0.2"
+  person(
+    given = "Shu Fai",
+    family = "Cheung",
+    role = "ctb",
+    email = "shufai.cheung@gmail.com",
+    comment = c(ORCID = "0000-0002-9871-9448")
+  )
+)
+note <- sprintf(
+  "R package version %s",
+  meta$Version
+)
+url <- paste0(
+  "https://CRAN.R-project.org/package=",
+  pkg
+)
+
+citHeader(
+  paste(
+    "To cite",
+    pkg,
+    "in publications, please use:"
+  )
+)
+
+citEntry(
+  entry = "Manual",
+  author = author,
+  title = paste0(pkg, ":", " ", title),
+  year = year,
+  note = note,
+  textVersion = paste0(
+    author_text, " ",
+    "(", year, ")", ".", " ",
+    pkg, ":", " ", title, ".", " ",
+    note, ".", " ",
+    url
+  )
 )
