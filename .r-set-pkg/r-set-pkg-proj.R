@@ -1,15 +1,6 @@
 #!/usr/bin/env Rscript
 args <- commandArgs(trailingOnly = TRUE)
 ################################################################################
-# ====[ project packages ]======================================================
-################################################################################
-pkg <- c(
-  "lavaan",
-  "MASS",
-  "microbenchmark",
-  "semmcci"
-)
-################################################################################
 # ====[ library ]================================================================
 ################################################################################
 dot_library_folder <- file.path(
@@ -46,15 +37,25 @@ root <- rprojroot::is_rstudio_project
 source(
   root$find_file(
     ".r-set-pkg",
+    "r-set-pkg-proj-pkg.R"
+  )
+)
+source(
+  root$find_file(
+    ".r-set-pkg",
     "r-set-pkg-repo.R"
   )
 )
-for (i in seq_along(pkg)) {
-  if (!(pkg[i] %in% pkg_installed)) {
-    install.packages(
-      pkg[i],
-      repos = repos,
-      lib = dot_library_folder
-    )
+if (run) {
+  if (length(pkg) > 0) {
+    for (i in seq_along(pkg)) {
+      if (!(pkg[i] %in% pkg_installed)) {
+        install.packages(
+          pkg[i],
+          repos = repos,
+          lib = dot_library_folder
+        )
+      }
+    }
   }
 }

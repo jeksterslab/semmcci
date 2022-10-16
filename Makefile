@@ -1,4 +1,4 @@
-.PHONY: r all sys sif term termconda root remotes env pkg deps style lint cov readme document check cran site build install vignettes tinytex latex manual clean termclean rclean rcleanall deepclean
+.PHONY: r all sys sif rocker arch term termconda root remotes env pkg deps style lint cov readme document check cran site build install vignettes tinytex latex manual clean termclean rclean rcleanall deepclean
 
 r: clean pkg deps style document check build install vignettes readme site manual
 
@@ -6,10 +6,15 @@ all: r latex
 
 sys: term tinytex
 
+sif: rocker arch
+
 # apptainer
 
-sif:
-	@sudo -E bash .r-sif/apptainer.sh
+rocker:
+	@sudo -E bash .r-sif/apptainer-rocker.sh
+
+arch:
+	@sudo -E bash .r-sif/apptainer-arch.sh
 
 # terminal
 
