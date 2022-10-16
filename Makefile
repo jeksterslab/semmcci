@@ -34,10 +34,10 @@ remotes:
 	@Rscript .r-set-pkg/r-set-pkg-remotes.R $(PWD)
 
 env:
+	@Rscript .r-set-profile/r-set-profile.R $(PWD)
 	@Rscript .r-set-env/r-set-env.R $(PWD)
 	@Rscript .r-buildignore/r-buildignore.R
 	@grep -q "\S" .Rbuildignore
-	@Rscript .r-set-profile/r-set-profile.R $(PWD)
 	
 pkg: clean env
 	@Rscript .r-set-pkg/r-set-pkg-dev.R $(PWD)
