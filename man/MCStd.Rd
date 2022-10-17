@@ -11,7 +11,7 @@ MCStd(object, alpha = c(0.001, 0.01, 0.05))
 Output of the \code{MC()} function.}
 
 \item{alpha}{Numeric vector.
-Significance level.
+Significance level \eqn{\alpha}.
 Default value is \code{alpha = c(0.001, 0.01, 0.05)}.}
 }
 \value{
@@ -19,14 +19,14 @@ Returns an object of class \code{semmccistd}
 which is a list with the following elements:
 \describe{
 \item{\code{R}}{Number of Monte Carlo replications.}
-\item{\code{alpha}}{Significance level specified.}
+\item{\code{alpha}}{Significance level \eqn{\alpha} specified.}
 \item{\code{lavaan}}{\code{lavaan} object.}
 \item{\code{decomposition}}{Matrix decomposition used to generate multivariate normal random variates.}
-\item{\code{thetahat}}{Parameter estimates.}
-\item{\code{thetahatstar}}{Sampling distribution of parameter estimates.}
+\item{\code{thetahat}}{Parameter estimates \eqn{\hat{\theta}}.}
+\item{\code{thetahatstar}}{Sampling distribution of parameter estimates \eqn{\hat{\theta}^{\ast}}.}
 \item{\code{ci}}{Confidence intervals.}
-\item{\code{thetahat_std}}{Standardized parameter estimates.}
-\item{\code{thetahatstar_std}}{Standardized sampling distribution of parameter estimates.}
+\item{\code{thetahat_std}}{Standardized parameter estimates \eqn{\hat{\theta}_{\mathrm{std}}}.}
+\item{\code{thetahatstar_std}}{Standardized sampling distribution of parameter estimates \eqn{\hat{\theta}^{\ast}_{\mathrm{std}}}.}
 }
 }
 \description{

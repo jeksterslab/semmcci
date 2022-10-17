@@ -1,6 +1,6 @@
 Package: semmcci
 Title: Monte Carlo Confidence Intervals in Structural Equation Modeling
-Version: 1.0.3
+Version: 1.0.3.9000
 Authors@R: c(
     person(given = "Ivan Jacob Agaloos",
            family = "Pesigan",

@@ -18,14 +18,14 @@
 #' which is a list with the following elements:
 #' \describe{
 #'   \item{`R`}{Number of Monte Carlo replications.}
-#'   \item{`alpha`}{Significance level specified.}
+#'   \item{`alpha`}{Significance level \eqn{\alpha} specified.}
 #'   \item{`lavaan`}{`lavaan` object.}
 #'   \item{`decomposition`}{Matrix decomposition used to generate multivariate normal random variates.}
-#'   \item{`thetahat`}{Parameter estimates.}
-#'   \item{`thetahatstar`}{Sampling distribution of parameter estimates.}
+#'   \item{`thetahat`}{Parameter estimates \eqn{\hat{\theta}}.}
+#'   \item{`thetahatstar`}{Sampling distribution of parameter estimates \eqn{\hat{\theta}^{\ast}}.}
 #'   \item{`ci`}{Confidence intervals.}
-#'   \item{`thetahat_std`}{Standardized parameter estimates.}
-#'   \item{`thetahatstar_std`}{Standardized sampling distribution of parameter estimates.}
+#'   \item{`thetahat_std`}{Standardized parameter estimates \eqn{\hat{\theta}_{\mathrm{std}}}.}
+#'   \item{`thetahatstar_std`}{Standardized sampling distribution of parameter estimates \eqn{\hat{\theta}^{\ast}_{\mathrm{std}}}.}
 #' }
 #' @examples
 #' library(semmcci)

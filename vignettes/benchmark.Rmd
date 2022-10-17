@@ -1,7 +1,7 @@
 ---
 title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2022-10-16"
+date: "2022-10-17"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -166,8 +166,7 @@ benchmark01 <- microbenchmark(
     )
     MC(
       fit,
-      R = R,
-      pd = FALSE
+      R = R
     )
   },
   NB = sem(
@@ -224,8 +223,7 @@ fit <- sem(
 benchmark02 <- microbenchmark(
   MC = MC(
     fit,
-    R = R, 
-    pd = FALSE
+    R = R
   ),
   NB = sem(
     data = df,
