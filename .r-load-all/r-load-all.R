@@ -56,6 +56,25 @@ if (length(data_files) > 0) {
 rm(
   data_files
 )
+# load all data in .data-dependencies/
+dot_data_dependencies_folder <- root$find_file(
+  ".data-dependencies"
+)
+data_dependencies_files <- list.files(
+  path = dot_data_dependencies_folder,
+  pattern = "\\.rda$",
+  full.names = TRUE,
+  all.files = TRUE
+)
+if (length(data_dependencies_files) > 0) {
+  for (i in seq_along(data_dependencies_files)) {
+    load(data_dependencies_files[i])
+  }
+  rm(i)
+}
+rm(
+  data_dependencies_files
+)
 # other data folders
 dot_data_raw_folder <- root$find_file(
   ".data-raw"
