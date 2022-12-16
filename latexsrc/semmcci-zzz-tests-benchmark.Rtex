@@ -1,0 +1,94 @@
+\documentclass{article}
+
+\input{latexsrc/preamble/preamble}
+
+%% begin.rcode
+% #| label = "root",
+% #| include = FALSE
+% root <- rprojroot::is_rstudio_project
+%% end.rcode
+
+%% begin.rcode
+% #| label = "knitr",
+% #| include = FALSE,
+% #| file = root$find_file(
+% #|   "latexsrc",
+% #|   "r-scripts",
+% #|   "knitr.R"
+% #| )
+%% end.rcode
+
+%% begin.rcode
+% #| label = "biblatex",
+% #| echo = FALSE,
+% #| warning = FALSE,
+% #| results = "asis"
+% cat(
+%   .PreambleBiblatexCombined(
+%     path = root$find_file(
+%       "latexsrc",
+%       "bib"
+%     ),
+%     output_path = root$find_file(
+%       "latexsrc"
+%     )
+%   )
+% )
+%% end.rcode
+
+\renewcommand{\baselinestretch}{1}
+
+\title{semmcci: Benchmarks}
+\author{Ivan Jacob Agaloos Pesigan}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section{All Tests Under tests-benchmark}
+
+%% begin.rcode
+% #| file = root$find_file(
+% #|   "latexsrc",
+% #|   "r-scripts",
+% #|   "tests-benchmark.R"
+% #| ),
+% #| echo = FALSE
+%% end.rcode
+
+\newpage
+
+\section*{Environment}
+
+%% begin.rcode
+% ls()
+%% end.rcode
+
+\newpage
+
+\section*{Class}
+
+%% begin.rcode
+% #| echo = FALSE
+% lapply(
+%   X = ls(),
+%   FUN = function(x) {
+%     class(
+%       eval(
+%         parse(
+%           text = x
+%         )
+%       )
+%     )
+%   }
+% )
+%% end.rcode
+
+\nocite{Lib-R-Manual-2022}
+
+\printbibliography
+
+\end{document}

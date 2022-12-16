@@ -69,6 +69,14 @@ lapply(
         )
       }
     )
+    # coverage
+    semmcci:::.ThetaStar(
+      R = 2000L,
+      scale = scale,
+      location = location,
+      decomposition = "eigen",
+      pd = FALSE
+    )
   },
   text = "test-semmcci-npd"
 )
