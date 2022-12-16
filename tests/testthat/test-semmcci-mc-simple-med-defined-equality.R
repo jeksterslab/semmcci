@@ -31,13 +31,6 @@ lapply(
       fixed.x = FALSE
     )
     set.seed(seed)
-    results_null <- MC(
-      fit,
-      R = R,
-      alpha = c(0.001, 0.01, 0.05),
-      decomposition = NULL
-    )
-    set.seed(seed)
     results_chol <- MC(
       fit,
       R = R,
@@ -69,21 +62,6 @@ lapply(
       ab = answers[, "a"] * answers[, "b"]
     )
     testthat::test_that(
-      paste(text, "NULL"),
-      {
-        testthat::expect_equal(
-          results_null$thetahat$est[c(1:6, 8)],
-          lavaan::parameterEstimates(fit)$est,
-          check.attributes = FALSE
-        )
-        testthat::expect_true(
-          abs(
-            .MCCI(results_null)["ab", "97.5%"] - quantile(answers[, "ab"], .975, na.rm = TRUE)
-          ) <= tol
-        )
-      }
-    )
-    testthat::test_that(
       paste(text, "chol"),
       {
         testthat::expect_equal(
@@ -93,7 +71,13 @@ lapply(
         )
         testthat::expect_true(
           abs(
-            .MCCI(results_chol)["ab", "97.5%"] - quantile(answers[, "ab"], .975, na.rm = TRUE)
+            .MCCI(
+              results_chol
+            )["ab", "97.5%"] - quantile(
+              answers[, "ab"],
+              .975,
+              na.rm = TRUE
+            )
           ) <= tol
         )
       }
@@ -108,7 +92,13 @@ lapply(
         )
         testthat::expect_true(
           abs(
-            .MCCI(results_eigen)["ab", "97.5%"] - quantile(answers[, "ab"], .975, na.rm = TRUE)
+            .MCCI(
+              results_eigen
+            )["ab", "97.5%"] - quantile(
+              answers[, "ab"],
+              .975,
+              na.rm = TRUE
+            )
           ) <= tol
         )
       }
@@ -123,7 +113,13 @@ lapply(
         )
         testthat::expect_true(
           abs(
-            .MCCI(results_svd)["ab", "97.5%"] - quantile(answers[, "ab"], .975, na.rm = TRUE)
+            .MCCI(
+              results_svd
+            )["ab", "97.5%"] - quantile(
+              answers[, "ab"],
+              .975,
+              na.rm = TRUE
+            )
           ) <= tol
         )
       }

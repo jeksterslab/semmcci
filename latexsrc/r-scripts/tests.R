@@ -1,15 +1,46 @@
 # find root directory
-root <- rprojroot::is_rstudio_project
-# source .r-load-all/r-load-all.R
+rproj <- rprojroot::is_rstudio_project
+# load functions
 source(
-  root$find_file(
-    ".r-load-all",
-    "r-load-all.R"
+  rproj$find_file(
+    ".setup",
+    "load",
+    "load.R"
   )
 )
+Load(rproj)
+# load data
+x <- list.files(
+  path = rproj$find_file(
+    "data"
+  ),
+  pattern = "\\.rda$",
+  full.names = TRUE,
+  all.files = TRUE,
+  recursive = TRUE
+)
+x <- c(
+  x,
+  list.files(
+    path = rproj$find_file(
+      ".data-dependencies"
+    ),
+    pattern = "\\.rda$",
+    full.names = TRUE,
+    all.files = TRUE,
+    recursive = TRUE
+  )
+)
+if (length(x) > 0) {
+  for (i in seq_along(x)) {
+    load(x[i])
+  }
+  rm(i)
+}
+rm(x)
 # run tests
 lapply(
-  X = root$find_file(
+  X = rproj$find_file(
     "tests",
     "testthat"
   ),
@@ -29,3 +60,4 @@ lapply(
     }
   }
 )
+rm(rproj)

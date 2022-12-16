@@ -4,7 +4,8 @@
 #' @param x an object of class `semmcci`.
 #' @param digits Integer indicating the number of decimal places to display.
 #' @param ... further arguments.
-#' @return Returns a matrix of estimates, standard errors, number of Monte Carlo replications, and confidence intervals.
+#' @return Returns a matrix of estimates, standard errors,
+#'   number of Monte Carlo replications, and confidence intervals.
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
@@ -60,7 +61,8 @@ print.semmcci <- function(x,
 #' @param x an object of class `semmccistd`.
 #' @param digits Integer indicating the number of decimal places to display.
 #' @param ... further arguments.
-#' @return Returns a matrix of estimates, standard errors, number of Monte Carlo replications, and confidence intervals.
+#' @return Returns a matrix of estimates, standard errors,
+#'   number of Monte Carlo replications, and confidence intervals.
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
@@ -120,7 +122,8 @@ print.semmccistd <- function(x,
 #' @param object Object of class `semmcci`.
 #' @param ... additional arguments.
 #' @param digits Digits to print.
-#' @return Returns a matrix of estimates, standard errors, number of Monte Carlo replications, and confidence intervals.
+#' @return Returns a matrix of estimates, standard errors,
+#'   number of Monte Carlo replications, and confidence intervals.
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
@@ -177,7 +180,8 @@ summary.semmcci <- function(object,
 #' @param object Object of class `semmccistd`.
 #' @param ... additional arguments.
 #' @param digits Digits to print.
-#' @return Returns a matrix of estimates, standard errors, number of Monte Carlo replications, and confidence intervals.
+#' @return Returns a matrix of estimates, standard errors,
+#'   number of Monte Carlo replications, and confidence intervals.
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
@@ -337,7 +341,8 @@ coef.semmccistd <- function(object,
 #'
 #' @param object Object of class `semmccistd`.
 #' @param ... additional arguments.
-#' @return Returns a matrix of the variance-covariance matrix of parameter estimates.
+#' @return Returns a matrix of the variance-covariance matrix
+#'   of parameter estimates.
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
@@ -388,7 +393,8 @@ vcov.semmcci <- function(object,
 #'
 #' @param object Object of class `semmccistd`.
 #' @param ... additional arguments.
-#' @return Returns a matrix of the variance-covariance matrix of standardized parameter estimates.
+#' @return Returns a matrix of the variance-covariance matrix
+#'   of standardized parameter estimates.
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
@@ -442,8 +448,10 @@ vcov.semmccistd <- function(object,
 #'
 #' @param object Object of class `semmcci`.
 #' @param ... additional arguments.
-#' @param parm a specification of which parameters are to be given confidence intervals,
-#'   either a vector of numbers or a vector of names. If missing, all parameters are considered.
+#' @param parm a specification of which parameters
+#'   are to be given confidence intervals,
+#'   either a vector of numbers or a vector of names.
+#'   If missing, all parameters are considered.
 #' @param level the confidence level required.
 #' @return Returns a matrix of confidence intervals.
 #' @examples
@@ -507,8 +515,10 @@ confint.semmcci <- function(object,
 #'
 #' @param object Object of class `semmccistd`.
 #' @param ... additional arguments.
-#' @param parm a specification of which parameters are to be given confidence intervals,
-#'   either a vector of numbers or a vector of names. If missing, all parameters are considered.
+#' @param parm a specification of which parameters
+#'   are to be given confidence intervals,
+#'   either a vector of numbers or a vector of names.
+#'   If missing, all parameters are considered.
 #' @param level the confidence level required.
 #' @return Returns a matrix of confidence intervals.
 #' @examples

@@ -52,7 +52,7 @@ df <- data.frame(X, M, Y)
 
 # Create data set with missing values.
 
-miss <- sample(1:dim(df)[1], 300)
+miss <- sample(seq_len(dim(df)[1]), 300)
 df[miss[1:100], "X"] <- NA
 df[miss[101:200], "M"] <- NA
 df[miss[201:300], "Y"] <- NA

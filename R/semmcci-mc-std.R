@@ -20,12 +20,18 @@
 #'   \item{`R`}{Number of Monte Carlo replications.}
 #'   \item{`alpha`}{Significance level \eqn{\alpha} specified.}
 #'   \item{`lavaan`}{`lavaan` object.}
-#'   \item{`decomposition`}{Matrix decomposition used to generate multivariate normal random variates.}
+#'   \item{`decomposition`}{Matrix decomposition
+#'                          used to generate multivariate normal
+#'                          random variates.}
 #'   \item{`thetahat`}{Parameter estimates \eqn{\hat{\theta}}.}
-#'   \item{`thetahatstar`}{Sampling distribution of parameter estimates \eqn{\hat{\theta}^{\ast}}.}
+#'   \item{`thetahatstar`}{Sampling distribution of parameter estimates
+#'                         \eqn{\hat{\theta}^{\ast}}.}
 #'   \item{`ci`}{Confidence intervals.}
-#'   \item{`thetahat_std`}{Standardized parameter estimates \eqn{\hat{\theta}_{\mathrm{std}}}.}
-#'   \item{`thetahatstar_std`}{Standardized sampling distribution of parameter estimates \eqn{\hat{\theta}^{\ast}_{\mathrm{std}}}.}
+#'   \item{`thetahat_std`}{Standardized parameter estimates
+#'                         \eqn{\hat{\theta}_{\mathrm{std}}}.}
+#'   \item{`thetahatstar_std`}{Standardized sampling distribution
+#'                             of parameter estimates
+#'                             \eqn{\hat{\theta}^{\ast}_{\mathrm{std}}}.}
 #' }
 #' @examples
 #' library(semmcci)

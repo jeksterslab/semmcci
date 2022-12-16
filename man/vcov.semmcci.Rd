@@ -12,7 +12,8 @@
 \item{...}{additional arguments.}
 }
 \value{
-Returns a matrix of the variance-covariance matrix of parameter estimates.
+Returns a matrix of the variance-covariance matrix
+of parameter estimates.
 }
 \description{
 Sampling Covariance Matrix of the Parameter Estimates

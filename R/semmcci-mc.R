@@ -20,25 +20,30 @@
 #'   Significance level \eqn{\alpha}.
 #'   Default value is `alpha = c(0.001, 0.01, 0.05)`.
 #' @param decomposition Character string.
-#'   Matrix decomposition of the sampling variance-covariance matrix for the data generation.
+#'   Matrix decomposition of the sampling variance-covariance matrix
+#'   for the data generation.
 #'   If `decomposition = "chol"`, use Cholesky decomposition.
 #'   If `decomposition = "eigen"`, use eigenvalue decomposition.
 #'   If `decomposition = "svd"`, use singular value decomposition.
-#'   If `decomposition = NULL`, try Cholesky decomposition.
-#'   If Cholesky decomposition fails, try eigenvalue decomposition.
-#'   Finally, if eigenvalue decomposition fails, try singular value decomposition.
 #' @param pd Logical.
-#'   If `pd = TRUE`, check if the sampling variance-covariance matrix is positive definite using `tol` if `decomposition %in% c("eigen", "svd")`.
+#'   If `pd = TRUE`,
+#'   check if the sampling variance-covariance matrix
+#'   is positive definite using `tol`
+#'   if `decomposition %in% c("eigen", "svd")`.
 #' @param tol Numeric.
 #'   Tolerance used for `pd`.
-#' @return Returns an object of class `semmcci` which is a list with the following elements:
+#' @return Returns an object of class `semmcci`
+#' which is a list with the following elements:
 #' \describe{
 #'   \item{`R`}{Number of Monte Carlo replications.}
 #'   \item{`alpha`}{Significance level \eqn{\alpha} specified.}
 #'   \item{`lavaan`}{`lavaan` object.}
-#'   \item{`decomposition`}{Matrix decomposition used to generate multivariate normal random variates.}
+#'   \item{`decomposition`}{Matrix decomposition
+#'                          used to generate multivariate
+#'                          normal random variates.}
 #'   \item{`thetahat`}{Parameter estimates \eqn{\hat{\theta}}.}
-#'   \item{`thetahatstar`}{Sampling distribution of parameter estimates \eqn{\hat{\theta}^{\ast}}.}
+#'   \item{`thetahatstar`}{Sampling distribution of parameter estimates
+#'                         \eqn{\hat{\theta}^{\ast}}.}
 #' }
 #' @examples
 #' library(semmcci)
@@ -79,7 +84,7 @@
 MC <- function(object,
                R = 20000L,
                alpha = c(0.001, 0.01, 0.05),
-               decomposition = "chol",
+               decomposition = "eigen",
                pd = TRUE,
                tol = 1e-06) {
   stopifnot(

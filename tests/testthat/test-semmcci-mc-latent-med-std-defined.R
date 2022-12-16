@@ -21,16 +21,6 @@ lapply(
       data = data
     )
     set.seed(seed)
-    results_unstd_null <- MC(
-      fit,
-      R = R,
-      alpha = c(0.001, 0.01, 0.05),
-      decomposition = NULL
-    )
-    # insert original estimate on the third row
-    results_unstd_null$thetahatstar[3, ] <- lavaan::parameterEstimates(fit)$est
-    results_null <- MCStd(results_unstd_null)
-    set.seed(seed)
     results_unstd_chol <- MC(
       fit,
       R = R,
@@ -60,26 +50,6 @@ lapply(
     # insert original estimate on the third row
     results_unstd_svd$thetahatstar[3, ] <- lavaan::parameterEstimates(fit)$est
     results_svd <- MCStd(results_unstd_svd)
-    testthat::test_that(
-      paste(text, "NULL"),
-      {
-        testthat::expect_equal(
-          results_null$thetahat$est,
-          lavaan::parameterEstimates(fit)$est,
-          check.attributes = FALSE
-        )
-        testthat::expect_equal(
-          results_null$thetahatstar_std[3, ],
-          lavaan::standardizedSolution(fit)$est.std,
-          check.attributes = FALSE
-        )
-        testthat::expect_equal(
-          .MCCI(results_null)["ab", "97.5%"],
-          quantile(results_null$thetahatstar_std[, "ab"], .975, na.rm = TRUE),
-          check.attributes = FALSE
-        )
-      }
-    )
     testthat::test_that(
       paste(text, "chol"),
       {

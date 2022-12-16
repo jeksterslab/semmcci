@@ -1,5 +1,9 @@
 # semmcci 1.0.3.9000
 
+## Patch
+
+* Minor refactoring of data generation functions.
+
 # semmcci 1.0.3
 
 ## Patch

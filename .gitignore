@@ -52,4 +52,22 @@ doc
 # sif
 *.sif
 
+# detritus
+detritus
+
+# latex
+latexmkrc
+
+# make
+Makefile
+make-*
+.secrets
+.project
+
+# sh
+.clone.sh
+
+# library
+.library
+
 # etc

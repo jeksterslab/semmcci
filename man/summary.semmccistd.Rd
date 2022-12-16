@@ -14,7 +14,8 @@
 \item{...}{additional arguments.}
 }
 \value{
-Returns a matrix of estimates, standard errors, number of Monte Carlo replications, and confidence intervals.
+Returns a matrix of estimates, standard errors,
+number of Monte Carlo replications, and confidence intervals.
 }
 \description{
 Summary Method for an Object of Class \code{semmccistd}

@@ -1,20 +1,14 @@
 # find root directory
-root <- rprojroot::is_rstudio_project
+rproj <- rprojroot::is_rstudio_project
 source(
-  root$find_file(
-    ".r-load-all",
-    "r-load-all.R"
-  )
-)
-source(
-  root$find_file(
+  rproj$find_file(
     "latexsrc",
     "r-scripts",
     "knitr-options-default.R"
   )
 )
 source(
-  root$find_file(
+  rproj$find_file(
     "latexsrc",
     "r-scripts",
     "knitr-options-custom.R"
@@ -22,8 +16,8 @@ source(
 )
 knitr::opts_chunk$set(
   modifyList(
-    knitr_options_default,
-    knitr_options_custom
+    KnitrOptionsDefault(rproj),
+    KnitrOptionsCustom()
   )
 )
 knitr::knit_hooks$set(
@@ -36,7 +30,46 @@ knitr::knit_hooks$set(
     )
   }
 )
+# load functions
+source(
+  rproj$find_file(
+    ".setup",
+    "load",
+    "load.R"
+  )
+)
+Load(rproj)
+# load data
+x <- list.files(
+  path = rproj$find_file(
+    "data"
+  ),
+  pattern = "\\.rda$",
+  full.names = TRUE,
+  all.files = TRUE,
+  recursive = TRUE
+)
+x <- c(
+  x,
+  list.files(
+    path = rproj$find_file(
+      ".data-dependencies"
+    ),
+    pattern = "\\.rda$",
+    full.names = TRUE,
+    all.files = TRUE,
+    recursive = TRUE
+  )
+)
+if (length(x) > 0) {
+  for (i in seq_along(x)) {
+    load(x[i])
+  }
+  rm(i)
+}
+rm(x)
 rm(
-  knitr_options_default,
-  knitr_options_custom
+  KnitrOptionsDefault,
+  KnitrOptionsCustom,
+  rproj
 )

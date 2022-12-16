@@ -21,12 +21,18 @@ which is a list with the following elements:
 \item{\code{R}}{Number of Monte Carlo replications.}
 \item{\code{alpha}}{Significance level \eqn{\alpha} specified.}
 \item{\code{lavaan}}{\code{lavaan} object.}
-\item{\code{decomposition}}{Matrix decomposition used to generate multivariate normal random variates.}
+\item{\code{decomposition}}{Matrix decomposition
+used to generate multivariate normal
+random variates.}
 \item{\code{thetahat}}{Parameter estimates \eqn{\hat{\theta}}.}
-\item{\code{thetahatstar}}{Sampling distribution of parameter estimates \eqn{\hat{\theta}^{\ast}}.}
+\item{\code{thetahatstar}}{Sampling distribution of parameter estimates
+\eqn{\hat{\theta}^{\ast}}.}
 \item{\code{ci}}{Confidence intervals.}
-\item{\code{thetahat_std}}{Standardized parameter estimates \eqn{\hat{\theta}_{\mathrm{std}}}.}
-\item{\code{thetahatstar_std}}{Standardized sampling distribution of parameter estimates \eqn{\hat{\theta}^{\ast}_{\mathrm{std}}}.}
+\item{\code{thetahat_std}}{Standardized parameter estimates
+\eqn{\hat{\theta}_{\mathrm{std}}}.}
+\item{\code{thetahatstar_std}}{Standardized sampling distribution
+of parameter estimates
+\eqn{\hat{\theta}^{\ast}_{\mathrm{std}}}.}
 }
 }
 \description{

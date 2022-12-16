@@ -5,13 +5,17 @@
 #' @param object object of class `semmcci` or `semmccistd`.
 #' @param alpha Numeric vector.
 #'   Significance level.
-#'   If `alpha = NULL`, extract `alpha` from `semmcci` or `semmccistd`.
+#'   If `alpha = NULL`,
+#'   extract `alpha` from `semmcci` or `semmccistd`.
 #' @return Returns a matrix with the following columns:
 #' \describe{
 #'   \item{`est`}{Parameter estimates.}
-#'   \item{`se`}{Standard errors or the square root of the diagonals of the Monte Carlo sampling distribution of parameter estimates.}
+#'   \item{`se`}{Standard errors or the square root
+#'               of the diagonals of the Monte Carlo sampling distribution
+#'               of parameter estimates.}
 #'   \item{`R`}{Number of valid Monte Carlo replications.}
-#'   \item{...}{Percentiles that correspond to the confidence intervals defined by `alpha`.}
+#'   \item{...}{Percentiles that correspond to the confidence intervals
+#'              defined by `alpha`.}
 #' }
 #' Note that the rows in `ci` correspond to the model parameters.
 #' @keywords mc
@@ -29,7 +33,6 @@
     if (is.null(alpha)) {
       alpha <- object$alpha
     }
-    se <- sqrt(diag(stats::var(thetahatstar)))
     ci <- vector(
       mode = "list",
       length = dim(thetahatstar)[2]
@@ -62,7 +65,6 @@
     if (is.null(alpha)) {
       alpha <- object$alpha
     }
-    se <- sqrt(diag(stats::var(thetahatstar_std)))
     ci_std <- vector(
       mode = "list",
       length = dim(thetahatstar_std)[2]

@@ -1,3 +1,5 @@
-# See options
-# https://yihui.org/knitr/options/
-knitr_options_custom <- list()
+#' @param x Named list of custom options.
+#'   See https://yihui.org/knitr/options/ for more details.
+KnitrOptionsCustom <- function(x = list()) {
+  return(x)
+}

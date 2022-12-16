@@ -34,15 +34,6 @@ lapply(
       fixed.x = FALSE
     )
     set.seed(seed)
-    results_unstd_null <- MC(
-      fit,
-      R = R,
-      alpha = c(0.001, 0.01, 0.05),
-      decomposition = NULL
-    )
-    results_unstd_null$thetahatstar[3, ] <- lavaan::parameterEstimates(fit)$est
-    results_null <- MCStd(results_unstd_null)
-    set.seed(seed)
     results_unstd_chol <- MC(
       fit,
       R = R,
@@ -70,26 +61,6 @@ lapply(
     results_unstd_svd$thetahatstar[3, ] <- lavaan::parameterEstimates(fit)$est
     results_svd <- MCStd(results_unstd_svd)
     testthat::test_that(
-      paste(text, "NULL"),
-      {
-        testthat::expect_equal(
-          results_null$thetahat$est,
-          lavaan::parameterEstimates(fit)$est,
-          check.attributes = FALSE
-        )
-        testthat::expect_equal(
-          results_null$thetahatstar_std[3, ],
-          lavaan::standardizedSolution(fit)$est.std,
-          check.attributes = FALSE
-        )
-        testthat::expect_equal(
-          .MCCI(results_null)["cp", "97.5%"],
-          quantile(results_null$thetahatstar_std[, "cp"], .975, na.rm = TRUE),
-          check.attributes = FALSE
-        )
-      }
-    )
-    testthat::test_that(
       paste(text, "chol"),
       {
         testthat::expect_equal(
@@ -103,8 +74,14 @@ lapply(
           check.attributes = FALSE
         )
         testthat::expect_equal(
-          .MCCI(results_chol)["cp", "97.5%"],
-          quantile(results_chol$thetahatstar_std[, "cp"], .975, na.rm = TRUE),
+          .MCCI(
+            results_chol
+          )["cp", "97.5%"],
+          quantile(
+            results_chol$thetahatstar_std[, "cp"],
+            .975,
+            na.rm = TRUE
+          ),
           check.attributes = FALSE
         )
       }
@@ -123,8 +100,14 @@ lapply(
           check.attributes = FALSE
         )
         testthat::expect_equal(
-          .MCCI(results_eigen)["cp", "97.5%"],
-          quantile(results_eigen$thetahatstar_std[, "cp"], .975, na.rm = TRUE),
+          .MCCI(
+            results_eigen
+          )["cp", "97.5%"],
+          quantile(
+            results_eigen$thetahatstar_std[, "cp"],
+            .975,
+            na.rm = TRUE
+          ),
           check.attributes = FALSE
         )
       }
@@ -143,8 +126,14 @@ lapply(
           check.attributes = FALSE
         )
         testthat::expect_equal(
-          .MCCI(results_svd)["cp", "97.5%"],
-          quantile(results_svd$thetahatstar_std[, "cp"], .975, na.rm = TRUE),
+          .MCCI(
+            results_svd
+          )["cp", "97.5%"],
+          quantile(
+            results_svd$thetahatstar_std[, "cp"],
+            .975,
+            na.rm = TRUE
+          ),
           check.attributes = FALSE
         )
       }

@@ -1,6 +1,0 @@
-#!/bin/bash
-
-yes | cp -r .bash* ~
-cat ~/.bash-conda >> ~/.bashrc
-
-source ~/.bashrc
