@@ -33,8 +33,7 @@ If \code{decomposition = "svd"}, use singular value decomposition.}
 \item{pd}{Logical.
 If \code{pd = TRUE},
 check if the sampling variance-covariance matrix
-is positive definite using \code{tol}
-if \code{decomposition \%in\% c("eigen", "svd")}.}
+is positive definite using \code{tol}.}
 
 \item{tol}{Numeric.
 Tolerance used for \code{pd}.}
