@@ -28,8 +28,7 @@
 #' @param pd Logical.
 #'   If `pd = TRUE`,
 #'   check if the sampling variance-covariance matrix
-#'   is positive definite using `tol`
-#'   if `decomposition %in% c("eigen", "svd")`.
+#'   is positive definite using `tol`.
 #' @param tol Numeric.
 #'   Tolerance used for `pd`.
 #' @return Returns an object of class `semmcci`

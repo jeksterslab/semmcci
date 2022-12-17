@@ -1,4 +1,8 @@
-# semmcci 1.0.3.9000
+# semmcci 1.0.4.9000
+
+Latest development version.
+
+# semmcci 1.0.4
 
 ## Patch
 
