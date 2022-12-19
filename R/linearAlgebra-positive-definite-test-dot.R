@@ -22,19 +22,6 @@
 #'
 #' @return Logical.
 #'
-#' @examples
-#' # TRUE
-#' .TestPositiveDefinite(eigen(diag(2)))
-#'
-#' # FALSE
-#' .TestPositiveDefinite(
-#'   eigen(
-#'     matrix(
-#'       data = c(1, 2, 3, 2, 4, 5, 3, 5, 6),
-#'       ncol = 3
-#'     )
-#'   )
-#' )
 #' @family Linear Algebra Functions
 #' @keywords linearAlgebra test internal
 #' @noRd
