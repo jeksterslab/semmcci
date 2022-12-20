@@ -98,7 +98,7 @@ MC <- function(object,
     }
   }
   # set up Monte Carlo
-  thetahatstar <- .ThetaStar(
+  thetahatstar <- .ThetaHatStar(
     R = R,
     scale = lavaan::vcov(object),
     location = lavaan::coef(object),

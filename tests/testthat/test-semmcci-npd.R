@@ -17,7 +17,7 @@ lapply(
       paste(text, "chol"),
       {
         testthat::expect_error(
-          semmcci:::.ThetaStar(
+          semmcci:::.ThetaHatStar(
             R = 2000L,
             scale = scale,
             location = location,
@@ -31,7 +31,7 @@ lapply(
       paste(text, "eigen"),
       {
         testthat::expect_error(
-          semmcci:::.ThetaStar(
+          semmcci:::.ThetaHatStar(
             R = 2000L,
             scale = scale,
             location = location,
@@ -45,7 +45,7 @@ lapply(
       paste(text, "svd"),
       {
         testthat::expect_error(
-          semmcci:::.ThetaStar(
+          semmcci:::.ThetaHatStar(
             R = 2000L,
             scale = scale,
             location = location,
@@ -59,7 +59,7 @@ lapply(
       paste(text, "wrong"),
       {
         testthat::expect_error(
-          semmcci:::.ThetaStar(
+          semmcci:::.ThetaHatStar(
             R = 2000L,
             scale = scale,
             location = location,
@@ -70,7 +70,7 @@ lapply(
       }
     )
     # coverage
-    semmcci:::.ThetaStar(
+    semmcci:::.ThetaHatStar(
       R = 2000L,
       scale = scale,
       location = location,

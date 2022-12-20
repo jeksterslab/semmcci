@@ -27,12 +27,12 @@
 #' }
 #' @keywords matrix standardized internal
 #' @noRd
-.ThetaStar <- function(R = 20000L,
-                       scale,
-                       location,
-                       decomposition = "eigen",
-                       pd = TRUE,
-                       tol = 1e-06) {
+.ThetaHatStar <- function(R = 20000L,
+                          scale,
+                          location,
+                          decomposition = "eigen",
+                          pd = TRUE,
+                          tol = 1e-06) {
   if (pd) {
     mat <- eigen(
       x = scale,
