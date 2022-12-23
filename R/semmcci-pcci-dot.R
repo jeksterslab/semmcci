@@ -2,10 +2,10 @@
 #'
 #' @author Ivan Jacob Agaloos Pesigan
 #'
-#' @param thetahatstar Matrix.
+#' @param thetahatstar Numeric vector.
 #'   Monte Carlo sampling distribution.
-#' @param thetahat Vector.
-#'   Parameter estimates.
+#' @param thetahat Numeric.
+#'   Parameter estimate.
 #' @param alpha Numeric vector.
 #'   Significance level.
 #'   Default value is `alpha = c(0.001, 0.01, 0.05)`.
