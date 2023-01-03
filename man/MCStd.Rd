@@ -11,8 +11,7 @@ MCStd(object, alpha = c(0.001, 0.01, 0.05))
 Output of the \code{MC()} function.}
 
 \item{alpha}{Numeric vector.
-Significance level \eqn{\alpha}.
-Default value is \code{alpha = c(0.001, 0.01, 0.05)}.}
+Significance level \eqn{\alpha}.}
 }
 \value{
 Returns an object of class \code{semmccistd}

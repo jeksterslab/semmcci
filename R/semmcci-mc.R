@@ -18,7 +18,6 @@
 #'   Number of Monte Carlo replications.
 #' @param alpha Numeric vector.
 #'   Significance level \eqn{\alpha}.
-#'   Default value is `alpha = c(0.001, 0.01, 0.05)`.
 #' @param decomposition Character string.
 #'   Matrix decomposition of the sampling variance-covariance matrix
 #'   for the data generation.

@@ -1,4 +1,4 @@
-year <- 2022
+year <- 2023
 author_text <- "Pesigan, I. J. A. & Cheung, S. F."
 pkg <- meta$Package
 title <- meta$Title

@@ -20,8 +20,7 @@ MC(
 Number of Monte Carlo replications.}
 
 \item{alpha}{Numeric vector.
-Significance level \eqn{\alpha}.
-Default value is \code{alpha = c(0.001, 0.01, 0.05)}.}
+Significance level \eqn{\alpha}.}
 
 \item{decomposition}{Character string.
 Matrix decomposition of the sampling variance-covariance matrix
