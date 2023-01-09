@@ -27,6 +27,3 @@
 ^make.*$
 ^semmcci.pdf$
 ^vignettes$
-^semmcci\.Rcheck$
-^semmcci.*\.tar\.gz$
-^semmcci.*\.tgz$
