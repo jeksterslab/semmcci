@@ -22,6 +22,7 @@ articles:
   - example_4_simple_miss
   - example_5_regression
   - example_6_composite_reliability
+  - example_7_rsqr
 - title: Methods
   navbar: Methods
   contents:
