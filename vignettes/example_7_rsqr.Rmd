@@ -73,6 +73,7 @@ using the following equations
     \bar{R}^{2}
     =
     1
+    -
     \left(
     \frac{n - 1}{n - p - 1}
     \right)
