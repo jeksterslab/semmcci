@@ -1,0 +1,126 @@
+\documentclass[tikz, border=1mm]{standalone}
+
+% convert -density 300 cfa.pdf -quality 100 -background white -alpha remove -alpha off cfa.png
+
+\usepackage{tikz}
+
+\begin{document}
+
+\usetikzlibrary{
+	er,
+	arrows,
+	positioning
+}
+
+\begin{tikzpicture}[
+		auto,
+		node distance = 5mm and 15mm,
+		latent/.style = {
+			ellipse,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum size = 15mm,
+			align = center
+		},
+		manifest/.style = {
+			rectangle,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum width = 15mm,
+			minimum height = 10mm
+		},
+		inv/.style = {
+			rectangle,
+			draw=none,
+			fill=none,
+			inner sep = 0pt,
+			minimum width = 15mm,
+			minimum height = 10mm
+		},
+		error/.style = {
+			ellipse,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum size = 7mm,
+			align = center
+		},
+		mean/.style={
+			regular polygon,
+			regular polygon sides = 3,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum width = 7mm,
+			minimum height = 7mm
+		},
+		path/.style = {
+			->,
+			thick,
+			>=stealth'
+		},
+		cov/.style = {
+			<->,
+			thick,
+			>=stealth'
+		},
+	]
+	\node[manifest] (X1) {$X_{1}$};
+	\node[manifest] (X2) [below = of X1] {$X_{2}$};
+	\node[manifest] (X3) [below = of X2] {$X_{3}$};
+	\node[manifest] (X4) [below = of X3] {$X_{4}$};
+	\node[manifest] (X5) [below = of X4] {$X_{5}$};
+	\node[manifest] (X6) [below = of X5] {$X_{6}$};
+	\node[manifest] (X7) [below = of X6] {$X_{7}$};
+	\node[manifest] (X8) [below = of X7] {$X_{8}$};
+	\node[manifest] (X9) [below = of X8] {$X_{9}$};
+	\node[latent] (eta1) [right = of X2] {$\eta_{1}$};
+	\node[latent] (eta2) [right = of X5] {$\eta_{2}$};
+	\node[latent] (eta3) [right = of X8] {$\eta_{3}$};
+    \node[error] (eX1) [left = of X1] {$\varepsilon_{1}$};
+    \node[error] (eX2) [left = of X2] {$\varepsilon_{2}$};
+    \node[error] (eX3) [left = of X3] {$\varepsilon_{3}$};
+    \node[error] (eX4) [left = of X4] {$\varepsilon_{4}$};
+    \node[error] (eX5) [left = of X5] {$\varepsilon_{5}$};
+    \node[error] (eX6) [left = of X6] {$\varepsilon_{6}$};
+    \node[error] (eX7) [left = of X7] {$\varepsilon_{7}$};
+    \node[error] (eX8) [left = of X8] {$\varepsilon_{8}$};
+    \node[error] (eX9) [left = of X9] {$\varepsilon_{9}$};
+    \draw[path] (eta1) to node[above] {$\lambda_{11}$} (X1);	
+    \draw[path] (eta1) to node[above] {$\lambda_{12}$} (X2);	
+    \draw[path] (eta1) to node[above] {$\lambda_{13}$} (X3);	
+    \draw[path] (eta2) to node[above] {$\lambda_{24}$} (X4);	
+    \draw[path] (eta2) to node[above] {$\lambda_{25}$} (X5);	
+    \draw[path] (eta2) to node[above] {$\lambda_{26}$} (X6);	
+    \draw[path] (eta3) to node[above] {$\lambda_{37}$} (X7);	
+    \draw[path] (eta3) to node[above] {$\lambda_{38}$} (X8);	
+    \draw[path] (eta3) to node[above] {$\lambda_{39}$} (X9);
+    \draw[path] (eX1) to node[above] {$1$} (X1);
+    \draw[path] (eX2) to node[above] {$1$} (X2);
+    \draw[path] (eX3) to node[above] {$1$} (X3);
+    \draw[path] (eX4) to node[above] {$1$} (X4);
+    \draw[path] (eX5) to node[above] {$1$} (X5);
+    \draw[path] (eX6) to node[above] {$1$} (X6);
+    \draw[path] (eX7) to node[above] {$1$} (X7);
+    \draw[path] (eX8) to node[above] {$1$} (X8);
+    \draw[path] (eX9) to node[above] {$1$} (X9);
+    \draw[cov] (eta1) to[out = -70, in = -110, looseness = 5] node[below] {$1$} (eta1);
+    \draw[cov] (eta2) to[out = -70, in = -110, looseness = 5] node[below] {$1$} (eta2);
+    \draw[cov] (eta3) to[out = -70, in = -110, looseness = 5] node[below] {$1$} (eta3);
+    \draw[cov] (eta1) to[out = 365, in = 365, looseness = 1] node[right] {$\psi_{12}$} (eta2);
+    \draw[cov] (eta1) to[out = 365, in = 365, looseness = 1] node[right] {$\psi_{13}$} (eta3);
+    \draw[cov] (eta2) to[out = 365, in = 365, looseness = 1] node[left] {$\psi_{23}$} (eta3);
+	\draw[cov] (eX1) to[out = 160, in = 200, looseness = 5] node[left] {$\theta_{\varepsilon_{11}}$} (eX1);
+	\draw[cov] (eX2) to[out = 160, in = 200, looseness = 5] node[left] {$\theta_{\varepsilon_{22}}$} (eX2);
+	\draw[cov] (eX3) to[out = 160, in = 200, looseness = 5] node[left] {$\theta_{\varepsilon_{33}}$} (eX3);
+	\draw[cov] (eX4) to[out = 160, in = 200, looseness = 5] node[left] {$\theta_{\varepsilon_{44}}$} (eX4);
+	\draw[cov] (eX5) to[out = 160, in = 200, looseness = 5] node[left] {$\theta_{\varepsilon_{55}}$} (eX5);
+	\draw[cov] (eX6) to[out = 160, in = 200, looseness = 5] node[left] {$\theta_{\varepsilon_{66}}$} (eX6);
+	\draw[cov] (eX7) to[out = 160, in = 200, looseness = 5] node[left] {$\theta_{\varepsilon_{77}}$} (eX7);
+	\draw[cov] (eX8) to[out = 160, in = 200, looseness = 5] node[left] {$\theta_{\varepsilon_{88}}$} (eX8);
+	\draw[cov] (eX9) to[out = 160, in = 200, looseness = 5] node[left] {$\theta_{\varepsilon_{99}}$} (eX9);
+\end{tikzpicture}
+
+\end{document}
