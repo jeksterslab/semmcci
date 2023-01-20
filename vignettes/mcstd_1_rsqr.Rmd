@@ -1,12 +1,12 @@
 ---
-title: "Example 7: R-Squared"
+title: "MCStd Trick 1: R-Squared"
 author: "Ivan Jacob Agaloos Pesigan"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{Example 7: R-Squared}
+  %\VignetteIndexEntry{MCStd Trick 1: R-Squared}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -24,7 +24,9 @@ knitr::opts_chunk$set(
 set.seed(42)
 ```
 
-The Monte Carlo method is used to generate confidence intervals for $R^{2}$ and adjusted $R^{2}$ $\left( \bar{R}^{2}\right)$ in a simple mediation model.
+The Monte Carlo method is used to generate confidence intervals
+for $R^{2}$ and adjusted $R^{2}$ $\left( \bar{R}^{2}\right)$
+in a simple mediation model.
 In the simple mediation model,
 variable `X` has an effect on variable `Y`,
 through a mediating variable `M`.

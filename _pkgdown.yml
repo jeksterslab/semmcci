@@ -22,7 +22,11 @@ articles:
   - example_4_simple_miss
   - example_5_regression
   - example_6_composite_reliability
-  - example_7_rsqr
+- title: MCStd Tricks
+  navbar: MCStd Tricks
+  contents:
+  - mcstd_1_rsqr
+  - mcstd_2_difference_regression_coefficients
 - title: Methods
   navbar: Methods
   contents:

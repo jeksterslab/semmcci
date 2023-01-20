@@ -48,6 +48,84 @@ $\eta_{2}$ has three indicators $X_{4}$, $X_{5}$, and $X_{6}$; and
 $\eta_{3}$ has three indicators $X_{7}$, $X_{8}$, and $X_{9}$ .
 The variances of $\eta_{1}$, $\eta_{2}$, and $\eta_{3}$ are constrained to one.
 
+## Model Specification Using Unstandardized Factor Loadings
+
+Assuming that the latent variable variance is constrained to one,
+the omega total reliability coefficient is given by
+
+\begin{equation}
+  \omega_{\mathrm{total}}
+  =
+  \frac{
+  \left(
+  \sum_{i = 1}^{k}
+  \lambda_{i}
+  \right)^2
+  }{
+  \left(
+  \sum_{i = 1}^{k}
+  \lambda_{i}
+  \right)^2
+  +
+  \sum_{i = 1}^{k}
+  \theta_{\varepsilon_{ii}}
+  }
+\end{equation}
+
+\noindent where $\lambda_{i}$ is the factor loading for item $i$,
+$\theta_{\varepsilon_{ii}}$ is the residual variance for item $i$,
+and $k$ is the number of items for a particular latent variable.
+
+In the model specification below,
+the variances of the latent variables `eta1`, `eta2`, and `eta3` are constrained to one,
+all the relevant parameters are labeled particularly the factor loadings and the error variances,
+and the omega total reliability coefficient per latent variable are defined
+using the `:=` operator.
+
+```{r}
+model <- "
+  # fix latent variable variances to 1
+  eta1 ~~ 1 * eta1
+  eta2 ~~ 1 * eta2
+  eta3 ~~ 1 * eta3
+  # factor loadings
+  eta1 =~ NA * x1 + l11 * x1 + l12 * x2 + l13 * x3
+  eta2 =~ NA * x4 + l24 * x4 + l25 * x5 + l26 * x6
+  eta3 =~ NA * x7 + l37 * x7 + l38 * x8 + l39 * x9
+  # error variances
+  x1 ~~ t1 * x1
+  x2 ~~ t2 * x2
+  x3 ~~ t3 * x3
+  x4 ~~ t4 * x4
+  x5 ~~ t5 * x5
+  x6 ~~ t6 * x6
+  x7 ~~ t7 * x7
+  x8 ~~ t8 * x8
+  x9 ~~ t9 * x9
+  # composite reliability
+  o_eta1 := (l11 + l12 + l13)^2 / ((l11 + l12 + l13)^2 + (t1 + t2 + t3))
+  o_eta2 := (l24 + l25 + l26)^2 / ((l24 + l25 + l26)^2 + (t4 + t5 + t6))
+  o_eta3 := (l37 + l38 + l39)^2 / ((l37 + l38 + l39)^2 + (t7 + t8 + t9))
+"
+```
+
+## Model Fitting
+
+We can now fit the model using the `cfa()` function from `lavaan`.
+
+```{r}
+fit <- cfa(model = model, data = HolzingerSwineford1939)
+```
+
+### Monte Carlo Confidence Intervals
+
+The `fit` `lavaan` object can then be passed to the `MC()` function
+to generate Monte Carlo confidence intervals.
+
+```{r}
+MC(fit, R = 20000L, alpha = c(0.001, 0.01, 0.05))
+```
+
 ## Model Specification Using Standardized Factor Loadings
 
 When the factor loadings are standardized, 
@@ -128,82 +206,4 @@ and then to the `MCStd()` function to generate standardized Monte Carlo confiden
 
 ```{r}
 MCStd(MC(fit, R = 20000L, alpha = c(0.001, 0.01, 0.05)))
-```
-
-## Model Specification Using Unstandardized Factor Loadings
-
-Assuming that the latent variable variance is constrained to one,
-the omega total reliability coefficient is given by
-
-\begin{equation}
-  \omega_{\mathrm{total}}
-  =
-  \frac{
-  \left(
-  \sum_{i = 1}^{k}
-  \lambda_{i}
-  \right)^2
-  }{
-  \left(
-  \sum_{i = 1}^{k}
-  \lambda_{i}
-  \right)^2
-  +
-  \sum_{i = 1}^{k}
-  \theta_{\varepsilon_{ii}}
-  }
-\end{equation}
-
-\noindent where $\lambda_{i}$ is the factor loading for item $i$,
-$\theta_{\varepsilon_{ii}}$ is the residual variance for item $i$,
-and $k$ is the number of items for a particular latent variable.
-
-In the model specification below,
-the variances of the latent variables `eta1`, `eta2`, and `eta3` are constrained to one,
-all the relevant parameters are labeled particularly the factor loadings and the error variances,
-and the omega total reliability coefficient per latent variable are defined
-using the `:=` operator.
-
-```{r}
-model <- "
-  # fix latent variable variances to 1
-  eta1 ~~ 1 * eta1
-  eta2 ~~ 1 * eta2
-  eta3 ~~ 1 * eta3
-  # factor loadings
-  eta1 =~ NA * x1 + l11 * x1 + l12 * x2 + l13 * x3
-  eta2 =~ NA * x4 + l24 * x4 + l25 * x5 + l26 * x6
-  eta3 =~ NA * x7 + l37 * x7 + l38 * x8 + l39 * x9
-  # error variances
-  x1 ~~ t1 * x1
-  x2 ~~ t2 * x2
-  x3 ~~ t3 * x3
-  x4 ~~ t4 * x4
-  x5 ~~ t5 * x5
-  x6 ~~ t6 * x6
-  x7 ~~ t7 * x7
-  x8 ~~ t8 * x8
-  x9 ~~ t9 * x9
-  # composite reliability
-  o_eta1 := (l11 + l12 + l13)^2 / ((l11 + l12 + l13)^2 + (t1 + t2 + t3))
-  o_eta2 := (l24 + l25 + l26)^2 / ((l24 + l25 + l26)^2 + (t4 + t5 + t6))
-  o_eta3 := (l37 + l38 + l39)^2 / ((l37 + l38 + l39)^2 + (t7 + t8 + t9))
-"
-```
-
-## Model Fitting
-
-We can now fit the model using the `cfa()` function from `lavaan`.
-
-```{r}
-fit <- cfa(model = model, data = HolzingerSwineford1939)
-```
-
-### Monte Carlo Confidence Intervals
-
-The `fit` `lavaan` object can then be passed to the `MC()` function
-to generate Monte Carlo confidence intervals.
-
-```{r}
-MC(fit, R = 20000L, alpha = c(0.001, 0.01, 0.05))
 ```
