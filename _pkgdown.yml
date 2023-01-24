@@ -20,13 +20,15 @@ articles:
   - example_2_serial
   - example_3_latent
   - example_4_simple_miss
-  - example_5_regression
-  - example_6_composite_reliability
-- title: MCStd Tricks
-  navbar: MCStd Tricks
+  - example_5_composite_reliability
+- title: MCStd Use Cases
+  navbar: MCStd Use Cases
   contents:
-  - mcstd_1_rsqr
+  - mcstd_1_std_regression
   - mcstd_2_difference_regression_coefficients
+  - mcstd_3_rsqr
+  - mcstd_4_difference_regression_coefficients_multigroup
+  - mcstd_5_difference_rsq_multigroup
 - title: Methods
   navbar: Methods
   contents:

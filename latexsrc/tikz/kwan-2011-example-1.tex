@@ -1,0 +1,80 @@
+\documentclass[tikz, border=1mm]{standalone}
+
+% convert -density 300 kwan-2011-example-1.pdf -quality 100 -background white -alpha remove -alpha off kwan-2011-example-1.png
+
+\usepackage{tikz}
+
+\begin{document}
+
+\usetikzlibrary{
+	er,
+	arrows,
+	positioning
+}
+
+\begin{tikzpicture}[
+		auto,
+		node distance = 15mm and 50mm,
+		manifest/.style = {
+			rectangle,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum width = 15mm,
+			minimum height = 10mm
+		},
+		inv/.style = {
+			rectangle,
+			draw=none,
+			fill=none,
+			inner sep = 0pt,
+			minimum width = 15mm,
+			minimum height = 10mm
+		},
+		error/.style = {
+			ellipse,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum size = 7mm,
+			align = center
+		},
+		mean/.style={
+			regular polygon,
+			regular polygon sides = 3,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum width = 7mm,
+			minimum height = 7mm
+		},
+		path/.style = {
+			->,
+			thick,
+			>=stealth'
+		},
+		cov/.style = {
+			<->,
+			thick,
+			>=stealth'
+		},
+	]
+	\node[manifest] (X1) {$X_{1}$};
+	\node[manifest] (X2) [below = of X1] {$X_{2}$};
+	\node[manifest] (X3) [below = of X2] {$X_{3}$};
+	\node[manifest] (Y1) [left = of X2] {$Y_{1}$};
+	\node[error] (zeta1) [below = of Y1] {$\zeta_{1}$};
+	\draw[path] (X1) to node[above] {$\gamma_{1}$} (Y1);
+	\draw[path] (X2) to node[above] {$\gamma_{2}$} (Y1);
+	\draw[path] (X3) to node[above] {$\gamma_{3}$} (Y1);
+	\draw[path] (zeta1) to node {$1$} (Y1);
+	\draw[cov] (X1) to[out = 70, in = 110, looseness = 5] node[above] {$\phi_{11}$} (X1);
+	\draw[cov] (X2) to[out = 70, in = 110, looseness = 5] node[above] {$\phi_{22}$} (X2);
+	\draw[cov] (X3) to[out = 70, in = 110, looseness = 5] node[above] {$\phi_{33}$} (X3);
+	\draw[cov] (zeta1) to[out = 290, in = 250, looseness = 5] node[below] {$\psi_{1}$} (zeta1);
+	\draw[cov] (X1) to[out = 360, in = 360, looseness = 0.5] node[right] {$\phi_{12}$} (X2);
+	\draw[cov] (X2) to[out = 360, in = 360, looseness = 0.5] node[right] {$\phi_{23}$} (X3);
+	\draw[cov] (X1) to[out = 360, in = 360, looseness = 1] node[right] {$\phi_{13}$} (X3);
+\end{tikzpicture}
+
+\end{document}

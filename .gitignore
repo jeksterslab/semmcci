@@ -71,6 +71,3 @@ make-*
 .library
 
 # etc
-semmcci.Rcheck/
-semmcci*.tar.gz
-semmcci*.tgz

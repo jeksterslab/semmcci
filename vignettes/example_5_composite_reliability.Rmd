@@ -1,12 +1,12 @@
 ---
-title: "Example 6: Composite Reliability"
+title: "Example 5: Composite Reliability"
 author: "Ivan Jacob Agaloos Pesigan"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{Example 6: Composite Reliability}
+  %\VignetteIndexEntry{Example 5: Composite Reliability}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -30,7 +30,10 @@ library(semmcci)
 library(lavaan)
 ```
 
-The Holzinger and Swineford (1939) data set is going to be used in this example.
+In this example,
+the Monte Carlo method is used to generate confidence intervals
+for composite reliability
+using the Holzinger and Swineford (1939) data set.
 
 ```{r}
 data(HolzingerSwineford1939, package = "lavaan")
@@ -48,7 +51,7 @@ $\eta_{2}$ has three indicators $X_{4}$, $X_{5}$, and $X_{6}$; and
 $\eta_{3}$ has three indicators $X_{7}$, $X_{8}$, and $X_{9}$ .
 The variances of $\eta_{1}$, $\eta_{2}$, and $\eta_{3}$ are constrained to one.
 
-## Model Specification Using Unstandardized Factor Loadings
+## Model Specification
 
 Assuming that the latent variable variance is constrained to one,
 the omega total reliability coefficient is given by
@@ -103,9 +106,9 @@ model <- "
   x8 ~~ t8 * x8
   x9 ~~ t9 * x9
   # composite reliability
-  o_eta1 := (l11 + l12 + l13)^2 / ((l11 + l12 + l13)^2 + (t1 + t2 + t3))
-  o_eta2 := (l24 + l25 + l26)^2 / ((l24 + l25 + l26)^2 + (t4 + t5 + t6))
-  o_eta3 := (l37 + l38 + l39)^2 / ((l37 + l38 + l39)^2 + (t7 + t8 + t9))
+  omega1 := (l11 + l12 + l13)^2 / ((l11 + l12 + l13)^2 + (t1 + t2 + t3))
+  omega2 := (l24 + l25 + l26)^2 / ((l24 + l25 + l26)^2 + (t4 + t5 + t6))
+  omega3 := (l37 + l38 + l39)^2 / ((l37 + l38 + l39)^2 + (t7 + t8 + t9))
 "
 ```
 
@@ -123,87 +126,5 @@ The `fit` `lavaan` object can then be passed to the `MC()` function
 to generate Monte Carlo confidence intervals.
 
 ```{r}
-MC(fit, R = 20000L, alpha = c(0.001, 0.01, 0.05))
-```
-
-## Model Specification Using Standardized Factor Loadings
-
-When the factor loadings are standardized, 
-the omega total reliability coefficient is given by
-
-\begin{equation}
-  \omega_{\mathrm{total}}
-  =
-  \frac{
-  \left(
-  \sum_{i = 1}^{k}
-  \ell_{i}
-  \right)^2
-  }{
-  \left(
-  \sum_{i = 1}^{k}
-  \ell_{i}
-  \right)^2
-  +
-  \sum_{i = 1}^{k}
-  \left(
-  1
-  -
-  \ell_{i}^{2}
-  \right)
-  }
-\end{equation}
-
-\noindent where $\ell_{i}$ is the standardized factor loading for item $i$.
-
-In the model specification below,
-the variances of the latent variables `eta1`, `eta2`, and `eta3` are constrained to one,
-the factor loadings are labeled,
-and the omega total reliability coefficient per latent variable are defined
-using the `:=` operator.
-
-```{r}
-model <- "
-  # fix latent variable variances to 1
-  eta1 ~~ 1 * eta1
-  eta2 ~~ 1 * eta2
-  eta3 ~~ 1 * eta3
-  # factor loadings
-  eta1 =~ NA * x1 + l11 * x1 + l12 * x2 + l13 * x3
-  eta2 =~ NA * x4 + l24 * x4 + l25 * x5 + l26 * x6
-  eta3 =~ NA * x7 + l37 * x7 + l38 * x8 + l39 * x9
-  # composite reliability
-  o_eta1 := (l11 + l12 + l13)^2 / (
-    (l11 + l12 + l13)^2
-    +
-    (1 - l11^2 + 1 - l12^2 + 1 - l13^2)
-  )
-  o_eta2 := (l24 + l25 + l26)^2 / (
-    (l24 + l25 + l26)^2
-    +
-    (1 - l24^2 + 1 - l25^2 + 1 - l26^2)
-  )
-  o_eta3 := (l37 + l38 + l39)^2 / (
-    (l37 + l38 + l39)^2
-    +
-    (1 - l37^2 + 1 - l38^2 + 1 - l39^2)
-  )
-"
-```
-
-## Model Fitting
-
-We can now fit the model using the `cfa()` function from `lavaan`.
-
-```{r}
-fit <- cfa(model = model, data = HolzingerSwineford1939)
-```
-
-### Monte Carlo Confidence Intervals
-
-The `fit` `lavaan` object can then be passed to the `MC()` function
-and then to the `MCStd()` function to generate standardized Monte Carlo confidence intervals.
-
-```{r}
-MCStd(MC(fit, R = 20000L, alpha = c(0.001, 0.01, 0.05)))
+MC(fit, R = 20000L, alpha = 0.05)
 ```

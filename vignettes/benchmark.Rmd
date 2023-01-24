@@ -1,7 +1,7 @@
 ---
 title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2023-01-20"
+date: "2023-01-24"
 output:
   rmarkdown::html_vignette:
     toc: true

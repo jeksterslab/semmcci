@@ -1,12 +1,12 @@
 ---
-title: "MCStd Function Use Case 2: Difference of Standardized Regression Coefficients"
+title: "MCStd Function Use Case 1: Standardized Regression Coefficients"
 author: "Ivan Jacob Agaloos Pesigan"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{MCStd Function Use Case 2: Difference of Standardized Regression Coefficients}
+  %\VignetteIndexEntry{MCStd Function Use Case 1: Standardized Regression Coefficients}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -26,7 +26,7 @@ set.seed(42)
 
 The `MCStd()` function is used
 to generate Monte Carlo confidence intervals
-for differences between standardized regression coefficients.
+for standardized regression coefficients.
 
 ```{r}
 #| message = FALSE
@@ -100,16 +100,10 @@ covs
 ## Model Specification
 
 We regress `Y1` on `X1`, `X2`, and `X3`.
-We label the regression coefficients as `gamma1`, `gamma2`, and `gamma3`.
-We then specify the difference between the coefficients
-using the `:=` operator.
 
 ```{r}
 model <- "
-  Y1 ~ gamma1 * X1 + gamma2 * X2 + gamma3 * X3
-  gamma12 := gamma1 - gamma2
-  gamma13 := gamma1 - gamma3
-  gamma23 := gamma2 - gamma3
+  Y1 ~ X1 + X2 + X3
 "
 ```
 
