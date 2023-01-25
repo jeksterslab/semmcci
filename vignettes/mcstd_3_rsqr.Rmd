@@ -122,7 +122,7 @@ covs
 ## Model Specification
 
 We regress `Y1` on `Y2` and `Y2` on `X1`, `X2`, and `X3`.
-We label the error variances as `zeta1` and `zeta2`.
+We label the error variances as `psi1` and `psi2`.
 $R^{2}$ and $\bar{R}^{2}$
 are defined using the `:=` operator
 in the `lavaan` model syntax
@@ -131,7 +131,7 @@ using the following equations
 \begin{equation}
     R^{2}
     =
-    1 - \zeta^{\ast}
+    1 - \psi^{\ast}
 \end{equation}
 
 \begin{equation}
@@ -147,7 +147,7 @@ using the following equations
     \right)
 \end{equation}
 
-\noindent where $\zeta^{\ast}$
+\noindent where $\psi^{\ast}$
 is the standardized error variance,
 $n$ is the sample size,
 and $p$ is the number of regressor variables.
@@ -156,16 +156,15 @@ and $p$ is the number of regressor variables.
 model <- "
   Y1 ~ Y2
   Y2 ~ X1 + X2 + X3
-  # error variance
-  Y1 ~~ zeta1 * Y1
-  Y2 ~~ zeta2 * Y2
-  rsq1 := 1 - zeta1
+  Y1 ~~ psi1 * Y1
+  Y2 ~~ psi2 * Y2
+  rsq1 := 1 - psi1
   rsqbar1 := 1 - (
     (200 - 1) / (200 - 1 - 1)
   ) * (
     1 - rsq1
   )
-  rsq2 := 1 - zeta2
+  rsq2 := 1 - psi2
   rsqbar2 := 1 - (
     (200 - 1) / (200 - 3 - 1)
   ) * (
