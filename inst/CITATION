@@ -28,16 +28,8 @@ url <- paste0(
   pkg
 )
 
-citHeader(
-  paste(
-    "To cite",
-    pkg,
-    "in publications, please use:"
-  )
-)
-
-citEntry(
-  entry = "Unpublished",
+bibentry(
+  bibtype = "Unpublished",
   author = c(
     person(
       given = "Ivan Jacob Agaloos",
@@ -61,20 +53,10 @@ citEntry(
     author_text, " ",
     "(", "Under Review", ")", ".", " ",
     title, " "
-  )
-)
-
-citEntry(
-  entry = "Manual",
-  author = author,
-  title = paste0(pkg, ":", " ", title),
-  year = year,
-  note = note,
-  textVersion = paste0(
-    author_text, " ",
-    "(", year, ")", ".", " ",
-    pkg, ":", " ", title, ".", " ",
-    note, ".", " ",
-    url
+  ),
+  header = paste(
+    "To cite",
+    pkg,
+    "in publications, please use:"
   )
 )
