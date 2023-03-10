@@ -140,7 +140,7 @@ using the following equations
     1
     -
     \left(
-    \frac{n - 1}{n - p - 1}
+    \frac{n - 1}{n - p + 1}
     \right)
     \left(
     1 - R^2
@@ -160,13 +160,13 @@ model <- "
   Y2 ~~ psi2 * Y2
   rsq1 := 1 - psi1
   rsqbar1 := 1 - (
-    (200 - 1) / (200 - 1 - 1)
+    (200 - 1) / (200 - 1 + 1)
   ) * (
     1 - rsq1
   )
   rsq2 := 1 - psi2
   rsqbar2 := 1 - (
-    (200 - 1) / (200 - 3 - 1)
+    (200 - 1) / (200 - 3 + 1)
   ) * (
     1 - rsq2
   )
