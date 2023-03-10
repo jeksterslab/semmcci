@@ -50,9 +50,7 @@
     )
     rownames(ci) <- colnames(thetahatstar)
     ci <- ci[which(!rownames(ci) %in% thetahat$fixed), ]
-    return(
-      ci
-    )
+    return(ci)
   }
   if (
     methods::is(
@@ -83,8 +81,6 @@
     rownames(ci_std) <- colnames(thetahatstar_std)
     ci_std <- ci_std[which(object$lavaan@ParTable$op != "~1"), ]
     ci_std <- ci_std[which(!rownames(ci_std) %in% object$thetahat$fixed), ]
-    return(
-      ci_std
-    )
+    return(ci_std)
   }
 }

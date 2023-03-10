@@ -188,9 +188,9 @@ benchmark01 <- microbenchmark(
 
 ```r
 summary(benchmark01, unit = "ms")
-#>   expr         min         lq        mean      median          uq         max
-#> 1   MC    156.2919    167.033    175.6385    174.2207    177.5885    215.3255
-#> 2   NB 114294.4908 114993.110 115144.4069 115068.6748 115425.0780 115953.3797
+#>   expr         min          lq        mean      median          uq         max
+#> 1   MC    146.2526    148.9528    158.4607    157.2893    170.2659    172.0111
+#> 2   NB 108699.3853 109011.3656 109434.5481 109145.1842 109750.3252 110515.9346
 #>   neval
 #> 1    10
 #> 2    10
@@ -201,9 +201,9 @@ summary(benchmark01, unit = "ms")
 
 ```r
 summary(benchmark01, unit = "relative")
-#>   expr      min       lq     mean   median      uq      max neval
-#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.000   1.0000    10
-#> 2   NB 731.2888 688.4456 655.5762 660.4763 649.958 538.5027    10
+#>   expr      min       lq     mean   median       uq     max neval
+#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.000    10
+#> 2   NB 743.2304 731.8518 690.6101 693.9135 644.5818 642.493    10
 ```
 
 ## Plot
@@ -247,11 +247,11 @@ benchmark02 <- microbenchmark(
 ```r
 summary(benchmark02, unit = "ms")
 #>   expr          min           lq         mean       median           uq
-#> 1   MC     86.90407     88.03058     89.09038     89.12215     90.17806
-#> 2   NB 114210.57651 114387.62142 114992.70648 114692.15620 115153.62730
+#> 1   MC     81.09401     82.15934     84.88032     84.26052     85.18305
+#> 2   NB 108884.23444 109080.17815 109684.90118 109698.28046 109979.56813
 #>            max neval
-#> 1     91.37043    10
-#> 2 116794.93475    10
+#> 1     91.79102    10
+#> 2 111065.40409    10
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
@@ -259,9 +259,9 @@ summary(benchmark02, unit = "ms")
 
 ```r
 summary(benchmark02, unit = "relative")
-#>   expr      min       lq     mean  median       uq      max neval
-#> 1   MC    1.000    1.000    1.000    1.00    1.000    1.000    10
-#> 2   NB 1314.214 1299.408 1290.742 1286.91 1276.958 1278.257    10
+#>   expr      min       lq    mean   median       uq      max neval
+#> 1   MC    1.000    1.000    1.00    1.000    1.000    1.000    10
+#> 2   NB 1342.691 1327.666 1292.23 1301.894 1291.097 1209.981    10
 ```
 
 ## Plot
