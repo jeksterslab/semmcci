@@ -33,6 +33,7 @@
     if (is.null(alpha)) {
       alpha <- object$alpha
     }
+    probs <- .PCProbs(alpha = alpha)
     ci <- vector(
       mode = "list",
       length = dim(thetahatstar)[2]
@@ -41,7 +42,7 @@
       ci[[i]] <- .PCCI(
         thetahatstar = thetahatstar[, i],
         thetahat = thetahat$est[[i]],
-        alpha = alpha
+        probs = probs
       )
     }
     ci <- do.call(
@@ -63,6 +64,7 @@
     if (is.null(alpha)) {
       alpha <- object$alpha
     }
+    probs <- .PCProbs(alpha = alpha)
     ci_std <- vector(
       mode = "list",
       length = dim(thetahatstar_std)[2]
@@ -71,7 +73,7 @@
       ci_std[[i]] <- .PCCI(
         thetahatstar = thetahatstar_std[, i],
         thetahat = thetahat_std[[i]],
-        alpha = alpha
+        probs = probs
       )
     }
     ci_std <- do.call(
