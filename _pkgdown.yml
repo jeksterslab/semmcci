@@ -3,6 +3,10 @@ url: https://github.com/jeksterslab/semmcci/
 
 template:
   bootstrap: 5
+  bslib:
+    base_font: {google: "Roboto"}
+    heading_font: {google: "Roboto Slab"}
+    code_font: {google: "JetBrains Mono"}
 
 reference:
 - title: Functions
@@ -19,7 +23,8 @@ articles:
   - example_1_simple
   - example_2_serial
   - example_3_latent
-  - example_4_simple_miss
+  - example_4_1_simple_miss_fiml
+  - example_4_2_simple_miss_mi
   - example_5_composite_reliability
 - title: MCStd Use Cases
   navbar: MCStd Use Cases
@@ -36,4 +41,6 @@ articles:
 - title: Benchmark
   navbar: Benchmark
   contents:
-  - benchmark
+  - benchmark_complete
+  - benchmark_fiml
+  - benchmark_mi

@@ -10,11 +10,12 @@ MC(
   alpha = c(0.001, 0.01, 0.05),
   decomposition = "eigen",
   pd = TRUE,
-  tol = 1e-06
+  tol = 1e-06,
+  seed = NULL
 )
 }
 \arguments{
-\item{object}{object of class \code{lavaan}.}
+\item{object}{Object of class \code{lavaan}.}
 
 \item{R}{Positive integer.
 Number of Monte Carlo replications.}
@@ -36,10 +37,13 @@ is positive definite using \code{tol}.}
 
 \item{tol}{Numeric.
 Tolerance used for \code{pd}.}
+
+\item{seed}{Integer.
+Random seed for reproducibility.}
 }
 \value{
-Returns an object of class \code{semmcci}
-which is a list with the following elements:
+Returns an object of class \code{semmcci} which is
+a list with the following elements:
 \describe{
 \item{\code{R}}{Number of Monte Carlo replications.}
 \item{\code{alpha}}{Significance level \eqn{\alpha} specified.}
@@ -69,38 +73,43 @@ in the \code{lavaan} model syntax.
 library(semmcci)
 library(lavaan)
 
-# Generate Data ------------------------------------------------------------
-n <- 1000
-a <- 0.50
-b <- 0.50
-cp <- 0.25
-s2_em <- 1 - a^2
-s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
-em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
-ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
-X <- rnorm(n = n)
-M <- a * X + em
-Y <- cp * X + b * M + ey
-df <- data.frame(X, M, Y)
+# Data ---------------------------------------------------------------------
+data("Tal.Or", package = "psych")
+df <- Tal.Or
 
 # Fit Model in lavaan ------------------------------------------------------
 model <- "
-  Y ~ cp * X + b * M
-  M ~ a * X
+  reaction ~ cp * cond + b * pmi
+  pmi ~ a * cond
   indirect := a * b
   direct := cp
   total := cp + (a * b)
 "
+
 fit <- sem(data = df, model = model)
 
 # Monte Carlo --------------------------------------------------------------
 MC(
   fit,
   R = 100L, # use a large value e.g., 20000L for actual research
-  alpha = c(0.001, 0.01, 0.05)
+  alpha = 0.05
 )
+
+}
+\references{
+Pesigan, I. J. A., & Cheung, S. F. (2023).
+Monte Carlo confidence intervals for the indirect effect with missing data.
+\emph{Behavior Research Methods}.
+\doi{10.3758/s13428-023-02114-4}
+}
+\seealso{
+Other Monte Carlo in Structural Equation Modeling Functions: 
+\code{\link{MCMI}()},
+\code{\link{MCStd}()}
 }
 \author{
 Ivan Jacob Agaloos Pesigan
 }
+\concept{Monte Carlo in Structural Equation Modeling Functions}
 \keyword{mc}
+\keyword{semmcci}

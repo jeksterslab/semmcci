@@ -8,14 +8,14 @@ MCStd(object, alpha = c(0.001, 0.01, 0.05))
 }
 \arguments{
 \item{object}{object of class \code{semmcci}.
-Output of the \code{MC()} function.}
+Output of the \code{\link[=MC]{MC()}} function.}
 
 \item{alpha}{Numeric vector.
 Significance level \eqn{\alpha}.}
 }
 \value{
-Returns an object of class \code{semmccistd}
-which is a list with the following elements:
+Returns an object of class \code{semmccistd} which is
+a list with the following elements:
 \describe{
 \item{\code{R}}{Number of Monte Carlo replications.}
 \item{\code{alpha}}{Significance level \eqn{\alpha} specified.}
@@ -50,41 +50,64 @@ using the standardized empirical sampling distribution.
 library(semmcci)
 library(lavaan)
 
-# Generate Data ------------------------------------------------------------
-n <- 1000
-a <- 0.50
-b <- 0.50
-cp <- 0.25
-s2_em <- 1 - a^2
-s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
-em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
-ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
-X <- rnorm(n = n)
-M <- a * X + em
-Y <- cp * X + b * M + ey
-df <- data.frame(X, M, Y)
+# MC() ---------------------------------------------------------------------
+# Data ---------------------------------------------------------------------
+data("Tal.Or", package = "psych")
+df <- Tal.Or
 
 # Fit Model in lavaan ------------------------------------------------------
 model <- "
-  Y ~ cp * X + b * M
-  M ~ a * X
+  reaction ~ cp * cond + b * pmi
+  pmi ~ a * cond
   indirect := a * b
   direct := cp
   total := cp + (a * b)
 "
-fit <- sem(data = df, model = model, fixed.x = FALSE)
+
+fit_complete_data <- sem(data = df, model = model, fixed.x = FALSE)
 
 # Monte Carlo --------------------------------------------------------------
-output <- MC(
-  fit,
+complete_data <- MC(
+  fit_complete_data,
   R = 100L, # use a large value e.g., 20000L for actual research
-  alpha = c(0.001, 0.01, 0.05)
+  alpha = 0.05
 )
 
 # Standardized Monte Carlo -------------------------------------------------
-MCStd(output)
+MCStd(complete_data, alpha = 0.05)
+
+# MCMI() -------------------------------------------------------------------
+# Data ---------------------------------------------------------------------
+df <- mice::ampute(Tal.Or)$amp
+
+# Fit Model in lavaan ------------------------------------------------------
+fit_missing_data <- sem(data = df, model = model, fixed.x = FALSE)
+
+# Monte Carlo --------------------------------------------------------------
+missing_data <- MC(
+  fit_missing_data,
+  R = 100L, # use a large value e.g., 20000L for actual research
+  alpha = 0.05
+)
+
+# Standardized Monte Carlo -------------------------------------------------
+MCStd(missing_data, alpha = 0.05)
+
+}
+\references{
+Pesigan, I. J. A., & Cheung, S. F. (2023).
+Monte Carlo confidence intervals for the indirect effect with missing data.
+\emph{Behavior Research Methods}.
+\doi{10.3758/s13428-023-02114-4}
+}
+\seealso{
+Other Monte Carlo in Structural Equation Modeling Functions: 
+\code{\link{MCMI}()},
+\code{\link{MC}()}
 }
 \author{
 Ivan Jacob Agaloos Pesigan
 }
+\concept{Monte Carlo in Structural Equation Modeling Functions}
 \keyword{mc}
+\keyword{semmcci}

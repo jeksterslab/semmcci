@@ -53,11 +53,11 @@ lapply(
       fixed.x = FALSE
     )
     coefs <- lavaan::standardizedSolution(fit)$est.std
-    set.seed(seed)
     unstd <- MC(
       fit,
       R = R,
-      alpha = alpha
+      alpha = alpha,
+      seed = seed
     )
     results <- .MCCI(
       MCStd(

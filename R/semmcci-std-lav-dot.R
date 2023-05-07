@@ -10,7 +10,9 @@
 #' @param object object of class `lavaan`.
 #' @return A vector of the standardized solution, of the same
 #'  length as the number of rows in the parameter table.
-#' @keywords matrix standardized internal
+#'
+#' @family Monte Carlo in Structural Equation Modeling Functions
+#' @keywords semmcci matrix standardized internal
 #' @noRd
 .StdLav <- function(est,
                     object) {

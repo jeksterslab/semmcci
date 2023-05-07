@@ -1,0 +1,334 @@
+---
+title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping (MI)"
+author: "Ivan Jacob Agaloos Pesigan"
+date: "2023-05-07"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping (MI)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+
+
+
+
+
+We compare the Monte Carlo (MC) method with nonparametric bootstrapping (NB) using the simple mediation model with missing data
+using multiple imputation.
+One advantage of MC over NB is speed.
+This is because the model is only fitted once in MC whereas it is fitted many times in NB.
+
+
+```r
+library(semmcci)
+library(lavaan)
+library(microbenchmark)
+```
+
+## Data
+
+
+```r
+n <- 1000
+a <- 0.50
+b <- 0.50
+cp <- 0.25
+s2_em <- 1 - a^2
+s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
+em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
+ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
+X <- rnorm(n = n)
+M <- a * X + em
+Y <- cp * X + b * M + ey
+df <- data.frame(X, M, Y)
+
+# Create data set with missing values.
+
+miss <- sample(1:dim(df)[1], 300)
+df[miss[1:100], "X"] <- NA
+df[miss[101:200], "M"] <- NA
+df[miss[201:300], "Y"] <- NA
+```
+
+## Model Specification
+
+The indirect effect is defined by the product of the slopes
+of paths `X` to `M` labeled as `a` and `M` to `Y` labeled as `b`.
+In this example, we are interested in the confidence intervals of `indirect`
+defined as the product of `a` and `b` using the `:=` operator
+in the `lavaan` model syntax.
+
+
+```r
+model <- "
+  Y ~ cp * X + b * M
+  M ~ a * X
+  X ~~ X
+  indirect := a * b
+  direct := cp
+  total := cp + (a * b)
+"
+```
+
+## Model Fitting
+
+We can now fit the model using the `sem()` function from `lavaan`.
+
+
+```r
+fit <- sem(data = df, model = model)
+```
+
+## Monte Carlo Confidence Intervals (Multiple Imputation)
+
+The `fit` `lavaan` object can then be passed to the `MCMI()` function from `semmcci`
+to generate Monte Carlo confidence intervals.
+`Amelia` was used in `MCMI()` to conform with `bmemLavaan::bmem()`.
+
+
+```r
+MCMI(fit, R = 100L, alpha = 0.05, fun = "amelia", m = 5L)
+#> Monte Carlo Confidence Intervals
+#>             est     se   R   2.5%  97.5%
+#> cp       0.2332 0.0303 100 0.1737 0.2874
+#> b        0.5096 0.0265 100 0.4643 0.5621
+#> a        0.4875 0.0274 100 0.4317 0.5323
+#> X~~X     1.0579 0.0502 100 0.9721 1.1661
+#> Y~~Y     0.5578 0.0308 100 0.4990 0.6069
+#> M~~M     0.7575 0.0350 100 0.6967 0.8267
+#> indirect 0.2483 0.0168 100 0.2129 0.2813
+#> direct   0.2332 0.0303 100 0.1737 0.2874
+#> total    0.4815 0.0283 100 0.4301 0.5377
+```
+
+## Nonparametric Bootstrap Confidence Intervals (Multiple Imputation)
+
+Nonparametric bootstrap confidence intervals can be generated in `bmemLavaan` using the following.
+
+
+
+```r
+summary(
+  bmemLavaan::bmem(data = df, model = model, boot = 100L, m = 5L)
+)
+#> 
+#> Estimate method:                          listwise deletion
+#> Sample size:                              1000      
+#> Number of request bootstrap draws:        100       
+#> Number of successful bootstrap draws:     100       
+#> Type of confidence interval:              perc
+#> 
+#> Values of statistics:
+#> 
+#>                      Value      SE      2.5%     97.5%
+#>   chisq               0.000    0.000    0.000    0.000   
+#>   GFI                 1.000    0.000    1.000    1.000   
+#>   AGFI                1.000    0.000    1.000    1.000   
+#>   RMSEA               0.000    0.000    0.000    0.000   
+#>   NFI                 1.000    0.000    1.000    1.000   
+#>   NNFI                1.000    0.000    1.000    1.000   
+#>   CFI                 1.000    0.000    1.000    1.000   
+#>   BIC                 7884.178 95.989   7699.626 8019.599
+#>   SRMR                0.000    0.000    0.000    0.000   
+#> 
+#> Estimation of parameters:
+#> 
+#>                      Estimate   SE      2.5%     97.5%
+#> Regressions:
+#>   Y ~
+#>     X        (cp)     0.242    0.033    0.187    0.313
+#>     M         (b)     0.517    0.032    0.454    0.574
+#>   M ~
+#>     X         (a)     0.499    0.029    0.445    0.549
+#> 
+#> Variances:
+#>     X                 1.096    0.058    0.980    1.220
+#>     Y                 0.580    0.032    0.517    0.632
+#>     M                 0.805    0.042    0.724    0.875
+#> 
+#> 
+#> 
+#> Defined parameters:
+#>     a*b    (indr)     0.258    0.023    0.218    0.301
+#>     cp     (drct)     0.242    0.033    0.187    0.313
+#>     cp+(*) (totl)     0.500    0.028    0.451    0.557
+```
+
+## Benchmark
+
+### Arguments
+
+
+
+
+|Variables |Values |Notes                               |
+|:---------|:------|:-----------------------------------|
+|R         |1000   |Number of Monte Carlo replications. |
+|B         |1000   |Number of bootstrap samples.        |
+|m         |100    |Number of imputations.              |
+
+
+
+
+```r
+benchmark_mi_01 <- microbenchmark(
+  MC = {
+    fit <- sem(
+      data = df,
+      model = model
+    )
+    MCMI(
+      fit,
+      R = R,
+      decomposition = "chol",
+      pd = FALSE,
+      fun = "amelia",
+      m = m
+    )
+  },
+  NB = bmemLavaan::bmem(
+    data = df,
+    model = model,
+    boot = B,
+    m = m
+  ),
+  times = 10
+)
+```
+
+### Summary of Benchmark Results
+
+
+```r
+summary(benchmark_mi_01, unit = "ms")
+#>   expr      min        lq      mean    median        uq       max neval
+#> 1   MC  5349.57  5428.188  5479.653  5475.355  5551.405  5655.215    10
+#> 2   NB 46748.54 46861.181 47388.432 47375.075 47726.203 48483.090    10
+```
+
+### Summary of Benchmark Results Relative to the Faster Method
+
+
+```r
+summary(benchmark_mi_01, unit = "relative")
+#>   expr      min       lq     mean  median      uq      max neval
+#> 1   MC 1.000000 1.000000 1.000000 1.00000 1.00000 1.000000    10
+#> 2   NB 8.738748 8.632933 8.648071 8.65242 8.59714 8.573165    10
+```
+
+## Plot
+
+<img src="fig-vignettes-benchmark-unnamed-chunk-16-1.png" width="3300" />
+
+## Benchmark - Monte Carlo Method with Precalculated Estimates
+
+
+
+
+```r
+fit <- sem(
+  data = df,
+  model = model
+)
+benchmark_mi_02 <- microbenchmark(
+  MC = MCMI(
+    fit,
+    R = R,
+    decomposition = "chol",
+    pd = FALSE,
+    fun = "amelia",
+    m = m
+  ),
+  NB = bmemLavaan::bmem(
+    data = df,
+    model = model,
+    boot = B,
+    m = m
+  ),
+  times = 10
+)
+```
+
+### Summary of Benchmark Results
+
+
+```r
+summary(benchmark_mi_02, unit = "ms")
+#>   expr       min        lq      mean    median        uq       max neval
+#> 1   MC  5231.443  5366.995  5454.149  5480.516  5555.657  5669.272    10
+#> 2   NB 46703.443 46993.559 47135.901 47142.441 47237.357 47552.530    10
+```
+
+### Summary of Benchmark Results Relative to the Faster Method
+
+
+```r
+summary(benchmark_mi_02, unit = "relative")
+#>   expr      min       lq    mean   median       uq      max neval
+#> 1   MC 1.000000 1.000000 1.00000 1.000000 1.000000 1.000000    10
+#> 2   NB 8.927449 8.756029 8.64221 8.601825 8.502569 8.387767    10
+```
+
+## Plot
+
+<img src="fig-vignettes-benchmark-unnamed-chunk-21-1.png" width="3300" />
+## Benchmark - Monte Carlo Method with Precalculated Estimates and Multiple Imputations
+
+
+
+
+```r
+fit <- sem(
+  data = df,
+  model = model
+)
+imp <- Amelia::amelia(
+  x = df,
+  p2s = 0,
+  m = m
+)$imputations
+benchmark_mi_03 <- microbenchmark(
+  MC = MCMI(
+    fit,
+    R = R,
+    decomposition = "chol",
+    pd = FALSE,
+    imp = imp
+  ),
+  NB = bmemLavaan::bmem(
+    data = df,
+    model = model,
+    boot = B,
+    m = m
+  ),
+  times = 10
+)
+```
+
+### Summary of Benchmark Results
+
+
+```r
+summary(benchmark_mi_03, unit = "ms")
+#>   expr       min        lq      mean    median        uq       max neval
+#> 1   MC  4122.529  4212.985  4262.018  4246.979  4326.717  4448.571    10
+#> 2   NB 46737.703 46850.218 47239.667 47247.399 47558.843 47968.696    10
+```
+
+### Summary of Benchmark Results Relative to the Faster Method
+
+
+```r
+summary(benchmark_mi_03, unit = "relative")
+#>   expr      min       lq     mean   median      uq      max neval
+#> 1   MC  1.00000  1.00000  1.00000  1.00000  1.0000  1.00000    10
+#> 2   NB 11.33714 11.12043 11.08387 11.12494 10.9919 10.78295    10
+```
+
+## Plot
+
+<img src="fig-vignettes-benchmark-unnamed-chunk-26-1.png" width="3300" />

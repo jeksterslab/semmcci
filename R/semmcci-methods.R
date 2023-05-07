@@ -6,41 +6,34 @@
 #' @param ... further arguments.
 #' @return Returns a matrix of estimates, standard errors,
 #'   number of Monte Carlo replications, and confidence intervals.
+#'
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
 #'
-#' # Generate Data ------------------------------------------------------------
-#' n <- 1000
-#' a <- 0.50
-#' b <- 0.50
-#' cp <- 0.25
-#' s2_em <- 1 - a^2
-#' s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
-#' em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
-#' ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
-#' X <- rnorm(n = n)
-#' M <- a * X + em
-#' Y <- cp * X + b * M + ey
-#' df <- data.frame(X, M, Y)
+#' # Data ---------------------------------------------------------------------
+#' data("Tal.Or", package = "psych")
+#' df <- Tal.Or
 #'
 #' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
-#'   Y ~ cp * X + b * M
-#'   M ~ a * X
+#'   reaction ~ cp * cond + b * pmi
+#'   pmi ~ a * cond
 #'   indirect := a * b
 #'   direct := cp
 #'   total := cp + (a * b)
 #' "
+#'
 #' fit <- sem(data = df, model = model)
 #'
 #' # Monte Carlo --------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
 #'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = c(0.001, 0.01, 0.05)
+#'   alpha = 0.05
 #' )
 #' print(unstd)
+#'
 #' @keywords method
 #' @export
 print.semmcci <- function(x,
@@ -63,44 +56,37 @@ print.semmcci <- function(x,
 #' @param ... further arguments.
 #' @return Returns a matrix of estimates, standard errors,
 #'   number of Monte Carlo replications, and confidence intervals.
+#'
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
 #'
-#' # Generate Data ------------------------------------------------------------
-#' n <- 1000
-#' a <- 0.50
-#' b <- 0.50
-#' cp <- 0.25
-#' s2_em <- 1 - a^2
-#' s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
-#' em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
-#' ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
-#' X <- rnorm(n = n)
-#' M <- a * X + em
-#' Y <- cp * X + b * M + ey
-#' df <- data.frame(X, M, Y)
+#' # Data ---------------------------------------------------------------------
+#' data("Tal.Or", package = "psych")
+#' df <- Tal.Or
 #'
 #' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
-#'   Y ~ cp * X + b * M
-#'   M ~ a * X
+#'   reaction ~ cp * cond + b * pmi
+#'   pmi ~ a * cond
 #'   indirect := a * b
 #'   direct := cp
 #'   total := cp + (a * b)
 #' "
+#'
 #' fit <- sem(data = df, model = model, fixed.x = FALSE)
 #'
 #' # Monte Carlo --------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
 #'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = c(0.001, 0.01, 0.05)
+#'   alpha = 0.05
 #' )
 #'
 #' # Standardized Monte Carlo -------------------------------------------------
-#' std <- MCStd(unstd)
+#' std <- MCStd(unstd, alpha = 0.05)
 #' print(std)
+#'
 #' @keywords method
 #' @export
 print.semmccistd <- function(x,
@@ -124,41 +110,34 @@ print.semmccistd <- function(x,
 #' @param digits Digits to print.
 #' @return Returns a matrix of estimates, standard errors,
 #'   number of Monte Carlo replications, and confidence intervals.
+#'
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
 #'
-#' # Generate Data ------------------------------------------------------------
-#' n <- 1000
-#' a <- 0.50
-#' b <- 0.50
-#' cp <- 0.25
-#' s2_em <- 1 - a^2
-#' s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
-#' em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
-#' ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
-#' X <- rnorm(n = n)
-#' M <- a * X + em
-#' Y <- cp * X + b * M + ey
-#' df <- data.frame(X, M, Y)
+#' # Data ---------------------------------------------------------------------
+#' data("Tal.Or", package = "psych")
+#' df <- Tal.Or
 #'
 #' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
-#'   Y ~ cp * X + b * M
-#'   M ~ a * X
+#'   reaction ~ cp * cond + b * pmi
+#'   pmi ~ a * cond
 #'   indirect := a * b
 #'   direct := cp
 #'   total := cp + (a * b)
 #' "
+#'
 #' fit <- sem(data = df, model = model)
 #'
 #' # Monte Carlo --------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
 #'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = c(0.001, 0.01, 0.05)
+#'   alpha = 0.05
 #' )
 #' summary(unstd)
+#'
 #' @keywords method
 #' @export
 summary.semmcci <- function(object,
@@ -182,44 +161,37 @@ summary.semmcci <- function(object,
 #' @param digits Digits to print.
 #' @return Returns a matrix of estimates, standard errors,
 #'   number of Monte Carlo replications, and confidence intervals.
+#'
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
 #'
-#' # Generate Data ------------------------------------------------------------
-#' n <- 1000
-#' a <- 0.50
-#' b <- 0.50
-#' cp <- 0.25
-#' s2_em <- 1 - a^2
-#' s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
-#' em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
-#' ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
-#' X <- rnorm(n = n)
-#' M <- a * X + em
-#' Y <- cp * X + b * M + ey
-#' df <- data.frame(X, M, Y)
+#' # Data ---------------------------------------------------------------------
+#' data("Tal.Or", package = "psych")
+#' df <- Tal.Or
 #'
 #' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
-#'   Y ~ cp * X + b * M
-#'   M ~ a * X
+#'   reaction ~ cp * cond + b * pmi
+#'   pmi ~ a * cond
 #'   indirect := a * b
 #'   direct := cp
 #'   total := cp + (a * b)
 #' "
+#'
 #' fit <- sem(data = df, model = model, fixed.x = FALSE)
 #'
 #' # Monte Carlo --------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
 #'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = c(0.001, 0.01, 0.05)
+#'   alpha = 0.05
 #' )
 #'
 #' # Standardized Monte Carlo -------------------------------------------------
-#' std <- MCStd(unstd)
+#' std <- MCStd(unstd, alpha = 0.05)
 #' summary(std)
+#'
 #' @keywords method
 #' @export
 summary.semmccistd <- function(object,
@@ -241,41 +213,34 @@ summary.semmccistd <- function(object,
 #' @param object Object of class `semmcci`.
 #' @param ... additional arguments.
 #' @return Returns a vector of parameter estimates.
+#'
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
 #'
-#' # Generate Data ------------------------------------------------------------
-#' n <- 1000
-#' a <- 0.50
-#' b <- 0.50
-#' cp <- 0.25
-#' s2_em <- 1 - a^2
-#' s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
-#' em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
-#' ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
-#' X <- rnorm(n = n)
-#' M <- a * X + em
-#' Y <- cp * X + b * M + ey
-#' df <- data.frame(X, M, Y)
+#' # Data ---------------------------------------------------------------------
+#' data("Tal.Or", package = "psych")
+#' df <- Tal.Or
 #'
 #' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
-#'   Y ~ cp * X + b * M
-#'   M ~ a * X
+#'   reaction ~ cp * cond + b * pmi
+#'   pmi ~ a * cond
 #'   indirect := a * b
 #'   direct := cp
 #'   total := cp + (a * b)
 #' "
+#'
 #' fit <- sem(data = df, model = model)
 #'
 #' # Monte Carlo --------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
 #'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = c(0.001, 0.01, 0.05)
+#'   alpha = 0.05
 #' )
 #' coef(unstd)
+#'
 #' @keywords method
 #' @export
 coef.semmcci <- function(object,
@@ -290,44 +255,37 @@ coef.semmcci <- function(object,
 #' @param object Object of class `semmccistd`.
 #' @param ... additional arguments.
 #' @return Returns a vector of standardized parameter estimates.
+#'
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
 #'
-#' # Generate Data ------------------------------------------------------------
-#' n <- 1000
-#' a <- 0.50
-#' b <- 0.50
-#' cp <- 0.25
-#' s2_em <- 1 - a^2
-#' s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
-#' em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
-#' ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
-#' X <- rnorm(n = n)
-#' M <- a * X + em
-#' Y <- cp * X + b * M + ey
-#' df <- data.frame(X, M, Y)
+#' # Data ---------------------------------------------------------------------
+#' data("Tal.Or", package = "psych")
+#' df <- Tal.Or
 #'
 #' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
-#'   Y ~ cp * X + b * M
-#'   M ~ a * X
+#'   reaction ~ cp * cond + b * pmi
+#'   pmi ~ a * cond
 #'   indirect := a * b
 #'   direct := cp
 #'   total := cp + (a * b)
 #' "
+#'
 #' fit <- sem(data = df, model = model, fixed.x = FALSE)
 #'
 #' # Monte Carlo --------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
 #'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = c(0.001, 0.01, 0.05)
+#'   alpha = 0.05
 #' )
 #'
 #' # Standardized Monte Carlo -------------------------------------------------
-#' std <- MCStd(unstd)
+#' std <- MCStd(unstd, alpha = 0.05)
 #' coef(std)
+#'
 #' @keywords method
 #' @export
 coef.semmccistd <- function(object,
@@ -343,41 +301,34 @@ coef.semmccistd <- function(object,
 #' @param ... additional arguments.
 #' @return Returns a matrix of the variance-covariance matrix
 #'   of parameter estimates.
+#'
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
 #'
-#' # Generate Data ------------------------------------------------------------
-#' n <- 1000
-#' a <- 0.50
-#' b <- 0.50
-#' cp <- 0.25
-#' s2_em <- 1 - a^2
-#' s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
-#' em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
-#' ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
-#' X <- rnorm(n = n)
-#' M <- a * X + em
-#' Y <- cp * X + b * M + ey
-#' df <- data.frame(X, M, Y)
+#' # Data ---------------------------------------------------------------------
+#' data("Tal.Or", package = "psych")
+#' df <- Tal.Or
 #'
 #' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
-#'   Y ~ cp * X + b * M
-#'   M ~ a * X
+#'   reaction ~ cp * cond + b * pmi
+#'   pmi ~ a * cond
 #'   indirect := a * b
 #'   direct := cp
 #'   total := cp + (a * b)
 #' "
+#'
 #' fit <- sem(data = df, model = model)
 #'
 #' # Monte Carlo --------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
 #'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = c(0.001, 0.01, 0.05)
+#'   alpha = 0.05
 #' )
 #' vcov(unstd)
+#'
 #' @keywords method
 #' @export
 vcov.semmcci <- function(object,
@@ -395,44 +346,37 @@ vcov.semmcci <- function(object,
 #' @param ... additional arguments.
 #' @return Returns a matrix of the variance-covariance matrix
 #'   of standardized parameter estimates.
+#'
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
 #'
-#' # Generate Data ------------------------------------------------------------
-#' n <- 1000
-#' a <- 0.50
-#' b <- 0.50
-#' cp <- 0.25
-#' s2_em <- 1 - a^2
-#' s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
-#' em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
-#' ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
-#' X <- rnorm(n = n)
-#' M <- a * X + em
-#' Y <- cp * X + b * M + ey
-#' df <- data.frame(X, M, Y)
+#' # Data ---------------------------------------------------------------------
+#' data("Tal.Or", package = "psych")
+#' df <- Tal.Or
 #'
 #' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
-#'   Y ~ cp * X + b * M
-#'   M ~ a * X
+#'   reaction ~ cp * cond + b * pmi
+#'   pmi ~ a * cond
 #'   indirect := a * b
 #'   direct := cp
 #'   total := cp + (a * b)
 #' "
+#'
 #' fit <- sem(data = df, model = model, fixed.x = FALSE)
 #'
 #' # Monte Carlo --------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
 #'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = c(0.001, 0.01, 0.05)
+#'   alpha = 0.05
 #' )
 #'
 #' # Standardized Monte Carlo -------------------------------------------------
-#' std <- MCStd(unstd)
+#' std <- MCStd(unstd, alpha = 0.05)
 #' vcov(std)
+#'
 #' @keywords method
 #' @export
 vcov.semmccistd <- function(object,
@@ -454,41 +398,34 @@ vcov.semmccistd <- function(object,
 #'   If missing, all parameters are considered.
 #' @param level the confidence level required.
 #' @return Returns a matrix of confidence intervals.
+#'
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
 #'
-#' # Generate Data ------------------------------------------------------------
-#' n <- 1000
-#' a <- 0.50
-#' b <- 0.50
-#' cp <- 0.25
-#' s2_em <- 1 - a^2
-#' s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
-#' em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
-#' ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
-#' X <- rnorm(n = n)
-#' M <- a * X + em
-#' Y <- cp * X + b * M + ey
-#' df <- data.frame(X, M, Y)
+#' # Data ---------------------------------------------------------------------
+#' data("Tal.Or", package = "psych")
+#' df <- Tal.Or
 #'
 #' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
-#'   Y ~ cp * X + b * M
-#'   M ~ a * X
+#'   reaction ~ cp * cond + b * pmi
+#'   pmi ~ a * cond
 #'   indirect := a * b
 #'   direct := cp
 #'   total := cp + (a * b)
 #' "
+#'
 #' fit <- sem(data = df, model = model)
 #'
 #' # Monte Carlo --------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
 #'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = c(0.001, 0.01, 0.05)
+#'   alpha = 0.05
 #' )
 #' confint(unstd)
+#'
 #' @keywords method
 #' @export
 confint.semmcci <- function(object,
@@ -521,44 +458,37 @@ confint.semmcci <- function(object,
 #'   If missing, all parameters are considered.
 #' @param level the confidence level required.
 #' @return Returns a matrix of confidence intervals.
+#'
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
 #'
-#' # Generate Data ------------------------------------------------------------
-#' n <- 1000
-#' a <- 0.50
-#' b <- 0.50
-#' cp <- 0.25
-#' s2_em <- 1 - a^2
-#' s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
-#' em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
-#' ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
-#' X <- rnorm(n = n)
-#' M <- a * X + em
-#' Y <- cp * X + b * M + ey
-#' df <- data.frame(X, M, Y)
+#' # Data ---------------------------------------------------------------------
+#' data("Tal.Or", package = "psych")
+#' df <- Tal.Or
 #'
 #' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
-#'   Y ~ cp * X + b * M
-#'   M ~ a * X
+#'   reaction ~ cp * cond + b * pmi
+#'   pmi ~ a * cond
 #'   indirect := a * b
 #'   direct := cp
 #'   total := cp + (a * b)
 #' "
+#'
 #' fit <- sem(data = df, model = model, fixed.x = FALSE)
 #'
 #' # Monte Carlo --------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
 #'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = c(0.001, 0.01, 0.05)
+#'   alpha = 0.05
 #' )
 #'
 #' # Standardized Monte Carlo -------------------------------------------------
-#' std <- MCStd(unstd)
+#' std <- MCStd(unstd, alpha = 0.05)
 #' confint(std)
+#'
 #' @keywords method
 #' @export
 confint.semmccistd <- function(object,

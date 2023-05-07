@@ -21,6 +21,8 @@ build: pkg clean
 	@Rscript -e "rProject::Site(\"${PWD}\")"
 	@echo Building manual...
 	@Rscript -e "rProject::Manual(\"${PWD}\", project = Sys.getenv(\"PROJECT\"))"
+	@echo Building CITATION.cff...
+	@Rscript -e "rProject::CFF(\"${PWD}\")"
 
 all: git ssh term build latex
 

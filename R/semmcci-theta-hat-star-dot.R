@@ -25,7 +25,9 @@
 #'                          used to generate multivariate normal
 #'                          random variates.}
 #' }
-#' @keywords matrix standardized internal
+#'
+#' @family Monte Carlo in Structural Equation Modeling Functions
+#' @keywords semmcci parameters standardized internal
 #' @noRd
 .ThetaHatStar <- function(R = 20000L,
                           scale,

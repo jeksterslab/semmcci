@@ -119,6 +119,17 @@ lapply(
         )
       }
     )
+    # coverage
+    fit <- lavaan::sem(
+      data = data,
+      model = model,
+      fixed.x = FALSE,
+      meanstructure = TRUE
+    )
+    mc <- MC(fit, R = R)
+    print(mc)
+    std <- MCStd(mc)
+    print(std)
   },
   n = 1000L,
   R = 2000L,

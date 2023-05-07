@@ -24,7 +24,7 @@
 #'   Null mapping for `addendum`, `note`, and `annotation`.
 #'
 #' @family Bibliography Functions
-#' @keywords internal
+#' @keywords texTools biblatex internal
 #' @noRd
 .PreambleBiblatexCombined <- function(path,
                                       output_path,

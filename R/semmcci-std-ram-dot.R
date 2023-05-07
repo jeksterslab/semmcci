@@ -9,7 +9,9 @@
 #'   unstandardized estimates.
 #' @return A list of RAM matrices with the standardized
 #'   solution.
-#' @keywords matrix standardized internal
+#'
+#' @family Monte Carlo in Structural Equation Modeling Functions
+#' @keywords semmcci matrix standardized internal
 #' @noRd
 .StdRAM <- function(ram_est) {
   a_mat <- ram_est$A

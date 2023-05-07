@@ -18,12 +18,14 @@
 #'              defined by `alpha`.}
 #' }
 #' Note that the rows in `ci` correspond to the model parameters.
-#' @keywords mc
+#'
+#' @family Monte Carlo in Structural Equation Modeling Functions
+#' @keywords semmcci mc internal
 #' @noRd
 .MCCI <- function(object,
                   alpha = NULL) {
   if (
-    methods::is(
+    inherits(
       object,
       "semmcci"
     )
@@ -54,7 +56,7 @@
     return(ci)
   }
   if (
-    methods::is(
+    inherits(
       object,
       "semmccistd"
     )

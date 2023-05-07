@@ -1,0 +1,453 @@
+---
+title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping (MI)"
+author: "Ivan Jacob Agaloos Pesigan"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping (MI)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r}
+#| include = FALSE
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.path = "fig-vignettes-benchmark-",
+  fig.cap = "",
+  fig.width = 11,
+  fig.height = 8,
+  fig.retina = 2,
+  dpi = 300,
+  comment = "#>"
+)
+```
+
+```{r}
+#| echo = FALSE,
+#| message = FALSE,
+#| warning = FALSE
+root <- rprojroot::is_rstudio_project
+dir <- root$find_file(
+  ".data-raw",
+  "benchmark"
+)
+if (!dir.exists(dir)) {
+  dir.create(
+    dir,
+    recursive = TRUE
+  )
+}
+```
+
+```{r}
+#| include = FALSE
+set.seed(42)
+```
+
+We compare the Monte Carlo (MC) method with nonparametric bootstrapping (NB) using the simple mediation model with missing data
+using multiple imputation.
+One advantage of MC over NB is speed.
+This is because the model is only fitted once in MC whereas it is fitted many times in NB.
+
+```{r}
+#| message = FALSE
+library(semmcci)
+library(lavaan)
+library(microbenchmark)
+```
+
+## Data
+
+```{r}
+n <- 1000
+a <- 0.50
+b <- 0.50
+cp <- 0.25
+s2_em <- 1 - a^2
+s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
+em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
+ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
+X <- rnorm(n = n)
+M <- a * X + em
+Y <- cp * X + b * M + ey
+df <- data.frame(X, M, Y)
+
+# Create data set with missing values.
+
+miss <- sample(1:dim(df)[1], 300)
+df[miss[1:100], "X"] <- NA
+df[miss[101:200], "M"] <- NA
+df[miss[201:300], "Y"] <- NA
+```
+
+## Model Specification
+
+The indirect effect is defined by the product of the slopes
+of paths `X` to `M` labeled as `a` and `M` to `Y` labeled as `b`.
+In this example, we are interested in the confidence intervals of `indirect`
+defined as the product of `a` and `b` using the `:=` operator
+in the `lavaan` model syntax.
+
+```{r}
+model <- "
+  Y ~ cp * X + b * M
+  M ~ a * X
+  X ~~ X
+  indirect := a * b
+  direct := cp
+  total := cp + (a * b)
+"
+```
+
+## Model Fitting
+
+We can now fit the model using the `sem()` function from `lavaan`.
+
+```{r}
+fit <- sem(data = df, model = model)
+```
+
+## Monte Carlo Confidence Intervals (Multiple Imputation)
+
+The `fit` `lavaan` object can then be passed to the `MCMI()` function from `semmcci`
+to generate Monte Carlo confidence intervals.
+`Amelia` was used in `MCMI()` to conform with `bmemLavaan::bmem()`.
+
+```{r}
+MCMI(fit, R = 100L, alpha = 0.05, fun = "amelia", m = 5L)
+```
+
+## Nonparametric Bootstrap Confidence Intervals (Multiple Imputation)
+
+Nonparametric bootstrap confidence intervals can be generated in `bmemLavaan` using the following.
+
+
+```{r}
+summary(
+  bmemLavaan::bmem(data = df, model = model, boot = 100L, m = 5L)
+)
+```
+
+## Benchmark
+
+### Arguments
+
+```{r}
+#| include = FALSE
+production <- TRUE
+if (production) {
+  R <- 1000L
+  B <- 1000L
+  m <- 100L
+} else {
+  R <- 10L
+  B <- 10L
+  m <- 5L
+}
+```
+
+```{r}
+#| echo = FALSE
+variables <- c(
+  "R",
+  "B",
+  "m"
+)
+values <- c(
+  R,
+  B,
+  m
+)
+notes <- c(
+  "Number of Monte Carlo replications.",
+  "Number of bootstrap samples.",
+  "Number of imputations."
+)
+tab <- cbind(
+  Variables = variables,
+  Values = values,
+  Notes = notes
+)
+knitr::kable(
+  x = tab
+)
+```
+
+```{r}
+#| echo = FALSE,
+#| message = FALSE,
+#| warning = FALSE
+benchmark_mi_01_file <- file.path(
+  dir,
+  "benchmark_mi_01.Rds"
+)
+if (!file.exists(benchmark_mi_01_file)) {
+  benchmark_mi_01 <- microbenchmark(
+    MC = {
+      fit <- sem(
+        data = df,
+        model = model
+      )
+      MCMI(
+        fit,
+        R = R,
+        decomposition = "chol",
+        pd = FALSE,
+        fun = "amelia",
+        m = m
+      )
+    },
+    NB = bmemLavaan::bmem(
+      data = df,
+      model = model,
+      boot = B,
+      m = m
+    ),
+    times = 10
+  )
+  saveRDS(
+    object = benchmark_mi_01,
+    file = benchmark_mi_01_file,
+    compress = "xz"
+  )
+}
+benchmark_mi_01 <- readRDS(
+  file = benchmark_mi_01_file
+)
+```
+
+```{r}
+#| eval = FALSE
+benchmark_mi_01 <- microbenchmark(
+  MC = {
+    fit <- sem(
+      data = df,
+      model = model
+    )
+    MCMI(
+      fit,
+      R = R,
+      decomposition = "chol",
+      pd = FALSE,
+      fun = "amelia",
+      m = m
+    )
+  },
+  NB = bmemLavaan::bmem(
+    data = df,
+    model = model,
+    boot = B,
+    m = m
+  ),
+  times = 10
+)
+```
+
+### Summary of Benchmark Results
+
+```{r}
+summary(benchmark_mi_01, unit = "ms")
+```
+
+### Summary of Benchmark Results Relative to the Faster Method
+
+```{r}
+summary(benchmark_mi_01, unit = "relative")
+```
+
+## Plot
+
+```{r}
+#| echo = FALSE,
+#| warning = FALSE,
+#| message = FALSE
+boxplot(benchmark_mi_01)
+```
+
+## Benchmark - Monte Carlo Method with Precalculated Estimates
+
+```{r}
+#| echo = FALSE,
+#| message = FALSE,
+#| warning = FALSE
+fit <- sem(
+  data = df,
+  model = model
+)
+benchmark_mi_02_file <- file.path(
+  dir,
+  "benchmark_mi_02.Rds"
+)
+if (!file.exists(benchmark_mi_02_file)) {
+  benchmark_mi_02 <- microbenchmark(
+    MC = MCMI(
+      fit,
+      R = R,
+      decomposition = "chol",
+      pd = FALSE,
+      fun = "amelia",
+      m = m
+    ),
+    NB = bmemLavaan::bmem(
+      data = df,
+      model = model,
+      boot = B,
+      m = m
+    ),
+    times = 10
+  )
+  saveRDS(
+    object = benchmark_mi_02,
+    file = benchmark_mi_02_file,
+    compress = "xz"
+  )
+}
+benchmark_mi_02 <- readRDS(
+  file = benchmark_mi_02_file
+)
+```
+
+```{r}
+#| eval = FALSE
+fit <- sem(
+  data = df,
+  model = model
+)
+benchmark_mi_02 <- microbenchmark(
+  MC = MCMI(
+    fit,
+    R = R,
+    decomposition = "chol",
+    pd = FALSE,
+    fun = "amelia",
+    m = m
+  ),
+  NB = bmemLavaan::bmem(
+    data = df,
+    model = model,
+    boot = B,
+    m = m
+  ),
+  times = 10
+)
+```
+
+### Summary of Benchmark Results
+
+```{r}
+summary(benchmark_mi_02, unit = "ms")
+```
+
+### Summary of Benchmark Results Relative to the Faster Method
+
+```{r}
+summary(benchmark_mi_02, unit = "relative")
+```
+
+## Plot
+
+```{r}
+#| echo = FALSE,
+#| warning = FALSE,
+#| message = FALSE
+boxplot(benchmark_mi_02)
+```
+## Benchmark - Monte Carlo Method with Precalculated Estimates and Multiple Imputations
+
+```{r}
+#| echo = FALSE,
+#| message = FALSE,
+#| warning = FALSE
+fit <- sem(
+  data = df,
+  model = model
+)
+imp <- Amelia::amelia(
+  x = df,
+  p2s = 0,
+  m = m
+)$imputations
+benchmark_mi_03_file <- file.path(
+  dir,
+  "benchmark_mi_03.Rds"
+)
+if (!file.exists(benchmark_mi_03_file)) {
+  benchmark_mi_03 <- microbenchmark(
+    MC = MCMI(
+      fit,
+      R = R,
+      decomposition = "chol",
+      pd = FALSE,
+      imp = imp
+    ),
+    NB = bmemLavaan::bmem(
+      data = df,
+      model = model,
+      boot = B,
+      m = m
+    ),
+    times = 10
+  )
+  saveRDS(
+    object = benchmark_mi_03,
+    file = benchmark_mi_03_file,
+    compress = "xz"
+  )
+}
+benchmark_mi_03 <- readRDS(
+  file = benchmark_mi_03_file
+)
+```
+
+```{r}
+#| eval = FALSE
+fit <- sem(
+  data = df,
+  model = model
+)
+imp <- Amelia::amelia(
+  x = df,
+  p2s = 0,
+  m = m
+)$imputations
+benchmark_mi_03 <- microbenchmark(
+  MC = MCMI(
+    fit,
+    R = R,
+    decomposition = "chol",
+    pd = FALSE,
+    imp = imp
+  ),
+  NB = bmemLavaan::bmem(
+    data = df,
+    model = model,
+    boot = B,
+    m = m
+  ),
+  times = 10
+)
+```
+
+### Summary of Benchmark Results
+
+```{r}
+summary(benchmark_mi_03, unit = "ms")
+```
+
+### Summary of Benchmark Results Relative to the Faster Method
+
+```{r}
+summary(benchmark_mi_03, unit = "relative")
+```
+
+## Plot
+
+```{r}
+#| echo = FALSE,
+#| warning = FALSE,
+#| message = FALSE
+boxplot(benchmark_mi_03)
+```

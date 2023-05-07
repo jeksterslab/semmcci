@@ -1,5 +1,7 @@
 # semmcci 1.0.4.9000
 
+* Added the `MCMI()` function.
+
 Latest development version.
 
 # semmcci 1.0.4

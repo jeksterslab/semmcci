@@ -8,7 +8,7 @@
 #'   from the standard univariate normal distribution
 #'   \eqn{\mathbf{Z}}.
 #' @param eigen Object.
-#'   Result of `eigen()`.
+#'   Result of [eigen()].
 #'
 #' @return Numeric matrix.
 #'

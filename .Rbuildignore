@@ -7,6 +7,7 @@
 .*\.tgz$
 .*\.uuid$
 .*\.yml$
+^CITATION.cff$
 ^LICENSE.md$
 ^Makefile$
 ^README.md$
@@ -27,3 +28,4 @@
 ^make.*$
 ^semmcci.pdf$
 ^vignettes$
+^CITATION\.cff$

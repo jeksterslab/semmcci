@@ -3,6 +3,11 @@
 #' @author Ivan Jacob Agaloos Pesigan
 #'
 #' @param object object of class `lavaan`.
+#' @param est Numeric vector.
+#'   If not `NULL`, the parameter estimates are updated.
+#'   using the supplied vector.
+#'   This is used to update the values in the parameter vector
+#'   using pooled multiple imputation estimates.
 #' @return Returns a list with the following elements
 #' \describe{
 #'   \item{`est`}{Parameter estimates.}
@@ -12,9 +17,12 @@
 #'   \item{`cin`}{Inequality constraints.}
 #'   \item{`fixed`}{Fixed parameters.}
 #' }
-#' @keywords parameters internal
+#'
+#' @family Monte Carlo in Structural Equation Modeling Functions
+#' @keywords semmcci parameters internal
 #' @noRd
-.ThetaHat <- function(object) {
+.ThetaHat <- function(object,
+                      est = NULL) {
   # extract all estimates including fixed parameters
   thetahat_names_free <- names(
     lavaan::coef(object)
@@ -39,6 +47,10 @@
     }
   }
   thetahat_est <- object@ParTable$est
+  # update with supplied values using MI pooled coef
+  if (!is.null(est)) {
+    thetahat_est <- est
+  }
   thetahat_fixed <- thetahat_def <- thetahat_cin <- thetahat_ceq <- rep(
     x = NA,
     times = length(thetahat_est)

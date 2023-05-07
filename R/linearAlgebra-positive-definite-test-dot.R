@@ -13,7 +13,7 @@
 #'
 #' @author Ivan Jacob Agaloos Pesigan
 #'
-#' @param eigen output of the `eigen()` function.
+#' @param eigen output of the [eigen()] function.
 #' @param tol Numeric.
 #'   Tolerance.
 #'

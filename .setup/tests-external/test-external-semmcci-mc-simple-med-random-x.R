@@ -38,12 +38,12 @@ lapply(
       model = model,
       fixed.x = FALSE
     )
-    set.seed(seed)
     results <- .MCCI(
       MC(
         fit,
         R = R,
-        alpha = alpha
+        alpha = alpha,
+        seed = seed
       )
     )
     results <- results[, c(1, 2, 4, 5)]

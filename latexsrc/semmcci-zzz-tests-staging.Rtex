@@ -48,10 +48,6 @@
 
 Staging...
 
-%% begin.rcode
-% hist(rnorm(n = 1000))
-%% end.rcode
-
 \nocite{Lib-R-Manual-2023}
 
 \printbibliography

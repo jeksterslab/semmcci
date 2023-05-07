@@ -19,6 +19,13 @@ knitr::opts_chunk$set(
 )
 ```
 
+To cite `semmcci` in publications, please use: 
+
+Pesigan, I. J. A., & Cheung, S. F. (2023).
+Monte Carlo confidence intervals for the indirect effect with missing data.
+*Behavior Research Methods*.
+https://doi.org/10.3758/s13428-023-02114-4
+
 ```{r}
 #| include = FALSE
 set.seed(42)
@@ -37,7 +44,6 @@ using the Holzinger and Swineford (1939) data set.
 
 ```{r}
 data(HolzingerSwineford1939, package = "lavaan")
-head(HolzingerSwineford1939)
 ```
 
 \noindent The confirmatory factor analysis model for $X_{1}, \dots, X_{9}$

@@ -18,26 +18,26 @@ lapply(
       model = model,
       data = data
     )
-    set.seed(seed)
     results_chol <- MC(
       fit,
       R = R,
       alpha = c(0.001, 0.01, 0.05),
-      decomposition = "chol"
+      decomposition = "chol",
+      seed = seed
     )
-    set.seed(seed)
     results_eigen <- MC(
       fit,
       R = R,
       alpha = c(0.001, 0.01, 0.05),
-      decomposition = "eigen"
+      decomposition = "eigen",
+      seed = seed
     )
-    set.seed(seed)
     results_svd <- MC(
       fit,
       R = R,
       alpha = c(0.001, 0.01, 0.05),
-      decomposition = "svd"
+      decomposition = "svd",
+      seed = seed
     )
     set.seed(seed)
     answers <- MASS::mvrnorm(

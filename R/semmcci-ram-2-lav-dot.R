@@ -10,7 +10,9 @@
 #' @param standardized If `TRUE`, the `psi` and `beta` matrices
 #'  contain the correlations. Default is `FALSE`.
 #' @return A list of `lavaan` model matrices for one group.
-#' @keywords matrix internal
+#'
+#' @family Monte Carlo in Structural Equation Modeling Functions
+#' @keywords semmcci matrix internal
 #' @noRd
 .RAM2Lav <- function(ram,
                      lav_mod,

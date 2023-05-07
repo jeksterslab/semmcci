@@ -23,36 +23,22 @@ note <- sprintf(
   "R package version %s",
   meta$Version
 )
-url <- paste0(
-  "https://CRAN.R-project.org/package=",
-  pkg
-)
+url <- "https://github.com/jeksterslab/manMCMedMiss"
 
 bibentry(
-  bibtype = "Unpublished",
-  author = c(
-    person(
-      given = "Ivan Jacob Agaloos",
-      family = "Pesigan",
-      role = c("aut", "cre", "cph"),
-      email = "r.jeksterslab@gmail.com",
-      comment = c(ORCID = "0000-0003-4818-8420")
-    ),
-    person(
-      given = "Shu Fai",
-      family = "Cheung",
-      role = "ctb",
-      email = "shufai.cheung@gmail.com",
-      comment = c(ORCID = "0000-0002-9871-9448")
-    )
-  ),
-  title = "{Monte Carlo} confidence intervals for the indirect effect with missing data",
-  year = "2023",
-  note = "Under Review",
+  bibtype = "Article",
+  author = author,
+  title = title,
+  year = year,
+  doi = "10.3758/s13428-023-02114-4",
+  journal = "Behavior Research Methods",
+  note = note,
   textVersion = paste0(
     author_text, " ",
-    "(", "Under Review", ")", ".", " ",
-    title, " "
+    "(", year, ")", ".", " ",
+    title, ".", " ",
+    "Behavior Research Methods", ".", " ",
+    "https://doi.org/10.3758/s13428-023-02114-4", " "
   ),
   header = paste(
     "To cite",

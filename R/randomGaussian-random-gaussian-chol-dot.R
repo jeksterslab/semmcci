@@ -8,7 +8,7 @@
 #'   from the standard univariate normal distribution
 #'   \eqn{\mathbf{Z}}.
 #' @param chol Object.
-#'   Result of `chol()`.
+#'   Result of [chol()].
 #'
 #' @return Numeric matrix.
 #'

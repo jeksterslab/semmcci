@@ -13,69 +13,87 @@
 #' @author Ivan Jacob Agaloos Pesigan
 #' @inheritParams MC
 #' @param object object of class `semmcci`.
-#'   Output of the `MC()` function.
-#' @return Returns an object of class `semmccistd`
-#' which is a list with the following elements:
-#' \describe{
-#'   \item{`R`}{Number of Monte Carlo replications.}
-#'   \item{`alpha`}{Significance level \eqn{\alpha} specified.}
-#'   \item{`lavaan`}{`lavaan` object.}
-#'   \item{`decomposition`}{Matrix decomposition
-#'                          used to generate multivariate normal
-#'                          random variates.}
-#'   \item{`thetahat`}{Parameter estimates \eqn{\hat{\theta}}.}
-#'   \item{`thetahatstar`}{Sampling distribution of parameter estimates
-#'                         \eqn{\hat{\theta}^{\ast}}.}
-#'   \item{`ci`}{Confidence intervals.}
-#'   \item{`thetahat_std`}{Standardized parameter estimates
-#'                         \eqn{\hat{\theta}_{\mathrm{std}}}.}
-#'   \item{`thetahatstar_std`}{Standardized sampling distribution
-#'                             of parameter estimates
+#'   Output of the [MC()] function.
+#' @return Returns an object of class `semmccistd` which is
+#'   a list with the following elements:
+#'   \describe{
+#'     \item{`R`}{Number of Monte Carlo replications.}
+#'     \item{`alpha`}{Significance level \eqn{\alpha} specified.}
+#'     \item{`lavaan`}{`lavaan` object.}
+#'     \item{`decomposition`}{Matrix decomposition
+#'                            used to generate multivariate normal
+#'                            random variates.}
+#'     \item{`thetahat`}{Parameter estimates \eqn{\hat{\theta}}.}
+#'     \item{`thetahatstar`}{Sampling distribution of parameter estimates
+#'                           \eqn{\hat{\theta}^{\ast}}.}
+#'     \item{`ci`}{Confidence intervals.}
+#'     \item{`thetahat_std`}{Standardized parameter estimates
+#'                           \eqn{\hat{\theta}_{\mathrm{std}}}.}
+#'     \item{`thetahatstar_std`}{Standardized sampling distribution
+#'                               of parameter estimates
 #'                             \eqn{\hat{\theta}^{\ast}_{\mathrm{std}}}.}
-#' }
+#'   }
+#'
 #' @examples
 #' library(semmcci)
 #' library(lavaan)
 #'
-#' # Generate Data ------------------------------------------------------------
-#' n <- 1000
-#' a <- 0.50
-#' b <- 0.50
-#' cp <- 0.25
-#' s2_em <- 1 - a^2
-#' s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
-#' em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
-#' ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
-#' X <- rnorm(n = n)
-#' M <- a * X + em
-#' Y <- cp * X + b * M + ey
-#' df <- data.frame(X, M, Y)
+#' # MC() ---------------------------------------------------------------------
+#' # Data ---------------------------------------------------------------------
+#' data("Tal.Or", package = "psych")
+#' df <- Tal.Or
 #'
 #' # Fit Model in lavaan ------------------------------------------------------
 #' model <- "
-#'   Y ~ cp * X + b * M
-#'   M ~ a * X
+#'   reaction ~ cp * cond + b * pmi
+#'   pmi ~ a * cond
 #'   indirect := a * b
 #'   direct := cp
 #'   total := cp + (a * b)
 #' "
-#' fit <- sem(data = df, model = model, fixed.x = FALSE)
+#'
+#' fit_complete_data <- sem(data = df, model = model, fixed.x = FALSE)
 #'
 #' # Monte Carlo --------------------------------------------------------------
-#' output <- MC(
-#'   fit,
+#' complete_data <- MC(
+#'   fit_complete_data,
 #'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = c(0.001, 0.01, 0.05)
+#'   alpha = 0.05
 #' )
 #'
 #' # Standardized Monte Carlo -------------------------------------------------
-#' MCStd(output)
-#' @keywords mc
+#' MCStd(complete_data, alpha = 0.05)
+#'
+#' # MCMI() -------------------------------------------------------------------
+#' # Data ---------------------------------------------------------------------
+#' df <- mice::ampute(Tal.Or)$amp
+#'
+#' # Fit Model in lavaan ------------------------------------------------------
+#' fit_missing_data <- sem(data = df, model = model, fixed.x = FALSE)
+#'
+#' # Monte Carlo --------------------------------------------------------------
+#' missing_data <- MC(
+#'   fit_missing_data,
+#'   R = 100L, # use a large value e.g., 20000L for actual research
+#'   alpha = 0.05
+#' )
+#'
+#' # Standardized Monte Carlo -------------------------------------------------
+#' MCStd(missing_data, alpha = 0.05)
+#'
+#' @references
+#' Pesigan, I. J. A., & Cheung, S. F. (2023).
+#' Monte Carlo confidence intervals for the indirect effect with missing data.
+#' *Behavior Research Methods*.
+#' \doi{10.3758/s13428-023-02114-4}
+#'
+#' @family Monte Carlo in Structural Equation Modeling Functions
+#' @keywords semmcci mc
 #' @export
 MCStd <- function(object,
                   alpha = c(0.001, 0.01, 0.05)) {
   stopifnot(
-    methods::is(
+    inherits(
       object,
       "semmcci"
     )

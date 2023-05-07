@@ -8,7 +8,7 @@
 #'   from the standard univariate normal distribution
 #'   \eqn{\mathbf{Z}}.
 #' @param svd Object.
-#'   Result of `svd()`.
+#'   Result of [svd()].
 #'
 #' @return Numeric matrix.
 #'
