@@ -46,11 +46,25 @@
       ]
     }
   }
-  thetahat_est <- object@ParTable$est
-  # update with supplied values using MI pooled coef
-  if (!is.null(est)) {
+  if (is.null(est)) {
+    # extract estimates from parameter table
+    thetahat_est <- object@ParTable$est
+  } else {
+    # update with supplied values
     thetahat_est <- est
   }
+  return(
+    .ThetaHatDef(
+      object = object,
+      thetahat_est = thetahat_est,
+      thetahat_names = thetahat_names
+    )
+  )
+}
+
+.ThetaHatDef <- function(object,
+                         thetahat_est,
+                         thetahat_names) {
   thetahat_fixed <- thetahat_def <- thetahat_cin <- thetahat_ceq <- rep(
     x = NA,
     times = length(thetahat_est)
@@ -65,10 +79,7 @@
     }
     if (
       object@ParTable$op[i] %in% c(
-        ">",
-        "<",
-        ">=",
-        "<="
+        ">", "<", ">=", "<="
       )
     ) {
       thetahat_names[i] <- paste0(
@@ -84,12 +95,7 @@
       fixed <- TRUE
       if (
         object@ParTable$op[i] %in% c(
-          ":=",
-          "==",
-          ">",
-          "<",
-          ">=",
-          "<="
+          ":=", "==", ">", "<", ">=", "<="
         )
       ) {
         fixed <- FALSE
@@ -102,26 +108,22 @@
   names(
     thetahat_est
   ) <- thetahat_names
-  def <- thetahat_def[
-    stats::complete.cases(thetahat_def)
-  ]
-  ceq <- thetahat_ceq[
-    stats::complete.cases(thetahat_ceq)
-  ]
-  cin <- thetahat_cin[
-    stats::complete.cases(thetahat_cin)
-  ]
-  fixed <- thetahat_fixed[
-    stats::complete.cases(thetahat_fixed)
-  ]
   return(
     list(
       est = thetahat_est,
       par_names = thetahat_names,
-      def = def,
-      ceq = ceq,
-      cin = cin,
-      fixed = fixed
+      def = thetahat_def[
+        stats::complete.cases(thetahat_def)
+      ],
+      ceq = thetahat_ceq[
+        stats::complete.cases(thetahat_ceq)
+      ],
+      cin = thetahat_cin[
+        stats::complete.cases(thetahat_cin)
+      ],
+      fixed = thetahat_fixed[
+        stats::complete.cases(thetahat_fixed)
+      ]
     )
   )
 }
