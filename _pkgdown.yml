@@ -18,7 +18,6 @@ reference:
 
 articles:
 - title: Examples
-  navbar: Examples
   contents:
   - example_1_simple
   - example_2_serial
@@ -27,7 +26,6 @@ articles:
   - example_4_2_simple_miss_mi
   - example_5_composite_reliability
 - title: MCStd Use Cases
-  navbar: MCStd Use Cases
   contents:
   - mcstd_1_std_regression
   - mcstd_2_difference_regression_coefficients
@@ -35,11 +33,9 @@ articles:
   - mcstd_4_difference_regression_coefficients_multigroup
   - mcstd_5_difference_rsq_multigroup
 - title: Methods
-  navbar: Methods
   contents:
   - methods
 - title: Benchmark
-  navbar: Benchmark
   contents:
   - benchmark_complete
   - benchmark_fiml
