@@ -48,7 +48,23 @@ unstd <- MC(
 print(unstd)
 
 }
+\seealso{
+Other Monte Carlo in Structural Equation Modeling Functions: 
+\code{\link{MCMI}()},
+\code{\link{MCStd}()},
+\code{\link{MC}()},
+\code{\link{coef.semmccistd}()},
+\code{\link{coef.semmcci}()},
+\code{\link{confint.semmccistd}()},
+\code{\link{confint.semmcci}()},
+\code{\link{print.semmccistd}()},
+\code{\link{summary.semmccistd}()},
+\code{\link{summary.semmcci}()},
+\code{\link{vcov.semmccistd}()},
+\code{\link{vcov.semmcci}()}
+}
 \author{
 Ivan Jacob Agaloos Pesigan
 }
+\concept{Monte Carlo in Structural Equation Modeling Functions}
 \keyword{method}

@@ -137,7 +137,17 @@ Monte Carlo confidence intervals for the indirect effect with missing data.
 \seealso{
 Other Monte Carlo in Structural Equation Modeling Functions: 
 \code{\link{MCStd}()},
-\code{\link{MC}()}
+\code{\link{MC}()},
+\code{\link{coef.semmccistd}()},
+\code{\link{coef.semmcci}()},
+\code{\link{confint.semmccistd}()},
+\code{\link{confint.semmcci}()},
+\code{\link{print.semmccistd}()},
+\code{\link{print.semmcci}()},
+\code{\link{summary.semmccistd}()},
+\code{\link{summary.semmcci}()},
+\code{\link{vcov.semmccistd}()},
+\code{\link{vcov.semmcci}()}
 }
 \concept{Monte Carlo in Structural Equation Modeling Functions}
 \keyword{mc}
