@@ -66,10 +66,20 @@
 #' )
 #'
 #' @references
+#' Li, K. H., Raghunathan, T. E., & Rubin, D. B. (1991).
+#' Large-sample significance levels from multiply imputed data
+#' using moment-based statistics and an F reference distribution.
+#' Journal of the American Statistical Association, 86 (416), 1065–1073.
+#' \doi{10.1080/01621459.1991.10475152}
+#'
 #' Pesigan, I. J. A., & Cheung, S. F. (2023).
 #' Monte Carlo confidence intervals for the indirect effect with missing data.
 #' *Behavior Research Methods*.
 #' \doi{10.3758/s13428-023-02114-4}
+#'
+#' Rubin, D. B. (1987).
+#' *Multiple imputation for nonresponse in surveys*.
+#' John Wiley & Sons, Inc.
 #'
 #' @family Monte Carlo in Structural Equation Modeling Functions
 #' @keywords semmcci mc
@@ -220,7 +230,8 @@ MCMI <- function(object,
     lavaan = object,
     decomposition = decomposition,
     thetahat = thetahat,
-    thetahatstar = thetahatstar
+    thetahatstar = thetahatstar,
+    mi = mi
   )
   class(out) <- c(
     "semmcci",

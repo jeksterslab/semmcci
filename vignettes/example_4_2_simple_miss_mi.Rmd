@@ -70,6 +70,10 @@ df[miss[101:200], "M"] <- NA
 df[miss[201:300], "Y"] <- NA
 ```
 
+```{r}
+summary(df)
+```
+
 ## Model Specification
 
 The indirect effect is defined by the product of the slopes
@@ -104,10 +108,22 @@ fit <- sem(data = df, model = model, fixed.x = FALSE)
 The `fit` `lavaan` object can then be passed to the `MCMI()` function from `semmcci`
 to generate Monte Carlo confidence intervals
 using multiple imputation.
-The argument `m = 100` sets the number of imputations.
+Additional arguments to the function used for multiple
+imputation can be supplied
+to override the default options.
+For example,
+the argument `m` can be used to increase the number of imputations
+from the default 5.
+See the `...` argument in the `MCMI()` function
+and the arguments in `mice::mice()`.
 
 ```{r}
-MCMI(fit, R = 20000L, m = 100)
+#| include = FALSE
+set.seed(42)
+```
+
+```{r}
+MCMI(fit, R = 20000L, alpha = 0.05, m = 100)
 ```
 
 `MCMI()` automatically generates multiply imputed data sets
@@ -117,13 +133,17 @@ Alternatively, a list of multiply imputed data sets can be supplied
 using the `imp` argument.
 
 ```{r}
+#| include = FALSE
+set.seed(42)
+```
+
+```{r}
 #| echo = FALSE
 imp <- mice::complete(
   mice::mice(
     data = df,
     print = FALSE,
-    m = 100,
-    seed = 42
+    m = 100
   ),
   action = "all"
 )

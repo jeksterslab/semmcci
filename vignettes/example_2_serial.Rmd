@@ -57,6 +57,12 @@ Y <- 0.10 * X + 0.05 * M1 + 0.50 * M2 + rnorm(n = n)
 df <- data.frame(X, M1, M2, Y)
 ```
 
+```{r}
+summary(df)
+colMeans(df)
+var(df)
+```
+
 ## Model Specification
 
 We can define several indirect effects in this example:

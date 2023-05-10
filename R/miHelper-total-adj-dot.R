@@ -12,7 +12,7 @@
 #'   }
 #'
 #' @param ariv Numeric.
-#'   Average relative increase in variance
+#'   Average relative increase in variance.
 #' @param within Numeric matrix.
 #'   Covariance within imputations
 #'   \eqn{\mathbf{V}_{\mathrm{within}}}.

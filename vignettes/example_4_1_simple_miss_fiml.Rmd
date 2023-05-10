@@ -69,6 +69,10 @@ df[miss[101:200], "M"] <- NA
 df[miss[201:300], "Y"] <- NA
 ```
 
+```{r}
+summary(df)
+```
+
 ## Model Specification
 
 The indirect effect is defined by the product of the slopes

@@ -36,15 +36,17 @@
 #' @return Returns an object of class `semmcci` which is
 #'   a list with the following elements:
 #'   \describe{
-#'     \item{`R`}{Number of Monte Carlo replications.}
-#'     \item{`alpha`}{Significance level \eqn{\alpha} specified.}
-#'     \item{`lavaan`}{`lavaan` object.}
-#'     \item{`decomposition`}{Matrix decomposition
-#'                            used to generate multivariate
-#'                            normal random variates.}
-#'     \item{`thetahat`}{Parameter estimates \eqn{\hat{\theta}}.}
-#'     \item{`thetahatstar`}{Sampling distribution of parameter estimates
-#'                           \eqn{\hat{\theta}^{\ast}}.}
+#'     \item{R}{Number of Monte Carlo replications.}
+#'     \item{alpha}{Significance level \eqn{\alpha} specified.}
+#'     \item{lavaan}{`lavaan` object.}
+#'     \item{decomposition}{Matrix decomposition
+#'                          used to generate multivariate
+#'                          normal random variates.}
+#'     \item{thetahat}{Parameter estimates \eqn{\hat{\theta}}.}
+#'     \item{thetahatstar}{Sampling distribution of parameter estimates
+#'                         \eqn{\hat{\theta}^{\ast}}.}
+#'     \item{mi}{A list of multiply imputed data for `MCMI()`.
+#'               `NA` for `MC()`}
 #'   }
 #'
 #' @examples
@@ -74,10 +76,21 @@
 #' )
 #'
 #' @references
+#' MacKinnon, D. P., Lockwood, C. M., & Williams, J. (2004).
+#' Confidence limits for the indirect effect:
+#' Distribution of the product and resampling methods.
+#' *Multivariate Behavioral Research*, *39*(1), 99-128.
+#' \doi{10.1207/s15327906mbr3901_4}
+#'
 #' Pesigan, I. J. A., & Cheung, S. F. (2023).
 #' Monte Carlo confidence intervals for the indirect effect with missing data.
 #' *Behavior Research Methods*.
 #' \doi{10.3758/s13428-023-02114-4}
+#'
+#' Preacher, K. J., & Selig, J. P. (2012).
+#' Advantages of Monte Carlo confidence intervals for indirect effects.
+#' *Communication Methods and Measures*, *6*(2), 77–98.
+#' \doi{10.1080/19312458.2012.679848}
 #'
 #' @family Monte Carlo in Structural Equation Modeling Functions
 #' @keywords semmcci mc
@@ -131,7 +144,8 @@ MC <- function(object,
     lavaan = object,
     decomposition = decomposition,
     thetahat = thetahat,
-    thetahatstar = thetahatstar
+    thetahatstar = thetahatstar,
+    mi = NA
   )
   class(out) <- c(
     "semmcci",

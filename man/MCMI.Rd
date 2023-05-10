@@ -73,15 +73,17 @@ If \code{fun = "amelia"}, DO NOT supply \code{x} or \code{p2s}.}
 Returns an object of class \code{semmcci} which is
 a list with the following elements:
 \describe{
-\item{\code{R}}{Number of Monte Carlo replications.}
-\item{\code{alpha}}{Significance level \eqn{\alpha} specified.}
-\item{\code{lavaan}}{\code{lavaan} object.}
-\item{\code{decomposition}}{Matrix decomposition
+\item{R}{Number of Monte Carlo replications.}
+\item{alpha}{Significance level \eqn{\alpha} specified.}
+\item{lavaan}{\code{lavaan} object.}
+\item{decomposition}{Matrix decomposition
 used to generate multivariate
 normal random variates.}
-\item{\code{thetahat}}{Parameter estimates \eqn{\hat{\theta}}.}
-\item{\code{thetahatstar}}{Sampling distribution of parameter estimates
+\item{thetahat}{Parameter estimates \eqn{\hat{\theta}}.}
+\item{thetahatstar}{Sampling distribution of parameter estimates
 \eqn{\hat{\theta}^{\ast}}.}
+\item{mi}{A list of multiply imputed data for \code{MCMI()}.
+\code{NA} for \code{MC()}}
 }
 }
 \description{
@@ -129,25 +131,25 @@ MCMI(
 
 }
 \references{
+Li, K. H., Raghunathan, T. E., & Rubin, D. B. (1991).
+Large-sample significance levels from multiply imputed data
+using moment-based statistics and an F reference distribution.
+Journal of the American Statistical Association, 86 (416), 1065–1073.
+\doi{10.1080/01621459.1991.10475152}
+
 Pesigan, I. J. A., & Cheung, S. F. (2023).
 Monte Carlo confidence intervals for the indirect effect with missing data.
 \emph{Behavior Research Methods}.
 \doi{10.3758/s13428-023-02114-4}
+
+Rubin, D. B. (1987).
+\emph{Multiple imputation for nonresponse in surveys}.
+John Wiley & Sons, Inc.
 }
 \seealso{
 Other Monte Carlo in Structural Equation Modeling Functions: 
 \code{\link{MCStd}()},
-\code{\link{MC}()},
-\code{\link{coef.semmccistd}()},
-\code{\link{coef.semmcci}()},
-\code{\link{confint.semmccistd}()},
-\code{\link{confint.semmcci}()},
-\code{\link{print.semmccistd}()},
-\code{\link{print.semmcci}()},
-\code{\link{summary.semmccistd}()},
-\code{\link{summary.semmcci}()},
-\code{\link{vcov.semmccistd}()},
-\code{\link{vcov.semmcci}()}
+\code{\link{MC}()}
 }
 \concept{Monte Carlo in Structural Equation Modeling Functions}
 \keyword{mc}

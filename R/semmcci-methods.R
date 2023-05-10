@@ -34,7 +34,6 @@
 #' )
 #' print(unstd)
 #'
-#' @family Monte Carlo in Structural Equation Modeling Functions
 #' @keywords method
 #' @export
 print.semmcci <- function(x,
@@ -88,7 +87,6 @@ print.semmcci <- function(x,
 #' std <- MCStd(unstd, alpha = 0.05)
 #' print(std)
 #'
-#' @family Monte Carlo in Structural Equation Modeling Functions
 #' @keywords method
 #' @export
 print.semmccistd <- function(x,
@@ -140,7 +138,6 @@ print.semmccistd <- function(x,
 #' )
 #' summary(unstd)
 #'
-#' @family Monte Carlo in Structural Equation Modeling Functions
 #' @keywords method
 #' @export
 summary.semmcci <- function(object,
@@ -195,7 +192,6 @@ summary.semmcci <- function(object,
 #' std <- MCStd(unstd, alpha = 0.05)
 #' summary(std)
 #'
-#' @family Monte Carlo in Structural Equation Modeling Functions
 #' @keywords method
 #' @export
 summary.semmccistd <- function(object,
@@ -245,7 +241,6 @@ summary.semmccistd <- function(object,
 #' )
 #' coef(unstd)
 #'
-#' @family Monte Carlo in Structural Equation Modeling Functions
 #' @keywords method
 #' @export
 coef.semmcci <- function(object,
@@ -291,7 +286,6 @@ coef.semmcci <- function(object,
 #' std <- MCStd(unstd, alpha = 0.05)
 #' coef(std)
 #'
-#' @family Monte Carlo in Structural Equation Modeling Functions
 #' @keywords method
 #' @export
 coef.semmccistd <- function(object,
@@ -335,7 +329,6 @@ coef.semmccistd <- function(object,
 #' )
 #' vcov(unstd)
 #'
-#' @family Monte Carlo in Structural Equation Modeling Functions
 #' @keywords method
 #' @export
 vcov.semmcci <- function(object,
@@ -384,7 +377,6 @@ vcov.semmcci <- function(object,
 #' std <- MCStd(unstd, alpha = 0.05)
 #' vcov(std)
 #'
-#' @family Monte Carlo in Structural Equation Modeling Functions
 #' @keywords method
 #' @export
 vcov.semmccistd <- function(object,
@@ -434,7 +426,6 @@ vcov.semmccistd <- function(object,
 #' )
 #' confint(unstd)
 #'
-#' @family Monte Carlo in Structural Equation Modeling Functions
 #' @keywords method
 #' @export
 confint.semmcci <- function(object,
@@ -498,7 +489,6 @@ confint.semmcci <- function(object,
 #' std <- MCStd(unstd, alpha = 0.05)
 #' confint(std)
 #'
-#' @family Monte Carlo in Structural Equation Modeling Functions
 #' @keywords method
 #' @export
 confint.semmccistd <- function(object,

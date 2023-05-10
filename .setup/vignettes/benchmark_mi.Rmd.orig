@@ -355,6 +355,7 @@ summary(benchmark_mi_02, unit = "relative")
 #| message = FALSE
 boxplot(benchmark_mi_02)
 ```
+
 ## Benchmark - Monte Carlo Method with Precalculated Estimates and Multiple Imputations
 
 ```{r}

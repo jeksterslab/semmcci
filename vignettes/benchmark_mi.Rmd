@@ -1,7 +1,7 @@
 ---
 title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping (MI)"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2023-05-09"
+date: "2023-05-10"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -94,15 +94,15 @@ to generate Monte Carlo confidence intervals.
 MCMI(fit, R = 100L, alpha = 0.05, fun = "amelia", m = 5L)
 #> Monte Carlo Confidence Intervals
 #>             est     se   R   2.5%  97.5%
-#> cp       0.2308 0.0265 100 0.1776 0.2744
-#> b        0.5141 0.0295 100 0.4537 0.5730
-#> a        0.4820 0.0313 100 0.4240 0.5367
-#> X~~X     1.0589 0.0492 100 0.9658 1.1607
-#> Y~~Y     0.5570 0.0310 100 0.4942 0.6046
-#> M~~M     0.7507 0.0337 100 0.6829 0.8077
-#> indirect 0.2477 0.0197 100 0.2136 0.2843
-#> direct   0.2308 0.0265 100 0.1776 0.2744
-#> total    0.4785 0.0288 100 0.4151 0.5264
+#> cp       0.2377 0.0256 100 0.1855 0.2881
+#> b        0.5119 0.0266 100 0.4659 0.5680
+#> a        0.4840 0.0287 100 0.4316 0.5397
+#> X~~X     1.0532 0.0539 100 0.9176 1.1522
+#> Y~~Y     0.5521 0.0256 100 0.4972 0.5936
+#> M~~M     0.7559 0.0394 100 0.6783 0.8325
+#> indirect 0.2477 0.0190 100 0.2163 0.2859
+#> direct   0.2377 0.0256 100 0.1855 0.2881
+#> total    0.4854 0.0292 100 0.4240 0.5433
 ```
 
 ## Nonparametric Bootstrap Confidence Intervals (Multiple Imputation)
@@ -132,7 +132,7 @@ summary(
 #>   NFI                 1.000    0.000    1.000    1.000   
 #>   NNFI                1.000    0.000    1.000    1.000   
 #>   CFI                 1.000    0.000    1.000    1.000   
-#>   BIC                 7884.178 92.427   7693.554 8027.101
+#>   BIC                 7884.178 102.872  7660.812 8069.311
 #>   SRMR                0.000    0.000    0.000    0.000   
 #> 
 #> Estimation of parameters:
@@ -140,22 +140,22 @@ summary(
 #>                      Estimate   SE      2.5%     97.5%
 #> Regressions:
 #>   Y ~
-#>     X        (cp)     0.242    0.036    0.180    0.320
-#>     M         (b)     0.517    0.035    0.443    0.589
+#>     X        (cp)     0.242    0.030    0.184    0.307
+#>     M         (b)     0.517    0.033    0.468    0.579
 #>   M ~
-#>     X         (a)     0.499    0.032    0.441    0.553
+#>     X         (a)     0.499    0.036    0.424    0.574
 #> 
 #> Variances:
-#>     X                 1.096    0.060    0.976    1.208
-#>     Y                 0.580    0.029    0.526    0.628
-#>     M                 0.805    0.044    0.714    0.887
+#>     X                 1.096    0.058    0.984    1.193
+#>     Y                 0.580    0.035    0.517    0.643
+#>     M                 0.805    0.045    0.710    0.885
 #> 
 #> 
 #> 
 #> Defined parameters:
-#>     a*b    (indr)     0.258    0.025    0.202    0.309
-#>     cp     (drct)     0.242    0.036    0.180    0.320
-#>     cp+(*) (totl)     0.500    0.036    0.433    0.562
+#>     a*b    (indr)     0.258    0.025    0.214    0.307
+#>     cp     (drct)     0.242    0.030    0.184    0.307
+#>     cp+(*) (totl)     0.500    0.036    0.431    0.563
 ```
 
 ## Benchmark
@@ -276,6 +276,7 @@ summary(benchmark_mi_02, unit = "relative")
 ## Plot
 
 <img src="fig-vignettes-benchmark-unnamed-chunk-21-1.png" width="3300" />
+
 ## Benchmark - Monte Carlo Method with Precalculated Estimates and Multiple Imputations
 
 
