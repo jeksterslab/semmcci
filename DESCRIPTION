@@ -34,8 +34,7 @@ Depends: R (>= 3.0.0)
 Imports:
     stats,
     lavaan,
-    mice,
-    Amelia
+    mice
 Suggests:
     knitr,
     rmarkdown,

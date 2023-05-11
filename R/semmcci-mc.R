@@ -46,7 +46,7 @@
 #'     \item{thetahatstar}{Sampling distribution of parameter estimates
 #'                         \eqn{\hat{\theta}^{\ast}}.}
 #'     \item{mi}{A list of multiply imputed data for `MCMI()`.
-#'               `NA` for `MC()`}
+#'               `NA` for `MC()`.}
 #'   }
 #'
 #' @examples

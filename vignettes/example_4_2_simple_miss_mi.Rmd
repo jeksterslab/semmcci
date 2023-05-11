@@ -127,8 +127,7 @@ MCMI(fit, R = 20000L, alpha = 0.05, m = 100)
 ```
 
 `MCMI()` automatically generates multiply imputed data sets
-using `mice::mice()` if `fun = "mice"` by default
-or `Amelia::amelia()` if `fun = "amelia"`.
+using `mice::mice()`.
 Alternatively, a list of multiply imputed data sets can be supplied
 using the `imp` argument.
 

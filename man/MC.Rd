@@ -55,7 +55,7 @@ normal random variates.}
 \item{thetahatstar}{Sampling distribution of parameter estimates
 \eqn{\hat{\theta}^{\ast}}.}
 \item{mi}{A list of multiply imputed data for \code{MCMI()}.
-\code{NA} for \code{MC()}}
+\code{NA} for \code{MC()}.}
 }
 }
 \description{

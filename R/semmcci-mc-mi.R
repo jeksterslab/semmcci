@@ -25,15 +25,10 @@
 #'   Random seed for the Monte Carlo method.
 #' @param seed_mi Integer.
 #'   Random seed for multiple imputation.
-#' @param fun Character string.
-#'   Multiple imputation function.
-#'   If `fun = "mice"`, use [mice::mice()].
-#'   If `fun = "amelia"`, use [Amelia::amelia()].
 #' @param imp Optional argument.
 #'   A list of multiply imputed data sets.
-#' @param ... Additional arguments to pass to `fun`.
-#'   If `fun = "mice"`, DO NOT supply `data`, `seed`, or `print`.
-#'   If `fun = "amelia"`, DO NOT supply `x` or `p2s`.
+#' @param ... Additional arguments to pass to `mice::mice()`.
+#'   DO NOT supply `data`, `seed`, or `print`.
 #'
 #' @inherit MC return
 #'
@@ -93,7 +88,6 @@ MCMI <- function(object,
                  adj = FALSE,
                  seed_mc = NULL,
                  seed_mi = NA,
-                 fun = "mice",
                  imp = NULL,
                  ...) {
   stopifnot(
@@ -119,30 +113,7 @@ MCMI <- function(object,
     call0$data,
     envir = parent.frame()
   )
-  if (is.null(imp)) {
-    if (fun == "mice") {
-      mi <- mice::complete(
-        mice::mice(
-          data = data0,
-          print = FALSE,
-          seed = seed_mi,
-          ...
-        ),
-        action = "all"
-      )
-    }
-    if (fun == "amelia") {
-      if (is.na(seed_mi)) {
-        seed_mi <- NULL
-      }
-      set.seed(seed_mi)
-      mi <- Amelia::amelia(
-        x = data0,
-        p2s = 0,
-        ...
-      )$imputations
-    }
-  } else {
+  if (!is.null(imp)) {
     stopifnot(
       inherits(
         imp,
@@ -150,6 +121,16 @@ MCMI <- function(object,
       )
     )
     mi <- imp
+  } else {
+    mi <- mice::complete(
+      mice::mice(
+        data = data0,
+        print = FALSE,
+        seed = seed_mi,
+        ...
+      ),
+      action = "all"
+    )
   }
   fits <- lapply(
     X = mi,

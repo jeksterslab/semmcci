@@ -14,7 +14,6 @@ MCMI(
   adj = FALSE,
   seed_mc = NULL,
   seed_mi = NA,
-  fun = "mice",
   imp = NULL,
   ...
 )
@@ -57,17 +56,11 @@ Random seed for the Monte Carlo method.}
 \item{seed_mi}{Integer.
 Random seed for multiple imputation.}
 
-\item{fun}{Character string.
-Multiple imputation function.
-If \code{fun = "mice"}, use \code{\link[mice:mice]{mice::mice()}}.
-If \code{fun = "amelia"}, use \code{\link[Amelia:amelia]{Amelia::amelia()}}.}
-
 \item{imp}{Optional argument.
 A list of multiply imputed data sets.}
 
-\item{...}{Additional arguments to pass to \code{fun}.
-If \code{fun = "mice"}, DO NOT supply \code{data}, \code{seed}, or \code{print}.
-If \code{fun = "amelia"}, DO NOT supply \code{x} or \code{p2s}.}
+\item{...}{Additional arguments to pass to \code{mice::mice()}.
+DO NOT supply \code{data}, \code{seed}, or \code{print}.}
 }
 \value{
 Returns an object of class \code{semmcci} which is
@@ -83,7 +76,7 @@ normal random variates.}
 \item{thetahatstar}{Sampling distribution of parameter estimates
 \eqn{\hat{\theta}^{\ast}}.}
 \item{mi}{A list of multiply imputed data for \code{MCMI()}.
-\code{NA} for \code{MC()}}
+\code{NA} for \code{MC()}.}
 }
 }
 \description{

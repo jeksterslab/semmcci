@@ -114,10 +114,9 @@ fit <- sem(data = df, model = model)
 
 The `fit` `lavaan` object can then be passed to the `MCMI()` function from `semmcci`
 to generate Monte Carlo confidence intervals.
-`Amelia` was used in `MCMI()` to conform with `bmemLavaan::bmem()`.
 
 ```{r}
-MCMI(fit, R = 100L, alpha = 0.05, fun = "amelia", m = 5L)
+MCMI(fit, R = 100L, alpha = 0.05, m = 5L)
 ```
 
 ## Nonparametric Bootstrap Confidence Intervals (Multiple Imputation)
@@ -196,7 +195,6 @@ if (!file.exists(benchmark_mi_01_file)) {
         R = R,
         decomposition = "chol",
         pd = FALSE,
-        fun = "amelia",
         m = m
       )
     },
@@ -232,7 +230,6 @@ benchmark_mi_01 <- microbenchmark(
       R = R,
       decomposition = "chol",
       pd = FALSE,
-      fun = "amelia",
       m = m
     )
   },
@@ -288,7 +285,6 @@ if (!file.exists(benchmark_mi_02_file)) {
       R = R,
       decomposition = "chol",
       pd = FALSE,
-      fun = "amelia",
       m = m
     ),
     NB = bmemLavaan::bmem(
@@ -322,7 +318,6 @@ benchmark_mi_02 <- microbenchmark(
     R = R,
     decomposition = "chol",
     pd = FALSE,
-    fun = "amelia",
     m = m
   ),
   NB = bmemLavaan::bmem(
@@ -366,11 +361,13 @@ fit <- sem(
   data = df,
   model = model
 )
-imp <- Amelia::amelia(
-  x = df,
-  p2s = 0,
-  m = m
-)$imputations
+imp <- mice::complete(
+  mice::mice(
+    data = df,
+    m = m
+  ),
+  action = "all"
+)
 benchmark_mi_03_file <- file.path(
   dir,
   "benchmark_mi_03.Rds"
@@ -409,11 +406,13 @@ fit <- sem(
   data = df,
   model = model
 )
-imp <- Amelia::amelia(
-  x = df,
-  p2s = 0,
-  m = m
-)$imputations
+imp <- mice::complete(
+  mice::mice(
+    data = df,
+    m = m
+  ),
+  action = "all"
+)
 benchmark_mi_03 <- microbenchmark(
   MC = MCMI(
     fit,

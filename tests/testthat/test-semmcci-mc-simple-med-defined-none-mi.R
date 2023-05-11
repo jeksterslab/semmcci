@@ -1,4 +1,4 @@
-## ---- test-semmcci-mc-simple-med-defined-none-mi
+## ---- test-semmcci-mc-simple-med-defined-none-mi-mice
 lapply(
   X = 1,
   FUN = function(i,
@@ -33,7 +33,7 @@ lapply(
       fit,
       R = R,
       alpha = c(0.001, 0.01, 0.05),
-      fun = "mice",
+      decomposition = "chol", # coverage
       seed_mc = seed,
       seed_mi = seed,
       m = m
@@ -42,6 +42,7 @@ lapply(
       fit,
       R = R,
       alpha = c(0.001, 0.01, 0.05),
+      decomposition = "chol",
       seed_mc = seed,
       imp = mice::complete(
         mice::mice(
@@ -97,5 +98,5 @@ lapply(
   R = 2000L,
   m = 5,
   tol = 0.05,
-  text = "test-semmcci-mc-simple-med-defined-none-mi"
+  text = "test-semmcci-mc-simple-med-defined-none-mi-mice"
 )

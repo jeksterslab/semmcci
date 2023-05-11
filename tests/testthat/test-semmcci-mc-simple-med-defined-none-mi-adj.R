@@ -1,4 +1,4 @@
-## ---- test-semmcci-mc-simple-med-defined-none-mi-adj
+## ---- test-semmcci-mc-simple-med-defined-none-mi-adj-mice
 lapply(
   X = 1,
   FUN = function(i,
@@ -34,7 +34,6 @@ lapply(
       fit,
       R = R,
       alpha = c(0.001, 0.01, 0.05),
-      fun = "mice",
       seed_mc = seed,
       seed_mi = seed,
       adj = TRUE,
@@ -75,5 +74,5 @@ lapply(
   R = 2000L,
   m = 5,
   tol = 0.05,
-  text = "test-semmcci-mc-simple-med-defined-none-mi-adj"
+  text = "test-semmcci-mc-simple-med-defined-none-mi-adj-mice"
 )
