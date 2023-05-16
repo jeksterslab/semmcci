@@ -5,7 +5,7 @@
 \title{Monte Carlo Confidence Intervals}
 \usage{
 MC(
-  object,
+  lav,
   R = 20000L,
   alpha = c(0.001, 0.01, 0.05),
   decomposition = "eigen",
@@ -15,7 +15,7 @@ MC(
 )
 }
 \arguments{
-\item{object}{Object of class \code{lavaan}.}
+\item{lav}{Object of class \code{lavaan}.}
 
 \item{R}{Positive integer.
 Number of Monte Carlo replications.}
@@ -45,17 +45,12 @@ Random seed for reproducibility.}
 Returns an object of class \code{semmcci} which is
 a list with the following elements:
 \describe{
-\item{R}{Number of Monte Carlo replications.}
-\item{alpha}{Significance level \eqn{\alpha} specified.}
-\item{lavaan}{\code{lavaan} object.}
-\item{decomposition}{Matrix decomposition
-used to generate multivariate
-normal random variates.}
+\item{call}{Function call.}
+\item{args}{List of function arguments.}
 \item{thetahat}{Parameter estimates \eqn{\hat{\theta}}.}
 \item{thetahatstar}{Sampling distribution of parameter estimates
 \eqn{\hat{\theta}^{\ast}}.}
-\item{mi}{A list of multiply imputed data for \code{MCMI()}.
-\code{NA} for \code{MC()}.}
+\item{fun}{Function used ("MC").}
 }
 }
 \description{
@@ -77,20 +72,21 @@ library(lavaan)
 
 # Data ---------------------------------------------------------------------
 data("Tal.Or", package = "psych")
-df <- Tal.Or
+df <- mice::ampute(Tal.Or)$amp
 
-# Fit Model in lavaan ------------------------------------------------------
+# Monte Carlo --------------------------------------------------------------
+## Fit Model in lavaan -----------------------------------------------------
 model <- "
   reaction ~ cp * cond + b * pmi
   pmi ~ a * cond
+  cond ~~ cond
   indirect := a * b
   direct := cp
   total := cp + (a * b)
 "
+fit <- sem(data = df, model = model, missing = "fiml")
 
-fit <- sem(data = df, model = model)
-
-# Monte Carlo --------------------------------------------------------------
+## MC() --------------------------------------------------------------------
 MC(
   fit,
   R = 100L, # use a large value e.g., 20000L for actual research

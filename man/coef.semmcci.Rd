@@ -23,26 +23,56 @@ library(lavaan)
 
 # Data ---------------------------------------------------------------------
 data("Tal.Or", package = "psych")
-df <- Tal.Or
+df <- mice::ampute(Tal.Or)$amp
 
-# Fit Model in lavaan ------------------------------------------------------
+# Monte Carlo --------------------------------------------------------------
+## Fit Model in lavaan -----------------------------------------------------
 model <- "
   reaction ~ cp * cond + b * pmi
   pmi ~ a * cond
+  cond ~~ cond
   indirect := a * b
   direct := cp
   total := cp + (a * b)
 "
+fit <- sem(data = df, model = model, missing = "fiml")
 
-fit <- sem(data = df, model = model)
-
-# Monte Carlo --------------------------------------------------------------
+## MC() --------------------------------------------------------------------
 unstd <- MC(
   fit,
   R = 100L, # use a large value e.g., 20000L for actual research
   alpha = 0.05
 )
+
+## Standardized Monte Carlo ------------------------------------------------
+std <- MCStd(unstd, alpha = 0.05)
 coef(unstd)
+coef(std)
+
+# Monte Carlo (Multiple Imputation) ----------------------------------------
+## Multiple Imputation -----------------------------------------------------
+mi <- mice::mice(
+  data = df,
+  print = FALSE,
+  m = 5L, # use a large value e.g., 100L for actual research,
+  seed = 42
+)
+
+## Fit Model in lavaan -----------------------------------------------------
+fit <- sem(data = df, model = model) # use default listwise deletion
+
+## MCMI() ------------------------------------------------------------------
+unstd <- MCMI(
+  fit,
+  mi = mi,
+  R = 100L, # use a large value e.g., 20000L for actual research
+  alpha = 0.05
+)
+
+## Standardized Monte Carlo ------------------------------------------------
+std <- MCStd(unstd, alpha = 0.05)
+coef(unstd)
+coef(std)
 
 }
 \author{

@@ -65,12 +65,7 @@ lapply(
       paste(text, "chol"),
       {
         testthat::expect_equal(
-          results_chol$thetahat$est,
-          lavaan::parameterEstimates(fit)$est,
-          check.attributes = FALSE
-        )
-        testthat::expect_equal(
-          results_chol$thetahatstar_std[3, ],
+          results_chol$thetahatstar[3, ],
           lavaan::standardizedSolution(fit)$est.std,
           check.attributes = FALSE
         )
@@ -79,7 +74,7 @@ lapply(
             results_chol
           )["ab", "97.5%"],
           quantile(
-            results_chol$thetahatstar_std[, "ab"],
+            results_chol$thetahatstar[, "ab"],
             .975,
             na.rm = TRUE
           ),
@@ -91,12 +86,7 @@ lapply(
       paste(text, "eigen"),
       {
         testthat::expect_equal(
-          results_eigen$thetahat$est,
-          lavaan::parameterEstimates(fit)$est,
-          check.attributes = FALSE
-        )
-        testthat::expect_equal(
-          results_eigen$thetahatstar_std[3, ],
+          results_eigen$thetahatstar[3, ],
           lavaan::standardizedSolution(fit)$est.std,
           check.attributes = FALSE
         )
@@ -105,7 +95,7 @@ lapply(
             results_eigen
           )["ab", "97.5%"],
           quantile(
-            results_eigen$thetahatstar_std[, "ab"],
+            results_eigen$thetahatstar[, "ab"],
             .975,
             na.rm = TRUE
           ),
@@ -117,12 +107,7 @@ lapply(
       paste(text, "svd"),
       {
         testthat::expect_equal(
-          results_svd$thetahat$est,
-          lavaan::parameterEstimates(fit)$est,
-          check.attributes = FALSE
-        )
-        testthat::expect_equal(
-          results_svd$thetahatstar_std[3, ],
+          results_svd$thetahatstar[3, ],
           lavaan::standardizedSolution(fit)$est.std,
           check.attributes = FALSE
         )
@@ -131,7 +116,7 @@ lapply(
             results_svd
           )["ab", "97.5%"],
           quantile(
-            results_svd$thetahatstar_std[, "ab"],
+            results_svd$thetahatstar[, "ab"],
             .975,
             na.rm = TRUE
           ),

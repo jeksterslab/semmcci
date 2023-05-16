@@ -34,7 +34,8 @@ articles:
   - mcstd_5_difference_rsq_multigroup
 - title: Methods
   contents:
-  - methods
+  - methods-mc
+  - methods-mc-mi
 - title: Benchmark
   contents:
   - benchmark_complete

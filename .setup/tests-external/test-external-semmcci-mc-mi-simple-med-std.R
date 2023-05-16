@@ -57,8 +57,13 @@ lapply(
       fit,
       R = R,
       alpha = alpha,
-      seed_mc = seed,
-      seed_mi = seed
+      seed = seed,
+      mi = mice::mice(
+        data,
+        m = 5,
+        seed = seed,
+        print = FALSE
+      )
     )
     results <- .MCCI(
       MCStd(

@@ -1,4 +1,4 @@
-## ---- test-semmcci-mc-simple-med-defined-none-mi-adj-mice
+## ---- test-semmcci-mc-simple-med-defined-mi-mice
 lapply(
   X = 1,
   FUN = function(i,
@@ -20,24 +20,32 @@ lapply(
     m <- a * x + rnorm(n = n, sd = sqrt(sigma2em))
     y <- cp * x + b * m + rnorm(n = n, sd = sqrt(sigma2ey))
     data <- data.frame(x, m, y)
+    data[1, "x"] <- NA
+    data[2, "m"] <- NA
+    data[3, "y"] <- NA
     model <- "
       y ~ cp * x + b * m
       m ~ a * x
+      ab := a * b
     "
     fit <- lavaan::sem(
       data = data,
       model = model,
-      fixed.x = FALSE
+      fixed.x = FALSE,
+      missing = "fiml"
     )
-    set.seed(seed)
     results_mice <- MCMI(
       fit,
       R = R,
       alpha = c(0.001, 0.01, 0.05),
-      seed_mc = seed,
-      seed_mi = seed,
-      adj = TRUE,
-      m = m
+      decomposition = "chol",
+      seed = seed,
+      mi = mice::mice(
+        data = data,
+        print = FALSE,
+        m = 5L,
+        seed = seed
+      )
     )
     set.seed(seed)
     answers <- MASS::mvrnorm(
@@ -46,7 +54,8 @@ lapply(
       Sigma = lavaan::vcov(fit)
     )
     answers <- cbind(
-      answers
+      answers,
+      ab = answers[, "a"] * answers[, "b"]
     )
     testthat::test_that(
       paste(text, "mice"),
@@ -54,14 +63,15 @@ lapply(
         testthat::expect_equal(
           results_mice$thetahat$est,
           lavaan::parameterEstimates(fit)$est,
-          check.attributes = FALSE
+          check.attributes = FALSE,
+          tolerance = tol
         )
         testthat::expect_true(
           abs(
             .MCCI(
               results_mice
-            )["cp", "97.5%"] - quantile(
-              answers[, "cp"],
+            )["ab", "97.5%"] - quantile(
+              answers[, "ab"],
               .975,
               na.rm = TRUE
             )
@@ -74,5 +84,5 @@ lapply(
   R = 2000L,
   m = 5,
   tol = 0.05,
-  text = "test-semmcci-mc-simple-med-defined-none-mi-adj-mice"
+  text = "test-semmcci-mc-simple-med-defined-mi-mice"
 )

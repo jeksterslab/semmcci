@@ -46,6 +46,16 @@ lapply(
     )
     results <- results[, c(1, 2, 4, 5)]
     colnames(results) <- column_names
+    results <- results[
+      c(
+        "cp",
+        "b",
+        "a",
+        "sigma2ey",
+        "sigma2em",
+        "ab"
+      ),
+    ]
     set.seed(seed)
     answer <- MASS::mvrnorm(
       n = R,

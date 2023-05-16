@@ -1,7 +1,7 @@
 ---
 title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2023-05-11"
+date: "2023-05-16"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -85,15 +85,15 @@ to generate Monte Carlo confidence intervals.
 MC(fit, R = 100L, alpha = 0.05)
 #> Monte Carlo Confidence Intervals
 #>             est     se   R   2.5%  97.5%
-#> cp       0.2333 0.0235 100 0.1848 0.2766
-#> b        0.5082 0.0279 100 0.4608 0.5577
-#> a        0.4820 0.0278 100 0.4286 0.5283
-#> X~~X     1.0590 0.0484 100 0.9706 1.1738
-#> Y~~Y     0.5462 0.0232 100 0.4978 0.5917
-#> M~~M     0.7527 0.0292 100 0.6980 0.8064
-#> indirect 0.2449 0.0194 100 0.2137 0.2840
-#> direct   0.2333 0.0235 100 0.1848 0.2766
-#> total    0.4782 0.0257 100 0.4343 0.5327
+#> cp       0.2333 0.0268 100 0.1782 0.2759
+#> b        0.5082 0.0276 100 0.4480 0.5560
+#> a        0.4820 0.0289 100 0.4233 0.5269
+#> X~~X     1.0590 0.0560 100 0.9417 1.1674
+#> Y~~Y     0.5462 0.0242 100 0.4999 0.5972
+#> M~~M     0.7527 0.0338 100 0.6863 0.8118
+#> indirect 0.2449 0.0186 100 0.2048 0.2804
+#> direct   0.2333 0.0268 100 0.1782 0.2759
+#> total    0.4782 0.0271 100 0.4217 0.5246
 ```
 
 ## Nonparametric Bootstrap Confidence Intervals
@@ -111,15 +111,15 @@ parameterEstimates(
   )
 )
 #>        lhs op      rhs    label   est    se      z pvalue ci.lower ci.upper
-#> 1        Y  ~        X       cp 0.233 0.025  9.308      0    0.191    0.283
-#> 2        Y  ~        M        b 0.508 0.028 17.897      0    0.448    0.568
-#> 3        M  ~        X        a 0.482 0.025 19.641      0    0.439    0.535
-#> 4        X ~~        X          1.059 0.042 24.919      0    0.975    1.142
-#> 5        Y ~~        Y          0.546 0.026 21.376      0    0.495    0.604
-#> 6        M ~~        M          0.753 0.033 22.806      0    0.690    0.825
-#> 7 indirect :=      a*b indirect 0.245 0.017 14.515      0    0.212    0.280
-#> 8   direct :=       cp   direct 0.233 0.025  9.261      0    0.191    0.283
-#> 9    total := cp+(a*b)    total 0.478 0.026 18.473      0    0.427    0.530
+#> 1        Y  ~        X       cp 0.233 0.028  8.422      0    0.178    0.289
+#> 2        Y  ~        M        b 0.508 0.028 18.338      0    0.457    0.572
+#> 3        M  ~        X        a 0.482 0.024 20.493      0    0.421    0.536
+#> 4        X ~~        X          1.059 0.050 21.272      0    0.960    1.198
+#> 5        Y ~~        Y          0.546 0.026 20.763      0    0.488    0.601
+#> 6        M ~~        M          0.753 0.032 23.839      0    0.683    0.809
+#> 7 indirect :=      a*b indirect 0.245 0.018 13.382      0    0.215    0.285
+#> 8   direct :=       cp   direct 0.233 0.028  8.380      0    0.178    0.289
+#> 9    total := cp+(a*b)    total 0.478 0.027 17.623      0    0.428    0.538
 ```
 
 ## Benchmark
@@ -166,9 +166,9 @@ benchmark_complete_01 <- microbenchmark(
 
 ```r
 summary(benchmark_complete_01, unit = "ms")
-#>   expr         min          lq        mean      median          uq        max
-#> 1   MC    78.30777    79.07492    88.37653    88.48676    93.84428   104.3165
-#> 2   NB 14700.44313 14872.82306 14926.38366 14946.38081 15001.08052 15043.1626
+#>   expr        min          lq        mean      median          uq        max
+#> 1   MC    81.7416    85.26495    89.47987    87.38037    94.77134   100.2696
+#> 2   NB 15011.1406 15067.82272 15173.24353 15180.97662 15242.55330 15372.0392
 #>   neval
 #> 1    10
 #> 2    10
@@ -179,9 +179,9 @@ summary(benchmark_complete_01, unit = "ms")
 
 ```r
 summary(benchmark_complete_01, unit = "relative")
-#>   expr      min       lq     mean   median       uq     max neval
-#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.000    10
-#> 2   NB 187.7265 188.0852 168.8953 168.9109 159.8508 144.207    10
+#>   expr      min       lq     mean   median      uq     max neval
+#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.000   1.000    10
+#> 2   NB 183.6414 176.7177 169.5716 173.7344 160.835 153.307    10
 ```
 
 ## Plot
@@ -221,8 +221,8 @@ benchmark_complete_02 <- microbenchmark(
 ```r
 summary(benchmark_complete_02, unit = "ms")
 #>   expr         min          lq        mean      median          uq         max
-#> 1   MC    22.34747    23.20441    25.76169    25.59759    28.04912    30.17809
-#> 2   NB 14774.20743 14843.07284 14966.37592 14919.02536 15078.83658 15266.53994
+#> 1   MC    20.62233    22.14931    25.75062    23.48991    30.03411    33.01449
+#> 2   NB 14947.93925 15031.86212 15075.67285 15084.42550 15123.37727 15209.17606
 #>   neval
 #> 1    10
 #> 2    10
@@ -233,9 +233,9 @@ summary(benchmark_complete_02, unit = "ms")
 
 ```r
 summary(benchmark_complete_02, unit = "relative")
-#>   expr      min      lq     mean   median       uq      max neval
-#> 1   MC   1.0000   1.000   1.0000   1.0000   1.0000   1.0000    10
-#> 2   NB 661.1133 639.666 580.9548 582.8293 537.5868 505.8816    10
+#>   expr      min       lq    mean   median     uq      max neval
+#> 1   MC   1.0000   1.0000   1.000   1.0000   1.00   1.0000    10
+#> 2   NB 724.8423 678.6604 585.449 642.1662 503.54 460.6818    10
 ```
 
 ## Plot

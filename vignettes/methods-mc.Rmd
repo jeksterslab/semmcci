@@ -1,12 +1,12 @@
 ---
-title: "semmcci: Methods"
+title: "semmcci: Methods (MC)"
 author: "Ivan Jacob Agaloos Pesigan"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{semmcci: Methods}
+  %\VignetteIndexEntry{semmcci: Methods (MC)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

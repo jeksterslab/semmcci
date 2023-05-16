@@ -44,12 +44,29 @@ lapply(
         fit,
         R = R,
         alpha = alpha,
-        seed_mc = seed,
-        seed_mi = seed
+        seed = seed,
+        mi = mice::mice(
+          data,
+          m = 5,
+          print = FALSE,
+          seed = seed
+        )
       )
     )
     results <- results[, c(1, 2, 4, 5)]
     colnames(results) <- column_names
+    results <- results[
+      c(
+        "cp",
+        "b",
+        "a",
+        "sigma2ey",
+        "sigma2em",
+        "y~1",
+        "m~1",
+        "ab"
+      ),
+    ]
     set.seed(seed)
     answer <- MASS::mvrnorm(
       n = R,
@@ -60,7 +77,6 @@ lapply(
       answer,
       ab = answer[, "a"] * answer[, "b"]
     )
-    answer <- answer[, rownames(results)]
     expected <- colMeans(answer)
     se <- sqrt(diag(stats::var(answer)))
     prob_ll <- alpha / 2

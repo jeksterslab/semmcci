@@ -41,5 +41,6 @@ Suggests:
     testthat,
     MASS,
     psych,
+    Amelia,
     bmemLavaan
 RoxygenNote: 7.2.3

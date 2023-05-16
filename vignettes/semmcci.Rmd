@@ -51,7 +51,7 @@ a sampling distribution of parameter estimates $\hat{\boldsymbol{\theta}}^{\ast}
 from the multivariate normal distribution
 using the parameter estimates $\hat{\boldsymbol{\theta}}$
 and the corresponding sampling variance-covariance matrix
-$\hat{\mathrm{Var}} \left( \hat{\boldsymbol{\theta}} \right)$.
+$\widehat{\mathrm{Var}} \left( \hat{\boldsymbol{\theta}} \right)$.
 
 \begin{equation}
     \hat{\boldsymbol{\theta}}^{\ast}
@@ -59,7 +59,7 @@ $\hat{\mathrm{Var}} \left( \hat{\boldsymbol{\theta}} \right)$.
     \mathcal{N}
     \left(
     \hat{\boldsymbol{\theta}},
-    \hat{\mathrm{Var}}
+    \widehat{\mathrm{Var}}
     \left(
     \hat{\boldsymbol{\theta}}
     \right)

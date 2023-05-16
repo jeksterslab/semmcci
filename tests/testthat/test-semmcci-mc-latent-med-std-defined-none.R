@@ -53,12 +53,7 @@ lapply(
       paste(text, "chol"),
       {
         testthat::expect_equal(
-          results_chol$thetahat$est,
-          lavaan::parameterEstimates(fit)$est,
-          check.attributes = FALSE
-        )
-        testthat::expect_equal(
-          results_chol$thetahatstar_std[3, ],
+          results_chol$thetahatstar[3, ],
           lavaan::standardizedSolution(fit)$est.std,
           check.attributes = FALSE
         )
@@ -67,7 +62,7 @@ lapply(
             results_chol
           )["textual~visual", "97.5%"],
           quantile(
-            results_chol$thetahatstar_std[, "textual~visual"],
+            results_chol$thetahatstar[, "textual~visual"],
             .975,
             na.rm = TRUE
           ),
@@ -79,12 +74,7 @@ lapply(
       paste(text, "eigen"),
       {
         testthat::expect_equal(
-          results_eigen$thetahat$est,
-          lavaan::parameterEstimates(fit)$est,
-          check.attributes = FALSE
-        )
-        testthat::expect_equal(
-          results_eigen$thetahatstar_std[3, ],
+          results_eigen$thetahatstar[3, ],
           lavaan::standardizedSolution(fit)$est.std,
           check.attributes = FALSE
         )
@@ -93,7 +83,7 @@ lapply(
             results_eigen
           )["textual~visual", "97.5%"],
           quantile(
-            results_eigen$thetahatstar_std[, "textual~visual"],
+            results_eigen$thetahatstar[, "textual~visual"],
             .975,
             na.rm = TRUE
           ),
@@ -105,12 +95,7 @@ lapply(
       paste(text, "svd"),
       {
         testthat::expect_equal(
-          results_svd$thetahat$est,
-          lavaan::parameterEstimates(fit)$est,
-          check.attributes = FALSE
-        )
-        testthat::expect_equal(
-          results_svd$thetahatstar_std[3, ],
+          results_svd$thetahatstar[3, ],
           lavaan::standardizedSolution(fit)$est.std,
           check.attributes = FALSE
         )
@@ -119,7 +104,7 @@ lapply(
             results_svd
           )["textual~visual", "97.5%"],
           quantile(
-            results_svd$thetahatstar_std[, "textual~visual"],
+            results_svd$thetahatstar[, "textual~visual"],
             .975,
             na.rm = TRUE
           ),

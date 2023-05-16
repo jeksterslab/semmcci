@@ -13,86 +13,71 @@
 #'
 #' # Data ---------------------------------------------------------------------
 #' data("Tal.Or", package = "psych")
-#' df <- Tal.Or
+#' df <- mice::ampute(Tal.Or)$amp
 #'
-#' # Fit Model in lavaan ------------------------------------------------------
+#' # Monte Carlo --------------------------------------------------------------
+#' ## Fit Model in lavaan -----------------------------------------------------
 #' model <- "
 #'   reaction ~ cp * cond + b * pmi
 #'   pmi ~ a * cond
+#'   cond ~~ cond
 #'   indirect := a * b
 #'   direct := cp
 #'   total := cp + (a * b)
 #' "
+#' fit <- sem(data = df, model = model, missing = "fiml")
 #'
-#' fit <- sem(data = df, model = model)
-#'
-#' # Monte Carlo --------------------------------------------------------------
+#' ## MC() --------------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
 #'   R = 100L, # use a large value e.g., 20000L for actual research
 #'   alpha = 0.05
 #' )
+#'
+#' ## Standardized Monte Carlo ------------------------------------------------
+#' std <- MCStd(unstd, alpha = 0.05)
 #' print(unstd)
+#' print(std)
+#'
+#' # Monte Carlo (Multiple Imputation) ----------------------------------------
+#' ## Multiple Imputation -----------------------------------------------------
+#' mi <- mice::mice(
+#'   data = df,
+#'   print = FALSE,
+#'   m = 5L, # use a large value e.g., 100L for actual research,
+#'   seed = 42
+#' )
+#'
+#' ## Fit Model in lavaan -----------------------------------------------------
+#' fit <- sem(data = df, model = model) # use default listwise deletion
+#'
+#' ## MCMI() ------------------------------------------------------------------
+#' unstd <- MCMI(
+#'   fit,
+#'   mi = mi,
+#'   R = 100L, # use a large value e.g., 20000L for actual research
+#'   alpha = 0.05
+#' )
+#'
+#' ## Standardized Monte Carlo ------------------------------------------------
+#' std <- MCStd(unstd, alpha = 0.05)
+#' print(unstd)
+#' print(std)
 #'
 #' @keywords method
 #' @export
 print.semmcci <- function(x,
                           digits = 4,
                           ...) {
-  cat("Monte Carlo Confidence Intervals\n")
-  base::print(
-    round(
-      .MCCI(x),
-      digits = digits
-    )
-  )
-}
-
-#' Print Method for Object of Class `semmccistd`
-#'
-#' @author Ivan Jacob Agaloos Pesigan
-#' @param x an object of class `semmccistd`.
-#' @param digits Integer indicating the number of decimal places to display.
-#' @param ... further arguments.
-#' @return Returns a matrix of estimates, standard errors,
-#'   number of Monte Carlo replications, and confidence intervals.
-#'
-#' @examples
-#' library(semmcci)
-#' library(lavaan)
-#'
-#' # Data ---------------------------------------------------------------------
-#' data("Tal.Or", package = "psych")
-#' df <- Tal.Or
-#'
-#' # Fit Model in lavaan ------------------------------------------------------
-#' model <- "
-#'   reaction ~ cp * cond + b * pmi
-#'   pmi ~ a * cond
-#'   indirect := a * b
-#'   direct := cp
-#'   total := cp + (a * b)
-#' "
-#'
-#' fit <- sem(data = df, model = model, fixed.x = FALSE)
-#'
-#' # Monte Carlo --------------------------------------------------------------
-#' unstd <- MC(
-#'   fit,
-#'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = 0.05
-#' )
-#'
-#' # Standardized Monte Carlo -------------------------------------------------
-#' std <- MCStd(unstd, alpha = 0.05)
-#' print(std)
-#'
-#' @keywords method
-#' @export
-print.semmccistd <- function(x,
-                             digits = 4,
-                             ...) {
-  cat("Standardized Monte Carlo Confidence Intervals\n")
+  if (x$fun == "MC") {
+    cat("Monte Carlo Confidence Intervals\n")
+  }
+  if (x$fun == "MCMI") {
+    cat("Monte Carlo Confidence Intervals (Multiple Imputation Estimates)\n")
+  }
+  if (x$fun == "MCStd") {
+    cat("Standardized Monte Carlo Confidence Intervals\n")
+  }
   base::print(
     round(
       .MCCI(x),
@@ -117,87 +102,71 @@ print.semmccistd <- function(x,
 #'
 #' # Data ---------------------------------------------------------------------
 #' data("Tal.Or", package = "psych")
-#' df <- Tal.Or
+#' df <- mice::ampute(Tal.Or)$amp
 #'
-#' # Fit Model in lavaan ------------------------------------------------------
+#' # Monte Carlo --------------------------------------------------------------
+#' ## Fit Model in lavaan -----------------------------------------------------
 #' model <- "
 #'   reaction ~ cp * cond + b * pmi
 #'   pmi ~ a * cond
+#'   cond ~~ cond
 #'   indirect := a * b
 #'   direct := cp
 #'   total := cp + (a * b)
 #' "
+#' fit <- sem(data = df, model = model, missing = "fiml")
 #'
-#' fit <- sem(data = df, model = model)
-#'
-#' # Monte Carlo --------------------------------------------------------------
+#' ## MC() --------------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
 #'   R = 100L, # use a large value e.g., 20000L for actual research
 #'   alpha = 0.05
 #' )
+#'
+#' ## Standardized Monte Carlo ------------------------------------------------
+#' std <- MCStd(unstd, alpha = 0.05)
 #' summary(unstd)
+#' summary(std)
+#'
+#' # Monte Carlo (Multiple Imputation) ----------------------------------------
+#' ## Multiple Imputation -----------------------------------------------------
+#' mi <- mice::mice(
+#'   data = df,
+#'   print = FALSE,
+#'   m = 5L, # use a large value e.g., 100L for actual research,
+#'   seed = 42
+#' )
+#'
+#' ## Fit Model in lavaan -----------------------------------------------------
+#' fit <- sem(data = df, model = model) # use default listwise deletion
+#'
+#' ## MCMI() ------------------------------------------------------------------
+#' unstd <- MCMI(
+#'   fit,
+#'   mi = mi,
+#'   R = 100L, # use a large value e.g., 20000L for actual research
+#'   alpha = 0.05
+#' )
+#'
+#' ## Standardized Monte Carlo ------------------------------------------------
+#' std <- MCStd(unstd, alpha = 0.05)
+#' summary(unstd)
+#' summary(std)
 #'
 #' @keywords method
 #' @export
 summary.semmcci <- function(object,
                             digits = 4,
                             ...) {
-  cat("Monte Carlo Confidence Intervals\n")
-  return(
-    round(
-      .MCCI(object),
-      digits = digits
-    )
-  )
-}
-
-#' Summary Method for an Object of Class `semmccistd`
-#'
-#' @author Ivan Jacob Agaloos Pesigan
-#'
-#' @param object Object of class `semmccistd`.
-#' @param ... additional arguments.
-#' @param digits Digits to print.
-#' @return Returns a matrix of estimates, standard errors,
-#'   number of Monte Carlo replications, and confidence intervals.
-#'
-#' @examples
-#' library(semmcci)
-#' library(lavaan)
-#'
-#' # Data ---------------------------------------------------------------------
-#' data("Tal.Or", package = "psych")
-#' df <- Tal.Or
-#'
-#' # Fit Model in lavaan ------------------------------------------------------
-#' model <- "
-#'   reaction ~ cp * cond + b * pmi
-#'   pmi ~ a * cond
-#'   indirect := a * b
-#'   direct := cp
-#'   total := cp + (a * b)
-#' "
-#'
-#' fit <- sem(data = df, model = model, fixed.x = FALSE)
-#'
-#' # Monte Carlo --------------------------------------------------------------
-#' unstd <- MC(
-#'   fit,
-#'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = 0.05
-#' )
-#'
-#' # Standardized Monte Carlo -------------------------------------------------
-#' std <- MCStd(unstd, alpha = 0.05)
-#' summary(std)
-#'
-#' @keywords method
-#' @export
-summary.semmccistd <- function(object,
-                               digits = 4,
-                               ...) {
-  cat("Standardized Monte Carlo Confidence Intervals\n")
+  if (object$fun == "MC") {
+    cat("Monte Carlo Confidence Intervals\n")
+  }
+  if (object$fun == "MCMI") {
+    cat("Monte Carlo Confidence Intervals (Multiple Imputation Estimates)\n")
+  }
+  if (object$fun == "MCStd") {
+    cat("Standardized Monte Carlo Confidence Intervals\n")
+  }
   return(
     round(
       .MCCI(object),
@@ -220,84 +189,69 @@ summary.semmccistd <- function(object,
 #'
 #' # Data ---------------------------------------------------------------------
 #' data("Tal.Or", package = "psych")
-#' df <- Tal.Or
+#' df <- mice::ampute(Tal.Or)$amp
 #'
-#' # Fit Model in lavaan ------------------------------------------------------
+#' # Monte Carlo --------------------------------------------------------------
+#' ## Fit Model in lavaan -----------------------------------------------------
 #' model <- "
 #'   reaction ~ cp * cond + b * pmi
 #'   pmi ~ a * cond
+#'   cond ~~ cond
 #'   indirect := a * b
 #'   direct := cp
 #'   total := cp + (a * b)
 #' "
+#' fit <- sem(data = df, model = model, missing = "fiml")
 #'
-#' fit <- sem(data = df, model = model)
-#'
-#' # Monte Carlo --------------------------------------------------------------
+#' ## MC() --------------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
 #'   R = 100L, # use a large value e.g., 20000L for actual research
 #'   alpha = 0.05
 #' )
+#'
+#' ## Standardized Monte Carlo ------------------------------------------------
+#' std <- MCStd(unstd, alpha = 0.05)
 #' coef(unstd)
+#' coef(std)
+#'
+#' # Monte Carlo (Multiple Imputation) ----------------------------------------
+#' ## Multiple Imputation -----------------------------------------------------
+#' mi <- mice::mice(
+#'   data = df,
+#'   print = FALSE,
+#'   m = 5L, # use a large value e.g., 100L for actual research,
+#'   seed = 42
+#' )
+#'
+#' ## Fit Model in lavaan -----------------------------------------------------
+#' fit <- sem(data = df, model = model) # use default listwise deletion
+#'
+#' ## MCMI() ------------------------------------------------------------------
+#' unstd <- MCMI(
+#'   fit,
+#'   mi = mi,
+#'   R = 100L, # use a large value e.g., 20000L for actual research
+#'   alpha = 0.05
+#' )
+#'
+#' ## Standardized Monte Carlo ------------------------------------------------
+#' std <- MCStd(unstd, alpha = 0.05)
+#' coef(unstd)
+#' coef(std)
 #'
 #' @keywords method
 #' @export
 coef.semmcci <- function(object,
                          ...) {
-  object$thetahat$est
-}
-
-#' Standardized Parameter Estimates
-#'
-#' @author Ivan Jacob Agaloos Pesigan
-#'
-#' @param object Object of class `semmccistd`.
-#' @param ... additional arguments.
-#' @return Returns a vector of standardized parameter estimates.
-#'
-#' @examples
-#' library(semmcci)
-#' library(lavaan)
-#'
-#' # Data ---------------------------------------------------------------------
-#' data("Tal.Or", package = "psych")
-#' df <- Tal.Or
-#'
-#' # Fit Model in lavaan ------------------------------------------------------
-#' model <- "
-#'   reaction ~ cp * cond + b * pmi
-#'   pmi ~ a * cond
-#'   indirect := a * b
-#'   direct := cp
-#'   total := cp + (a * b)
-#' "
-#'
-#' fit <- sem(data = df, model = model, fixed.x = FALSE)
-#'
-#' # Monte Carlo --------------------------------------------------------------
-#' unstd <- MC(
-#'   fit,
-#'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = 0.05
-#' )
-#'
-#' # Standardized Monte Carlo -------------------------------------------------
-#' std <- MCStd(unstd, alpha = 0.05)
-#' coef(std)
-#'
-#' @keywords method
-#' @export
-coef.semmccistd <- function(object,
-                            ...) {
-  object$thetahat_std
+  return(object$thetahat$est)
 }
 
 #' Sampling Covariance Matrix of the Parameter Estimates
 #'
 #' @author Ivan Jacob Agaloos Pesigan
 #'
-#' @param object Object of class `semmccistd`.
+#' @param object Object of class `semmcci`.
 #' @param ... additional arguments.
 #' @return Returns a matrix of the variance-covariance matrix
 #'   of parameter estimates.
@@ -308,26 +262,56 @@ coef.semmccistd <- function(object,
 #'
 #' # Data ---------------------------------------------------------------------
 #' data("Tal.Or", package = "psych")
-#' df <- Tal.Or
+#' df <- mice::ampute(Tal.Or)$amp
 #'
-#' # Fit Model in lavaan ------------------------------------------------------
+#' # Monte Carlo --------------------------------------------------------------
+#' ## Fit Model in lavaan -----------------------------------------------------
 #' model <- "
 #'   reaction ~ cp * cond + b * pmi
 #'   pmi ~ a * cond
+#'   cond ~~ cond
 #'   indirect := a * b
 #'   direct := cp
 #'   total := cp + (a * b)
 #' "
+#' fit <- sem(data = df, model = model, missing = "fiml")
 #'
-#' fit <- sem(data = df, model = model)
-#'
-#' # Monte Carlo --------------------------------------------------------------
+#' ## MC() --------------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
 #'   R = 100L, # use a large value e.g., 20000L for actual research
 #'   alpha = 0.05
 #' )
+#'
+#' ## Standardized Monte Carlo ------------------------------------------------
+#' std <- MCStd(unstd, alpha = 0.05)
 #' vcov(unstd)
+#' vcov(std)
+#'
+#' # Monte Carlo (Multiple Imputation) ----------------------------------------
+#' ## Multiple Imputation -----------------------------------------------------
+#' mi <- mice::mice(
+#'   data = df,
+#'   print = FALSE,
+#'   m = 5L, # use a large value e.g., 100L for actual research,
+#'   seed = 42
+#' )
+#'
+#' ## Fit Model in lavaan -----------------------------------------------------
+#' fit <- sem(data = df, model = model) # use default listwise deletion
+#'
+#' ## MCMI() ------------------------------------------------------------------
+#' unstd <- MCMI(
+#'   fit,
+#'   mi = mi,
+#'   R = 100L, # use a large value e.g., 20000L for actual research
+#'   alpha = 0.05
+#' )
+#'
+#' ## Standardized Monte Carlo ------------------------------------------------
+#' std <- MCStd(unstd, alpha = 0.05)
+#' vcov(unstd)
+#' vcov(std)
 #'
 #' @keywords method
 #' @export
@@ -335,54 +319,6 @@ vcov.semmcci <- function(object,
                          ...) {
   stats::var(
     object$thetahatstar
-  )
-}
-
-#' Sampling Covariance Matrix of the Standardized Parameter Estimates
-#'
-#' @author Ivan Jacob Agaloos Pesigan
-#'
-#' @param object Object of class `semmccistd`.
-#' @param ... additional arguments.
-#' @return Returns a matrix of the variance-covariance matrix
-#'   of standardized parameter estimates.
-#'
-#' @examples
-#' library(semmcci)
-#' library(lavaan)
-#'
-#' # Data ---------------------------------------------------------------------
-#' data("Tal.Or", package = "psych")
-#' df <- Tal.Or
-#'
-#' # Fit Model in lavaan ------------------------------------------------------
-#' model <- "
-#'   reaction ~ cp * cond + b * pmi
-#'   pmi ~ a * cond
-#'   indirect := a * b
-#'   direct := cp
-#'   total := cp + (a * b)
-#' "
-#'
-#' fit <- sem(data = df, model = model, fixed.x = FALSE)
-#'
-#' # Monte Carlo --------------------------------------------------------------
-#' unstd <- MC(
-#'   fit,
-#'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = 0.05
-#' )
-#'
-#' # Standardized Monte Carlo -------------------------------------------------
-#' std <- MCStd(unstd, alpha = 0.05)
-#' vcov(std)
-#'
-#' @keywords method
-#' @export
-vcov.semmccistd <- function(object,
-                            ...) {
-  stats::var(
-    object$thetahatstar_std
   )
 }
 
@@ -405,26 +341,56 @@ vcov.semmccistd <- function(object,
 #'
 #' # Data ---------------------------------------------------------------------
 #' data("Tal.Or", package = "psych")
-#' df <- Tal.Or
+#' df <- mice::ampute(Tal.Or)$amp
 #'
-#' # Fit Model in lavaan ------------------------------------------------------
+#' # Monte Carlo --------------------------------------------------------------
+#' ## Fit Model in lavaan -----------------------------------------------------
 #' model <- "
 #'   reaction ~ cp * cond + b * pmi
 #'   pmi ~ a * cond
+#'   cond ~~ cond
 #'   indirect := a * b
 #'   direct := cp
 #'   total := cp + (a * b)
 #' "
+#' fit <- sem(data = df, model = model, missing = "fiml")
 #'
-#' fit <- sem(data = df, model = model)
-#'
-#' # Monte Carlo --------------------------------------------------------------
+#' ## MC() --------------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
 #'   R = 100L, # use a large value e.g., 20000L for actual research
 #'   alpha = 0.05
 #' )
+#'
+#' ## Standardized Monte Carlo ------------------------------------------------
+#' std <- MCStd(unstd, alpha = 0.05)
 #' confint(unstd)
+#' confint(std)
+#'
+#' # Monte Carlo (Multiple Imputation) ----------------------------------------
+#' ## Multiple Imputation -----------------------------------------------------
+#' mi <- mice::mice(
+#'   data = df,
+#'   print = FALSE,
+#'   m = 5L, # use a large value e.g., 100L for actual research,
+#'   seed = 42
+#' )
+#'
+#' ## Fit Model in lavaan -----------------------------------------------------
+#' fit <- sem(data = df, model = model) # use default listwise deletion
+#'
+#' ## MCMI() ------------------------------------------------------------------
+#' unstd <- MCMI(
+#'   fit,
+#'   mi = mi,
+#'   R = 100L, # use a large value e.g., 20000L for actual research
+#'   alpha = 0.05
+#' )
+#'
+#' ## Standardized Monte Carlo ------------------------------------------------
+#' std <- MCStd(unstd, alpha = 0.05)
+#' confint(unstd)
+#' confint(std)
 #'
 #' @keywords method
 #' @export
@@ -432,69 +398,6 @@ confint.semmcci <- function(object,
                             parm = NULL,
                             level = 0.95,
                             ...) {
-  ci <- .MCCI(
-    object,
-    alpha = 1 - level[1]
-  )
-  if (is.null(parm)) {
-    parm <- rownames(
-      ci
-    )
-  }
-  return(
-    ci[parm, 4:5]
-  )
-}
-
-#' Monte Carlo Confidence Intervals for the Standardized Parameter Estimates
-#'
-#' @author Ivan Jacob Agaloos Pesigan
-#'
-#' @param object Object of class `semmccistd`.
-#' @param ... additional arguments.
-#' @param parm a specification of which parameters
-#'   are to be given confidence intervals,
-#'   either a vector of numbers or a vector of names.
-#'   If missing, all parameters are considered.
-#' @param level the confidence level required.
-#' @return Returns a matrix of confidence intervals.
-#'
-#' @examples
-#' library(semmcci)
-#' library(lavaan)
-#'
-#' # Data ---------------------------------------------------------------------
-#' data("Tal.Or", package = "psych")
-#' df <- Tal.Or
-#'
-#' # Fit Model in lavaan ------------------------------------------------------
-#' model <- "
-#'   reaction ~ cp * cond + b * pmi
-#'   pmi ~ a * cond
-#'   indirect := a * b
-#'   direct := cp
-#'   total := cp + (a * b)
-#' "
-#'
-#' fit <- sem(data = df, model = model, fixed.x = FALSE)
-#'
-#' # Monte Carlo --------------------------------------------------------------
-#' unstd <- MC(
-#'   fit,
-#'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = 0.05
-#' )
-#'
-#' # Standardized Monte Carlo -------------------------------------------------
-#' std <- MCStd(unstd, alpha = 0.05)
-#' confint(std)
-#'
-#' @keywords method
-#' @export
-confint.semmccistd <- function(object,
-                               parm = NULL,
-                               level = 0.95,
-                               ...) {
   ci <- .MCCI(
     object,
     alpha = 1 - level[1]

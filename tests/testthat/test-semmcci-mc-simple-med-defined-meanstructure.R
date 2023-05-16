@@ -1,4 +1,4 @@
-## ---- test-semmcci-mc-simple-med-defined-none
+## ---- test-semmcci-mc-simple-med-defined-meanstructure
 lapply(
   X = 1,
   FUN = function(i,
@@ -15,6 +15,12 @@ lapply(
     sigma2ey <- 1 - b^2 - cp^2 - 2 * a * b * cp
     sigma2em <- 1 - a^2
     sigma2x <- 1
+    coefs <- c(
+      cp = cp,
+      b = b,
+      a = a,
+      ab = a * b
+    )
     x <- rnorm(n = n, sd = sqrt(sigma2x))
     m <- a * x + rnorm(n = n, sd = sqrt(sigma2em))
     y <- cp * x + b * m + rnorm(n = n, sd = sqrt(sigma2ey))
@@ -22,11 +28,13 @@ lapply(
     model <- "
       y ~ cp * x + b * m
       m ~ a * x
+      ab := a * b
     "
     fit <- lavaan::sem(
       data = data,
       model = model,
-      fixed.x = FALSE
+      fixed.x = FALSE,
+      meanstructure = TRUE
     )
     set.seed(seed)
     results_chol <- MC(
@@ -42,6 +50,7 @@ lapply(
       alpha = c(0.001, 0.01, 0.05),
       decomposition = "eigen"
     )
+    set.seed(seed)
     results_svd <- MC(
       fit,
       R = R,
@@ -55,7 +64,8 @@ lapply(
       Sigma = lavaan::vcov(fit)
     )
     answers <- cbind(
-      answers
+      answers,
+      ab = answers[, "a"] * answers[, "b"]
     )
     testthat::test_that(
       paste(text, "chol"),
@@ -69,8 +79,8 @@ lapply(
           abs(
             .MCCI(
               results_chol
-            )["cp", "97.5%"] - quantile(
-              answers[, "cp"],
+            )["ab", "97.5%"] - quantile(
+              answers[, "ab"],
               .975,
               na.rm = TRUE
             )
@@ -90,9 +100,10 @@ lapply(
           abs(
             .MCCI(
               results_eigen
-            )["cp", "97.5%"] - quantile(
-              answers[, "cp"],
-              .975
+            )["ab", "97.5%"] - quantile(
+              answers[, "ab"],
+              .975,
+              na.rm = TRUE
             )
           ) <= tol
         )
@@ -110,8 +121,8 @@ lapply(
           abs(
             .MCCI(
               results_svd
-            )["cp", "97.5%"] - quantile(
-              answers[, "cp"],
+            )["ab", "97.5%"] - quantile(
+              answers[, "ab"],
               .975,
               na.rm = TRUE
             )
@@ -122,6 +133,6 @@ lapply(
   },
   n = 1000L,
   R = 2000L,
-  tol = 0.05,
-  text = "test-semmcci-mc-simple-med-defined-none"
+  tol = 0.01,
+  text = "test-semmcci-mc-simple-med-defined-meanstructure"
 )

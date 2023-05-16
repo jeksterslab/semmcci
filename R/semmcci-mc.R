@@ -13,7 +13,7 @@
 #'
 #' @author Ivan Jacob Agaloos Pesigan
 #'
-#' @param object Object of class `lavaan`.
+#' @param lav Object of class `lavaan`.
 #' @param R Positive integer.
 #'   Number of Monte Carlo replications.
 #' @param alpha Numeric vector.
@@ -36,17 +36,12 @@
 #' @return Returns an object of class `semmcci` which is
 #'   a list with the following elements:
 #'   \describe{
-#'     \item{R}{Number of Monte Carlo replications.}
-#'     \item{alpha}{Significance level \eqn{\alpha} specified.}
-#'     \item{lavaan}{`lavaan` object.}
-#'     \item{decomposition}{Matrix decomposition
-#'                          used to generate multivariate
-#'                          normal random variates.}
+#'     \item{call}{Function call.}
+#'     \item{args}{List of function arguments.}
 #'     \item{thetahat}{Parameter estimates \eqn{\hat{\theta}}.}
 #'     \item{thetahatstar}{Sampling distribution of parameter estimates
 #'                         \eqn{\hat{\theta}^{\ast}}.}
-#'     \item{mi}{A list of multiply imputed data for `MCMI()`.
-#'               `NA` for `MC()`.}
+#'     \item{fun}{Function used ("MC").}
 #'   }
 #'
 #' @examples
@@ -55,20 +50,21 @@
 #'
 #' # Data ---------------------------------------------------------------------
 #' data("Tal.Or", package = "psych")
-#' df <- Tal.Or
+#' df <- mice::ampute(Tal.Or)$amp
 #'
-#' # Fit Model in lavaan ------------------------------------------------------
+#' # Monte Carlo --------------------------------------------------------------
+#' ## Fit Model in lavaan -----------------------------------------------------
 #' model <- "
 #'   reaction ~ cp * cond + b * pmi
 #'   pmi ~ a * cond
+#'   cond ~~ cond
 #'   indirect := a * b
 #'   direct := cp
 #'   total := cp + (a * b)
 #' "
+#' fit <- sem(data = df, model = model, missing = "fiml")
 #'
-#' fit <- sem(data = df, model = model)
-#'
-#' # Monte Carlo --------------------------------------------------------------
+#' ## MC() --------------------------------------------------------------------
 #' MC(
 #'   fit,
 #'   R = 100L, # use a large value e.g., 20000L for actual research
@@ -95,7 +91,7 @@
 #' @family Monte Carlo in Structural Equation Modeling Functions
 #' @keywords semmcci mc
 #' @export
-MC <- function(object,
+MC <- function(lav,
                R = 20000L,
                alpha = c(0.001, 0.01, 0.05),
                decomposition = "eigen",
@@ -104,11 +100,20 @@ MC <- function(object,
                seed = NULL) {
   stopifnot(
     inherits(
-      object,
+      lav,
       "lavaan"
     )
   )
-  # mi
+  args <- list(
+    lav = lav,
+    R = R,
+    alpha = alpha,
+    decomposition = decomposition,
+    pd = pd,
+    tol = tol,
+    seed = seed
+  )
+  # mc
   if (!is.null(decomposition)) {
     if (decomposition == "chol") {
       pd <- FALSE
@@ -118,8 +123,8 @@ MC <- function(object,
   set.seed(seed)
   thetahatstar <- .ThetaHatStar(
     R = R,
-    scale = lavaan::vcov(object),
-    location = lavaan::coef(object),
+    scale = lavaan::vcov(lav),
+    location = lavaan::coef(lav),
     decomposition = decomposition,
     pd = pd,
     tol = tol
@@ -128,24 +133,22 @@ MC <- function(object,
   decomposition <- thetahatstar$decomposition
   ## extract all estimates including fixed parameters
   thetahat <- .ThetaHat(
-    object = object,
+    object = lav,
     est = NULL # should always be null
   )
   # defined parameters
   thetahatstar <- .MCDef(
-    object = object,
+    object = lav,
     thetahat = thetahat,
     thetahatstar_orig = thetahatstar_orig
   )
   # output
   out <- list(
-    R = R,
-    alpha = alpha,
-    lavaan = object,
-    decomposition = decomposition,
+    call = match.call(),
+    args = args,
     thetahat = thetahat,
     thetahatstar = thetahatstar,
-    mi = NA
+    fun = "MC"
   )
   class(out) <- c(
     "semmcci",

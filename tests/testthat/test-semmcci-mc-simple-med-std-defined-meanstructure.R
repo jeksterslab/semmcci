@@ -1,4 +1,4 @@
-## ---- test-semmcci-mc-simple-med-std-defined-none-random-x
+## ---- test-semmcci-mc-simple-med-std-defined-meanstructure
 lapply(
   X = 1,
   FUN = function(i,
@@ -27,11 +27,13 @@ lapply(
     model <- "
       y ~ cp * x + b * m
       m ~ a * x
+      ab := a * b
     "
     fit <- lavaan::sem(
       data = data,
       model = model,
-      fixed.x = FALSE
+      fixed.x = FALSE,
+      meanstructure = TRUE
     )
     set.seed(seed)
     results_unstd_chol <- MC(
@@ -64,16 +66,11 @@ lapply(
       paste(text, "chol"),
       {
         testthat::expect_equal(
-          results_chol$thetahatstar[3, ],
-          lavaan::standardizedSolution(fit)$est.std,
-          check.attributes = FALSE
-        )
-        testthat::expect_equal(
           .MCCI(
             results_chol
-          )["cp", "97.5%"],
+          )["ab", "97.5%"],
           quantile(
-            results_chol$thetahatstar[, "cp"],
+            results_chol$thetahatstar[, "ab"],
             .975,
             na.rm = TRUE
           ),
@@ -85,16 +82,11 @@ lapply(
       paste(text, "eigen"),
       {
         testthat::expect_equal(
-          results_eigen$thetahatstar[3, ],
-          lavaan::standardizedSolution(fit)$est.std,
-          check.attributes = FALSE
-        )
-        testthat::expect_equal(
           .MCCI(
             results_eigen
-          )["cp", "97.5%"],
+          )["ab", "97.5%"],
           quantile(
-            results_eigen$thetahatstar[, "cp"],
+            results_eigen$thetahatstar[, "ab"],
             .975,
             na.rm = TRUE
           ),
@@ -106,16 +98,11 @@ lapply(
       paste(text, "svd"),
       {
         testthat::expect_equal(
-          results_svd$thetahatstar[3, ],
-          lavaan::standardizedSolution(fit)$est.std,
-          check.attributes = FALSE
-        )
-        testthat::expect_equal(
           .MCCI(
             results_svd
-          )["cp", "97.5%"],
+          )["ab", "97.5%"],
           quantile(
-            results_svd$thetahatstar[, "cp"],
+            results_svd$thetahatstar[, "ab"],
             .975,
             na.rm = TRUE
           ),
@@ -126,5 +113,5 @@ lapply(
   },
   n = 1000L,
   R = 2000L,
-  text = "test-semmcci-mc-simple-med-std-defined-none-random-x"
+  text = "test-semmcci-mc-simple-med-std-defined-meanstructure"
 )

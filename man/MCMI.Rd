@@ -5,21 +5,22 @@
 \title{Monte Carlo Confidence Intervals (Multiple Imputation)}
 \usage{
 MCMI(
-  object,
+  lav,
+  mi,
   R = 20000L,
   alpha = c(0.001, 0.01, 0.05),
   decomposition = "eigen",
   pd = TRUE,
   tol = 1e-06,
-  adj = FALSE,
-  seed_mc = NULL,
-  seed_mi = NA,
-  imp = NULL,
-  ...
+  seed = NULL
 )
 }
 \arguments{
-\item{object}{Object of class \code{lavaan}.}
+\item{lav}{Object of class \code{lavaan}.}
+
+\item{mi}{Object of class \code{mids} (output of \code{\link[mice:mice]{mice::mice()}}),
+object of class \code{amelia} (output of \code{\link[Amelia:amelia]{Amelia::amelia()}}),
+or a list of multiply imputed data sets.}
 
 \item{R}{Positive integer.
 Number of Monte Carlo replications.}
@@ -42,41 +43,19 @@ is positive definite using \code{tol}.}
 \item{tol}{Numeric.
 Tolerance used for \code{pd}.}
 
-\item{adj}{Logical.
-If \code{adj = TRUE},
-use Li, Raghunathan, and Rubin (1991)
-sampling covariance matrix adjustment.
-If \code{adj = FALSE},
-use the multivariate version of Rubin's (1987)
-sampling covariance matrix.}
-
-\item{seed_mc}{Integer.
-Random seed for the Monte Carlo method.}
-
-\item{seed_mi}{Integer.
-Random seed for multiple imputation.}
-
-\item{imp}{Optional argument.
-A list of multiply imputed data sets.}
-
-\item{...}{Additional arguments to pass to \code{mice::mice()}.
-DO NOT supply \code{data}, \code{seed}, or \code{print}.}
+\item{seed}{Integer.
+Random seed for reproducibility.}
 }
 \value{
 Returns an object of class \code{semmcci} which is
 a list with the following elements:
 \describe{
-\item{R}{Number of Monte Carlo replications.}
-\item{alpha}{Significance level \eqn{\alpha} specified.}
-\item{lavaan}{\code{lavaan} object.}
-\item{decomposition}{Matrix decomposition
-used to generate multivariate
-normal random variates.}
+\item{call}{Function call.}
+\item{args}{List of function arguments.}
 \item{thetahat}{Parameter estimates \eqn{\hat{\theta}}.}
 \item{thetahatstar}{Sampling distribution of parameter estimates
 \eqn{\hat{\theta}^{\ast}}.}
-\item{mi}{A list of multiply imputed data for \code{MCMI()}.
-\code{NA} for \code{MC()}.}
+\item{fun}{Function used ("MCMI").}
 }
 }
 \description{
@@ -98,38 +77,40 @@ in the \code{lavaan} model syntax.
 library(semmcci)
 library(lavaan)
 
-# Data with Missing Values -------------------------------------------------
+# Data ---------------------------------------------------------------------
 data("Tal.Or", package = "psych")
 df <- mice::ampute(Tal.Or)$amp
 
-# Fit Model in lavaan ------------------------------------------------------
+# Monte Carlo (Multiple Imputation) ----------------------------------------
+## Multiple Imputation -----------------------------------------------------
+mi <- mice::mice(
+  data = df,
+  print = FALSE,
+  m = 5L, # use a large value e.g., 100L for actual research,
+  seed = 42
+)
+
+## Fit Model in lavaan -----------------------------------------------------
 model <- "
   reaction ~ cp * cond + b * pmi
   pmi ~ a * cond
+  cond ~~ cond
   indirect := a * b
   direct := cp
   total := cp + (a * b)
 "
+fit <- sem(data = df, model = model) # use default listwise deletion
 
-# Fit the model in lavaan using the default listwise deletion method.
-fit <- sem(data = df, model = model)
-
-# Monte Carlo --------------------------------------------------------------
+## MCMI() ------------------------------------------------------------------
 MCMI(
   fit,
+  mi = mi,
   R = 100L, # use a large value e.g., 20000L for actual research
-  alpha = 0.05,
-  m = 5 # use a large value e.g., 100L for actual research
+  alpha = 0.05
 )
 
 }
 \references{
-Li, K. H., Raghunathan, T. E., & Rubin, D. B. (1991).
-Large-sample significance levels from multiply imputed data
-using moment-based statistics and an F reference distribution.
-Journal of the American Statistical Association, 86 (416), 1065–1073.
-\doi{10.1080/01621459.1991.10475152}
-
 Pesigan, I. J. A., & Cheung, S. F. (2023).
 Monte Carlo confidence intervals for the indirect effect with missing data.
 \emph{Behavior Research Methods}.

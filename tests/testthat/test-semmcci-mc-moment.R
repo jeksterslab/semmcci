@@ -45,11 +45,11 @@ lapply(
       paste(text, "MCCI error"),
       {
         testthat::expect_error(
-          MCMI(object = fit)
+          MCMI(fit)
         )
       }
     )
-    MC(object = fit)
+    MC(fit)
   },
   text = "test-semmcci-mc-moment"
 )

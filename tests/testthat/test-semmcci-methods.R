@@ -23,17 +23,37 @@ lapply(
       R = R,
       alpha = c(0.001, 0.01, 0.05)
     )
+    miunstd <- MCMI(
+      fit,
+      R = R,
+      alpha = c(0.001, 0.01, 0.05),
+      mi = mice::mice(
+        data = data,
+        print = 0
+      )
+    )
     std <- MCStd(unstd)
+    mistd <- MCStd(miunstd)
     print.semmcci(unstd)
-    print.semmccistd(std)
+    print.semmcci(miunstd)
+    print.semmcci(std)
+    print.semmcci(mistd)
     summary.semmcci(unstd)
-    summary.semmccistd(std)
+    summary.semmcci(miunstd)
+    summary.semmcci(std)
+    summary.semmcci(mistd)
     coef.semmcci(unstd)
-    coef.semmccistd(std)
+    coef.semmcci(miunstd)
+    coef.semmcci(std)
+    coef.semmcci(mistd)
     vcov.semmcci(unstd)
-    vcov.semmccistd(std)
+    vcov.semmcci(miunstd)
+    vcov.semmcci(std)
+    vcov.semmcci(mistd)
     confint.semmcci(unstd)
-    confint.semmccistd(std)
+    confint.semmcci(miunstd)
+    confint.semmcci(std)
+    confint.semmcci(mistd)
   },
   R = 100L,
   text = "test-semmcci-mc-methods"
