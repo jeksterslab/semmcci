@@ -94,7 +94,7 @@ MCMI <- function(lav,
   )
   if (lav@Data@data.type == "moment") {
     stop(
-      "The \'data\' argument is required by \'MCMI()\'."
+      "The \'data\' argument in \'lavaan\' is required by \'MCMI()\'."
     )
   }
   call0 <- stats::getCall(lav)
