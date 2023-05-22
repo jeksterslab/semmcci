@@ -11,8 +11,8 @@
 #' @return A vector of the standardized solution, of the same
 #'  length as the number of rows in the parameter table.
 #'
-#' @family Monte Carlo in Structural Equation Modeling Functions
-#' @keywords semmcci matrix standardized internal
+#' @family Lavaan Helper Functions
+#' @keywords lavHelper matrix standardized internal
 #' @noRd
 .StdLav <- function(est,
                     object) {

@@ -11,8 +11,8 @@
 #'  contain the correlations. Default is `FALSE`.
 #' @return A list of `lavaan` model matrices for one group.
 #'
-#' @family Monte Carlo in Structural Equation Modeling Functions
-#' @keywords semmcci matrix internal
+#' @family Lavaan Helper Functions
+#' @keywords lavHelper matrix internal
 #' @noRd
 .RAM2Lav <- function(ram,
                      lav_mod,

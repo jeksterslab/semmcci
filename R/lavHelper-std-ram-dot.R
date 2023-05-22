@@ -10,8 +10,8 @@
 #' @return A list of RAM matrices with the standardized
 #'   solution.
 #'
-#' @family Monte Carlo in Structural Equation Modeling Functions
-#' @keywords semmcci matrix standardized internal
+#' @family Lavaan Helper Functions
+#' @keywords lavHelper matrix standardized internal
 #' @noRd
 .StdRAM <- function(ram_est) {
   a_mat <- ram_est$A

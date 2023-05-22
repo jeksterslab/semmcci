@@ -6,8 +6,8 @@
 #' @param lav_mod A list of lavaan model matrices for one group.
 #' @return A list of A, S, F, and M RAM matrices.
 #'
-#' @family Monte Carlo in Structural Equation Modeling Functions
-#' @keywords semmcci matrix internal
+#' @family Lavaan Helper Functions
+#' @keywords lavHelper matrix internal
 #' @noRd
 .Lav2RAM <- function(lav_mod) {
   ov_names <- rownames(lav_mod$theta)

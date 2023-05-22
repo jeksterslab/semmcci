@@ -7,19 +7,19 @@
 #'   If not `NULL`, the parameter estimates are updated.
 #'   using the supplied vector.
 #'   This is used to update the values in the parameter vector
-#'   using pooled multiple imputation estimates.
+#'   using new estimates.
 #' @return Returns a list with the following elements
 #' \describe{
-#'   \item{`est`}{Parameter estimates.}
-#'   \item{`par_names`}{Parameter names.}
-#'   \item{`def`}{Defined parameters.}
-#'   \item{`ceq`}{Equality constraints.}
-#'   \item{`cin`}{Inequality constraints.}
-#'   \item{`fixed`}{Fixed parameters.}
+#'   \item{est}{Parameter estimates.}
+#'   \item{par_names}{Parameter names.}
+#'   \item{def}{Defined parameters.}
+#'   \item{ceq}{Equality constraints.}
+#'   \item{cin}{Inequality constraints.}
+#'   \item{fixed}{Fixed parameters.}
 #' }
 #'
-#' @family Monte Carlo in Structural Equation Modeling Functions
-#' @keywords semmcci parameters internal
+#' @family Lavaan Helper Functions
+#' @keywords lavHelper parameters internal
 #' @noRd
 .ThetaHat <- function(object,
                       est = NULL) {
@@ -57,6 +57,7 @@
     .ThetaHatDef(
       object = object,
       thetahat_est = thetahat_est,
+      thetahat_names_free = thetahat_names_free,
       thetahat_names = thetahat_names
     )
   )
@@ -64,6 +65,7 @@
 
 .ThetaHatDef <- function(object,
                          thetahat_est,
+                         thetahat_names_free,
                          thetahat_names) {
   thetahat_fixed <- thetahat_def <- thetahat_cin <- thetahat_ceq <- rep(
     x = NA,
@@ -79,7 +81,10 @@
     }
     if (
       object@ParTable$op[i] %in% c(
-        ">", "<", ">=", "<="
+        ">",
+        "<",
+        ">=",
+        "<="
       )
     ) {
       thetahat_names[i] <- paste0(
@@ -95,7 +100,12 @@
       fixed <- TRUE
       if (
         object@ParTable$op[i] %in% c(
-          ":=", "==", ">", "<", ">=", "<="
+          ":=",
+          "==",
+          ">",
+          "<",
+          ">=",
+          "<="
         )
       ) {
         fixed <- FALSE
@@ -123,7 +133,8 @@
       ],
       fixed = thetahat_fixed[
         stats::complete.cases(thetahat_fixed)
-      ]
+      ],
+      free = thetahat_names_free
     )
   )
 }
