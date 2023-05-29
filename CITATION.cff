@@ -48,3 +48,9 @@ contact:
   given-names: Ivan Jacob Agaloos
   email: r.jeksterslab@gmail.com
   orcid: https://orcid.org/0000-0003-4818-8420
+keywords:
+- confidence-intervals
+- monte-carlo
+- r
+- r-package
+- structural-equation-modeling
