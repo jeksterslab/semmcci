@@ -30,5 +30,5 @@ sessionInfo()
 # Packages
 
 ```{r}
-unname(installed.packages()[, 1])
+installed.packages()
 ```
