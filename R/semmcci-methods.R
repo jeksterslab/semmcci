@@ -2,6 +2,10 @@
 #'
 #' @author Ivan Jacob Agaloos Pesigan
 #' @param x an object of class `semmcci`.
+#' @param alpha Numeric vector.
+#'   Significance level \eqn{\alpha}.
+#'   If `alpha = NULL`,
+#'   use the argument `alpha` used in `x`.
 #' @param digits Integer indicating the number of decimal places to display.
 #' @param ... further arguments.
 #' @return Returns a matrix of estimates, standard errors,
@@ -30,12 +34,11 @@
 #' ## MC() --------------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
-#'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = 0.05
+#'   R = 100L # use a large value e.g., 20000L for actual research
 #' )
 #'
 #' ## Standardized Monte Carlo ------------------------------------------------
-#' std <- MCStd(unstd, alpha = 0.05)
+#' std <- MCStd(unstd)
 #' print(unstd)
 #' print(std)
 #'
@@ -55,18 +58,18 @@
 #' unstd <- MCMI(
 #'   fit,
 #'   mi = mi,
-#'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = 0.05
+#'   R = 100L # use a large value e.g., 20000L for actual research
 #' )
 #'
 #' ## Standardized Monte Carlo ------------------------------------------------
-#' std <- MCStd(unstd, alpha = 0.05)
+#' std <- MCStd(unstd)
 #' print(unstd)
 #' print(std)
 #'
 #' @keywords method
 #' @export
 print.semmcci <- function(x,
+                          alpha = NULL,
                           digits = 4,
                           ...) {
   if (x$fun == "MC") {
@@ -80,7 +83,10 @@ print.semmcci <- function(x,
   }
   base::print(
     round(
-      .MCCI(x),
+      .MCCI(
+        object = x,
+        alpha = alpha
+      ),
       digits = digits
     )
   )
@@ -91,6 +97,10 @@ print.semmcci <- function(x,
 #' @author Ivan Jacob Agaloos Pesigan
 #'
 #' @param object Object of class `semmcci`.
+#' @param alpha Numeric vector.
+#'   Significance level \eqn{\alpha}.
+#'   If `alpha = NULL`,
+#'   use the argument `alpha` used in `object`.
 #' @param ... additional arguments.
 #' @param digits Digits to print.
 #' @return Returns a matrix of estimates, standard errors,
@@ -119,12 +129,11 @@ print.semmcci <- function(x,
 #' ## MC() --------------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
-#'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = 0.05
+#'   R = 100L # use a large value e.g., 20000L for actual research
 #' )
 #'
 #' ## Standardized Monte Carlo ------------------------------------------------
-#' std <- MCStd(unstd, alpha = 0.05)
+#' std <- MCStd(unstd)
 #' summary(unstd)
 #' summary(std)
 #'
@@ -144,18 +153,18 @@ print.semmcci <- function(x,
 #' unstd <- MCMI(
 #'   fit,
 #'   mi = mi,
-#'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = 0.05
+#'   R = 100L # use a large value e.g., 20000L for actual research
 #' )
 #'
 #' ## Standardized Monte Carlo ------------------------------------------------
-#' std <- MCStd(unstd, alpha = 0.05)
+#' std <- MCStd(unstd)
 #' summary(unstd)
 #' summary(std)
 #'
 #' @keywords method
 #' @export
 summary.semmcci <- function(object,
+                            alpha = NULL,
                             digits = 4,
                             ...) {
   if (object$fun == "MC") {
@@ -169,7 +178,10 @@ summary.semmcci <- function(object,
   }
   return(
     round(
-      .MCCI(object),
+      .MCCI(
+        object = object,
+        alpha = alpha
+      ),
       digits = digits
     )
   )
@@ -206,12 +218,11 @@ summary.semmcci <- function(object,
 #' ## MC() --------------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
-#'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = 0.05
+#'   R = 100L # use a large value e.g., 20000L for actual research
 #' )
 #'
 #' ## Standardized Monte Carlo ------------------------------------------------
-#' std <- MCStd(unstd, alpha = 0.05)
+#' std <- MCStd(unstd)
 #' coef(unstd)
 #' coef(std)
 #'
@@ -231,12 +242,11 @@ summary.semmcci <- function(object,
 #' unstd <- MCMI(
 #'   fit,
 #'   mi = mi,
-#'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = 0.05
+#'   R = 100L # use a large value e.g., 20000L for actual research
 #' )
 #'
 #' ## Standardized Monte Carlo ------------------------------------------------
-#' std <- MCStd(unstd, alpha = 0.05)
+#' std <- MCStd(unstd)
 #' coef(unstd)
 #' coef(std)
 #'
@@ -279,12 +289,11 @@ coef.semmcci <- function(object,
 #' ## MC() --------------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
-#'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = 0.05
+#'   R = 100L # use a large value e.g., 20000L for actual research
 #' )
 #'
 #' ## Standardized Monte Carlo ------------------------------------------------
-#' std <- MCStd(unstd, alpha = 0.05)
+#' std <- MCStd(unstd)
 #' vcov(unstd)
 #' vcov(std)
 #'
@@ -304,12 +313,11 @@ coef.semmcci <- function(object,
 #' unstd <- MCMI(
 #'   fit,
 #'   mi = mi,
-#'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = 0.05
+#'   R = 100L # use a large value e.g., 20000L for actual research
 #' )
 #'
 #' ## Standardized Monte Carlo ------------------------------------------------
-#' std <- MCStd(unstd, alpha = 0.05)
+#' std <- MCStd(unstd)
 #' vcov(unstd)
 #' vcov(std)
 #'
@@ -358,12 +366,11 @@ vcov.semmcci <- function(object,
 #' ## MC() --------------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
-#'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = 0.05
+#'   R = 100L # use a large value e.g., 20000L for actual research
 #' )
 #'
 #' ## Standardized Monte Carlo ------------------------------------------------
-#' std <- MCStd(unstd, alpha = 0.05)
+#' std <- MCStd(unstd)
 #' confint(unstd)
 #' confint(std)
 #'
@@ -383,12 +390,11 @@ vcov.semmcci <- function(object,
 #' unstd <- MCMI(
 #'   fit,
 #'   mi = mi,
-#'   R = 100L, # use a large value e.g., 20000L for actual research
-#'   alpha = 0.05
+#'   R = 100L # use a large value e.g., 20000L for actual research
 #' )
 #'
 #' ## Standardized Monte Carlo ------------------------------------------------
-#' std <- MCStd(unstd, alpha = 0.05)
+#' std <- MCStd(unstd)
 #' confint(unstd)
 #' confint(std)
 #'
@@ -407,7 +413,15 @@ confint.semmcci <- function(object,
       ci
     )
   }
+  ci <- ci[parm, 4:5, drop = FALSE]
+  varnames <- colnames(ci)
+  varnames <- gsub(
+    pattern = "%",
+    replacement = " %",
+    x = varnames
+  )
+  colnames(ci) <- varnames
   return(
-    ci[parm, 4:5]
+    ci
   )
 }

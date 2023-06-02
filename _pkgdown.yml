@@ -41,3 +41,6 @@ articles:
   - benchmark_complete
   - benchmark_fiml
   - benchmark_mi
+- title: Session Information
+  contents:
+  - session

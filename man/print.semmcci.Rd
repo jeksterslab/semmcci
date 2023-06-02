@@ -4,10 +4,15 @@
 \alias{print.semmcci}
 \title{Print Method for Object of Class \code{semmcci}}
 \usage{
-\method{print}{semmcci}(x, digits = 4, ...)
+\method{print}{semmcci}(x, alpha = NULL, digits = 4, ...)
 }
 \arguments{
 \item{x}{an object of class \code{semmcci}.}
+
+\item{alpha}{Numeric vector.
+Significance level \eqn{\alpha}.
+If \code{alpha = NULL},
+use the argument \code{alpha} used in \code{x}.}
 
 \item{digits}{Integer indicating the number of decimal places to display.}
 
@@ -43,12 +48,11 @@ fit <- sem(data = df, model = model, missing = "fiml")
 ## MC() --------------------------------------------------------------------
 unstd <- MC(
   fit,
-  R = 100L, # use a large value e.g., 20000L for actual research
-  alpha = 0.05
+  R = 100L # use a large value e.g., 20000L for actual research
 )
 
 ## Standardized Monte Carlo ------------------------------------------------
-std <- MCStd(unstd, alpha = 0.05)
+std <- MCStd(unstd)
 print(unstd)
 print(std)
 
@@ -68,12 +72,11 @@ fit <- sem(data = df, model = model) # use default listwise deletion
 unstd <- MCMI(
   fit,
   mi = mi,
-  R = 100L, # use a large value e.g., 20000L for actual research
-  alpha = 0.05
+  R = 100L # use a large value e.g., 20000L for actual research
 )
 
 ## Standardized Monte Carlo ------------------------------------------------
-std <- MCStd(unstd, alpha = 0.05)
+std <- MCStd(unstd)
 print(unstd)
 print(std)
 

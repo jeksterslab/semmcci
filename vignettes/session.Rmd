@@ -1,0 +1,34 @@
+---
+title: "semmcci: Session"
+author: "Ivan Jacob Agaloos Pesigan"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{semmcci: Session}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r}
+#| include = FALSE
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/vignettes-"
+)
+```
+
+```{r}
+library(semmcci)
+```
+
+# Session
+
+```{r}
+sessionInfo()
+```
+
+# Packages
+
+```{r}
+unname(installed.packages()[, 1])
+```

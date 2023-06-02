@@ -35,6 +35,9 @@
   if (is.null(alpha)) {
     alpha <- object$args$alpha
   }
+  stopifnot(
+    all(alpha > 0 & alpha < 1)
+  )
   probs <- .PCProbs(alpha = alpha)
   ci <- vector(
     mode = "list",

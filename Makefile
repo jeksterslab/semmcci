@@ -1,4 +1,4 @@
-.PHONY: build all git ssh term project pkg tinytex clean cleanpkg cleantinytex cleanall coverage lint
+.PHONY: build all git ssh term termall project pkg tinytex clean cleanpkg cleantinytex cleanall coverage lint
 
 build: pkg clean
 	@echo Installing TinyTex...
@@ -37,9 +37,16 @@ ssh:
 	@(cd .setup/ssh && make)
 
 term:
-	@echo Building .bashrc and .vimrc...
+	@echo Building .bashrc...
 	@(cd .setup/bash && make)
+	@echo Building .vimrc...
 	@(cd .setup/vim && make)
+
+termall: term
+	@echo Building .tmux.conf...
+	@(cd .setup/tmux && make)
+	@echo Building .Xresources...
+	@(cd .setup/xterm && make)
 
 project:
 	@echo Building project...
