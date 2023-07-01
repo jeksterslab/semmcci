@@ -1,4 +1,4 @@
-destination: docs
+destination: pkgdown
 url: https://github.com/jeksterslab/semmcci/
 
 template:
@@ -34,8 +34,8 @@ articles:
   - mcstd_5_difference_rsq_multigroup
 - title: Methods
   contents:
-  - methods-mc
-  - methods-mc-mi
+  - methods_mc
+  - methods_mc_mi
 - title: Benchmark
   contents:
   - benchmark_complete

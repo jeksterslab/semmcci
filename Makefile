@@ -1,7 +1,9 @@
-.PHONY: build all git ssh term termall project pkg tinytex clean cleanpkg cleantinytex cleanall coverage lint
+.PHONY: all build local localforce dotfiles project pkg tinytex clean cleanpkg cleantinytex cleanall coverage lint qmd
+
+all: build latex
 
 build: pkg clean
-	@echo Installing TinyTex...
+	@echo TinyTex...
 	@Rscript -e "rProject::TinyTex(\"${PWD}\", force = FALSE)"
 	@echo Styling...
 	@Rscript -e "rProject::Style(\"${PWD}\")"
@@ -24,49 +26,46 @@ build: pkg clean
 	@echo Building CITATION.cff...
 	@Rscript -e "rProject::CFF(\"${PWD}\")"
 
-all: git ssh term build latex
-
 cleanall: clean cleanpkg cleantinytex
 
-git:
-	@echo Setting git...
-	@(cd .setup/git && make)
-
-ssh:
-	@echo Setting ssh keys...
-	@(cd .setup/ssh && make)
-
-term:
-	@echo Building .bashrc...
-	@(cd .setup/bash && make)
-	@echo Building .vimrc...
-	@(cd .setup/vim && make)
-
-termall: term
-	@echo Building .tmux.conf...
-	@(cd .setup/tmux && make)
-	@echo Building .Xresources...
-	@(cd .setup/xterm && make)
+dotfiles:
+	@echo Building dotfiles...
+	@Rscript -e "source('tools/project.R') ; rProject::ConfigFiles(git_user)"
 
 project:
 	@echo Building project...
-	@Rscript make-project.R ${PWD}
+	@Rscript tools/make-project.R ${PWD}
 
 pkg: project
 	@echo Installing packages...
-	@Rscript make-packages.R ${PWD}
+	@Rscript tools/make-packages.R ${PWD}
 
 tinytex:
 	@echo Installing TinyTex...
 	@Rscript -e "rProject::TinyTex(\"${PWD}\", force = TRUE)"
 
+local: project
+	@echo Installing local applications...
+	@Rscript -e "rProject::InstallLocal(all = TRUE)"
+	@Rscript tools/make-config.R ${PWD}
+
+localforce: project
+	@echo Installing local applications...
+	@Rscript -e "rProject::InstallLocal(all = TRUE, force = TRUE)"
+	@Rscript tools/make-config.R ${PWD}
+
 clean:
 	@echo Cleaning...
 	@Rscript -e "rProject::Clean(\"${PWD}\")"
+	@rm -rf "${PWD}/TEMPDIR.*"
 
 cleanpkg:
 	@echo Cleaning packages...
 	@Rscript -e "rProject::CleanPkg(\"${PWD}\")"
+
+cleanproj:
+	@echo Cleaning project...
+	@Rscript -e "rProject::CleanProj(\"${PWD}\")"
 
 cleantinytex:
 	@echo Cleaning TinyTex...
@@ -84,3 +83,7 @@ lint:
 
 latex:
 	@Rscript -e "rProject::LatexMake(\"${PWD}\")"
+
+qmd: lint
+	@Rscript qmd/r-script/prerender.R
+	@quarto render ${PWD}
