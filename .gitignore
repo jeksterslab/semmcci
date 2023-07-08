@@ -77,4 +77,8 @@ detritus
 # library
 .library
 
+# README
+README.html
+README_files/
+
 # etc

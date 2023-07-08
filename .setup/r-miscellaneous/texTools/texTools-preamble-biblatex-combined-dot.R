@@ -22,6 +22,8 @@
 #'   `"none"` entries are processed in citation order.
 #' @param map Logical.
 #'   Null mapping for `addendum`, `note`, and `annotation`.
+#' @param fn_bib Character string.
+#'   Biblatex filename.
 #'
 #' @family Bibliography Functions
 #' @keywords texTools biblatex internal
@@ -31,7 +33,8 @@
                                       style = "apa",
                                       sortcites = TRUE,
                                       sorting = "nyt",
-                                      map = TRUE) {
+                                      map = TRUE,
+                                      fn_bib = "bib.bib") {
   if (dir.exists(path)) {
     bibs <- list.files(
       path = path,
@@ -51,9 +54,13 @@
           FUN = readLines
         )
       )
+      dir.create(
+        path = output_path,
+        showWarnings = FALSE
+      )
       output_file <- file.path(
         output_path,
-        "bib.bib"
+        fn_bib
       )
       con <- file(output_file)
       writeLines(

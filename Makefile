@@ -1,6 +1,6 @@
 .PHONY: all build local localforce dotfiles project pkg tinytex clean cleanpkg cleantinytex cleanall coverage lint qmd
 
-all: build latex
+all: build latex qmd
 
 build: pkg clean
 	@echo TinyTex...
@@ -19,6 +19,8 @@ build: pkg clean
 	@Rscript -e "rProject::VignettesPrecompile(\"${PWD}\")"
 	@echo Building project...
 	@Rscript -e "rProject::Build(\"${PWD}\")"
+	@echo Building README.md...
+	@Rscript -e "rProject::ReadMe(\"${PWD}\")"
 	@echo Building website...
 	@Rscript -e "rProject::Site(\"${PWD}\")"
 	@echo Building manual...
@@ -36,7 +38,7 @@ project:
 	@echo Building project...
 	@Rscript tools/make-project.R ${PWD}
 
-pkg: project
+pkg: project dotfiles
 	@echo Installing packages...
 	@Rscript tools/make-packages.R ${PWD}
 
@@ -82,8 +84,9 @@ lint:
 	@Rscript -e "rProject::Lint(\"${PWD}\")"
 
 latex:
+	@echo Compiling latex...
 	@Rscript -e "rProject::LatexMake(\"${PWD}\")"
 
-qmd: lint
-	@Rscript qmd/r-script/prerender.R
-	@quarto render ${PWD}
+qmd:
+	@echo Rendering quarto...
+	@Rscript -e "rProject::Quarto(\"${PWD}\")"
