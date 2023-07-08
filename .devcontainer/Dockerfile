@@ -1,4 +1,4 @@
-FROM ijapesigan/rocker
+FROM ijapesigan/docs
 
 ADD tools /usr/src/local/src
 RUN chmod 777 /usr/src/local/src/setup.sh && \
