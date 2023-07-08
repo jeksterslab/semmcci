@@ -8,6 +8,7 @@
         "vscode": {
             "extensions": [
                 "GitHub.codespaces",
+                "GitHub.copilot",
                 "GitHub.vscode-github-actions",
                 "ms-azuretools.vscode-docker",
                 "ms-vscode.makefile-tools",
@@ -21,18 +22,17 @@
                 "r.plot.useHttpgd": true
             }
         }
-    }
+    },
 
-  // Uncomment to enable RStudio Server
-  // "forwardPorts": [8787],
-  //     "portsAttributes": {
-  //         "8787": {
-  //		       "label": "Rstudio",
-  //		       "requireLocalPort": true,
-  //		       "onAutoForward": "ignore"
-  //         }
-  //     },
-  //
-  // "postAttachCommand": "sudo rstudio-server start"
+    "forwardPorts": [8787],
+        "portsAttributes": {
+            "8787": {
+                "label": "Rstudio",
+                "requireLocalPort": true,
+                "onAutoForward": "ignore"
+            }
+    },
+
+    "postAttachCommand": "sudo rstudio-server start"
 
 }
