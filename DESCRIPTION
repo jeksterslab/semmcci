@@ -24,23 +24,20 @@ Description: Monte Carlo confidence intervals for free and defined parameters
     to the MCStd() function.
     A description of the package and code examples
     are presented in Pesigan and Cheung (2023) <doi:10.3758/s13428-023-02114-4>.
-URL: https://github.com/jeksterslab/semmcci, https://jeksterslab.github.io/semmcci/
+URL: https://github.com/jeksterslab/semmcci,
+        https://jeksterslab.github.io/semmcci/
 BugReports: https://github.com/jeksterslab/semmcci/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
 Depends: R (>= 3.0.0)
-Imports:
-    stats,
-    lavaan,
-    mice
-Suggests:
-    knitr,
-    rmarkdown,
-    testthat,
-    MASS,
-    psych,
-    Amelia,
-    bmemLavaan
+Imports: stats, lavaan, mice
+Suggests: knitr, rmarkdown, testthat, MASS, psych, Amelia, bmemLavaan
+RoxygenNote: 7.2.3
+NeedsCompilation: no
+Packaged: 2023-07-21 15:53:42 UTC; root
+Author: Ivan Jacob Agaloos Pesigan [aut, cre, cph]
+    (<https://orcid.org/0000-0003-4818-8420>),
+  Shu Fai Cheung [ctb] (<https://orcid.org/0000-0002-9871-9448>)
+Maintainer: Ivan Jacob Agaloos Pesigan <r.jeksterslab@gmail.com>
