@@ -6,15 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="semmcci">
-<title>MCStd Function Use Case 5: Difference of R-Squared in Multiple Groups • semmcci</title>
+<title>MCStd Function Use Case 4: Difference of Standardized Regression Coefficients in Multiple Groups • semmcci</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.6/font.css" rel="stylesheet">
-<link href="../deps/JetBrains_Mono-0.4.6/font.css" rel="stylesheet">
-<link href="../deps/Roboto_Slab-0.4.6/font.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.7/font.css" rel="stylesheet">
+<link href="../deps/JetBrains_Mono-0.4.7/font.css" rel="stylesheet">
+<link href="../deps/Roboto_Slab-0.4.7/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="MCStd Function Use Case 5: Difference of R-Squared in Multiple Groups">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="MCStd Function Use Case 4: Difference of Standardized Regression Coefficients in Multiple Groups">
 <meta property="og:description" content="semmcci">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -74,24 +74,26 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>MCStd Function Use Case 5: Difference of R-Squared in Multiple Groups</h1>
+      <img src="" class="logo" alt=""><h1>MCStd Function Use Case 4: Difference of Standardized Regression Coefficients in Multiple Groups</h1>
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2023-07-08</h4>
+            <h4 data-toc-skip class="date">2023-07-21</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/jeksterslab/semmcci/blob/HEAD/vignettes/mcstd_5_difference_rsq_multigroup.Rmd"><code>vignettes/mcstd_5_difference_rsq_multigroup.Rmd</code></a></small>
-      <div class="d-none name"><code>mcstd_5_difference_rsq_multigroup.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/jeksterslab/semmcci/blob/HEAD/vignettes/mcstd-4-difference-regression-coefficients-multigroup.Rmd"><code>vignettes/mcstd-4-difference-regression-coefficients-multigroup.Rmd</code></a></small>
+      <div class="d-none name"><code>mcstd-4-difference-regression-coefficients-multigroup.Rmd</code></div>
     </div>
 
     
     
+<!-- vignettes/mcstd-4-difference-regression-coefficients-multigroup.Rmd is generated from .setup/vignettes/mcstd-4-difference-regression-coefficients-multigroup.Rmd.orig. Please edit that file -->
 <p>To cite <code>semmcci</code> in publications, please use:</p>
 <p>Pesigan, I. J. A., &amp; Cheung, S. F. (2023). Monte Carlo confidence
 intervals for the indirect effect with missing data. <em>Behavior
 Research Methods</em>. <a href="https://doi.org/10.3758/s13428-023-02114-4" class="external-link uri">https://doi.org/10.3758/s13428-023-02114-4</a></p>
 <p>The <code><a href="../reference/MCStd.html">MCStd()</a></code> function is used to generate Monte Carlo
-confidence intervals for differences between <span class="math inline">\(R^{2}\)</span> in multiple groups.</p>
+confidence intervals for differences between standardized regression
+coefficients in multiple groups.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/semmcci">semmcci</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lavaan.ugent.be" class="external-link">lavaan</a></span><span class="op">)</span></span></code></pre></div>
@@ -225,18 +227,7 @@ coefficients.</p>
 <code class="sourceCode R"><span><span class="va">nobs_japan</span></span>
 <span><span class="co">#&gt; [1] 5943</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">nobs_korea</span> <span class="op">&lt;-</span> <span class="fl">5151</span></span>
-<span><span class="va">covs_korea</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span>    <span class="fl">8187.6921</span>, <span class="fl">31.6266</span>, <span class="fl">37.3062</span>, <span class="fl">30.9021</span>,</span>
-<span>    <span class="fl">31.6266</span>, <span class="fl">0.9271</span>, <span class="fl">0.6338</span>, <span class="fl">0.4088</span>,</span>
-<span>    <span class="fl">37.3062</span>, <span class="fl">0.6338</span>, <span class="fl">1.0007</span>, <span class="fl">0.3902</span>,</span>
-<span>    <span class="fl">30.9021</span>, <span class="fl">0.4088</span>, <span class="fl">0.3902</span>, <span class="fl">0.8031</span></span>
-<span>  <span class="op">)</span>,</span>
-<span>  nrow <span class="op">=</span> <span class="fl">4</span></span>
-<span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">covs_korea</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">covs_korea</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">varnames</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="va">covs_korea</span>, digits <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>  caption <span class="op">=</span> <span class="st">"Covariance Matrix for Korea"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -280,33 +271,35 @@ coefficients.</p>
 </tr>
 </tbody>
 </table>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">nobs_korea</span></span>
+<span><span class="co">#&gt; [1] 5151</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="model-specification">Model Specification<a class="anchor" aria-label="anchor" href="#model-specification"></a>
 </h2>
 <p>We regress <code>Y1</code> on <code>X1</code>, <code>X2</code>, and
-<code>X3</code>. We label the error variance <span class="math inline">\(\zeta_{1}\)</span> for the three groups as
-<code>psi1.g1</code>, <code>psi1.g2</code>, and <code>psi1.g3</code>.
-<span class="math inline">\(R^{2}\)</span> is defined using the
-<code>:=</code> operator in the <code>lavaan</code> model syntax using
-the following equation</p>
-<p><span class="math display">\[\begin{equation}
-    R^{2}
-    =
-    1 - \psi^{\ast}
-\end{equation}\]</span></p>
-<p>where <span class="math inline">\(\psi^{\ast}\)</span> is the
-standardized error variance.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code>X3</code>. We label the regression coefficient <span class="math inline">\(\gamma_{1}\)</span> for the three groups as
+<code>gamma1.g1</code>, <code>gamma1.g2</code>, and
+<code>gamma1.g3</code>, <span class="math inline">\(\gamma_{2}\)</span>
+for the three groups as <code>gamma2.g1</code>, <code>gamma2.g2</code>,
+and <code>gamma2.g3</code>, and <span class="math inline">\(\gamma_{3}\)</span> for the three groups as
+<code>gamma3.g1</code>, <code>gamma3.g2</code>, and
+<code>gamma3.g3</code>.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="st">"</span></span>
-<span><span class="st">  Y1 ~ X1 + X2 + X3</span></span>
-<span><span class="st">  Y1 ~~ c(psi1.g1, psi1.g2, psi1.g3) * Y1</span></span>
-<span><span class="st">  rsq.g1 := 1 - psi1.g1</span></span>
-<span><span class="st">  rsq.g2 := 1 - psi1.g2</span></span>
-<span><span class="st">  rsq.g3 := 1 - psi1.g3</span></span>
-<span><span class="st">  rsq.g12 := rsq.g1 - rsq.g2</span></span>
-<span><span class="st">  rsq.g13 := rsq.g1 - rsq.g3</span></span>
-<span><span class="st">  rsq.g23 := rsq.g2 - rsq.g3</span></span>
+<span><span class="st">  Y1 ~ c(gamma1.g1, gamma1.g2, gamma1.g3) * X1</span></span>
+<span><span class="st">  Y1 ~ c(gamma2.g1, gamma2.g2, gamma2.g3) * X2</span></span>
+<span><span class="st">  Y1 ~ c(gamma3.g1, gamma3.g2, gamma3.g3) * X3</span></span>
+<span><span class="st">  gamma1.g12 := gamma1.g1 - gamma1.g2</span></span>
+<span><span class="st">  gamma1.g13 := gamma1.g1 - gamma1.g3</span></span>
+<span><span class="st">  gamma1.g23 := gamma1.g2 - gamma1.g3</span></span>
+<span><span class="st">  gamma2.g12 := gamma2.g1 - gamma2.g2</span></span>
+<span><span class="st">  gamma2.g13 := gamma2.g1 - gamma2.g3</span></span>
+<span><span class="st">  gamma2.g23 := gamma2.g2 - gamma2.g3</span></span>
+<span><span class="st">  gamma3.g12 := gamma3.g1 - gamma3.g2</span></span>
+<span><span class="st">  gamma3.g13 := gamma3.g1 - gamma3.g3</span></span>
+<span><span class="st">  gamma3.g23 := gamma3.g2 - gamma3.g3</span></span>
 <span><span class="st">"</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -325,7 +318,7 @@ exogenous observed variables if they are assumed to be random. If
 covariances of the exogenous observed variables to the sample
 values.</p>
 </blockquote>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lavaan/man/sem.html" class="external-link">sem</a></span><span class="op">(</span></span>
 <span>  model <span class="op">=</span> <span class="va">model</span>, mimic <span class="op">=</span> <span class="st">"eqs"</span>, fixed.x <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  sample.cov <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">covs_hongkong</span>, <span class="va">covs_japan</span>, <span class="va">covs_korea</span><span class="op">)</span>,</span>
@@ -338,53 +331,50 @@ values.</p>
 <p>Standardized Monte Carlo Confidence intervals can be generated by
 passing the result of the <code><a href="../reference/MC.html">MC()</a></code> function to the
 <code><a href="../reference/MCStd.html">MCStd()</a></code> function.</p>
-<blockquote>
-<p><strong>Note:</strong> The parameterization of <span class="math inline">\(R^{2}\)</span> and above should only be
-interpreted using the output of the <code><a href="../reference/MCStd.html">MCStd()</a></code> function since
-the input in the functions defined by <code>:=</code> require
-standardized estimates.</p>
-</blockquote>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">unstd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MC.html">MC</a></span><span class="op">(</span><span class="va">fit</span>, R <span class="op">=</span> <span class="fl">20000L</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/MCStd.html">MCStd</a></span><span class="op">(</span><span class="va">unstd</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Standardized Monte Carlo Confidence Intervals</span></span>
-<span><span class="co">#&gt;               est     se     R    2.5%   97.5%</span></span>
-<span><span class="co">#&gt; Y1~X1      0.0568 0.0190 20000  0.0191  0.0934</span></span>
-<span><span class="co">#&gt; Y1~X2      0.1985 0.0186 20000  0.1624  0.2348</span></span>
-<span><span class="co">#&gt; Y1~X3      0.2500 0.0149 20000  0.2210  0.2794</span></span>
-<span><span class="co">#&gt; psi1.g1    0.8215 0.0103 20000  0.8003  0.8409</span></span>
-<span><span class="co">#&gt; X1~~X1     1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; X1~~X2     0.6917 0.0076 20000  0.6764  0.7064</span></span>
-<span><span class="co">#&gt; X1~~X3     0.4702 0.0114 20000  0.4478  0.4923</span></span>
-<span><span class="co">#&gt; X2~~X2     1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; X2~~X3     0.4471 0.0118 20000  0.4239  0.4702</span></span>
-<span><span class="co">#&gt; X3~~X3     1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; Y1~X1.g2   0.1390 0.0163 20000  0.1073  0.1711</span></span>
-<span><span class="co">#&gt; Y1~X2.g2   0.1792 0.0156 20000  0.1489  0.2098</span></span>
-<span><span class="co">#&gt; Y1~X3.g2   0.1688 0.0139 20000  0.1415  0.1959</span></span>
-<span><span class="co">#&gt; psi1.g2    0.8371 0.0088 20000  0.8191  0.8537</span></span>
-<span><span class="co">#&gt; X1~~X1.g2  1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; X1~~X2.g2  0.6525 0.0075 20000  0.6378  0.6670</span></span>
-<span><span class="co">#&gt; X1~~X3.g2  0.5023 0.0098 20000  0.4830  0.5214</span></span>
-<span><span class="co">#&gt; X2~~X2.g2  1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; X2~~X3.g2  0.4452 0.0104 20000  0.4248  0.4655</span></span>
-<span><span class="co">#&gt; X3~~X3.g2  1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; Y1~X1.g3   0.0863 0.0170 20000  0.0525  0.1193</span></span>
-<span><span class="co">#&gt; Y1~X2.g3   0.2557 0.0164 20000  0.2235  0.2878</span></span>
-<span><span class="co">#&gt; Y1~X3.g3   0.2289 0.0139 20000  0.2017  0.2566</span></span>
-<span><span class="co">#&gt; psi1.g3    0.7761 0.0102 20000  0.7557  0.7954</span></span>
-<span><span class="co">#&gt; X1~~X1.g3  1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; X1~~X2.g3  0.6580 0.0079 20000  0.6424  0.6735</span></span>
-<span><span class="co">#&gt; X1~~X3.g3  0.4738 0.0108 20000  0.4523  0.4947</span></span>
-<span><span class="co">#&gt; X2~~X2.g3  1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; X2~~X3.g3  0.4353 0.0113 20000  0.4125  0.4569</span></span>
-<span><span class="co">#&gt; X3~~X3.g3  1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; rsq.g1     0.1785 0.0103 20000  0.1591  0.1997</span></span>
-<span><span class="co">#&gt; rsq.g2     0.1629 0.0088 20000  0.1463  0.1809</span></span>
-<span><span class="co">#&gt; rsq.g3     0.2239 0.0102 20000  0.2046  0.2443</span></span>
-<span><span class="co">#&gt; rsq.g12    0.0155 0.0136 20000 -0.0109  0.0426</span></span>
-<span><span class="co">#&gt; rsq.g13   -0.0455 0.0145 20000 -0.0735 -0.0167</span></span>
-<span><span class="co">#&gt; rsq.g23   -0.0610 0.0134 20000 -0.0873 -0.0349</span></span></code></pre></div>
+<span><span class="co">#&gt;                est     se     R    2.5%   97.5%</span></span>
+<span><span class="co">#&gt; gamma1.g1   0.0568 0.0189 20000  0.0193  0.0938</span></span>
+<span><span class="co">#&gt; gamma2.g1   0.1985 0.0189 20000  0.1612  0.2356</span></span>
+<span><span class="co">#&gt; gamma3.g1   0.2500 0.0150 20000  0.2204  0.2791</span></span>
+<span><span class="co">#&gt; Y1~~Y1      0.8215 0.0102 20000  0.8008  0.8410</span></span>
+<span><span class="co">#&gt; X1~~X1      1.0000 0.0000 20000  1.0000  1.0000</span></span>
+<span><span class="co">#&gt; X1~~X2      0.6917 0.0076 20000  0.6764  0.7065</span></span>
+<span><span class="co">#&gt; X1~~X3      0.4702 0.0113 20000  0.4477  0.4920</span></span>
+<span><span class="co">#&gt; X2~~X2      1.0000 0.0000 20000  1.0000  1.0000</span></span>
+<span><span class="co">#&gt; X2~~X3      0.4471 0.0117 20000  0.4237  0.4696</span></span>
+<span><span class="co">#&gt; X3~~X3      1.0000 0.0000 20000  1.0000  1.0000</span></span>
+<span><span class="co">#&gt; gamma1.g2   0.1390 0.0165 20000  0.1063  0.1712</span></span>
+<span><span class="co">#&gt; gamma2.g2   0.1792 0.0159 20000  0.1483  0.2103</span></span>
+<span><span class="co">#&gt; gamma3.g2   0.1688 0.0138 20000  0.1413  0.1955</span></span>
+<span><span class="co">#&gt; Y1~~Y1.g2   0.8371 0.0087 20000  0.8194  0.8536</span></span>
+<span><span class="co">#&gt; X1~~X1.g2   1.0000 0.0000 20000  1.0000  1.0000</span></span>
+<span><span class="co">#&gt; X1~~X2.g2   0.6525 0.0074 20000  0.6378  0.6669</span></span>
+<span><span class="co">#&gt; X1~~X3.g2   0.5023 0.0097 20000  0.4828  0.5210</span></span>
+<span><span class="co">#&gt; X2~~X2.g2   1.0000 0.0000 20000  1.0000  1.0000</span></span>
+<span><span class="co">#&gt; X2~~X3.g2   0.4452 0.0104 20000  0.4246  0.4651</span></span>
+<span><span class="co">#&gt; X3~~X3.g2   1.0000 0.0000 20000  1.0000  1.0000</span></span>
+<span><span class="co">#&gt; gamma1.g3   0.0863 0.0169 20000  0.0529  0.1190</span></span>
+<span><span class="co">#&gt; gamma2.g3   0.2557 0.0162 20000  0.2235  0.2873</span></span>
+<span><span class="co">#&gt; gamma3.g3   0.2289 0.0139 20000  0.2022  0.2560</span></span>
+<span><span class="co">#&gt; Y1~~Y1.g3   0.7761 0.0102 20000  0.7556  0.7957</span></span>
+<span><span class="co">#&gt; X1~~X1.g3   1.0000 0.0000 20000  1.0000  1.0000</span></span>
+<span><span class="co">#&gt; X1~~X2.g3   0.6580 0.0079 20000  0.6422  0.6733</span></span>
+<span><span class="co">#&gt; X1~~X3.g3   0.4738 0.0108 20000  0.4523  0.4948</span></span>
+<span><span class="co">#&gt; X2~~X2.g3   1.0000 0.0000 20000  1.0000  1.0000</span></span>
+<span><span class="co">#&gt; X2~~X3.g3   0.4353 0.0113 20000  0.4128  0.4572</span></span>
+<span><span class="co">#&gt; X3~~X3.g3   1.0000 0.0000 20000  1.0000  1.0000</span></span>
+<span><span class="co">#&gt; gamma1.g12 -0.0821 0.0251 20000 -0.1318 -0.0327</span></span>
+<span><span class="co">#&gt; gamma1.g13 -0.0294 0.0254 20000 -0.0797  0.0199</span></span>
+<span><span class="co">#&gt; gamma1.g23  0.0527 0.0236 20000  0.0064  0.0992</span></span>
+<span><span class="co">#&gt; gamma2.g12  0.0193 0.0246 20000 -0.0291  0.0676</span></span>
+<span><span class="co">#&gt; gamma2.g13 -0.0572 0.0250 20000 -0.1064 -0.0076</span></span>
+<span><span class="co">#&gt; gamma2.g23 -0.0765 0.0228 20000 -0.1214 -0.0320</span></span>
+<span><span class="co">#&gt; gamma3.g12  0.0811 0.0205 20000  0.0412  0.1217</span></span>
+<span><span class="co">#&gt; gamma3.g13  0.0211 0.0205 20000 -0.0199  0.0605</span></span>
+<span><span class="co">#&gt; gamma3.g23 -0.0601 0.0196 20000 -0.0991 -0.0222</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>

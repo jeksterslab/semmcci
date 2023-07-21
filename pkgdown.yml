@@ -2,25 +2,25 @@ pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
-  benchmark_complete: benchmark_complete.html
-  benchmark_fiml: benchmark_fiml.html
-  benchmark_mi: benchmark_mi.html
-  example_1_simple: example_1_simple.html
-  example_2_serial: example_2_serial.html
-  example_3_latent: example_3_latent.html
-  example_4_1_simple_miss_fiml: example_4_1_simple_miss_fiml.html
-  example_4_2_simple_miss_mi: example_4_2_simple_miss_mi.html
-  example_5_composite_reliability: example_5_composite_reliability.html
-  mcstd_1_std_regression: mcstd_1_std_regression.html
-  mcstd_2_difference_regression_coefficients: mcstd_2_difference_regression_coefficients.html
-  mcstd_3_rsqr: mcstd_3_rsqr.html
-  mcstd_4_difference_regression_coefficients_multigroup: mcstd_4_difference_regression_coefficients_multigroup.html
-  mcstd_5_difference_rsq_multigroup: mcstd_5_difference_rsq_multigroup.html
-  methods_mc: methods_mc.html
-  methods_mc_mi: methods_mc_mi.html
+  benchmark-complete: benchmark-complete.html
+  benchmark-fiml: benchmark-fiml.html
+  benchmark-mi: benchmark-mi.html
+  example-1-simple: example-1-simple.html
+  example-2-serial: example-2-serial.html
+  example-3-latent: example-3-latent.html
+  example-4-1-simple-miss-fiml: example-4-1-simple-miss-fiml.html
+  example-4-2-simple-miss-mi: example-4-2-simple-miss-mi.html
+  example-5-composite-reliability: example-5-composite-reliability.html
+  mcstd-1-std-regression: mcstd-1-std-regression.html
+  mcstd-2-difference-regression-coefficients: mcstd-2-difference-regression-coefficients.html
+  mcstd-3-rsqr: mcstd-3-rsqr.html
+  mcstd-4-difference-regression-coefficients-multigroup: mcstd-4-difference-regression-coefficients-multigroup.html
+  mcstd-5-difference-rsq-multigroup: mcstd-5-difference-rsq-multigroup.html
+  methods-mc-mi: methods-mc-mi.html
+  methods-mc: methods-mc.html
   semmcci: semmcci.html
-  session: session.html
-last_built: 2023-07-08T14:36Z
+  session: session/session.html
+last_built: 2023-07-21T15:47Z
 urls:
   reference: https://github.com/jeksterslab/semmcci/reference
   article: https://github.com/jeksterslab/semmcci/articles

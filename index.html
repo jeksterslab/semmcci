@@ -19,9 +19,9 @@
 <title>Monte Carlo Confidence Intervals in Structural Equation Modeling • semmcci</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="deps/Roboto-0.4.6/font.css" rel="stylesheet">
-<link href="deps/JetBrains_Mono-0.4.6/font.css" rel="stylesheet">
-<link href="deps/Roboto_Slab-0.4.6/font.css" rel="stylesheet">
+<script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="deps/Roboto-0.4.7/font.css" rel="stylesheet">
+<link href="deps/JetBrains_Mono-0.4.7/font.css" rel="stylesheet">
+<link href="deps/Roboto_Slab-0.4.7/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Monte Carlo Confidence Intervals in Structural Equation Modeling">
@@ -92,8 +92,8 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="semmcci">semmcci<a class="anchor" aria-label="anchor" href="#semmcci"></a>
 </h1></div>
-<p>Ivan Jacob Agaloos Pesigan 2023-07-08</p>
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+<p>Ivan Jacob Agaloos Pesigan 2023-07-21</p>
+<!-- README.md is generated from .setup/readme/README.Rmd. Please edit that file -->
 <!-- badges: start -->
 
 <div class="section level2">
@@ -126,12 +126,12 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        X                  M                  Y           </span></span>
-<span><span class="co">#&gt;  Min.   :-3.19956   Min.   :-3.37128   Min.   :-3.61432  </span></span>
-<span><span class="co">#&gt;  1st Qu.:-0.63268   1st Qu.:-0.70516   1st Qu.:-0.66921  </span></span>
-<span><span class="co">#&gt;  Median : 0.02823   Median : 0.02825   Median :-0.04833  </span></span>
-<span><span class="co">#&gt;  Mean   : 0.00269   Mean   :-0.01992   Mean   :-0.01538  </span></span>
-<span><span class="co">#&gt;  3rd Qu.: 0.65754   3rd Qu.: 0.65240   3rd Qu.: 0.65293  </span></span>
-<span><span class="co">#&gt;  Max.   : 3.47091   Max.   : 2.93497   Max.   : 3.09950  </span></span>
+<span><span class="co">#&gt;  Min.   :-2.73695   Min.   :-3.05341   Min.   :-2.58132  </span></span>
+<span><span class="co">#&gt;  1st Qu.:-0.71712   1st Qu.:-0.70651   1st Qu.:-0.72246  </span></span>
+<span><span class="co">#&gt;  Median :-0.06042   Median :-0.01939   Median :-0.02987  </span></span>
+<span><span class="co">#&gt;  Mean   :-0.01927   Mean   :-0.02108   Mean   :-0.02520  </span></span>
+<span><span class="co">#&gt;  3rd Qu.: 0.68488   3rd Qu.: 0.69301   3rd Qu.: 0.64288  </span></span>
+<span><span class="co">#&gt;  Max.   : 3.61595   Max.   : 3.28592   Max.   : 3.27456  </span></span>
 <span><span class="co">#&gt;  NA's   :100        NA's   :100        NA's   :100</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -160,18 +160,18 @@
 <span><span class="va">mc</span></span>
 <span><span class="co">#&gt; Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;              est     se     R    2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp        0.2335 0.0293 20000  0.1755 0.2906</span></span>
-<span><span class="co">#&gt; b         0.5113 0.0294 20000  0.4538 0.5690</span></span>
-<span><span class="co">#&gt; a         0.4809 0.0286 20000  0.4252 0.5375</span></span>
-<span><span class="co">#&gt; X~~X      1.0591 0.0492 20000  0.9628 1.1562</span></span>
-<span><span class="co">#&gt; Y~~Y      0.5542 0.0268 20000  0.5022 0.6075</span></span>
-<span><span class="co">#&gt; M~~M      0.7564 0.0357 20000  0.6865 0.8260</span></span>
-<span><span class="co">#&gt; Y~1      -0.0127 0.0254 20000 -0.0628 0.0366</span></span>
-<span><span class="co">#&gt; M~1      -0.0223 0.0288 20000 -0.0793 0.0334</span></span>
-<span><span class="co">#&gt; X~1       0.0025 0.0338 20000 -0.0637 0.0697</span></span>
-<span><span class="co">#&gt; indirect  0.2458 0.0201 20000  0.2076 0.2868</span></span>
-<span><span class="co">#&gt; direct    0.2335 0.0293 20000  0.1755 0.2906</span></span>
-<span><span class="co">#&gt; total     0.4794 0.0285 20000  0.4229 0.5355</span></span></code></pre></div>
+<span><span class="co">#&gt; cp        0.2627 0.0328 20000  0.1984 0.3265</span></span>
+<span><span class="co">#&gt; b         0.4607 0.0319 20000  0.3980 0.5234</span></span>
+<span><span class="co">#&gt; a         0.5536 0.0286 20000  0.4975 0.6100</span></span>
+<span><span class="co">#&gt; X~~X      1.0138 0.0472 20000  0.9229 1.1057</span></span>
+<span><span class="co">#&gt; Y~~Y      0.5836 0.0284 20000  0.5281 0.6387</span></span>
+<span><span class="co">#&gt; M~~M      0.7192 0.0352 20000  0.6496 0.7884</span></span>
+<span><span class="co">#&gt; Y~1      -0.0113 0.0258 20000 -0.0619 0.0392</span></span>
+<span><span class="co">#&gt; M~1      -0.0058 0.0286 20000 -0.0617 0.0505</span></span>
+<span><span class="co">#&gt; X~1      -0.0226 0.0329 20000 -0.0877 0.0417</span></span>
+<span><span class="co">#&gt; indirect  0.2550 0.0219 20000  0.2138 0.2992</span></span>
+<span><span class="co">#&gt; direct    0.2627 0.0328 20000  0.1984 0.3265</span></span>
+<span><span class="co">#&gt; total     0.5177 0.0293 20000  0.4606 0.5742</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="monte-carlo-confidence-intervals---multiple-imputation">Monte Carlo Confidence Intervals - Multiple Imputation<a class="anchor" aria-label="anchor" href="#monte-carlo-confidence-intervals---multiple-imputation"></a>
@@ -194,15 +194,15 @@
 <span><span class="va">mcmi</span></span>
 <span><span class="co">#&gt; Monte Carlo Confidence Intervals (Multiple Imputation Estimates)</span></span>
 <span><span class="co">#&gt;             est     se     R   2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp       0.2328 0.0299 20000 0.1741 0.2917</span></span>
-<span><span class="co">#&gt; b        0.5113 0.0301 20000 0.4529 0.5701</span></span>
-<span><span class="co">#&gt; a        0.4811 0.0287 20000 0.4241 0.5374</span></span>
-<span><span class="co">#&gt; X~~X     1.0617 0.0495 20000 0.9650 1.1591</span></span>
-<span><span class="co">#&gt; Y~~Y     0.5533 0.0272 20000 0.5005 0.6069</span></span>
-<span><span class="co">#&gt; M~~M     0.7568 0.0361 20000 0.6856 0.8278</span></span>
-<span><span class="co">#&gt; indirect 0.2460 0.0204 20000 0.2070 0.2864</span></span>
-<span><span class="co">#&gt; direct   0.2328 0.0299 20000 0.1741 0.2917</span></span>
-<span><span class="co">#&gt; total    0.4788 0.0285 20000 0.4236 0.5349</span></span></code></pre></div>
+<span><span class="co">#&gt; cp       0.2627 0.0334 20000 0.1976 0.3279</span></span>
+<span><span class="co">#&gt; b        0.4596 0.0340 20000 0.3935 0.5259</span></span>
+<span><span class="co">#&gt; a        0.5533 0.0292 20000 0.4955 0.6103</span></span>
+<span><span class="co">#&gt; X~~X     1.0149 0.0473 20000 0.9225 1.1079</span></span>
+<span><span class="co">#&gt; Y~~Y     0.5830 0.0284 20000 0.5278 0.6387</span></span>
+<span><span class="co">#&gt; M~~M     0.7202 0.0349 20000 0.6518 0.7888</span></span>
+<span><span class="co">#&gt; indirect 0.2543 0.0231 20000 0.2106 0.3013</span></span>
+<span><span class="co">#&gt; direct   0.2627 0.0334 20000 0.1976 0.3279</span></span>
+<span><span class="co">#&gt; total    0.5170 0.0288 20000 0.4600 0.5729</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="standardized-monte-carlo-confidence-intervals">Standardized Monte Carlo Confidence Intervals<a class="anchor" aria-label="anchor" href="#standardized-monte-carlo-confidence-intervals"></a>
@@ -212,28 +212,28 @@
 <code class="sourceCode R"><span><span class="fu"><a href="reference/MCStd.html">MCStd</a></span><span class="op">(</span><span class="va">mc</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Standardized Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;              est     se     R   2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp        0.2409 0.0298 20000 0.1813 0.2980</span></span>
-<span><span class="co">#&gt; b         0.5128 0.0267 20000 0.4602 0.5639</span></span>
-<span><span class="co">#&gt; a         0.4946 0.0256 20000 0.4440 0.5440</span></span>
+<span><span class="co">#&gt; cp        0.2634 0.0322 20000 0.2002 0.3263</span></span>
+<span><span class="co">#&gt; b         0.4657 0.0301 20000 0.4057 0.5241</span></span>
+<span><span class="co">#&gt; a         0.5492 0.0240 20000 0.5009 0.5949</span></span>
 <span><span class="co">#&gt; X~~X      1.0000 0.0000 20000 1.0000 1.0000</span></span>
-<span><span class="co">#&gt; Y~~Y      0.5568 0.0251 20000 0.5068 0.6058</span></span>
-<span><span class="co">#&gt; M~~M      0.7554 0.0253 20000 0.7040 0.8028</span></span>
-<span><span class="co">#&gt; indirect -0.0127 0.0188 20000 0.2170 0.2910</span></span>
-<span><span class="co">#&gt; direct   -0.0222 0.0298 20000 0.1813 0.2980</span></span>
-<span><span class="co">#&gt; total     0.0024 0.0258 20000 0.4426 0.5438</span></span></code></pre></div>
+<span><span class="co">#&gt; Y~~Y      0.5790 0.0256 20000 0.5282 0.6293</span></span>
+<span><span class="co">#&gt; M~~M      0.6983 0.0264 20000 0.6461 0.7491</span></span>
+<span><span class="co">#&gt; indirect -0.0113 0.0202 20000 0.2166 0.2959</span></span>
+<span><span class="co">#&gt; direct   -0.0057 0.0322 20000 0.2002 0.3263</span></span>
+<span><span class="co">#&gt; total    -0.0224 0.0250 20000 0.4687 0.5663</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/MCStd.html">MCStd</a></span><span class="op">(</span><span class="va">mcmi</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Standardized Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;             est     se     R   2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp       0.2450 0.0307 20000 0.1802 0.3000</span></span>
-<span><span class="co">#&gt; b        0.5189 0.0277 20000 0.4587 0.5663</span></span>
-<span><span class="co">#&gt; a        0.5031 0.0260 20000 0.4429 0.5454</span></span>
+<span><span class="co">#&gt; cp       0.2614 0.0331 20000 0.1985 0.3278</span></span>
+<span><span class="co">#&gt; b        0.4677 0.0319 20000 0.4024 0.5266</span></span>
+<span><span class="co">#&gt; a        0.5549 0.0245 20000 0.4992 0.5953</span></span>
 <span><span class="co">#&gt; X~~X     1.0000 0.0000 20000 1.0000 1.0000</span></span>
-<span><span class="co">#&gt; Y~~Y     0.5429 0.0250 20000 0.5071 0.6053</span></span>
-<span><span class="co">#&gt; M~~M     0.7469 0.0258 20000 0.7026 0.8038</span></span>
-<span><span class="co">#&gt; indirect 0.2610 0.0190 20000 0.2168 0.2915</span></span>
-<span><span class="co">#&gt; direct   0.2450 0.0307 20000 0.1802 0.3000</span></span>
-<span><span class="co">#&gt; total    0.5060 0.0261 20000 0.4416 0.5444</span></span></code></pre></div>
+<span><span class="co">#&gt; Y~~Y     0.5773 0.0257 20000 0.5285 0.6291</span></span>
+<span><span class="co">#&gt; M~~M     0.6921 0.0269 20000 0.6456 0.7508</span></span>
+<span><span class="co">#&gt; indirect 0.2595 0.0214 20000 0.2140 0.2981</span></span>
+<span><span class="co">#&gt; direct   0.2614 0.0331 20000 0.1985 0.3278</span></span>
+<span><span class="co">#&gt; total    0.5209 0.0249 20000 0.4686 0.5658</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -246,6 +246,11 @@
 <h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
 </h2>
 <p>See <a href="https://jeksterslab.github.io/semmcci/index.html" class="external-link">GitHub Pages</a> for package documentation.</p>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-RCoreTeam-2023" class="csl-entry">
+R Core Team. (2023). <em>R: A language and environment for statistical computing</em>. R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="external-link uri">https://www.R-project.org/</a>
+</div>
+</div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -284,12 +289,14 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://cran.r-project.org/package=semmcci" class="external-link"><img src="https://www.r-pkg.org/badges/version/semmcci" alt="CRAN Status"></a></li>
-<li><a href="https://jeksterslab.r-universe.dev" class="external-link"><img src="https://jeksterslab.r-universe.dev/badges/semmcci" alt="R-Universe Status"></a></li>
-<li><a href="https://doi.org/10.3758/s13428-023-02114-4" class="external-link"><img src="https://zenodo.org/badge/DOI/10.3758/s13428-023-02114-4.svg" alt="DOI"></a></li>
-<li><a href="https://github.com/jeksterslab/semmcci/actions"><img src="https://github.com/jeksterslab/semmcci/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yaml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yaml/badge.svg" alt="test-coverage"></a></li>
-<li><a href="https://github.com/jeksterslab/semmcci/actions/workflows/lint.yaml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/lint.yaml/badge.svg" alt="lint"></a></li>
+<li><a href="https://github.com/jeksterslab/semmcci/actions/workflows/make.yml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/make.yml/badge.svg" alt="Make Project"></a></li>
+<li><a href="https://github.com/jeksterslab/semmcci/actions/workflows/check-full.yml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/check-full.yml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yml/badge.svg" alt="R Package Test Coverage"></a></li>
+<li><a href="https://github.com/jeksterslab/semmcci/actions/workflows/lint.yml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/lint.yml/badge.svg" alt="Lint R Package"></a></li>
+<li><a href="https://github.com/jeksterslab/semmcci/actions/workflows/pkgdown-gh-pages.yml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/pkgdown-gh-pages.yml/badge.svg" alt="Package Website (GitHub Pages)"></a></li>
+<li><a href="https://github.com/jeksterslab/semmcci/actions/workflows/latex.yml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/latex.yml/badge.svg" alt="Compile LaTeX"></a></li>
+<li><a href="https://github.com/jeksterslab/semmcci/actions/workflows/shellcheck.yml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/shellcheck.yml/badge.svg" alt="Shell Check"></a></li>
+<li><a href="https://github.com/jeksterslab/semmcci/actions/workflows/pages/pages-build-deployment"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/pages/pages-build-deployment/badge.svg" alt="pages-build-deployment"></a></li>
 <li><a href="https://codecov.io/gh/jeksterslab/semmcci" class="external-link"><img src="https://codecov.io/gh/jeksterslab/semmcci/branch/main/graph/badge.svg?token=KVLUET3DJ6" alt="codecov"></a></li>
 </ul>
 </div>
