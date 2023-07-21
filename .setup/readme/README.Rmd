@@ -26,8 +26,6 @@ knitr::opts_chunk$set(
 [![R Package Test Coverage](https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yml)
 [![Lint R Package](https://github.com/jeksterslab/semmcci/actions/workflows/lint.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/lint.yml)
 [![Package Website (GitHub Pages)](https://github.com/jeksterslab/semmcci/actions/workflows/pkgdown-gh-pages.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/pkgdown-gh-pages.yml)
-[![Quarto Website (GitHub Pages)](https://github.com/jeksterslab/semmcci/actions/workflows/quarto-gh-pages.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/quarto-gh-pages.yml)
-[![Quarto Website (Quarto Pub)](https://github.com/jeksterslab/semmcci/actions/workflows/quarto-quarto-pub.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/quarto-quarto-pub.yml)
 [![Compile LaTeX](https://github.com/jeksterslab/semmcci/actions/workflows/latex.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/latex.yml)
 [![Shell Check](https://github.com/jeksterslab/semmcci/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/shellcheck.yml)
 [![pages-build-deployment](https://github.com/jeksterslab/semmcci/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/pages/pages-build-deployment)
