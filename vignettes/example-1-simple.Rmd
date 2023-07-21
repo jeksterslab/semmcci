@@ -29,7 +29,7 @@ through a mediating variable `M`.
 This mediating or indirect effect
 is a product of path coefficients from the fitted model.
 
-![The Simple Mediation Model](https://raw.githubusercontent.com/jeksterslab/semmcci/main/latexsrc/figures/png/simple.png)
+![The Simple Mediation Model](https://raw.githubusercontent.com/jeksterslab/semmcci/main/.setup/latex/figures/png/simple.png)
 
 
 ```r
@@ -99,15 +99,15 @@ to generate Monte Carlo confidence intervals.
 MC(fit, R = 20000L, alpha = 0.05)
 #> Monte Carlo Confidence Intervals
 #>             est     se     R   2.5%  97.5%
-#> cp       0.2333 0.0262 20000 0.1815 0.2840
-#> b        0.5082 0.0271 20000 0.4554 0.5617
-#> a        0.4820 0.0266 20000 0.4294 0.5335
-#> Y~~Y     0.5462 0.0246 20000 0.4982 0.5946
-#> M~~M     0.7527 0.0339 20000 0.6868 0.8196
+#> cp       0.2333 0.0259 20000 0.1823 0.2839
+#> b        0.5082 0.0269 20000 0.4550 0.5611
+#> a        0.4820 0.0264 20000 0.4311 0.5340
+#> Y~~Y     0.5462 0.0242 20000 0.4982 0.5937
+#> M~~M     0.7527 0.0336 20000 0.6870 0.8188
 #> X~~X     1.0590 0.0000 20000 1.0590 1.0590
-#> indirect 0.2449 0.0187 20000 0.2095 0.2826
-#> direct   0.2333 0.0262 20000 0.1815 0.2840
-#> total    0.4782 0.0264 20000 0.4262 0.5295
+#> indirect 0.2449 0.0186 20000 0.2096 0.2828
+#> direct   0.2333 0.0259 20000 0.1823 0.2839
+#> total    0.4782 0.0262 20000 0.4271 0.5295
 ```
 
 ## Standardized Monte Carlo Confidence Intervals
@@ -133,15 +133,15 @@ unstd <- MC(fit, R = 20000L, alpha = 0.05)
 MCStd(unstd, alpha = 0.05)
 #> Standardized Monte Carlo Confidence Intervals
 #>             est     se     R   2.5%  97.5%
-#> cp       0.2422 0.0268 20000 0.1886 0.2946
-#> b        0.5123 0.0243 20000 0.4639 0.5600
-#> a        0.4963 0.0241 20000 0.4477 0.5416
-#> Y~~Y     0.5558 0.0232 20000 0.5101 0.6008
-#> M~~M     0.7537 0.0238 20000 0.7066 0.7996
+#> cp       0.2422 0.0269 20000 0.1891 0.2936
+#> b        0.5123 0.0246 20000 0.4639 0.5602
+#> a        0.4963 0.0238 20000 0.4483 0.5416
+#> Y~~Y     0.5558 0.0234 20000 0.5097 0.6014
+#> M~~M     0.7537 0.0236 20000 0.7067 0.7990
 #> X~~X     1.0000 0.0000 20000 1.0000 1.0000
-#> indirect 0.2542 0.0175 20000 0.2201 0.2891
-#> direct   0.2422 0.0268 20000 0.1886 0.2946
-#> total    0.4964 0.0240 20000 0.4476 0.5424
+#> indirect 0.2542 0.0175 20000 0.2205 0.2889
+#> direct   0.2422 0.0269 20000 0.1891 0.2936
+#> total    0.4964 0.0239 20000 0.4476 0.5417
 ```
 
 ## Standardized Monte Carlo Confidence Intervals - An Alternative Approach
@@ -225,13 +225,13 @@ The row `indirect_std` corresponds to the confidence intervals for the standardi
 MC(fit, R = 20000L, alpha = 0.05)
 #> Monte Carlo Confidence Intervals
 #>                 est     se     R   2.5%  97.5%
-#> cp           0.2333 0.0262 20000 0.1815 0.2846
-#> b            0.5082 0.0270 20000 0.4555 0.5604
-#> a            0.4820 0.0266 20000 0.4303 0.5340
-#> s2_X         1.0590 0.0475 20000 0.9642 1.1517
-#> s2_em        0.7527 0.0338 20000 0.6862 0.8191
-#> s2_ey        0.5462 0.0243 20000 0.4984 0.5934
-#> indirect_std 0.2542 0.0174 20000 0.2205 0.2879
+#> cp           0.2333 0.0261 20000 0.1825 0.2848
+#> b            0.5082 0.0271 20000 0.4553 0.5609
+#> a            0.4820 0.0265 20000 0.4303 0.5336
+#> s2_X         1.0590 0.0472 20000 0.9668 1.1528
+#> s2_em        0.7527 0.0338 20000 0.6858 0.8181
+#> s2_ey        0.5462 0.0247 20000 0.4977 0.5950
+#> indirect_std 0.2542 0.0175 20000 0.2205 0.2892
 ```
 
 ## References

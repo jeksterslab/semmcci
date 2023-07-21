@@ -65,7 +65,7 @@ $\alpha_{1}$ is the intercept,
 and $\gamma_{1}$, $\gamma_{2}$, and $\gamma_{3}$
 are regression coefficients.
 
-![A Three-Regressor Multiple Regression Model (Covariance Structure)](https://raw.githubusercontent.com/jeksterslab/semmcci/main/latexsrc/figures/png/kwan-2011-example-1.png)
+![A Three-Regressor Multiple Regression Model (Covariance Structure)](https://raw.githubusercontent.com/jeksterslab/semmcci/main/.setup/latex/figures/png/kwan-2011-example-1.png)
 
 
 ```
@@ -137,19 +137,19 @@ unstd <- MC(fit, R = 20000L, alpha = 0.05)
 MCStd(unstd, alpha = 0.05)
 #> Standardized Monte Carlo Confidence Intervals
 #>             est     se     R    2.5%  97.5%
-#> gamma1   0.1207 0.0902 20000 -0.0564 0.2978
-#> gamma2   0.0491 0.0906 20000 -0.1320 0.2248
-#> gamma3   0.2194 0.0718 20000  0.0756 0.3568
-#> Y1~~Y1   0.9002 0.0406 20000  0.8000 0.9586
+#> gamma1   0.1207 0.0897 20000 -0.0572 0.2954
+#> gamma2   0.0491 0.0907 20000 -0.1284 0.2265
+#> gamma3   0.2194 0.0708 20000  0.0770 0.3532
+#> Y1~~Y1   0.9002 0.0407 20000  0.8007 0.9579
 #> X1~~X1   1.0000 0.0000 20000  1.0000 1.0000
-#> X1~~X2   0.6606 0.0407 20000  0.5732 0.7332
-#> X1~~X3   0.3547 0.0622 20000  0.2274 0.4719
+#> X1~~X2   0.6606 0.0408 20000  0.5726 0.7345
+#> X1~~X3   0.3547 0.0633 20000  0.2242 0.4730
 #> X2~~X2   1.0000 0.0000 20000  1.0000 1.0000
-#> X2~~X3   0.3743 0.0618 20000  0.2463 0.4902
+#> X2~~X3   0.3743 0.0616 20000  0.2474 0.4890
 #> X3~~X3   1.0000 0.0000 20000  1.0000 1.0000
-#> gamma12  0.0716 0.1628 20000 -0.2429 0.3919
-#> gamma13 -0.0987 0.1251 20000 -0.3396 0.1494
-#> gamma23 -0.1703 0.1269 20000 -0.4161 0.0777
+#> gamma12  0.0716 0.1622 20000 -0.2464 0.3860
+#> gamma13 -0.0987 0.1233 20000 -0.3382 0.1453
+#> gamma23 -0.1703 0.1267 20000 -0.4147 0.0805
 ```
 
 ## References
