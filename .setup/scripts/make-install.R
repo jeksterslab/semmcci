@@ -10,6 +10,7 @@ if (
     )
   )
 ) {
+  rProject::Dependencies(path)
   devtools::document(path)
   devtools::install(path, dependencies = FALSE)
 }
