@@ -87,10 +87,6 @@ Agaloos Pesigan</h4>
     
     
 <!-- vignettes/mcstd-1-std-regression.Rmd is generated from .setup/vignettes/mcstd-1-std-regression.Rmd.orig. Please edit that file -->
-<p>To cite <code>semmcci</code> in publications, please use:</p>
-<p>Pesigan, I. J. A., &amp; Cheung, S. F. (2023). Monte Carlo confidence
-intervals for the indirect effect with missing data. <em>Behavior
-Research Methods</em>. <a href="https://doi.org/10.3758/s13428-023-02114-4" class="external-link uri">https://doi.org/10.3758/s13428-023-02114-4</a></p>
 <p>The <code><a href="../reference/MCStd.html">MCStd()</a></code> function is used to generate Monte Carlo
 confidence intervals for standardized regression coefficients.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -99,10 +95,11 @@ confidence intervals for standardized regression coefficients.</p>
 <div class="section level2">
 <h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
 </h2>
-<p>In this example, we use data from Kwan and Chan (2011) where child’s
-reading ability (<span class="math inline">\(Y_{1}\)</span>) is
-regressed on parental occupational status (<span class="math inline">\(X_{1}\)</span>), parental educational level (<span class="math inline">\(X_{2}\)</span>), and child’s home possession
-(<span class="math inline">\(X_{3}\)</span>)</p>
+<p>In this example, we use data from <span class="citation">Kwan &amp;
+Chan (2011)</span> where child’s reading ability (<span class="math inline">\(Y_{1}\)</span>) is regressed on parental
+occupational status (<span class="math inline">\(X_{1}\)</span>),
+parental educational level (<span class="math inline">\(X_{2}\)</span>),
+and child’s home possession (<span class="math inline">\(X_{3}\)</span>)</p>
 <p><span class="math display">\[\begin{equation}
     Y_{1}
     =
@@ -152,7 +149,8 @@ coefficients.</p>
 </h2>
 <p>We can now fit the model using the <code><a href="https://rdrr.io/pkg/lavaan/man/sem.html" class="external-link">sem()</a></code> function from
 <code>lavaan</code> with <code>mimic = "eqs"</code> to ensure
-compatibility with results from Kwan and Chan (2011).</p>
+compatibility with results from <span class="citation">Kwan &amp; Chan
+(2011)</span>.</p>
 <blockquote>
 <p><strong>Note:</strong> We recommend setting
 <code>fixed.x = FALSE</code> when generating standardized estimates and
@@ -180,24 +178,33 @@ passing the result of the <code><a href="../reference/MC.html">MC()</a></code> f
 <span><span class="fu"><a href="../reference/MCStd.html">MCStd</a></span><span class="op">(</span><span class="va">unstd</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Standardized Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;           est     se     R    2.5%  97.5%</span></span>
-<span><span class="co">#&gt; Y1~X1  0.1207 0.0896 20000 -0.0563 0.2955</span></span>
-<span><span class="co">#&gt; Y1~X2  0.0491 0.0907 20000 -0.1279 0.2278</span></span>
-<span><span class="co">#&gt; Y1~X3  0.2194 0.0717 20000  0.0740 0.3560</span></span>
-<span><span class="co">#&gt; Y1~~Y1 0.9002 0.0408 20000  0.7987 0.9588</span></span>
+<span><span class="co">#&gt; Y1~X1  0.1207 0.0897 20000 -0.0593 0.2915</span></span>
+<span><span class="co">#&gt; Y1~X2  0.0491 0.0908 20000 -0.1302 0.2273</span></span>
+<span><span class="co">#&gt; Y1~X3  0.2194 0.0714 20000  0.0759 0.3559</span></span>
+<span><span class="co">#&gt; Y1~~Y1 0.9002 0.0409 20000  0.8002 0.9586</span></span>
 <span><span class="co">#&gt; X1~~X1 1.0000 0.0000 20000  1.0000 1.0000</span></span>
-<span><span class="co">#&gt; X1~~X2 0.6606 0.0407 20000  0.5751 0.7350</span></span>
-<span><span class="co">#&gt; X1~~X3 0.3547 0.0627 20000  0.2280 0.4744</span></span>
+<span><span class="co">#&gt; X1~~X2 0.6606 0.0402 20000  0.5769 0.7345</span></span>
+<span><span class="co">#&gt; X1~~X3 0.3547 0.0628 20000  0.2271 0.4734</span></span>
 <span><span class="co">#&gt; X2~~X2 1.0000 0.0000 20000  1.0000 1.0000</span></span>
-<span><span class="co">#&gt; X2~~X3 0.3743 0.0619 20000  0.2472 0.4892</span></span>
+<span><span class="co">#&gt; X2~~X3 0.3743 0.0619 20000  0.2492 0.4913</span></span>
 <span><span class="co">#&gt; X3~~X3 1.0000 0.0000 20000  1.0000 1.0000</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+<div class="section level2 unnumbered">
+<h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<p>Kwan, J. L. Y., &amp; Chan, W. (2011). Comparing standardized
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-Kwan-Chan-2011" class="csl-entry">
+Kwan, J. L. Y., &amp; Chan, W. (2011). Comparing standardized
 coefficients in structural equation modeling: A model reparameterization
-approach. <em>Behavior Research Methods</em>, <em>43</em>(3), 730-745.
-<a href="https://doi.org/10.3758/s13428-011-0088-6" class="external-link uri">https://doi.org/10.3758/s13428-011-0088-6</a></p>
+approach. <em>Behavior Research Methods</em>, <em>43</em>(3), 730–745.
+<a href="https://doi.org/10.3758/s13428-011-0088-6" class="external-link">https://doi.org/10.3758/s13428-011-0088-6</a>
+</div>
+<div id="ref-Pesigan-Cheung-2023" class="csl-entry">
+Pesigan, I. J. A., &amp; Cheung, S. F. (2023). <span>Monte Carlo</span>
+confidence intervals for the indirect effect with missing data.
+<em>Behavior Research Methods</em>. <a href="https://doi.org/10.3758/s13428-023-02114-4" class="external-link">https://doi.org/10.3758/s13428-023-02114-4</a>
+</div>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
