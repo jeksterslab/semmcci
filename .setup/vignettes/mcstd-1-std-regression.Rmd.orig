@@ -74,7 +74,7 @@ $\alpha_{1}$ is the intercept,
 and $\gamma_{1}$, $\gamma_{2}$, and $\gamma_{3}$
 are regression coefficients.
 
-![A Three-Regressor Multiple Regression Model (Covariance Structure)](https://raw.githubusercontent.com/jeksterslab/semmcci/main/latexsrc/figures/png/kwan-2011-example-1.png)
+![A Three-Regressor Multiple Regression Model (Covariance Structure)](https://raw.githubusercontent.com/jeksterslab/semmcci/main/.setup/latex/figures/png/kwan-2011-example-1.png)
 
 ```{r}
 #| echo = FALSE

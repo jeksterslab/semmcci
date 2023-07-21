@@ -38,7 +38,7 @@ through a mediating variable `M`.
 This mediating or indirect effect
 is a product of path coefficients from the fitted model.
 
-![The Simple Mediation Model](https://raw.githubusercontent.com/jeksterslab/semmcci/main/latexsrc/figures/png/simple.png)
+![The Simple Mediation Model](https://raw.githubusercontent.com/jeksterslab/semmcci/main/.setup/latex/figures/png/simple.png)
 
 ```{r}
 #| message = FALSE

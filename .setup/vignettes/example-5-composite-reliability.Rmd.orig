@@ -48,7 +48,7 @@ data(HolzingerSwineford1939, package = "lavaan")
 \noindent The confirmatory factor analysis model for $X_{1}, \dots, X_{9}$
 is given by
 
-![Three-Factor Confirmatory Factor Analysis Model](https://raw.githubusercontent.com/jeksterslab/semmcci/main/latexsrc/figures/png/cfa.png)
+![Three-Factor Confirmatory Factor Analysis Model](https://raw.githubusercontent.com/jeksterslab/semmcci/main/.setup/latex/figures/png/cfa.png)
 
 \noindent $\eta_{1}$, $\eta_{2}$, and $\eta_{3}$ are the latent factors.
 $\eta_{1}$ has three indicators $X_{1}$, $X_{2}$, and $X_{3}$;

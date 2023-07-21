@@ -36,7 +36,7 @@ for the indirect effects in a serial mediation model with two mediators
 where `X` is the predictor, `M1` is the first mediator, `M2` is the second mediator,
 and `Y` is the dependent variable.
 
-![The Serial Mediation Model](https://raw.githubusercontent.com/jeksterslab/semmcci/main/latexsrc/figures/png/serial.png)
+![The Serial Mediation Model](https://raw.githubusercontent.com/jeksterslab/semmcci/main/.setup/latex/figures/png/serial.png)
 
 ```{r}
 #| message = FALSE
