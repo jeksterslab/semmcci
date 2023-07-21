@@ -1,0 +1,363 @@
+---
+title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping (FIML)"
+author: "Ivan Jacob Agaloos Pesigan"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping (FIML)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+<!-- vignettes/benchmark-fiml.Rmd is generated from .setup/vignettes/benchmark-fiml.Rmd.orig. Please edit that file -->
+
+```{r}
+#| include = FALSE
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.path = "fig-vignettes-benchmark-",
+  fig.cap = "",
+  fig.width = 11,
+  fig.height = 8,
+  fig.retina = 2,
+  dpi = 300,
+  comment = "#>"
+)
+```
+
+```{r}
+#| echo = FALSE,
+#| message = FALSE,
+#| warning = FALSE
+root <- rprojroot::is_rstudio_project
+dir <- root$find_file(
+  ".setup",
+  "data-raw",
+  "benchmark"
+)
+if (!dir.exists(dir)) {
+  dir.create(
+    dir,
+    recursive = TRUE
+  )
+}
+```
+
+```{r}
+#| include = FALSE
+set.seed(42)
+```
+
+We compare the Monte Carlo (MC) method with nonparametric bootstrapping (NB) using the simple mediation model with missing data
+using full-information maximum likelihood.
+One advantage of MC over NB is speed.
+This is because the model is only fitted once in MC whereas it is fitted many times in NB.
+
+
+```{r}
+#| message = FALSE
+library(semmcci)
+library(lavaan)
+library(microbenchmark)
+```
+
+## Data
+
+```{r}
+n <- 1000
+a <- 0.50
+b <- 0.50
+cp <- 0.25
+s2_em <- 1 - a^2
+s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
+em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
+ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
+X <- rnorm(n = n)
+M <- a * X + em
+Y <- cp * X + b * M + ey
+df <- data.frame(X, M, Y)
+
+# Create data set with missing values.
+
+miss <- sample(1:dim(df)[1], 300)
+df[miss[1:100], "X"] <- NA
+df[miss[101:200], "M"] <- NA
+df[miss[201:300], "Y"] <- NA
+```
+
+## Model Specification
+
+The indirect effect is defined by the product of the slopes
+of paths `X` to `M` labeled as `a` and `M` to `Y` labeled as `b`.
+In this example, we are interested in the confidence intervals of `indirect`
+defined as the product of `a` and `b` using the `:=` operator
+in the `lavaan` model syntax.
+
+```{r}
+model <- "
+  Y ~ cp * X + b * M
+  M ~ a * X
+  X ~~ X
+  indirect := a * b
+  direct := cp
+  total := cp + (a * b)
+"
+```
+
+## Model Fitting
+
+We can now fit the model using the `sem()` function from `lavaan`.
+We are using `missing = "fiml"` to handle missing data in `lavaan`.
+
+```{r}
+fit <- sem(data = df, model = model)
+```
+
+## Monte Carlo Confidence Intervals
+
+The `fit` `lavaan` object can then be passed to the `MC()` function from `semmcci`
+to generate Monte Carlo confidence intervals.
+
+```{r}
+MC(fit, R = 100L, alpha = 0.05)
+```
+
+## Nonparametric Bootstrap Confidence Intervals
+
+Nonparametric bootstrap confidence intervals can be generated in `lavaan` using the following.
+
+```{r}
+#| message = FALSE,
+#| warning = FALSE
+parameterEstimates(
+  sem(
+    data = df,
+    model = model,
+    missing = "fiml",
+    se = "bootstrap",
+    bootstrap = 100L
+  )
+)
+```
+
+## Benchmark
+
+### Arguments
+
+```{r}
+#| include = FALSE
+production <- TRUE
+if (production) {
+  R <- 1000L
+  B <- 1000L
+} else {
+  R <- 10L
+  B <- 10L
+}
+```
+
+```{r}
+#| echo = FALSE
+variables <- c(
+  "R",
+  "B"
+)
+values <- c(
+  R,
+  B
+)
+notes <- c(
+  "Number of Monte Carlo replications.",
+  "Number of bootstrap samples."
+)
+tab <- cbind(
+  Variables = variables,
+  Values = values,
+  Notes = notes
+)
+knitr::kable(
+  x = tab
+)
+```
+
+```{r}
+#| echo = FALSE,
+#| message = FALSE,
+#| warning = FALSE
+benchmark_fiml_01_file <- file.path(
+  dir,
+  "benchmark-fiml-01.Rds"
+)
+if (!file.exists(benchmark_fiml_01_file)) {
+  benchmark_fiml_01 <- microbenchmark(
+    MC = {
+      fit <- sem(
+        data = df,
+        model = model,
+        missing = "fiml"
+      )
+      MC(
+        fit,
+        R = R,
+        decomposition = "chol",
+        pd = FALSE
+      )
+    },
+    NB = sem(
+      data = df,
+      model = model,
+      missing = "fiml",
+      se = "bootstrap",
+      bootstrap = B
+    ),
+    times = 10
+  )
+  saveRDS(
+    object = benchmark_fiml_01,
+    file = benchmark_fiml_01_file,
+    compress = "xz"
+  )
+}
+benchmark_fiml_01 <- readRDS(
+  file = benchmark_fiml_01_file
+)
+```
+
+```{r}
+#| eval = FALSE
+benchmark_fiml_01 <- microbenchmark(
+  MC = {
+    fit <- sem(
+      data = df,
+      model = model,
+      missing = "fiml"
+    )
+    MC(
+      fit,
+      R = R,
+      decomposition = "chol",
+      pd = FALSE
+    )
+  },
+  NB = sem(
+    data = df,
+    model = model,
+    missing = "fiml",
+    se = "bootstrap",
+    bootstrap = B
+  ),
+  times = 10
+)
+```
+
+### Summary of Benchmark Results
+
+```{r}
+summary(benchmark_fiml_01, unit = "ms")
+```
+
+### Summary of Benchmark Results Relative to the Faster Method
+
+```{r}
+summary(benchmark_fiml_01, unit = "relative")
+```
+
+## Plot
+
+```{r}
+#| echo = FALSE,
+#| warning = FALSE,
+#| message = FALSE
+boxplot(benchmark_fiml_01)
+```
+
+## Benchmark - Monte Carlo Method with Precalculated Estimates
+
+```{r}
+#| echo = FALSE,
+#| message = FALSE,
+#| warning = FALSE
+fit <- sem(
+  data = df,
+  model = model,
+  missing = "fiml"
+)
+benchmark_fiml_02_file <- file.path(
+  dir,
+  "benchmark-fiml-02.Rds"
+)
+if (!file.exists(benchmark_fiml_02_file)) {
+  benchmark_fiml_02 <- microbenchmark(
+    MC = MC(
+      fit,
+      R = R,
+      decomposition = "chol",
+      pd = FALSE
+    ),
+    NB = sem(
+      data = df,
+      model = model,
+      missing = "fiml",
+      se = "bootstrap",
+      bootstrap = B
+    ),
+    times = 10
+  )
+  saveRDS(
+    object = benchmark_fiml_02,
+    file = benchmark_fiml_02_file,
+    compress = "xz"
+  )
+}
+benchmark_fiml_02 <- readRDS(
+  file = benchmark_fiml_02_file
+)
+```
+
+```{r}
+#| eval = FALSE
+fit <- sem(
+  data = df,
+  model = model,
+  missing = "fiml"
+)
+benchmark_fiml_02 <- microbenchmark(
+  MC = MC(
+    fit,
+    R = R,
+    decomposition = "chol",
+    pd = FALSE
+  ),
+  NB = sem(
+    data = df,
+    model = model,
+    missing = "fiml",
+    se = "bootstrap",
+    bootstrap = B
+  ),
+  times = 10
+)
+```
+
+### Summary of Benchmark Results
+
+```{r}
+summary(benchmark_fiml_02, unit = "ms")
+```
+
+### Summary of Benchmark Results Relative to the Faster Method
+
+```{r}
+summary(benchmark_fiml_02, unit = "relative")
+```
+
+## Plot
+
+```{r}
+#| echo = FALSE,
+#| warning = FALSE,
+#| message = FALSE
+boxplot(benchmark_fiml_02)
+```

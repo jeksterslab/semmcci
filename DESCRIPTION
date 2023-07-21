@@ -30,6 +30,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
+VignetteBuilder: knitr
 Depends: R (>= 3.0.0)
 Imports:
     stats,
@@ -43,4 +44,3 @@ Suggests:
     psych,
     Amelia,
     bmemLavaan
-RoxygenNote: 7.2.3

@@ -58,12 +58,24 @@
     k = k
   )
   if (decomposition == "chol") {
-    dist <- .RandomGaussianChol(
-      Z = z,
-      chol = chol(
-        x = scale
-      )
+    eigen <- FALSE
+    tryCatch(
+      {
+        cholesky <- chol(x = scale)
+        eigen <- TRUE
+      },
+      error = function(cond) {
+        eigen <- FALSE
+      }
     )
+    if (eigen) {
+      dist <- .RandomGaussianChol(
+        Z = z,
+        chol = cholesky
+      )
+    } else {
+      decomposition <- "eigen"
+    }
   }
   if (decomposition == "eigen") {
     if (!pd) {

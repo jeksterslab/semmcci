@@ -1,0 +1,46 @@
+destination: pkgdown
+url: https://github.com/jeksterslab/semmcci/
+
+template:
+  bootstrap: 5
+  bslib:
+    base_font: {google: "Roboto"}
+    heading_font: {google: "Roboto Slab"}
+    code_font: {google: "JetBrains Mono"}
+
+reference:
+- title: Functions
+  contents:
+  - has_keyword("mc")
+- title: Methods
+  contents:
+  - has_keyword("method")
+
+articles:
+- title: Examples
+  contents:
+  - example-1-simple
+  - example-2-serial
+  - example-3-latent
+  - example-4-1-simple-miss-fiml
+  - example-4-2-simple-miss-mi
+  - example-5-composite-reliability
+- title: MCStd Use Cases
+  contents:
+  - mcstd-1-std-regression
+  - mcstd-2-difference-regression-coefficients
+  - mcstd-3-rsqr
+  - mcstd-4-difference-regression-coefficients-multigroup
+  - mcstd-5-difference-rsq-multigroup
+- title: Methods
+  contents:
+  - methods-mc
+  - methods-mc-mi
+- title: Benchmark
+  contents:
+  - benchmark-complete
+  - benchmark-fiml
+  - benchmark-mi
+- title: Session Information
+  contents:
+  - session/session

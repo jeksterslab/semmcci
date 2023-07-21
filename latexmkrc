@@ -1,4 +1,4 @@
-$ENV{'TEXINPUTS'}='./latexsrc//:' . $ENV{'TEXINPUTS'};
+$ENV{'TEXINPUTS'}='./\\.setup//:' . $ENV{'TEXINPUTS'};
 
 # Settings
 $xdvipdfmx = "xdvipdfmx -z 6 -i dvipdfmx-unsafe.cfg -o %D %O %S";
