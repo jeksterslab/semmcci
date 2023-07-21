@@ -43,7 +43,7 @@ parental occupational status ($X_{1}$),
 parental educational level ($X_{2}$), and
 child's home possession ($X_{3}$)
 
-\begin{equation}
+$$
     Y_{1}
     =
     \alpha_{1}
@@ -52,9 +52,9 @@ child's home possession ($X_{3}$)
     Y_{2}
     +
     \zeta_{1} ,
-\end{equation}
+$$
 
-\begin{equation}
+$$
     Y_{2}
     =
     \alpha_{2}
@@ -69,7 +69,7 @@ child's home possession ($X_{3}$)
     X_{3}
     +
     \zeta_{2} .
-\end{equation}
+$$
 
 \noindent Note that $\zeta_{1}$ and $\zeta_{2}$ are stochastic error terms
 with expected value of zero
@@ -104,13 +104,13 @@ are defined using the `:=` operator
 in the `lavaan` model syntax
 using the following equations
 
-\begin{equation}
+$$
     R^{2}
     =
     1 - \psi^{\ast}
-\end{equation}
+$$
 
-\begin{equation}
+$$
     \bar{R}^{2}
     =
     1
@@ -121,7 +121,7 @@ using the following equations
     \left(
     1 - R^2
     \right)
-\end{equation}
+$$
 
 \noindent where $\psi^{\ast}$
 is the standardized error variance,
@@ -187,22 +187,22 @@ unstd <- MC(fit, R = 20000L, alpha = 0.05)
 MCStd(unstd, alpha = 0.05)
 #> Standardized Monte Carlo Confidence Intervals
 #>             est     se     R    2.5%   97.5%
-#> Y1~Y2    0.2391 0.0668 20000  0.1060  0.3684
-#> Y2~X1   -0.2449 0.0817 20000 -0.4020 -0.0816
-#> Y2~X2    0.4419 0.0794 20000  0.2819  0.5915
-#> Y2~X3    0.3101 0.0638 20000  0.1796  0.4311
-#> psi1     0.9428 0.0325 20000  0.8643  0.9888
-#> psi2     0.7428 0.0529 20000  0.6290  0.8350
+#> Y1~Y2    0.2391 0.0667 20000  0.1074  0.3693
+#> Y2~X1   -0.2449 0.0818 20000 -0.4055 -0.0839
+#> Y2~X2    0.4419 0.0788 20000  0.2815  0.5900
+#> Y2~X3    0.3101 0.0642 20000  0.1812  0.4343
+#> psi1     0.9428 0.0325 20000  0.8636  0.9885
+#> psi2     0.7428 0.0531 20000  0.6289  0.8371
 #> X1~~X1   1.0000 0.0000 20000  1.0000  1.0000
-#> X1~~X2   0.6606 0.0405 20000  0.5751  0.7344
-#> X1~~X3   0.3547 0.0627 20000  0.2260  0.4734
+#> X1~~X2   0.6606 0.0407 20000  0.5748  0.7355
+#> X1~~X3   0.3547 0.0628 20000  0.2264  0.4712
 #> X2~~X2   1.0000 0.0000 20000  1.0000  1.0000
-#> X2~~X3   0.3743 0.0617 20000  0.2481  0.4905
+#> X2~~X3   0.3743 0.0618 20000  0.2478  0.4896
 #> X3~~X3   1.0000 0.0000 20000  1.0000  1.0000
-#> rsq1     0.0572 0.0325 20000  0.0112  0.1357
-#> rsqbar1  0.0619 0.0323 20000  0.0162  0.1400
-#> rsq2     0.2572 0.0529 20000  0.1650  0.3710
-#> rsqbar2  0.2534 0.0531 20000  0.1607  0.3678
+#> rsq1     0.0572 0.0325 20000  0.0115  0.1364
+#> rsqbar1  0.0619 0.0323 20000  0.0165  0.1407
+#> rsq2     0.2572 0.0531 20000  0.1629  0.3711
+#> rsqbar2  0.2534 0.0533 20000  0.1587  0.3679
 ```
 
 ## References
