@@ -79,7 +79,8 @@
 
 %% begin.rcode
 % #| file = root$find_file(
-% #|   "latexsrc",
+% #|   ".setup",
+% #|   "latex",
 % #|   "r-scripts",
 % #|   "tests.R"
 % #| ),
@@ -115,6 +116,8 @@
 %% end.rcode
 
 \nocite{RCoreTeam-2023}
+
+\nocite{Pesigan-Cheung-2023}
 
 \printbibliography
 

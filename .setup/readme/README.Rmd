@@ -6,7 +6,7 @@ output: github_document
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
-  @*
+  @Pesigan-Cheung-2023
 ---
 
 <!-- README.md is generated from .setup/readme/README.Rmd. Please edit that file -->
@@ -195,16 +195,11 @@ MCStd(mc, alpha = 0.05)
 MCStd(mcmi, alpha = 0.05)
 ```
 
-## Citation
-
-To cite `semmcci` in publications, please use: 
-
-Pesigan, I. J. A., & Cheung, S. F. (2023).
-Monte Carlo confidence intervals for the indirect effect with missing data.
-*Behavior Research Methods*.
-https://doi.org/10.3758/s13428-023-02114-4
-
 ## Documentation
 
 See [GitHub Pages](https://jeksterslab.github.io/semmcci/index.html) for
 package documentation.
+
+## Citation
+
+To cite `semmcci` in publications, please cite @Pesigan-Cheung-2023.

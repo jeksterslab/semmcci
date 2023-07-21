@@ -2,6 +2,10 @@
 title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping (FIML)"
 author: "Ivan Jacob Agaloos Pesigan"
 date: "`r Sys.Date()`"
+bibliography: "vignettes.bib"
+csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+nocite: |
+  @Pesigan-Cheung-2023
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -361,3 +365,5 @@ summary(benchmark_fiml_02, unit = "relative")
 #| message = FALSE
 boxplot(benchmark_fiml_02)
 ```
+
+## References

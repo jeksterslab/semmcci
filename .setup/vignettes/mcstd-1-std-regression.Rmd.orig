@@ -2,6 +2,10 @@
 title: "MCStd Function Use Case 1: Standardized Regression Coefficients"
 author: "Ivan Jacob Agaloos Pesigan"
 date: "`r Sys.Date()`"
+bibliography: "vignettes.bib"
+csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+nocite: |
+  @Pesigan-Cheung-2023
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -21,13 +25,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-To cite `semmcci` in publications, please use: 
-
-Pesigan, I. J. A., & Cheung, S. F. (2023).
-Monte Carlo confidence intervals for the indirect effect with missing data.
-*Behavior Research Methods*.
-https://doi.org/10.3758/s13428-023-02114-4
-
 ```{r}
 #| include = FALSE
 set.seed(42)
@@ -46,7 +43,7 @@ library(lavaan)
 ## Data
 
 In this example,
-we use data from Kwan and Chan (2011)
+we use data from @Kwan-Chan-2011
 where child's reading ability ($Y_{1}$)
 is regressed on
 parental occupational status ($X_{1}$),
@@ -125,7 +122,7 @@ model <- "
 
 We can now fit the model using the `sem()` function from `lavaan`
 with `mimic = "eqs"`
-to ensure compatibility with results from Kwan and Chan (2011).
+to ensure compatibility with results from @Kwan-Chan-2011.
 
 > **Note:** We recommend setting `fixed.x = FALSE`
 > when generating standardized estimates and confidence intervals
@@ -152,9 +149,3 @@ MCStd(unstd, alpha = 0.05)
 ```
 
 ## References
-
-Kwan, J. L. Y., & Chan, W. (2011).
-Comparing standardized coefficients in structural equation modeling:
-A model reparameterization approach.
-*Behavior Research Methods*, *43*(3), 730-745.
-https://doi.org/10.3758/s13428-011-0088-6

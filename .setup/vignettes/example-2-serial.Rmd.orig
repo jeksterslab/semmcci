@@ -2,6 +2,10 @@
 title: "Example 2: The Serial Mediation Model"
 author: "Ivan Jacob Agaloos Pesigan"
 date: "`r Sys.Date()`"
+bibliography: "vignettes.bib"
+csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+nocite: |
+  @Pesigan-Cheung-2023
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -20,13 +24,6 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-
-To cite `semmcci` in publications, please use: 
-
-Pesigan, I. J. A., & Cheung, S. F. (2023).
-Monte Carlo confidence intervals for the indirect effect with missing data.
-*Behavior Research Methods*.
-https://doi.org/10.3758/s13428-023-02114-4
 
 ```{r}
 #| include = FALSE
@@ -128,3 +125,5 @@ unstd <- MC(fit, R = 20000L, alpha = 0.05)
 ```{r}
 MCStd(unstd, alpha = 0.05)
 ```
+
+## References
