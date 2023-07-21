@@ -102,7 +102,7 @@ resources and home educational resources (<span class="math inline">\(Y_{2}\)</s
 occupational status (<span class="math inline">\(X_{1}\)</span>),
 parental educational level (<span class="math inline">\(X_{2}\)</span>),
 and child’s home possession (<span class="math inline">\(X_{3}\)</span>)</p>
-<p><span class="math display">\[\begin{equation}
+<p><span class="math display">\[
     Y_{1}
     =
     \alpha_{1}
@@ -111,8 +111,8 @@ and child’s home possession (<span class="math inline">\(X_{3}\)</span>)</p>
     Y_{2}
     +
     \zeta_{1} ,
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
+\]</span></p>
+<p><span class="math display">\[
     Y_{2}
     =
     \alpha_{2}
@@ -127,7 +127,7 @@ and child’s home possession (<span class="math inline">\(X_{3}\)</span>)</p>
     X_{3}
     +
     \zeta_{2} .
-\end{equation}\]</span></p>
+\]</span></p>
 <p>Note that <span class="math inline">\(\zeta_{1}\)</span> and <span class="math inline">\(\zeta_{2}\)</span> are stochastic error terms with
 expected value of zero and finite variance <span class="math inline">\(\psi_{1}\)</span> and <span class="math inline">\(\psi_{2}\)</span>, <span class="math inline">\(\alpha_{1}\)</span> and <span class="math inline">\(\alpha_{2}\)</span> are intercepts, and <span class="math inline">\(\beta_{1}\)</span>, <span class="math inline">\(\gamma_{1}\)</span>, <span class="math inline">\(\gamma_{2}\)</span>, and <span class="math inline">\(\gamma_{3}\)</span> are regression
 coefficients.</p>
@@ -153,12 +153,12 @@ coefficients.</p>
 error variances as <code>psi1</code> and <code>psi2</code>. <span class="math inline">\(R^{2}\)</span> and <span class="math inline">\(\bar{R}^{2}\)</span> are defined using the
 <code>:=</code> operator in the <code>lavaan</code> model syntax using
 the following equations</p>
-<p><span class="math display">\[\begin{equation}
+<p><span class="math display">\[
     R^{2}
     =
     1 - \psi^{\ast}
-\end{equation}\]</span></p>
-<p><span class="math display">\[\begin{equation}
+\]</span></p>
+<p><span class="math display">\[
     \bar{R}^{2}
     =
     1
@@ -169,7 +169,7 @@ the following equations</p>
     \left(
     1 - R^2
     \right)
-\end{equation}\]</span></p>
+\]</span></p>
 <p>where <span class="math inline">\(\psi^{\ast}\)</span> is the
 standardized error variance, <span class="math inline">\(n\)</span> is
 the sample size, and <span class="math inline">\(p\)</span> is the
@@ -234,22 +234,22 @@ standardized estimates.</p>
 <span><span class="fu"><a href="../reference/MCStd.html">MCStd</a></span><span class="op">(</span><span class="va">unstd</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Standardized Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;             est     se     R    2.5%   97.5%</span></span>
-<span><span class="co">#&gt; Y1~Y2    0.2391 0.0668 20000  0.1060  0.3684</span></span>
-<span><span class="co">#&gt; Y2~X1   -0.2449 0.0817 20000 -0.4020 -0.0816</span></span>
-<span><span class="co">#&gt; Y2~X2    0.4419 0.0794 20000  0.2819  0.5915</span></span>
-<span><span class="co">#&gt; Y2~X3    0.3101 0.0638 20000  0.1796  0.4311</span></span>
-<span><span class="co">#&gt; psi1     0.9428 0.0325 20000  0.8643  0.9888</span></span>
-<span><span class="co">#&gt; psi2     0.7428 0.0529 20000  0.6290  0.8350</span></span>
+<span><span class="co">#&gt; Y1~Y2    0.2391 0.0667 20000  0.1074  0.3693</span></span>
+<span><span class="co">#&gt; Y2~X1   -0.2449 0.0818 20000 -0.4055 -0.0839</span></span>
+<span><span class="co">#&gt; Y2~X2    0.4419 0.0788 20000  0.2815  0.5900</span></span>
+<span><span class="co">#&gt; Y2~X3    0.3101 0.0642 20000  0.1812  0.4343</span></span>
+<span><span class="co">#&gt; psi1     0.9428 0.0325 20000  0.8636  0.9885</span></span>
+<span><span class="co">#&gt; psi2     0.7428 0.0531 20000  0.6289  0.8371</span></span>
 <span><span class="co">#&gt; X1~~X1   1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; X1~~X2   0.6606 0.0405 20000  0.5751  0.7344</span></span>
-<span><span class="co">#&gt; X1~~X3   0.3547 0.0627 20000  0.2260  0.4734</span></span>
+<span><span class="co">#&gt; X1~~X2   0.6606 0.0407 20000  0.5748  0.7355</span></span>
+<span><span class="co">#&gt; X1~~X3   0.3547 0.0628 20000  0.2264  0.4712</span></span>
 <span><span class="co">#&gt; X2~~X2   1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; X2~~X3   0.3743 0.0617 20000  0.2481  0.4905</span></span>
+<span><span class="co">#&gt; X2~~X3   0.3743 0.0618 20000  0.2478  0.4896</span></span>
 <span><span class="co">#&gt; X3~~X3   1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; rsq1     0.0572 0.0325 20000  0.0112  0.1357</span></span>
-<span><span class="co">#&gt; rsqbar1  0.0619 0.0323 20000  0.0162  0.1400</span></span>
-<span><span class="co">#&gt; rsq2     0.2572 0.0529 20000  0.1650  0.3710</span></span>
-<span><span class="co">#&gt; rsqbar2  0.2534 0.0531 20000  0.1607  0.3678</span></span></code></pre></div>
+<span><span class="co">#&gt; rsq1     0.0572 0.0325 20000  0.0115  0.1364</span></span>
+<span><span class="co">#&gt; rsqbar1  0.0619 0.0323 20000  0.0165  0.1407</span></span>
+<span><span class="co">#&gt; rsq2     0.2572 0.0531 20000  0.1629  0.3711</span></span>
+<span><span class="co">#&gt; rsqbar2  0.2534 0.0533 20000  0.1587  0.3679</span></span></code></pre></div>
 </div>
 <div class="section level2 unnumbered">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
