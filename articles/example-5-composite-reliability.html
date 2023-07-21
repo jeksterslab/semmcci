@@ -97,7 +97,7 @@ Swineford (1939) data set.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">HolzingerSwineford1939</span>, package <span class="op">=</span> <span class="st">"lavaan"</span><span class="op">)</span></span></code></pre></div>
 <p>The confirmatory factor analysis model for <span class="math inline">\(X_{1}, \dots, X_{9}\)</span> is given by</p>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/jeksterslab/semmcci/main/latexsrc/figures/png/cfa.png" alt=""><p class="caption">Three-Factor Confirmatory Factor Analysis Model</p>
+<img src="https://raw.githubusercontent.com/jeksterslab/semmcci/main/.setup/latex/figures/png/cfa.png" alt=""><p class="caption">Three-Factor Confirmatory Factor Analysis Model</p>
 </div>
 <p><span class="math inline">\(\eta_{1}\)</span>, <span class="math inline">\(\eta_{2}\)</span>, and <span class="math inline">\(\eta_{3}\)</span> are the latent factors. <span class="math inline">\(\eta_{1}\)</span> has three indicators <span class="math inline">\(X_{1}\)</span>, <span class="math inline">\(X_{2}\)</span>, and <span class="math inline">\(X_{3}\)</span>; <span class="math inline">\(\eta_{2}\)</span> has three indicators <span class="math inline">\(X_{4}\)</span>, <span class="math inline">\(X_{5}\)</span>, and <span class="math inline">\(X_{6}\)</span>; and <span class="math inline">\(\eta_{3}\)</span> has three indicators <span class="math inline">\(X_{7}\)</span>, <span class="math inline">\(X_{8}\)</span>, and <span class="math inline">\(X_{9}\)</span> . The variances of <span class="math inline">\(\eta_{1}\)</span>, <span class="math inline">\(\eta_{2}\)</span>, and <span class="math inline">\(\eta_{3}\)</span> are constrained to one.</p>
 <div class="section level2">
@@ -179,30 +179,30 @@ intervals.</p>
 <span><span class="co">#&gt; eta1~~eta1 1.0000 0.0000 20000 1.0000 1.0000</span></span>
 <span><span class="co">#&gt; eta2~~eta2 1.0000 0.0000 20000 1.0000 1.0000</span></span>
 <span><span class="co">#&gt; eta3~~eta3 1.0000 0.0000 20000 1.0000 1.0000</span></span>
-<span><span class="co">#&gt; l11        0.8996 0.0806 20000 0.7399 1.0593</span></span>
-<span><span class="co">#&gt; l12        0.4979 0.0774 20000 0.3461 0.6491</span></span>
-<span><span class="co">#&gt; l13        0.6562 0.0748 20000 0.5106 0.8034</span></span>
-<span><span class="co">#&gt; l24        0.9897 0.0565 20000 0.8778 1.1009</span></span>
-<span><span class="co">#&gt; l25        1.1016 0.0623 20000 0.9794 1.2219</span></span>
-<span><span class="co">#&gt; l26        0.9166 0.0537 20000 0.8126 1.0214</span></span>
-<span><span class="co">#&gt; l37        0.6195 0.0696 20000 0.4820 0.7543</span></span>
-<span><span class="co">#&gt; l38        0.7309 0.0659 20000 0.6001 0.8608</span></span>
-<span><span class="co">#&gt; l39        0.6700 0.0651 20000 0.5409 0.7978</span></span>
-<span><span class="co">#&gt; t1         0.5491 0.1140 20000 0.3250 0.7735</span></span>
-<span><span class="co">#&gt; t2         1.1338 0.1027 20000 0.9302 1.3327</span></span>
-<span><span class="co">#&gt; t3         0.8443 0.0901 20000 0.6677 1.0220</span></span>
-<span><span class="co">#&gt; t4         0.3712 0.0476 20000 0.2772 0.4650</span></span>
-<span><span class="co">#&gt; t5         0.4463 0.0582 20000 0.3317 0.5617</span></span>
-<span><span class="co">#&gt; t6         0.3562 0.0430 20000 0.2717 0.4406</span></span>
-<span><span class="co">#&gt; t7         0.7994 0.0807 20000 0.6417 0.9588</span></span>
-<span><span class="co">#&gt; t8         0.4877 0.0736 20000 0.3441 0.6320</span></span>
-<span><span class="co">#&gt; t9         0.5661 0.0704 20000 0.4303 0.7055</span></span>
-<span><span class="co">#&gt; eta1~~eta2 0.4585 0.0635 20000 0.3356 0.5846</span></span>
-<span><span class="co">#&gt; eta1~~eta3 0.4705 0.0731 20000 0.3271 0.6118</span></span>
-<span><span class="co">#&gt; eta2~~eta3 0.2830 0.0683 20000 0.1503 0.4178</span></span>
-<span><span class="co">#&gt; omega1     0.6253 0.0367 20000 0.5480 0.6921</span></span>
-<span><span class="co">#&gt; omega2     0.8852 0.0117 20000 0.8604 0.9058</span></span>
-<span><span class="co">#&gt; omega3     0.6878 0.0312 20000 0.6219 0.7443</span></span></code></pre></div>
+<span><span class="co">#&gt; l11        0.8996 0.0805 20000 0.7410 1.0587</span></span>
+<span><span class="co">#&gt; l12        0.4979 0.0776 20000 0.3443 0.6495</span></span>
+<span><span class="co">#&gt; l13        0.6562 0.0747 20000 0.5102 0.8037</span></span>
+<span><span class="co">#&gt; l24        0.9897 0.0563 20000 0.8798 1.1007</span></span>
+<span><span class="co">#&gt; l25        1.1016 0.0627 20000 0.9779 1.2254</span></span>
+<span><span class="co">#&gt; l26        0.9166 0.0537 20000 0.8105 1.0218</span></span>
+<span><span class="co">#&gt; l37        0.6195 0.0698 20000 0.4857 0.7585</span></span>
+<span><span class="co">#&gt; l38        0.7309 0.0656 20000 0.6012 0.8589</span></span>
+<span><span class="co">#&gt; l39        0.6700 0.0650 20000 0.5424 0.7954</span></span>
+<span><span class="co">#&gt; t1         0.5491 0.1137 20000 0.3281 0.7727</span></span>
+<span><span class="co">#&gt; t2         1.1338 0.1019 20000 0.9339 1.3341</span></span>
+<span><span class="co">#&gt; t3         0.8443 0.0912 20000 0.6637 1.0205</span></span>
+<span><span class="co">#&gt; t4         0.3712 0.0475 20000 0.2770 0.4641</span></span>
+<span><span class="co">#&gt; t5         0.4463 0.0586 20000 0.3324 0.5611</span></span>
+<span><span class="co">#&gt; t6         0.3562 0.0428 20000 0.2714 0.4397</span></span>
+<span><span class="co">#&gt; t7         0.7994 0.0818 20000 0.6380 0.9605</span></span>
+<span><span class="co">#&gt; t8         0.4877 0.0744 20000 0.3416 0.6348</span></span>
+<span><span class="co">#&gt; t9         0.5661 0.0710 20000 0.4273 0.7053</span></span>
+<span><span class="co">#&gt; eta1~~eta2 0.4585 0.0639 20000 0.3328 0.5846</span></span>
+<span><span class="co">#&gt; eta1~~eta3 0.4705 0.0733 20000 0.3250 0.6119</span></span>
+<span><span class="co">#&gt; eta2~~eta3 0.2830 0.0686 20000 0.1484 0.4190</span></span>
+<span><span class="co">#&gt; omega1     0.6253 0.0365 20000 0.5476 0.6907</span></span>
+<span><span class="co">#&gt; omega2     0.8852 0.0116 20000 0.8604 0.9055</span></span>
+<span><span class="co">#&gt; omega3     0.6878 0.0310 20000 0.6218 0.7434</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2 unnumbered">
