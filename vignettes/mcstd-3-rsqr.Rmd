@@ -2,6 +2,10 @@
 title: "MCStd Function Use Case 3: R-Squared and Adjusted R-Squared"
 author: "Ivan Jacob Agaloos Pesigan"
 date: "2023-07-21"
+bibliography: "vignettes.bib"
+csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+nocite: |
+  @Pesigan-Cheung-2023
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -30,7 +34,7 @@ library(lavaan)
 ## Data
 
 In this example,
-we use data from Kwan and Chan (2011)
+we use data from @Kwan-Chan-2011
 where child's reading ability ($Y_{1}$)
 is regressed on home educational resources
 and home educational resources ($Y_{2}$)
@@ -150,7 +154,7 @@ model <- "
 
 We can now fit the model using the `sem()` function from `lavaan`
 with `mimic = "eqs"`
-to ensure compatibility with results from Kwan and Chan (2011).
+to ensure compatibility with results from @Kwan-Chan-2011.
 
 > **Note:** We recommend setting `fixed.x = FALSE`
 > when generating standardized estimates and confidence intervals
@@ -183,28 +187,22 @@ unstd <- MC(fit, R = 20000L, alpha = 0.05)
 MCStd(unstd, alpha = 0.05)
 #> Standardized Monte Carlo Confidence Intervals
 #>             est     se     R    2.5%   97.5%
-#> Y1~Y2    0.2391 0.0671 20000  0.1051  0.3695
-#> Y2~X1   -0.2449 0.0812 20000 -0.4021 -0.0814
-#> Y2~X2    0.4419 0.0786 20000  0.2830  0.5919
-#> Y2~X3    0.3101 0.0643 20000  0.1814  0.4329
-#> psi1     0.9428 0.0324 20000  0.8635  0.9890
-#> psi2     0.7428 0.0531 20000  0.6282  0.8367
+#> Y1~Y2    0.2391 0.0664 20000  0.1077  0.3681
+#> Y2~X1   -0.2449 0.0813 20000 -0.4038 -0.0845
+#> Y2~X2    0.4419 0.0794 20000  0.2822  0.5934
+#> Y2~X3    0.3101 0.0641 20000  0.1827  0.4331
+#> psi1     0.9428 0.0322 20000  0.8645  0.9884
+#> psi2     0.7428 0.0534 20000  0.6279  0.8352
 #> X1~~X1   1.0000 0.0000 20000  1.0000  1.0000
-#> X1~~X2   0.6606 0.0404 20000  0.5756  0.7345
-#> X1~~X3   0.3547 0.0631 20000  0.2255  0.4738
+#> X1~~X2   0.6606 0.0409 20000  0.5740  0.7335
+#> X1~~X3   0.3547 0.0626 20000  0.2285  0.4717
 #> X2~~X2   1.0000 0.0000 20000  1.0000  1.0000
-#> X2~~X3   0.3743 0.0620 20000  0.2454  0.4894
+#> X2~~X3   0.3743 0.0614 20000  0.2507  0.4902
 #> X3~~X3   1.0000 0.0000 20000  1.0000  1.0000
-#> rsq1     0.0572 0.0324 20000  0.0110  0.1365
-#> rsqbar1  0.0619 0.0323 20000  0.0160  0.1408
-#> rsq2     0.2572 0.0531 20000  0.1633  0.3718
-#> rsqbar2  0.2534 0.0534 20000  0.1590  0.3686
+#> rsq1     0.0572 0.0322 20000  0.0116  0.1355
+#> rsqbar1  0.0619 0.0320 20000  0.0165  0.1398
+#> rsq2     0.2572 0.0534 20000  0.1648  0.3721
+#> rsqbar2  0.2534 0.0537 20000  0.1606  0.3689
 ```
 
 ## References
-
-Kwan, J. L. Y., & Chan, W. (2011).
-Comparing standardized coefficients in structural equation modeling:
-A model reparameterization approach.
-*Behavior Research Methods*, *43*(3), 730-745.
-https://doi.org/10.3758/s13428-011-0088-6

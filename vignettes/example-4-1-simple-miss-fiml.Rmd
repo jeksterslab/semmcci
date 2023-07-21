@@ -2,6 +2,10 @@
 title: "Example 4.1: The Simple Mediation Model with Missing Data (FIML)"
 author: "Ivan Jacob Agaloos Pesigan"
 date: "2023-07-21"
+bibliography: "vignettes.bib"
+csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+nocite: |
+  @Pesigan-Cheung-2023
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -14,13 +18,6 @@ vignette: >
 <!-- vignettes/example-4-1-simple-miss-fiml.Rmd is generated from .setup/vignettes/example-4-1-simple-miss-fiml.Rmd.orig. Please edit that file -->
 
 
-
-To cite `semmcci` in publications, please use: 
-
-Pesigan, I. J. A., & Cheung, S. F. (2023).
-Monte Carlo confidence intervals for the indirect effect with missing data.
-*Behavior Research Methods*.
-https://doi.org/10.3758/s13428-023-02114-4
 
 
 
@@ -94,18 +91,18 @@ to generate Monte Carlo confidence intervals.
 MC(fit, R = 20000L, alpha = 0.05)
 #> Monte Carlo Confidence Intervals
 #>              est     se     R    2.5%  97.5%
-#> cp        0.2335 0.0293 20000  0.1763 0.2905
-#> b         0.5113 0.0297 20000  0.4532 0.5691
-#> a         0.4809 0.0288 20000  0.4242 0.5370
-#> X~~X      1.0591 0.0492 20000  0.9634 1.1554
-#> Y~~Y      0.5542 0.0268 20000  0.5018 0.6077
-#> M~~M      0.7564 0.0361 20000  0.6857 0.8275
-#> Y~1      -0.0127 0.0255 20000 -0.0623 0.0369
-#> M~1      -0.0223 0.0291 20000 -0.0792 0.0344
-#> X~1       0.0025 0.0336 20000 -0.0631 0.0683
-#> indirect  0.2458 0.0203 20000  0.2074 0.2866
-#> direct    0.2335 0.0293 20000  0.1763 0.2905
-#> total     0.4794 0.0286 20000  0.4234 0.5356
+#> cp        0.2335 0.0292 20000  0.1760 0.2906
+#> b         0.5113 0.0294 20000  0.4532 0.5680
+#> a         0.4809 0.0287 20000  0.4244 0.5373
+#> X~~X      1.0591 0.0498 20000  0.9625 1.1590
+#> Y~~Y      0.5542 0.0268 20000  0.5017 0.6074
+#> M~~M      0.7564 0.0360 20000  0.6848 0.8266
+#> Y~1      -0.0127 0.0253 20000 -0.0630 0.0371
+#> M~1      -0.0223 0.0293 20000 -0.0801 0.0348
+#> X~1       0.0025 0.0336 20000 -0.0634 0.0684
+#> indirect  0.2458 0.0201 20000  0.2076 0.2859
+#> direct    0.2335 0.0292 20000  0.1760 0.2906
+#> total     0.4794 0.0286 20000  0.4233 0.5354
 ```
 
 ## Standardized Monte Carlo Confidence Intervals
@@ -123,13 +120,15 @@ unstd <- MC(fit, R = 20000L, alpha = 0.05)
 MCStd(unstd, alpha = 0.05)
 #> Standardized Monte Carlo Confidence Intervals
 #>              est     se     R   2.5%  97.5%
-#> cp        0.2409 0.0298 20000 0.1826 0.2989
-#> b         0.5128 0.0269 20000 0.4589 0.5641
-#> a         0.4946 0.0255 20000 0.4434 0.5438
+#> cp        0.2409 0.0298 20000 0.1820 0.2988
+#> b         0.5128 0.0268 20000 0.4591 0.5645
+#> a         0.4946 0.0254 20000 0.4442 0.5426
 #> X~~X      1.0000 0.0000 20000 1.0000 1.0000
-#> Y~~Y      0.5568 0.0251 20000 0.5070 0.6054
-#> M~~M      0.7554 0.0252 20000 0.7043 0.8034
-#> indirect -0.0128 0.0188 20000 0.2169 0.2909
-#> direct   -0.0222 0.0298 20000 0.1826 0.2989
-#> total     0.0024 0.0257 20000 0.4433 0.5430
+#> Y~~Y      0.5568 0.0251 20000 0.5077 0.6057
+#> M~~M      0.7554 0.0251 20000 0.7055 0.8027
+#> indirect -0.0128 0.0187 20000 0.2173 0.2903
+#> direct   -0.0222 0.0298 20000 0.1820 0.2988
+#> total     0.0024 0.0258 20000 0.4424 0.5439
 ```
+
+## References

@@ -2,6 +2,10 @@
 title: "Example 4.2: The Simple Mediation Model with Missing Data (MI)"
 author: "Ivan Jacob Agaloos Pesigan"
 date: "2023-07-21"
+bibliography: "vignettes.bib"
+csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+nocite: |
+  @Pesigan-Cheung-2023
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -14,13 +18,6 @@ vignette: >
 <!-- vignettes/example-4-2-simple-miss-mi.Rmd is generated from .setup/vignettes/example-4-2-simple-miss-mi.Rmd.orig. Please edit that file -->
 
 
-
-To cite `semmcci` in publications, please use: 
-
-Pesigan, I. J. A., & Cheung, S. F. (2023).
-Monte Carlo confidence intervals for the indirect effect with missing data.
-*Behavior Research Methods*.
-https://doi.org/10.3758/s13428-023-02114-4
 
 
 
@@ -149,3 +146,5 @@ MCStd(unstd, alpha = 0.05)
 #> direct   0.2450 0.0307 20000 0.1802 0.3000
 #> total    0.5060 0.0261 20000 0.4416 0.5444
 ```
+
+## References

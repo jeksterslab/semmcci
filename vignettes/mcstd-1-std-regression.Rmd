@@ -2,6 +2,10 @@
 title: "MCStd Function Use Case 1: Standardized Regression Coefficients"
 author: "Ivan Jacob Agaloos Pesigan"
 date: "2023-07-21"
+bibliography: "vignettes.bib"
+csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+nocite: |
+  @Pesigan-Cheung-2023
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -14,13 +18,6 @@ vignette: >
 <!-- vignettes/mcstd-1-std-regression.Rmd is generated from .setup/vignettes/mcstd-1-std-regression.Rmd.orig. Please edit that file -->
 
 
-
-To cite `semmcci` in publications, please use: 
-
-Pesigan, I. J. A., & Cheung, S. F. (2023).
-Monte Carlo confidence intervals for the indirect effect with missing data.
-*Behavior Research Methods*.
-https://doi.org/10.3758/s13428-023-02114-4
 
 
 
@@ -37,7 +34,7 @@ library(lavaan)
 ## Data
 
 In this example,
-we use data from Kwan and Chan (2011)
+we use data from @Kwan-Chan-2011
 where child's reading ability ($Y_{1}$)
 is regressed on
 parental occupational status ($X_{1}$),
@@ -99,7 +96,7 @@ model <- "
 
 We can now fit the model using the `sem()` function from `lavaan`
 with `mimic = "eqs"`
-to ensure compatibility with results from Kwan and Chan (2011).
+to ensure compatibility with results from @Kwan-Chan-2011.
 
 > **Note:** We recommend setting `fixed.x = FALSE`
 > when generating standardized estimates and confidence intervals
@@ -127,22 +124,16 @@ unstd <- MC(fit, R = 20000L, alpha = 0.05)
 MCStd(unstd, alpha = 0.05)
 #> Standardized Monte Carlo Confidence Intervals
 #>           est     se     R    2.5%  97.5%
-#> Y1~X1  0.1207 0.0896 20000 -0.0563 0.2955
-#> Y1~X2  0.0491 0.0907 20000 -0.1279 0.2278
-#> Y1~X3  0.2194 0.0717 20000  0.0740 0.3560
-#> Y1~~Y1 0.9002 0.0408 20000  0.7987 0.9588
+#> Y1~X1  0.1207 0.0897 20000 -0.0593 0.2915
+#> Y1~X2  0.0491 0.0908 20000 -0.1302 0.2273
+#> Y1~X3  0.2194 0.0714 20000  0.0759 0.3559
+#> Y1~~Y1 0.9002 0.0409 20000  0.8002 0.9586
 #> X1~~X1 1.0000 0.0000 20000  1.0000 1.0000
-#> X1~~X2 0.6606 0.0407 20000  0.5751 0.7350
-#> X1~~X3 0.3547 0.0627 20000  0.2280 0.4744
+#> X1~~X2 0.6606 0.0402 20000  0.5769 0.7345
+#> X1~~X3 0.3547 0.0628 20000  0.2271 0.4734
 #> X2~~X2 1.0000 0.0000 20000  1.0000 1.0000
-#> X2~~X3 0.3743 0.0619 20000  0.2472 0.4892
+#> X2~~X3 0.3743 0.0619 20000  0.2492 0.4913
 #> X3~~X3 1.0000 0.0000 20000  1.0000 1.0000
 ```
 
 ## References
-
-Kwan, J. L. Y., & Chan, W. (2011).
-Comparing standardized coefficients in structural equation modeling:
-A model reparameterization approach.
-*Behavior Research Methods*, *43*(3), 730-745.
-https://doi.org/10.3758/s13428-011-0088-6
