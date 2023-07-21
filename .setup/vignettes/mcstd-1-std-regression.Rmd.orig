@@ -50,7 +50,7 @@ parental occupational status ($X_{1}$),
 parental educational level ($X_{2}$), and
 child's home possession ($X_{3}$)
 
-\begin{equation}
+$$
     Y_{1}
     =
     \alpha_{1}
@@ -65,7 +65,7 @@ child's home possession ($X_{3}$)
     X_{3}
     +
     \zeta_{1} .
-\end{equation}
+$$
 
 \noindent Note that $\zeta_{1}$ is the stochastic error term
 with expected value of zero

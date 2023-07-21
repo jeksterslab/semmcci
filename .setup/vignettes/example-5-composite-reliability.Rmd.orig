@@ -61,7 +61,7 @@ The variances of $\eta_{1}$, $\eta_{2}$, and $\eta_{3}$ are constrained to one.
 Assuming that the latent variable variance is constrained to one,
 the omega total reliability coefficient is given by
 
-\begin{equation}
+$$
   \omega_{\mathrm{total}}
   =
   \frac{
@@ -78,7 +78,7 @@ the omega total reliability coefficient is given by
   \sum_{i = 1}^{k}
   \theta_{\varepsilon_{ii}}
   }
-\end{equation}
+$$
 
 \noindent where $\lambda_{i}$ is the factor loading for item $i$,
 $\theta_{\varepsilon_{ii}}$ is the residual variance for item $i$,

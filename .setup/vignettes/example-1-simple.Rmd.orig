@@ -136,24 +136,24 @@ involves paths $a$ and $b$,
 and the standard deviations of $X$ and $Y$.
 It is given by
 
-\begin{equation}
+$$
   a b
   \frac{s_X}{s_Y}
-\end{equation}
+$$
 
 \noindent where
 
-\begin{equation}
+$$
   s_X
   =
   \sqrt{
     s_{X}^{2}
   }
-\end{equation}
+$$
 
 \noindent and
 
-\begin{equation}
+$$
   s_Y
   =
   \sqrt{
@@ -163,7 +163,7 @@ It is given by
     + 2 c^{\prime} b a s_{X}^{2}
     + s_{e_{Y}}^{2}
   }
-\end{equation}
+$$
 
 \noindent where
 

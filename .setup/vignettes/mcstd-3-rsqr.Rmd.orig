@@ -52,7 +52,7 @@ parental occupational status ($X_{1}$),
 parental educational level ($X_{2}$), and
 child's home possession ($X_{3}$)
 
-\begin{equation}
+$$
     Y_{1}
     =
     \alpha_{1}
@@ -61,9 +61,9 @@ child's home possession ($X_{3}$)
     Y_{2}
     +
     \zeta_{1} ,
-\end{equation}
+$$
 
-\begin{equation}
+$$
     Y_{2}
     =
     \alpha_{2}
@@ -78,7 +78,7 @@ child's home possession ($X_{3}$)
     X_{3}
     +
     \zeta_{2} .
-\end{equation}
+$$
 
 \noindent Note that $\zeta_{1}$ and $\zeta_{2}$ are stochastic error terms
 with expected value of zero
@@ -139,13 +139,13 @@ are defined using the `:=` operator
 in the `lavaan` model syntax
 using the following equations
 
-\begin{equation}
+$$
     R^{2}
     =
     1 - \psi^{\ast}
-\end{equation}
+$$
 
-\begin{equation}
+$$
     \bar{R}^{2}
     =
     1
@@ -156,7 +156,7 @@ using the following equations
     \left(
     1 - R^2
     \right)
-\end{equation}
+$$
 
 \noindent where $\psi^{\ast}$
 is the standardized error variance,
