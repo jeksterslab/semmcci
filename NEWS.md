@@ -1,3 +1,9 @@
+# semmcci 1.1.1
+
+## Patch
+
+* Minor documentation edits.
+
 # semmcci 1.1.0
 
 ## Minor
