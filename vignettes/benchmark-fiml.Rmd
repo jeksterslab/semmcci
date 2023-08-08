@@ -1,0 +1,266 @@
+---
+title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping (FIML)"
+author: "Ivan Jacob Agaloos Pesigan"
+date: "2023-08-08"
+bibliography: "vignettes.bib"
+csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+nocite: |
+  @Pesigan-Cheung-2023
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping (FIML)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+<!-- vignettes/benchmark-fiml.Rmd is generated from .setup/vignettes/benchmark-fiml.Rmd.orig. Please edit that file -->
+
+
+
+
+
+
+
+We compare the Monte Carlo (MC) method with nonparametric bootstrapping (NB) using the simple mediation model with missing data
+using full-information maximum likelihood.
+One advantage of MC over NB is speed.
+This is because the model is only fitted once in MC whereas it is fitted many times in NB.
+
+
+
+```r
+library(semmcci)
+library(lavaan)
+library(microbenchmark)
+```
+
+## Data
+
+
+```r
+n <- 1000
+a <- 0.50
+b <- 0.50
+cp <- 0.25
+s2_em <- 1 - a^2
+s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
+em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
+ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
+X <- rnorm(n = n)
+M <- a * X + em
+Y <- cp * X + b * M + ey
+df <- data.frame(X, M, Y)
+
+# Create data set with missing values.
+
+miss <- sample(1:dim(df)[1], 300)
+df[miss[1:100], "X"] <- NA
+df[miss[101:200], "M"] <- NA
+df[miss[201:300], "Y"] <- NA
+```
+
+## Model Specification
+
+The indirect effect is defined by the product of the slopes
+of paths `X` to `M` labeled as `a` and `M` to `Y` labeled as `b`.
+In this example, we are interested in the confidence intervals of `indirect`
+defined as the product of `a` and `b` using the `:=` operator
+in the `lavaan` model syntax.
+
+
+```r
+model <- "
+  Y ~ cp * X + b * M
+  M ~ a * X
+  X ~~ X
+  indirect := a * b
+  direct := cp
+  total := cp + (a * b)
+"
+```
+
+## Model Fitting
+
+We can now fit the model using the `sem()` function from `lavaan`.
+We are using `missing = "fiml"` to handle missing data in `lavaan`.
+
+
+```r
+fit <- sem(data = df, model = model)
+```
+
+## Monte Carlo Confidence Intervals
+
+The `fit` `lavaan` object can then be passed to the `MC()` function from `semmcci`
+to generate Monte Carlo confidence intervals.
+
+
+```r
+MC(fit, R = 100L, alpha = 0.05)
+#> Monte Carlo Confidence Intervals
+#>             est     se   R   2.5%  97.5%
+#> cp       0.2419 0.0384 100 0.1739 0.3079
+#> b        0.5166 0.0342 100 0.4512 0.5862
+#> a        0.4989 0.0322 100 0.4418 0.5627
+#> X~~X     1.0951 0.0577 100 0.9828 1.1994
+#> Y~~Y     0.5796 0.0323 100 0.5201 0.6330
+#> M~~M     0.8045 0.0395 100 0.7283 0.8780
+#> indirect 0.2577 0.0245 100 0.2171 0.3109
+#> direct   0.2419 0.0384 100 0.1739 0.3079
+#> total    0.4996 0.0416 100 0.4264 0.5745
+```
+
+## Nonparametric Bootstrap Confidence Intervals
+
+Nonparametric bootstrap confidence intervals can be generated in `lavaan` using the following.
+
+
+```r
+parameterEstimates(
+  sem(
+    data = df,
+    model = model,
+    missing = "fiml",
+    se = "bootstrap",
+    bootstrap = 100L
+  )
+)
+#>         lhs op      rhs    label    est    se      z pvalue ci.lower ci.upper
+#> 1         Y  ~        X       cp  0.234 0.032  7.204  0.000    0.171    0.299
+#> 2         Y  ~        M        b  0.511 0.033 15.634  0.000    0.451    0.573
+#> 3         M  ~        X        a  0.481 0.029 16.632  0.000    0.415    0.540
+#> 4         X ~~        X           1.059 0.041 25.750  0.000    0.983    1.145
+#> 5         Y ~~        Y           0.554 0.026 21.254  0.000    0.493    0.606
+#> 6         M ~~        M           0.756 0.036 20.896  0.000    0.680    0.820
+#> 7         Y ~1                   -0.013 0.028 -0.456  0.648   -0.068    0.051
+#> 8         M ~1                   -0.022 0.029 -0.773  0.440   -0.091    0.024
+#> 9         X ~1                    0.002 0.038  0.065  0.948   -0.073    0.078
+#> 10 indirect :=      a*b indirect  0.246 0.020 12.161  0.000    0.201    0.283
+#> 11   direct :=       cp   direct  0.234 0.033  7.168  0.000    0.171    0.299
+#> 12    total := cp+(a*b)    total  0.479 0.031 15.445  0.000    0.417    0.555
+```
+
+## Benchmark
+
+### Arguments
+
+
+
+
+
+|Variables |Values |Notes                               |
+|:---------|:------|:-----------------------------------|
+|R         |1000   |Number of Monte Carlo replications. |
+|B         |1000   |Number of bootstrap samples.        |
+
+
+
+
+
+
+```r
+benchmark_fiml_01 <- microbenchmark(
+  MC = {
+    fit <- sem(
+      data = df,
+      model = model,
+      missing = "fiml"
+    )
+    MC(
+      fit,
+      R = R,
+      decomposition = "chol",
+      pd = FALSE
+    )
+  },
+  NB = sem(
+    data = df,
+    model = model,
+    missing = "fiml",
+    se = "bootstrap",
+    bootstrap = B
+  ),
+  times = 10
+)
+```
+
+### Summary of Benchmark Results
+
+
+```r
+summary(benchmark_fiml_01, unit = "ms")
+#>   expr        min         lq       mean     median         uq        max neval
+#> 1   MC   161.7528   167.9686   171.4756   170.5185   172.6707   187.1055    10
+#> 2   NB 41077.8670 41505.0751 43130.2175 43458.0937 44156.5550 44911.7256    10
+```
+
+### Summary of Benchmark Results Relative to the Faster Method
+
+
+```r
+summary(benchmark_fiml_01, unit = "relative")
+#>   expr      min       lq     mean   median      uq      max neval
+#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.000   1.0000    10
+#> 2   NB 253.9546 247.1002 251.5239 254.8586 255.727 240.0342    10
+```
+
+## Plot
+
+<img src="fig-vignettes-benchmark-unnamed-chunk-16-1.png" width="3300" />
+
+## Benchmark - Monte Carlo Method with Precalculated Estimates
+
+
+
+
+```r
+fit <- sem(
+  data = df,
+  model = model,
+  missing = "fiml"
+)
+benchmark_fiml_02 <- microbenchmark(
+  MC = MC(
+    fit,
+    R = R,
+    decomposition = "chol",
+    pd = FALSE
+  ),
+  NB = sem(
+    data = df,
+    model = model,
+    missing = "fiml",
+    se = "bootstrap",
+    bootstrap = B
+  ),
+  times = 10
+)
+```
+
+### Summary of Benchmark Results
+
+
+```r
+summary(benchmark_fiml_02, unit = "ms")
+#>   expr        min         lq     mean     median         uq        max neval
+#> 1   MC    31.3174    32.0153    35.72    36.1345    38.5156    41.3641    10
+#> 2   NB 39613.6872 40373.3432 40508.46 40517.5452 40910.6781 41244.8240    10
+```
+
+### Summary of Benchmark Results Relative to the Faster Method
+
+
+```r
+summary(benchmark_fiml_02, unit = "relative")
+#>   expr     min       lq     mean   median       uq      max neval
+#> 1   MC    1.00    1.000    1.000    1.000    1.000   1.0000    10
+#> 2   NB 1264.91 1261.064 1134.055 1121.298 1062.185 997.1164    10
+```
+
+## Plot
+
+<img src="fig-vignettes-benchmark-unnamed-chunk-21-1.png" width="3300" />
+
+## References
