@@ -81,3 +81,8 @@ README_files/
 
 # latex
 latexmkrc
+
+# Rcpp
+src/*.o
+src/*.so
+src/*.dll

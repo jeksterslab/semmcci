@@ -33,14 +33,14 @@ jobs:
       -
         name: Copy files
         run: |
-          WD=$PWD
+          WD="$PWD"
           mkdir -p r_source_code
           tar -xf .setup/build/*.tar.gz -C r_source_code
           DIR=$(ls r_source_code)
-          cd r_source_code/$DIR
-          mv * $WD/r_source_code
+          cd "r_source_code/$DIR"
+          mv ./* "$WD/r_source_code"
           cd ..
-          rm -rf $DIR
+          rm -rf "$DIR"
       - 
         name: Push to the src branch
         uses: s0/git-publish-subdir-action@develop

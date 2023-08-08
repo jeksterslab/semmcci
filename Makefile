@@ -1,6 +1,6 @@
 .PHONY: all build clean cleanall cleanpkg cleanproj cleanpush cleantinytex clone coverage data dependencies docs dotfiles install latex lint local localforce pdf pkg pkgdown project push quarto style tinytex tinytexforce vignettes
 
-push: build docs latex cleanpush coverage
+push: build docs latex coverage cleanpush
 
 project:
 	@echo "\n\nBuilding project...\n\n"
@@ -54,7 +54,6 @@ lint: style
 data:
 	@echo "\n\nBuilding data...\n\n"
 	@Rscript -e "rProject::DataProcess(\"${PWD}\")"
-	@Rscript -e "rProject::DataAnalysis(\"${PWD}\")"
 
 dependencies:
 	@echo "\n\nBuilding dependencies...\n\n"
@@ -63,6 +62,7 @@ dependencies:
 vignettes:
 	@echo "\n\nInitial build...\n\n"
 	@Rscript -e "rProject::Build(\"${PWD}\")"
+	@Rscript -e "rProject::DataAnalysis(\"${PWD}\")"
 	@echo "\n\nPrecompiling vignettes...\n\n"
 	@Rscript -e "rProject::VignettesPrecompile(\"${PWD}\")"
 

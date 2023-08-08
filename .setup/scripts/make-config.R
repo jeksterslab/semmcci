@@ -13,3 +13,4 @@ source(
 rProject::ConfigFiles(
   git_user = git_user
 )
+warnings()

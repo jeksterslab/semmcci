@@ -47,3 +47,4 @@ rProject::PkgProjectVersion(
   pkg = pkg_ver,
   ver = ver
 )
+warnings()
