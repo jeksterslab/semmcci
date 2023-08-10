@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">semmcci</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -106,25 +106,25 @@
 <span class="r-in"><span><span class="co">## MC() --------------------------------------------------------------------</span></span></span>
 <span class="r-in"><span><span class="va">unstd</span> <span class="op">&lt;-</span> <span class="fu"><a href="MC.html">MC</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">fit</span>,</span></span>
-<span class="r-in"><span>  R <span class="op">=</span> <span class="fl">100L</span> <span class="co"># use a large value e.g., 20000L for actual research</span></span></span>
+<span class="r-in"><span>  R <span class="op">=</span> <span class="fl">20L</span> <span class="co"># use a large value e.g., 20000L for actual research</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Standardized Monte Carlo ------------------------------------------------</span></span></span>
 <span class="r-in"><span><span class="va">std</span> <span class="op">&lt;-</span> <span class="fu"><a href="MCStd.html">MCStd</a></span><span class="op">(</span><span class="va">unstd</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">unstd</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 cp                  b                  a         cond~~cond </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          0.1762754          0.5360031          0.5619453          0.2478289 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          0.1572343          0.5074303          0.4877448          0.2488671 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction           pmi~~pmi         reaction~1              pmi~1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          1.8983846          1.6871220          0.4294957          5.3849846 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          1.7556738          1.7795786          0.5459360          5.3493200 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             cond~1           indirect             direct              total </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          0.4650528          0.3012044          0.1762754          0.4774798 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          0.4826661          0.2474965          0.1572343          0.4047307 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">std</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 cp                  b                  a         cond~~cond </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         0.05618349         0.45596103         0.21054779         1.00000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         0.05223852         0.45824900         0.17943666         1.00000000 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction           pmi~~pmi         reaction~1              pmi~1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         0.77815554         0.95566963         0.27497925         4.05289272 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         0.77868819         0.96780249         0.36358140         3.94487604 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             cond~1           indirect             direct              total </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         0.93417079         0.09600159         0.05618349         0.15218507 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         0.96752677         0.08222667         0.05223852         0.13446519 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Monte Carlo (Multiple Imputation) ----------------------------------------</span></span></span>
 <span class="r-in"><span><span class="co">## Multiple Imputation -----------------------------------------------------</span></span></span>
@@ -142,25 +142,25 @@
 <span class="r-in"><span><span class="va">unstd</span> <span class="op">&lt;-</span> <span class="fu"><a href="MCMI.html">MCMI</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">fit</span>,</span></span>
 <span class="r-in"><span>  mi <span class="op">=</span> <span class="va">mi</span>,</span></span>
-<span class="r-in"><span>  R <span class="op">=</span> <span class="fl">100L</span> <span class="co"># use a large value e.g., 20000L for actual research</span></span></span>
+<span class="r-in"><span>  R <span class="op">=</span> <span class="fl">20L</span> <span class="co"># use a large value e.g., 20000L for actual research</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Standardized Monte Carlo ------------------------------------------------</span></span></span>
 <span class="r-in"><span><span class="va">std</span> <span class="op">&lt;-</span> <span class="fu"><a href="MCStd.html">MCStd</a></span><span class="op">(</span><span class="va">unstd</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">unstd</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 cp                  b                  a         cond~~cond </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          0.1473683          0.5155585          0.6214593          0.2488202 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          0.1583194          0.4866446          0.4449556          0.2494018 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction           pmi~~pmi           indirect             direct </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          1.9349728          1.6351874          0.3209213          0.1473683 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          1.7826516          1.7404241          0.2178339          0.1583194 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              total </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          0.4682896 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          0.3761532 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">std</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 cp                  b                  a         cond~~cond </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          0.0656597          0.4894930          0.2191209          1.0000000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         0.05752852         0.49919483         0.19164936         1.00000000 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction           pmi~~pmi           indirect             direct </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          0.7420003          0.9519860          0.1072582          0.0656597 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         0.73648744         0.96327052         0.09567037         0.05752852 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              total </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          0.1729179 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         0.15319889 </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

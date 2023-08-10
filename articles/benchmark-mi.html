@@ -29,7 +29,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">semmcci</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -175,15 +175,15 @@ intervals using multiple imputation as described in Pesigan and Cheung
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/MCMI.html">MCMI</a></span><span class="op">(</span><span class="va">fit</span>, R <span class="op">=</span> <span class="fl">100L</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, mi <span class="op">=</span> <span class="va">mi</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Monte Carlo Confidence Intervals (Multiple Imputation Estimates)</span></span>
 <span><span class="co">#&gt;             est     se   R   2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp       0.2274 0.0323 100 0.1664 0.2817</span></span>
-<span><span class="co">#&gt; b        0.5192 0.0326 100 0.4547 0.5770</span></span>
-<span><span class="co">#&gt; a        0.4790 0.0294 100 0.4231 0.5357</span></span>
-<span><span class="co">#&gt; X~~X     1.0613 0.0505 100 0.9773 1.1547</span></span>
-<span><span class="co">#&gt; Y~~Y     0.5439 0.0282 100 0.4874 0.5948</span></span>
-<span><span class="co">#&gt; M~~M     0.7642 0.0371 100 0.6993 0.8347</span></span>
-<span><span class="co">#&gt; indirect 0.2486 0.0202 100 0.2114 0.2949</span></span>
-<span><span class="co">#&gt; direct   0.2274 0.0323 100 0.1664 0.2817</span></span>
-<span><span class="co">#&gt; total    0.4760 0.0283 100 0.4248 0.5266</span></span></code></pre></div>
+<span><span class="co">#&gt; cp       0.2274 0.0322 100 0.1732 0.2945</span></span>
+<span><span class="co">#&gt; b        0.5192 0.0338 100 0.4557 0.5813</span></span>
+<span><span class="co">#&gt; a        0.4790 0.0342 100 0.4136 0.5442</span></span>
+<span><span class="co">#&gt; X~~X     1.0613 0.0490 100 0.9825 1.1538</span></span>
+<span><span class="co">#&gt; Y~~Y     0.5439 0.0302 100 0.4811 0.5961</span></span>
+<span><span class="co">#&gt; M~~M     0.7642 0.0356 100 0.7095 0.8338</span></span>
+<span><span class="co">#&gt; indirect 0.2486 0.0235 100 0.2068 0.2954</span></span>
+<span><span class="co">#&gt; direct   0.2274 0.0322 100 0.1732 0.2945</span></span>
+<span><span class="co">#&gt; total    0.4760 0.0292 100 0.4223 0.5371</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="nonparametric-bootstrap-confidence-intervals-multiple-imputation">Nonparametric Bootstrap Confidence Intervals (Multiple
@@ -212,7 +212,7 @@ Imputation)<a class="anchor" aria-label="anchor" href="#nonparametric-bootstrap-
 <span><span class="co">#&gt;   NFI                 1.000    0.000    1.000    1.000   </span></span>
 <span><span class="co">#&gt;   NNFI                1.000    0.000    1.000    1.000   </span></span>
 <span><span class="co">#&gt;   CFI                 1.000    0.000    1.000    1.000   </span></span>
-<span><span class="co">#&gt;   BIC                 7755.170 79.961   7565.227 7870.327</span></span>
+<span><span class="co">#&gt;   BIC                 7749.694 83.360   7530.344 7866.341</span></span>
 <span><span class="co">#&gt;   SRMR                0.000    0.000    0.000    0.000   </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Estimation of parameters:</span></span>
@@ -220,22 +220,22 @@ Imputation)<a class="anchor" aria-label="anchor" href="#nonparametric-bootstrap-
 <span><span class="co">#&gt;                      Estimate   SE      2.5%     97.5%</span></span>
 <span><span class="co">#&gt; Regressions:</span></span>
 <span><span class="co">#&gt;   Y ~</span></span>
-<span><span class="co">#&gt;     X        (cp)     0.228    0.031    0.169    0.291</span></span>
-<span><span class="co">#&gt;     M         (b)     0.505    0.029    0.462    0.568</span></span>
+<span><span class="co">#&gt;     X        (cp)     0.233    0.027    0.186    0.283</span></span>
+<span><span class="co">#&gt;     M         (b)     0.515    0.031    0.450    0.562</span></span>
 <span><span class="co">#&gt;   M ~</span></span>
-<span><span class="co">#&gt;     X         (a)     0.484    0.030    0.430    0.544</span></span>
+<span><span class="co">#&gt;     X         (a)     0.483    0.029    0.427    0.537</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Variances:</span></span>
-<span><span class="co">#&gt;     X                 1.065    0.054    0.978    1.174</span></span>
-<span><span class="co">#&gt;     Y                 0.556    0.023    0.505    0.598</span></span>
-<span><span class="co">#&gt;     M                 0.759    0.041    0.682    0.843</span></span>
+<span><span class="co">#&gt;     X                 1.067    0.053    0.955    1.153</span></span>
+<span><span class="co">#&gt;     Y                 0.554    0.025    0.506    0.597</span></span>
+<span><span class="co">#&gt;     M                 0.755    0.039    0.682    0.824</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Defined parameters:</span></span>
-<span><span class="co">#&gt;     a*b    (indr)     0.245    0.022    0.207    0.291</span></span>
-<span><span class="co">#&gt;     cp     (drct)     0.228    0.031    0.169    0.291</span></span>
-<span><span class="co">#&gt;     cp+(*) (totl)     0.473    0.031    0.424    0.539</span></span></code></pre></div>
+<span><span class="co">#&gt;     a*b    (indr)     0.249    0.019    0.212    0.285</span></span>
+<span><span class="co">#&gt;     cp     (drct)     0.233    0.027    0.186    0.283</span></span>
+<span><span class="co">#&gt;     cp+(*) (totl)     0.482    0.027    0.433    0.527</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="benchmark">Benchmark<a class="anchor" aria-label="anchor" href="#benchmark"></a>
@@ -306,18 +306,18 @@ Imputation)<a class="anchor" aria-label="anchor" href="#nonparametric-bootstrap-
 </h3>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_mi_01</span>, unit <span class="op">=</span> <span class="st">"ms"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   expr       min         lq       mean     median         uq        max neval</span></span>
-<span><span class="co">#&gt; 1   MC   322.083   325.4905   352.0046   331.6591   340.5822   534.9952    10</span></span>
-<span><span class="co">#&gt; 2   NB 31801.371 31846.7333 32129.5705 32032.8910 32376.7353 32786.3882    10</span></span></code></pre></div>
+<span><span class="co">#&gt;   expr      min         lq       mean     median         uq        max neval</span></span>
+<span><span class="co">#&gt; 1   MC   311.82   313.7904   318.8792   316.4143   319.9398   339.3857    10</span></span>
+<span><span class="co">#&gt; 2   NB 30005.16 30121.2067 30236.1634 30150.7257 30312.6554 30733.6459    10</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="summary-of-benchmark-results-relative-to-the-faster-method">Summary of Benchmark Results Relative to the Faster Method<a class="anchor" aria-label="anchor" href="#summary-of-benchmark-results-relative-to-the-faster-method"></a>
 </h3>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_mi_01</span>, unit <span class="op">=</span> <span class="st">"relative"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   expr      min       lq     mean   median       uq      max neval</span></span>
-<span><span class="co">#&gt; 1   MC  1.00000  1.00000  1.00000  1.00000  1.00000  1.00000    10</span></span>
-<span><span class="co">#&gt; 2   NB 98.73657 97.84228 91.27599 96.58377 95.06291 61.28352    10</span></span></code></pre></div>
+<span><span class="co">#&gt;   expr     min       lq     mean   median       uq      max neval</span></span>
+<span><span class="co">#&gt; 1   MC  1.0000  1.00000  1.00000  1.00000  1.00000  1.00000    10</span></span>
+<span><span class="co">#&gt; 2   NB 96.2259 95.99149 94.82012 95.28877 94.74487 90.55669    10</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -362,17 +362,17 @@ Multiple Imputation<a class="anchor" aria-label="anchor" href="#benchmark---mont
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_mi_02</span>, unit <span class="op">=</span> <span class="st">"ms"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   expr        min         lq       mean     median         uq        max neval</span></span>
-<span><span class="co">#&gt; 1   MC   211.9426   217.0334   220.0428   220.5082   223.1248   225.2164    10</span></span>
-<span><span class="co">#&gt; 2   NB 31682.4073 31759.1798 31937.0296 31933.4705 32077.4764 32238.1300    10</span></span></code></pre></div>
+<span><span class="co">#&gt; 1   MC   199.0244   201.2649   206.3793   207.7847   209.8152   210.6704    10</span></span>
+<span><span class="co">#&gt; 2   NB 29995.3353 30134.8455 30201.9621 30215.2798 30271.1703 30370.4999    10</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="summary-of-benchmark-results-relative-to-the-faster-method-1">Summary of Benchmark Results Relative to the Faster Method<a class="anchor" aria-label="anchor" href="#summary-of-benchmark-results-relative-to-the-faster-method-1"></a>
 </h3>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_mi_02</span>, unit <span class="op">=</span> <span class="st">"relative"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   expr      min       lq     mean   median       uq      max neval</span></span>
-<span><span class="co">#&gt; 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10</span></span>
-<span><span class="co">#&gt; 2   NB 149.4858 146.3331 145.1401 144.8176 143.7647 143.1429    10</span></span></code></pre></div>
+<span><span class="co">#&gt;   expr      min       lq    mean   median       uq      max neval</span></span>
+<span><span class="co">#&gt; 1   MC   1.0000   1.0000   1.000   1.0000   1.0000   1.0000    10</span></span>
+<span><span class="co">#&gt; 2   NB 150.7118 149.7273 146.342 145.4163 144.2754 144.1612    10</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">

@@ -12,7 +12,7 @@ for free and defined parameters."><!-- mathjax --><script src="https://cdnjs.clo
     
     <a class="navbar-brand me-2" href="../index.html">semmcci</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -199,23 +199,23 @@ Advantages of Monte Carlo confidence intervals for indirect effects.
 <span class="r-in"><span><span class="co">## MC() --------------------------------------------------------------------</span></span></span>
 <span class="r-in"><span><span class="fu">MC</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  <span class="va">fit</span>,</span></span>
-<span class="r-in"><span>  R <span class="op">=</span> <span class="fl">100L</span>, <span class="co"># use a large value e.g., 20000L for actual research</span></span></span>
+<span class="r-in"><span>  R <span class="op">=</span> <span class="fl">20L</span>, <span class="co"># use a large value e.g., 20000L for actual research</span></span></span>
 <span class="r-in"><span>  alpha <span class="op">=</span> <span class="fl">0.05</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Monte Carlo Confidence Intervals</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                       est     se   R    2.5%  97.5%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp                 0.4154 0.2791 100 -0.1451 0.8925</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b                  0.5042 0.0908 100  0.3072 0.6687</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a                  0.4935 0.2777 100  0.0227 1.0473</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond         0.2483 0.0367 100  0.1920 0.3218</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction 1.8873 0.2955 100  1.4641 2.6197</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi           1.7629 0.2348 100  1.3136 2.2511</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~1         0.4883 0.5302 100 -0.5738 1.4588</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~1              5.3646 0.1692 100  4.9877 5.6007</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cond~1             0.4645 0.0434 100  0.3830 0.5515</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> indirect           0.2488 0.1478 100  0.0127 0.5630</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> direct             0.4154 0.2791 100 -0.1451 0.8925</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> total              0.6643 0.3014 100  0.0204 1.2212</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       est     se  R    2.5%  97.5%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp                 0.2345 0.2440 20 -0.2317 0.6195</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b                  0.5382 0.0587 20  0.3917 0.6064</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a                  0.5498 0.2669 20  0.1184 0.9880</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond         0.2493 0.0250 20  0.1988 0.2700</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction 1.7799 0.2444 20  1.2906 2.0691</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi           1.6988 0.1913 20  1.4012 2.0104</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~1         0.3828 0.2897 20  0.0853 1.0680</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~1              5.3950 0.1537 20  5.1439 5.6554</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cond~1             0.4788 0.0502 20  0.4105 0.5698</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> indirect           0.2959 0.1380 20  0.0584 0.5254</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> direct             0.2345 0.2440 20 -0.2317 0.6195</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> total              0.5305 0.2345 20  0.1606 0.9759</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
