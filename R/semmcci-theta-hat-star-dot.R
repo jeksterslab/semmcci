@@ -58,8 +58,8 @@
     k = k
   )
   if (decomposition == "chol") {
-    #run <- FALSE
-    #tryCatch(
+    # run <- FALSE
+    # tryCatch(
     #  {
     #    cholesky <- chol(x = scale)
     #    run <- TRUE
@@ -67,15 +67,15 @@
     #  error = function() {
     #    run <- FALSE # nolint
     #  }
-    #)
-    #if (run) {
+    # )
+    # if (run) {
     #  dist <- .RandomGaussianChol(
     #    Z = z,
     #    chol = cholesky
     #  )
-    #} else {
+    # } else {
     #  decomposition <- "eigen"
-    #}
+    # }
     dist <- .RandomGaussianChol(
       Z = z,
       chol = chol(x = scale)
