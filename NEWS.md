@@ -1,3 +1,9 @@
+# semmcci 1.1.2
+
+## Patch
+
+* Addressed M1Mac CRAN build issues.
+
 # semmcci 1.1.1
 
 ## Patch
