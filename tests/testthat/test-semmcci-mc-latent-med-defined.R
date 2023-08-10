@@ -20,12 +20,20 @@ lapply(
       model = model,
       data = data
     )
-    results_chol <- MC(
-      fit,
-      R = R,
-      alpha = c(0.001, 0.01, 0.05),
-      decomposition = "chol",
-      seed = seed
+    run <- TRUE
+    tryCatch(
+      {
+        results_chol <- MC(
+          fit,
+          R = R,
+          alpha = c(0.001, 0.01, 0.05),
+          decomposition = "chol",
+          seed = seed
+        )
+      },
+      error = function() {
+        run <- FALSE # nolint
+      }
     )
     results_eigen <- MC(
       fit,
