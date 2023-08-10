@@ -49,7 +49,7 @@
     
     <a class="navbar-brand me-2" href="index.html">semmcci</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -126,12 +126,12 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
 <span><span class="co">#&gt;        X                  M                  Y           </span></span>
-<span><span class="co">#&gt;  Min.   :-3.47540   Min.   :-3.26515   Min.   :-2.81954  </span></span>
-<span><span class="co">#&gt;  1st Qu.:-0.68049   1st Qu.:-0.68964   1st Qu.:-0.70210  </span></span>
-<span><span class="co">#&gt;  Median :-0.01692   Median : 0.02064   Median :-0.00984  </span></span>
-<span><span class="co">#&gt;  Mean   : 0.00719   Mean   : 0.01423   Mean   : 0.00541  </span></span>
-<span><span class="co">#&gt;  3rd Qu.: 0.71726   3rd Qu.: 0.68890   3rd Qu.: 0.67698  </span></span>
-<span><span class="co">#&gt;  Max.   : 3.03728   Max.   : 3.00575   Max.   : 3.31082  </span></span>
+<span><span class="co">#&gt;  Min.   :-3.21455   Min.   :-4.18563   Min.   :-3.29115  </span></span>
+<span><span class="co">#&gt;  1st Qu.:-0.60366   1st Qu.:-0.67064   1st Qu.:-0.64340  </span></span>
+<span><span class="co">#&gt;  Median : 0.11833   Median : 0.03038   Median :-0.00055  </span></span>
+<span><span class="co">#&gt;  Mean   : 0.05353   Mean   : 0.00673   Mean   : 0.01279  </span></span>
+<span><span class="co">#&gt;  3rd Qu.: 0.72831   3rd Qu.: 0.71519   3rd Qu.: 0.66714  </span></span>
+<span><span class="co">#&gt;  Max.   : 3.25113   Max.   : 3.56169   Max.   : 3.15741  </span></span>
 <span><span class="co">#&gt;  NA's   :100        NA's   :100        NA's   :100</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -160,18 +160,18 @@
 <span><span class="va">mc</span></span>
 <span><span class="co">#&gt; Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;              est     se     R    2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp        0.2421 0.0316 20000  0.1800 0.3038</span></span>
-<span><span class="co">#&gt; b         0.4978 0.0308 20000  0.4378 0.5586</span></span>
-<span><span class="co">#&gt; a         0.5335 0.0289 20000  0.4776 0.5903</span></span>
-<span><span class="co">#&gt; X~~X      1.0326 0.0482 20000  0.9388 1.1268</span></span>
-<span><span class="co">#&gt; Y~~Y      0.5646 0.0275 20000  0.5104 0.6178</span></span>
-<span><span class="co">#&gt; M~~M      0.7458 0.0358 20000  0.6764 0.8165</span></span>
-<span><span class="co">#&gt; Y~1      -0.0083 0.0255 20000 -0.0583 0.0411</span></span>
-<span><span class="co">#&gt; M~1       0.0119 0.0287 20000 -0.0442 0.0688</span></span>
-<span><span class="co">#&gt; X~1       0.0043 0.0336 20000 -0.0619 0.0696</span></span>
-<span><span class="co">#&gt; indirect  0.2656 0.0220 20000  0.2238 0.3098</span></span>
-<span><span class="co">#&gt; direct    0.2421 0.0316 20000  0.1800 0.3038</span></span>
-<span><span class="co">#&gt; total     0.5077 0.0293 20000  0.4506 0.5650</span></span></code></pre></div>
+<span><span class="co">#&gt; cp        0.2058 0.0302 20000  0.1468 0.2653</span></span>
+<span><span class="co">#&gt; b         0.5211 0.0292 20000  0.4641 0.5772</span></span>
+<span><span class="co">#&gt; a         0.5475 0.0289 20000  0.4920 0.6041</span></span>
+<span><span class="co">#&gt; X~~X      1.0462 0.0488 20000  0.9503 1.1414</span></span>
+<span><span class="co">#&gt; Y~~Y      0.5370 0.0262 20000  0.4859 0.5891</span></span>
+<span><span class="co">#&gt; M~~M      0.7640 0.0366 20000  0.6937 0.8366</span></span>
+<span><span class="co">#&gt; Y~1      -0.0008 0.0248 20000 -0.0486 0.0477</span></span>
+<span><span class="co">#&gt; M~1      -0.0100 0.0291 20000 -0.0675 0.0471</span></span>
+<span><span class="co">#&gt; X~1       0.0360 0.0335 20000 -0.0294 0.1022</span></span>
+<span><span class="co">#&gt; indirect  0.2853 0.0218 20000  0.2438 0.3290</span></span>
+<span><span class="co">#&gt; direct    0.2058 0.0302 20000  0.1468 0.2653</span></span>
+<span><span class="co">#&gt; total     0.4910 0.0288 20000  0.4346 0.5472</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="monte-carlo-confidence-intervals---multiple-imputation">Monte Carlo Confidence Intervals - Multiple Imputation<a class="anchor" aria-label="anchor" href="#monte-carlo-confidence-intervals---multiple-imputation"></a>
@@ -194,15 +194,15 @@
 <span><span class="va">mcmi</span></span>
 <span><span class="co">#&gt; Monte Carlo Confidence Intervals (Multiple Imputation Estimates)</span></span>
 <span><span class="co">#&gt;             est     se     R   2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp       0.2423 0.0309 20000 0.1819 0.3030</span></span>
-<span><span class="co">#&gt; b        0.4963 0.0309 20000 0.4356 0.5566</span></span>
-<span><span class="co">#&gt; a        0.5330 0.0286 20000 0.4763 0.5893</span></span>
-<span><span class="co">#&gt; X~~X     1.0344 0.0485 20000 0.9397 1.1298</span></span>
-<span><span class="co">#&gt; Y~~Y     0.5647 0.0277 20000 0.5108 0.6188</span></span>
-<span><span class="co">#&gt; M~~M     0.7453 0.0350 20000 0.6761 0.8133</span></span>
-<span><span class="co">#&gt; indirect 0.2645 0.0219 20000 0.2225 0.3082</span></span>
-<span><span class="co">#&gt; direct   0.2423 0.0309 20000 0.1819 0.3030</span></span>
-<span><span class="co">#&gt; total    0.5069 0.0287 20000 0.4512 0.5637</span></span></code></pre></div>
+<span><span class="co">#&gt; cp       0.2065 0.0301 20000 0.1469 0.2658</span></span>
+<span><span class="co">#&gt; b        0.5197 0.0296 20000 0.4615 0.5776</span></span>
+<span><span class="co">#&gt; a        0.5478 0.0289 20000 0.4909 0.6044</span></span>
+<span><span class="co">#&gt; X~~X     1.0487 0.0492 20000 0.9527 1.1455</span></span>
+<span><span class="co">#&gt; Y~~Y     0.5367 0.0262 20000 0.4853 0.5879</span></span>
+<span><span class="co">#&gt; M~~M     0.7638 0.0371 20000 0.6904 0.8362</span></span>
+<span><span class="co">#&gt; indirect 0.2847 0.0220 20000 0.2427 0.3286</span></span>
+<span><span class="co">#&gt; direct   0.2065 0.0301 20000 0.1469 0.2658</span></span>
+<span><span class="co">#&gt; total    0.4912 0.0285 20000 0.4357 0.5473</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="standardized-monte-carlo-confidence-intervals">Standardized Monte Carlo Confidence Intervals<a class="anchor" aria-label="anchor" href="#standardized-monte-carlo-confidence-intervals"></a>
@@ -212,28 +212,28 @@
 <code class="sourceCode R"><span><span class="fu"><a href="reference/MCStd.html">MCStd</a></span><span class="op">(</span><span class="va">mc</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Standardized Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;              est     se     R   2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp        0.2441 0.0313 20000 0.1823 0.3047</span></span>
-<span><span class="co">#&gt; b         0.5037 0.0288 20000 0.4470 0.5590</span></span>
-<span><span class="co">#&gt; a         0.5316 0.0244 20000 0.4831 0.5788</span></span>
+<span><span class="co">#&gt; cp        0.2108 0.0306 20000 0.1506 0.2705</span></span>
+<span><span class="co">#&gt; b         0.5418 0.0272 20000 0.4873 0.5937</span></span>
+<span><span class="co">#&gt; a         0.5394 0.0239 20000 0.4918 0.5856</span></span>
 <span><span class="co">#&gt; X~~X      1.0000 0.0000 20000 1.0000 1.0000</span></span>
-<span><span class="co">#&gt; Y~~Y      0.5560 0.0254 20000 0.5057 0.6056</span></span>
-<span><span class="co">#&gt; M~~M      0.7174 0.0260 20000 0.6649 0.7666</span></span>
-<span><span class="co">#&gt; indirect -0.0083 0.0201 20000 0.2291 0.3075</span></span>
-<span><span class="co">#&gt; direct    0.0117 0.0313 20000 0.1823 0.3047</span></span>
-<span><span class="co">#&gt; total     0.0043 0.0254 20000 0.4611 0.5600</span></span></code></pre></div>
+<span><span class="co">#&gt; Y~~Y      0.5388 0.0249 20000 0.4902 0.5878</span></span>
+<span><span class="co">#&gt; M~~M      0.7090 0.0258 20000 0.6571 0.7581</span></span>
+<span><span class="co">#&gt; indirect -0.0008 0.0199 20000 0.2536 0.3317</span></span>
+<span><span class="co">#&gt; direct   -0.0097 0.0306 20000 0.1506 0.2705</span></span>
+<span><span class="co">#&gt; total     0.0352 0.0255 20000 0.4514 0.5518</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/MCStd.html">MCStd</a></span><span class="op">(</span><span class="va">mcmi</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Standardized Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;             est     se     R   2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp       0.2319 0.0310 20000 0.1836 0.3046</span></span>
-<span><span class="co">#&gt; b        0.5177 0.0286 20000 0.4456 0.5576</span></span>
-<span><span class="co">#&gt; a        0.5426 0.0242 20000 0.4833 0.5779</span></span>
+<span><span class="co">#&gt; cp       0.2042 0.0308 20000 0.1509 0.2722</span></span>
+<span><span class="co">#&gt; b        0.5505 0.0275 20000 0.4855 0.5936</span></span>
+<span><span class="co">#&gt; a        0.5364 0.0241 20000 0.4921 0.5867</span></span>
 <span><span class="co">#&gt; X~~X     1.0000 0.0000 20000 1.0000 1.0000</span></span>
-<span><span class="co">#&gt; Y~~Y     0.5480 0.0254 20000 0.5079 0.6067</span></span>
-<span><span class="co">#&gt; M~~M     0.7056 0.0257 20000 0.6661 0.7664</span></span>
-<span><span class="co">#&gt; indirect 0.2809 0.0200 20000 0.2281 0.3063</span></span>
-<span><span class="co">#&gt; direct   0.2319 0.0310 20000 0.1836 0.3046</span></span>
-<span><span class="co">#&gt; total    0.5128 0.0251 20000 0.4612 0.5597</span></span></code></pre></div>
+<span><span class="co">#&gt; Y~~Y     0.5347 0.0249 20000 0.4896 0.5874</span></span>
+<span><span class="co">#&gt; M~~M     0.7123 0.0260 20000 0.6558 0.7578</span></span>
+<span><span class="co">#&gt; indirect 0.2953 0.0201 20000 0.2527 0.3317</span></span>
+<span><span class="co">#&gt; direct   0.2042 0.0308 20000 0.1509 0.2722</span></span>
+<span><span class="co">#&gt; total    0.4995 0.0256 20000 0.4528 0.5525</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
