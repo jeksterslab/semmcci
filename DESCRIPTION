@@ -1,6 +1,6 @@
 Package: semmcci
 Title: Monte Carlo Confidence Intervals in Structural Equation Modeling
-Version: 1.1.2
+Version: 1.1.2.9000
 Authors@R: c(
     person(given = "Ivan Jacob Agaloos",
            family = "Pesigan",
@@ -35,7 +35,7 @@ Imports: stats, lavaan, mice
 Suggests: knitr, rmarkdown, testthat, MASS, psych, Amelia, bmemLavaan
 RoxygenNote: 7.2.3
 NeedsCompilation: no
-Packaged: 2023-08-10 15:52:49 UTC; root
+Packaged: 2023-08-10 18:47:35 UTC; root
 Author: Ivan Jacob Agaloos Pesigan [aut, cre, cph]
     (<https://orcid.org/0000-0003-4818-8420>),
   Shu Fai Cheung [ctb] (<https://orcid.org/0000-0002-9871-9448>)
