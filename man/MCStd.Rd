@@ -59,7 +59,7 @@ fit <- sem(data = df, model = model, missing = "fiml")
 ## MC() --------------------------------------------------------------------
 unstd <- MC(
   fit,
-  R = 100L, # use a large value e.g., 20000L for actual research
+  R = 20L, # use a large value e.g., 20000L for actual research
   alpha = 0.05
 )
 
@@ -82,7 +82,7 @@ fit <- sem(data = df, model = model) # use default listwise deletion
 unstd <- MCMI(
   fit,
   mi = mi,
-  R = 100L, # use a large value e.g., 20000L for actual research
+  R = 20L, # use a large value e.g., 20000L for actual research
   alpha = 0.05
 )
 

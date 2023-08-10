@@ -89,7 +89,7 @@ fit <- sem(data = df, model = model, missing = "fiml")
 ## MC() --------------------------------------------------------------------
 MC(
   fit,
-  R = 100L, # use a large value e.g., 20000L for actual research
+  R = 20L, # use a large value e.g., 20000L for actual research
   alpha = 0.05
 )
 
