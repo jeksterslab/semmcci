@@ -78,7 +78,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2023-08-12</h4>
+            <h4 data-toc-skip class="date">2023-08-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/semmcci/blob/HEAD/vignettes/mcstd-3-rsqr.Rmd"><code>vignettes/mcstd-3-rsqr.Rmd</code></a></small>
       <div class="d-none name"><code>mcstd-3-rsqr.Rmd</code></div>
@@ -131,8 +131,8 @@ and child’s home possession (<span class="math inline">\(X_{3}\)</span>)</p>
 <p>Note that <span class="math inline">\(\zeta_{1}\)</span> and <span class="math inline">\(\zeta_{2}\)</span> are stochastic error terms with
 expected value of zero and finite variance <span class="math inline">\(\psi_{1}\)</span> and <span class="math inline">\(\psi_{2}\)</span>, <span class="math inline">\(\alpha_{1}\)</span> and <span class="math inline">\(\alpha_{2}\)</span> are intercepts, and <span class="math inline">\(\beta_{1}\)</span>, <span class="math inline">\(\gamma_{1}\)</span>, <span class="math inline">\(\gamma_{2}\)</span>, and <span class="math inline">\(\gamma_{3}\)</span> are regression
 coefficients.</p>
-<div class="figure">
-<img src="https://raw.githubusercontent.com/jeksterslab/semmcci/main/.setup/latex/figures/png/kwan-2011-example-2.png" alt=""><p class="caption">Mediation Model (Covariance Structure)</p>
+<div class="float">
+<img src="https://raw.githubusercontent.com/jeksterslab/semmcci/main/.setup/latex/figures/png/kwan-2011-example-2.png" alt="Mediation Model (Covariance Structure)"><div class="figcaption">Mediation Model (Covariance Structure)</div>
 </div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">covs</span></span>
@@ -234,22 +234,22 @@ standardized estimates.</p>
 <span><span class="fu"><a href="../reference/MCStd.html">MCStd</a></span><span class="op">(</span><span class="va">unstd</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Standardized Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;             est     se     R    2.5%   97.5%</span></span>
-<span><span class="co">#&gt; Y1~Y2    0.2391 0.0666 20000  0.1086  0.3704</span></span>
-<span><span class="co">#&gt; Y2~X1   -0.2449 0.0806 20000 -0.3985 -0.0838</span></span>
-<span><span class="co">#&gt; Y2~X2    0.4419 0.0784 20000  0.2846  0.5905</span></span>
-<span><span class="co">#&gt; Y2~X3    0.3101 0.0641 20000  0.1810  0.4343</span></span>
-<span><span class="co">#&gt; psi1     0.9428 0.0325 20000  0.8628  0.9882</span></span>
-<span><span class="co">#&gt; psi2     0.7428 0.0524 20000  0.6297  0.8339</span></span>
+<span><span class="co">#&gt; Y1~Y2    0.2391 0.0655 20000  0.1117  0.3664</span></span>
+<span><span class="co">#&gt; Y2~X1   -0.2449 0.0814 20000 -0.4050 -0.0851</span></span>
+<span><span class="co">#&gt; Y2~X2    0.4419 0.0781 20000  0.2845  0.5897</span></span>
+<span><span class="co">#&gt; Y2~X3    0.3101 0.0641 20000  0.1802  0.4319</span></span>
+<span><span class="co">#&gt; psi1     0.9428 0.0318 20000  0.8657  0.9875</span></span>
+<span><span class="co">#&gt; psi2     0.7428 0.0531 20000  0.6286  0.8358</span></span>
 <span><span class="co">#&gt; X1~~X1   1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; X1~~X2   0.6606 0.0406 20000  0.5746  0.7333</span></span>
-<span><span class="co">#&gt; X1~~X3   0.3547 0.0627 20000  0.2270  0.4728</span></span>
+<span><span class="co">#&gt; X1~~X2   0.6606 0.0409 20000  0.5718  0.7336</span></span>
+<span><span class="co">#&gt; X1~~X3   0.3547 0.0621 20000  0.2269  0.4717</span></span>
 <span><span class="co">#&gt; X2~~X2   1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; X2~~X3   0.3743 0.0614 20000  0.2495  0.4898</span></span>
+<span><span class="co">#&gt; X2~~X3   0.3743 0.0619 20000  0.2457  0.4879</span></span>
 <span><span class="co">#&gt; X3~~X3   1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; rsq1     0.0572 0.0325 20000  0.0118  0.1372</span></span>
-<span><span class="co">#&gt; rsqbar1  0.0619 0.0323 20000  0.0167  0.1415</span></span>
-<span><span class="co">#&gt; rsq2     0.2572 0.0524 20000  0.1661  0.3703</span></span>
-<span><span class="co">#&gt; rsqbar2  0.2534 0.0527 20000  0.1619  0.3671</span></span></code></pre></div>
+<span><span class="co">#&gt; rsq1     0.0572 0.0318 20000  0.0125  0.1343</span></span>
+<span><span class="co">#&gt; rsqbar1  0.0619 0.0317 20000  0.0174  0.1386</span></span>
+<span><span class="co">#&gt; rsq2     0.2572 0.0531 20000  0.1642  0.3714</span></span>
+<span><span class="co">#&gt; rsqbar2  0.2534 0.0534 20000  0.1600  0.3682</span></span></code></pre></div>
 </div>
 <div class="section level2 unnumbered">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
