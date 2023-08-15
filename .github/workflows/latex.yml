@@ -30,7 +30,9 @@ jobs:
         run: make build
       -
         name: Make LaTeX
-        run: make pdf
+        run: |
+          make bibrproject
+          make pdf
       - 
         name: Push to the latex branch
         uses: s0/git-publish-subdir-action@develop
