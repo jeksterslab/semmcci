@@ -15,7 +15,7 @@ jobs:
       image: ijapesigan/docs
     # Only restrict concurrency for non-PR jobs
     concurrency:
-      group: quarto-gh-pages-${{ github.event_name != 'pull_request' || github.run_id }}
+      group: latex-${{ github.event_name != 'pull_request' || github.run_id }}
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     permissions:
