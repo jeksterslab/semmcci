@@ -23,7 +23,7 @@ note <- sprintf(
   "R package version %s",
   meta$Version
 )
-url <- "https://github.com/jeksterslab/manMCMedMiss"
+url <- "https://github.com/jeksterslab/semmcci"
 
 bibentry(
   bibtype = "Article",
