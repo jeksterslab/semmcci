@@ -2,13 +2,15 @@
 title: "semmcci: Monte Carlo Confidence Intervals in Structural Equation Modeling"
 author: "Ivan Jacob Agaloos Pesigan"
 date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
-  @MacKinnon-Lockwood-Williams-2004, @Preacher-Selig-2012, @Tofighi-Kelley-2019, @Tofighi-MacKinnon-2015
-output:
-  rmarkdown::html_vignette:
-    toc: true
+  @Pesigan-Cheung-2023
+  @MacKinnon-Lockwood-Williams-2004
+  @Preacher-Selig-2012
+  @Tofighi-Kelley-2019
+  @Tofighi-MacKinnon-2015
 vignette: >
   %\VignetteIndexEntry{semmcci: Monte Carlo Confidence Intervals in Structural Equation Modeling}
   %\VignetteEngine{knitr::rmarkdown}

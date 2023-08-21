@@ -7,6 +7,10 @@ bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
   @Pesigan-Cheung-2023
+  @MacKinnon-Lockwood-Williams-2004
+  @Preacher-Selig-2012
+  @Tofighi-Kelley-2019
+  @Tofighi-MacKinnon-2015
 ---
 
 <!-- README.md is generated from .setup/readme/README.Rmd. Please edit that file -->
@@ -206,3 +210,5 @@ package documentation.
 ## Citation
 
 To cite `semmcci` in publications, please cite @Pesigan-Cheung-2023.
+
+## References
