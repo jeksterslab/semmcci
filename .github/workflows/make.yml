@@ -32,6 +32,7 @@ jobs:
         name: Make Project
         run: |
           make install
+          make bibrproject
           make push
       - 
         name: Commit and push changes
