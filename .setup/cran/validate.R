@@ -9,7 +9,8 @@ Validate <- function() {
   source(
     file.path(
       path,
-      "tools",
+      ".setup",
+      "scripts",
       "project.R"
     )
   )

@@ -69,7 +69,7 @@ lapply(
     )
     results_unstd_svd$thetahatstar[3, ] <- lavaan::parameterEstimates(fit)$est
     results_svd <- MCStd(results_unstd_svd)
-    if (run) {
+    if (run) { 
       testthat::test_that(
         paste(text, "chol"),
         {
