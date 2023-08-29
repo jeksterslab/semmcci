@@ -1,0 +1,251 @@
+---
+title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping"
+author: "Ivan Jacob Agaloos Pesigan"
+date: "2023-08-29"
+bibliography: "vignettes.bib"
+csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
+nocite: |
+  @Pesigan-Cheung-2023
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+<!-- vignettes/benchmark-complete.Rmd is generated from .setup/vignettes/benchmark-complete.Rmd.orig. Please edit that file -->
+
+
+
+
+
+
+
+We compare the Monte Carlo (MC) method with nonparametric bootstrapping (NB) using the simple mediation model with complete data.
+One advantage of MC over NB is speed.
+This is because the model is only fitted once in MC whereas it is fitted many times in NB.
+
+
+```r
+library(semmcci)
+library(lavaan)
+library(microbenchmark)
+```
+
+## Data
+
+
+```r
+n <- 1000
+a <- 0.50
+b <- 0.50
+cp <- 0.25
+s2_em <- 1 - a^2
+s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
+em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
+ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
+X <- rnorm(n = n)
+M <- a * X + em
+Y <- cp * X + b * M + ey
+df <- data.frame(X, M, Y)
+```
+
+## Model Specification
+
+The indirect effect is defined by the product of the slopes
+of paths `X` to `M` labeled as `a` and `M` to `Y` labeled as `b`.
+In this example, we are interested in the confidence intervals of `indirect`
+defined as the product of `a` and `b` using the `:=` operator
+in the `lavaan` model syntax.
+
+
+```r
+model <- "
+  Y ~ cp * X + b * M
+  M ~ a * X
+  X ~~ X
+  indirect := a * b
+  direct := cp
+  total := cp + (a * b)
+"
+```
+
+## Model Fitting
+
+We can now fit the model using the `sem()` function from `lavaan`.
+
+
+```r
+fit <- sem(data = df, model = model)
+```
+
+## Monte Carlo Confidence Intervals
+
+The `fit` `lavaan` object can then be passed to the `MC()` function from `semmcci`
+to generate Monte Carlo confidence intervals.
+
+
+```r
+MC(fit, R = 100L, alpha = 0.05)
+#> Monte Carlo Confidence Intervals
+#>             est     se   R   2.5%  97.5%
+#> cp       0.2333 0.0306 100 0.1743 0.2907
+#> b        0.5082 0.0268 100 0.4597 0.5598
+#> a        0.4820 0.0227 100 0.4357 0.5238
+#> X~~X     1.0590 0.0497 100 0.9752 1.1554
+#> Y~~Y     0.5462 0.0234 100 0.5072 0.5912
+#> M~~M     0.7527 0.0354 100 0.6879 0.8290
+#> indirect 0.2449 0.0178 100 0.2084 0.2738
+#> direct   0.2333 0.0306 100 0.1743 0.2907
+#> total    0.4782 0.0291 100 0.4169 0.5346
+```
+
+## Nonparametric Bootstrap Confidence Intervals
+
+Nonparametric bootstrap confidence intervals can be generated in `lavaan` using the following.
+
+
+```r
+parameterEstimates(
+  sem(
+    data = df,
+    model = model,
+    se = "bootstrap",
+    bootstrap = 100L
+  )
+)
+#>        lhs op      rhs    label   est    se      z pvalue ci.lower ci.upper
+#> 1        Y  ~        X       cp 0.233 0.025  9.234      0    0.183    0.291
+#> 2        Y  ~        M        b 0.508 0.028 18.475      0    0.457    0.569
+#> 3        M  ~        X        a 0.482 0.027 17.947      0    0.434    0.537
+#> 4        X ~~        X          1.059 0.047 22.323      0    0.937    1.150
+#> 5        Y ~~        Y          0.546 0.022 24.717      0    0.507    0.585
+#> 6        M ~~        M          0.753 0.033 22.754      0    0.668    0.814
+#> 7 indirect :=      a*b indirect 0.245 0.018 13.369      0    0.205    0.287
+#> 8   direct :=       cp   direct 0.233 0.025  9.188      0    0.183    0.291
+#> 9    total := cp+(a*b)    total 0.478 0.029 16.624      0    0.420    0.542
+```
+
+## Benchmark
+
+### Arguments
+
+
+
+
+
+|Variables |Values |Notes                               |
+|:---------|:------|:-----------------------------------|
+|R         |1000   |Number of Monte Carlo replications. |
+|B         |1000   |Number of bootstrap samples.        |
+
+
+
+
+
+
+```r
+benchmark_complete_01 <- microbenchmark(
+  MC = {
+    fit <- sem(
+      data = df,
+      model = model
+    )
+    MC(
+      fit,
+      R = R,
+      decomposition = "chol",
+      pd = FALSE
+    )
+  },
+  NB = sem(
+    data = df,
+    model = model,
+    se = "bootstrap",
+    bootstrap = B
+  ),
+  times = 10
+)
+```
+
+### Summary of Benchmark Results
+
+
+```r
+summary(benchmark_complete_01, unit = "ms")
+#>   expr        min         lq        mean      median         uq        max
+#> 1   MC    70.3579    71.2953    83.01955    74.36125    87.1376   124.5988
+#> 2   NB 14436.0552 14841.4169 16779.77684 15700.79975 17479.0542 23901.9466
+#>   neval
+#> 1    10
+#> 2    10
+```
+
+### Summary of Benchmark Results Relative to the Faster Method
+
+
+```r
+summary(benchmark_complete_01, unit = "relative")
+#>   expr      min       lq     mean   median       uq      max neval
+#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
+#> 2   NB 205.1803 208.1682 202.1184 211.1422 200.5914 191.8313    10
+```
+
+## Plot
+
+<img src="fig-vignettes-benchmark-unnamed-chunk-16-1.png" width="3300" />
+
+## Benchmark - Monte Carlo Method with Precalculated Estimates
+
+
+
+
+```r
+fit <- sem(
+  data = df,
+  model = model
+)
+benchmark_complete_02 <- microbenchmark(
+  MC = MC(
+    fit,
+    R = R,
+    decomposition = "chol",
+    pd = FALSE
+  ),
+  NB = sem(
+    data = df,
+    model = model,
+    se = "bootstrap",
+    bootstrap = B
+  ),
+  times = 10
+)
+```
+
+### Summary of Benchmark Results
+
+
+```r
+summary(benchmark_complete_02, unit = "ms")
+#>   expr        min         lq        mean     median         uq       max neval
+#> 1   MC    20.9529    22.2573    26.46984    24.9559    29.1406    40.154    10
+#> 2   NB 13645.4798 14074.0098 18654.62952 17261.8934 24540.8966 27948.508    10
+```
+
+### Summary of Benchmark Results Relative to the Faster Method
+
+
+```r
+summary(benchmark_complete_02, unit = "relative")
+#>   expr      min       lq     mean   median       uq     max neval
+#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.000    10
+#> 2   NB 651.2454 632.3323 704.7504 691.6959 842.1548 696.033    10
+```
+
+## Plot
+
+<img src="fig-vignettes-benchmark-unnamed-chunk-21-1.png" width="3300" />
+
+## References
