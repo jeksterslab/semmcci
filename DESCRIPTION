@@ -35,7 +35,7 @@ Imports: stats, lavaan, mice
 Suggests: knitr, rmarkdown, testthat, MASS, psych, Amelia, bmemLavaan
 RoxygenNote: 7.2.3
 NeedsCompilation: no
-Packaged: 2023-08-29 00:24:12 UTC; root
+Packaged: 2023-08-29 23:12:58 UTC; root
 Author: Ivan Jacob Agaloos Pesigan [aut, cre, cph]
     (<https://orcid.org/0000-0003-4818-8420>),
   Shu Fai Cheung [ctb] (<https://orcid.org/0000-0002-9871-9448>)
