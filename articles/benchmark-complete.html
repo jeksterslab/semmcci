@@ -150,15 +150,15 @@ Monte Carlo confidence intervals.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/MC.html">MC</a></span><span class="op">(</span><span class="va">fit</span>, R <span class="op">=</span> <span class="fl">100L</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;             est     se   R   2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp       0.2333 0.0306 100 0.1743 0.2907</span></span>
-<span><span class="co">#&gt; b        0.5082 0.0268 100 0.4597 0.5598</span></span>
-<span><span class="co">#&gt; a        0.4820 0.0227 100 0.4357 0.5238</span></span>
-<span><span class="co">#&gt; X~~X     1.0590 0.0497 100 0.9752 1.1554</span></span>
-<span><span class="co">#&gt; Y~~Y     0.5462 0.0234 100 0.5072 0.5912</span></span>
-<span><span class="co">#&gt; M~~M     0.7527 0.0354 100 0.6879 0.8290</span></span>
-<span><span class="co">#&gt; indirect 0.2449 0.0178 100 0.2084 0.2738</span></span>
-<span><span class="co">#&gt; direct   0.2333 0.0306 100 0.1743 0.2907</span></span>
-<span><span class="co">#&gt; total    0.4782 0.0291 100 0.4169 0.5346</span></span></code></pre></div>
+<span><span class="co">#&gt; cp       0.2333 0.0230 100 0.1806 0.2703</span></span>
+<span><span class="co">#&gt; b        0.5082 0.0241 100 0.4631 0.5486</span></span>
+<span><span class="co">#&gt; a        0.4820 0.0278 100 0.4262 0.5321</span></span>
+<span><span class="co">#&gt; X~~X     1.0590 0.0550 100 0.9616 1.1794</span></span>
+<span><span class="co">#&gt; Y~~Y     0.5462 0.0265 100 0.4983 0.5937</span></span>
+<span><span class="co">#&gt; M~~M     0.7527 0.0350 100 0.6938 0.8233</span></span>
+<span><span class="co">#&gt; indirect 0.2449 0.0176 100 0.2120 0.2789</span></span>
+<span><span class="co">#&gt; direct   0.2333 0.0230 100 0.1806 0.2703</span></span>
+<span><span class="co">#&gt; total    0.4782 0.0250 100 0.4280 0.5185</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="nonparametric-bootstrap-confidence-intervals">Nonparametric Bootstrap Confidence Intervals<a class="anchor" aria-label="anchor" href="#nonparametric-bootstrap-confidence-intervals"></a>
@@ -175,15 +175,15 @@ Monte Carlo confidence intervals.</p>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;        lhs op      rhs    label   est    se      z pvalue ci.lower ci.upper</span></span>
-<span><span class="co">#&gt; 1        Y  ~        X       cp 0.233 0.025  9.234      0    0.183    0.291</span></span>
-<span><span class="co">#&gt; 2        Y  ~        M        b 0.508 0.028 18.475      0    0.457    0.569</span></span>
-<span><span class="co">#&gt; 3        M  ~        X        a 0.482 0.027 17.947      0    0.434    0.537</span></span>
-<span><span class="co">#&gt; 4        X ~~        X          1.059 0.047 22.323      0    0.937    1.150</span></span>
-<span><span class="co">#&gt; 5        Y ~~        Y          0.546 0.022 24.717      0    0.507    0.585</span></span>
-<span><span class="co">#&gt; 6        M ~~        M          0.753 0.033 22.754      0    0.668    0.814</span></span>
-<span><span class="co">#&gt; 7 indirect :=      a*b indirect 0.245 0.018 13.369      0    0.205    0.287</span></span>
-<span><span class="co">#&gt; 8   direct :=       cp   direct 0.233 0.025  9.188      0    0.183    0.291</span></span>
-<span><span class="co">#&gt; 9    total := cp+(a*b)    total 0.478 0.029 16.624      0    0.420    0.542</span></span></code></pre></div>
+<span><span class="co">#&gt; 1        Y  ~        X       cp 0.233 0.025  9.474      0    0.183    0.283</span></span>
+<span><span class="co">#&gt; 2        Y  ~        M        b 0.508 0.027 18.954      0    0.444    0.549</span></span>
+<span><span class="co">#&gt; 3        M  ~        X        a 0.482 0.028 17.264      0    0.432    0.544</span></span>
+<span><span class="co">#&gt; 4        X ~~        X          1.059 0.051 20.641      0    0.952    1.180</span></span>
+<span><span class="co">#&gt; 5        Y ~~        Y          0.546 0.025 21.430      0    0.494    0.597</span></span>
+<span><span class="co">#&gt; 6        M ~~        M          0.753 0.036 20.647      0    0.676    0.824</span></span>
+<span><span class="co">#&gt; 7 indirect :=      a*b indirect 0.245 0.017 14.260      0    0.210    0.283</span></span>
+<span><span class="co">#&gt; 8   direct :=       cp   direct 0.233 0.025  9.426      0    0.183    0.283</span></span>
+<span><span class="co">#&gt; 9    total := cp+(a*b)    total 0.478 0.026 18.602      0    0.436    0.531</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="benchmark">Benchmark<a class="anchor" aria-label="anchor" href="#benchmark"></a>
