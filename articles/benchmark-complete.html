@@ -78,7 +78,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2023-08-29</h4>
+            <h4 data-toc-skip class="date">2023-09-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/semmcci/blob/HEAD/vignettes/benchmark-complete.Rmd"><code>vignettes/benchmark-complete.Rmd</code></a></small>
       <div class="d-none name"><code>benchmark-complete.Rmd</code></div>
@@ -150,15 +150,15 @@ Monte Carlo confidence intervals.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/MC.html">MC</a></span><span class="op">(</span><span class="va">fit</span>, R <span class="op">=</span> <span class="fl">100L</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;             est     se   R   2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp       0.2333 0.0230 100 0.1806 0.2703</span></span>
-<span><span class="co">#&gt; b        0.5082 0.0241 100 0.4631 0.5486</span></span>
-<span><span class="co">#&gt; a        0.4820 0.0278 100 0.4262 0.5321</span></span>
-<span><span class="co">#&gt; X~~X     1.0590 0.0550 100 0.9616 1.1794</span></span>
-<span><span class="co">#&gt; Y~~Y     0.5462 0.0265 100 0.4983 0.5937</span></span>
-<span><span class="co">#&gt; M~~M     0.7527 0.0350 100 0.6938 0.8233</span></span>
-<span><span class="co">#&gt; indirect 0.2449 0.0176 100 0.2120 0.2789</span></span>
-<span><span class="co">#&gt; direct   0.2333 0.0230 100 0.1806 0.2703</span></span>
-<span><span class="co">#&gt; total    0.4782 0.0250 100 0.4280 0.5185</span></span></code></pre></div>
+<span><span class="co">#&gt; cp       0.2333 0.0262 100 0.1809 0.2827</span></span>
+<span><span class="co">#&gt; b        0.5082 0.0303 100 0.4581 0.5655</span></span>
+<span><span class="co">#&gt; a        0.4820 0.0242 100 0.4332 0.5182</span></span>
+<span><span class="co">#&gt; X~~X     1.0590 0.0398 100 0.9964 1.1351</span></span>
+<span><span class="co">#&gt; Y~~Y     0.5462 0.0249 100 0.4982 0.5911</span></span>
+<span><span class="co">#&gt; M~~M     0.7527 0.0301 100 0.6893 0.8085</span></span>
+<span><span class="co">#&gt; indirect 0.2449 0.0207 100 0.2070 0.2798</span></span>
+<span><span class="co">#&gt; direct   0.2333 0.0262 100 0.1809 0.2827</span></span>
+<span><span class="co">#&gt; total    0.4782 0.0243 100 0.4349 0.5223</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="nonparametric-bootstrap-confidence-intervals">Nonparametric Bootstrap Confidence Intervals<a class="anchor" aria-label="anchor" href="#nonparametric-bootstrap-confidence-intervals"></a>
@@ -175,15 +175,15 @@ Monte Carlo confidence intervals.</p>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;        lhs op      rhs    label   est    se      z pvalue ci.lower ci.upper</span></span>
-<span><span class="co">#&gt; 1        Y  ~        X       cp 0.233 0.025  9.474      0    0.183    0.283</span></span>
-<span><span class="co">#&gt; 2        Y  ~        M        b 0.508 0.027 18.954      0    0.444    0.549</span></span>
-<span><span class="co">#&gt; 3        M  ~        X        a 0.482 0.028 17.264      0    0.432    0.544</span></span>
-<span><span class="co">#&gt; 4        X ~~        X          1.059 0.051 20.641      0    0.952    1.180</span></span>
-<span><span class="co">#&gt; 5        Y ~~        Y          0.546 0.025 21.430      0    0.494    0.597</span></span>
-<span><span class="co">#&gt; 6        M ~~        M          0.753 0.036 20.647      0    0.676    0.824</span></span>
-<span><span class="co">#&gt; 7 indirect :=      a*b indirect 0.245 0.017 14.260      0    0.210    0.283</span></span>
-<span><span class="co">#&gt; 8   direct :=       cp   direct 0.233 0.025  9.426      0    0.183    0.283</span></span>
-<span><span class="co">#&gt; 9    total := cp+(a*b)    total 0.478 0.026 18.602      0    0.436    0.531</span></span></code></pre></div>
+<span><span class="co">#&gt; 1        Y  ~        X       cp 0.233 0.025  9.254      0    0.176    0.274</span></span>
+<span><span class="co">#&gt; 2        Y  ~        M        b 0.508 0.030 16.697      0    0.462    0.586</span></span>
+<span><span class="co">#&gt; 3        M  ~        X        a 0.482 0.028 17.459      0    0.417    0.532</span></span>
+<span><span class="co">#&gt; 4        X ~~        X          1.059 0.048 22.247      0    0.965    1.155</span></span>
+<span><span class="co">#&gt; 5        Y ~~        Y          0.546 0.024 22.981      0    0.489    0.600</span></span>
+<span><span class="co">#&gt; 6        M ~~        M          0.753 0.029 25.668      0    0.697    0.815</span></span>
+<span><span class="co">#&gt; 7 indirect :=      a*b indirect 0.245 0.021 11.924      0    0.202    0.287</span></span>
+<span><span class="co">#&gt; 8   direct :=       cp   direct 0.233 0.025  9.207      0    0.176    0.274</span></span>
+<span><span class="co">#&gt; 9    total := cp+(a*b)    total 0.478 0.024 19.954      0    0.428    0.527</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="benchmark">Benchmark<a class="anchor" aria-label="anchor" href="#benchmark"></a>
@@ -239,8 +239,8 @@ Monte Carlo confidence intervals.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_complete_01</span>, unit <span class="op">=</span> <span class="st">"ms"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   expr        min         lq        mean      median         uq        max</span></span>
-<span><span class="co">#&gt; 1   MC    70.3579    71.2953    83.01955    74.36125    87.1376   124.5988</span></span>
-<span><span class="co">#&gt; 2   NB 14436.0552 14841.4169 16779.77684 15700.79975 17479.0542 23901.9466</span></span>
+<span><span class="co">#&gt; 1   MC    74.3169    74.8464    76.62197    75.53055    76.6548    83.0012</span></span>
+<span><span class="co">#&gt; 2   NB 13705.9631 13744.9826 13956.64501 13794.02320 14141.3940 14446.2828</span></span>
 <span><span class="co">#&gt;   neval</span></span>
 <span><span class="co">#&gt; 1    10</span></span>
 <span><span class="co">#&gt; 2    10</span></span></code></pre></div>
@@ -252,7 +252,7 @@ Monte Carlo confidence intervals.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_complete_01</span>, unit <span class="op">=</span> <span class="st">"relative"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   expr      min       lq     mean   median       uq      max neval</span></span>
 <span><span class="co">#&gt; 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10</span></span>
-<span><span class="co">#&gt; 2   NB 205.1803 208.1682 202.1184 211.1422 200.5914 191.8313    10</span></span></code></pre></div>
+<span><span class="co">#&gt; 2   NB 184.4259 183.6425 182.1494 182.6284 184.4815 174.0491    10</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -288,9 +288,9 @@ Monte Carlo confidence intervals.</p>
 </h3>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_complete_02</span>, unit <span class="op">=</span> <span class="st">"ms"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   expr        min         lq        mean     median         uq       max neval</span></span>
-<span><span class="co">#&gt; 1   MC    20.9529    22.2573    26.46984    24.9559    29.1406    40.154    10</span></span>
-<span><span class="co">#&gt; 2   NB 13645.4798 14074.0098 18654.62952 17261.8934 24540.8966 27948.508    10</span></span></code></pre></div>
+<span><span class="co">#&gt;   expr        min         lq        mean     median         uq        max neval</span></span>
+<span><span class="co">#&gt; 1   MC    21.4872    21.8882    23.55083    22.7401    25.7108    26.5352    10</span></span>
+<span><span class="co">#&gt; 2   NB 13530.7713 13605.6894 13760.46272 13739.5334 13870.7042 14174.9175    10</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="summary-of-benchmark-results-relative-to-the-faster-method-1">Summary of Benchmark Results Relative to the Faster Method<a class="anchor" aria-label="anchor" href="#summary-of-benchmark-results-relative-to-the-faster-method-1"></a>
@@ -299,7 +299,7 @@ Monte Carlo confidence intervals.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_complete_02</span>, unit <span class="op">=</span> <span class="st">"relative"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   expr      min       lq     mean   median       uq     max neval</span></span>
 <span><span class="co">#&gt; 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.000    10</span></span>
-<span><span class="co">#&gt; 2   NB 651.2454 632.3323 704.7504 691.6959 842.1548 696.033    10</span></span></code></pre></div>
+<span><span class="co">#&gt; 2   NB 629.7131 621.5993 584.2878 604.1985 539.4894 534.193    10</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">

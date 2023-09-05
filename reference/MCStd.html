@@ -155,16 +155,16 @@ Monte Carlo confidence intervals for the indirect effect with missing data.
 <span class="r-in"><span><span class="co">## Standardized Monte Carlo ------------------------------------------------</span></span></span>
 <span class="r-in"><span><span class="fu">MCStd</span><span class="op">(</span><span class="va">unstd</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standardized Monte Carlo Confidence Intervals</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                       est     se  R   2.5%  97.5%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp                 0.1185 0.0659 20 0.0410 0.2527</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b                  0.4513 0.1014 20 0.2297 0.5570</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a                  0.1362 0.0829 20 0.0103 0.2711</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond         1.0000 0.0000 20 1.0000 1.0000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction 0.7678 0.0752 20 0.6675 0.9005</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi           0.9814 0.0241 20 0.9265 0.9989</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> indirect           0.2311 0.0434 20 0.0016 0.1414</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> direct             4.0546 0.0659 20 0.0410 0.2527</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> total              0.9376 0.0634 20 0.0904 0.3103</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       est     se  R    2.5%  97.5%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp                 0.0769 0.0687 20 -0.0111 0.2347</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b                  0.4366 0.0878 20  0.2771 0.5550</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a                  0.1913 0.1105 20 -0.0419 0.3444</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond         1.0000 0.0000 20  1.0000 1.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction 0.7906 0.0787 20  0.6619 0.8991</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi           0.9634 0.0377 20  0.8806 0.9974</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> indirect           0.3502 0.0464 20 -0.0150 0.1490</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> direct             4.0397 0.0687 20 -0.0111 0.2347</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> total              0.9364 0.0917 20  0.0228 0.3196</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Monte Carlo (Multiple Imputation) ----------------------------------------</span></span></span>
 <span class="r-in"><span><span class="co">## Multiple Imputation -----------------------------------------------------</span></span></span>
@@ -190,15 +190,15 @@ Monte Carlo confidence intervals for the indirect effect with missing data.
 <span class="r-in"><span><span class="fu">MCStd</span><span class="op">(</span><span class="va">unstd</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standardized Monte Carlo Confidence Intervals</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                       est     se  R    2.5%  97.5%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp                 0.1333 0.1120 20 -0.0817 0.2845</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b                  0.4523 0.0589 20  0.3449 0.5394</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a                  0.1989 0.0880 20 -0.0799 0.1916</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp                 0.0661 0.0797 20 -0.0492 0.2323</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b                  0.4267 0.0676 20  0.3232 0.5368</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a                  0.1745 0.0805 20  0.0535 0.3140</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond         1.0000 0.0000 20  1.0000 1.0000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction 0.7537 0.0545 20  0.6819 0.8648</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi           0.9604 0.0123 20  0.9633 0.9993</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> indirect           0.0900 0.0370 20 -0.0338 0.0804</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> direct             0.1333 0.1120 20 -0.0817 0.2845</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> total              0.2233 0.1264 20 -0.0609 0.3369</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction 0.8037 0.0577 20  0.6932 0.8821</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi           0.9695 0.0300 20  0.9013 0.9968</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> indirect           0.0745 0.0349 20  0.0193 0.1352</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> direct             0.0661 0.0797 20 -0.0492 0.2323</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> total              0.1405 0.0858 20  0.0178 0.3198</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

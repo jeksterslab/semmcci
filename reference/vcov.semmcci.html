@@ -113,76 +113,76 @@ of parameter estimates.</p>
 <span class="r-in"><span><span class="co">## Standardized Monte Carlo ------------------------------------------------</span></span></span>
 <span class="r-in"><span><span class="va">std</span> <span class="op">&lt;-</span> <span class="fu"><a href="MCStd.html">MCStd</a></span><span class="op">(</span><span class="va">unstd</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">unstd</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                               cp             b            a    cond~~cond</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp                  0.0727752629  0.0001206683  0.013459232 -0.0007544945</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b                   0.0001206683  0.0059772897  0.004654661  0.0008475166</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a                   0.0134592319  0.0046546609  0.097820290  0.0023730583</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond         -0.0007544945  0.0008475166  0.002373058  0.0011124718</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction -0.0116608141  0.0047209436 -0.003390456 -0.0009905405</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi            0.0087966311  0.0001439895  0.003277599 -0.0009397566</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~1         -0.0230875283 -0.0353306583 -0.043087698 -0.0058046130</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~1              -0.0004851182  0.0034928805 -0.040396934 -0.0004533792</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cond~1             -0.0028486848  0.0004325935 -0.002919616  0.0002796196</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> indirect            0.0096523347  0.0050220436  0.054989730  0.0016527724</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> direct              0.0727752629  0.0001206683  0.013459232 -0.0007544945</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> total               0.0824275977  0.0051427118  0.068448962  0.0008982778</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                    reaction~~reaction      pmi~~pmi   reaction~1         pmi~1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp                      -0.0116608141  8.796631e-03 -0.023087528 -0.0004851182</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b                        0.0047209436  1.439895e-04 -0.035330658  0.0034928805</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a                       -0.0033904555  3.277599e-03 -0.043087698 -0.0403969340</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond              -0.0009905405 -9.397566e-04 -0.005804613 -0.0004533792</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction       0.0427689206  4.133845e-03 -0.014887789  0.0134876486</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi                 0.0041338449  4.246244e-02 -0.008425395  0.0017217960</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~1              -0.0148877886 -8.425395e-03  0.228126689 -0.0152341800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~1                    0.0134876486  1.721796e-03 -0.015234180  0.0279709513</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cond~1                  -0.0030299116 -9.210597e-04 -0.003862290  0.0010889676</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> indirect                -0.0001060267  8.096487e-05 -0.038634470 -0.0204787052</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> direct                  -0.0116608141  8.796631e-03 -0.023087528 -0.0004851182</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> total                   -0.0117668408  8.877596e-03 -0.061721998 -0.0209638233</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                           cond~1      indirect        direct         total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp                 -0.0028486848  9.652335e-03  0.0727752629  0.0824275977</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b                   0.0004325935  5.022044e-03  0.0001206683  0.0051427118</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a                  -0.0029196165  5.498973e-02  0.0134592319  0.0684489620</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond          0.0002796196  1.652772e-03 -0.0007544945  0.0008982778</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction -0.0030299116 -1.060267e-04 -0.0116608141 -0.0117668408</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi           -0.0009210597  8.096487e-05  0.0087966311  0.0088775960</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~1         -0.0038622896 -3.863447e-02 -0.0230875283 -0.0617219983</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~1               0.0010889676 -2.047871e-02 -0.0004851182 -0.0209638233</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cond~1              0.0020488420 -1.513030e-03 -0.0028486848 -0.0043617146</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> indirect           -0.0015130298  3.230002e-02  0.0096523347  0.0419523552</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> direct             -0.0028486848  9.652335e-03  0.0727752629  0.0824275977</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> total              -0.0043617146  4.195236e-02  0.0824275977  0.1243799528</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                               cp             b             a    cond~~cond</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp                  0.1439748609 -0.0101267983 -0.0284778139 -0.0006634988</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b                  -0.0101267983  0.0077658084  0.0009185445  0.0013659703</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a                  -0.0284778139  0.0009185445  0.0295311746  0.0004405708</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond         -0.0006634988  0.0013659703  0.0004405708  0.0018236831</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction  0.0462090951 -0.0022452557  0.0111902752 -0.0006743312</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi            0.0178413897 -0.0017224991 -0.0138754286  0.0028642892</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~1          0.0046575413 -0.0398401202 -0.0042279927 -0.0078418810</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~1               0.0262014211 -0.0041337635 -0.0120737336 -0.0002354432</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cond~1              0.0043278676 -0.0005578517 -0.0027299889 -0.0004092454</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> indirect           -0.0185221216  0.0046691964  0.0140824320  0.0012133691</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> direct              0.1439748609 -0.0101267983 -0.0284778139 -0.0006634988</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> total               0.1254527394 -0.0054576019 -0.0143953818  0.0005498703</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    reaction~~reaction     pmi~~pmi   reaction~1         pmi~1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp                       0.0462090951  0.017841390  0.004657541  0.0262014211</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b                       -0.0022452557 -0.001722499 -0.039840120 -0.0041337635</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a                        0.0111902752 -0.013875429 -0.004227993 -0.0120737336</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond              -0.0006743312  0.002864289 -0.007841881 -0.0002354432</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction       0.0974500497 -0.005800415 -0.008103546 -0.0035393003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi                -0.0058004146  0.056164773  0.016516516  0.0130613866</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~1              -0.0081035459  0.016516516  0.236851646  0.0189490360</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~1                   -0.0035393003  0.013061387  0.018949036  0.0167576367</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cond~1                  -0.0021567594  0.000035870  0.001012618  0.0020169362</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> indirect                 0.0040049862 -0.007801844 -0.024166091 -0.0077210710</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> direct                   0.0462090951  0.017841390  0.004657541  0.0262014211</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> total                    0.0502140813  0.010039545 -0.019508550  0.0184803500</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           cond~1     indirect        direct         total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp                  0.0043278676 -0.018522122  0.1439748609  0.1254527394</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b                  -0.0005578517  0.004669196 -0.0101267983 -0.0054576019</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a                  -0.0027299889  0.014082432 -0.0284778139 -0.0143953818</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond         -0.0004092454  0.001213369 -0.0006634988  0.0005498703</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction -0.0021567594  0.004004986  0.0462090951  0.0502140813</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi            0.0000358700 -0.007801844  0.0178413897  0.0100395453</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~1          0.0010126181 -0.024166091  0.0046575413 -0.0195085498</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~1               0.0020169362 -0.007721071  0.0262014211  0.0184803500</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cond~1              0.0014665672 -0.001718055  0.0043278676  0.0026098121</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> indirect           -0.0017180554  0.009202452 -0.0185221216 -0.0093196691</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> direct              0.0043278676 -0.018522122  0.1439748609  0.1254527394</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> total               0.0026098121 -0.009319669  0.1254527394  0.1161330702</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">std</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                               cp             b             a    cond~~cond</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp                  7.545084e-03  1.201792e-04  1.522705e-03  8.346027e-21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b                   1.201792e-04  3.289215e-03  1.957939e-03  8.508574e-19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a                   1.522705e-03  1.957939e-03  1.519757e-02  3.865973e-18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond          8.346027e-21  8.508574e-19  3.865973e-18  1.686709e-32</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction -2.102903e-03 -3.066727e-03 -2.847717e-03 -1.728613e-18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi           -6.161935e-04 -8.689820e-04 -4.950453e-03 -2.133659e-18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> indirect            8.771146e-04  1.373974e-03  7.290219e-03  2.322618e-18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> direct              7.545084e-03  1.201792e-04  1.522705e-03  8.346027e-21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> total               8.422199e-03  1.494153e-03  8.812924e-03  2.330964e-18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp                  1.354999e-02 -3.829082e-03 -3.733949e-03 -2.121776e-18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b                  -3.829082e-03  5.947255e-03  2.650127e-04 -2.107236e-18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a                  -3.733949e-03  2.650127e-04  5.016662e-03  1.954550e-18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond         -2.121776e-18 -2.107236e-18  1.954550e-18  2.270570e-32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction -1.902258e-03 -3.381245e-03  7.521937e-04  2.649894e-18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi            1.548197e-03 -8.174620e-06 -2.103632e-03 -8.391254e-19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> indirect           -2.221140e-03  1.296798e-03  2.017214e-03  1.405540e-19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> direct              1.354999e-02 -3.829082e-03 -3.733949e-03 -2.121776e-18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> total               1.132885e-02 -2.532284e-03 -1.716735e-03 -1.981222e-18</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                    reaction~~reaction      pmi~~pmi      indirect        direct</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp                      -2.102903e-03 -6.161935e-04  8.771146e-04  7.545084e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b                       -3.066727e-03 -8.689820e-04  1.373974e-03  1.201792e-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a                       -2.847717e-03 -4.950453e-03  7.290219e-03  1.522705e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond              -1.728613e-18 -2.133659e-18  2.322618e-18  8.346027e-21</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction       3.545419e-03  1.261609e-03 -1.802128e-03 -2.102903e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi                 1.261609e-03  1.903213e-03 -2.425372e-03 -6.161935e-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> indirect                -1.802128e-03 -2.425372e-03  3.586986e-03  8.771146e-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> direct                  -2.102903e-03 -6.161935e-04  8.771146e-04  7.545084e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> total                   -3.905031e-03 -3.041566e-03  4.464100e-03  8.422199e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp                      -1.902258e-03  1.548197e-03 -2.221140e-03  1.354999e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b                       -3.381245e-03 -8.174620e-06  1.296798e-03 -3.829082e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a                        7.521937e-04 -2.103632e-03  2.017214e-03 -3.733949e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond               2.649894e-18 -8.391254e-19  1.405540e-19 -2.121776e-18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction       3.631931e-03 -4.441248e-04 -3.917859e-04 -1.902258e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi                -4.441248e-04  9.271883e-04 -8.287743e-04  1.548197e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> indirect                -3.917859e-04 -8.287743e-04  1.061505e-03 -2.221140e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> direct                  -1.902258e-03  1.548197e-03 -2.221140e-03  1.354999e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> total                   -2.294044e-03  7.194230e-04 -1.159635e-03  1.132885e-02</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                            total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp                  8.422199e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b                   1.494153e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a                   8.812924e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond          2.330964e-18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction -3.905031e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi           -3.041566e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> indirect            4.464100e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> direct              8.422199e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> total               1.288630e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp                  1.132885e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b                  -2.532284e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a                  -1.716735e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond         -1.981222e-18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction -2.294044e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi            7.194230e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> indirect           -1.159635e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> direct              1.132885e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> total               1.016922e-02</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Monte Carlo (Multiple Imputation) ----------------------------------------</span></span></span>
 <span class="r-in"><span><span class="co">## Multiple Imputation -----------------------------------------------------</span></span></span>
@@ -206,67 +206,67 @@ of parameter estimates.</p>
 <span class="r-in"><span><span class="co">## Standardized Monte Carlo ------------------------------------------------</span></span></span>
 <span class="r-in"><span><span class="va">std</span> <span class="op">&lt;-</span> <span class="fu"><a href="MCStd.html">MCStd</a></span><span class="op">(</span><span class="va">unstd</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">unstd</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                              cp             b             a   cond~~cond</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp                  0.079160055 -0.0059002057 -0.0031037558 0.0010816321</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b                  -0.005900206  0.0116249403  0.0048447072 0.0006540009</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a                  -0.003103756  0.0048447072  0.0733135016 0.0002768481</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond          0.001081632  0.0006540009  0.0002768481 0.0009985682</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction -0.004245863 -0.0105818680  0.0086979603 0.0002569381</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi            0.001316827  0.0116564278 -0.0310479767 0.0017133437</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> indirect           -0.004670155  0.0096454994  0.0462035080 0.0007150253</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> direct              0.079160055 -0.0059002057 -0.0031037558 0.0010816321</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> total               0.074489900  0.0037452936  0.0430997522 0.0017966575</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                    reaction~~reaction     pmi~~pmi      indirect       direct</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp                      -0.0042458626  0.001316827 -0.0046701553  0.079160055</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b                       -0.0105818680  0.011656428  0.0096454994 -0.005900206</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a                        0.0086979603 -0.031047977  0.0462035080 -0.003103756</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond               0.0002569381  0.001713344  0.0007150253  0.001081632</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction       0.0772099361 -0.014898112  0.0008878186 -0.004245863</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi                -0.0148981119  0.061922511 -0.0108544465  0.001316827</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> indirect                 0.0008878186 -0.010854446  0.0334082687 -0.004670155</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> direct                  -0.0042458626  0.001316827 -0.0046701553  0.079160055</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> total                   -0.0033580440 -0.009537619  0.0287381134  0.074489900</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                           total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp                  0.074489900</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b                   0.003745294</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a                   0.043099752</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond          0.001796657</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction -0.003358044</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi           -0.009537619</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> indirect            0.028738113</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> direct              0.074489900</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> total               0.103228013</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              cp             b            a    cond~~cond</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp                  0.032419587 -0.0031293548 0.0099000436 -0.0013721133</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b                  -0.003129355  0.0054727593 0.0011515638  0.0004793099</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a                   0.009900044  0.0011515638 0.0508371739  0.0005169909</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond         -0.001372113  0.0004793099 0.0005169909  0.0011152560</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction -0.007697995  0.0025414453 0.0111126645  0.0012622999</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi            0.006702906  0.0002944030 0.0187164638  0.0023115066</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> indirect            0.003640982  0.0028263489 0.0244212047  0.0003327536</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> direct              0.032419587 -0.0031293548 0.0099000436 -0.0013721133</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> total               0.036060569 -0.0003030058 0.0343212483 -0.0010393597</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                    reaction~~reaction     pmi~~pmi     indirect       direct</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp                       -0.007697995  0.006702906 0.0036409819  0.032419587</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b                         0.002541445  0.000294403 0.0028263489 -0.003129355</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a                         0.011112664  0.018716464 0.0244212047  0.009900044</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond                0.001262300  0.002311507 0.0003327536 -0.001372113</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction        0.057733679 -0.009785577 0.0062726211 -0.007697995</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi                 -0.009785577  0.049774707 0.0078200545  0.006702906</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> indirect                  0.006272621  0.007820054 0.0127800238  0.003640982</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> direct                   -0.007697995  0.006702906 0.0036409819  0.032419587</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> total                    -0.001425374  0.014522961 0.0164210057  0.036060569</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp                  0.0360605689</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b                  -0.0003030058</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a                   0.0343212483</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond         -0.0010393597</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction -0.0014253740</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi            0.0145229608</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> indirect            0.0164210057</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> direct              0.0360605689</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> total               0.0524815745</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">std</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                               cp             b             a    cond~~cond</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp                  7.753602e-03 -1.527304e-03  6.333220e-05  5.342155e-19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b                  -1.527304e-03  9.477009e-03 -6.816774e-04 -1.478555e-18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a                   6.333220e-05 -6.816774e-04  1.132035e-02 -1.821074e-18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond          5.342155e-19 -1.478555e-18 -1.821074e-18  1.297469e-32</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction -1.233603e-03 -7.564474e-03 -7.127605e-04  7.474592e-19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi           -1.775623e-04 -1.642014e-04 -4.563677e-03  1.116829e-18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> indirect           -2.572968e-04  1.683714e-03  5.406925e-03 -1.186576e-18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> direct              7.753602e-03 -1.527304e-03  6.333220e-05  5.342155e-19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> total               7.496306e-03  1.564091e-04  5.470258e-03 -6.523607e-19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp                  3.586058e-03 -5.610282e-04  7.257629e-04  4.207857e-19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b                  -5.610282e-04  3.668186e-03  5.358021e-04  1.737252e-18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a                   7.257629e-04  5.358021e-04  5.960345e-03 -1.623740e-19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond          4.207857e-19  1.737252e-18 -1.623740e-19  2.400317e-32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction -7.261990e-04 -3.073851e-03 -1.173594e-03 -1.292217e-18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi           -9.169140e-05 -2.570532e-04 -1.611576e-03 -6.595759e-19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> indirect            2.484494e-04  7.330946e-04  2.769096e-03  2.069287e-19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> direct              3.586058e-03 -5.610282e-04  7.257629e-04  4.207857e-19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> total               3.834507e-03  1.720664e-04  3.494859e-03  6.277145e-19</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                    reaction~~reaction      pmi~~pmi      indirect        direct</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp                      -1.233603e-03 -1.775623e-04 -2.572968e-04  7.753602e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b                       -7.564474e-03 -1.642014e-04  1.683714e-03 -1.527304e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a                       -7.127605e-04 -4.563677e-03  5.406925e-03  6.333220e-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond               7.474592e-19  1.116829e-18 -1.186576e-18  5.342155e-19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction       7.264640e-03  6.925344e-04 -1.934893e-03 -1.233603e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi                 6.925344e-04  1.971279e-03 -2.293331e-03 -1.775623e-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> indirect                -1.934893e-03 -2.293331e-03  3.055519e-03 -2.572968e-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> direct                  -1.233603e-03 -1.775623e-04 -2.572968e-04  7.753602e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> total                   -3.168495e-03 -2.470894e-03  2.798222e-03  7.496306e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp                      -7.261990e-04 -9.169140e-05  2.484494e-04  3.586058e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b                       -3.073851e-03 -2.570532e-04  7.330946e-04 -5.610282e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a                       -1.173594e-03 -1.611576e-03  2.769096e-03  7.257629e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond              -1.292217e-18 -6.595759e-19  2.069287e-19  4.207857e-19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction       3.059676e-03  3.659409e-04 -9.394552e-04 -7.261990e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi                 3.659409e-04  5.455189e-04 -7.730165e-04 -9.169140e-05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> indirect                -9.394552e-04 -7.730165e-04  1.358367e-03  2.484494e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> direct                  -7.261990e-04 -9.169140e-05  2.484494e-04  3.586058e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> total                   -1.665654e-03 -8.647079e-04  1.606817e-03  3.834507e-03</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                            total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp                  7.496306e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b                   1.564091e-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a                   5.470258e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond         -6.523607e-19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction -3.168495e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi           -2.470894e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> indirect            2.798222e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> direct              7.496306e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> total               1.029453e-02</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp                  3.834507e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b                   1.720664e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a                   3.494859e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond          6.277145e-19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction -1.665654e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi           -8.647079e-04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> indirect            1.606817e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> direct              3.834507e-03</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> total               5.441324e-03</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
