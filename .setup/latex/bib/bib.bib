@@ -2276,3 +2276,95 @@
   publisher = {{SAGE} Publications},
   keywords = {bootstrap, confidence interval, correlation, R, simulation, trimmed mean, median, reaction time, skewness, group comparison, open materials},
 }
+
+@Article{Zeileis-Koll-Graham-2020,
+  author = {Achim Zeileis and Susanne K{\"o}ll and Nathaniel Graham},
+  date = {2020-10},
+  journaltitle = {Journal of Statistical Software},
+  title = {Various versatile variances: An object-oriented implementation of clustered covariances in {R}},
+  doi = {10.18637/jss.v095.i01},
+  number = {1},
+  volume = {95},
+  abstract = {Clustered covariances or clustered standard errors are very widely used to account for correlated or clustered data, especially in economics, political sciences, and other social sciences. They are employed to adjust the inference following estimation of a standard least-squares regression or generalized linear model estimated by maximum likelihood. Although many publications just refer to "the" clustered standard errors, there is a surprisingly wide variety of clustered covariances, particularly due to different flavors of bias corrections. Furthermore, while the linear regression model is certainly the most important application case, the same strategies can be employed in more general models (e.g., for zero-inflated, censored, or limited responses). In R, functions for covariances in clustered or panel models have been somewhat scattered or available only for certain modeling functions, notably the (generalized) linear regression model. In contrast, an object-oriented approach to ``robust''' covariance matrix estimation - applicable beyond lm() and glm() - is available in the sandwich package but has been limited to the case of cross-section or time series data. Starting with sandwich 2.4.0, this shortcoming has been corrected: Based on methods for two generic functions (estfun() and bread()), clustered and panel covariances are provided in vcovCL(), vcovPL(), and vcovPC(). Moreover, clustered bootstrap covariances are provided in vcovBS(), using model update() on bootstrap samples. These are directly applicable to models from packages including MASS, pscl, countreg, and betareg, among many others. Some empirical illustrations are provided as well as an assessment of the methods' performance in a simulation study.},
+  publisher = {Foundation for Open Access Statistic},
+}
+
+@Article{Stoffer-Wall-1991,
+  author = {David S. Stoffer and Kent D. Wall},
+  title = {Bootstrapping state-space models: {Gaussian} maximum likelihood estimation and the {Kalman} filter},
+  number = {416},
+  pages = {1024--1033},
+  volume = {86},
+  date = {1991-12},
+  doi = {10.1080/01621459.1991.10475148},
+  journaltitle = {Journal of the American Statistical Association},
+  abstract = {The bootstrap is proposed as a method for assessing the precision of Gaussian maximum likelihood estimates of the parameters of linear state-space models. Our results also apply to autoregressive moving average models, since they are a special case of state-space models. It is shown that for a time-invariant, stable system, the bootstrap applied to the innovations yields asymptotically consistent standard errors. To investigate the performance of the bootstrap for finite sample lengths, simulation results are presented for a two-state model with 50 and 100 observations; two cases are investigated, one with real characteristic roots and one with complex characteristic roots. The bootstrap is then applied to two real data sets, one used in a test for efficient capital markets and one used to develop an autoregressive integrated moving average model for quarterly earnings data. We find the bootstrap to be of definite value over the conventional asymptotics.},
+  publisher = {Informa {UK} Limited},
+}
+
+@Book{Kim-Nelson-1999,
+  author = {Chang-Jin Kim and Charles R. Nelson},
+  publisher = {The {MIT} Press},
+  title = {State-space models with regime switching: Classical and {Gibbs}-sampling approaches with applications},
+  isbn = {9780262277112},
+  date = {1999},
+  doi = {10.7551/mitpress/6444.001.0001},
+  library = {HB135 .K515 1999},
+  addendum = {https://lccn.loc.gov/98044193},
+  abstract = {Both state-space models and Markov switching models have been highly productive paths for empirical research in macroeconomics and finance. This book presents recent advances in econometric methods that make feasible the estimation of models that have both features. One approach, in the classical framework, approximates the likelihood function; the other, in the Bayesian framework, uses Gibbs-sampling to simulate posterior distributions from data.
+  The authors present numerous applications of these approaches in detail: decomposition of time series into trend and cycle, a new index of coincident economic indicators, approaches to modeling monetary policy uncertainty, Friedman's "plucking" model of recessions, the detection of turning points in the business cycle and the question of whether booms and recessions are duration-dependent, state-space models with heteroskedastic disturbances, fads and crashes in financial markets, long-run real exchange rates, and mean reversion in asset returns.},
+  keywords = {Economics--Mathematical models, State-space methods, Heteroscedasticity, Sampling (Statistics), Econometrics},
+}
+
+@Article{HatemiJ-2003,
+  author = {Abdulnasser Hatemi-J},
+  date = {2003-02},
+  journaltitle = {Applied Economics Letters},
+  title = {A new method to choose optimal lag order in stable and unstable {VAR} models},
+  doi = {10.1080/1350485022000041050},
+  number = {3},
+  pages = {135--137},
+  volume = {10},
+  abstract = {A crucial aspect of empirical research based on the vector autoregressive (VAR) model is the choice of the lag order, since all inference in the VAR model is based on the chosen lag order. Here, a new information criterion is introduced for this purpose. The conducted Monte Carlo simulation experiments show that this new information criterion performs well in picking the true lag order in stable as well as unstable VAR models.},
+  publisher = {Informa {UK} Limited},
+}
+
+@Article{HatemiJ-2004,
+  author = {Abdulnasser Hatemi-J},
+  date = {2004-07},
+  journaltitle = {Economic Modelling},
+  title = {Multivariate tests for autocorrelation in the stable and unstable {VAR} models},
+  doi = {10.1016/j.econmod.2003.09.005},
+  number = {4},
+  pages = {661--683},
+  volume = {21},
+  abstract = {This study investigates the size and power properties of three multivariate tests for autocorrelation, namely portmanteau test, Lagrange multiplier (LM) test and Rao F-test, in the stable and unstable vector autoregressive (VAR) models, with and without autoregressive conditional heteroscedasticity (ARCH) using Monte Carlo experiments. Many combinations of parameters are used in the simulations to cover a wide range of situations in order to make the results more representative. The results of conducted simulations show that all three tests perform relatively well in stable VAR models without ARCH. In unstable VAR models the portmanteau test exhibits serious size distortions. LM and Rao tests perform well in unstable VAR models without ARCH. These results are true, irrespective of sample size or order of autocorrelation. Another clear result that the simulations show is that none of the tests have the correct size when ARCH is present irrespective of VAR models being stable or unstable and regardless of the sample size or order of autocorrelation. The portmanteau test appears to have slightly better power properties than the LM test in almost all scenarios.},
+  publisher = {Elsevier {BV}},
+}
+
+@Book{Luetkepohl-2005,
+  author = {Helmut L{\"u}tkepohl},
+  date = {2005},
+  title = {New introduction to multiple time series analysis},
+  doi = {10.1007/978-3-540-27752-1},
+  isbn = {978-3-540-27752-1},
+  location = {Berlin},
+  pagetotal = {764},
+  abstract = {This reference work and graduate level textbook considers a wide range of models and methods for analyzing and forecasting multiple time series. The models covered include vector autoregressive, cointegrated, vector autoregressive moving average, multivariate ARCH and periodic processes as well as dynamic simultaneous equations and state space models. Least squares, maximum likelihood and Bayesian methods are considered for estimating these models. Different procedures for model selection and model specification are treated and a wide range of tests and criteria for model checking are introduced. Causality analysis, impulse response analysis and innovation accounting are presented as tools for structural analysis. The book is accessible to graduate students in business and economics. In addition, multiple time series courses in other fields such as statistics and engineering may be based on it. Applied researchers involved in analyzing multiple time series may benefit from the book as it provides the background and tools for their tasks. It bridges the gap to the difficult technical literature on the topic.},
+  publisher = {Springer Berlin Heidelberg},
+}
+
+@Book{Shumway-Stoffer-2017,
+  author = {Robert H. Shumway and David S. Stoffer},
+  publisher = {Springer International Publishing},
+  title = {Time series analysis and its applications: With {R} examples},
+  isbn = {978-3-319-52452-8},
+  date = {2017},
+  doi = {10.1007/978-3-319-52452-8},
+  library = {QA280},
+  addendum = {https://lccn.loc.gov/2019301243},
+  abstract = {The fourth edition of this popular graduate textbook, like its predecessors, presents a balanced and comprehensive treatment of both time and frequency domain methods with accompanying theory. Numerous examples using nontrivial data illustrate solutions to problems such as discovering natural and anthropogenic climate change, evaluating pain perception experiments using functional magnetic resonance imaging, and monitoring a nuclear test ban treaty.
+The book is designed as a textbook for graduate level students in the physical, biological, and social sciences and as a graduate level text in statistics. Some parts may also serve as an undergraduate introductory course. Theory and methodology are separated to allow presentations on different levels. In addition to coverage of classical methods of time series regression, ARIMA models, spectral analysis and state-space models, the text includes modern developments including categorical time series analysis, multivariate spectral methods, long memory series, nonlinear models, resampling techniques, GARCH models, ARMAX models, stochastic volatility, wavelets, and Markov chain Monte Carlo integration methods.
+This edition includes R code for each numerical example in addition to Appendix R, which provides a reference for the data sets and R scripts used in the text in addition to a tutorial on basic R commands and R time series. An additional file is available on the book’s website for download, making all the data sets and scripts easy to load into R.},
+  keywords = {Time-series analysis, Time-series analysis--Data processing, R (Computer program language)},
+}

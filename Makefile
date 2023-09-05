@@ -74,7 +74,7 @@ vignettes:
 	@echo "\n\nPrecompiling vignettes...\n\n"
 	@Rscript -e "rProject::VignettesPrecompile(\"${PWD}\")"
 
-build: project pkg dotfiles clean tinytex lint data dependencies bib vignettes
+build: project pkg dotfiles tinytex lint data dependencies bib vignettes
 	@echo "\n\nBuilding package...\n\n"
 	@Rscript -e "rProject::Build(\"${PWD}\")"
 
