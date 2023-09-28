@@ -41,3 +41,8 @@ jobs:
           BRANCH: latex
           FOLDER: .setup/latex/pdf
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      -
+        name: Make clean
+        run: |
+          make bibrproject
+          make pdf
