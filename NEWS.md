@@ -1,6 +1,7 @@
 # semmcci 1.1.2.9000
 
-* Latest development version.
+* Minor edits to setting seed.
+* Added the `MCGeneric()` function.
 
 # semmcci 1.1.2
 

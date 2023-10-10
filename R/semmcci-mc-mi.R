@@ -165,7 +165,9 @@ MCMI <- function(lav,
     }
   }
   ## set up Monte Carlo
-  set.seed(seed)
+  if (!is.null(seed)) {
+    set.seed(seed)
+  }
   thetahatstar <- .ThetaHatStar(
     R = R,
     scale = scale,
