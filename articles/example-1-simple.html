@@ -156,15 +156,15 @@ intervals.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/MC.html">MC</a></span><span class="op">(</span><span class="va">fit</span>, R <span class="op">=</span> <span class="fl">20000L</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;             est     se     R   2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp       0.2333 0.0264 20000 0.1819 0.2849</span></span>
-<span><span class="co">#&gt; b        0.5082 0.0272 20000 0.4553 0.5613</span></span>
-<span><span class="co">#&gt; a        0.4820 0.0264 20000 0.4302 0.5340</span></span>
+<span><span class="co">#&gt; cp       0.2333 0.0264 20000 0.1817 0.2846</span></span>
+<span><span class="co">#&gt; b        0.5082 0.0272 20000 0.4551 0.5611</span></span>
+<span><span class="co">#&gt; a        0.4820 0.0264 20000 0.4299 0.5337</span></span>
 <span><span class="co">#&gt; Y~~Y     0.5462 0.0244 20000 0.4979 0.5944</span></span>
 <span><span class="co">#&gt; M~~M     0.7527 0.0339 20000 0.6858 0.8187</span></span>
 <span><span class="co">#&gt; X~~X     1.0590 0.0000 20000 1.0590 1.0590</span></span>
-<span><span class="co">#&gt; indirect 0.2449 0.0187 20000 0.2094 0.2831</span></span>
-<span><span class="co">#&gt; direct   0.2333 0.0264 20000 0.1819 0.2849</span></span>
-<span><span class="co">#&gt; total    0.4782 0.0265 20000 0.4261 0.5306</span></span></code></pre></div>
+<span><span class="co">#&gt; indirect 0.2449 0.0188 20000 0.2094 0.2831</span></span>
+<span><span class="co">#&gt; direct   0.2333 0.0264 20000 0.1817 0.2846</span></span>
+<span><span class="co">#&gt; total    0.4782 0.0264 20000 0.4262 0.5295</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="standardized-monte-carlo-confidence-intervals">Standardized Monte Carlo Confidence Intervals<a class="anchor" aria-label="anchor" href="#standardized-monte-carlo-confidence-intervals"></a>
@@ -189,15 +189,15 @@ values.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/MCStd.html">MCStd</a></span><span class="op">(</span><span class="va">unstd</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Standardized Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;             est     se     R   2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp       0.2422 0.0266 20000 0.1897 0.2941</span></span>
-<span><span class="co">#&gt; b        0.5123 0.0247 20000 0.4636 0.5605</span></span>
-<span><span class="co">#&gt; a        0.4963 0.0240 20000 0.4476 0.5416</span></span>
-<span><span class="co">#&gt; Y~~Y     0.5558 0.0236 20000 0.5089 0.6015</span></span>
-<span><span class="co">#&gt; M~~M     0.7537 0.0238 20000 0.7066 0.7996</span></span>
+<span><span class="co">#&gt; cp       0.2422 0.0268 20000 0.1893 0.2945</span></span>
+<span><span class="co">#&gt; b        0.5123 0.0246 20000 0.4639 0.5607</span></span>
+<span><span class="co">#&gt; a        0.4963 0.0239 20000 0.4488 0.5427</span></span>
+<span><span class="co">#&gt; Y~~Y     0.5558 0.0235 20000 0.5095 0.6018</span></span>
+<span><span class="co">#&gt; M~~M     0.7537 0.0237 20000 0.7055 0.7986</span></span>
 <span><span class="co">#&gt; X~~X     1.0000 0.0000 20000 1.0000 1.0000</span></span>
-<span><span class="co">#&gt; indirect 0.2542 0.0177 20000 0.2199 0.2891</span></span>
-<span><span class="co">#&gt; direct   0.2422 0.0266 20000 0.1897 0.2941</span></span>
-<span><span class="co">#&gt; total    0.4964 0.0239 20000 0.4477 0.5417</span></span></code></pre></div>
+<span><span class="co">#&gt; indirect 0.2542 0.0176 20000 0.2206 0.2892</span></span>
+<span><span class="co">#&gt; direct   0.2422 0.0268 20000 0.1893 0.2945</span></span>
+<span><span class="co">#&gt; total    0.4964 0.0239 20000 0.4485 0.5418</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="standardized-monte-carlo-confidence-intervals---an-alternative-approach">Standardized Monte Carlo Confidence Intervals - An Alternative
@@ -266,10 +266,10 @@ intervals for the standardized indirect effect.</p>
 <span><span class="co">#&gt; cp           0.2333 0.0263 20000 0.1810 0.2838</span></span>
 <span><span class="co">#&gt; b            0.5082 0.0270 20000 0.4553 0.5613</span></span>
 <span><span class="co">#&gt; a            0.4820 0.0264 20000 0.4309 0.5338</span></span>
-<span><span class="co">#&gt; s2_X         1.0590 0.0472 20000 0.9648 1.1504</span></span>
+<span><span class="co">#&gt; s2_X         1.0590 0.0472 20000 0.9675 1.1531</span></span>
 <span><span class="co">#&gt; s2_em        0.7527 0.0339 20000 0.6865 0.8192</span></span>
 <span><span class="co">#&gt; s2_ey        0.5462 0.0243 20000 0.4987 0.5940</span></span>
-<span><span class="co">#&gt; indirect_std 0.2542 0.0174 20000 0.2206 0.2888</span></span></code></pre></div>
+<span><span class="co">#&gt; indirect_std 0.2542 0.0174 20000 0.2204 0.2884</span></span></code></pre></div>
 </div>
 <div class="section level2 unnumbered">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
