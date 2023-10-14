@@ -98,7 +98,6 @@ Monte Carlo confidence intervals for the indirect effect with missing data.
 }
 \seealso{
 Other Monte Carlo in Structural Equation Modeling Functions: 
-\code{\link{MCGeneric}()},
 \code{\link{MCMI}()},
 \code{\link{MC}()}
 }

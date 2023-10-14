@@ -122,7 +122,6 @@ John Wiley & Sons, Inc.
 }
 \seealso{
 Other Monte Carlo in Structural Equation Modeling Functions: 
-\code{\link{MCGeneric}()},
 \code{\link{MCStd}()},
 \code{\link{MC}()}
 }
