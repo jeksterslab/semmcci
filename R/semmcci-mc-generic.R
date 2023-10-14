@@ -129,7 +129,7 @@ MCGeneric <- function(object,
       pd <- FALSE
     }
   }
-  if (
+  if(
     inherits(
       object,
       "lavaan"

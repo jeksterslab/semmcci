@@ -1,7 +1,7 @@
 year <- 2023
 author_text <- "Pesigan, I. J. A. & Cheung, S. F."
 pkg <- meta$Package
-title <- meta$Title
+title <- "Monte Carlo confidence intervals for the indirect effect with missing data"
 version <- meta$Version
 author <- c(
   person(
