@@ -65,7 +65,8 @@ a list with the following elements:
 }
 \description{
 Calculates Monte Carlo confidence intervals
-for defined parameters.
+for defined parameters
+for any fitted model object with \code{coef} and \code{vcov} methods.
 }
 \details{
 A sampling distribution of parameter estimates is generated
