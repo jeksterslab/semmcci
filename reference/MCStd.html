@@ -116,6 +116,7 @@ Monte Carlo confidence intervals for the indirect effect with missing data.
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other Monte Carlo in Structural Equation Modeling Functions: 
+<code><a href="MCGeneric.html">MCGeneric</a>()</code>,
 <code><a href="MCMI.html">MCMI</a>()</code>,
 <code><a href="MC.html">MC</a>()</code></p></div>
     </div>
@@ -156,15 +157,15 @@ Monte Carlo confidence intervals for the indirect effect with missing data.
 <span class="r-in"><span><span class="fu">MCStd</span><span class="op">(</span><span class="va">unstd</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standardized Monte Carlo Confidence Intervals</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                       est     se  R    2.5%  97.5%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp                 0.0153 0.0911 20 -0.1640 0.1408</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b                  0.4536 0.1169 20  0.2273 0.6042</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a                  0.2074 0.0937 20  0.0162 0.3741</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp                 0.0691 0.0879 20 -0.0850 0.1841</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b                  0.4517 0.0728 20  0.3357 0.5822</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a                  0.1839 0.0829 20  0.0332 0.3149</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond         1.0000 0.0000 20  1.0000 1.0000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction 0.7912 0.0872 20  0.6461 0.9247</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi           0.9570 0.0406 20  0.8580 0.9987</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> indirect           0.3933 0.0534 20  0.0056 0.1959</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> direct             3.9805 0.0911 20 -0.1640 0.1408</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> total              0.9457 0.0860 20 -0.0902 0.2279</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction 0.7798 0.0654 20  0.6635 0.8785</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi           0.9662 0.0297 20  0.9005 0.9989</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> indirect           0.2971 0.0401 20  0.0152 0.1448</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> direct             4.0754 0.0879 20 -0.0850 0.1841</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> total              0.9647 0.1022 20 -0.0121 0.2872</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Monte Carlo (Multiple Imputation) ----------------------------------------</span></span></span>
 <span class="r-in"><span><span class="co">## Multiple Imputation -----------------------------------------------------</span></span></span>
@@ -189,16 +190,16 @@ Monte Carlo confidence intervals for the indirect effect with missing data.
 <span class="r-in"><span><span class="co">## Standardized Monte Carlo ------------------------------------------------</span></span></span>
 <span class="r-in"><span><span class="fu">MCStd</span><span class="op">(</span><span class="va">unstd</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standardized Monte Carlo Confidence Intervals</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                        est     se  R    2.5%  97.5%</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cp                 -0.0072 0.0991 20 -0.1544 0.1221</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> b                   0.4932 0.0890 20  0.2638 0.5844</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a                   0.2022 0.0746 20  0.0957 0.3432</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond          1.0000 0.0000 20  1.0000 1.0000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction  0.7582 0.0721 20  0.6680 0.9262</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi            0.9591 0.0332 20  0.8822 0.9906</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> indirect            0.0997 0.0415 20  0.0361 0.1822</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> direct             -0.0072 0.0991 20 -0.1544 0.1221</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> total               0.0925 0.0962 20 -0.0950 0.2207</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                       est     se  R    2.5%  97.5%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cp                 0.0742 0.0622 20 -0.0307 0.1800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b                  0.4603 0.0909 20  0.3325 0.6645</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> a                  0.1611 0.1227 20 -0.0454 0.3860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> cond~~cond         1.0000 0.0000 20  1.0000 1.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> reaction~~reaction 0.7716 0.0849 20  0.5491 0.8553</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pmi~~pmi           0.9740 0.0460 20  0.8506 0.9993</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> indirect           0.0742 0.0617 20 -0.0263 0.1934</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> direct             0.0742 0.0622 20 -0.0307 0.1800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> total              0.1484 0.0801 20  0.0231 0.2867</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
