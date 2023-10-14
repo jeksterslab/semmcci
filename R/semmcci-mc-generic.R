@@ -1,7 +1,8 @@
 #' Monte Carlo Confidence Intervals (Generic)
 #'
 #' Calculates Monte Carlo confidence intervals
-#' for defined parameters.
+#' for defined parameters
+#' for any fitted model object with `coef` and `vcov` methods.
 #'
 #' A sampling distribution of parameter estimates is generated
 #' from the multivariate normal distribution
