@@ -3,6 +3,7 @@
 ## Patch
 
 * Minor edits to setting seed.
+* Added the `MCGeneric()` function.
 
 # semmcci 1.1.2
 
