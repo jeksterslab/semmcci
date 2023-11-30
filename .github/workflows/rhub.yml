@@ -12,13 +12,15 @@ jobs:
   check1:
     name: atlas
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     container:
       image: ghcr.io/r-hub/containers/atlas:latest
 
     steps:
     - 
       name: Checkout src repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: 'src'
 
@@ -38,13 +40,15 @@ jobs:
   check2:
     name: centos7
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     container:
       image: ghcr.io/r-hub/containers/centos7:latest
 
     steps:
     - 
       name: Checkout src repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: 'src'
 
@@ -64,13 +68,15 @@ jobs:
   check3:
     name: clang-asan
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     container:
       image: ghcr.io/r-hub/containers/clang-asan:latest
 
     steps:
     - 
       name: Checkout src repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: 'src'
 
@@ -90,13 +96,15 @@ jobs:
   check4:
     name: clang16
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     container:
       image: ghcr.io/r-hub/containers/clang16:latest
 
     steps:
     - 
       name: Checkout src repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: 'src'
 
@@ -116,13 +124,15 @@ jobs:
   check5:
     name: clang17
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     container:
       image: ghcr.io/r-hub/containers/clang17:latest
 
     steps:
     - 
       name: Checkout src repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: 'src'
 
@@ -142,13 +152,15 @@ jobs:
   check6:
     name: gcc13
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     container:
       image: ghcr.io/r-hub/containers/gcc13:latest
 
     steps:
     - 
       name: Checkout src repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: 'src'
 
@@ -168,13 +180,15 @@ jobs:
   check7:
     name: nold
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     container:
       image: ghcr.io/r-hub/containers/nold:latest
 
     steps:
     - 
       name: Checkout src repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: 'src'
 
@@ -194,13 +208,15 @@ jobs:
   check8:
     name: ubuntu-clang
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     container:
       image: ghcr.io/r-hub/containers/ubuntu-clang:latest
 
     steps:
     - 
       name: Checkout src repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: 'src'
 
@@ -220,13 +236,15 @@ jobs:
   check9:
     name: ubuntu-gcc12
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     container:
       image: ghcr.io/r-hub/containers/ubuntu-gcc12:latest
 
     steps:
     - 
       name: Checkout src repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: 'src'
 
@@ -246,13 +264,15 @@ jobs:
   check10:
     name: ubuntu-next
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     container:
       image: ghcr.io/r-hub/containers/ubuntu-next:latest
 
     steps:
     - 
       name: Checkout src repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: 'src'
 
@@ -272,13 +292,15 @@ jobs:
   check11:
     name: ubuntu-release
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     container:
       image: ghcr.io/r-hub/containers/ubuntu-release:latest
 
     steps:
     - 
       name: Checkout src repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: 'src'
 
@@ -298,13 +320,15 @@ jobs:
   check12:
     name: valgrind
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     container:
       image: ghcr.io/r-hub/containers/valgrind:latest
 
     steps:
     - 
       name: Checkout src repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: 'src'
 
@@ -324,13 +348,15 @@ jobs:
   check13:
     name: intel
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     container:
       image: ghcr.io/r-hub/containers/intel:latest
 
     steps:
     - 
       name: Checkout src repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: 'src'
 
@@ -350,13 +376,15 @@ jobs:
   check14:
     name: mkl
     runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     container:
       image: ghcr.io/r-hub/containers/mkl:latest
 
     steps:
     - 
       name: Checkout src repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         ref: 'src'
 

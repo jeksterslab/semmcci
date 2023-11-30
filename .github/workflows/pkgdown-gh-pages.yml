@@ -24,7 +24,7 @@ jobs:
     steps:
       -
         name: Checkout 
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       -
         name: Build Project
         run: make build
@@ -36,7 +36,7 @@ jobs:
         run: touch pkgdown/.nojekyll
       -
         name: Deploy to GitHub pages
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           clean: true
           branch: pkgdown

@@ -1,0 +1,76 @@
+\documentclass[tikz, border=1mm]{standalone}
+
+% convert -density 300 regression.pdf -quality 100 -background white -alpha remove -alpha off regression.png
+
+\usepackage{tikz}
+
+\begin{document}
+
+\usetikzlibrary{
+	er,
+	arrows,
+	positioning
+}
+
+\begin{tikzpicture}[
+		auto,
+		node distance = 15mm and 50mm,
+		latent/.style = {
+			ellipse,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum size = 15mm,
+			align = center
+		},
+		inv/.style = {
+			rectangle,
+			draw=none,
+			fill=none,
+			inner sep = 0pt,
+			minimum width = 15mm,
+			minimum height = 10mm
+		},
+		error/.style = {
+			ellipse,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum size = 7mm,
+			align = center
+		},
+		mean/.style={
+			regular polygon,
+			regular polygon sides = 3,
+			draw,
+			thick,
+			inner sep = 0pt,
+			minimum width = 7mm,
+			minimum height = 7mm
+		},
+		path/.style = {
+			->,
+			thick,
+			>=stealth'
+		},
+		cov/.style = {
+			<->,
+			thick,
+			>=stealth'
+		},
+	]
+	\node[latent] (context) {$\mathrm{context}$};
+	\node[latent] (neg) [above right = of context] {$\mathrm{negative \ affect}$};
+	\node[latent] (negauto) [above = of neg] {$\mathrm{negative \ affect}_{\Delta_{t}}$};
+	\node[latent] (subj) [right = of neg] {$\mathrm{subjective \ intoxication}$};
+	\node[latent] (subjauto) [above = of subj] {$\mathrm{subjective \ intoxication}_{\Delta_{t}}$};
+	\node[latent] (obj) [below right = of subj] {$\mathrm{objective \ intoxication}$};
+	\node[latent] (objauto) [above = of obj] {$\mathrm{objective \ intoxication}_{\Delta_{t}}$};
+    \draw[path] (negauto) to node[right] {$\phi_{22} = 0.40$} (neg);
+    \draw[path] (subjauto) to node[right] {$\phi_{33} = 0.40$} (subj);
+    \draw[path] (objauto) to node[right] {$\phi_{44} = 0.41$} (obj);
+    \draw[path] (subj) to node[above] {$\phi_{23} = 0.55$} (neg);
+    \draw[path] (obj) to node[above] {$\phi_{24} = 0.42$} (neg);
+\end{tikzpicture}
+
+\end{document}
