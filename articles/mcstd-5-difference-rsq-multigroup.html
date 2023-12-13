@@ -9,9 +9,9 @@
 <title>MCStd Function Use Case 5: Difference of R-Squared in Multiple Groups • semmcci</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.7/font.css" rel="stylesheet">
-<link href="../deps/JetBrains_Mono-0.4.7/font.css" rel="stylesheet">
-<link href="../deps/Roboto_Slab-0.4.7/font.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.8/font.css" rel="stylesheet">
+<link href="../deps/JetBrains_Mono-0.4.8/font.css" rel="stylesheet">
+<link href="../deps/Roboto_Slab-0.4.8/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="MCStd Function Use Case 5: Difference of R-Squared in Multiple Groups">
@@ -78,7 +78,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2023-11-30</h4>
+            <h4 data-toc-skip class="date">2023-12-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/semmcci/blob/HEAD/vignettes/mcstd-5-difference-rsq-multigroup.Rmd"><code>vignettes/mcstd-5-difference-rsq-multigroup.Rmd</code></a></small>
       <div class="d-none name"><code>mcstd-5-difference-rsq-multigroup.Rmd</code></div>
@@ -346,42 +346,42 @@ standardized estimates.</p>
 <span><span class="fu"><a href="../reference/MCStd.html">MCStd</a></span><span class="op">(</span><span class="va">unstd</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Standardized Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;               est     se     R    2.5%   97.5%</span></span>
-<span><span class="co">#&gt; Y1~X1      0.0568 0.0191 20000  0.0194  0.0941</span></span>
-<span><span class="co">#&gt; Y1~X2      0.1985 0.0186 20000  0.1615  0.2355</span></span>
-<span><span class="co">#&gt; Y1~X3      0.2500 0.0150 20000  0.2208  0.2789</span></span>
-<span><span class="co">#&gt; psi1.g1    0.8215 0.0103 20000  0.8006  0.8410</span></span>
+<span><span class="co">#&gt; Y1~X1      0.0568 0.0191 20000  0.0194  0.0942</span></span>
+<span><span class="co">#&gt; Y1~X2      0.1985 0.0186 20000  0.1616  0.2353</span></span>
+<span><span class="co">#&gt; Y1~X3      0.2500 0.0150 20000  0.2207  0.2793</span></span>
+<span><span class="co">#&gt; psi1.g1    0.8215 0.0103 20000  0.8005  0.8409</span></span>
 <span><span class="co">#&gt; X1~~X1     1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; X1~~X2     0.6917 0.0077 20000  0.6764  0.7064</span></span>
-<span><span class="co">#&gt; X1~~X3     0.4702 0.0115 20000  0.4476  0.4922</span></span>
+<span><span class="co">#&gt; X1~~X2     0.6917 0.0077 20000  0.6764  0.7067</span></span>
+<span><span class="co">#&gt; X1~~X3     0.4702 0.0114 20000  0.4477  0.4923</span></span>
 <span><span class="co">#&gt; X2~~X2     1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; X2~~X3     0.4471 0.0118 20000  0.4238  0.4700</span></span>
+<span><span class="co">#&gt; X2~~X3     0.4471 0.0118 20000  0.4238  0.4699</span></span>
 <span><span class="co">#&gt; X3~~X3     1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; Y1~X1.g2   0.1390 0.0164 20000  0.1068  0.1712</span></span>
-<span><span class="co">#&gt; Y1~X2.g2   0.1792 0.0158 20000  0.1479  0.2099</span></span>
-<span><span class="co">#&gt; Y1~X3.g2   0.1688 0.0139 20000  0.1416  0.1961</span></span>
-<span><span class="co">#&gt; psi1.g2    0.8371 0.0088 20000  0.8196  0.8539</span></span>
+<span><span class="co">#&gt; Y1~X1.g2   0.1390 0.0164 20000  0.1071  0.1708</span></span>
+<span><span class="co">#&gt; Y1~X2.g2   0.1792 0.0159 20000  0.1479  0.2100</span></span>
+<span><span class="co">#&gt; Y1~X3.g2   0.1688 0.0138 20000  0.1416  0.1962</span></span>
+<span><span class="co">#&gt; psi1.g2    0.8371 0.0087 20000  0.8193  0.8534</span></span>
 <span><span class="co">#&gt; X1~~X1.g2  1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; X1~~X2.g2  0.6525 0.0075 20000  0.6375  0.6669</span></span>
-<span><span class="co">#&gt; X1~~X3.g2  0.5023 0.0097 20000  0.4831  0.5209</span></span>
+<span><span class="co">#&gt; X1~~X2.g2  0.6525 0.0074 20000  0.6380  0.6670</span></span>
+<span><span class="co">#&gt; X1~~X3.g2  0.5023 0.0096 20000  0.4833  0.5208</span></span>
 <span><span class="co">#&gt; X2~~X2.g2  1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; X2~~X3.g2  0.4452 0.0103 20000  0.4247  0.4652</span></span>
+<span><span class="co">#&gt; X2~~X3.g2  0.4452 0.0104 20000  0.4249  0.4651</span></span>
 <span><span class="co">#&gt; X3~~X3.g2  1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; Y1~X1.g3   0.0863 0.0170 20000  0.0527  0.1193</span></span>
-<span><span class="co">#&gt; Y1~X2.g3   0.2557 0.0164 20000  0.2234  0.2877</span></span>
-<span><span class="co">#&gt; Y1~X3.g3   0.2289 0.0139 20000  0.2016  0.2565</span></span>
-<span><span class="co">#&gt; psi1.g3    0.7761 0.0103 20000  0.7556  0.7959</span></span>
+<span><span class="co">#&gt; Y1~X1.g3   0.0863 0.0170 20000  0.0527  0.1194</span></span>
+<span><span class="co">#&gt; Y1~X2.g3   0.2557 0.0164 20000  0.2235  0.2877</span></span>
+<span><span class="co">#&gt; Y1~X3.g3   0.2289 0.0139 20000  0.2017  0.2563</span></span>
+<span><span class="co">#&gt; psi1.g3    0.7761 0.0103 20000  0.7556  0.7958</span></span>
 <span><span class="co">#&gt; X1~~X1.g3  1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; X1~~X2.g3  0.6580 0.0079 20000  0.6425  0.6734</span></span>
-<span><span class="co">#&gt; X1~~X3.g3  0.4738 0.0108 20000  0.4527  0.4947</span></span>
+<span><span class="co">#&gt; X1~~X2.g3  0.6580 0.0079 20000  0.6423  0.6733</span></span>
+<span><span class="co">#&gt; X1~~X3.g3  0.4738 0.0107 20000  0.4525  0.4945</span></span>
 <span><span class="co">#&gt; X2~~X2.g3  1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; X2~~X3.g3  0.4353 0.0113 20000  0.4131  0.4571</span></span>
+<span><span class="co">#&gt; X2~~X3.g3  0.4353 0.0112 20000  0.4130  0.4571</span></span>
 <span><span class="co">#&gt; X3~~X3.g3  1.0000 0.0000 20000  1.0000  1.0000</span></span>
-<span><span class="co">#&gt; rsq.g1     0.1785 0.0103 20000  0.1590  0.1994</span></span>
-<span><span class="co">#&gt; rsq.g2     0.1629 0.0088 20000  0.1461  0.1804</span></span>
-<span><span class="co">#&gt; rsq.g3     0.2239 0.0103 20000  0.2041  0.2444</span></span>
-<span><span class="co">#&gt; rsq.g12    0.0155 0.0136 20000 -0.0108  0.0425</span></span>
-<span><span class="co">#&gt; rsq.g13   -0.0455 0.0145 20000 -0.0741 -0.0169</span></span>
-<span><span class="co">#&gt; rsq.g23   -0.0610 0.0135 20000 -0.0878 -0.0344</span></span></code></pre></div>
+<span><span class="co">#&gt; rsq.g1     0.1785 0.0103 20000  0.1591  0.1995</span></span>
+<span><span class="co">#&gt; rsq.g2     0.1629 0.0087 20000  0.1466  0.1807</span></span>
+<span><span class="co">#&gt; rsq.g3     0.2239 0.0103 20000  0.2042  0.2444</span></span>
+<span><span class="co">#&gt; rsq.g12    0.0155 0.0135 20000 -0.0109  0.0419</span></span>
+<span><span class="co">#&gt; rsq.g13   -0.0455 0.0145 20000 -0.0742 -0.0170</span></span>
+<span><span class="co">#&gt; rsq.g23   -0.0610 0.0135 20000 -0.0875 -0.0345</span></span></code></pre></div>
 </div>
 <div class="section level2 unnumbered">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
