@@ -1,7 +1,7 @@
 ---
 title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2023-11-30"
+date: "2023-12-13"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -94,9 +94,9 @@ MC(fit, R = 100L, alpha = 0.05)
 #> cp       0.2333 0.0296 100 0.1806 0.2903
 #> b        0.5082 0.0279 100 0.4555 0.5527
 #> a        0.4820 0.0280 100 0.4220 0.5301
-#> X~~X     1.0590 0.0426 100 0.9751 1.1296
+#> X~~X     1.0590 0.0426 100 0.9883 1.1428
 #> Y~~Y     0.5462 0.0231 100 0.5064 0.5959
-#> M~~M     0.7527 0.0337 100 0.7024 0.8208
+#> M~~M     0.7527 0.0337 100 0.6846 0.8029
 #> indirect 0.2449 0.0179 100 0.2058 0.2738
 #> direct   0.2333 0.0296 100 0.1806 0.2903
 #> total    0.4782 0.0295 100 0.4162 0.5283

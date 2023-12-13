@@ -1,7 +1,7 @@
 ---
 title: "MCStd Function Use Case 3: R-Squared and Adjusted R-Squared"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2023-11-30"
+date: "2023-12-13"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
