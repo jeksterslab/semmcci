@@ -14,7 +14,7 @@ reference:
   - has_keyword("mc")
 - title: Methods
   contents:
-  - has_keyword("method")
+  - has_keyword("methods")
 
 articles:
 - title: Examples
