@@ -84,4 +84,4 @@ summary(std)
 \author{
 Ivan Jacob Agaloos Pesigan
 }
-\keyword{method}
+\keyword{methods}

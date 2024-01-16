@@ -66,7 +66,7 @@
 #' print(unstd)
 #' print(std)
 #'
-#' @keywords method
+#' @keywords methods
 #' @export
 print.semmcci <- function(x,
                           alpha = NULL,
@@ -161,7 +161,7 @@ print.semmcci <- function(x,
 #' summary(unstd)
 #' summary(std)
 #'
-#' @keywords method
+#' @keywords methods
 #' @export
 summary.semmcci <- function(object,
                             alpha = NULL,
@@ -250,7 +250,7 @@ summary.semmcci <- function(object,
 #' coef(unstd)
 #' coef(std)
 #'
-#' @keywords method
+#' @keywords methods
 #' @export
 coef.semmcci <- function(object,
                          ...) {
@@ -321,7 +321,7 @@ coef.semmcci <- function(object,
 #' vcov(unstd)
 #' vcov(std)
 #'
-#' @keywords method
+#' @keywords methods
 #' @export
 vcov.semmcci <- function(object,
                          ...) {
@@ -398,7 +398,7 @@ vcov.semmcci <- function(object,
 #' confint(unstd)
 #' confint(std)
 #'
-#' @keywords method
+#' @keywords methods
 #' @export
 confint.semmcci <- function(object,
                             parm = NULL,
