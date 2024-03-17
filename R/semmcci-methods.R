@@ -34,7 +34,7 @@
 #' ## MC() --------------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
-#'   R = 20L # use a large value e.g., 20000L for actual research
+#'   R = 5L # use a large value e.g., 20000L for actual research
 #' )
 #'
 #' ## Standardized Monte Carlo ------------------------------------------------
@@ -58,7 +58,7 @@
 #' unstd <- MCMI(
 #'   fit,
 #'   mi = mi,
-#'   R = 20L # use a large value e.g., 20000L for actual research
+#'   R = 5L # use a large value e.g., 20000L for actual research
 #' )
 #'
 #' ## Standardized Monte Carlo ------------------------------------------------
@@ -129,7 +129,7 @@ print.semmcci <- function(x,
 #' ## MC() --------------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
-#'   R = 20L # use a large value e.g., 20000L for actual research
+#'   R = 5L # use a large value e.g., 20000L for actual research
 #' )
 #'
 #' ## Standardized Monte Carlo ------------------------------------------------
@@ -153,7 +153,7 @@ print.semmcci <- function(x,
 #' unstd <- MCMI(
 #'   fit,
 #'   mi = mi,
-#'   R = 20L # use a large value e.g., 20000L for actual research
+#'   R = 5L # use a large value e.g., 20000L for actual research
 #' )
 #'
 #' ## Standardized Monte Carlo ------------------------------------------------
@@ -218,7 +218,7 @@ summary.semmcci <- function(object,
 #' ## MC() --------------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
-#'   R = 20L # use a large value e.g., 20000L for actual research
+#'   R = 5L # use a large value e.g., 20000L for actual research
 #' )
 #'
 #' ## Standardized Monte Carlo ------------------------------------------------
@@ -242,7 +242,7 @@ summary.semmcci <- function(object,
 #' unstd <- MCMI(
 #'   fit,
 #'   mi = mi,
-#'   R = 20L # use a large value e.g., 20000L for actual research
+#'   R = 5L # use a large value e.g., 20000L for actual research
 #' )
 #'
 #' ## Standardized Monte Carlo ------------------------------------------------
@@ -289,7 +289,7 @@ coef.semmcci <- function(object,
 #' ## MC() --------------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
-#'   R = 20L # use a large value e.g., 20000L for actual research
+#'   R = 5L # use a large value e.g., 20000L for actual research
 #' )
 #'
 #' ## Standardized Monte Carlo ------------------------------------------------
@@ -313,7 +313,7 @@ coef.semmcci <- function(object,
 #' unstd <- MCMI(
 #'   fit,
 #'   mi = mi,
-#'   R = 20L # use a large value e.g., 20000L for actual research
+#'   R = 5L # use a large value e.g., 20000L for actual research
 #' )
 #'
 #' ## Standardized Monte Carlo ------------------------------------------------
@@ -366,7 +366,7 @@ vcov.semmcci <- function(object,
 #' ## MC() --------------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
-#'   R = 20L # use a large value e.g., 20000L for actual research
+#'   R = 5L # use a large value e.g., 20000L for actual research
 #' )
 #'
 #' ## Standardized Monte Carlo ------------------------------------------------
@@ -390,7 +390,7 @@ vcov.semmcci <- function(object,
 #' unstd <- MCMI(
 #'   fit,
 #'   mi = mi,
-#'   R = 20L # use a large value e.g., 20000L for actual research
+#'   R = 5L # use a large value e.g., 20000L for actual research
 #' )
 #'
 #' ## Standardized Monte Carlo ------------------------------------------------
@@ -409,9 +409,14 @@ confint.semmcci <- function(object,
     alpha = 1 - level[1]
   )
   if (is.null(parm)) {
-    parm <- rownames(
+    parameters <- rownames(
       ci
     )
+    if (!is.null(parameters)) {
+      parm <- parameters
+    } else {
+      parm <- seq_len(dim(ci)[1])
+    }
   }
   ci <- ci[parm, 4:5, drop = FALSE]
   varnames <- colnames(ci)

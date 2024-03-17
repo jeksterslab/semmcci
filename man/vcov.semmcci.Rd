@@ -41,7 +41,7 @@ fit <- sem(data = df, model = model, missing = "fiml")
 ## MC() --------------------------------------------------------------------
 unstd <- MC(
   fit,
-  R = 20L # use a large value e.g., 20000L for actual research
+  R = 5L # use a large value e.g., 20000L for actual research
 )
 
 ## Standardized Monte Carlo ------------------------------------------------
@@ -65,7 +65,7 @@ fit <- sem(data = df, model = model) # use default listwise deletion
 unstd <- MCMI(
   fit,
   mi = mi,
-  R = 20L # use a large value e.g., 20000L for actual research
+  R = 5L # use a large value e.g., 20000L for actual research
 )
 
 ## Standardized Monte Carlo ------------------------------------------------

@@ -52,10 +52,10 @@
 #' "
 #' fit <- sem(data = df, model = model, missing = "fiml")
 #'
-#' ## MC() --------------------------------------------------------------------
+#' ## MCGeneric() -------------------------------------------------------------
 #' MCGeneric(
 #'   fit,
-#'   R = 20L, # use a large value e.g., 20000L for actual research
+#'   R = 5L, # use a large value e.g., 20000L for actual research
 #'   alpha = 0.05,
 #'   def = list(
 #'     "a * b",

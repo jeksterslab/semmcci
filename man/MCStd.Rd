@@ -59,7 +59,7 @@ fit <- sem(data = df, model = model, missing = "fiml")
 ## MC() --------------------------------------------------------------------
 unstd <- MC(
   fit,
-  R = 20L, # use a large value e.g., 20000L for actual research
+  R = 5L, # use a large value e.g., 20000L for actual research
   alpha = 0.05
 )
 
@@ -82,7 +82,7 @@ fit <- sem(data = df, model = model) # use default listwise deletion
 unstd <- MCMI(
   fit,
   mi = mi,
-  R = 20L, # use a large value e.g., 20000L for actual research
+  R = 5L, # use a large value e.g., 20000L for actual research
   alpha = 0.05
 )
 
@@ -98,7 +98,9 @@ Monte Carlo confidence intervals for the indirect effect with missing data.
 }
 \seealso{
 Other Monte Carlo in Structural Equation Modeling Functions: 
+\code{\link{Func}()},
 \code{\link{MC}()},
+\code{\link{MCFunc}()},
 \code{\link{MCGeneric}()},
 \code{\link{MCMI}()}
 }

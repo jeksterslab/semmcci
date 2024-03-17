@@ -54,6 +54,9 @@
     what = "rbind",
     args = ci
   )
-  rownames(ci) <- colnames(thetahatstar)
+  varnames <- colnames(thetahatstar)
+  if (!is.null(varnames)) {
+    rownames(ci) <- varnames
+  }
   return(ci)
 }
