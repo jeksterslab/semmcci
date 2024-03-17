@@ -9,7 +9,6 @@ MCFunc(
   vcov,
   func,
   ...,
-  est,
   R = 20000L,
   alpha = c(0.001, 0.01, 0.05),
   decomposition = "eigen",
@@ -37,9 +36,6 @@ passed using \code{...}.
 }}
 
 \item{...}{Additional arguments to pass to \code{func}.}
-
-\item{est}{Numeric vector.
-Vector of original parameter estimates.}
 
 \item{R}{Positive integer.
 Number of Monte Carlo replications.}
@@ -108,7 +104,6 @@ MCFunc(
   coef = 0,
   vcov = matrix(1),
   func = func,
-  est = 1,
   R = 5L, # use a large value e.g., 20000L for actual research
   alpha = 0.05
 )

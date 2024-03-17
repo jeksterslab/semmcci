@@ -133,7 +133,7 @@ Func <- function(coef,
     call = match.call(),
     args = args,
     thetahat = list(
-      est = est
+      est = func(est)
     ),
     thetahatstar = thetahatstar,
     fun = "Func"
