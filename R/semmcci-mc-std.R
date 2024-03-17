@@ -49,7 +49,7 @@
 #' ## MC() --------------------------------------------------------------------
 #' unstd <- MC(
 #'   fit,
-#'   R = 20L, # use a large value e.g., 20000L for actual research
+#'   R = 5L, # use a large value e.g., 20000L for actual research
 #'   alpha = 0.05
 #' )
 #'
@@ -72,7 +72,7 @@
 #' unstd <- MCMI(
 #'   fit,
 #'   mi = mi,
-#'   R = 20L, # use a large value e.g., 20000L for actual research
+#'   R = 5L, # use a large value e.g., 20000L for actual research
 #'   alpha = 0.05
 #' )
 #'

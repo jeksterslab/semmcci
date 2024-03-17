@@ -89,7 +89,7 @@ fit <- sem(data = df, model = model, missing = "fiml")
 ## MC() --------------------------------------------------------------------
 MC(
   fit,
-  R = 20L, # use a large value e.g., 20000L for actual research
+  R = 5L, # use a large value e.g., 20000L for actual research
   alpha = 0.05
 )
 
@@ -113,6 +113,8 @@ Advantages of Monte Carlo confidence intervals for indirect effects.
 }
 \seealso{
 Other Monte Carlo in Structural Equation Modeling Functions: 
+\code{\link{Func}()},
+\code{\link{MCFunc}()},
 \code{\link{MCGeneric}()},
 \code{\link{MCMI}()},
 \code{\link{MCStd}()}

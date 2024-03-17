@@ -105,7 +105,7 @@ fit <- sem(data = df, model = model) # use default listwise deletion
 MCMI(
   fit,
   mi = mi,
-  R = 20L, # use a large value e.g., 20000L for actual research
+  R = 5L, # use a large value e.g., 20000L for actual research
   alpha = 0.05
 )
 
@@ -122,7 +122,9 @@ John Wiley & Sons, Inc.
 }
 \seealso{
 Other Monte Carlo in Structural Equation Modeling Functions: 
+\code{\link{Func}()},
 \code{\link{MC}()},
+\code{\link{MCFunc}()},
 \code{\link{MCGeneric}()},
 \code{\link{MCStd}()}
 }
