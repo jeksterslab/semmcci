@@ -48,7 +48,6 @@
 #'   coef = 0,
 #'   vcov = matrix(1),
 #'   func = func,
-#'   est = 1,
 #'   R = 5L, # use a large value e.g., 20000L for actual research
 #'   alpha = 0.05
 #' )
@@ -77,7 +76,6 @@ MCFunc <- function(coef,
                    vcov,
                    func,
                    ...,
-                   est,
                    R = 20000L,
                    alpha = c(0.001, 0.01, 0.05),
                    decomposition = "eigen",
@@ -90,7 +88,6 @@ MCFunc <- function(coef,
     vcov = vcov,
     func = func,
     dots = ...,
-    est = est,
     R = R,
     alpha = alpha,
     decomposition = decomposition,
@@ -150,7 +147,7 @@ MCFunc <- function(coef,
     call = match.call(),
     args = args,
     thetahat = list(
-      est = est
+      est = func(coef)
     ),
     thetahatstar = thetahatstar,
     fun = "Func"
