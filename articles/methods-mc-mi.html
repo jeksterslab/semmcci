@@ -296,20 +296,20 @@ under the normal model.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">std</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                     cp             b             a          X~~X          Y~~Y</span></span>
-<span><span class="co">#&gt; cp        9.215025e-04 -5.956069e-04  4.381277e-06  6.750700e-20 -1.585313e-04</span></span>
-<span><span class="co">#&gt; b        -5.956069e-04  7.376605e-04 -3.232885e-06 -4.160839e-20 -3.419181e-04</span></span>
-<span><span class="co">#&gt; a         4.381277e-06 -3.232885e-06  6.814976e-04 -2.797367e-20 -1.676857e-04</span></span>
-<span><span class="co">#&gt; X~~X      6.750700e-20 -4.160839e-20 -2.797367e-20  1.179529e-32 -5.788715e-21</span></span>
-<span><span class="co">#&gt; Y~~Y     -1.585313e-04 -3.419181e-04 -1.676857e-04 -5.788715e-21  6.300103e-04</span></span>
-<span><span class="co">#&gt; M~~M     -4.427549e-06  3.161828e-06 -6.734774e-04  2.693489e-20  1.658590e-04</span></span>
-<span><span class="co">#&gt; indirect -2.928057e-04  3.635322e-04  3.480811e-04 -3.531001e-20 -2.549488e-04</span></span>
-<span><span class="co">#&gt; direct    9.215025e-04 -5.956069e-04  4.381277e-06  6.750700e-20 -1.585313e-04</span></span>
-<span><span class="co">#&gt; total     6.286968e-04 -2.320747e-04  3.524624e-04  3.219699e-20 -4.134800e-04</span></span>
+<span><span class="co">#&gt; cp        9.215025e-04 -5.956069e-04  4.381277e-06  1.765064e-20 -1.585313e-04</span></span>
+<span><span class="co">#&gt; b        -5.956069e-04  7.376605e-04 -3.232885e-06 -2.078606e-20 -3.419181e-04</span></span>
+<span><span class="co">#&gt; a         4.381277e-06 -3.232885e-06  6.814976e-04 -1.500755e-20 -1.676857e-04</span></span>
+<span><span class="co">#&gt; X~~X      1.765064e-20 -2.078606e-20 -1.500755e-20  1.180947e-32  1.385308e-20</span></span>
+<span><span class="co">#&gt; Y~~Y     -1.585313e-04 -3.419181e-04 -1.676857e-04  1.385308e-20  6.300103e-04</span></span>
+<span><span class="co">#&gt; M~~M     -4.427549e-06  3.161828e-06 -6.734774e-04  1.243354e-20  1.658590e-04</span></span>
+<span><span class="co">#&gt; indirect -2.928057e-04  3.635322e-04  3.480811e-04 -1.878354e-20 -2.549488e-04</span></span>
+<span><span class="co">#&gt; direct    9.215025e-04 -5.956069e-04  4.381277e-06  1.765064e-20 -1.585313e-04</span></span>
+<span><span class="co">#&gt; total     6.286968e-04 -2.320747e-04  3.524624e-04 -1.132895e-21 -4.134800e-04</span></span>
 <span><span class="co">#&gt;                   M~~M      indirect        direct         total</span></span>
 <span><span class="co">#&gt; cp       -4.427549e-06 -2.928057e-04  9.215025e-04  6.286968e-04</span></span>
 <span><span class="co">#&gt; b         3.161828e-06  3.635322e-04 -5.956069e-04 -2.320747e-04</span></span>
 <span><span class="co">#&gt; a        -6.734774e-04  3.480811e-04  4.381277e-06  3.524624e-04</span></span>
-<span><span class="co">#&gt; X~~X      2.693489e-20 -3.531001e-20  6.750700e-20  3.219699e-20</span></span>
+<span><span class="co">#&gt; X~~X      1.243354e-20 -1.878354e-20  1.765064e-20 -1.132895e-21</span></span>
 <span><span class="co">#&gt; Y~~Y      1.658590e-04 -2.549488e-04 -1.585313e-04 -4.134800e-04</span></span>
 <span><span class="co">#&gt; M~~M      6.664645e-04 -3.440059e-04 -4.427549e-06 -3.484334e-04</span></span>
 <span><span class="co">#&gt; indirect -3.440059e-04  3.590863e-04 -2.928057e-04  6.628063e-05</span></span>
