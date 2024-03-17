@@ -9,9 +9,9 @@
 <title>Example 4.1: The Simple Mediation Model with Missing Data (FIML) • semmcci</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.8/font.css" rel="stylesheet">
-<link href="../deps/JetBrains_Mono-0.4.8/font.css" rel="stylesheet">
-<link href="../deps/Roboto_Slab-0.4.8/font.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.9/font.css" rel="stylesheet">
+<link href="../deps/JetBrains_Mono-0.4.9/font.css" rel="stylesheet">
+<link href="../deps/Roboto_Slab-0.4.9/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Example 4.1: The Simple Mediation Model with Missing Data (FIML)">
@@ -29,7 +29,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">semmcci</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.3.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,7 +78,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2024-02-16</h4>
+            <h4 data-toc-skip class="date">2024-03-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/semmcci/blob/HEAD/vignettes/example-4-1-simple-miss-fiml.Rmd"><code>vignettes/example-4-1-simple-miss-fiml.Rmd</code></a></small>
       <div class="d-none name"><code>example-4-1-simple-miss-fiml.Rmd</code></div>
@@ -148,18 +148,18 @@ Monte Carlo confidence intervals.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/MC.html">MC</a></span><span class="op">(</span><span class="va">fit</span>, R <span class="op">=</span> <span class="fl">20000L</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;              est     se     R    2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp        0.2335 0.0293 20000  0.1768 0.2910</span></span>
-<span><span class="co">#&gt; b         0.5113 0.0297 20000  0.4531 0.5703</span></span>
-<span><span class="co">#&gt; a         0.4809 0.0286 20000  0.4255 0.5372</span></span>
-<span><span class="co">#&gt; X~~X      1.0591 0.0499 20000  0.9618 1.1570</span></span>
-<span><span class="co">#&gt; Y~~Y      0.5542 0.0268 20000  0.5025 0.6071</span></span>
-<span><span class="co">#&gt; M~~M      0.7564 0.0361 20000  0.6862 0.8267</span></span>
-<span><span class="co">#&gt; Y~1      -0.0127 0.0253 20000 -0.0619 0.0376</span></span>
-<span><span class="co">#&gt; M~1      -0.0223 0.0292 20000 -0.0803 0.0342</span></span>
-<span><span class="co">#&gt; X~1       0.0025 0.0338 20000 -0.0646 0.0693</span></span>
-<span><span class="co">#&gt; indirect  0.2458 0.0202 20000  0.2078 0.2869</span></span>
-<span><span class="co">#&gt; direct    0.2335 0.0293 20000  0.1768 0.2910</span></span>
-<span><span class="co">#&gt; total     0.4794 0.0286 20000  0.4237 0.5359</span></span></code></pre></div>
+<span><span class="co">#&gt; cp        0.2335 0.0295 20000  0.1750 0.2910</span></span>
+<span><span class="co">#&gt; b         0.5113 0.0295 20000  0.4534 0.5683</span></span>
+<span><span class="co">#&gt; a         0.4809 0.0286 20000  0.4253 0.5367</span></span>
+<span><span class="co">#&gt; X~~X      1.0591 0.0499 20000  0.9619 1.1571</span></span>
+<span><span class="co">#&gt; Y~~Y      0.5542 0.0268 20000  0.5012 0.6060</span></span>
+<span><span class="co">#&gt; M~~M      0.7564 0.0361 20000  0.6861 0.8267</span></span>
+<span><span class="co">#&gt; Y~1      -0.0127 0.0253 20000 -0.0620 0.0375</span></span>
+<span><span class="co">#&gt; M~1      -0.0223 0.0292 20000 -0.0802 0.0342</span></span>
+<span><span class="co">#&gt; X~1       0.0025 0.0338 20000 -0.0644 0.0692</span></span>
+<span><span class="co">#&gt; indirect  0.2458 0.0202 20000  0.2076 0.2863</span></span>
+<span><span class="co">#&gt; direct    0.2335 0.0295 20000  0.1750 0.2910</span></span>
+<span><span class="co">#&gt; total     0.4794 0.0288 20000  0.4223 0.5354</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="standardized-monte-carlo-confidence-intervals">Standardized Monte Carlo Confidence Intervals<a class="anchor" aria-label="anchor" href="#standardized-monte-carlo-confidence-intervals"></a>
@@ -174,15 +174,15 @@ passing the result of the <code><a href="../reference/MC.html">MC()</a></code> f
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/MCStd.html">MCStd</a></span><span class="op">(</span><span class="va">unstd</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Standardized Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;              est     se     R   2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp        0.2409 0.0299 20000 0.1817 0.2988</span></span>
-<span><span class="co">#&gt; b         0.5128 0.0268 20000 0.4586 0.5645</span></span>
-<span><span class="co">#&gt; a         0.4946 0.0256 20000 0.4430 0.5440</span></span>
+<span><span class="co">#&gt; cp        0.2409 0.0297 20000 0.1823 0.2998</span></span>
+<span><span class="co">#&gt; b         0.5128 0.0270 20000 0.4585 0.5643</span></span>
+<span><span class="co">#&gt; a         0.4946 0.0256 20000 0.4426 0.5436</span></span>
 <span><span class="co">#&gt; X~~X      1.0000 0.0000 20000 1.0000 1.0000</span></span>
-<span><span class="co">#&gt; Y~~Y      0.5568 0.0250 20000 0.5076 0.6059</span></span>
-<span><span class="co">#&gt; M~~M      0.7554 0.0253 20000 0.7040 0.8038</span></span>
-<span><span class="co">#&gt; indirect -0.0128 0.0188 20000 0.2171 0.2903</span></span>
-<span><span class="co">#&gt; direct   -0.0222 0.0299 20000 0.1817 0.2988</span></span>
-<span><span class="co">#&gt; total     0.0024 0.0259 20000 0.4419 0.5433</span></span></code></pre></div>
+<span><span class="co">#&gt; Y~~Y      0.5568 0.0251 20000 0.5075 0.6051</span></span>
+<span><span class="co">#&gt; M~~M      0.7554 0.0252 20000 0.7045 0.8041</span></span>
+<span><span class="co">#&gt; indirect -0.0128 0.0188 20000 0.2170 0.2905</span></span>
+<span><span class="co">#&gt; direct   -0.0222 0.0297 20000 0.1823 0.2998</span></span>
+<span><span class="co">#&gt; total     0.0024 0.0256 20000 0.4426 0.5433</span></span></code></pre></div>
 </div>
 <div class="section level2 unnumbered">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>

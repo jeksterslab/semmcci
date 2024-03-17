@@ -76,7 +76,13 @@
     <loc>https://github.com/jeksterslab/semmcci/news/index.html</loc>
   </url>
   <url>
+    <loc>https://github.com/jeksterslab/semmcci/reference/Func.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/jeksterslab/semmcci/reference/MC.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/jeksterslab/semmcci/reference/MCFunc.html</loc>
   </url>
   <url>
     <loc>https://github.com/jeksterslab/semmcci/reference/MCGeneric.html</loc>
