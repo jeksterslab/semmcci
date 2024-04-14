@@ -25,7 +25,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">semmcci</a>
 
@@ -78,7 +78,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2024-04-08</h4>
+            <h4 data-toc-skip class="date">2024-04-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/semmcci/blob/HEAD/vignettes/benchmark-fiml.Rmd"><code>vignettes/benchmark-fiml.Rmd</code></a></small>
       <div class="d-none name"><code>benchmark-fiml.Rmd</code></div>
@@ -253,18 +253,18 @@ Monte Carlo confidence intervals.</p>
 </h3>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_fiml_01</span>, unit <span class="op">=</span> <span class="st">"ms"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   expr        min         lq       mean    median         uq        max neval</span></span>
-<span><span class="co">#&gt; 1   MC   120.9304   122.1588   133.6433   126.238   144.5917   160.0742    10</span></span>
-<span><span class="co">#&gt; 2   NB 20287.3806 29740.6348 28814.5539 29946.961 29987.5785 30441.0764    10</span></span></code></pre></div>
+<span><span class="co">#&gt;   expr         min          lq       mean     median        uq        max neval</span></span>
+<span><span class="co">#&gt; 1   MC    81.12704    87.11804   108.9757   106.0233   114.649   186.0267    10</span></span>
+<span><span class="co">#&gt; 2   NB 20496.51530 21231.14250 21910.4887 21978.7193 22349.595 23583.3925    10</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="summary-of-benchmark-results-relative-to-the-faster-method">Summary of Benchmark Results Relative to the Faster Method<a class="anchor" aria-label="anchor" href="#summary-of-benchmark-results-relative-to-the-faster-method"></a>
 </h3>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_fiml_01</span>, unit <span class="op">=</span> <span class="st">"relative"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   expr      min       lq    mean   median       uq      max neval</span></span>
-<span><span class="co">#&gt; 1   MC   1.0000   1.0000   1.000   1.0000   1.0000   1.0000    10</span></span>
-<span><span class="co">#&gt; 2   NB 167.7609 243.4588 215.608 237.2262 207.3949 190.1685    10</span></span></code></pre></div>
+<span><span class="co">#&gt;   expr      min       lq     mean   median       uq      max neval</span></span>
+<span><span class="co">#&gt; 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10</span></span>
+<span><span class="co">#&gt; 2   NB 252.6471 243.7055 201.0585 207.3009 194.9393 126.7742    10</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -302,9 +302,9 @@ Monte Carlo confidence intervals.</p>
 </h3>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_fiml_02</span>, unit <span class="op">=</span> <span class="st">"ms"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   expr         min          lq        mean      median          uq         max</span></span>
-<span><span class="co">#&gt; 1   MC    15.70504    25.98028    25.24935    26.36846    26.66568    29.18547</span></span>
-<span><span class="co">#&gt; 2   NB 29121.48749 29422.44593 29589.07469 29602.55885 29688.66816 30200.81162</span></span>
+<span><span class="co">#&gt;   expr         min          lq       mean      median          uq         max</span></span>
+<span><span class="co">#&gt; 1   MC    10.38613    10.54215    16.8553    13.62892    24.75929    32.63383</span></span>
+<span><span class="co">#&gt; 2   NB 21719.07177 21878.05532 22859.7906 23013.79061 23772.52306 23861.69170</span></span>
 <span><span class="co">#&gt;   neval</span></span>
 <span><span class="co">#&gt; 1    10</span></span>
 <span><span class="co">#&gt; 2    10</span></span></code></pre></div>
@@ -314,9 +314,9 @@ Monte Carlo confidence intervals.</p>
 </h3>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_fiml_02</span>, unit <span class="op">=</span> <span class="st">"relative"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   expr      min       lq     mean  median       uq      max neval</span></span>
-<span><span class="co">#&gt; 1   MC    1.000    1.000    1.000    1.00    1.000    1.000    10</span></span>
-<span><span class="co">#&gt; 2   NB 1854.277 1132.492 1171.875 1122.65 1113.366 1034.789    10</span></span></code></pre></div>
+<span><span class="co">#&gt;   expr      min       lq     mean median       uq     max neval</span></span>
+<span><span class="co">#&gt; 1   MC    1.000    1.000    1.000    1.0   1.0000   1.000    10</span></span>
+<span><span class="co">#&gt; 2   NB 2091.161 2075.293 1356.237 1688.6 960.1456 731.195    10</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -348,7 +348,7 @@ confidence intervals for the indirect effect with missing data.
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
 </div>
 
     </footer>
