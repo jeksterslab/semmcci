@@ -108,7 +108,7 @@ Monte Carlo confidence intervals for the indirect effect with missing data.
 
 Preacher, K. J., & Selig, J. P. (2012).
 Advantages of Monte Carlo confidence intervals for indirect effects.
-\emph{Communication Methods and Measures}, \emph{6}(2), 77–98.
+\emph{Communication Methods and Measures}, \emph{6}(2), 77<U+2013>98.
 \doi{10.1080/19312458.2012.679848}
 }
 \seealso{
