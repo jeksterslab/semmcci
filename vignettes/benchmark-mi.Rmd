@@ -1,7 +1,7 @@
 ---
 title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping (MI)"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2024-04-14"
+date: "2024-05-05"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -138,6 +138,10 @@ Nonparametric bootstrap confidence intervals can be generated in `bmemLavaan` us
 summary(
   bmemLavaan::bmem(data = df, model = model, method = "mi", boot = 100L, m = 5L)
 )
+#> Warning in check_dep_version(): ABI version mismatch: 
+#> lme4 was built with Matrix ABI version 1
+#> Current Matrix ABI version is 2
+#> Please re-install lme4 from source or restore original 'Matrix' package
 #> 
 #> Estimate method:                          multiple imputation
 #> Sample size:                              1000      
@@ -238,9 +242,9 @@ benchmark_mi_01 <- microbenchmark(
 
 ```r
 summary(benchmark_mi_01, unit = "ms")
-#>   expr        min         lq       mean     median         uq        max neval
-#> 1   MC   368.0412   437.2158   458.1068   475.4443   486.0285   492.7675    10
-#> 2   NB 40535.6089 41156.2078 42297.1027 42077.2300 42965.1487 44748.3086    10
+#>   expr        min         lq       mean     median         uq      max neval
+#> 1   MC   350.0927   363.3021   529.4939   395.0143   573.9038  1293.66    10
+#> 2   NB 34783.9141 37138.9430 40247.8064 40257.0673 43019.1963 45072.78    10
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
@@ -248,9 +252,9 @@ summary(benchmark_mi_01, unit = "ms")
 
 ```r
 summary(benchmark_mi_01, unit = "relative")
-#>   expr      min       lq     mean   median       uq      max neval
-#> 1   MC   1.0000  1.00000  1.00000  1.00000  1.00000  1.00000    10
-#> 2   NB 110.1388 94.13248 92.33023 88.50086 88.40048 90.81018    10
+#>   expr     min       lq     mean   median      uq      max neval
+#> 1   MC  1.0000   1.0000  1.00000   1.0000  1.0000  1.00000    10
+#> 2   NB 99.3563 102.2261 76.01184 101.9129 74.9589 34.84129    10
 ```
 
 ## Plot
@@ -296,9 +300,9 @@ benchmark_mi_02 <- microbenchmark(
 
 ```r
 summary(benchmark_mi_02, unit = "ms")
-#>   expr        min         lq       mean     median        uq        max neval
-#> 1   MC   228.6275   286.7165   318.5973   333.1918   353.131   374.9326    10
-#> 2   NB 41033.9483 43091.2840 44699.1419 44119.5682 44616.917 51380.0153    10
+#>   expr        min       lq       mean     median         uq        max neval
+#> 1   MC   243.3307   323.55   378.6798   365.2419   374.9413   584.7816    10
+#> 2   NB 42050.7503 45137.85 48502.7142 47649.1874 52479.1362 56712.6971    10
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
@@ -306,9 +310,9 @@ summary(benchmark_mi_02, unit = "ms")
 
 ```r
 summary(benchmark_mi_02, unit = "relative")
-#>   expr      min       lq     mean   median       uq     max neval
-#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.000    10
-#> 2   NB 179.4795 150.2923 140.2998 132.4149 126.3467 137.038    10
+#>   expr      min       lq     mean   median       uq      max neval
+#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000  1.00000    10
+#> 2   NB 172.8132 139.5081 128.0837 130.4592 139.9663 96.98099    10
 ```
 
 ## Plot
