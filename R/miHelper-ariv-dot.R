@@ -32,7 +32,8 @@
 #'   Li, K. H., Raghunathan, T. E., & Rubin, D. B. (1991).
 #'   Large-sample significance levels from multiply imputed data
 #'   using moment-based statistics and an F reference distribution.
-#'   *Journal of the American Statistical Association*, 86 (416), 1065<U+2013>1073.
+#'   *Journal of the American Statistical Association*,
+#'   86 (416), 1065–1073.
 #'   \doi{10.1080/01621459.1991.10475152}
 #'
 #'   Rubin, D. B. (1987).
