@@ -1,7 +1,7 @@
 ---
 title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2024-05-05"
+date: "2024-06-10"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -28,7 +28,7 @@ One advantage of MC over NB is speed.
 This is because the model is only fitted once in MC whereas it is fitted many times in NB.
 
 
-```r
+``` r
 library(semmcci)
 library(lavaan)
 library(microbenchmark)
@@ -37,7 +37,7 @@ library(microbenchmark)
 ## Data
 
 
-```r
+``` r
 n <- 1000
 a <- 0.50
 b <- 0.50
@@ -61,7 +61,7 @@ defined as the product of `a` and `b` using the `:=` operator
 in the `lavaan` model syntax.
 
 
-```r
+``` r
 model <- "
   Y ~ cp * X + b * M
   M ~ a * X
@@ -77,7 +77,7 @@ model <- "
 We can now fit the model using the `sem()` function from `lavaan`.
 
 
-```r
+``` r
 fit <- sem(data = df, model = model)
 ```
 
@@ -87,7 +87,7 @@ The `fit` `lavaan` object can then be passed to the `MC()` function from `semmcc
 to generate Monte Carlo confidence intervals.
 
 
-```r
+``` r
 MC(fit, R = 100L, alpha = 0.05)
 #> Monte Carlo Confidence Intervals
 #>             est     se   R   2.5%  97.5%
@@ -107,7 +107,7 @@ MC(fit, R = 100L, alpha = 0.05)
 Nonparametric bootstrap confidence intervals can be generated in `lavaan` using the following.
 
 
-```r
+``` r
 parameterEstimates(
   sem(
     data = df,
@@ -146,7 +146,7 @@ parameterEstimates(
 
 
 
-```r
+``` r
 benchmark_complete_01 <- microbenchmark(
   MC = {
     fit <- sem(
@@ -173,11 +173,11 @@ benchmark_complete_01 <- microbenchmark(
 ### Summary of Benchmark Results
 
 
-```r
+``` r
 summary(benchmark_complete_01, unit = "ms")
-#>   expr        min         lq        mean      median         uq        max
-#> 1   MC    70.3579    71.2953    83.01955    74.36125    87.1376   124.5988
-#> 2   NB 14436.0552 14841.4169 16779.77684 15700.79975 17479.0542 23901.9466
+#>   expr         min          lq        mean      median          uq         max
+#> 1   MC    47.30373    48.16978    49.85395    48.69786    52.33883    53.69085
+#> 2   NB 15894.86435 15945.78289 16005.87905 15967.20263 16017.91816 16267.03845
 #>   neval
 #> 1    10
 #> 2    10
@@ -186,11 +186,11 @@ summary(benchmark_complete_01, unit = "ms")
 ### Summary of Benchmark Results Relative to the Faster Method
 
 
-```r
+``` r
 summary(benchmark_complete_01, unit = "relative")
-#>   expr      min       lq     mean   median       uq      max neval
-#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
-#> 2   NB 205.1803 208.1682 202.1184 211.1422 200.5914 191.8313    10
+#>   expr      min      lq     mean  median       uq     max neval
+#> 1   MC   1.0000   1.000   1.0000   1.000   1.0000   1.000    10
+#> 2   NB 336.0171 331.033 321.0554 327.883 306.0427 302.976    10
 ```
 
 ## Plot
@@ -202,7 +202,7 @@ summary(benchmark_complete_01, unit = "relative")
 
 
 
-```r
+``` r
 fit <- sem(
   data = df,
   model = model
@@ -227,21 +227,24 @@ benchmark_complete_02 <- microbenchmark(
 ### Summary of Benchmark Results
 
 
-```r
+``` r
 summary(benchmark_complete_02, unit = "ms")
-#>   expr        min         lq        mean     median         uq       max neval
-#> 1   MC    20.9529    22.2573    26.46984    24.9559    29.1406    40.154    10
-#> 2   NB 13645.4798 14074.0098 18654.62952 17261.8934 24540.8966 27948.508    10
+#>   expr         min         lq        mean      median          uq        max
+#> 1   MC    14.76308    14.9062    16.37443    16.36591    17.57138    18.2739
+#> 2   NB 15919.25528 15929.3821 16059.07926 15950.81160 15972.67057 16894.3774
+#>   neval
+#> 1    10
+#> 2    10
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
 
 
-```r
+``` r
 summary(benchmark_complete_02, unit = "relative")
-#>   expr      min       lq     mean   median       uq     max neval
-#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.000    10
-#> 2   NB 651.2454 632.3323 704.7504 691.6959 842.1548 696.033    10
+#>   expr      min       lq     mean   median       uq      max neval
+#> 1   MC    1.000    1.000   1.0000   1.0000   1.0000   1.0000    10
+#> 2   NB 1078.316 1068.641 980.7416 974.6364 909.0164 924.5086    10
 ```
 
 ## Plot

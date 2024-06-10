@@ -1,7 +1,7 @@
 ---
 title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping (FIML)"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2024-05-05"
+date: "2024-06-10"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -30,7 +30,7 @@ This is because the model is only fitted once in MC whereas it is fitted many ti
 
 
 
-```r
+``` r
 library(semmcci)
 library(lavaan)
 library(microbenchmark)
@@ -39,7 +39,7 @@ library(microbenchmark)
 ## Data
 
 
-```r
+``` r
 n <- 1000
 a <- 0.50
 b <- 0.50
@@ -70,7 +70,7 @@ defined as the product of `a` and `b` using the `:=` operator
 in the `lavaan` model syntax.
 
 
-```r
+``` r
 model <- "
   Y ~ cp * X + b * M
   M ~ a * X
@@ -87,7 +87,7 @@ We can now fit the model using the `sem()` function from `lavaan`.
 We are using `missing = "fiml"` to handle missing data in `lavaan`.
 
 
-```r
+``` r
 fit <- sem(data = df, model = model)
 ```
 
@@ -97,7 +97,7 @@ The `fit` `lavaan` object can then be passed to the `MC()` function from `semmcc
 to generate Monte Carlo confidence intervals.
 
 
-```r
+``` r
 MC(fit, R = 100L, alpha = 0.05)
 #> Monte Carlo Confidence Intervals
 #>             est     se   R   2.5%  97.5%
@@ -117,7 +117,7 @@ MC(fit, R = 100L, alpha = 0.05)
 Nonparametric bootstrap confidence intervals can be generated in `lavaan` using the following.
 
 
-```r
+``` r
 parameterEstimates(
   sem(
     data = df,
@@ -160,7 +160,7 @@ parameterEstimates(
 
 
 
-```r
+``` r
 benchmark_fiml_01 <- microbenchmark(
   MC = {
     fit <- sem(
@@ -189,21 +189,24 @@ benchmark_fiml_01 <- microbenchmark(
 ### Summary of Benchmark Results
 
 
-```r
+``` r
 summary(benchmark_fiml_01, unit = "ms")
-#>   expr        min         lq       mean    median         uq        max neval
-#> 1   MC   111.4934   118.1729   123.6628   124.246   129.4283   140.0284    10
-#> 2   NB 29054.7629 30449.1163 31708.1771 31560.642 33476.1899 34570.4723    10
+#>   expr        min          lq        mean      median          uq         max
+#> 1   MC    75.9351    76.72313    79.20428    78.21947    80.71854    84.72234
+#> 2   NB 34084.4429 34090.31820 34796.95197 34293.28515 36091.37249 36276.61473
+#>   neval
+#> 1    10
+#> 2    10
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
 
 
-```r
+``` r
 summary(benchmark_fiml_01, unit = "relative")
 #>   expr      min       lq     mean   median       uq      max neval
 #> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
-#> 2   NB 260.5963 257.6658 256.4083 254.0174 258.6466 246.8819    10
+#> 2   NB 448.8628 444.3291 439.3317 438.4239 447.1262 428.1824    10
 ```
 
 ## Plot
@@ -215,7 +218,7 @@ summary(benchmark_fiml_01, unit = "relative")
 
 
 
-```r
+``` r
 fit <- sem(
   data = df,
   model = model,
@@ -242,21 +245,24 @@ benchmark_fiml_02 <- microbenchmark(
 ### Summary of Benchmark Results
 
 
-```r
+``` r
 summary(benchmark_fiml_02, unit = "ms")
-#>   expr        min         lq        mean     median         uq        max neval
-#> 1   MC    22.0072    24.2213    26.94088    26.5453    30.1039    32.5308    10
-#> 2   NB 28035.3822 29711.0952 31493.70649 31497.1604 33482.3165 35411.6386    10
+#>   expr         min          lq        mean      median          uq         max
+#> 1   MC    13.86124    14.40915    19.63711    16.13768    16.82427    56.68272
+#> 2   NB 34099.47650 34155.45545 34245.06431 34224.74751 34369.33502 34403.12437
+#>   neval
+#> 1    10
+#> 2    10
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
 
 
-```r
+``` r
 summary(benchmark_fiml_02, unit = "relative")
-#>   expr      min       lq     mean   median       uq      max neval
-#> 1   MC    1.000    1.000    1.000    1.000    1.000    1.000    10
-#> 2   NB 1273.919 1226.652 1168.993 1186.544 1112.225 1088.557    10
+#>   expr      min     lq     mean   median       uq      max neval
+#> 1   MC    1.000    1.0    1.000    1.000    1.000   1.0000    10
+#> 2   NB 2460.059 2370.4 1743.895 2120.797 2042.842 606.9421    10
 ```
 
 ## Plot

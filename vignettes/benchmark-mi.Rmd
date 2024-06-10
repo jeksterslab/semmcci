@@ -1,7 +1,7 @@
 ---
 title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping (MI)"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2024-05-05"
+date: "2024-06-10"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -29,7 +29,7 @@ One advantage of MC over NB is speed.
 This is because the model is only fitted once in MC whereas it is fitted many times in NB.
 
 
-```r
+``` r
 library(semmcci)
 library(lavaan)
 library(Amelia)
@@ -39,7 +39,7 @@ library(microbenchmark)
 ## Data
 
 
-```r
+``` r
 n <- 1000
 a <- 0.50
 b <- 0.50
@@ -67,7 +67,7 @@ Perform the appropriate multiple imputation approach to deal with missing values
 In this example, we impute multivariate missing data under the normal model.
 
 
-```r
+``` r
 mi <- amelia(
   x = df,
   m = 5L,
@@ -84,7 +84,7 @@ defined as the product of `a` and `b` using the `:=` operator
 in the `lavaan` model syntax.
 
 
-```r
+``` r
 model <- "
   Y ~ cp * X + b * M
   M ~ a * X
@@ -101,7 +101,7 @@ We can now fit the model using the `sem()` function from `lavaan`.
 We do not need to deal with missing values in this stage.
 
 
-```r
+``` r
 fit <- sem(data = df, model = model)
 ```
 
@@ -113,7 +113,7 @@ using multiple imputation
 as described in Pesigan and Cheung (2023).
 
 
-```r
+``` r
 MCMI(fit, R = 100L, alpha = 0.05, mi = mi)
 #> Monte Carlo Confidence Intervals (Multiple Imputation Estimates)
 #>             est     se   R   2.5%  97.5%
@@ -134,14 +134,10 @@ Nonparametric bootstrap confidence intervals can be generated in `bmemLavaan` us
 
 
 
-```r
+``` r
 summary(
   bmemLavaan::bmem(data = df, model = model, method = "mi", boot = 100L, m = 5L)
 )
-#> Warning in check_dep_version(): ABI version mismatch: 
-#> lme4 was built with Matrix ABI version 1
-#> Current Matrix ABI version is 2
-#> Please re-install lme4 from source or restore original 'Matrix' package
 #> 
 #> Estimate method:                          multiple imputation
 #> Sample size:                              1000      
@@ -206,7 +202,7 @@ summary(
 
 
 
-```r
+``` r
 benchmark_mi_01 <- microbenchmark(
   MC = {
     fit <- sem(
@@ -240,21 +236,21 @@ benchmark_mi_01 <- microbenchmark(
 ### Summary of Benchmark Results
 
 
-```r
+``` r
 summary(benchmark_mi_01, unit = "ms")
-#>   expr        min         lq       mean     median         uq      max neval
-#> 1   MC   350.0927   363.3021   529.4939   395.0143   573.9038  1293.66    10
-#> 2   NB 34783.9141 37138.9430 40247.8064 40257.0673 43019.1963 45072.78    10
+#>   expr        min         lq       mean     median         uq        max neval
+#> 1   MC   220.6799   235.9049   237.6245   238.9638   239.9025   246.1942    10
+#> 2   NB 22782.6224 22847.0880 23088.5281 22943.1970 23105.6627 24240.6001    10
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
 
 
-```r
+``` r
 summary(benchmark_mi_01, unit = "relative")
-#>   expr     min       lq     mean   median      uq      max neval
-#> 1   MC  1.0000   1.0000  1.00000   1.0000  1.0000  1.00000    10
-#> 2   NB 99.3563 102.2261 76.01184 101.9129 74.9589 34.84129    10
+#>   expr      min       lq     mean   median       uq     max neval
+#> 1   MC   1.0000  1.00000  1.00000  1.00000  1.00000  1.0000    10
+#> 2   NB 103.2383 96.84874 97.16392 96.01118 96.31273 98.4613    10
 ```
 
 ## Plot
@@ -266,7 +262,7 @@ summary(benchmark_mi_01, unit = "relative")
 
 
 
-```r
+``` r
 fit <- sem(
   data = df,
   model = model
@@ -298,21 +294,21 @@ benchmark_mi_02 <- microbenchmark(
 ### Summary of Benchmark Results
 
 
-```r
+``` r
 summary(benchmark_mi_02, unit = "ms")
-#>   expr        min       lq       mean     median         uq        max neval
-#> 1   MC   243.3307   323.55   378.6798   365.2419   374.9413   584.7816    10
-#> 2   NB 42050.7503 45137.85 48502.7142 47649.1874 52479.1362 56712.6971    10
+#>   expr        min         lq     mean     median         uq        max neval
+#> 1   MC   152.3477   155.9165   169.19   157.7771   162.5455   266.1882    10
+#> 2   NB 22459.9213 22861.0848 23004.14 23020.7762 23252.9217 23292.2604    10
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
 
 
-```r
+``` r
 summary(benchmark_mi_02, unit = "relative")
 #>   expr      min       lq     mean   median       uq      max neval
 #> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000  1.00000    10
-#> 2   NB 172.8132 139.5081 128.0837 130.4592 139.9663 96.98099    10
+#> 2   NB 147.4254 146.6239 135.9663 145.9069 143.0548 87.50297    10
 ```
 
 ## Plot

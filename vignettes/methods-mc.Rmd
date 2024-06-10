@@ -1,7 +1,7 @@
 ---
 title: "semmcci: Methods (MC)"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2024-05-05"
+date: "2024-06-10"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -22,7 +22,7 @@ vignette: >
 
 
 
-```r
+``` r
 library(semmcci)
 library(lavaan)
 ```
@@ -32,7 +32,7 @@ library(lavaan)
 
 
 
-```r
+``` r
 summary(df)
 #>        X                   M                   Y           
 #>  Min.   :-3.199558   Min.   :-3.371276   Min.   :-3.61432  
@@ -41,9 +41,15 @@ summary(df)
 #>  Mean   :-0.003207   Mean   :-0.023968   Mean   :-0.01677  
 #>  3rd Qu.: 0.651951   3rd Qu.: 0.647363   3rd Qu.: 0.62640  
 #>  Max.   : 3.470910   Max.   : 2.963216   Max.   : 3.09950
+```
+
+``` r
 colMeans(df)
 #>            X            M            Y 
 #> -0.003206987 -0.023968103 -0.016774294
+```
+
+``` r
 var(df)
 #>           X         M         Y
 #> X 1.0600162 0.5108780 0.5069458
@@ -54,7 +60,7 @@ var(df)
 ## Model Specification
 
 
-```r
+``` r
 model <- "
   Y ~ cp * X + b * M
   M ~ a * X
@@ -67,14 +73,14 @@ model <- "
 ## Model Fitting
 
 
-```r
+``` r
 fit <- sem(data = df, model = model)
 ```
 
 ## Monte Carlo Confidence Intervals
 
 
-```r
+``` r
 unstd <- MC(fit, R = 20000L, alpha = 0.05)
 ```
 
@@ -83,7 +89,7 @@ unstd <- MC(fit, R = 20000L, alpha = 0.05)
 ### print
 
 
-```r
+``` r
 print(unstd)
 #> Monte Carlo Confidence Intervals
 #>             est     se     R   2.5%  97.5%
@@ -101,7 +107,7 @@ print(unstd)
 ### summary
 
 
-```r
+``` r
 summary(unstd)
 #> Monte Carlo Confidence Intervals
 #>             est     se     R   2.5%  97.5%
@@ -119,7 +125,7 @@ summary(unstd)
 ### coef
 
 
-```r
+``` r
 coef(unstd)
 #>        cp         b         a      Y~~Y      M~~M      X~~X  indirect    direct 
 #> 0.2333230 0.5081833 0.4819530 0.5461589 0.7526879 1.0589562 0.2449205 0.2333230 
@@ -130,7 +136,7 @@ coef(unstd)
 ### vcov
 
 
-```r
+``` r
 vcov(unstd)
 #>                     cp             b             a         Y~~Y          M~~M
 #> cp        6.975724e-04 -3.570594e-04  1.739434e-06 2.065846e-06 -4.029921e-06
@@ -157,7 +163,7 @@ vcov(unstd)
 ### confint
 
 
-```r
+``` r
 confint(unstd, level = 0.95)
 #>              2.5 %    97.5 %
 #> cp       0.1819362 0.2849104
@@ -174,13 +180,13 @@ confint(unstd, level = 0.95)
 ## Standardized Monte Carlo Confidence Intervals
 
 
-```r
+``` r
 fit <- sem(data = df, model = model, fixed.x = FALSE)
 unstd <- MC(fit, R = 20000L, alpha = 0.05)
 ```
 
 
-```r
+``` r
 std <- MCStd(unstd, alpha = 0.05)
 ```
 
@@ -189,7 +195,7 @@ std <- MCStd(unstd, alpha = 0.05)
 ### print
 
 
-```r
+``` r
 print(std)
 #> Standardized Monte Carlo Confidence Intervals
 #>             est     se     R   2.5%  97.5%
@@ -207,7 +213,7 @@ print(std)
 ### summary
 
 
-```r
+``` r
 summary(std)
 #> Standardized Monte Carlo Confidence Intervals
 #>             est     se     R   2.5%  97.5%
@@ -225,7 +231,7 @@ summary(std)
 ### coef
 
 
-```r
+``` r
 coef(std)
 #>        cp         b         a      Y~~Y      M~~M      X~~X  indirect    direct 
 #> 0.2422015 0.5122827 0.4962890 0.5557501 0.7536972 1.0000000 0.2542403 0.2422015 
@@ -236,7 +242,7 @@ coef(std)
 ### vcov
 
 
-```r
+``` r
 vcov(std)
 #>                     cp             b             a          Y~~Y          M~~M
 #> cp        7.091899e-04 -4.651025e-04  8.245583e-06 -1.168207e-04 -8.275421e-06
@@ -263,7 +269,7 @@ vcov(std)
 ### confint
 
 
-```r
+``` r
 confint(std, level = 0.95)
 #>              2.5 %    97.5 %
 #> cp       0.1896616 0.2941122
