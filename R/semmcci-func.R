@@ -79,7 +79,7 @@
 #'
 #' Preacher, K. J., & Selig, J. P. (2012).
 #' Advantages of Monte Carlo confidence intervals for indirect effects.
-#' *Communication Methods and Measures*, *6*(2), 77<U+2013>98.
+#' *Communication Methods and Measures*, *6*(2), 77–98.
 #' \doi{10.1080/19312458.2012.679848}
 #'
 #' @family Monte Carlo in Structural Equation Modeling Functions
