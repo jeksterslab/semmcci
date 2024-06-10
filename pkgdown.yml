@@ -1,4 +1,4 @@
-pandoc: 3.1.13
+pandoc: '3.2'
 pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
@@ -20,7 +20,7 @@ articles:
   methods-mc: methods-mc.html
   semmcci: semmcci.html
   session: session/session.html
-last_built: 2024-05-05T23:29Z
+last_built: 2024-06-10T02:34Z
 urls:
   reference: https://github.com/jeksterslab/semmcci/reference
   article: https://github.com/jeksterslab/semmcci/articles
