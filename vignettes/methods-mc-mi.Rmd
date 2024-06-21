@@ -1,7 +1,7 @@
 ---
 title: "semmcci: Methods (MI)"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2024-06-19"
+date: "2024-06-21"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
