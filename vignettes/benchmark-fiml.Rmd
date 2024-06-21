@@ -192,8 +192,8 @@ benchmark_fiml_01 <- microbenchmark(
 ``` r
 summary(benchmark_fiml_01, unit = "ms")
 #>   expr        min         lq       mean     median         uq        max neval
-#> 1   MC   164.1851   169.7562   179.0243   177.3919   189.0686   197.2611    10
-#> 2   NB 32258.5433 32549.7435 33339.4505 32648.1082 33976.6002 36218.9264    10
+#> 1   MC   155.5689   156.9698   171.7354   164.5155   187.1562   202.0775    10
+#> 2   NB 29089.8017 29199.8817 29255.2646 29231.1605 29386.9450 29411.5276    10
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
@@ -203,7 +203,7 @@ summary(benchmark_fiml_01, unit = "ms")
 summary(benchmark_fiml_01, unit = "relative")
 #>   expr      min       lq     mean   median       uq      max neval
 #> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
-#> 2   NB 196.4767 191.7441 186.2286 184.0451 179.7051 183.6091    10
+#> 2   NB 186.9898 186.0223 170.3508 177.6803 157.0182 145.5458    10
 ```
 
 ## Plot
@@ -245,8 +245,8 @@ benchmark_fiml_02 <- microbenchmark(
 ``` r
 summary(benchmark_fiml_02, unit = "ms")
 #>   expr         min          lq        mean      median          uq         max
-#> 1   MC    22.05103    24.83806    25.78871    25.04718    26.89873    31.21684
-#> 2   NB 33179.56121 34474.89456 35091.33870 34947.49261 36009.94235 37117.69996
+#> 1   MC    20.53298    22.79179    24.54028    23.22361    23.66115    35.91892
+#> 2   NB 29056.38707 29309.33059 29340.39347 29367.83157 29404.68571 29443.49585
 #>   neval
 #> 1    10
 #> 2    10
@@ -257,9 +257,9 @@ summary(benchmark_fiml_02, unit = "ms")
 
 ``` r
 summary(benchmark_fiml_02, unit = "relative")
-#>   expr      min       lq     mean   median       uq      max neval
-#> 1   MC    1.000    1.000    1.000    1.000    1.000    1.000    10
-#> 2   NB 1504.672 1387.987 1360.725 1395.266 1338.723 1189.028    10
+#>   expr      min      lq     mean   median       uq     max neval
+#> 1   MC    1.000    1.00    1.000    1.000    1.000   1.000    10
+#> 2   NB 1415.108 1285.96 1195.601 1264.568 1242.741 819.721    10
 ```
 
 ## Plot
