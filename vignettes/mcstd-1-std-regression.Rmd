@@ -1,7 +1,7 @@
 ---
 title: "MCStd Function Use Case 1: Standardized Regression Coefficients"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2024-06-21"
+date: "2024-06-23"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |

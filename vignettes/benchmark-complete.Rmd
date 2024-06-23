@@ -1,7 +1,7 @@
 ---
 title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2024-06-21"
+date: "2024-06-23"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -175,12 +175,9 @@ benchmark_complete_01 <- microbenchmark(
 
 ``` r
 summary(benchmark_complete_01, unit = "ms")
-#>   expr         min          lq       mean     median         uq        max
-#> 1   MC    79.33892    85.99276   110.4325   113.8927   129.4349   145.5558
-#> 2   NB 13580.82638 13660.03017 13680.3172 13682.2397 13698.9515 13773.6375
-#>   neval
-#> 1    10
-#> 2    10
+#>   expr         min          lq      mean      median         uq       max neval
+#> 1   MC    90.46542    94.83342   100.093    96.90523   101.9382   126.367    10
+#> 2   NB 14275.64163 14377.63281 14764.358 14440.52289 15423.9556 15530.649    10
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
@@ -188,9 +185,9 @@ summary(benchmark_complete_01, unit = "ms")
 
 ``` r
 summary(benchmark_complete_01, unit = "relative")
-#>   expr      min       lq     mean   median       uq      max neval
-#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000  1.00000    10
-#> 2   NB 171.1748 158.8509 123.8794 120.1328 105.8366 94.62789    10
+#>   expr      min       lq     mean  median       uq      max neval
+#> 1   MC   1.0000   1.0000   1.0000   1.000   1.0000   1.0000    10
+#> 2   NB 157.8022 151.6094 147.5065 149.017 151.3069 122.9011    10
 ```
 
 ## Plot
@@ -229,9 +226,9 @@ benchmark_complete_02 <- microbenchmark(
 
 ``` r
 summary(benchmark_complete_02, unit = "ms")
-#>   expr         min          lq        mean      median        uq         max
-#> 1   MC    21.99035    22.34229    24.10874    24.61497    25.675    26.10992
-#> 2   NB 13458.74460 13639.65006 13657.90769 13681.55202 13711.402 13734.69456
+#>   expr         min         lq        mean      median          uq         max
+#> 1   MC    22.14898    22.4323    24.11475    23.76629    25.76661    26.46787
+#> 2   NB 14293.87932 14329.4131 14387.47435 14354.67531 14365.66846 14664.07738
 #>   neval
 #> 1    10
 #> 2    10
@@ -244,7 +241,7 @@ summary(benchmark_complete_02, unit = "ms")
 summary(benchmark_complete_02, unit = "relative")
 #>   expr      min       lq     mean   median       uq      max neval
 #> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
-#> 2   NB 612.0295 610.4859 566.5128 555.8224 534.0371 526.0336    10
+#> 2   NB 645.3516 638.7848 596.6255 603.9932 557.5304 554.0331    10
 ```
 
 ## Plot
