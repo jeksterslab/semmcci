@@ -33,9 +33,9 @@ Roxygen: list(markdown = TRUE)
 Depends: R (>= 3.0.0)
 Imports: stats, lavaan, mice, parallel
 Suggests: knitr, rmarkdown, testthat, MASS, psych, Amelia, bmemLavaan
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 NeedsCompilation: no
-Packaged: 2024-06-24 22:49:01 UTC; root
+Packaged: 2024-07-03 07:53:49 UTC; root
 Author: Ivan Jacob Agaloos Pesigan [aut, cre, cph]
     (<https://orcid.org/0000-0003-4818-8420>),
   Shu Fai Cheung [ctb] (<https://orcid.org/0000-0002-9871-9448>)
