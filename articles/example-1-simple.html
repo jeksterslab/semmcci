@@ -78,7 +78,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2024-06-24</h4>
+            <h4 data-toc-skip class="date">2024-07-03</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/semmcci/blob/HEAD/vignettes/example-1-simple.Rmd"><code>vignettes/example-1-simple.Rmd</code></a></small>
       <div class="d-none name"><code>example-1-simple.Rmd</code></div>
@@ -258,20 +258,26 @@ in the regression equations.</p>
 <span><span class="st">  )</span></span>
 <span><span class="st">"</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lavaan/man/sem.html" class="external-link">sem</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span>, model <span class="op">=</span> <span class="va">model</span>, fixed.x <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lavaan/man/sem.html" class="external-link">sem</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">df</span>, model <span class="op">=</span> <span class="va">model</span>, fixed.x <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error: lavaan-&gt;ldw_parse_step2():  </span></span>
+<span><span class="co">#&gt;    formula without valid operator at line 7, pos 5</span></span>
+<span><span class="co">#&gt;     sqrt(s2_X) / sqrt(</span></span>
+<span><span class="co">#&gt;     ^</span></span></code></pre></div>
 <p>The row <code>indirect_std</code> corresponds to the confidence
 intervals for the standardized indirect effect.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/MC.html">MC</a></span><span class="op">(</span><span class="va">fit</span>, R <span class="op">=</span> <span class="fl">20000L</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Monte Carlo Confidence Intervals</span></span>
-<span><span class="co">#&gt;                 est     se     R   2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp           0.2333 0.0263 20000 0.1810 0.2838</span></span>
-<span><span class="co">#&gt; b            0.5082 0.0270 20000 0.4553 0.5613</span></span>
-<span><span class="co">#&gt; a            0.4820 0.0264 20000 0.4309 0.5338</span></span>
-<span><span class="co">#&gt; s2_X         1.0590 0.0472 20000 0.9648 1.1504</span></span>
-<span><span class="co">#&gt; s2_em        0.7527 0.0339 20000 0.6865 0.8192</span></span>
-<span><span class="co">#&gt; s2_ey        0.5462 0.0243 20000 0.4987 0.5940</span></span>
-<span><span class="co">#&gt; indirect_std 0.2542 0.0174 20000 0.2206 0.2888</span></span></code></pre></div>
+<span><span class="co">#&gt;             est     se     R   2.5%  97.5%</span></span>
+<span><span class="co">#&gt; cp       0.2333 0.0263 20000 0.1810 0.2838</span></span>
+<span><span class="co">#&gt; b        0.5082 0.0270 20000 0.4553 0.5613</span></span>
+<span><span class="co">#&gt; a        0.4820 0.0264 20000 0.4301 0.5330</span></span>
+<span><span class="co">#&gt; Y~~Y     0.5462 0.0243 20000 0.4983 0.5936</span></span>
+<span><span class="co">#&gt; M~~M     0.7527 0.0339 20000 0.6865 0.8192</span></span>
+<span><span class="co">#&gt; X~~X     1.0590 0.0472 20000 0.9648 1.1504</span></span>
+<span><span class="co">#&gt; indirect 0.2449 0.0188 20000 0.2093 0.2823</span></span>
+<span><span class="co">#&gt; direct   0.2333 0.0263 20000 0.1810 0.2838</span></span>
+<span><span class="co">#&gt; total    0.4782 0.0265 20000 0.4258 0.5303</span></span></code></pre></div>
 </div>
 <div class="section level2 unnumbered">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
