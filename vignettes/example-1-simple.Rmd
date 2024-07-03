@@ -1,7 +1,7 @@
 ---
 title: "Example 1: The Simple Mediation Model"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2024-06-24"
+date: "2024-07-03"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -222,6 +222,10 @@ model <- "
 
 ``` r
 fit <- sem(data = df, model = model, fixed.x = FALSE)
+#> Error: lavaan->ldw_parse_step2():  
+#>    formula without valid operator at line 7, pos 5
+#>     sqrt(s2_X) / sqrt(
+#>     ^
 ```
 
 The row `indirect_std` corresponds to the confidence intervals for the standardized indirect effect.
@@ -230,14 +234,16 @@ The row `indirect_std` corresponds to the confidence intervals for the standardi
 ``` r
 MC(fit, R = 20000L, alpha = 0.05)
 #> Monte Carlo Confidence Intervals
-#>                 est     se     R   2.5%  97.5%
-#> cp           0.2333 0.0263 20000 0.1810 0.2838
-#> b            0.5082 0.0270 20000 0.4553 0.5613
-#> a            0.4820 0.0264 20000 0.4309 0.5338
-#> s2_X         1.0590 0.0472 20000 0.9648 1.1504
-#> s2_em        0.7527 0.0339 20000 0.6865 0.8192
-#> s2_ey        0.5462 0.0243 20000 0.4987 0.5940
-#> indirect_std 0.2542 0.0174 20000 0.2206 0.2888
+#>             est     se     R   2.5%  97.5%
+#> cp       0.2333 0.0263 20000 0.1810 0.2838
+#> b        0.5082 0.0270 20000 0.4553 0.5613
+#> a        0.4820 0.0264 20000 0.4301 0.5330
+#> Y~~Y     0.5462 0.0243 20000 0.4983 0.5936
+#> M~~M     0.7527 0.0339 20000 0.6865 0.8192
+#> X~~X     1.0590 0.0472 20000 0.9648 1.1504
+#> indirect 0.2449 0.0188 20000 0.2093 0.2823
+#> direct   0.2333 0.0263 20000 0.1810 0.2838
+#> total    0.4782 0.0265 20000 0.4258 0.5303
 ```
 
 ## References
