@@ -175,9 +175,9 @@ benchmark_complete_01 <- microbenchmark(
 
 ``` r
 summary(benchmark_complete_01, unit = "ms")
-#>   expr         min          lq        mean      median          uq         max
-#> 1   MC    76.90763    79.43785    79.95279    79.98649    80.79343    83.08289
-#> 2   NB 25065.73510 25148.86961 25192.42549 25160.66953 25244.93681 25395.16059
+#>   expr         min          lq        mean     median          uq         max
+#> 1   MC    77.03505    77.82597    78.54132    78.5533    79.67696    79.70959
+#> 2   NB 25046.36578 25283.77904 25357.32146 25372.1089 25405.62986 25624.64369
 #>   neval
 #> 1    10
 #> 2    10
@@ -188,9 +188,9 @@ summary(benchmark_complete_01, unit = "ms")
 
 ``` r
 summary(benchmark_complete_01, unit = "relative")
-#>   expr    min       lq     mean   median       uq      max neval
-#> 1   MC   1.00   1.0000   1.0000   1.0000   1.0000   1.0000    10
-#> 2   NB 325.92 316.5855 315.0913 314.5615 312.4628 305.6605    10
+#>   expr      min       lq     mean   median       uq      max neval
+#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
+#> 2   NB 325.1295 324.8758 322.8533 322.9923 318.8579 321.4751    10
 ```
 
 ## Plot
@@ -229,9 +229,9 @@ benchmark_complete_02 <- microbenchmark(
 
 ``` r
 summary(benchmark_complete_02, unit = "ms")
-#>   expr         min          lq        mean      median          uq         max
-#> 1   MC    22.64512    23.24792    24.88425    25.01963    25.82923    28.90326
-#> 2   NB 24913.34534 24937.18535 24997.81027 25005.81283 25015.70866 25119.38569
+#>   expr        min          lq        mean      median          uq         max
+#> 1   MC    22.6949    23.66967    24.99671    25.14326    26.47842    26.73592
+#> 2   NB 25070.0900 25081.92656 25243.05323 25256.50824 25317.44097 25487.90609
 #>   neval
 #> 1    10
 #> 2    10
@@ -243,8 +243,8 @@ summary(benchmark_complete_02, unit = "ms")
 ``` r
 summary(benchmark_complete_02, unit = "relative")
 #>   expr      min       lq     mean   median       uq      max neval
-#> 1   MC    1.000    1.000    1.000   1.0000   1.0000   1.0000    10
-#> 2   NB 1100.164 1072.663 1004.564 999.4478 968.5038 869.0849    10
+#> 1   MC    1.000    1.000    1.000    1.000   1.0000   1.0000    10
+#> 2   NB 1104.658 1059.665 1009.855 1004.504 956.1538 953.3208    10
 ```
 
 ## Plot
