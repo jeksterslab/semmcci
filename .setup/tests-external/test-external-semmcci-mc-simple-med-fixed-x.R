@@ -1,4 +1,4 @@
-## ---- test-semmcci-mc-simple-med-fixed-x
+## ---- test-external-semmcci-mc-simple-med-fixed-x
 lapply(
   X = 1,
   FUN = function(i, n, R, alpha, tol, text) {
@@ -101,5 +101,5 @@ lapply(
   R = 10000L,
   alpha = 0.05,
   tol = 0.05,
-  text = "test-semmcci-mc-simple-med-fixed-x"
+  text = "test-external-semmcci-mc-simple-med-fixed-x"
 )
