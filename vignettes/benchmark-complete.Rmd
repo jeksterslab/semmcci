@@ -1,7 +1,7 @@
 ---
 title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2024-07-07"
+date: "2024-07-08"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -176,8 +176,8 @@ benchmark_complete_01 <- microbenchmark(
 ``` r
 summary(benchmark_complete_01, unit = "ms")
 #>   expr         min          lq        mean     median          uq         max
-#> 1   MC    77.03505    77.82597    78.54132    78.5533    79.67696    79.70959
-#> 2   NB 25046.36578 25283.77904 25357.32146 25372.1089 25405.62986 25624.64369
+#> 1   MC    77.32881    78.00071    79.53535    79.1994    80.69511    82.32035
+#> 2   NB 25046.58789 25100.62114 25156.03220 25131.4855 25192.96438 25333.98700
 #>   neval
 #> 1    10
 #> 2    10
@@ -190,7 +190,7 @@ summary(benchmark_complete_01, unit = "ms")
 summary(benchmark_complete_01, unit = "relative")
 #>   expr      min       lq     mean   median       uq      max neval
 #> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
-#> 2   NB 325.1295 324.8758 322.8533 322.9923 318.8579 321.4751    10
+#> 2   NB 323.8972 321.7999 316.2874 317.3191 312.1994 307.7488    10
 ```
 
 ## Plot
@@ -229,9 +229,9 @@ benchmark_complete_02 <- microbenchmark(
 
 ``` r
 summary(benchmark_complete_02, unit = "ms")
-#>   expr        min          lq        mean      median          uq         max
-#> 1   MC    22.6949    23.66967    24.99671    25.14326    26.47842    26.73592
-#> 2   NB 25070.0900 25081.92656 25243.05323 25256.50824 25317.44097 25487.90609
+#>   expr         min          lq        mean      median          uq         max
+#> 1   MC    22.79599    22.94896    25.20802    25.48067    26.65065    27.92856
+#> 2   NB 24906.92019 24946.14391 25033.04038 25038.89037 25104.16721 25178.03384
 #>   neval
 #> 1    10
 #> 2    10
@@ -242,9 +242,9 @@ summary(benchmark_complete_02, unit = "ms")
 
 ``` r
 summary(benchmark_complete_02, unit = "relative")
-#>   expr      min       lq     mean   median       uq      max neval
-#> 1   MC    1.000    1.000    1.000    1.000   1.0000   1.0000    10
-#> 2   NB 1104.658 1059.665 1009.855 1004.504 956.1538 953.3208    10
+#>   expr      min       lq     mean   median      uq      max neval
+#> 1   MC    1.000    1.000   1.0000   1.0000   1.000   1.0000    10
+#> 2   NB 1092.601 1087.027 993.0586 982.6622 941.972 901.5155    10
 ```
 
 ## Plot
