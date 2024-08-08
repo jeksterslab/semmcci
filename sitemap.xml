@@ -1,117 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/404.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/articles/benchmark-complete.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/articles/benchmark-fiml.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/articles/benchmark-mi.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/articles/example-1-simple.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/articles/example-2-serial.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/articles/example-3-latent.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/articles/example-4-1-simple-miss-fiml.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/articles/example-4-2-simple-miss-mi.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/articles/example-5-composite-reliability.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/articles/mcstd-1-std-regression.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/articles/mcstd-2-difference-regression-coefficients.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/articles/mcstd-3-rsqr.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/articles/mcstd-4-difference-regression-coefficients-multigroup.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/articles/mcstd-5-difference-rsq-multigroup.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/articles/methods-mc-mi.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/articles/methods-mc.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/articles/semmcci.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/articles/session.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/index.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/reference/Func.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/reference/MC.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/reference/MCFunc.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/reference/MCGeneric.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/reference/MCMI.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/reference/MCStd.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/reference/coef.semmcci.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/reference/confint.semmcci.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/reference/print.semmcci.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/reference/semmcci-package.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/reference/summary.semmcci.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/jeksterslab/semmcci/reference/vcov.semmcci.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://github.com/jeksterslab/semmcci/404.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/LICENSE-text.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/LICENSE.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/articles/benchmark-complete.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/articles/benchmark-fiml.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/articles/benchmark-mi.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/articles/example-1-simple.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/articles/example-2-serial.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/articles/example-3-latent.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/articles/example-4-1-simple-miss-fiml.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/articles/example-4-2-simple-miss-mi.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/articles/example-5-composite-reliability.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/articles/index.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/articles/mcstd-1-std-regression.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/articles/mcstd-2-difference-regression-coefficients.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/articles/mcstd-3-rsqr.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/articles/mcstd-4-difference-regression-coefficients-multigroup.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/articles/mcstd-5-difference-rsq-multigroup.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/articles/methods-mc-mi.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/articles/methods-mc.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/articles/semmcci.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/articles/session.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/authors.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/index.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/news/index.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/reference/Func.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/reference/MC.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/reference/MCFunc.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/reference/MCGeneric.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/reference/MCMI.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/reference/MCStd.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/reference/coef.semmcci.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/reference/confint.semmcci.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/reference/index.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/reference/print.semmcci.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/reference/semmcci-package.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/reference/summary.semmcci.html</loc></url>
+<url><loc>https://github.com/jeksterslab/semmcci/reference/vcov.semmcci.html</loc></url>
 </urlset>
+
