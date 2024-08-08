@@ -1,7 +1,7 @@
 ---
 title: "semmcci: Methods (MC)"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2024-07-08"
+date: "2024-08-08"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -41,15 +41,9 @@ summary(df)
 #>  Mean   :-0.003207   Mean   :-0.023968   Mean   :-0.01677  
 #>  3rd Qu.: 0.651951   3rd Qu.: 0.647363   3rd Qu.: 0.62640  
 #>  Max.   : 3.470910   Max.   : 2.963216   Max.   : 3.09950
-```
-
-``` r
 colMeans(df)
 #>            X            M            Y 
 #> -0.003206987 -0.023968103 -0.016774294
-```
-
-``` r
 var(df)
 #>           X         M         Y
 #> X 1.0600162 0.5108780 0.5069458
