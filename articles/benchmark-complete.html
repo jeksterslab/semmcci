@@ -59,7 +59,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2024-08-08</h4>
+            <h4 data-toc-skip class="date">2024-08-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/semmcci/blob/main/vignettes/benchmark-complete.Rmd"><code>vignettes/benchmark-complete.Rmd</code></a></small>
       <div class="d-none name"><code>benchmark-complete.Rmd</code></div>
@@ -173,18 +173,18 @@ Monte Carlo confidence intervals.</p>
 <h3 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a>
 </h3>
 <table class="table">
-<thead><tr>
+<thead><tr class="header">
 <th align="left">Variables</th>
 <th align="left">Values</th>
 <th align="left">Notes</th>
 </tr></thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td align="left">R</td>
 <td align="left">1000</td>
 <td align="left">Number of Monte Carlo replications.</td>
 </tr>
-<tr>
+<tr class="even">
 <td align="left">B</td>
 <td align="left">1000</td>
 <td align="left">Number of bootstrap samples.</td>
@@ -219,9 +219,9 @@ Monte Carlo confidence intervals.</p>
 </h3>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_complete_01</span>, unit <span class="op">=</span> <span class="st">"ms"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   expr         min          lq        mean     median          uq        max</span></span>
-<span><span class="co">#&gt; 1   MC    75.69781    76.21298    80.63167    77.5228    80.55428   104.5882</span></span>
-<span><span class="co">#&gt; 2   NB 24135.24332 24187.06582 24265.30706 24232.9474 24291.75724 24500.7096</span></span>
+<span><span class="co">#&gt;   expr         min          lq      mean      median          uq         max</span></span>
+<span><span class="co">#&gt; 1   MC    76.03728    76.70362    80.976    78.94591    82.81759    99.93841</span></span>
+<span><span class="co">#&gt; 2   NB 24434.18126 24479.97481 24608.005 24579.89266 24777.39839 24828.14902</span></span>
 <span><span class="co">#&gt;   neval</span></span>
 <span><span class="co">#&gt; 1    10</span></span>
 <span><span class="co">#&gt; 2    10</span></span></code></pre></div>
@@ -231,9 +231,9 @@ Monte Carlo confidence intervals.</p>
 </h3>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_complete_01</span>, unit <span class="op">=</span> <span class="st">"relative"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   expr      min       lq     mean   median       uq      max neval</span></span>
-<span><span class="co">#&gt; 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10</span></span>
-<span><span class="co">#&gt; 2   NB 318.8368 317.3615 300.9402 312.5912 301.5576 234.2589    10</span></span></code></pre></div>
+<span><span class="co">#&gt;   expr      min       lq     mean  median       uq      max neval</span></span>
+<span><span class="co">#&gt; 1   MC   1.0000   1.0000   1.0000   1.000   1.0000   1.0000    10</span></span>
+<span><span class="co">#&gt; 2   NB 321.3448 319.1502 303.8926 311.351 299.1804 248.4345    10</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -269,9 +269,9 @@ Monte Carlo confidence intervals.</p>
 </h3>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_complete_02</span>, unit <span class="op">=</span> <span class="st">"ms"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   expr         min          lq        mean      median          uq         max</span></span>
-<span><span class="co">#&gt; 1   MC    22.16017    22.66938    24.01383    23.99739    25.43922    25.89227</span></span>
-<span><span class="co">#&gt; 2   NB 24151.02487 24152.96821 24236.61845 24173.13064 24235.71080 24702.32831</span></span>
+<span><span class="co">#&gt;   expr        min          lq        mean     median          uq         max</span></span>
+<span><span class="co">#&gt; 1   MC    22.4552    23.07673    24.99681    24.5265    27.06365    28.64333</span></span>
+<span><span class="co">#&gt; 2   NB 24365.0923 24409.92073 24665.98891 24751.8346 24840.68038 24848.80407</span></span>
 <span><span class="co">#&gt;   neval</span></span>
 <span><span class="co">#&gt; 1    10</span></span>
 <span><span class="co">#&gt; 2    10</span></span></code></pre></div>
@@ -281,9 +281,9 @@ Monte Carlo confidence intervals.</p>
 </h3>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_complete_02</span>, unit <span class="op">=</span> <span class="st">"relative"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   expr      min       lq     mean   median      uq      max neval</span></span>
-<span><span class="co">#&gt; 1   MC    1.000    1.000    1.000    1.000   1.000   1.0000    10</span></span>
-<span><span class="co">#&gt; 2   NB 1089.839 1065.445 1009.278 1007.323 952.691 954.0427    10</span></span></code></pre></div>
+<span><span class="co">#&gt;   expr      min       lq     mean   median       uq     max neval</span></span>
+<span><span class="co">#&gt; 1   MC    1.000    1.000   1.0000    1.000   1.0000   1.000    10</span></span>
+<span><span class="co">#&gt; 2   NB 1085.053 1057.772 986.7654 1009.187 917.8614 867.525    10</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
