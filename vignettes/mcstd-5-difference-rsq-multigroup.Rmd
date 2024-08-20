@@ -1,7 +1,7 @@
 ---
 title: "MCStd Function Use Case 5: Difference of R-Squared in Multiple Groups"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2024-08-08"
+date: "2024-08-20"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
