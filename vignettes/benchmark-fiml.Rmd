@@ -1,7 +1,7 @@
 ---
 title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping (FIML)"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2024-08-20"
+date: "2024-08-25"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -192,8 +192,8 @@ benchmark_fiml_01 <- microbenchmark(
 ``` r
 summary(benchmark_fiml_01, unit = "ms")
 #>   expr        min         lq       mean     median         uq        max neval
-#> 1   MC   131.7102   136.0462   144.7196   138.7225   142.9303   198.2401    10
-#> 2   NB 54383.6315 54437.9368 54517.8547 54488.0295 54585.6465 54778.0342    10
+#> 1   MC   132.9152   134.5038   137.9187   137.9418   140.7393   143.2564    10
+#> 2   NB 54662.9785 54776.3656 55577.8848 55488.8896 56243.6582 56781.2603    10
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
@@ -203,7 +203,7 @@ summary(benchmark_fiml_01, unit = "ms")
 summary(benchmark_fiml_01, unit = "relative")
 #>   expr      min       lq     mean   median       uq      max neval
 #> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
-#> 2   NB 412.9038 400.1431 376.7136 392.7844 381.9038 276.3217    10
+#> 2   NB 411.2619 407.2476 402.9758 402.2631 399.6301 396.3611    10
 ```
 
 ## Plot
@@ -244,9 +244,9 @@ benchmark_fiml_02 <- microbenchmark(
 
 ``` r
 summary(benchmark_fiml_02, unit = "ms")
-#>   expr        min          lq        mean      median          uq         max
-#> 1   MC    22.5238    23.04009    25.06166    25.00287    26.82828    28.44578
-#> 2   NB 52747.1798 52811.36938 53632.99996 53783.90457 54352.13824 54406.77880
+#>   expr         min          lq        mean      median          uq         max
+#> 1   MC    22.67753    23.34349    25.71827    24.96665    27.73844    31.44201
+#> 2   NB 53147.68190 54360.27459 54715.73102 54624.04961 55263.92721 56384.05261
 #>   neval
 #> 1    10
 #> 2    10
@@ -257,9 +257,9 @@ summary(benchmark_fiml_02, unit = "ms")
 
 ``` r
 summary(benchmark_fiml_02, unit = "relative")
-#>   expr      min       lq     mean   median       uq      max neval
-#> 1   MC    1.000    1.000    1.000    1.000    1.000    1.000    10
-#> 2   NB 2341.842 2292.151 2140.042 2151.109 2025.927 1912.649    10
+#>   expr      min       lq     mean  median       uq      max neval
+#> 1   MC    1.000    1.000    1.000    1.00    1.000    1.000    10
+#> 2   NB 2343.627 2328.713 2127.505 2187.88 1992.323 1793.272    10
 ```
 
 ## Plot
