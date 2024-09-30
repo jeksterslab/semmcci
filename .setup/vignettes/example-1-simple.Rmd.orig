@@ -180,17 +180,7 @@ model <- "
   X ~~ s2_X * X
   M ~~ s2_em * M
   Y ~~ s2_ey * Y
-  indirect_std := a * b * (
-    sqrt(s2_X) / sqrt(
-      (
-        cp^2 * s2_X + a^2 * b^2 * s2_X
-      ) + (
-        b^2 * s2_em
-      ) + (
-        2 * cp * b * a * s2_X
-      ) + s2_ey
-    )
-  )
+  indirect_std := a * b * (sqrt(s2_X) / sqrt((cp^2 * s2_X + a^2 * b^2 * s2_X) + (b^2 * s2_em) + (2 * cp * b * a * s2_X) + s2_ey))
 "
 ```
 
