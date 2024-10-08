@@ -24,12 +24,6 @@
 #' @noRd
 .MCCI <- function(object,
                   alpha = NULL) {
-  stopifnot(
-    inherits(
-      object,
-      "semmcci"
-    )
-  )
   thetahatstar <- object$thetahatstar
   thetahat <- object$thetahat
   if (is.null(alpha)) {

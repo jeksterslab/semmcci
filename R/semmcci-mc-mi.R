@@ -88,8 +88,8 @@ MCMI <- function(lav,
                  seed = NULL) {
   stopifnot(
     inherits(
-      lav,
-      "lavaan"
+      x = lav,
+      what = "lavaan"
     )
   )
   if (lav@Data@data.type == "moment") {
@@ -107,8 +107,8 @@ MCMI <- function(lav,
   }
   if (
     inherits(
-      mi,
-      "mids"
+      x = mi,
+      what = "mids"
     )
   ) {
     imp <- mice::complete(
@@ -117,15 +117,15 @@ MCMI <- function(lav,
     )
   } else if (
     inherits(
-      mi,
-      "amelia"
+      x = mi,
+      what = "amelia"
     )
   ) {
     imp <- mi$imputations
   } else if (
     inherits(
-      mi,
-      "list"
+      x = mi,
+      what = "list"
     )
   ) {
     imp <- mi
