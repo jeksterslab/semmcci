@@ -92,8 +92,8 @@ MCStd <- function(mc,
                   alpha = c(0.001, 0.01, 0.05)) {
   stopifnot(
     inherits(
-      mc,
-      "semmcci"
+      x = mc,
+      what = "semmcci"
     )
   )
   stopifnot(

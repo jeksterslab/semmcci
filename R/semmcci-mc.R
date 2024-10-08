@@ -100,8 +100,8 @@ MC <- function(lav,
                seed = NULL) {
   stopifnot(
     inherits(
-      lav,
-      "lavaan"
+      x = lav,
+      what = "lavaan"
     )
   )
   args <- list(

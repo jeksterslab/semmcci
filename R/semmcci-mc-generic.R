@@ -131,8 +131,8 @@ MCGeneric <- function(object,
   }
   if (
     inherits(
-      object,
-      "lavaan"
+      x = object,
+      what = "lavaan"
     )
   ) {
     location <- lavaan::coef(object)[def_vars]

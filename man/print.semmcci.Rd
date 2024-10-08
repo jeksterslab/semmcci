@@ -19,7 +19,7 @@ use the argument \code{alpha} used in \code{x}.}
 \item{...}{further arguments.}
 }
 \value{
-Returns a matrix of estimates, standard errors,
+Prints a matrix of estimates, standard errors,
 number of Monte Carlo replications, and confidence intervals.
 }
 \description{

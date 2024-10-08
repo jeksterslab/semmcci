@@ -8,7 +8,7 @@
 #'   use the argument `alpha` used in `x`.
 #' @param digits Integer indicating the number of decimal places to display.
 #' @param ... further arguments.
-#' @return Returns a matrix of estimates, standard errors,
+#' @return Prints a matrix of estimates, standard errors,
 #'   number of Monte Carlo replications, and confidence intervals.
 #'
 #' @examples
