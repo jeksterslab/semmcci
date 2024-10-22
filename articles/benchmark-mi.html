@@ -61,7 +61,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2024-10-08</h4>
+            <h4 data-toc-skip class="date">2024-10-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/semmcci/blob/main/vignettes/benchmark-mi.Rmd"><code>vignettes/benchmark-mi.Rmd</code></a></small>
       <div class="d-none name"><code>benchmark-mi.Rmd</code></div>
@@ -289,18 +289,18 @@ Imputation)<a class="anchor" aria-label="anchor" href="#nonparametric-bootstrap-
 </h3>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_mi_01</span>, unit <span class="op">=</span> <span class="st">"ms"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   expr        min         lq      mean     median         uq        max neval</span></span>
-<span><span class="co">#&gt; 1   MC   505.1216   522.8919   562.304   536.0206   613.5256   632.0419    10</span></span>
-<span><span class="co">#&gt; 2   NB 53584.1382 54382.3332 57844.190 57109.8237 57898.7974 65481.7608    10</span></span></code></pre></div>
+<span><span class="co">#&gt;   expr        min         lq       mean     median         uq        max neval</span></span>
+<span><span class="co">#&gt; 1   MC   357.7178   369.8743   392.1105   373.3804   374.9043   580.4906    10</span></span>
+<span><span class="co">#&gt; 2   NB 35608.5881 35675.6870 39860.3487 36334.5583 42444.1272 49886.7982    10</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="summary-of-benchmark-results-relative-to-the-faster-method">Summary of Benchmark Results Relative to the Faster Method<a class="anchor" aria-label="anchor" href="#summary-of-benchmark-results-relative-to-the-faster-method"></a>
 </h3>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_mi_01</span>, unit <span class="op">=</span> <span class="st">"relative"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   expr      min      lq   mean   median       uq      max neval</span></span>
-<span><span class="co">#&gt; 1   MC   1.0000   1.000   1.00   1.0000  1.00000   1.0000    10</span></span>
-<span><span class="co">#&gt; 2   NB 106.0817 104.003 102.87 106.5441 94.37062 103.6035    10</span></span></code></pre></div>
+<span><span class="co">#&gt;   expr      min       lq     mean   median       uq      max neval</span></span>
+<span><span class="co">#&gt; 1   MC  1.00000  1.00000   1.0000  1.00000   1.0000  1.00000    10</span></span>
+<span><span class="co">#&gt; 2   NB 99.54379 96.45355 101.6559 97.31245 113.2132 85.93902    10</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -344,9 +344,9 @@ Multiple Imputation<a class="anchor" aria-label="anchor" href="#benchmark---mont
 </h3>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_mi_02</span>, unit <span class="op">=</span> <span class="st">"ms"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   expr       min         lq       mean     median         uq        max neval</span></span>
-<span><span class="co">#&gt; 1   MC   334.957   350.7336   446.6416   488.3046   502.7807   521.9702    10</span></span>
-<span><span class="co">#&gt; 2   NB 52571.954 53307.8570 56616.8703 56946.3454 59260.1181 60992.3791    10</span></span></code></pre></div>
+<span><span class="co">#&gt;   expr        min         lq       mean     median         uq        max neval</span></span>
+<span><span class="co">#&gt; 1   MC   236.7124   241.3807   313.8474   247.8928   422.3154   423.4957    10</span></span>
+<span><span class="co">#&gt; 2   NB 35447.8084 40962.4077 46805.9772 48673.6985 53452.4033 53530.8860    10</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="summary-of-benchmark-results-relative-to-the-faster-method-1">Summary of Benchmark Results Relative to the Faster Method<a class="anchor" aria-label="anchor" href="#summary-of-benchmark-results-relative-to-the-faster-method-1"></a>
@@ -355,7 +355,7 @@ Multiple Imputation<a class="anchor" aria-label="anchor" href="#benchmark---mont
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_mi_02</span>, unit <span class="op">=</span> <span class="st">"relative"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   expr      min       lq     mean   median       uq      max neval</span></span>
 <span><span class="co">#&gt; 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10</span></span>
-<span><span class="co">#&gt; 2   NB 156.9513 151.9896 126.7613 116.6205 117.8647 116.8503    10</span></span></code></pre></div>
+<span><span class="co">#&gt; 2   NB 149.7506 169.7004 149.1361 196.3498 126.5699 126.4024    10</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
