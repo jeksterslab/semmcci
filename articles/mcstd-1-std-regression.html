@@ -11,8 +11,8 @@
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.9/font.css" rel="stylesheet">
 <link href="../deps/JetBrains_Mono-0.4.9/font.css" rel="stylesheet">
 <link href="../deps/Roboto_Slab-0.4.9/font.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="MCStd Function Use Case 1: Standardized Regression Coefficients">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -61,7 +61,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2024-10-22</h4>
+            <h4 data-toc-skip class="date">2024-12-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/semmcci/blob/main/vignettes/mcstd-1-std-regression.Rmd"><code>vignettes/mcstd-1-std-regression.Rmd</code></a></small>
       <div class="d-none name"><code>mcstd-1-std-regression.Rmd</code></div>
@@ -173,15 +173,15 @@ passing the result of the <code><a href="../reference/MC.html">MC()</a></code> f
 <span><span class="fu"><a href="../reference/MCStd.html">MCStd</a></span><span class="op">(</span><span class="va">unstd</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Standardized Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;           est     se     R    2.5%  97.5%</span></span>
-<span><span class="co">#&gt; Y1~X1  0.1207 0.0900 20000 -0.0586 0.2945</span></span>
-<span><span class="co">#&gt; Y1~X2  0.0491 0.0913 20000 -0.1305 0.2278</span></span>
-<span><span class="co">#&gt; Y1~X3  0.2194 0.0709 20000  0.0783 0.3565</span></span>
-<span><span class="co">#&gt; Y1~~Y1 0.9002 0.0405 20000  0.8005 0.9575</span></span>
+<span><span class="co">#&gt; Y1~X1  0.1207 0.0900 20000 -0.0589 0.2945</span></span>
+<span><span class="co">#&gt; Y1~X2  0.0491 0.0913 20000 -0.1294 0.2286</span></span>
+<span><span class="co">#&gt; Y1~X3  0.2194 0.0709 20000  0.0784 0.3562</span></span>
+<span><span class="co">#&gt; Y1~~Y1 0.9002 0.0405 20000  0.8005 0.9579</span></span>
 <span><span class="co">#&gt; X1~~X1 1.0000 0.0000 20000  1.0000 1.0000</span></span>
-<span><span class="co">#&gt; X1~~X2 0.6606 0.0408 20000  0.5730 0.7340</span></span>
-<span><span class="co">#&gt; X1~~X3 0.3547 0.0627 20000  0.2257 0.4719</span></span>
+<span><span class="co">#&gt; X1~~X2 0.6606 0.0406 20000  0.5745 0.7348</span></span>
+<span><span class="co">#&gt; X1~~X3 0.3547 0.0627 20000  0.2252 0.4715</span></span>
 <span><span class="co">#&gt; X2~~X2 1.0000 0.0000 20000  1.0000 1.0000</span></span>
-<span><span class="co">#&gt; X2~~X3 0.3743 0.0622 20000  0.2470 0.4900</span></span>
+<span><span class="co">#&gt; X2~~X3 0.3743 0.0622 20000  0.2480 0.4901</span></span>
 <span><span class="co">#&gt; X3~~X3 1.0000 0.0000 20000  1.0000 1.0000</span></span></code></pre></div>
 </div>
 <div class="section level2 unnumbered">

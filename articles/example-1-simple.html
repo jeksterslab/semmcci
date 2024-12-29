@@ -11,8 +11,8 @@
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.9/font.css" rel="stylesheet">
 <link href="../deps/JetBrains_Mono-0.4.9/font.css" rel="stylesheet">
 <link href="../deps/Roboto_Slab-0.4.9/font.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Example 1: The Simple Mediation Model">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -61,7 +61,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2024-10-22</h4>
+            <h4 data-toc-skip class="date">2024-12-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/semmcci/blob/main/vignettes/example-1-simple.Rmd"><code>vignettes/example-1-simple.Rmd</code></a></small>
       <div class="d-none name"><code>example-1-simple.Rmd</code></div>
@@ -139,15 +139,15 @@ intervals.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/MC.html">MC</a></span><span class="op">(</span><span class="va">fit</span>, R <span class="op">=</span> <span class="fl">20000L</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;             est     se     R   2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp       0.2333 0.0264 20000 0.1817 0.2846</span></span>
-<span><span class="co">#&gt; b        0.5082 0.0272 20000 0.4551 0.5611</span></span>
-<span><span class="co">#&gt; a        0.4820 0.0264 20000 0.4299 0.5337</span></span>
+<span><span class="co">#&gt; cp       0.2333 0.0264 20000 0.1819 0.2849</span></span>
+<span><span class="co">#&gt; b        0.5082 0.0272 20000 0.4553 0.5613</span></span>
+<span><span class="co">#&gt; a        0.4820 0.0264 20000 0.4302 0.5340</span></span>
 <span><span class="co">#&gt; Y~~Y     0.5462 0.0244 20000 0.4979 0.5944</span></span>
 <span><span class="co">#&gt; M~~M     0.7527 0.0339 20000 0.6858 0.8187</span></span>
 <span><span class="co">#&gt; X~~X     1.0590 0.0000 20000 1.0590 1.0590</span></span>
-<span><span class="co">#&gt; indirect 0.2449 0.0188 20000 0.2094 0.2831</span></span>
-<span><span class="co">#&gt; direct   0.2333 0.0264 20000 0.1817 0.2846</span></span>
-<span><span class="co">#&gt; total    0.4782 0.0264 20000 0.4262 0.5295</span></span></code></pre></div>
+<span><span class="co">#&gt; indirect 0.2449 0.0187 20000 0.2094 0.2831</span></span>
+<span><span class="co">#&gt; direct   0.2333 0.0264 20000 0.1819 0.2849</span></span>
+<span><span class="co">#&gt; total    0.4782 0.0265 20000 0.4261 0.5306</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="standardized-monte-carlo-confidence-intervals">Standardized Monte Carlo Confidence Intervals<a class="anchor" aria-label="anchor" href="#standardized-monte-carlo-confidence-intervals"></a>
@@ -172,15 +172,15 @@ values.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/MCStd.html">MCStd</a></span><span class="op">(</span><span class="va">unstd</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Standardized Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;             est     se     R   2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp       0.2422 0.0268 20000 0.1895 0.2942</span></span>
-<span><span class="co">#&gt; b        0.5123 0.0246 20000 0.4640 0.5609</span></span>
+<span><span class="co">#&gt; cp       0.2422 0.0266 20000 0.1897 0.2941</span></span>
+<span><span class="co">#&gt; b        0.5123 0.0247 20000 0.4636 0.5605</span></span>
 <span><span class="co">#&gt; a        0.4963 0.0240 20000 0.4476 0.5416</span></span>
-<span><span class="co">#&gt; Y~~Y     0.5558 0.0235 20000 0.5094 0.6017</span></span>
+<span><span class="co">#&gt; Y~~Y     0.5558 0.0236 20000 0.5089 0.6015</span></span>
 <span><span class="co">#&gt; M~~M     0.7537 0.0238 20000 0.7066 0.7996</span></span>
 <span><span class="co">#&gt; X~~X     1.0000 0.0000 20000 1.0000 1.0000</span></span>
-<span><span class="co">#&gt; indirect 0.2542 0.0177 20000 0.2200 0.2889</span></span>
-<span><span class="co">#&gt; direct   0.2422 0.0268 20000 0.1895 0.2942</span></span>
-<span><span class="co">#&gt; total    0.4964 0.0240 20000 0.4483 0.5422</span></span></code></pre></div>
+<span><span class="co">#&gt; indirect 0.2542 0.0177 20000 0.2199 0.2891</span></span>
+<span><span class="co">#&gt; direct   0.2422 0.0266 20000 0.1897 0.2941</span></span>
+<span><span class="co">#&gt; total    0.4964 0.0239 20000 0.4477 0.5417</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="standardized-monte-carlo-confidence-intervals---an-alternative-approach">Standardized Monte Carlo Confidence Intervals - An Alternative
@@ -246,13 +246,13 @@ intervals for the standardized indirect effect.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/MC.html">MC</a></span><span class="op">(</span><span class="va">fit</span>, R <span class="op">=</span> <span class="fl">20000L</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;                 est     se     R   2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp           0.2333 0.0262 20000 0.1818 0.2844</span></span>
-<span><span class="co">#&gt; b            0.5082 0.0271 20000 0.4562 0.5618</span></span>
+<span><span class="co">#&gt; cp           0.2333 0.0263 20000 0.1810 0.2838</span></span>
+<span><span class="co">#&gt; b            0.5082 0.0270 20000 0.4553 0.5613</span></span>
 <span><span class="co">#&gt; a            0.4820 0.0264 20000 0.4309 0.5338</span></span>
-<span><span class="co">#&gt; s2_X         1.0590 0.0472 20000 0.9675 1.1531</span></span>
+<span><span class="co">#&gt; s2_X         1.0590 0.0472 20000 0.9648 1.1504</span></span>
 <span><span class="co">#&gt; s2_em        0.7527 0.0339 20000 0.6865 0.8192</span></span>
-<span><span class="co">#&gt; s2_ey        0.5462 0.0243 20000 0.4983 0.5936</span></span>
-<span><span class="co">#&gt; indirect_std 0.2542 0.0174 20000 0.2208 0.2886</span></span></code></pre></div>
+<span><span class="co">#&gt; s2_ey        0.5462 0.0243 20000 0.4987 0.5940</span></span>
+<span><span class="co">#&gt; indirect_std 0.2542 0.0174 20000 0.2206 0.2888</span></span></code></pre></div>
 </div>
 <div class="section level2 unnumbered">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>

@@ -11,8 +11,8 @@
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.9/font.css" rel="stylesheet">
 <link href="../deps/JetBrains_Mono-0.4.9/font.css" rel="stylesheet">
 <link href="../deps/Roboto_Slab-0.4.9/font.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="semmcci: Methods (MC)">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
@@ -61,7 +61,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2024-10-22</h4>
+            <h4 data-toc-skip class="date">2024-12-29</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/semmcci/blob/main/vignettes/methods-mc.Rmd"><code>vignettes/methods-mc.Rmd</code></a></small>
       <div class="d-none name"><code>methods-mc.Rmd</code></div>
@@ -128,15 +128,15 @@ Agaloos Pesigan</h4>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">unstd</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;             est     se     R   2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp       0.2333 0.0264 20000 0.1817 0.2846</span></span>
-<span><span class="co">#&gt; b        0.5082 0.0272 20000 0.4551 0.5611</span></span>
-<span><span class="co">#&gt; a        0.4820 0.0264 20000 0.4299 0.5337</span></span>
+<span><span class="co">#&gt; cp       0.2333 0.0264 20000 0.1819 0.2849</span></span>
+<span><span class="co">#&gt; b        0.5082 0.0272 20000 0.4553 0.5613</span></span>
+<span><span class="co">#&gt; a        0.4820 0.0264 20000 0.4302 0.5340</span></span>
 <span><span class="co">#&gt; Y~~Y     0.5462 0.0244 20000 0.4979 0.5944</span></span>
 <span><span class="co">#&gt; M~~M     0.7527 0.0339 20000 0.6858 0.8187</span></span>
 <span><span class="co">#&gt; X~~X     1.0590 0.0000 20000 1.0590 1.0590</span></span>
-<span><span class="co">#&gt; indirect 0.2449 0.0188 20000 0.2094 0.2831</span></span>
-<span><span class="co">#&gt; direct   0.2333 0.0264 20000 0.1817 0.2846</span></span>
-<span><span class="co">#&gt; total    0.4782 0.0264 20000 0.4262 0.5295</span></span></code></pre></div>
+<span><span class="co">#&gt; indirect 0.2449 0.0187 20000 0.2094 0.2831</span></span>
+<span><span class="co">#&gt; direct   0.2333 0.0264 20000 0.1819 0.2849</span></span>
+<span><span class="co">#&gt; total    0.4782 0.0265 20000 0.4261 0.5306</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="summary">summary<a class="anchor" aria-label="anchor" href="#summary"></a>
@@ -145,15 +145,15 @@ Agaloos Pesigan</h4>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">unstd</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;             est     se     R   2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp       0.2333 0.0264 20000 0.1817 0.2846</span></span>
-<span><span class="co">#&gt; b        0.5082 0.0272 20000 0.4551 0.5611</span></span>
-<span><span class="co">#&gt; a        0.4820 0.0264 20000 0.4299 0.5337</span></span>
+<span><span class="co">#&gt; cp       0.2333 0.0264 20000 0.1819 0.2849</span></span>
+<span><span class="co">#&gt; b        0.5082 0.0272 20000 0.4553 0.5613</span></span>
+<span><span class="co">#&gt; a        0.4820 0.0264 20000 0.4302 0.5340</span></span>
 <span><span class="co">#&gt; Y~~Y     0.5462 0.0244 20000 0.4979 0.5944</span></span>
 <span><span class="co">#&gt; M~~M     0.7527 0.0339 20000 0.6858 0.8187</span></span>
 <span><span class="co">#&gt; X~~X     1.0590 0.0000 20000 1.0590 1.0590</span></span>
-<span><span class="co">#&gt; indirect 0.2449 0.0188 20000 0.2094 0.2831</span></span>
-<span><span class="co">#&gt; direct   0.2333 0.0264 20000 0.1817 0.2846</span></span>
-<span><span class="co">#&gt; total    0.4782 0.0264 20000 0.4262 0.5295</span></span></code></pre></div>
+<span><span class="co">#&gt; indirect 0.2449 0.0187 20000 0.2094 0.2831</span></span>
+<span><span class="co">#&gt; direct   0.2333 0.0264 20000 0.1819 0.2849</span></span>
+<span><span class="co">#&gt; total    0.4782 0.0265 20000 0.4261 0.5306</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="coef">coef<a class="anchor" aria-label="anchor" href="#coef"></a>
@@ -170,26 +170,26 @@ Agaloos Pesigan</h4>
 </h4>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">unstd</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                     cp             b             a          Y~~Y          M~~M</span></span>
-<span><span class="co">#&gt; cp        6.957832e-04 -3.569537e-04 -7.335055e-06 -1.863172e-06 -6.369651e-06</span></span>
-<span><span class="co">#&gt; b        -3.569537e-04  7.397495e-04  2.175751e-06 -1.959388e-06  4.413204e-06</span></span>
-<span><span class="co">#&gt; a        -7.335055e-06  2.175751e-06  6.982971e-04 -8.322624e-06  5.021764e-06</span></span>
-<span><span class="co">#&gt; Y~~Y     -1.863172e-06 -1.959388e-06 -8.322624e-06  5.962836e-04  4.504744e-06</span></span>
-<span><span class="co">#&gt; M~~M     -6.369651e-06  4.413204e-06  5.021764e-06  4.504744e-06  1.148370e-03</span></span>
-<span><span class="co">#&gt; X~~X      0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00</span></span>
-<span><span class="co">#&gt; indirect -1.760619e-04  3.579324e-04  3.559548e-04 -5.050361e-06  4.668854e-06</span></span>
-<span><span class="co">#&gt; direct    6.957832e-04 -3.569537e-04 -7.335055e-06 -1.863172e-06 -6.369651e-06</span></span>
-<span><span class="co">#&gt; total     5.197213e-04  9.786539e-07  3.486198e-04 -6.913533e-06 -1.700796e-06</span></span>
+<span><span class="co">#&gt;                     cp             b             a         Y~~Y          M~~M</span></span>
+<span><span class="co">#&gt; cp        6.975724e-04 -3.570594e-04  1.739434e-06 2.065846e-06 -4.029921e-06</span></span>
+<span><span class="co">#&gt; b        -3.570594e-04  7.379603e-04 -7.450590e-06 1.744389e-06  6.618803e-06</span></span>
+<span><span class="co">#&gt; a         1.739434e-06 -7.450590e-06  6.982971e-04 8.322624e-06 -5.021764e-06</span></span>
+<span><span class="co">#&gt; Y~~Y      2.065846e-06  1.744389e-06  8.322624e-06 5.962836e-04  4.504744e-06</span></span>
+<span><span class="co">#&gt; M~~M     -4.029921e-06  6.618803e-06 -5.021764e-06 4.504744e-06  1.148370e-03</span></span>
+<span><span class="co">#&gt; X~~X      0.000000e+00  0.000000e+00  0.000000e+00 0.000000e+00  0.000000e+00</span></span>
+<span><span class="co">#&gt; indirect -1.708943e-04  3.516821e-04  3.515320e-04 4.920373e-06  3.808621e-07</span></span>
+<span><span class="co">#&gt; direct    6.975724e-04 -3.570594e-04  1.739434e-06 2.065846e-06 -4.029921e-06</span></span>
+<span><span class="co">#&gt; total     5.266782e-04 -5.377290e-06  3.532714e-04 6.986219e-06 -3.649059e-06</span></span>
 <span><span class="co">#&gt;          X~~X      indirect        direct         total</span></span>
-<span><span class="co">#&gt; cp          0 -1.760619e-04  6.957832e-04  5.197213e-04</span></span>
-<span><span class="co">#&gt; b           0  3.579324e-04 -3.569537e-04  9.786539e-07</span></span>
-<span><span class="co">#&gt; a           0  3.559548e-04 -7.335055e-06  3.486198e-04</span></span>
-<span><span class="co">#&gt; Y~~Y        0 -5.050361e-06 -1.863172e-06 -6.913533e-06</span></span>
-<span><span class="co">#&gt; M~~M        0  4.668854e-06 -6.369651e-06 -1.700796e-06</span></span>
+<span><span class="co">#&gt; cp          0 -1.708943e-04  6.975724e-04  5.266782e-04</span></span>
+<span><span class="co">#&gt; b           0  3.516821e-04 -3.570594e-04 -5.377290e-06</span></span>
+<span><span class="co">#&gt; a           0  3.515320e-04  1.739434e-06  3.532714e-04</span></span>
+<span><span class="co">#&gt; Y~~Y        0  4.920373e-06  2.065846e-06  6.986219e-06</span></span>
+<span><span class="co">#&gt; M~~M        0  3.808621e-07 -4.029921e-06 -3.649059e-06</span></span>
 <span><span class="co">#&gt; X~~X        0  0.000000e+00  0.000000e+00  0.000000e+00</span></span>
-<span><span class="co">#&gt; indirect    0  3.540809e-04 -1.760619e-04  1.780190e-04</span></span>
-<span><span class="co">#&gt; direct      0 -1.760619e-04  6.957832e-04  5.197213e-04</span></span>
-<span><span class="co">#&gt; total       0  1.780190e-04  5.197213e-04  6.977403e-04</span></span></code></pre></div>
+<span><span class="co">#&gt; indirect    0  3.486997e-04 -1.708943e-04  1.778055e-04</span></span>
+<span><span class="co">#&gt; direct      0 -1.708943e-04  6.975724e-04  5.266782e-04</span></span>
+<span><span class="co">#&gt; total       0  1.778055e-04  5.266782e-04  7.044836e-04</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="confint">confint<a class="anchor" aria-label="anchor" href="#confint"></a>
@@ -197,15 +197,15 @@ Agaloos Pesigan</h4>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">unstd</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
 <span><span class="co">#&gt;              2.5 %    97.5 %</span></span>
-<span><span class="co">#&gt; cp       0.1816910 0.2845601</span></span>
-<span><span class="co">#&gt; b        0.4551497 0.5611403</span></span>
-<span><span class="co">#&gt; a        0.4299410 0.5337397</span></span>
+<span><span class="co">#&gt; cp       0.1819362 0.2849104</span></span>
+<span><span class="co">#&gt; b        0.4552649 0.5613296</span></span>
+<span><span class="co">#&gt; a        0.4301663 0.5339651</span></span>
 <span><span class="co">#&gt; Y~~Y     0.4979155 0.5944224</span></span>
 <span><span class="co">#&gt; M~~M     0.6857891 0.8187138</span></span>
 <span><span class="co">#&gt; X~~X     1.0589562 1.0589562</span></span>
-<span><span class="co">#&gt; indirect 0.2094303 0.2831318</span></span>
-<span><span class="co">#&gt; direct   0.1816910 0.2845601</span></span>
-<span><span class="co">#&gt; total    0.4262403 0.5294621</span></span></code></pre></div>
+<span><span class="co">#&gt; indirect 0.2093636 0.2830510</span></span>
+<span><span class="co">#&gt; direct   0.1819362 0.2849104</span></span>
+<span><span class="co">#&gt; total    0.4261341 0.5305578</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
@@ -227,15 +227,15 @@ Agaloos Pesigan</h4>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">std</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Standardized Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;             est     se     R   2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp       0.2422 0.0268 20000 0.1895 0.2942</span></span>
-<span><span class="co">#&gt; b        0.5123 0.0246 20000 0.4640 0.5609</span></span>
+<span><span class="co">#&gt; cp       0.2422 0.0266 20000 0.1897 0.2941</span></span>
+<span><span class="co">#&gt; b        0.5123 0.0247 20000 0.4636 0.5605</span></span>
 <span><span class="co">#&gt; a        0.4963 0.0240 20000 0.4476 0.5416</span></span>
-<span><span class="co">#&gt; Y~~Y     0.5558 0.0235 20000 0.5094 0.6017</span></span>
+<span><span class="co">#&gt; Y~~Y     0.5558 0.0236 20000 0.5089 0.6015</span></span>
 <span><span class="co">#&gt; M~~M     0.7537 0.0238 20000 0.7066 0.7996</span></span>
 <span><span class="co">#&gt; X~~X     1.0000 0.0000 20000 1.0000 1.0000</span></span>
-<span><span class="co">#&gt; indirect 0.2542 0.0177 20000 0.2200 0.2889</span></span>
-<span><span class="co">#&gt; direct   0.2422 0.0268 20000 0.1895 0.2942</span></span>
-<span><span class="co">#&gt; total    0.4964 0.0240 20000 0.4483 0.5422</span></span></code></pre></div>
+<span><span class="co">#&gt; indirect 0.2542 0.0177 20000 0.2199 0.2891</span></span>
+<span><span class="co">#&gt; direct   0.2422 0.0266 20000 0.1897 0.2941</span></span>
+<span><span class="co">#&gt; total    0.4964 0.0239 20000 0.4477 0.5417</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="summary-1">summary<a class="anchor" aria-label="anchor" href="#summary-1"></a>
@@ -244,15 +244,15 @@ Agaloos Pesigan</h4>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">std</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Standardized Monte Carlo Confidence Intervals</span></span>
 <span><span class="co">#&gt;             est     se     R   2.5%  97.5%</span></span>
-<span><span class="co">#&gt; cp       0.2422 0.0268 20000 0.1895 0.2942</span></span>
-<span><span class="co">#&gt; b        0.5123 0.0246 20000 0.4640 0.5609</span></span>
+<span><span class="co">#&gt; cp       0.2422 0.0266 20000 0.1897 0.2941</span></span>
+<span><span class="co">#&gt; b        0.5123 0.0247 20000 0.4636 0.5605</span></span>
 <span><span class="co">#&gt; a        0.4963 0.0240 20000 0.4476 0.5416</span></span>
-<span><span class="co">#&gt; Y~~Y     0.5558 0.0235 20000 0.5094 0.6017</span></span>
+<span><span class="co">#&gt; Y~~Y     0.5558 0.0236 20000 0.5089 0.6015</span></span>
 <span><span class="co">#&gt; M~~M     0.7537 0.0238 20000 0.7066 0.7996</span></span>
 <span><span class="co">#&gt; X~~X     1.0000 0.0000 20000 1.0000 1.0000</span></span>
-<span><span class="co">#&gt; indirect 0.2542 0.0177 20000 0.2200 0.2889</span></span>
-<span><span class="co">#&gt; direct   0.2422 0.0268 20000 0.1895 0.2942</span></span>
-<span><span class="co">#&gt; total    0.4964 0.0240 20000 0.4483 0.5422</span></span></code></pre></div>
+<span><span class="co">#&gt; indirect 0.2542 0.0177 20000 0.2199 0.2891</span></span>
+<span><span class="co">#&gt; direct   0.2422 0.0266 20000 0.1897 0.2941</span></span>
+<span><span class="co">#&gt; total    0.4964 0.0239 20000 0.4477 0.5417</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="coef-1">coef<a class="anchor" aria-label="anchor" href="#coef-1"></a>
@@ -270,25 +270,25 @@ Agaloos Pesigan</h4>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">std</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                     cp             b             a          Y~~Y          M~~M</span></span>
-<span><span class="co">#&gt; cp        7.191848e-04 -4.667519e-04  6.123858e-06 -1.242838e-04 -6.255887e-06</span></span>
-<span><span class="co">#&gt; b        -4.667519e-04  6.043972e-04  2.231523e-05 -3.063863e-04 -2.203165e-05</span></span>
-<span><span class="co">#&gt; a         6.123858e-06  2.231523e-05  5.769659e-04 -1.767496e-04 -5.706892e-04</span></span>
-<span><span class="co">#&gt; Y~~Y     -1.242838e-04 -3.063863e-04 -1.767496e-04  5.545463e-04  1.749864e-04</span></span>
-<span><span class="co">#&gt; M~~M     -6.255887e-06 -2.203165e-05 -5.706892e-04  1.749864e-04  5.651409e-04</span></span>
-<span><span class="co">#&gt; X~~X      3.417802e-20 -4.198085e-20 -1.927269e-20  2.384949e-20  1.827301e-20</span></span>
-<span><span class="co">#&gt; indirect -2.284289e-04  3.111062e-04  3.064863e-04 -2.421852e-04 -3.031584e-04</span></span>
-<span><span class="co">#&gt; direct    7.191848e-04 -4.667519e-04  6.123858e-06 -1.242838e-04 -6.255887e-06</span></span>
-<span><span class="co">#&gt; total     4.907559e-04 -1.556457e-04  3.126101e-04 -3.664690e-04 -3.094143e-04</span></span>
+<span><span class="co">#&gt; cp        7.091899e-04 -4.651025e-04  8.245583e-06 -1.168207e-04 -8.275421e-06</span></span>
+<span><span class="co">#&gt; b        -4.651025e-04  6.083075e-04  2.339914e-05 -3.134309e-04 -2.305571e-05</span></span>
+<span><span class="co">#&gt; a         8.245583e-06  2.339914e-05  5.769659e-04 -1.801830e-04 -5.706892e-04</span></span>
+<span><span class="co">#&gt; Y~~Y     -1.168207e-04 -3.134309e-04 -1.801830e-04  5.569665e-04  1.782647e-04</span></span>
+<span><span class="co">#&gt; M~~M     -8.275421e-06 -2.305571e-05 -5.706892e-04  1.782647e-04  5.651409e-04</span></span>
+<span><span class="co">#&gt; X~~X      2.671076e-20 -3.148100e-20 -2.273202e-21  1.405878e-20  1.628771e-21</span></span>
+<span><span class="co">#&gt; indirect -2.265255e-04  3.136098e-04  3.069966e-04 -2.474505e-04 -3.036457e-04</span></span>
+<span><span class="co">#&gt; direct    7.091899e-04 -4.651025e-04  8.245583e-06 -1.168207e-04 -8.275421e-06</span></span>
+<span><span class="co">#&gt; total     4.826644e-04 -1.514927e-04  3.152422e-04 -3.642712e-04 -3.119212e-04</span></span>
 <span><span class="co">#&gt;                   X~~X      indirect        direct         total</span></span>
-<span><span class="co">#&gt; cp        3.417802e-20 -2.284289e-04  7.191848e-04  4.907559e-04</span></span>
-<span><span class="co">#&gt; b        -4.198085e-20  3.111062e-04 -4.667519e-04 -1.556457e-04</span></span>
-<span><span class="co">#&gt; a        -1.927269e-20  3.064863e-04  6.123858e-06  3.126101e-04</span></span>
-<span><span class="co">#&gt; Y~~Y      2.384949e-20 -2.421852e-04 -1.242838e-04 -3.664690e-04</span></span>
-<span><span class="co">#&gt; M~~M      1.827301e-20 -3.031584e-04 -6.255887e-06 -3.094143e-04</span></span>
-<span><span class="co">#&gt; X~~X      1.183659e-32 -3.060614e-20  3.417802e-20  3.571876e-21</span></span>
-<span><span class="co">#&gt; indirect -3.060614e-20  3.115388e-04 -2.284289e-04  8.310990e-05</span></span>
-<span><span class="co">#&gt; direct    3.417802e-20 -2.284289e-04  7.191848e-04  4.907559e-04</span></span>
-<span><span class="co">#&gt; total     3.571876e-21  8.310990e-05  4.907559e-04  5.738658e-04</span></span></code></pre></div>
+<span><span class="co">#&gt; cp        2.671076e-20 -2.265255e-04  7.091899e-04  4.826644e-04</span></span>
+<span><span class="co">#&gt; b        -3.148100e-20  3.136098e-04 -4.651025e-04 -1.514927e-04</span></span>
+<span><span class="co">#&gt; a        -2.273202e-21  3.069966e-04  8.245583e-06  3.152422e-04</span></span>
+<span><span class="co">#&gt; Y~~Y      1.405878e-20 -2.474505e-04 -1.168207e-04 -3.642712e-04</span></span>
+<span><span class="co">#&gt; M~~M      1.628771e-21 -3.036457e-04 -8.275421e-06 -3.119212e-04</span></span>
+<span><span class="co">#&gt; X~~X      1.187973e-32 -1.666048e-20  2.671076e-20  1.005028e-20</span></span>
+<span><span class="co">#&gt; indirect -1.666048e-20  3.130369e-04 -2.265255e-04  8.651139e-05</span></span>
+<span><span class="co">#&gt; direct    2.671076e-20 -2.265255e-04  7.091899e-04  4.826644e-04</span></span>
+<span><span class="co">#&gt; total     1.005028e-20  8.651139e-05  4.826644e-04  5.691757e-04</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="confint-1">confint<a class="anchor" aria-label="anchor" href="#confint-1"></a>
@@ -296,15 +296,15 @@ Agaloos Pesigan</h4>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">std</span>, level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
 <span><span class="co">#&gt;              2.5 %    97.5 %</span></span>
-<span><span class="co">#&gt; cp       0.1894519 0.2941807</span></span>
-<span><span class="co">#&gt; b        0.4640480 0.5609003</span></span>
+<span><span class="co">#&gt; cp       0.1896616 0.2941122</span></span>
+<span><span class="co">#&gt; b        0.4635708 0.5604860</span></span>
 <span><span class="co">#&gt; a        0.4476424 0.5416327</span></span>
-<span><span class="co">#&gt; Y~~Y     0.5094295 0.6016893</span></span>
+<span><span class="co">#&gt; Y~~Y     0.5089400 0.6015440</span></span>
 <span><span class="co">#&gt; M~~M     0.7066340 0.7996163</span></span>
 <span><span class="co">#&gt; X~~X     1.0000000 1.0000000</span></span>
-<span><span class="co">#&gt; indirect 0.2199734 0.2889152</span></span>
-<span><span class="co">#&gt; direct   0.1894519 0.2941807</span></span>
-<span><span class="co">#&gt; total    0.4482508 0.5421569</span></span></code></pre></div>
+<span><span class="co">#&gt; indirect 0.2198992 0.2890635</span></span>
+<span><span class="co">#&gt; direct   0.1896616 0.2941122</span></span>
+<span><span class="co">#&gt; total    0.4477209 0.5416757</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
