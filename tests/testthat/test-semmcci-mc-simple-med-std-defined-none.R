@@ -6,6 +6,7 @@ lapply(
                  R,
                  text) {
     message(text)
+    testthat::skip_on_cran()
     seed <- 42
     set.seed(seed)
     cp <- 0.00
