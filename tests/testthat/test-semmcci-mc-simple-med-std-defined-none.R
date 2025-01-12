@@ -49,7 +49,8 @@ lapply(
         run <- FALSE # nolint
       }
     )
-    results_unstd_chol$thetahatstar[3, ] <- lavaan::parameterEstimates(fit)$est
+    estimate <- lavaan::parameterEstimates(fit)$est
+    results_unstd_chol$thetahatstar[3, ] <- estimate
     results_chol <- MCStd(results_unstd_chol)
     results_unstd_eigen <- MC(
       fit,
@@ -58,7 +59,8 @@ lapply(
       decomposition = "eigen",
       seed = seed
     )
-    results_unstd_eigen$thetahatstar[3, ] <- lavaan::parameterEstimates(fit)$est
+    estimate <- lavaan::parameterEstimates(fit)$est
+    results_unstd_eigen$thetahatstar[3, ] <- estimate
     results_eigen <- MCStd(results_unstd_eigen)
     results_unstd_svd <- MC(
       fit,
@@ -67,7 +69,8 @@ lapply(
       decomposition = "svd",
       seed = seed
     )
-    results_unstd_svd$thetahatstar[3, ] <- lavaan::parameterEstimates(fit)$est
+    estimate <- lavaan::parameterEstimates(fit)$est
+    results_unstd_svd$thetahatstar[3, ] <- estimates
     results_svd <- MCStd(results_unstd_svd)
     if (run) {
       testthat::test_that(
