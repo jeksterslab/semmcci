@@ -8,58 +8,59 @@ lapply(
                  tol,
                  text) {
     message(text)
-    seed <- 42
-    set.seed(seed)
-    cp <- 0.00
-    b <- 0.10
-    a <- 0.10
-    sigma2ey <- 1 - b^2 - cp^2 - 2 * a * b * cp
-    sigma2em <- 1 - a^2
-    sigma2x <- 1
-    x <- rnorm(n = n, sd = sqrt(sigma2x))
-    m <- a * x + rnorm(n = n, sd = sqrt(sigma2em))
-    y <- cp * x + b * m + rnorm(n = n, sd = sqrt(sigma2ey))
-    data <- data.frame(x, m, y)
-    data[1, "x"] <- NA
-    data[2, "m"] <- NA
-    data[3, "y"] <- NA
-    model <- "
-      y ~ cp * x + b * m
-      m ~ a * x
-      ab := a * b
-    "
-    fit <- lavaan::sem(
-      data = data,
-      model = model,
-      fixed.x = FALSE,
-      missing = "fiml"
-    )
-    results_mice <- MCMI(
-      fit,
-      R = R,
-      alpha = c(0.001, 0.01, 0.05),
-      decomposition = "eigen",
-      seed = seed,
-      mi = mice::mice(
-        data = data,
-        print = FALSE,
-        m = 5L,
-        seed = seed
-      )
-    )
-    set.seed(seed)
-    answers <- MASS::mvrnorm(
-      n = R,
-      mu = lavaan::coef(fit),
-      Sigma = lavaan::vcov(fit)
-    )
-    answers <- cbind(
-      answers,
-      ab = answers[, "a"] * answers[, "b"]
-    )
     testthat::test_that(
       paste(text, "mice"),
       {
+        testthat::skip_on_cran()
+        seed <- 42
+        set.seed(seed)
+        cp <- 0.00
+        b <- 0.10
+        a <- 0.10
+        sigma2ey <- 1 - b^2 - cp^2 - 2 * a * b * cp
+        sigma2em <- 1 - a^2
+        sigma2x <- 1
+        x <- rnorm(n = n, sd = sqrt(sigma2x))
+        m <- a * x + rnorm(n = n, sd = sqrt(sigma2em))
+        y <- cp * x + b * m + rnorm(n = n, sd = sqrt(sigma2ey))
+        data <- data.frame(x, m, y)
+        data[1, "x"] <- NA
+        data[2, "m"] <- NA
+        data[3, "y"] <- NA
+        model <- "
+          y ~ cp * x + b * m
+          m ~ a * x
+          ab := a * b
+        "
+        fit <- lavaan::sem(
+          data = data,
+          model = model,
+          fixed.x = FALSE,
+          missing = "fiml"
+        )
+        results_mice <- MCMI(
+          fit,
+          R = R,
+          alpha = c(0.001, 0.01, 0.05),
+          decomposition = "eigen",
+          seed = seed,
+          mi = mice::mice(
+            data = data,
+            print = FALSE,
+            m = 5L,
+            seed = seed
+          )
+        )
+        set.seed(seed)
+        answers <- MASS::mvrnorm(
+          n = R,
+          mu = lavaan::coef(fit),
+          Sigma = lavaan::vcov(fit)
+        )
+        answers <- cbind(
+          answers,
+          ab = answers[, "a"] * answers[, "b"]
+        )
         testthat::expect_equal(
           results_mice$thetahat$est,
           lavaan::parameterEstimates(fit)$est,
