@@ -1,6 +1,8 @@
-# semmcci 1.1.4.9000
+# semmcci 1.1.5
 
-* Latest development version
+## Patch
+
+* Minor edits to tests.
 
 # semmcci 1.1.4
 

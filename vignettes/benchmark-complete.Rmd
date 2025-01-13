@@ -175,9 +175,9 @@ benchmark_complete_01 <- microbenchmark(
 
 ``` r
 summary(benchmark_complete_01, unit = "ms")
-#>   expr         min          lq        mean      median          uq        max
-#> 1   MC    72.77265    73.61552    83.92236    76.08077    78.23977   139.9285
-#> 2   NB 24236.06798 24244.44217 24315.98717 24282.47922 24340.58714 24544.2238
+#>   expr         min          lq        mean      median          uq         max
+#> 1   MC    57.03682    59.36106    61.24208    59.50585    59.68929    78.45129
+#> 2   NB 19456.12556 19524.67866 19635.72210 19625.45974 19701.07362 19987.71040
 #>   neval
 #> 1    10
 #> 2    10
@@ -190,7 +190,7 @@ summary(benchmark_complete_01, unit = "ms")
 summary(benchmark_complete_01, unit = "relative")
 #>   expr      min       lq     mean   median       uq      max neval
 #> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
-#> 2   NB 333.0381 329.3387 289.7438 319.1671 311.1025 175.4055    10
+#> 2   NB 341.1152 328.9139 320.6247 329.8072 330.0604 254.7786    10
 ```
 
 ## Plot
@@ -230,8 +230,8 @@ benchmark_complete_02 <- microbenchmark(
 ``` r
 summary(benchmark_complete_02, unit = "ms")
 #>   expr         min          lq        mean      median          uq         max
-#> 1   MC    22.28938    23.04619    25.05816    23.45943    27.71221    28.94462
-#> 2   NB 23543.66342 24163.58880 24290.04585 24208.51448 24234.86855 25708.39148
+#> 1   MC    17.29443    18.52879    19.68757    18.72326    21.40391    22.30134
+#> 2   NB 19225.10043 19365.11695 19592.96413 19639.74805 19795.39343 19920.21609
 #>   neval
 #> 1    10
 #> 2    10
@@ -244,7 +244,7 @@ summary(benchmark_complete_02, unit = "ms")
 summary(benchmark_complete_02, unit = "relative")
 #>   expr      min       lq     mean   median       uq      max neval
 #> 1   MC    1.000    1.000   1.0000    1.000   1.0000   1.0000    10
-#> 2   NB 1056.273 1048.485 969.3467 1031.931 874.5195 888.1924    10
+#> 2   NB 1111.635 1045.137 995.1947 1048.949 924.8493 893.2294    10
 ```
 
 ## Plot
