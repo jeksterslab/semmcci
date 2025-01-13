@@ -44,8 +44,8 @@ lapply(
           decomposition = "chol",
           seed = seed
         )
-        estimate <- lavaan::parameterEstimates(fit)$est
-        results_unstd_chol$thetahatstar[3, ] <- estimate
+        estimates <- lavaan::parameterEstimates(fit)$est
+        results_unstd_chol$thetahatstar[3, ] <- estimates
         results_chol <- MCStd(results_unstd_chol)
         results_unstd_eigen <- MC(
           fit,
@@ -54,8 +54,8 @@ lapply(
           decomposition = "eigen",
           seed = seed
         )
-        estimate <- lavaan::parameterEstimates(fit)$est
-        results_unstd_eigen$thetahatstar[3, ] <- estimate
+        estimates <- lavaan::parameterEstimates(fit)$est
+        results_unstd_eigen$thetahatstar[3, ] <- estimates
         results_eigen <- MCStd(results_unstd_eigen)
         results_unstd_svd <- MC(
           fit,
@@ -64,8 +64,8 @@ lapply(
           decomposition = "svd",
           seed = seed
         )
-        estimate <- lavaan::parameterEstimates(fit)$est
-        results_unstd_svd$thetahatstar[3, ] <- estimate
+        estimates <- lavaan::parameterEstimates(fit)$est
+        results_unstd_svd$thetahatstar[3, ] <- estimates
         results_svd <- MCStd(results_unstd_svd)
         testthat::expect_equal(
           results_chol$thetahatstar[3, ],
@@ -123,8 +123,8 @@ lapply(
           decomposition = "chol",
           seed = seed
         )
-        estimate <- lavaan::parameterEstimates(fit)$est
-        results_unstd_chol$thetahatstar[3, ] <- estimate
+        estimates <- lavaan::parameterEstimates(fit)$est
+        results_unstd_chol$thetahatstar[3, ] <- estimates
         results_chol <- MCStd(results_unstd_chol)
         results_unstd_eigen <- MC(
           fit,
@@ -133,8 +133,8 @@ lapply(
           decomposition = "eigen",
           seed = seed
         )
-        estimate <- lavaan::parameterEstimates(fit)$est
-        results_unstd_eigen$thetahatstar[3, ] <- estimate
+        estimates <- lavaan::parameterEstimates(fit)$est
+        results_unstd_eigen$thetahatstar[3, ] <- estimates
         results_eigen <- MCStd(results_unstd_eigen)
         results_unstd_svd <- MC(
           fit,
@@ -143,8 +143,8 @@ lapply(
           decomposition = "svd",
           seed = seed
         )
-        estimate <- lavaan::parameterEstimates(fit)$est
-        results_unstd_svd$thetahatstar[3, ] <- estimate
+        estimates <- lavaan::parameterEstimates(fit)$est
+        results_unstd_svd$thetahatstar[3, ] <- estimates
         results_svd <- MCStd(results_unstd_svd)
         testthat::expect_equal(
           results_eigen$thetahatstar[3, ],
@@ -202,8 +202,8 @@ lapply(
           decomposition = "chol",
           seed = seed
         )
-        estimate <- lavaan::parameterEstimates(fit)$est
-        results_unstd_chol$thetahatstar[3, ] <- estimate
+        estimates <- lavaan::parameterEstimates(fit)$est
+        results_unstd_chol$thetahatstar[3, ] <- estimates
         results_chol <- MCStd(results_unstd_chol)
         results_unstd_eigen <- MC(
           fit,
@@ -212,8 +212,8 @@ lapply(
           decomposition = "eigen",
           seed = seed
         )
-        estimate <- lavaan::parameterEstimates(fit)$est
-        results_unstd_eigen$thetahatstar[3, ] <- estimate
+        estimates <- lavaan::parameterEstimates(fit)$est
+        results_unstd_eigen$thetahatstar[3, ] <- estimates
         results_eigen <- MCStd(results_unstd_eigen)
         results_unstd_svd <- MC(
           fit,
@@ -222,8 +222,8 @@ lapply(
           decomposition = "svd",
           seed = seed
         )
-        estimate <- lavaan::parameterEstimates(fit)$est
-        results_unstd_svd$thetahatstar[3, ] <- estimate
+        estimates <- lavaan::parameterEstimates(fit)$est
+        results_unstd_svd$thetahatstar[3, ] <- estimates
         results_svd <- MCStd(results_unstd_svd)
         testthat::expect_equal(
           results_svd$thetahatstar[3, ],
