@@ -13,10 +13,8 @@
   alpha <- sort(alpha)
   prob_ll <- alpha / 2
   prob_ul <- rev(1 - prob_ll)
-  return(
-    c(
-      prob_ll,
-      prob_ul
-    )
+  c(
+    prob_ll,
+    prob_ul
   )
 }
