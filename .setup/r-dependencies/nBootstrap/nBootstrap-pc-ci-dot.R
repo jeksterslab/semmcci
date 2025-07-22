@@ -25,12 +25,10 @@
     probs = probs,
     names = FALSE
   )
-  return(
-    .CIFormat(
-      thetahatstar = thetahatstar,
-      thetahat = thetahat,
-      probs = probs,
-      ci = ci
-    )
+  .CIFormat(
+    thetahatstar = thetahatstar,
+    thetahat = thetahat,
+    probs = probs,
+    ci = ci
   )
 }

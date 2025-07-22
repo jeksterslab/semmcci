@@ -1,7 +1,7 @@
 ---
 title: "Example 2: The Serial Mediation Model"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2025-01-13"
+date: "2025-07-22"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -43,11 +43,11 @@ library(lavaan)
 ``` r
 summary(df)
 #>        X                  M1                 M2                 Y           
-#>  Min.   :-3.37174   Min.   :-3.22690   Min.   :-4.33590   Min.   :-4.29019  
+#>  Min.   :-3.37174   Min.   :-3.22690   Min.   :-4.33590   Min.   :-4.29020  
 #>  1st Qu.:-0.67546   1st Qu.:-0.73709   1st Qu.:-0.82188   1st Qu.:-0.86035  
 #>  Median :-0.01313   Median :-0.01651   Median :-0.03903   Median :-0.02704  
 #>  Mean   :-0.02582   Mean   :-0.01823   Mean   :-0.01620   Mean   :-0.03338  
-#>  3rd Qu.: 0.66400   3rd Qu.: 0.72825   3rd Qu.: 0.80016   3rd Qu.: 0.81721  
+#>  3rd Qu.: 0.66401   3rd Qu.: 0.72825   3rd Qu.: 0.80016   3rd Qu.: 0.81721  
 #>  Max.   : 3.49530   Max.   : 3.69001   Max.   : 3.65147   Max.   : 4.05239
 colMeans(df)
 #>           X          M1          M2           Y 

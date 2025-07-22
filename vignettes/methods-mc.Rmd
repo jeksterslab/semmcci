@@ -1,7 +1,7 @@
 ---
 title: "semmcci: Methods (MC)"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2025-01-13"
+date: "2025-07-22"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -103,7 +103,6 @@ print(unstd)
 
 ``` r
 summary(unstd)
-#> Monte Carlo Confidence Intervals
 #>             est     se     R   2.5%  97.5%
 #> cp       0.2333 0.0264 20000 0.1819 0.2849
 #> b        0.5082 0.0272 20000 0.4553 0.5613
@@ -209,7 +208,6 @@ print(std)
 
 ``` r
 summary(std)
-#> Standardized Monte Carlo Confidence Intervals
 #>             est     se     R   2.5%  97.5%
 #> cp       0.2422 0.0266 20000 0.1897 0.2941
 #> b        0.5123 0.0247 20000 0.4636 0.5605

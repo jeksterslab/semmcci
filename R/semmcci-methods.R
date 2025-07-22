@@ -167,14 +167,18 @@ summary.semmcci <- function(object,
                             alpha = NULL,
                             digits = 4,
                             ...) {
-  if (object$fun == "MC") {
-    cat("Monte Carlo Confidence Intervals\n")
-  }
-  if (object$fun == "MCMI") {
-    cat("Monte Carlo Confidence Intervals (Multiple Imputation Estimates)\n")
-  }
-  if (object$fun == "MCStd") {
-    cat("Standardized Monte Carlo Confidence Intervals\n")
+  if (interactive()) {
+    # nocov start
+    if (object$fun == "MC") {
+      cat("Monte Carlo Confidence Intervals\n")
+    }
+    if (object$fun == "MCMI") {
+      cat("Monte Carlo Confidence Intervals (Multiple Imputation Estimates)\n")
+    }
+    if (object$fun == "MCStd") {
+      cat("Standardized Monte Carlo Confidence Intervals\n")
+    }
+    # nocov end
   }
   return(
     round(

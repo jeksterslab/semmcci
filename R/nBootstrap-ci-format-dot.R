@@ -40,5 +40,5 @@
       "%"
     )
   )
-  return(out)
+  out
 }
