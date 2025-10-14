@@ -14,8 +14,7 @@
 <link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="semmcci: Monte Carlo Confidence Intervals in Structural Equation Modeling">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -25,7 +24,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">semmcci</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.6</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,7 +60,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2025-07-22</h4>
+            <h4 data-toc-skip class="date">2025-10-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/semmcci/blob/main/vignettes/semmcci.Rmd"><code>vignettes/semmcci.Rmd</code></a></small>
       <div class="d-none name"><code>semmcci.Rmd</code></div>
@@ -70,7 +69,7 @@ Agaloos Pesigan</h4>
     
     
 <!-- badges: start -->
-<p><a href="https://cran.r-project.org/package=semmcci" class="external-link"><img src="https://www.r-pkg.org/badges/version/semmcci" alt="CRAN Status"></a> <a href="https://jeksterslab.r-universe.dev" class="external-link"><img src="https://jeksterslab.r-universe.dev/badges/semmcci" alt="R-Universe Status"></a> <a href="https://doi.org/10.3758/s13428-023-02114-4" class="external-link"><img src="https://zenodo.org/badge/DOI/10.3758/s13428-023-02114-4.svg" alt="DOI"></a> <a href="https://github.com/jeksterslab/semmcci/actions/workflows/make.yml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/make.yml/badge.svg" alt="Make Project"></a> <a href="https://github.com/jeksterslab/semmcci/actions/workflows/check-full.yml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/check-full.yml/badge.svg" alt="R-CMD-check"></a> <a href="https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yml/badge.svg" alt="R Package Test Coverage"></a> <a href="https://github.com/jeksterslab/semmcci/actions/workflows/lint.yml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/lint.yml/badge.svg" alt="Lint R Package"></a> <a href="https://github.com/jeksterslab/semmcci/actions/workflows/pkgdown-gh-pages.yml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/pkgdown-gh-pages.yml/badge.svg" alt="Package Website (GitHub Pages)"></a> <a href="https://github.com/jeksterslab/semmcci/actions/workflows/latex.yml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/latex.yml/badge.svg" alt="Compile LaTeX"></a> <a href="https://github.com/jeksterslab/semmcci/actions/workflows/shellcheck.yml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/shellcheck.yml/badge.svg" alt="Shell Check"></a> <a href="https://github.com/jeksterslab/semmcci/actions/workflows/pages/pages-build-deployment"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/pages/pages-build-deployment/badge.svg" alt="pages-build-deployment"></a> <a href="https://codecov.io/gh/jeksterslab/semmcci" class="external-link"><img src="https://codecov.io/gh/jeksterslab/semmcci/branch/main/graph/badge.svg?token=KVLUET3DJ6" alt="codecov"></a> <!-- badges: end --></p>
+<p><a href="https://doi.org/10.3758/s13428-023-02114-4" class="external-link"><img src="https://zenodo.org/badge/DOI/10.3758/s13428-023-02114-4.svg" alt="DOI"></a> <a href="https://cran.r-project.org/package=semmcci" class="external-link"><img src="https://www.r-pkg.org/badges/version/semmcci" alt="CRAN Status"></a> <a href="https://jeksterslab.r-universe.dev" class="external-link"><img src="https://jeksterslab.r-universe.dev/badges/semmcci" alt="R-Universe Status"></a> <a href="https://github.com/jeksterslab/semmcci/actions/workflows/make.yml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/make.yml/badge.svg" alt="Make Project"></a> <a href="https://github.com/jeksterslab/semmcci/actions/workflows/check-full.yml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/check-full.yml/badge.svg" alt="R-CMD-check"></a> <a href="https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yml/badge.svg" alt="R Package Test Coverage"></a> <a href="https://github.com/jeksterslab/semmcci/actions/workflows/lint.yml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/lint.yml/badge.svg" alt="Lint R Package"></a> <a href="https://github.com/jeksterslab/semmcci/actions/workflows/pkgdown-gh-pages.yml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/pkgdown-gh-pages.yml/badge.svg" alt="Package Website (GitHub Pages)"></a> <a href="https://github.com/jeksterslab/semmcci/actions/workflows/latex.yml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/latex.yml/badge.svg" alt="Compile LaTeX"></a> <a href="https://github.com/jeksterslab/semmcci/actions/workflows/shellcheck.yml"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/shellcheck.yml/badge.svg" alt="Shell Check"></a> <a href="https://github.com/jeksterslab/semmcci/actions/workflows/pages/pages-build-deployment"><img src="https://github.com/jeksterslab/semmcci/actions/workflows/pages/pages-build-deployment/badge.svg" alt="pages-build-deployment"></a> <a href="https://codecov.io/gh/jeksterslab/semmcci" class="external-link"><img src="https://codecov.io/gh/jeksterslab/semmcci/branch/main/graph/badge.svg?token=KVLUET3DJ6" alt="codecov"></a> <!-- badges: end --></p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -130,44 +129,25 @@ intervals for the standardized estimates can also be generated by
 passing the output of the <code><a href="../reference/MC.html">MC()</a></code> function or the
 <code><a href="../reference/MCMI.html">MCMI()</a></code> function to the <code><a href="../reference/MCStd.html">MCStd()</a></code> function. A
 description of the package and code examples are presented in Pesigan
-and Cheung (2023: <a href="https://doi.org/10.3758/s13428-023-02114-4" class="external-link uri">https://doi.org/10.3758/s13428-023-02114-4</a>).</p>
+and Cheung (2024: <a href="https://doi.org/10.3758/s13428-023-02114-4" class="external-link uri">https://doi.org/10.3758/s13428-023-02114-4</a>).</p>
 </div>
 <div class="section level2">
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
-<p>To cite <code>semmcci</code> in publications, please cite <span class="citation">Pesigan &amp; Cheung (2023)</span>.</p>
+<p>To cite <code>semmcci</code> in publications, please cite <span class="citation">Pesigan &amp; Cheung (2024)</span>.</p>
 </div>
 <div class="section level2 unnumbered">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0" line-spacing="2">
-<div id="ref-MacKinnon-Lockwood-Williams-2004" class="csl-entry">
-MacKinnon, D. P., Lockwood, C. M., &amp; Williams, J. (2004). Confidence
-limits for the indirect effect: Distribution of the product and
-resampling methods. <em>Multivariate Behavioral Research</em>,
-<em>39</em>(1), 99–128. <a href="https://doi.org/10.1207/s15327906mbr3901_4" class="external-link">https://doi.org/10.1207/s15327906mbr3901_4</a>
-</div>
-<div id="ref-Pesigan-Cheung-2023" class="csl-entry">
-Pesigan, I. J. A., &amp; Cheung, S. F. (2023). <span>Monte Carlo</span>
+<div id="ref-Pesigan-Cheung-2024" class="csl-entry">
+Pesigan, I. J. A., &amp; Cheung, S. F. (2024). <span>Monte Carlo</span>
 confidence intervals for the indirect effect with missing data.
 <em>Behavior Research Methods</em>, <em>56</em>(3), 1678–1696. <a href="https://doi.org/10.3758/s13428-023-02114-4" class="external-link">https://doi.org/10.3758/s13428-023-02114-4</a>
 </div>
-<div id="ref-Preacher-Selig-2012" class="csl-entry">
-Preacher, K. J., &amp; Selig, J. P. (2012). Advantages of <span>Monte
-Carlo</span> confidence intervals for indirect effects.
-<em>Communication Methods and Measures</em>, <em>6</em>(2), 77–98. <a href="https://doi.org/10.1080/19312458.2012.679848" class="external-link">https://doi.org/10.1080/19312458.2012.679848</a>
-</div>
-<div id="ref-Tofighi-Kelley-2019" class="csl-entry">
-Tofighi, D., &amp; Kelley, K. (2019). Indirect effects in sequential
-mediation models: Evaluating methods for hypothesis testing and
-confidence interval formation. <em>Multivariate Behavioral
-Research</em>, <em>55</em>(2), 188–210. <a href="https://doi.org/10.1080/00273171.2019.1618545" class="external-link">https://doi.org/10.1080/00273171.2019.1618545</a>
-</div>
-<div id="ref-Tofighi-MacKinnon-2015" class="csl-entry">
-Tofighi, D., &amp; MacKinnon, D. P. (2015). <span>Monte Carlo</span>
-confidence intervals for complex functions of indirect effects.
-<em>Structural Equation Modeling: A Multidisciplinary Journal</em>,
-<em>23</em>(2), 194–205. <a href="https://doi.org/10.1080/10705511.2015.1057284" class="external-link">https://doi.org/10.1080/10705511.2015.1057284</a>
+<div id="ref-RCoreTeam-2025" class="csl-entry">
+R Core Team. (2025). <em><span>R</span>: A language and environment for
+statistical computing</em>. R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="external-link">https://www.R-project.org/</a>
 </div>
 </div>
 </div>
