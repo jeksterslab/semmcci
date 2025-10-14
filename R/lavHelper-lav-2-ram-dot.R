@@ -81,12 +81,10 @@
     m_mat[, rownames(lav_mod$alpha)] <- NA
   }
 
-  return(
-    list(
-      A = a_mat,
-      S = s_mat,
-      F = f_mat,
-      M = m_mat
-    )
+  list(
+    A = a_mat,
+    S = s_mat,
+    F = f_mat,
+    M = m_mat
   )
 }

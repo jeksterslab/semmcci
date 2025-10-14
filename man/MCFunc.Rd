@@ -97,7 +97,7 @@ library(semmcci)
 func <- function(x) {
   out <- exp(x)
   names(out) <- "exp"
-  return(out)
+  out
 }
 ### Generate Confidence Intervals ------------------------------------------
 MCFunc(
@@ -116,7 +116,7 @@ Distribution of the product and resampling methods.
 \emph{Multivariate Behavioral Research}, \emph{39}(1), 99-128.
 \doi{10.1207/s15327906mbr3901_4}
 
-Pesigan, I. J. A., & Cheung, S. F. (2023).
+Pesigan, I. J. A., & Cheung, S. F. (2024).
 Monte Carlo confidence intervals for the indirect effect with missing data.
 \emph{Behavior Research Methods}.
 \doi{10.3758/s13428-023-02114-4}

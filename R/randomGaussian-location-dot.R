@@ -20,13 +20,11 @@
                       location,
                       n,
                       k) {
-  return(
-    X + rep(
-      x = location,
-      times = rep(
-        x = n,
-        times = k
-      )
+  X + rep(
+    x = location,
+    times = rep(
+      x = n,
+      times = k
     )
   )
 }

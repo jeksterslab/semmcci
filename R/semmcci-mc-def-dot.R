@@ -18,23 +18,22 @@
   # generate defined parameters
   if (length(thetahat$def) > 0) {
     def <- function(i) {
-      tryCatch(
+      out <- tryCatch(
         {
-          return(
-            object@Model@def.function(
-              thetahatstar_orig[
-                i,
-              ]
-            )
+          object@Model@def.function(
+            thetahatstar_orig[
+              i,
+            ]
           )
         },
         warning = function(w) {
-          return(NA)
+          NA
         },
         error = function(e) {
-          return(NA)
+          NA
         }
       )
+      out
     }
     thetahatstar_def <- lapply(
       X = seq_len(
@@ -67,7 +66,7 @@
         thetahat$ceq,
         "_ceq"
       )
-      return(out)
+      out
     }
     thetahatstar_ceq <- lapply(
       X = seq_len(
@@ -98,7 +97,7 @@
         thetahat$cin,
         "_cin"
       )
-      return(out)
+      out
     }
     thetahatstar_cin <- lapply(
       X = seq_len(
@@ -145,10 +144,8 @@
     )
   }
   # rearrange
-  return(
-    thetahatstar[
-      ,
-      thetahat$par_names
-    ]
-  )
+  thetahatstar[
+    ,
+    thetahat$par_names
+  ]
 }

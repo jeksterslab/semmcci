@@ -17,7 +17,5 @@
 #' @noRd
 .RandomGaussianChol <- function(Z,
                                 chol) {
-  return(
-    Z %*% chol
-  )
+  Z %*% chol
 }

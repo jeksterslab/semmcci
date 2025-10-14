@@ -180,15 +180,17 @@ summary.semmcci <- function(object,
     }
     # nocov end
   }
-  return(
-    round(
-      .MCCI(
-        object = object,
-        alpha = alpha
-      ),
+  ci <- .MCCI(
+    object = object,
+    alpha = alpha
+  )
+  if (!is.null(digits)) {
+    ci <- round(
+      x = ci,
       digits = digits
     )
-  )
+  }
+  ci
 }
 
 #' Parameter Estimates
@@ -258,7 +260,7 @@ summary.semmcci <- function(object,
 #' @export
 coef.semmcci <- function(object,
                          ...) {
-  return(object$thetahat$est)
+  object$thetahat$est
 }
 
 #' Sampling Covariance Matrix of the Parameter Estimates
@@ -430,7 +432,5 @@ confint.semmcci <- function(object,
     x = varnames
   )
   colnames(ci) <- varnames
-  return(
-    ci
-  )
+  ci
 }

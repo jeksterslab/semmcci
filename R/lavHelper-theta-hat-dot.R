@@ -53,13 +53,11 @@
     # update with supplied values
     thetahat_est <- est
   }
-  return(
-    .ThetaHatDef(
-      object = object,
-      thetahat_est = thetahat_est,
-      thetahat_names_free = thetahat_names_free,
-      thetahat_names = thetahat_names
-    )
+  .ThetaHatDef(
+    object = object,
+    thetahat_est = thetahat_est,
+    thetahat_names_free = thetahat_names_free,
+    thetahat_names = thetahat_names
   )
 }
 
@@ -118,23 +116,21 @@
   names(
     thetahat_est
   ) <- thetahat_names
-  return(
-    list(
-      est = thetahat_est,
-      par_names = thetahat_names,
-      def = thetahat_def[
-        stats::complete.cases(thetahat_def)
-      ],
-      ceq = thetahat_ceq[
-        stats::complete.cases(thetahat_ceq)
-      ],
-      cin = thetahat_cin[
-        stats::complete.cases(thetahat_cin)
-      ],
-      fixed = thetahat_fixed[
-        stats::complete.cases(thetahat_fixed)
-      ],
-      free = thetahat_names_free
-    )
+  list(
+    est = thetahat_est,
+    par_names = thetahat_names,
+    def = thetahat_def[
+      stats::complete.cases(thetahat_def)
+    ],
+    ceq = thetahat_ceq[
+      stats::complete.cases(thetahat_ceq)
+    ],
+    cin = thetahat_cin[
+      stats::complete.cases(thetahat_cin)
+    ],
+    fixed = thetahat_fixed[
+      stats::complete.cases(thetahat_fixed)
+    ],
+    free = thetahat_names_free
   )
 }

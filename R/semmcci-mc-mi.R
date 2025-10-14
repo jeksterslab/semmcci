@@ -66,7 +66,7 @@
 #' )
 #'
 #' @references
-#' Pesigan, I. J. A., & Cheung, S. F. (2023).
+#' Pesigan, I. J. A., & Cheung, S. F. (2024).
 #' Monte Carlo confidence intervals for the indirect effect with missing data.
 #' *Behavior Research Methods*.
 #' \doi{10.3758/s13428-023-02114-4}
@@ -137,9 +137,7 @@ MCMI <- function(lav,
     FUN = function(x,
                    call1) {
       call1$data <- x
-      return(
-        eval(expr = call1)
-      )
+      eval(expr = call1)
     },
     call1 = call1
   )
@@ -190,9 +188,7 @@ MCMI <- function(lav,
         args = lapply(
           X = fits,
           FUN = function(lav) {
-            return(
-              lav@ParTable$est
-            )
+            lav@ParTable$est
           }
         )
       )
@@ -227,5 +223,5 @@ MCMI <- function(lav,
     "semmcci",
     class(out)
   )
-  return(out)
+  out
 }

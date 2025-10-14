@@ -70,7 +70,7 @@
 #' *Multivariate Behavioral Research*, *39*(1), 99-128.
 #' \doi{10.1207/s15327906mbr3901_4}
 #'
-#' Pesigan, I. J. A., & Cheung, S. F. (2023).
+#' Pesigan, I. J. A., & Cheung, S. F. (2024).
 #' Monte Carlo confidence intervals for the indirect effect with missing data.
 #' *Behavior Research Methods*.
 #' \doi{10.3758/s13428-023-02114-4}
@@ -159,11 +159,9 @@ MCGeneric <- function(object,
     env <- list2env(
       as.list(thetahat)
     )
-    return(
-      eval(
-        parse(text = def),
-        envir = env
-      )
+    eval(
+      parse(text = def),
+      envir = env
     )
   }
   ### R replications for 1 def
@@ -176,7 +174,7 @@ MCGeneric <- function(object,
         thetahat = thetahatstar_i
       )
     }
-    return(thetahatstar_dist)
+    thetahatstar_dist
   }
   ### R replications for all def
   thetahatstar <- do.call(
@@ -210,5 +208,5 @@ MCGeneric <- function(object,
     "semmcci",
     class(out)
   )
-  return(out)
+  out
 }

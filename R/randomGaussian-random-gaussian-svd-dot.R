@@ -17,13 +17,11 @@
 #' @noRd
 .RandomGaussianSVD <- function(Z,
                                svd) {
-  return(
-    Z %*% svd$u %*% (
-      t(svd$v) * sqrt(
-        pmax(
-          svd$d,
-          0
-        )
+  Z %*% svd$u %*% (
+    t(svd$v) * sqrt(
+      pmax(
+        svd$d,
+        0
       )
     )
   )

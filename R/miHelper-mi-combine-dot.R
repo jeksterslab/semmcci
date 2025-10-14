@@ -182,15 +182,13 @@
     ariv <- NA
     total_adj <- NA
   }
-  return(
-    list(
-      M = M,
-      est = est,
-      within = within,
-      between = between,
-      total = total,
-      ariv = ariv,
-      total_adj = total_adj
-    )
+  list(
+    M = M,
+    est = est,
+    within = within,
+    between = between,
+    total = total,
+    ariv = ariv,
+    total_adj = total_adj
   )
 }
