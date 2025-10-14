@@ -6,11 +6,8 @@ output: github_document
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
-  @Pesigan-Cheung-2023
-  @MacKinnon-Lockwood-Williams-2004
-  @Preacher-Selig-2012
-  @Tofighi-Kelley-2019
-  @Tofighi-MacKinnon-2015
+  @Pesigan-Cheung-2024
+  @RCoreTeam-2025
 ---
 
 <!-- README.md is generated from .setup/readme/README.Rmd. Please edit that file -->
@@ -25,9 +22,9 @@ knitr::opts_chunk$set(
 ```
 
 <!-- badges: start -->
+[![DOI](https://zenodo.org/badge/DOI/10.3758/s13428-023-02114-4.svg)](https://doi.org/10.3758/s13428-023-02114-4)
 [![CRAN Status](https://www.r-pkg.org/badges/version/semmcci)](https://cran.r-project.org/package=semmcci)
 [![R-Universe Status](https://jeksterslab.r-universe.dev/badges/semmcci)](https://jeksterslab.r-universe.dev/semmcci)
-[![DOI](https://zenodo.org/badge/DOI/10.3758/s13428-023-02114-4.svg)](https://doi.org/10.3758/s13428-023-02114-4)
 [![Make Project](https://github.com/jeksterslab/semmcci/actions/workflows/make.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/make.yml)
 [![R-CMD-check](https://github.com/jeksterslab/semmcci/actions/workflows/check-full.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/check-full.yml)
 [![R Package Test Coverage](https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yml)
@@ -209,6 +206,6 @@ package documentation.
 
 ## Citation
 
-To cite `semmcci` in publications, please cite @Pesigan-Cheung-2023.
+To cite `semmcci` in publications, please cite @Pesigan-Cheung-2024.
 
 ## References

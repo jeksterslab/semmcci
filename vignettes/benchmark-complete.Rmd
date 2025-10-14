@@ -1,11 +1,11 @@
 ---
 title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2025-07-22"
+date: "2025-10-14"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
-  @Pesigan-Cheung-2023
+  @Pesigan-Cheung-2024
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -123,9 +123,9 @@ parameterEstimates(
 #> 4        X ~~        X          1.059 0.046 23.224      0    0.969    1.161
 #> 5        Y ~~        Y          0.546 0.023 23.640      0    0.508    0.593
 #> 6        M ~~        M          0.753 0.033 23.131      0    0.692    0.814
-#> 7 indirect :=      a*b indirect 0.245 0.020 12.381      0    0.209    0.289
-#> 8   direct :=       cp   direct 0.233 0.025  9.348      0    0.183    0.278
-#> 9    total := cp+(a*b)    total 0.478 0.027 17.876      0    0.418    0.518
+#> 7 indirect :=      a*b indirect 0.245 0.020 12.443      0    0.209    0.289
+#> 8   direct :=       cp   direct 0.233 0.025  9.395      0    0.183    0.278
+#> 9    total := cp+(a*b)    total 0.478 0.027 17.966      0    0.418    0.518
 ```
 
 ## Benchmark
@@ -176,8 +176,8 @@ benchmark_complete_01 <- microbenchmark(
 ``` r
 summary(benchmark_complete_01, unit = "ms")
 #>   expr         min          lq        mean      median          uq         max
-#> 1   MC    62.14825    64.53126    67.27993    66.10667    67.67751    82.28363
-#> 2   NB 20076.49060 21097.11114 21056.66693 21199.09220 21257.40636 21546.92772
+#> 1   MC    70.95735    71.44149    74.47209    72.30007    72.89294    95.83566
+#> 2   NB 13029.63889 13033.63689 13070.29099 13055.98427 13101.93325 13155.43447
 #>   neval
 #> 1    10
 #> 2    10
@@ -188,9 +188,9 @@ summary(benchmark_complete_01, unit = "ms")
 
 ``` r
 summary(benchmark_complete_01, unit = "relative")
-#>   expr      min       lq    mean   median       uq      max neval
-#> 1   MC   1.0000   1.0000   1.000   1.0000   1.0000   1.0000    10
-#> 2   NB 323.0419 326.9286 312.971 320.6801 314.0985 261.8616    10
+#>   expr      min       lq     mean   median       uq      max neval
+#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
+#> 2   NB 183.6263 182.4379 175.5059 180.5805 179.7422 137.2708    10
 ```
 
 ## Plot
@@ -229,9 +229,9 @@ benchmark_complete_02 <- microbenchmark(
 
 ``` r
 summary(benchmark_complete_02, unit = "ms")
-#>   expr         min          lq        mean     median          uq         max
-#> 1   MC    19.59999    19.89196    21.31238    21.5501    22.50735    23.00763
-#> 2   NB 20503.10680 20530.37817 20776.18543 20687.2049 20828.37083 21718.77052
+#>   expr         min          lq       mean      median          uq         max
+#> 1   MC    20.96816    21.20475    22.3606    21.57751    24.12026    24.82871
+#> 2   NB 12985.79054 12989.33850 13018.5021 12996.33509 13042.75490 13097.62969
 #>   neval
 #> 1    10
 #> 2    10
@@ -242,9 +242,9 @@ summary(benchmark_complete_02, unit = "ms")
 
 ``` r
 summary(benchmark_complete_02, unit = "relative")
-#>   expr      min       lq     mean   median      uq      max neval
-#> 1   MC    1.000    1.000   1.0000   1.0000   1.000   1.0000    10
-#> 2   NB 1046.077 1032.094 974.8414 959.9589 925.403 943.9811    10
+#>   expr      min       lq     mean   median       uq      max neval
+#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
+#> 2   NB 619.3099 612.5674 582.2071 602.3092 540.7386 527.5195    10
 ```
 
 ## Plot

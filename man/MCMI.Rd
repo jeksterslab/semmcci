@@ -111,7 +111,7 @@ MCMI(
 
 }
 \references{
-Pesigan, I. J. A., & Cheung, S. F. (2023).
+Pesigan, I. J. A., & Cheung, S. F. (2024).
 Monte Carlo confidence intervals for the indirect effect with missing data.
 \emph{Behavior Research Methods}.
 \doi{10.3758/s13428-023-02114-4}

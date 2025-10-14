@@ -85,5 +85,5 @@
     lav_mod$alpha[] <- t(ram$M[, alpha_names, drop = FALSE])
   }
 
-  return(lav_mod)
+  lav_mod
 }

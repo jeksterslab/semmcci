@@ -8,7 +8,7 @@ message: 'To cite package "semmcci" in publications use:'
 type: software
 license: MIT
 title: 'semmcci: Monte Carlo Confidence Intervals in Structural Equation Modeling'
-version: 1.1.5
+version: 1.1.6
 doi: 10.3758/s13428-023-02114-4
 identifiers:
 - type: doi
@@ -21,7 +21,7 @@ abstract: Monte Carlo confidence intervals for free and defined parameters in mo
   Carlo confidence intervals for the standardized estimates can also be generated
   by passing the output of the MC() function or the MCMI() function to the MCStd()
   function. A description of the package and code examples are presented in Pesigan
-  and Cheung (2023) <https://doi.org/10.3758/s13428-023-02114-4>.
+  and Cheung (2024) <https://doi.org/10.3758/s13428-023-02114-4>.
 authors:
 - family-names: Pesigan
   given-names: Ivan Jacob Agaloos
@@ -39,7 +39,7 @@ preferred-citation:
     given-names: Shu Fai
     email: shufai.cheung@gmail.com
     orcid: https://orcid.org/0000-0002-9871-9448
-  year: '2023'
+  year: '2024'
   doi: 10.3758/s13428-023-02114-4
   journal: Behavior Research Methods
 repository: https://CRAN.R-project.org/package=semmcci

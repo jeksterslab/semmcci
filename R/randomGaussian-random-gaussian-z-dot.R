@@ -14,13 +14,11 @@
 #' @noRd
 .RandomGaussianZ <- function(n,
                              k) {
-  return(
-    matrix(
-      data = stats::rnorm(
-        n = n * k
-      ),
-      nrow = n,
-      ncol = k
-    )
+  matrix(
+    data = stats::rnorm(
+      n = n * k
+    ),
+    nrow = n,
+    ncol = k
   )
 }

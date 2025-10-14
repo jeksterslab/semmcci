@@ -35,7 +35,5 @@
 #' @noRd
 .TotalAdj <- function(ariv,
                       within) {
-  return(
-    (1 + ariv) * within
-  )
+  (1 + ariv) * within
 }

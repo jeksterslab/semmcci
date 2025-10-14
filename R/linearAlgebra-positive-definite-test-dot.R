@@ -27,11 +27,9 @@
 #' @noRd
 .TestPositiveDefinite <- function(eigen,
                                   tol = 1e-06) {
-  return(
-    all(
-      eigen$values >= -tol * abs(
-        eigen$values[1L]
-      )
+  all(
+    eigen$values >= -tol * abs(
+      eigen$values[1L]
     )
   )
 }

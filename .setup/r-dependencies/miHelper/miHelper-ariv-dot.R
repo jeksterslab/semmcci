@@ -48,21 +48,19 @@
                   within,
                   M,
                   k) {
-  return(
+  (
     (
-      (
-        1 + (
-          1 / M
-        )
-      ) * sum(
-        diag(
-          between %*% chol2inv(
-            chol(
-              within
-            )
+      1 + (
+        1 / M
+      )
+    ) * sum(
+      diag(
+        between %*% chol2inv(
+          chol(
+            within
           )
         )
       )
-    ) / k
-  )
+    )
+  ) / k
 }

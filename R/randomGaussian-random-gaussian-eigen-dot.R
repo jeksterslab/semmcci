@@ -17,13 +17,11 @@
 #' @noRd
 .RandomGaussianEigen <- function(Z,
                                  eigen) {
-  return(
-    Z %*% (
-      t(eigen$vectors) * sqrt(
-        pmax(
-          eigen$values,
-          0
-        )
+  Z %*% (
+    t(eigen$vectors) * sqrt(
+      pmax(
+        eigen$values,
+        0
       )
     )
   )

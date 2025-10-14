@@ -80,7 +80,7 @@
 #' MCStd(unstd, alpha = 0.05)
 #'
 #' @references
-#' Pesigan, I. J. A., & Cheung, S. F. (2023).
+#' Pesigan, I. J. A., & Cheung, S. F. (2024).
 #' Monte Carlo confidence intervals for the indirect effect with missing data.
 #' *Behavior Research Methods*.
 #' \doi{10.3758/s13428-023-02114-4}
@@ -127,35 +127,30 @@ MCStd <- function(mc,
   i_free <- mc$args$lav@ParTable$free > 0
   foo <- function(i,
                   p) {
-    tryCatch(
+    out <- tryCatch(
       {
-        return(
-          .StdLav(
-            est = mc$thetahatstar[
-              i,
-              i_free
-            ],
-            object = mc$args$lav
-          )
+        .StdLav(
+          est = mc$thetahatstar[
+            i,
+            i_free
+          ],
+          object = mc$args$lav
         )
       },
       warning = function(w) {
-        return(
-          rep(
-            x = NA,
-            times = p
-          )
+        rep(
+          x = NA,
+          times = p
         )
       },
       error = function(e) {
-        return(
-          rep(
-            x = NA,
-            times = p
-          )
+        rep(
+          x = NA,
+          times = p
         )
       }
     )
+    out
   }
   thetahatstar_std <- lapply(
     X = seq_len(
@@ -197,5 +192,5 @@ MCStd <- function(mc,
     "semmcci",
     class(out)
   )
-  return(out)
+  out
 }

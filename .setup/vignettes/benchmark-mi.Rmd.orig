@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
-  @Pesigan-Cheung-2023
+  @Pesigan-Cheung-2024
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -137,7 +137,7 @@ fit <- sem(data = df, model = model)
 The `fit` `lavaan` object and `mi` `mids` object can then be passed to the `MCMI()` function from `semmcci`
 to generate Monte Carlo confidence intervals
 using multiple imputation
-as described in Pesigan and Cheung (2023).
+as described in Pesigan and Cheung (2024).
 
 ```{r}
 MCMI(fit, R = 100L, alpha = 0.05, mi = mi)

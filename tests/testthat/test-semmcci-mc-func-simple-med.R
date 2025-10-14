@@ -42,9 +42,7 @@ lapply(
         func <- function(x) {
           ab <- x[2] * x[3]
           names(ab) <- "ab"
-          return(
-            ab
-          )
+          ab
         }
         ## MCFunc
         results_chol <- MCFunc(
@@ -147,9 +145,7 @@ lapply(
         func <- function(x) {
           ab <- x[2] * x[3]
           names(ab) <- "ab"
-          return(
-            ab
-          )
+          ab
         }
         ## MCFunc
         results_chol <- MCFunc(
@@ -252,9 +248,7 @@ lapply(
         func <- function(x) {
           ab <- x[2] * x[3]
           names(ab) <- "ab"
-          return(
-            ab
-          )
+          ab
         }
         ## MCFunc
         results_chol <- MCFunc(
@@ -357,9 +351,7 @@ lapply(
         func <- function(x) {
           ab <- x[2] * x[3]
           names(ab) <- "ab"
-          return(
-            ab
-          )
+          ab
         }
         ## MCFunc
         results_chol <- MCFunc(

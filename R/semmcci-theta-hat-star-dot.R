@@ -95,10 +95,8 @@
   ) <- names(
     location
   )
-  return(
-    list(
-      thetahatstar = dist,
-      decomposition = decomposition
-    )
+  list(
+    thetahatstar = dist,
+    decomposition = decomposition
   )
 }

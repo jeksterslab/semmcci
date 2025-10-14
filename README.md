@@ -1,17 +1,17 @@
 semmcci
 ================
 Ivan Jacob Agaloos Pesigan
-2025-07-22
+2025-10-14
 
 <!-- README.md is generated from .setup/readme/README.Rmd. Please edit that file -->
 
 <!-- badges: start -->
 
+[![DOI](https://zenodo.org/badge/DOI/10.3758/s13428-023-02114-4.svg)](https://doi.org/10.3758/s13428-023-02114-4)
 [![CRAN
 Status](https://www.r-pkg.org/badges/version/semmcci)](https://cran.r-project.org/package=semmcci)
 [![R-Universe
 Status](https://jeksterslab.r-universe.dev/badges/semmcci)](https://jeksterslab.r-universe.dev/semmcci)
-[![DOI](https://zenodo.org/badge/DOI/10.3758/s13428-023-02114-4.svg)](https://doi.org/10.3758/s13428-023-02114-4)
 [![Make
 Project](https://github.com/jeksterslab/semmcci/actions/workflows/make.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/make.yml)
 [![R-CMD-check](https://github.com/jeksterslab/semmcci/actions/workflows/check-full.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/check-full.yml)
@@ -83,14 +83,14 @@ library(lavaan)
 
 ``` r
 summary(df)
-#>        X                  M                   Y           
-#>  Min.   :-3.15272   Min.   :-2.770180   Min.   :-3.15166  
-#>  1st Qu.:-0.68013   1st Qu.:-0.617813   1st Qu.:-0.67360  
-#>  Median : 0.02779   Median :-0.008015   Median :-0.03968  
-#>  Mean   : 0.00338   Mean   : 0.016066   Mean   :-0.02433  
-#>  3rd Qu.: 0.69009   3rd Qu.: 0.668327   3rd Qu.: 0.63753  
-#>  Max.   : 2.90756   Max.   : 2.712008   Max.   : 3.27343  
-#>  NA's   :100        NA's   :100         NA's   :100
+#>        X                   M                   Y           
+#>  Min.   :-3.134234   Min.   :-3.263667   Min.   :-3.35614  
+#>  1st Qu.:-0.677436   1st Qu.:-0.640759   1st Qu.:-0.68441  
+#>  Median :-0.008092   Median : 0.006712   Median : 0.06406  
+#>  Mean   :-0.018311   Mean   : 0.016091   Mean   : 0.01199  
+#>  3rd Qu.: 0.718231   3rd Qu.: 0.700389   3rd Qu.: 0.73922  
+#>  Max.   : 3.678318   Max.   : 3.386527   Max.   : 3.73488  
+#>  NA's   :100         NA's   :100         NA's   :100
 ```
 
 ### Model Specification
@@ -129,18 +129,18 @@ mc <- MC(fit, R = 20000L, alpha = 0.05)
 mc
 #> Monte Carlo Confidence Intervals
 #>              est     se     R    2.5%  97.5%
-#> cp        0.2491 0.0311 20000  0.1872 0.3099
-#> b         0.4685 0.0321 20000  0.4064 0.5318
-#> a         0.5032 0.0274 20000  0.4500 0.5562
-#> X~~X      1.0556 0.0496 20000  0.9573 1.1532
-#> Y~~Y      0.5830 0.0284 20000  0.5279 0.6393
-#> M~~M      0.6790 0.0328 20000  0.6133 0.7427
-#> Y~1      -0.0307 0.0258 20000 -0.0817 0.0204
-#> M~1       0.0134 0.0278 20000 -0.0410 0.0675
-#> X~1       0.0029 0.0337 20000 -0.0634 0.0695
-#> indirect  0.2358 0.0206 20000  0.1973 0.2777
-#> direct    0.2491 0.0311 20000  0.1872 0.3099
-#> total     0.4849 0.0284 20000  0.4294 0.5406
+#> cp        0.2453 0.0305 20000  0.1853 0.3055
+#> b         0.5484 0.0294 20000  0.4918 0.6063
+#> a         0.4981 0.0299 20000  0.4392 0.5566
+#> X~~X      1.0284 0.0479 20000  0.9349 1.1208
+#> Y~~Y      0.5646 0.0276 20000  0.5104 0.6185
+#> M~~M      0.7819 0.0373 20000  0.7090 0.8558
+#> Y~1       0.0126 0.0257 20000 -0.0378 0.0639
+#> M~1       0.0242 0.0296 20000 -0.0345 0.0815
+#> X~1      -0.0177 0.0334 20000 -0.0823 0.0487
+#> indirect  0.2732 0.0218 20000  0.2320 0.3169
+#> direct    0.2453 0.0305 20000  0.1853 0.3055
+#> total     0.5185 0.0299 20000  0.4595 0.5773
 ```
 
 ### Monte Carlo Confidence Intervals - Multiple Imputation
@@ -174,15 +174,15 @@ mcmi <- MCMI(fit, mi = mi, R = 20000L, alpha = 0.05, seed = 42)
 mcmi
 #> Monte Carlo Confidence Intervals (Multiple Imputation Estimates)
 #>             est     se     R   2.5%  97.5%
-#> cp       0.2479 0.0311 20000 0.1874 0.3086
-#> b        0.4689 0.0332 20000 0.4041 0.5338
-#> a        0.5031 0.0275 20000 0.4499 0.5572
-#> X~~X     1.0568 0.0502 20000 0.9587 1.1554
-#> Y~~Y     0.5827 0.0289 20000 0.5257 0.6396
-#> M~~M     0.6794 0.0328 20000 0.6151 0.7433
-#> indirect 0.2359 0.0207 20000 0.1967 0.2775
-#> direct   0.2479 0.0311 20000 0.1874 0.3086
-#> total    0.4838 0.0284 20000 0.4276 0.5396
+#> cp       0.2446 0.0301 20000 0.1850 0.3036
+#> b        0.5485 0.0296 20000 0.4903 0.6069
+#> a        0.4966 0.0299 20000 0.4379 0.5557
+#> X~~X     1.0292 0.0481 20000 0.9345 1.1233
+#> Y~~Y     0.5642 0.0284 20000 0.5088 0.6197
+#> M~~M     0.7829 0.0373 20000 0.7101 0.8558
+#> indirect 0.2724 0.0218 20000 0.2303 0.3163
+#> direct   0.2446 0.0301 20000 0.1850 0.3036
+#> total    0.5169 0.0297 20000 0.4586 0.5748
 ```
 
 ### Standardized Monte Carlo Confidence Intervals
@@ -195,30 +195,30 @@ passing the result of the `MC()` function or the `MCMI()` function to
 MCStd(mc, alpha = 0.05)
 #> Standardized Monte Carlo Confidence Intervals
 #>              est     se     R   2.5%  97.5%
-#> cp        0.2585 0.0318 20000 0.1951 0.3204
-#> b         0.4603 0.0296 20000 0.4017 0.5178
-#> a         0.5315 0.0247 20000 0.4824 0.5791
+#> cp        0.2398 0.0295 20000 0.1812 0.2971
+#> b         0.5383 0.0261 20000 0.4867 0.5888
+#> a         0.4960 0.0260 20000 0.4433 0.5456
 #> X~~X      1.0000 0.0000 20000 1.0000 1.0000
-#> Y~~Y      0.5948 0.0260 20000 0.5431 0.6449
-#> M~~M      0.7175 0.0262 20000 0.6646 0.7672
-#> indirect -0.0310 0.0196 20000 0.2072 0.2838
-#> direct    0.0137 0.0318 20000 0.1951 0.3204
-#> total     0.0028 0.0257 20000 0.4508 0.5515
+#> Y~~Y      0.5246 0.0247 20000 0.4759 0.5732
+#> M~~M      0.7539 0.0258 20000 0.7023 0.8035
+#> indirect  0.0122 0.0192 20000 0.2298 0.3047
+#> direct    0.0237 0.0295 20000 0.1812 0.2971
+#> total    -0.0174 0.0255 20000 0.4544 0.5557
 ```
 
 ``` r
 MCStd(mcmi, alpha = 0.05)
 #> Standardized Monte Carlo Confidence Intervals
 #>             est     se     R   2.5%  97.5%
-#> cp       0.2626 0.0320 20000 0.1953 0.3195
-#> b        0.4461 0.0304 20000 0.4004 0.5190
-#> a        0.5187 0.0250 20000 0.4819 0.5799
+#> cp       0.2426 0.0291 20000 0.1820 0.2955
+#> b        0.5391 0.0262 20000 0.4864 0.5890
+#> a        0.5007 0.0258 20000 0.4432 0.5441
 #> X~~X     1.0000 0.0000 20000 1.0000 1.0000
-#> Y~~Y     0.6105 0.0265 20000 0.5419 0.6460
-#> M~~M     0.7310 0.0265 20000 0.6637 0.7678
-#> indirect 0.2314 0.0196 20000 0.2071 0.2836
-#> direct   0.2626 0.0320 20000 0.1953 0.3195
-#> total    0.4940 0.0260 20000 0.4503 0.5519
+#> Y~~Y     0.5195 0.0248 20000 0.4763 0.5737
+#> M~~M     0.7493 0.0255 20000 0.7040 0.8035
+#> indirect 0.2699 0.0193 20000 0.2289 0.3046
+#> direct   0.2426 0.0291 20000 0.1820 0.2955
+#> total    0.5126 0.0252 20000 0.4545 0.5534
 ```
 
 ## Documentation
@@ -228,54 +228,27 @@ package documentation.
 
 ## Citation
 
-To cite `semmcci` in publications, please cite Pesigan & Cheung (2023).
+To cite `semmcci` in publications, please cite Pesigan & Cheung (2024).
 
 ## References
 
 <div id="refs" class="references csl-bib-body hanging-indent"
 entry-spacing="0" line-spacing="2">
 
-<div id="ref-MacKinnon-Lockwood-Williams-2004" class="csl-entry">
+<div id="ref-Pesigan-Cheung-2024" class="csl-entry">
 
-MacKinnon, D. P., Lockwood, C. M., & Williams, J. (2004). Confidence
-limits for the indirect effect: Distribution of the product and
-resampling methods. *Multivariate Behavioral Research*, *39*(1), 99–128.
-<https://doi.org/10.1207/s15327906mbr3901_4>
-
-</div>
-
-<div id="ref-Pesigan-Cheung-2023" class="csl-entry">
-
-Pesigan, I. J. A., & Cheung, S. F. (2023). Monte Carlo confidence
+Pesigan, I. J. A., & Cheung, S. F. (2024). Monte Carlo confidence
 intervals for the indirect effect with missing data. *Behavior Research
 Methods*, *56*(3), 1678–1696.
 <https://doi.org/10.3758/s13428-023-02114-4>
 
 </div>
 
-<div id="ref-Preacher-Selig-2012" class="csl-entry">
+<div id="ref-RCoreTeam-2025" class="csl-entry">
 
-Preacher, K. J., & Selig, J. P. (2012). Advantages of Monte Carlo
-confidence intervals for indirect effects. *Communication Methods and
-Measures*, *6*(2), 77–98. <https://doi.org/10.1080/19312458.2012.679848>
-
-</div>
-
-<div id="ref-Tofighi-Kelley-2019" class="csl-entry">
-
-Tofighi, D., & Kelley, K. (2019). Indirect effects in sequential
-mediation models: Evaluating methods for hypothesis testing and
-confidence interval formation. *Multivariate Behavioral Research*,
-*55*(2), 188–210. <https://doi.org/10.1080/00273171.2019.1618545>
-
-</div>
-
-<div id="ref-Tofighi-MacKinnon-2015" class="csl-entry">
-
-Tofighi, D., & MacKinnon, D. P. (2015). Monte Carlo confidence intervals
-for complex functions of indirect effects. *Structural Equation
-Modeling: A Multidisciplinary Journal*, *23*(2), 194–205.
-<https://doi.org/10.1080/10705511.2015.1057284>
+R Core Team. (2025). *R: A language and environment for statistical
+computing*. R Foundation for Statistical Computing.
+<https://www.R-project.org/>
 
 </div>
 

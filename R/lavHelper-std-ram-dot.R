@@ -38,12 +38,10 @@
   m_matz <- ram_est$M
   # TODO: Mz of x = Mz / (SD of x)
   m_matz[] <- 0
-  return(
-    list(
-      A = a_matz,
-      S = s_matz,
-      F = ram_est$F,
-      M = m_matz
-    )
+  list(
+    A = a_matz,
+    S = s_matz,
+    F = ram_est$F,
+    M = m_matz
   )
 }

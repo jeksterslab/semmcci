@@ -85,11 +85,9 @@
 
   # Get parameter values with type = "user" and extra = TRUE
 
-  return(
-    lavaan::lav_model_get_parameters(
-      lavmodel = lav_model_new,
-      type = "user",
-      extra = TRUE
-    )
+  lavaan::lav_model_get_parameters(
+    lavmodel = lav_model_new,
+    type = "user",
+    extra = TRUE
   )
 }

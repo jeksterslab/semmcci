@@ -52,5 +52,5 @@
   if (!is.null(varnames)) {
     rownames(ci) <- varnames
   }
-  return(ci)
+  ci
 }

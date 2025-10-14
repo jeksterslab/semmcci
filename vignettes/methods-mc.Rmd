@@ -1,11 +1,11 @@
 ---
 title: "semmcci: Methods (MC)"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2025-07-22"
+date: "2025-10-14"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
-  @Pesigan-Cheung-2023
+  @Pesigan-Cheung-2024
 output:
   rmarkdown::html_vignette:
     toc: true
