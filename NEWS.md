@@ -2,7 +2,7 @@
 
 ## Patch
 
-* Minor edits to documentation.
+* Minor edits to methods.
 
 # semmcci 1.1.4
 

@@ -186,7 +186,7 @@ summary.semmcci <- function(object,
 
 #' @noRd
 #' @keywords internal
-#' @exportS3Method print summary.betadelta
+#' @exportS3Method print summary.semmcci
 print.summary.semmcci <- function(x,
                                   ...) {
   print_summary <- attr(
