@@ -115,22 +115,47 @@ MCFunc <- function(coef,
   )
   par <- FALSE
   if (!is.null(ncores)) {
+    # nolint start
     ncores <- as.integer(ncores)
     if (ncores > 1) {
       par <- TRUE
     }
+    # nolint end
   }
   if (par) {
-    cl <- parallel::makeCluster(ncores)
-    on.exit(
-      parallel::stopCluster(cl = cl)
-    )
-    thetahatstar <- parallel::parLapply(
-      cl = cl,
-      X = thetahatstar,
-      fun = func,
-      ...
-    )
+    # nolint start
+    available_cores <- parallel::detectCores()
+    if (ncores >= available_cores) {
+      ncores <- available_cores
+    }
+    os_type <- Sys.info()["sysname"]
+    if (os_type == "Darwin") {
+      fork <- TRUE
+    } else if (os_type == "Linux") {
+      fork <- TRUE
+    } else {
+      fork <- FALSE
+    }
+    if (fork) {
+      thetahatstar <- parallel::mclapply(
+        X = thetahatstar,
+        FUN = func,
+        mc.cores = ncores,
+        ...
+      )
+    } else {
+      cl <- parallel::makeCluster(ncores)
+      on.exit(
+        parallel::stopCluster(cl = cl)
+      )
+      thetahatstar <- parallel::parLapply(
+        cl = cl,
+        X = thetahatstar,
+        fun = func,
+        ...
+      )
+    }
+    # nolint end
   } else {
     thetahatstar <- lapply(
       X = thetahatstar,
