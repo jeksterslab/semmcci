@@ -3,6 +3,7 @@
 S3method(coef,semmcci)
 S3method(confint,semmcci)
 S3method(print,semmcci)
+S3method(print,summary.semmcci)
 S3method(summary,semmcci)
 S3method(vcov,semmcci)
 export(Func)

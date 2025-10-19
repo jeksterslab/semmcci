@@ -72,21 +72,10 @@ print.semmcci <- function(x,
                           alpha = NULL,
                           digits = 4,
                           ...) {
-  if (x$fun == "MC") {
-    cat("Monte Carlo Confidence Intervals\n")
-  }
-  if (x$fun == "MCMI") {
-    cat("Monte Carlo Confidence Intervals (Multiple Imputation Estimates)\n")
-  }
-  if (x$fun == "MCStd") {
-    cat("Standardized Monte Carlo Confidence Intervals\n")
-  }
-  base::print(
-    round(
-      .MCCI(
-        object = x,
-        alpha = alpha
-      ),
+  print.summary.semmcci(
+    summary.semmcci(
+      object = x,
+      alpha = alpha,
       digits = digits
     )
   )
@@ -167,30 +156,58 @@ summary.semmcci <- function(object,
                             alpha = NULL,
                             digits = 4,
                             ...) {
-  if (interactive()) {
-    # nocov start
-    if (object$fun == "MC") {
-      cat("Monte Carlo Confidence Intervals\n")
-    }
-    if (object$fun == "MCMI") {
-      cat("Monte Carlo Confidence Intervals (Multiple Imputation Estimates)\n")
-    }
-    if (object$fun == "MCStd") {
-      cat("Standardized Monte Carlo Confidence Intervals\n")
-    }
-    # nocov end
-  }
   ci <- .MCCI(
     object = object,
     alpha = alpha
   )
-  if (!is.null(digits)) {
-    ci <- round(
-      x = ci,
-      digits = digits
-    )
-  }
+  print_summary <- round(
+    x = ci,
+    digits = digits
+  )
+  attr(
+    x = ci,
+    which = "fit"
+  ) <- object
+  attr(
+    x = ci,
+    which = "print_summary"
+  ) <- print_summary
+  attr(
+    x = ci,
+    which = "alpha"
+  ) <- alpha
+  attr(
+    x = ci,
+    which = "digits"
+  ) <- digits
+  class(ci) <- "summary.semmcci"
   ci
+}
+
+#' @noRd
+#' @keywords internal
+#' @exportS3Method print summary.semmcci
+print.summary.semmcci <- function(x,
+                                  ...) {
+  print_summary <- attr(
+    x = x,
+    which = "print_summary"
+  )
+  object <- attr(
+    x = x,
+    which = "fit"
+  )
+  if (object$fun == "MC") {
+    cat("Monte Carlo Confidence Intervals\n")
+  }
+  if (object$fun == "MCMI") {
+    cat("Monte Carlo Confidence Intervals (Multiple Imputation Estimates)\n")
+  }
+  if (object$fun == "MCStd") {
+    cat("Standardized Monte Carlo Confidence Intervals\n")
+  }
+  print(print_summary)
+  invisible(x)
 }
 
 #' Parameter Estimates
