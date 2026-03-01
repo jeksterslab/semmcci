@@ -24,7 +24,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">semmcci</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.6</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,7 +60,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2025-10-19</h4>
+            <h4 data-toc-skip class="date">2026-03-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/semmcci/blob/main/vignettes/benchmark-mi.Rmd"><code>vignettes/benchmark-mi.Rmd</code></a></small>
       <div class="d-none name"><code>benchmark-mi.Rmd</code></div>
@@ -289,23 +289,23 @@ Imputation)<a class="anchor" aria-label="anchor" href="#nonparametric-bootstrap-
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_mi_01</span>, unit <span class="op">=</span> <span class="st">"ms"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   expr        min         lq       mean     median         uq        max neval</span></span>
-<span><span class="co">#&gt; 1   MC   323.9427   330.8432   334.7035   332.8629   336.8628   354.5615    10</span></span>
-<span><span class="co">#&gt; 2   NB 31060.0216 31177.9692 31271.3612 31229.8614 31333.7710 31534.5442    10</span></span></code></pre></div>
+<span><span class="co">#&gt; 1   MC   386.7277   393.0514   398.5421   399.9355   403.7594   405.5633    10</span></span>
+<span><span class="co">#&gt; 2   NB 39590.9214 39798.5116 39900.3785 39896.5853 40025.9946 40091.0844    10</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="summary-of-benchmark-results-relative-to-the-faster-method">Summary of Benchmark Results Relative to the Faster Method<a class="anchor" aria-label="anchor" href="#summary-of-benchmark-results-relative-to-the-faster-method"></a>
 </h3>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_mi_01</span>, unit <span class="op">=</span> <span class="st">"relative"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   expr      min       lq     mean median       uq      max neval</span></span>
-<span><span class="co">#&gt; 1   MC  1.00000  1.00000  1.00000  1.000  1.00000  1.00000    10</span></span>
-<span><span class="co">#&gt; 2   NB 95.88123 94.23791 93.43005 93.822 93.01642 88.93957    10</span></span></code></pre></div>
+<span><span class="co">#&gt;   expr      min       lq     mean   median       uq      max neval</span></span>
+<span><span class="co">#&gt; 1   MC   1.0000   1.0000   1.0000  1.00000  1.00000  1.00000    10</span></span>
+<span><span class="co">#&gt; 2   NB 102.3741 101.2552 100.1158 99.75755 99.13327 98.85284    10</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="plot">Plot<a class="anchor" aria-label="anchor" href="#plot"></a>
 </h2>
-<p><img src="fig-vignettes-benchmark-unnamed-chunk-17-1.png" width="3300"></p>
+<p><img src="fig-vignettes-benchmark-unnamed-chunk-17-1.png" alt="" width="3300"></p>
 </div>
 <div class="section level2">
 <h2 id="benchmark---monte-carlo-method-with-precalculated-estimates-and-multiple-imputation">Benchmark - Monte Carlo Method with Precalculated Estimates and
@@ -343,24 +343,24 @@ Multiple Imputation<a class="anchor" aria-label="anchor" href="#benchmark---mont
 </h3>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_mi_02</span>, unit <span class="op">=</span> <span class="st">"ms"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   expr        min        lq       mean     median         uq        max neval</span></span>
-<span><span class="co">#&gt; 1   MC   230.0875   235.618   257.2429   237.8043   244.8887   421.4892    10</span></span>
-<span><span class="co">#&gt; 2   NB 30046.5756 30281.851 30532.2754 30478.7345 30647.8955 31290.6019    10</span></span></code></pre></div>
+<span><span class="co">#&gt;   expr        min         lq       mean     median         uq        max neval</span></span>
+<span><span class="co">#&gt; 1   MC   298.9796   301.1166   304.7337   305.0609   307.6203   309.1123    10</span></span>
+<span><span class="co">#&gt; 2   NB 39698.4739 39947.7151 40023.7857 40043.1436 40093.9694 40302.4564    10</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="summary-of-benchmark-results-relative-to-the-faster-method-1">Summary of Benchmark Results Relative to the Faster Method<a class="anchor" aria-label="anchor" href="#summary-of-benchmark-results-relative-to-the-faster-method-1"></a>
 </h3>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">benchmark_mi_02</span>, unit <span class="op">=</span> <span class="st">"relative"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   expr      min       lq     mean   median       uq     max neval</span></span>
-<span><span class="co">#&gt; 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000  1.0000    10</span></span>
-<span><span class="co">#&gt; 2   NB 130.5876 128.5209 118.6905 128.1673 125.1503 74.2382    10</span></span></code></pre></div>
+<span><span class="co">#&gt;   expr      min       lq     mean   median       uq      max neval</span></span>
+<span><span class="co">#&gt; 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10</span></span>
+<span><span class="co">#&gt; 2   NB 132.7799 132.6653 131.3402 131.2628 130.3359 130.3813    10</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="plot-1">Plot<a class="anchor" aria-label="anchor" href="#plot-1"></a>
 </h2>
-<p><img src="fig-vignettes-benchmark-unnamed-chunk-22-1.png" width="3300"></p>
+<p><img src="fig-vignettes-benchmark-unnamed-chunk-22-1.png" alt="" width="3300"></p>
 </div>
 <div class="section level2 unnumbered">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
@@ -384,7 +384,7 @@ confidence intervals for the indirect effect with missing data.
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
