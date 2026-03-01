@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.PAT }}
+      GITHUB_ACTIONS: "true"
     strategy:
       fail-fast: false
       matrix:
@@ -20,26 +21,16 @@ jobs:
             image: ghcr.io/r-hub/containers/gcc13:latest
           - name: gcc14
             image: ghcr.io/r-hub/containers/gcc14:latest
-          - name: intel
-            image: ghcr.io/r-hub/containers/intel:latest
-          - name: mkl
-            image: ghcr.io/r-hub/containers/mkl:latest
-          - name: nold
-            image: ghcr.io/r-hub/containers/nold:latest
-          - name: noremap
-            image: ghcr.io/r-hub/containers/noremap:latest
-          - name: nosuggests
-            image: ghcr.io/r-hub/containers/nosuggests:latest
-          - name: rchk
-            image: ghcr.io/r-hub/containers/rchk:latest
-          - name: valgrind
-            image: ghcr.io/r-hub/containers/valgrind:latest
+          - name: gcc15
+            image: ghcr.io/r-hub/containers/gcc15:latest
+          - name: gcc-asan
+            image: ghcr.io/r-hub/containers/gcc-asan:latest
     name: ${{ matrix.container.name }}
     container:
       image: ${{ matrix.container.image }}
     steps:
       - name: Checkout src repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: 'src'
 

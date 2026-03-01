@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.PAT }}
+      GITHUB_ACTIONS: "true"
     strategy:
       fail-fast: false
       matrix:
@@ -29,7 +30,7 @@ jobs:
       image: ${{ matrix.container.image }}
     steps:
       - name: Checkout src repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: 'src'
 

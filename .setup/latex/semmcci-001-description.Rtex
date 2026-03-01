@@ -88,8 +88,8 @@ with:
 
 %% begin.rcode
 % #| eval = FALSE
-% if (!require("remotes")) install.packages("remotes")
-% remotes::install_github("jeksterslab/semmcci")
+% if (!require("pak")) install.packages("pak")
+% pak::pkg_install("jeksterslab/semmcci")
 %% end.rcode
 
 \section*{Documentation}

@@ -1,3 +1,9 @@
+# semmcci 1.1.6
+
+## Patch
+
+* Addressed deprecation of `lavaan::getCov()` in tests.
+
 # semmcci 1.1.5
 
 ## Patch
