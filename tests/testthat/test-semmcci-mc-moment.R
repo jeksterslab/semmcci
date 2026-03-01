@@ -16,7 +16,7 @@ lapply(
           -3.839  -3.889  -3.841  -3.625  9.610
           -21.899 -18.831 -21.748 -18.775 35.522 450.288
         "
-        sample_cov <- lavaan::getCov(
+        sample_cov <- lavaan::lav_getcov(
           lower,
           names = c(
             "anomia67",
