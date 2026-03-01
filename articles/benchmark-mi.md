@@ -209,9 +209,9 @@ benchmark_mi_01 <- microbenchmark(
 ``` r
 
 summary(benchmark_mi_01, unit = "ms")
-#>   expr        min         lq       mean     median         uq        max neval
-#> 1   MC   386.7277   393.0514   398.5421   399.9355   403.7594   405.5633    10
-#> 2   NB 39590.9214 39798.5116 39900.3785 39896.5853 40025.9946 40091.0844    10
+#>   expr        min         lq      mean   median         uq        max neval
+#> 1   MC   714.9348   719.4493   753.607   737.44   746.9044   933.4056    10
+#> 2   NB 71749.4791 72082.4629 72354.947 72310.45 72488.2285 73271.0202    10
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
@@ -220,8 +220,8 @@ summary(benchmark_mi_01, unit = "ms")
 
 summary(benchmark_mi_01, unit = "relative")
 #>   expr      min       lq     mean   median       uq      max neval
-#> 1   MC   1.0000   1.0000   1.0000  1.00000  1.00000  1.00000    10
-#> 2   NB 102.3741 101.2552 100.1158 99.75755 99.13327 98.85284    10
+#> 1   MC   1.0000   1.0000  1.00000  1.00000  1.00000  1.00000    10
+#> 2   NB 100.3581 100.1912 96.01151 98.05604 97.05155 78.49859    10
 ```
 
 ## Plot
@@ -266,8 +266,8 @@ benchmark_mi_02 <- microbenchmark(
 
 summary(benchmark_mi_02, unit = "ms")
 #>   expr        min         lq       mean     median         uq        max neval
-#> 1   MC   298.9796   301.1166   304.7337   305.0609   307.6203   309.1123    10
-#> 2   NB 39698.4739 39947.7151 40023.7857 40043.1436 40093.9694 40302.4564    10
+#> 1   MC   540.1188   543.1085   548.4491   547.7864   553.0569   558.0039    10
+#> 2   NB 72096.5023 72292.0301 72413.8396 72434.4786 72575.3305 72588.6181    10
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
@@ -277,7 +277,7 @@ summary(benchmark_mi_02, unit = "ms")
 summary(benchmark_mi_02, unit = "relative")
 #>   expr      min       lq     mean   median       uq      max neval
 #> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
-#> 2   NB 132.7799 132.6653 131.3402 131.2628 130.3359 130.3813    10
+#> 2   NB 133.4827 133.1079 132.0338 132.2313 131.2258 130.0862    10
 ```
 
 ## Plot
