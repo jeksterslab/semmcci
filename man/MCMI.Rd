@@ -121,12 +121,12 @@ Rubin, D. B. (1987).
 John Wiley & Sons, Inc.
 }
 \seealso{
-Other Monte Carlo in Structural Equation Modeling Functions: 
-\code{\link{Func}()},
-\code{\link{MC}()},
-\code{\link{MCFunc}()},
-\code{\link{MCGeneric}()},
-\code{\link{MCStd}()}
+Other Monte Carlo in Structural Equation Modeling Functions:
+\code{\link[=Func]{Func()}},
+\code{\link[=MC]{MC()}},
+\code{\link[=MCFunc]{MCFunc()}},
+\code{\link[=MCGeneric]{MCGeneric()}},
+\code{\link[=MCStd]{MCStd()}}
 }
 \concept{Monte Carlo in Structural Equation Modeling Functions}
 \keyword{mc}

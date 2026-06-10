@@ -1,7 +1,7 @@
 semmcci
 ================
 Ivan Jacob Agaloos Pesigan
-2026-03-01
+2026-06-10
 
 <!-- README.md is generated from .setup/readme/README.Rmd. Please edit that file -->
 
@@ -14,7 +14,8 @@ Status](https://www.r-pkg.org/badges/version/semmcci)](https://cran.r-project.or
 Status](https://jeksterslab.r-universe.dev/badges/semmcci)](https://jeksterslab.r-universe.dev/semmcci)
 [![Make
 Project](https://github.com/jeksterslab/semmcci/actions/workflows/make.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/make.yml)
-[![R-CMD-check](https://github.com/jeksterslab/semmcci/actions/workflows/check-full.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/check-full.yml)
+[![R-CMD-check-standard](https://github.com/jeksterslab/semmcci/actions/workflows/check-standard.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/check-standard.yml)
+[![R-CMD-check-oldrel](https://github.com/jeksterslab/semmcci/actions/workflows/check-oldrel.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/check-oldrel.yml)
 [![R Package Test
 Coverage](https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yml)
 [![Lint R
@@ -83,14 +84,14 @@ library(lavaan)
 
 ``` r
 summary(df)
-#>        X                  M                   Y            
-#>  Min.   :-3.08783   Min.   :-2.889916   Min.   :-3.213309  
-#>  1st Qu.:-0.68015   1st Qu.:-0.670510   1st Qu.:-0.694303  
-#>  Median : 0.05853   Median : 0.004282   Median : 0.020578  
-#>  Mean   : 0.01914   Mean   : 0.008340   Mean   :-0.004127  
-#>  3rd Qu.: 0.69842   3rd Qu.: 0.723521   3rd Qu.: 0.640903  
-#>  Max.   : 3.84263   Max.   : 2.642671   Max.   : 2.935465  
-#>  NA's   :100        NA's   :100         NA's   :100
+#>        X                  M                  Y           
+#>  Min.   :-3.07447   Min.   :-3.16474   Min.   :-3.39173  
+#>  1st Qu.:-0.71360   1st Qu.:-0.71792   1st Qu.:-0.75531  
+#>  Median :-0.03947   Median : 0.01741   Median :-0.01078  
+#>  Mean   :-0.07785   Mean   :-0.04409   Mean   :-0.05667  
+#>  3rd Qu.: 0.53947   3rd Qu.: 0.65126   3rd Qu.: 0.63330  
+#>  Max.   : 2.75380   Max.   : 2.84936   Max.   : 3.39724  
+#>  NAs    :100        NAs    :100        NAs    :100
 ```
 
 ### Model Specification
@@ -128,19 +129,19 @@ generate Monte Carlo confidence intervals.
 mc <- MC(fit, R = 20000L, alpha = 0.05)
 mc
 #> Monte Carlo Confidence Intervals
-#>              est     se     R    2.5%  97.5%
-#> cp        0.2239 0.0318 20000  0.1612 0.2854
-#> b         0.4791 0.0314 20000  0.4184 0.5402
-#> a         0.5025 0.0294 20000  0.4450 0.5596
-#> X~~X      1.0017 0.0468 20000  0.9103 1.0930
-#> Y~~Y      0.5628 0.0276 20000  0.5090 0.6170
-#> M~~M      0.7191 0.0347 20000  0.6509 0.7868
-#> Y~1      -0.0132 0.0253 20000 -0.0623 0.0366
-#> M~1      -0.0037 0.0284 20000 -0.0592 0.0521
-#> X~1       0.0219 0.0329 20000 -0.0436 0.0855
-#> indirect  0.2407 0.0212 20000  0.2004 0.2834
-#> direct    0.2239 0.0318 20000  0.1612 0.2854
-#> total     0.4647 0.0293 20000  0.4064 0.5217
+#>              est     se     R    2.5%   97.5%
+#> cp        0.2412 0.0328 20000  0.1767  0.3049
+#> b         0.5073 0.0314 20000  0.4465  0.5685
+#> a         0.5121 0.0304 20000  0.4527  0.5715
+#> X~~X      0.9274 0.0434 20000  0.8427  1.0120
+#> Y~~Y      0.5773 0.0285 20000  0.5212  0.6328
+#> M~~M      0.7543 0.0368 20000  0.6818  0.8255
+#> Y~1      -0.0122 0.0259 20000 -0.0621  0.0389
+#> M~1      -0.0103 0.0290 20000 -0.0675  0.0465
+#> X~1      -0.0816 0.0317 20000 -0.1428 -0.0190
+#> indirect  0.2598 0.0221 20000  0.2174  0.3042
+#> direct    0.2412 0.0328 20000  0.1767  0.3049
+#> total     0.5010 0.0312 20000  0.4395  0.5624
 ```
 
 ### Monte Carlo Confidence Intervals - Multiple Imputation
@@ -174,15 +175,15 @@ mcmi <- MCMI(fit, mi = mi, R = 20000L, alpha = 0.05, seed = 42)
 mcmi
 #> Monte Carlo Confidence Intervals (Multiple Imputation Estimates)
 #>             est     se     R   2.5%  97.5%
-#> cp       0.2236 0.0317 20000 0.1616 0.2856
-#> b        0.4795 0.0321 20000 0.4172 0.5418
-#> a        0.5036 0.0287 20000 0.4467 0.5602
-#> X~~X     1.0042 0.0474 20000 0.9117 1.0973
-#> Y~~Y     0.5610 0.0274 20000 0.5071 0.6153
-#> M~~M     0.7205 0.0354 20000 0.6516 0.7903
-#> indirect 0.2415 0.0211 20000 0.2008 0.2835
-#> direct   0.2236 0.0317 20000 0.1616 0.2856
-#> total    0.4651 0.0286 20000 0.4095 0.5212
+#> cp       0.2402 0.0330 20000 0.1755 0.3050
+#> b        0.5052 0.0316 20000 0.4437 0.5668
+#> a        0.5127 0.0301 20000 0.4534 0.5717
+#> X~~X     0.9286 0.0438 20000 0.8425 1.0142
+#> Y~~Y     0.5777 0.0282 20000 0.5227 0.6330
+#> M~~M     0.7538 0.0364 20000 0.6818 0.8248
+#> indirect 0.2590 0.0219 20000 0.2174 0.3033
+#> direct   0.2402 0.0330 20000 0.1755 0.3050
+#> total    0.4992 0.0313 20000 0.4375 0.5599
 ```
 
 ### Standardized Monte Carlo Confidence Intervals
@@ -195,30 +196,30 @@ passing the result of the `MC()` function or the `MCMI()` function to
 MCStd(mc, alpha = 0.05)
 #> Standardized Monte Carlo Confidence Intervals
 #>              est     se     R   2.5%  97.5%
-#> cp        0.2307 0.0323 20000 0.1662 0.2929
-#> b         0.4861 0.0296 20000 0.4275 0.5435
-#> a         0.5101 0.0260 20000 0.4577 0.5593
+#> cp        0.2318 0.0311 20000 0.1701 0.2924
+#> b         0.5056 0.0288 20000 0.4491 0.5610
+#> a         0.4938 0.0259 20000 0.4411 0.5428
 #> X~~X      1.0000 0.0000 20000 1.0000 1.0000
-#> Y~~Y      0.5961 0.0261 20000 0.5456 0.6472
-#> M~~M      0.7398 0.0265 20000 0.6871 0.7905
-#> indirect -0.0136 0.0200 20000 0.2092 0.2880
-#> direct   -0.0037 0.0323 20000 0.1662 0.2929
-#> total     0.0219 0.0267 20000 0.4242 0.5292
+#> Y~~Y      0.5749 0.0259 20000 0.5233 0.6255
+#> M~~M      0.7562 0.0255 20000 0.7053 0.8055
+#> indirect -0.0122 0.0193 20000 0.2121 0.2876
+#> direct   -0.0103 0.0311 20000 0.1701 0.2924
+#> total    -0.0847 0.0266 20000 0.4275 0.5313
 ```
 
 ``` r
 MCStd(mcmi, alpha = 0.05)
 #> Standardized Monte Carlo Confidence Intervals
 #>             est     se     R   2.5%  97.5%
-#> cp       0.2428 0.0323 20000 0.1672 0.2932
-#> b        0.4869 0.0304 20000 0.4273 0.5460
-#> a        0.5228 0.0253 20000 0.4603 0.5593
+#> cp       0.2533 0.0316 20000 0.1693 0.2931
+#> b        0.4794 0.0288 20000 0.4471 0.5591
+#> a        0.5215 0.0256 20000 0.4431 0.5435
 #> X~~X     1.0000 0.0000 20000 1.0000 1.0000
-#> Y~~Y     0.5804 0.0255 20000 0.5437 0.6443
-#> M~~M     0.7267 0.0258 20000 0.6872 0.7881
-#> indirect 0.2545 0.0201 20000 0.2096 0.2887
-#> direct   0.2428 0.0323 20000 0.1672 0.2932
-#> total    0.4974 0.0260 20000 0.4270 0.5287
+#> Y~~Y     0.5793 0.0257 20000 0.5260 0.6268
+#> M~~M     0.7280 0.0253 20000 0.7046 0.8037
+#> indirect 0.2500 0.0192 20000 0.2120 0.2872
+#> direct   0.2533 0.0316 20000 0.1693 0.2931
+#> total    0.5034 0.0270 20000 0.4263 0.5319
 ```
 
 ## Documentation
@@ -233,7 +234,7 @@ To cite `semmcci` in publications, please cite Pesigan & Cheung (2024).
 ## References
 
 <div id="refs" class="references csl-bib-body hanging-indent"
-entry-spacing="0" line-spacing="2">
+data-entry-spacing="0" data-line-spacing="2">
 
 <div id="ref-Pesigan-Cheung-2024" class="csl-entry">
 
@@ -244,9 +245,9 @@ Methods*, *56*(3), 1678–1696.
 
 </div>
 
-<div id="ref-RCoreTeam-2025" class="csl-entry">
+<div id="ref-RCoreTeam-2026" class="csl-entry">
 
-R Core Team. (2025). *R: A language and environment for statistical
+R Core Team. (2026). *R: A language and environment for statistical
 computing*. R Foundation for Statistical Computing.
 <https://www.R-project.org/>
 

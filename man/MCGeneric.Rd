@@ -123,12 +123,12 @@ Advantages of Monte Carlo confidence intervals for indirect effects.
 \doi{10.1080/19312458.2012.679848}
 }
 \seealso{
-Other Monte Carlo in Structural Equation Modeling Functions: 
-\code{\link{Func}()},
-\code{\link{MC}()},
-\code{\link{MCFunc}()},
-\code{\link{MCMI}()},
-\code{\link{MCStd}()}
+Other Monte Carlo in Structural Equation Modeling Functions:
+\code{\link[=Func]{Func()}},
+\code{\link[=MC]{MC()}},
+\code{\link[=MCFunc]{MCFunc()}},
+\code{\link[=MCMI]{MCMI()}},
+\code{\link[=MCStd]{MCStd()}}
 }
 \author{
 Ivan Jacob Agaloos Pesigan

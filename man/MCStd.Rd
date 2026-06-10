@@ -97,12 +97,12 @@ Monte Carlo confidence intervals for the indirect effect with missing data.
 \doi{10.3758/s13428-023-02114-4}
 }
 \seealso{
-Other Monte Carlo in Structural Equation Modeling Functions: 
-\code{\link{Func}()},
-\code{\link{MC}()},
-\code{\link{MCFunc}()},
-\code{\link{MCGeneric}()},
-\code{\link{MCMI}()}
+Other Monte Carlo in Structural Equation Modeling Functions:
+\code{\link[=Func]{Func()}},
+\code{\link[=MC]{MC()}},
+\code{\link[=MCFunc]{MCFunc()}},
+\code{\link[=MCGeneric]{MCGeneric()}},
+\code{\link[=MCMI]{MCMI()}}
 }
 \author{
 Ivan Jacob Agaloos Pesigan

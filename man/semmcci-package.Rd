@@ -20,6 +20,11 @@ Useful links:
 \author{
 \strong{Maintainer}: Ivan Jacob Agaloos Pesigan \email{r.jeksterslab@gmail.com} (\href{https://orcid.org/0000-0003-4818-8420}{ORCID}) [copyright holder]
 
+Authors:
+\itemize{
+  \item Ivan Jacob Agaloos Pesigan \email{r.jeksterslab@gmail.com} (\href{https://orcid.org/0000-0003-4818-8420}{ORCID}) [copyright holder]
+}
+
 Other contributors:
 \itemize{
   \item Shu Fai Cheung \email{shufai.cheung@gmail.com} (\href{https://orcid.org/0000-0002-9871-9448}{ORCID}) [contributor]
