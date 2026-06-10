@@ -164,6 +164,6 @@ MCFunc(
   R = 5L, # use a large value e.g., 20000L for actual research
   alpha = 0.05
 )
-#>     est     se R   2.5% 97.5%
-#> exp   1 1.7355 5 0.3318 4.363
+#>     est     se R   2.5%  97.5%
+#> exp   1 0.9025 5 0.3264 2.2427
 ```

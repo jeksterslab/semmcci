@@ -19,11 +19,11 @@ summary(df)
 #>        X                   M                  Y           
 #>  Min.   :-3.199558   Min.   :-3.37128   Min.   :-3.61432  
 #>  1st Qu.:-0.632676   1st Qu.:-0.70516   1st Qu.:-0.66921  
-#>  Median : 0.028235   Median : 0.02825   Median :-0.04834  
-#>  Mean   : 0.002689   Mean   :-0.01992   Mean   :-0.01538  
-#>  3rd Qu.: 0.657543   3rd Qu.: 0.65239   3rd Qu.: 0.65293  
+#>  Median : 0.028235   Median : 0.02825   Median :-0.04833  
+#>  Mean   : 0.002688   Mean   :-0.01992   Mean   :-0.01538  
+#>  3rd Qu.: 0.657543   3rd Qu.: 0.65240   3rd Qu.: 0.65293  
 #>  Max.   : 3.470910   Max.   : 2.93497   Max.   : 3.09950  
-#>  NA's   :100         NA's   :100        NA's   :100
+#>  NAs    :100         NAs    :100        NAs    :100
 ```
 
 ## Multiple Imputation

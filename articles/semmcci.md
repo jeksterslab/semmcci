@@ -4,10 +4,11 @@
 [![CRAN
 Status](https://www.r-pkg.org/badges/version/semmcci)](https://cran.r-project.org/package=semmcci)
 [![R-Universe
-Status](https://jeksterslab.r-universe.dev/badges/semmcci)](https://jeksterslab.r-universe.dev)
+Status](https://jeksterslab.r-universe.dev/badges/semmcci)](https://jeksterslab.r-universe.dev/semmcci)
 [![Make
 Project](https://github.com/jeksterslab/semmcci/actions/workflows/make.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/make.yml)
-[![R-CMD-check](https://github.com/jeksterslab/semmcci/actions/workflows/check-full.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/check-full.yml)
+[![R-CMD-check-standard](https://github.com/jeksterslab/semmcci/actions/workflows/check-standard.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/check-standard.yml)
+[![R-CMD-check-oldrel](https://github.com/jeksterslab/semmcci/actions/workflows/check-oldrel.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/check-oldrel.yml)
 [![R Package Test
 Coverage](https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yml)
 [![Lint R
@@ -107,6 +108,6 @@ intervals for the indirect effect with missing data. *Behavior Research
 Methods*, *56*(3), 1678–1696.
 <https://doi.org/10.3758/s13428-023-02114-4>
 
-R Core Team. (2025). *R: A language and environment for statistical
+R Core Team. (2026). *R: A language and environment for statistical
 computing*. R Foundation for Statistical Computing.
 <https://www.R-project.org/>
