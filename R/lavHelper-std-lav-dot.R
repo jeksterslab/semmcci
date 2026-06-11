@@ -30,7 +30,7 @@
   # This block works regardless of the number of groups
 
   glist_new <- lav_model_new@GLIST
-  for (i in seq_len(length(glist_new))) {
+  for (i in seq_along(glist_new)) {
     dimnames(glist_new[[i]]) <- lav_model@dimNames[[i]]
   }
   ng <- lav_model@nblocks
