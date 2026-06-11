@@ -35,7 +35,7 @@ Imports: stats, lavaan (>= 0.6), mice, parallel
 Suggests: knitr, rmarkdown, testthat, MASS, psych, Amelia, bmemLavaan
 Config/roxygen2/version: 8.0.0.9000
 NeedsCompilation: no
-Packaged: 2026-06-11 01:29:15 UTC; root
+Packaged: 2026-06-11 23:53:07 UTC; root
 Author: Ivan Jacob Agaloos Pesigan [aut, cre, cph] (ORCID:
     <https://orcid.org/0000-0003-4818-8420>),
   Shu Fai Cheung [ctb] (ORCID: <https://orcid.org/0000-0002-9871-9448>)
