@@ -150,8 +150,8 @@ benchmark_complete_01 <- microbenchmark(
 
 summary(benchmark_complete_01, unit = "ms")
 #>   expr         min          lq        mean      median          uq         max
-#> 1   MC    57.62084    58.72522    61.12968    59.20057    59.94688    78.06811
-#> 2   NB 10940.69362 11071.76190 11111.00568 11118.31283 11152.06540 11231.95638
+#> 1   MC    58.13114    58.49052    62.51918    60.67918    62.42294    81.57886
+#> 2   NB 10841.30591 10951.03074 11064.35408 11080.94188 11157.18282 11330.47431
 #>   neval
 #> 1    10
 #> 2    10
@@ -162,9 +162,9 @@ summary(benchmark_complete_01, unit = "ms")
 ``` r
 
 summary(benchmark_complete_01, unit = "relative")
-#>   expr      min      lq     mean   median       uq      max neval
-#> 1   MC   1.0000   1.000   1.0000   1.0000   1.0000   1.0000    10
-#> 2   NB 189.8739 188.535 181.7612 187.8075 186.0325 143.8738    10
+#>   expr      min       lq     mean   median       uq      max neval
+#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
+#> 2   NB 186.4974 187.2274 176.9754 182.6152 178.7353 138.8898    10
 ```
 
 ## Plot
@@ -201,9 +201,9 @@ benchmark_complete_02 <- microbenchmark(
 ``` r
 
 summary(benchmark_complete_02, unit = "ms")
-#>   expr         min          lq        mean      median          uq         max
-#> 1   MC    17.32693    17.62121    18.89253    18.10973    19.89571    22.59547
-#> 2   NB 10710.50466 10842.78783 10943.60586 10945.24143 10995.80490 11288.73966
+#>   expr        min          lq        mean      median          uq         max
+#> 1   MC    16.9811    17.15214    17.83818    17.29479    18.76167    19.75802
+#> 2   NB 10376.4216 10389.60665 10430.21677 10419.42690 10437.40884 10590.41530
 #>   neval
 #> 1    10
 #> 2    10
@@ -216,7 +216,7 @@ summary(benchmark_complete_02, unit = "ms")
 summary(benchmark_complete_02, unit = "relative")
 #>   expr      min       lq     mean   median       uq      max neval
 #> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
-#> 2   NB 618.1422 615.3261 579.2557 604.3846 552.6723 499.6019    10
+#> 2   NB 611.0569 605.7323 584.7132 602.4603 556.3155 536.0059    10
 ```
 
 ## Plot

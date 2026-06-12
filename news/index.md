@@ -1,5 +1,11 @@
 # Changelog
 
+## semmcci 1.1.6.9000
+
+### Patch
+
+- Latest development version.
+
 ## semmcci 1.1.6
 
 ### Patch
