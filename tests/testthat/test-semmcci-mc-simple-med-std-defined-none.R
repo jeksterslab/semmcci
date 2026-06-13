@@ -6,6 +6,16 @@ lapply(
                  R,
                  text) {
     message(text)
+
+    set.seed(42)
+
+    if (!identical(Sys.getenv("NOT_CRAN"), "true") && !interactive()) {
+      message("CRAN: tests skipped.")
+      # nolint start
+      return(invisible(NULL))
+      # nolint end
+    }
+
     testthat::skip_on_cran()
     seed <- 42
     set.seed(seed)
