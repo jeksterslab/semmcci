@@ -75,10 +75,10 @@ installed.packages()[, c("Package", "Version")]
 #> assertthat        "assertthat"        "0.2.1"     
 #> backports         "backports"         "1.5.1"     
 #> base64enc         "base64enc"         "0.1-6"     
-#> betaDelta         "betaDelta"         "1.0.7"     
-#> betaMC            "betaMC"            "1.3.4"     
-#> betaNB            "betaNB"            "1.0.7"     
-#> betaSandwich      "betaSandwich"      "1.0.9"     
+#> betaDelta         "betaDelta"         "1.0.7.9000"
+#> betaMC            "betaMC"            "1.3.4.9000"
+#> betaNB            "betaNB"            "1.0.7.9000"
+#> betaSandwich      "betaSandwich"      "1.0.9.9000"
 #> BH                "BH"                "1.90.0-1"  
 #> bibtex            "bibtex"            "0.5.2"     
 #> biocmake          "biocmake"          "1.4.0"     
@@ -134,7 +134,7 @@ installed.packages()[, c("Package", "Version")]
 #> diffobj           "diffobj"           "0.3.6"     
 #> digest            "digest"            "0.6.39"    
 #> dir.expiry        "dir.expiry"        "1.20.0"    
-#> distributional    "distributional"    "0.7.0"     
+#> distributional    "distributional"    "0.7.1"     
 #> distro            "distro"            "0.1.1"     
 #> doBy              "doBy"              "4.7.1"     
 #> docopt            "docopt"            "0.7.2"     
@@ -371,7 +371,7 @@ installed.packages()[, c("Package", "Version")]
 #> RSQLite           "RSQLite"           "3.53.1"    
 #> rstan             "rstan"             "2.32.7"    
 #> rstantools        "rstantools"        "2.6.0"     
-#> rstudioapi        "rstudioapi"        "0.18.0"    
+#> rstudioapi        "rstudioapi"        "0.19.0"    
 #> RUnit             "RUnit"             "0.4.33.1"  
 #> rversions         "rversions"         "3.0.0"     
 #> rvest             "rvest"             "1.0.5"     
@@ -382,7 +382,7 @@ installed.packages()[, c("Package", "Version")]
 #> selectr           "selectr"           "0.5-1"     
 #> sem               "sem"               "3.1-16"    
 #> semlbci           "semlbci"           "0.11.6"    
-#> semmcci           "semmcci"           "1.1.6"     
+#> semmcci           "semmcci"           "1.1.6.9000"
 #> semPlot           "semPlot"           "1.1.8"     
 #> sessioninfo       "sessioninfo"       "1.2.4"     
 #> sfd               "sfd"               "0.1.0"     
@@ -528,6 +528,6 @@ installed.packages()[, c("Package", "Version")]
 ## Memory
 
     #>                total        used        free      shared  buff/cache   available
-    #> Mem:            15Gi       1.6Gi       1.2Gi        51Mi        13Gi        14Gi
+    #> Mem:            15Gi       1.6Gi       1.9Gi        50Mi        12Gi        14Gi
     #> Swap:          3.0Gi          0B       3.0Gi
-    #> Total:          18Gi       1.6Gi       4.2Gi
+    #> Total:          18Gi       1.6Gi       4.9Gi

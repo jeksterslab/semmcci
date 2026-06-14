@@ -149,9 +149,9 @@ benchmark_complete_01 <- microbenchmark(
 ``` r
 
 summary(benchmark_complete_01, unit = "ms")
-#>   expr         min          lq        mean      median          uq         max
-#> 1   MC    58.13114    58.49052    62.51918    60.67918    62.42294    81.57886
-#> 2   NB 10841.30591 10951.03074 11064.35408 11080.94188 11157.18282 11330.47431
+#>   expr        min          lq        mean      median          uq         max
+#> 1   MC    55.0302    55.23845    58.02968    55.84808    58.06854    74.09966
+#> 2   NB 10531.3588 10577.98131 10654.74758 10604.79738 10630.56465 10987.84880
 #>   neval
 #> 1    10
 #> 2    10
@@ -164,7 +164,7 @@ summary(benchmark_complete_01, unit = "ms")
 summary(benchmark_complete_01, unit = "relative")
 #>   expr      min       lq     mean   median       uq      max neval
 #> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
-#> 2   NB 186.4974 187.2274 176.9754 182.6152 178.7353 138.8898    10
+#> 2   NB 191.3742 191.4967 183.6086 189.8865 183.0692 148.2847    10
 ```
 
 ## Plot
@@ -201,9 +201,9 @@ benchmark_complete_02 <- microbenchmark(
 ``` r
 
 summary(benchmark_complete_02, unit = "ms")
-#>   expr        min          lq        mean      median          uq         max
-#> 1   MC    16.9811    17.15214    17.83818    17.29479    18.76167    19.75802
-#> 2   NB 10376.4216 10389.60665 10430.21677 10419.42690 10437.40884 10590.41530
+#>   expr         min          lq        mean      median         uq         max
+#> 1   MC    16.40516    16.70091    17.53686    16.73903    18.6218    20.88521
+#> 2   NB 10341.15770 10374.74209 10584.52426 10633.36941 10753.5520 10814.98250
 #>   neval
 #> 1    10
 #> 2    10
@@ -216,7 +216,7 @@ summary(benchmark_complete_02, unit = "ms")
 summary(benchmark_complete_02, unit = "relative")
 #>   expr      min       lq     mean   median       uq      max neval
 #> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
-#> 2   NB 611.0569 605.7323 584.7132 602.4603 556.3155 536.0059    10
+#> 2   NB 630.3601 621.2081 603.5585 635.2442 577.4711 517.8297    10
 ```
 
 ## Plot
