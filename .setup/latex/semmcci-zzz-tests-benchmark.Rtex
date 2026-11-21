@@ -107,8 +107,8 @@
 %   X = ls(),
 %   FUN = function(x) {
 %     class(
-%       eval(
-%         parse(
+%       x = eval(
+%         expr = parse(
 %           text = x
 %         )
 %       )

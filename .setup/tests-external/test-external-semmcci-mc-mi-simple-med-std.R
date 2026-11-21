@@ -35,9 +35,9 @@ lapply(
       a = a,
       ab = a * b
     )
-    x <- rnorm(n = n, sd = sqrt(sigma2x))
-    m <- a * x + rnorm(n = n, sd = sqrt(sigma2em))
-    y <- cp * x + b * m + rnorm(n = n, sd = sqrt(sigma2ey))
+    x <- stats::rnorm(n = n, sd = sqrt(x = sigma2x))
+    m <- a * x + stats::rnorm(n = n, sd = sqrt(x = sigma2em))
+    y <- cp * x + b * m + stats::rnorm(n = n, sd = sqrt(x = sigma2ey))
     data <- data.frame(x, m, y)
     model <- "
       y ~ cp * x + b * m
@@ -52,32 +52,32 @@ lapply(
       model = model,
       fixed.x = FALSE
     )
-    coefs <- lavaan::standardizedSolution(fit)$est.std
+    coefs <- lavaan::standardizedSolution(object = fit)$est.std
     unstd <- MCMI(
-      fit,
+      lav = fit,
       R = R,
       alpha = alpha,
       seed = seed,
       mi = mice::mice(
-        data,
+        data = data,
         m = 5,
         seed = seed,
         print = FALSE
       )
     )
     results <- .MCCI(
-      MCStd(
-        unstd,
+      object = MCStd(
+        mc = unstd,
         alpha = alpha
       )
     )
     results <- results[, c(1, 2, 4, 5)]
-    colnames(results) <- column_names
-    set.seed(seed)
+    colnames(x = results) <- column_names
+    set.seed(seed = seed)
     answer <- MASS::mvrnorm(
       n = R,
-      mu = lavaan::coef(fit),
-      Sigma = lavaan::vcov(fit)
+      mu = lavaan::coef(object = fit),
+      Sigma = lavaan::vcov(object = fit)
     )
     sigma2x_mc <- answer[, "sigma2x"]
     sigma2m_mc <- (
@@ -98,23 +98,23 @@ lapply(
     )
     cp_mc <- (
       sqrt(
-        sigma2x_mc
+        x = sigma2x_mc
       ) / sqrt(
-        sigma2y_mc
+        x = sigma2y_mc
       )
     ) * answer[, "cp"]
     b_mc <- (
       sqrt(
-        sigma2m_mc
+        x = sigma2m_mc
       ) / sqrt(
-        sigma2y_mc
+        x = sigma2y_mc
       )
     ) * answer[, "b"]
     a_mc <- (
       sqrt(
-        sigma2x_mc
+        x = sigma2x_mc
       ) / sqrt(
-        sigma2m_mc
+        x = sigma2m_mc
       )
     ) * answer[, "a"]
     ab_mc <- a_mc * b_mc
@@ -127,12 +127,12 @@ lapply(
       sigma2x = answer[, "sigma2x"],
       ab = ab_mc
     )
-    expected <- colMeans(answer)
-    se <- sqrt(diag(stats::var(answer)))
+    expected <- colMeans(x = answer)
+    se <- sqrt(x = diag(x = stats::var(x = answer)))
     prob_ll <- alpha / 2
     prob_ul <- 1 - prob_ll
     answer <- lapply(
-      X = as.data.frame(answer),
+      X = as.data.frame(x = answer),
       FUN = stats::quantile,
       probs = c(prob_ll, prob_ul)
     )
@@ -145,15 +145,15 @@ lapply(
       se = se,
       answer
     )
-    colnames(answer) <- column_names
+    colnames(x = answer) <- column_names
     testthat::test_that(
-      paste(text, "coefs"),
-      {
+      desc = paste(text, "coefs"),
+      code = {
         testthat::expect_true(
-          all(abs(coefs - as.vector(results[, "est"])) <= tol)
+          object = all(abs(x = coefs - as.vector(x = results[, "est"])) <= tol)
         )
         testthat::expect_true(
-          all(abs(coefs - expected) <= tol)
+          object = all(abs(x = coefs - expected) <= tol)
         )
       }
     )

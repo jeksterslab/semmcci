@@ -5,22 +5,27 @@
 #' @details The average relative increase in variance
 #'   is given by
 #'   \deqn{
-#'     \mathrm{ARIV}
+#'     \operatorname{ARIV}
 #'     =
-#'     \left( 1 + M^{-1} \right)
-#'     \mathrm{tr}
-#'     \left(
-#'        \mathbf{V}_{\mathrm{between}}
-#'        \mathbf{V}_{\mathrm{within}}^{-1}
-#'     \right)
+#'     \frac{
+#'       \left( 1 + M^{-1} \right)
+#'       \operatorname{tr}
+#'       \left(
+#'          \boldsymbol{V}_{\mathrm{between}}
+#'          \boldsymbol{V}_{\mathrm{within}}^{-1}
+#'       \right)
+#'     }{
+#'       k
+#'     }
 #'   }
+#'   where \eqn{k} is the number of parameters.
 #'
 #' @param between Numeric matrix.
 #'   Covariance between imputations
-#'   \eqn{\mathbf{V}_{\mathrm{between}}}.
+#'   \eqn{\boldsymbol{V}_{\mathrm{between}}}.
 #' @param within Numeric matrix.
 #'   Covariance within imputations
-#'   \eqn{\mathbf{V}_{\mathrm{within}}}.
+#'   \eqn{\boldsymbol{V}_{\mathrm{within}}}.
 #' @param M Positive integer.
 #'   Number of imputations.
 #' @param k Positive integer.
@@ -55,9 +60,9 @@
       )
     ) * sum(
       diag(
-        between %*% chol2inv(
-          chol(
-            within
+        x = between %*% chol2inv(
+          x = chol(
+            x = within
           )
         )
       )

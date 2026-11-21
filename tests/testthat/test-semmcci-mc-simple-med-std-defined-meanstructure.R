@@ -7,21 +7,16 @@ lapply(
                  text) {
     message(text)
 
-    set.seed(42)
+    set.seed(seed = 42)
 
-    if (!identical(Sys.getenv("NOT_CRAN"), "true") && !interactive()) {
-      message("CRAN: tests skipped.")
-      # nolint start
-      return(invisible(NULL))
-      # nolint end
-    }
+    testthat::skip_on_cran()
 
     testthat::test_that(
-      paste(text, "chol"),
-      {
+      desc = paste(text, "chol"),
+      code = {
         testthat::skip_on_cran()
         seed <- 42
-        set.seed(seed)
+        set.seed(seed = seed)
         cp <- 0.00
         b <- 0.10
         a <- 0.10
@@ -34,9 +29,9 @@ lapply(
           a = a,
           ab = a * b
         )
-        x <- rnorm(n = n, sd = sqrt(sigma2x))
-        m <- a * x + rnorm(n = n, sd = sqrt(sigma2em))
-        y <- cp * x + b * m + rnorm(n = n, sd = sqrt(sigma2ey))
+        x <- stats::rnorm(n = n, sd = sqrt(x = sigma2x))
+        m <- a * x + stats::rnorm(n = n, sd = sqrt(x = sigma2em))
+        y <- cp * x + b * m + stats::rnorm(n = n, sd = sqrt(x = sigma2ey))
         data <- data.frame(x, m, y)
         model <- "
           y ~ cp * x + b * m
@@ -50,41 +45,41 @@ lapply(
           meanstructure = TRUE
         )
         results_unstd_chol <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "chol",
           seed = seed
         )
-        estimates <- lavaan::parameterEstimates(fit)$est
+        estimates <- lavaan::parameterEstimates(object = fit)$est
         results_unstd_chol$thetahatstar[3, ] <- estimates
-        results_chol <- MCStd(results_unstd_chol)
+        results_chol <- MCStd(mc = results_unstd_chol)
         results_unstd_eigen <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "eigen",
           seed = seed
         )
-        estimates <- lavaan::parameterEstimates(fit)$est
+        estimates <- lavaan::parameterEstimates(object = fit)$est
         results_unstd_eigen$thetahatstar[3, ] <- estimates
-        results_eigen <- MCStd(results_unstd_eigen)
+        results_eigen <- MCStd(mc = results_unstd_eigen)
         results_unstd_svd <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "svd",
           seed = seed
         )
-        estimates <- lavaan::parameterEstimates(fit)$est
+        estimates <- lavaan::parameterEstimates(object = fit)$est
         results_unstd_svd$thetahatstar[3, ] <- estimates
-        results_svd <- MCStd(results_unstd_svd)
+        results_svd <- MCStd(mc = results_unstd_svd)
         testthat::expect_equal(
-          .MCCI(
-            results_chol
+          object = .MCCI(
+            object = results_chol
           )["ab", "97.5%"],
-          quantile(
-            results_chol$thetahatstar[, "ab"],
+          expected = stats::quantile(
+            x = results_chol$thetahatstar[, "ab"],
             .975,
             na.rm = TRUE
           ),
@@ -93,11 +88,11 @@ lapply(
       }
     )
     testthat::test_that(
-      paste(text, "eigen"),
-      {
+      desc = paste(text, "eigen"),
+      code = {
         testthat::skip_on_cran()
         seed <- 42
-        set.seed(seed)
+        set.seed(seed = seed)
         cp <- 0.00
         b <- 0.10
         a <- 0.10
@@ -110,9 +105,9 @@ lapply(
           a = a,
           ab = a * b
         )
-        x <- rnorm(n = n, sd = sqrt(sigma2x))
-        m <- a * x + rnorm(n = n, sd = sqrt(sigma2em))
-        y <- cp * x + b * m + rnorm(n = n, sd = sqrt(sigma2ey))
+        x <- stats::rnorm(n = n, sd = sqrt(x = sigma2x))
+        m <- a * x + stats::rnorm(n = n, sd = sqrt(x = sigma2em))
+        y <- cp * x + b * m + stats::rnorm(n = n, sd = sqrt(x = sigma2ey))
         data <- data.frame(x, m, y)
         model <- "
           y ~ cp * x + b * m
@@ -126,41 +121,41 @@ lapply(
           meanstructure = TRUE
         )
         results_unstd_chol <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "chol",
           seed = seed
         )
-        estimates <- lavaan::parameterEstimates(fit)$est
+        estimates <- lavaan::parameterEstimates(object = fit)$est
         results_unstd_chol$thetahatstar[3, ] <- estimates
-        results_chol <- MCStd(results_unstd_chol)
+        results_chol <- MCStd(mc = results_unstd_chol)
         results_unstd_eigen <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "eigen",
           seed = seed
         )
-        estimates <- lavaan::parameterEstimates(fit)$est
+        estimates <- lavaan::parameterEstimates(object = fit)$est
         results_unstd_eigen$thetahatstar[3, ] <- estimates
-        results_eigen <- MCStd(results_unstd_eigen)
+        results_eigen <- MCStd(mc = results_unstd_eigen)
         results_unstd_svd <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "svd",
           seed = seed
         )
-        estimates <- lavaan::parameterEstimates(fit)$est
+        estimates <- lavaan::parameterEstimates(object = fit)$est
         results_unstd_svd$thetahatstar[3, ] <- estimates
-        results_svd <- MCStd(results_unstd_svd)
+        results_svd <- MCStd(mc = results_unstd_svd)
         testthat::expect_equal(
-          .MCCI(
-            results_eigen
+          object = .MCCI(
+            object = results_eigen
           )["ab", "97.5%"],
-          quantile(
-            results_eigen$thetahatstar[, "ab"],
+          expected = stats::quantile(
+            x = results_eigen$thetahatstar[, "ab"],
             .975,
             na.rm = TRUE
           ),
@@ -169,11 +164,11 @@ lapply(
       }
     )
     testthat::test_that(
-      paste(text, "svd"),
-      {
+      desc = paste(text, "svd"),
+      code = {
         testthat::skip_on_cran()
         seed <- 42
-        set.seed(seed)
+        set.seed(seed = seed)
         cp <- 0.00
         b <- 0.10
         a <- 0.10
@@ -186,9 +181,9 @@ lapply(
           a = a,
           ab = a * b
         )
-        x <- rnorm(n = n, sd = sqrt(sigma2x))
-        m <- a * x + rnorm(n = n, sd = sqrt(sigma2em))
-        y <- cp * x + b * m + rnorm(n = n, sd = sqrt(sigma2ey))
+        x <- stats::rnorm(n = n, sd = sqrt(x = sigma2x))
+        m <- a * x + stats::rnorm(n = n, sd = sqrt(x = sigma2em))
+        y <- cp * x + b * m + stats::rnorm(n = n, sd = sqrt(x = sigma2ey))
         data <- data.frame(x, m, y)
         model <- "
           y ~ cp * x + b * m
@@ -202,41 +197,41 @@ lapply(
           meanstructure = TRUE
         )
         results_unstd_chol <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "chol",
           seed = seed
         )
-        estimates <- lavaan::parameterEstimates(fit)$est
+        estimates <- lavaan::parameterEstimates(object = fit)$est
         results_unstd_chol$thetahatstar[3, ] <- estimates
-        results_chol <- MCStd(results_unstd_chol)
+        results_chol <- MCStd(mc = results_unstd_chol)
         results_unstd_eigen <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "eigen",
           seed = seed
         )
-        estimates <- lavaan::parameterEstimates(fit)$est
+        estimates <- lavaan::parameterEstimates(object = fit)$est
         results_unstd_eigen$thetahatstar[3, ] <- estimates
-        results_eigen <- MCStd(results_unstd_eigen)
+        results_eigen <- MCStd(mc = results_unstd_eigen)
         results_unstd_svd <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "svd",
           seed = seed
         )
-        estimates <- lavaan::parameterEstimates(fit)$est
+        estimates <- lavaan::parameterEstimates(object = fit)$est
         results_unstd_svd$thetahatstar[3, ] <- estimates
-        results_svd <- MCStd(results_unstd_svd)
+        results_svd <- MCStd(mc = results_unstd_svd)
         testthat::expect_equal(
-          .MCCI(
-            results_svd
+          object = .MCCI(
+            object = results_svd
           )["ab", "97.5%"],
-          quantile(
-            results_svd$thetahatstar[, "ab"],
+          expected = stats::quantile(
+            x = results_svd$thetahatstar[, "ab"],
             .975,
             na.rm = TRUE
           ),

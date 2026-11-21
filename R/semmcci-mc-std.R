@@ -104,7 +104,7 @@ MCStd <- function(mc,
     alpha = alpha
   )
   thetahat_std <- as.vector(
-    lavaan::standardizedSolution(
+    x = lavaan::standardizedSolution(
       object = mc$args$lav,
       type = "std.all",
       se = FALSE,
@@ -120,62 +120,36 @@ MCStd <- function(mc,
     ]
   )
   names(
-    thetahat_std
+    x = thetahat_std
   ) <- colnames(
-    mc$thetahatstar
+    x = mc$thetahatstar
   )
   i_free <- mc$args$lav@ParTable$free > 0
-  foo <- function(i,
-                  p) {
-    out <- tryCatch(
-      {
-        .StdLav(
-          est = mc$thetahatstar[
-            i,
-            i_free
-          ],
-          object = mc$args$lav
-        )
-      },
-      warning = function(w) {
-        rep(
-          x = NA,
-          times = p
-        )
-      },
-      error = function(e) {
-        rep(
-          x = NA,
-          times = p
-        )
-      }
-    )
-    out
-  }
-  thetahatstar_std <- lapply(
-    X = seq_len(
-      dim(
-        mc$thetahatstar
-      )[1]
-    ),
-    FUN = foo,
+  thetahatstar_std <- .MCApply(
+    X = mc$thetahatstar[
+      ,
+      i_free,
+      drop = FALSE
+    ],
+    FUN = function(est) {
+      .StdLav(
+        est = est,
+        object = mc$args$lav
+      )
+    },
     p = length(
-      thetahat_std
+      x = thetahat_std
     )
-  )
-  thetahatstar_std <- do.call(
-    what = "rbind",
-    args = thetahatstar_std
   )
   colnames(
-    thetahatstar_std
+    x = thetahatstar_std
   ) <- colnames(
-    mc$thetahatstar
+    x = mc$thetahatstar
   )
   # remove mean structure
   thetahatstar_std <- thetahatstar_std[
     ,
-    which(mc$args$lav@ParTable$op != "~1"),
+    which(x = mc$args$lav@ParTable$op != "~1"),
     drop = FALSE
   ]
   out <- list(
@@ -188,9 +162,9 @@ MCStd <- function(mc,
     thetahatstar = thetahatstar_std,
     fun = "MCStd"
   )
-  class(out) <- c(
+  class(x = out) <- c(
     "semmcci",
-    class(out)
+    class(x = out)
   )
   out
 }

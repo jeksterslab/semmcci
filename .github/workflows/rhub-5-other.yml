@@ -1,0 +1,193 @@
+name: rhub 5 (other platforms)
+
+# By hand, for information; a failure does not fail the run. legacy: containers
+# r-hub lists as deprecated (frozen R-devel; newer binaries may not load).
+# rhel and s390x are not on r-hub's platform list. Removed after a run on
+# 2026-11-06, because they stop before the package is checked: c23, clang16 to
+# clang20, gcc15, and noremap (vctrs does not load), rhel7 and centos7 (pak
+# does not load).
+on:
+  workflow_dispatch:
+    inputs:
+      latest:
+        description: "Run in the latest image and packages, not the lock's"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  # the image and packages of the release (.setup/scripts/rproject.lock);
+  # a scheduled run, or a manual run with latest, uses the latest
+  image:
+    runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.lock.outputs.image }}
+      snapshot: ${{ steps.lock.outputs.snapshot }}
+      r_version: ${{ steps.lock.outputs.r_version }}
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v7
+        with:
+          sparse-checkout: .setup/scripts
+      -
+        name: Read the lock
+        id: lock
+        env:
+          EVENT: ${{ github.event_name }}
+          LATEST: ${{ inputs.latest }}
+        run: bash .setup/scripts/image-lock.sh
+
+  legacy:
+    needs: image
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    env:
+      RPROJECT_SNAPSHOT: ${{ needs.image.outputs.snapshot }}
+      GITHUB_PAT: ${{ secrets.PAT }}
+      GITHUB_ACTIONS: "true"
+    strategy:
+      fail-fast: false
+      matrix:
+        container:
+          - name: clang21
+            image: ghcr.io/r-hub/containers/clang21:latest
+          - name: clang22
+            image: ghcr.io/r-hub/containers/clang22:latest
+          - name: intel
+            image: ghcr.io/r-hub/containers/intel:latest
+          - name: gcc13
+            image: ghcr.io/r-hub/containers/gcc13:latest
+          - name: gcc14
+            image: ghcr.io/r-hub/containers/gcc14:latest
+          - name: ubuntu-gcc12
+            image: ghcr.io/r-hub/containers/ubuntu-gcc12:latest
+          - name: ubuntu-gcc15
+            image: ghcr.io/r-hub/containers/ubuntu-gcc15:latest
+    name: ${{ matrix.container.name }}
+    container:
+      image: ${{ matrix.container.image }}
+    steps:
+      - name: Checkout src repo
+        uses: actions/checkout@v7
+        with:
+          ref: 'src'
+
+      - name: Pin packages to the lock's snapshot
+        if: needs.image.outputs.snapshot != 'latest'
+        shell: Rscript {0}
+        run: |
+          # R-devel keeps the latest packages: an old snapshot may not build there
+          if (!grepl("devel|unstable", R.version$status, ignore.case = TRUE)) {
+            repo <- "https://packagemanager.posit.co/cran/"
+            if (Sys.info()[["sysname"]] == "Linux" && nzchar(Sys.which("lsb_release"))) {
+              codename <- system2("lsb_release", "-cs", stdout = TRUE)
+              repo <- paste0(repo, "__linux__/", codename, "/")
+            }
+            repo <- paste0(repo, Sys.getenv("RPROJECT_SNAPSHOT"))
+            cat(
+              sprintf("options(repos = c(CRAN = \"%s\"))\n", repo),
+              file = path.expand("~/.Rprofile"),
+              append = TRUE
+            )
+            message("Packages from ", repo)
+          }
+
+      - name: Install dependencies
+        run: |
+          R -q -e 'if (!require("pak")) install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))'
+          R -q -e 'pak::pkg_install(c("deps::.", "any::rcmdcheck"), dependencies = TRUE)'
+
+      - name: R-CMD-check
+        uses: r-lib/actions/check-r-package@v2
+        with:
+          error-on: '"error"'
+
+  # pak's system requirements need a Red Hat subscription here
+  rhel:
+    needs: image
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    env:
+      RPROJECT_SNAPSHOT: ${{ needs.image.outputs.snapshot }}
+      GITHUB_PAT: ${{ secrets.PAT }}
+      GITHUB_ACTIONS: "true"
+      PKG_SYSREQS: "false"
+    strategy:
+      fail-fast: false
+      matrix:
+        container:
+          - name: rhel8
+            image: ghcr.io/r-hub/containers/rhel8:latest
+          - name: rhel9
+            image: ghcr.io/r-hub/containers/rhel9:latest
+    name: ${{ matrix.container.name }}
+    container:
+      image: ${{ matrix.container.image }}
+    steps:
+      - name: Checkout src repo
+        uses: actions/checkout@v7
+        with:
+          ref: 'src'
+
+      - name: Pin packages to the lock's snapshot
+        if: needs.image.outputs.snapshot != 'latest'
+        shell: Rscript {0}
+        run: |
+          # R-devel keeps the latest packages: an old snapshot may not build there
+          if (!grepl("devel|unstable", R.version$status, ignore.case = TRUE)) {
+            repo <- "https://packagemanager.posit.co/cran/"
+            if (Sys.info()[["sysname"]] == "Linux" && nzchar(Sys.which("lsb_release"))) {
+              codename <- system2("lsb_release", "-cs", stdout = TRUE)
+              repo <- paste0(repo, "__linux__/", codename, "/")
+            }
+            repo <- paste0(repo, Sys.getenv("RPROJECT_SNAPSHOT"))
+            cat(
+              sprintf("options(repos = c(CRAN = \"%s\"))\n", repo),
+              file = path.expand("~/.Rprofile"),
+              append = TRUE
+            )
+            message("Packages from ", repo)
+          }
+
+      # fs builds its bundled libuv with cmake
+      - name: Install cmake
+        run: dnf install -y cmake
+
+      - name: Install dependencies
+        run: |
+          R -q -e 'if (!require("pak")) install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))'
+          R -q -e 'pak::pkg_install(c("deps::.", "any::rcmdcheck"), dependencies = TRUE)'
+
+      - name: R-CMD-check
+        uses: r-lib/actions/check-r-package@v2
+        with:
+          error-on: '"error"'
+
+  # big-endian, emulated: QEMU has to be set up before the container starts
+  s390x:
+    needs: image
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.PAT }}
+    steps:
+      - name: Checkout src repo
+        uses: actions/checkout@v7
+        with:
+          ref: 'src'
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Check
+        run: |
+          cat > rhub-check.sh <<'EOF'
+          R -q -e 'if (!require("pak")) install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))'
+          R -q -e 'pak::pkg_install(c("deps::.", "any::rcmdcheck"), dependencies = TRUE)'
+          R CMD build .
+          R CMD check --no-manual ./*.tar.gz
+          EOF
+          docker run --rm --platform linux/s390x -e GITHUB_PAT \
+            -v "${PWD}:/pkg" -w /pkg ghcr.io/r-hub/containers/s390x:latest \
+            bash rhub-check.sh

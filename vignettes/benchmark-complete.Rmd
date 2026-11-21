@@ -1,7 +1,7 @@
 ---
 title: "Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "2026-06-13"
+date: "2026-11-21"
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
 nocite: |
@@ -29,9 +29,9 @@ This is because the model is only fitted once in MC whereas it is fitted many ti
 
 
 ``` r
-library(semmcci)
-library(lavaan)
-library(microbenchmark)
+library(package = semmcci)
+library(package = lavaan)
+library(package = microbenchmark)
 ```
 
 ## Data
@@ -44,9 +44,9 @@ b <- 0.50
 cp <- 0.25
 s2_em <- 1 - a^2
 s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
-em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
-ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
-X <- rnorm(n = n)
+em <- stats::rnorm(n = n, mean = 0, sd = sqrt(x = s2_em))
+ey <- stats::rnorm(n = n, mean = 0, sd = sqrt(x = s2_ey))
+X <- stats::rnorm(n = n)
 M <- a * X + em
 Y <- cp * X + b * M + ey
 df <- data.frame(X, M, Y)
@@ -78,7 +78,7 @@ We can now fit the model using the `sem()` function from `lavaan`.
 
 
 ``` r
-fit <- sem(data = df, model = model)
+fit <- lavaan::sem(data = df, model = model)
 ```
 
 ## Monte Carlo Confidence Intervals
@@ -88,15 +88,15 @@ to generate Monte Carlo confidence intervals.
 
 
 ``` r
-MC(fit, R = 100L, alpha = 0.05)
+MC(lav = fit, R = 100L, alpha = 0.05)
 #> Monte Carlo Confidence Intervals
 #>             est     se   R   2.5%  97.5%
 #> cp       0.2333 0.0296 100 0.1806 0.2903
 #> b        0.5082 0.0279 100 0.4555 0.5527
 #> a        0.4820 0.0280 100 0.4220 0.5301
-#> X~~X     1.0590 0.0426 100 0.9751 1.1296
+#> X~~X     1.0590 0.0426 100 0.9883 1.1428
 #> Y~~Y     0.5462 0.0231 100 0.5064 0.5959
-#> M~~M     0.7527 0.0337 100 0.7024 0.8208
+#> M~~M     0.7527 0.0337 100 0.6846 0.8029
 #> indirect 0.2449 0.0179 100 0.2058 0.2738
 #> direct   0.2333 0.0296 100 0.1806 0.2903
 #> total    0.4782 0.0295 100 0.4162 0.5283
@@ -108,8 +108,8 @@ Nonparametric bootstrap confidence intervals can be generated in `lavaan` using 
 
 
 ``` r
-parameterEstimates(
-  sem(
+lavaan::parameterEstimates(
+  object = lavaan::sem(
     data = df,
     model = model,
     se = "bootstrap",
@@ -149,18 +149,18 @@ parameterEstimates(
 ``` r
 benchmark_complete_01 <- microbenchmark(
   MC = {
-    fit <- sem(
+    fit <- lavaan::sem(
       data = df,
       model = model
     )
     MC(
-      fit,
+      lav = fit,
       R = R,
       decomposition = "chol",
       pd = FALSE
     )
   },
-  NB = sem(
+  NB = lavaan::sem(
     data = df,
     model = model,
     se = "bootstrap",
@@ -174,23 +174,20 @@ benchmark_complete_01 <- microbenchmark(
 
 
 ``` r
-summary(benchmark_complete_01, unit = "ms")
-#>   expr        min          lq        mean      median          uq         max
-#> 1   MC    55.0302    55.23845    58.02968    55.84808    58.06854    74.09966
-#> 2   NB 10531.3588 10577.98131 10654.74758 10604.79738 10630.56465 10987.84880
-#>   neval
-#> 1    10
-#> 2    10
+summary(object = benchmark_complete_01, unit = "ms")
+#>   expr       min         lq       mean    median         uq        max neval
+#> 1   MC   23.2024   23.55938   25.23803   23.8689   25.86718   32.74751    10
+#> 2   NB 5544.0295 5563.50939 5607.54848 5600.3251 5642.27524 5719.66832    10
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
 
 
 ``` r
-summary(benchmark_complete_01, unit = "relative")
+summary(object = benchmark_complete_01, unit = "relative")
 #>   expr      min       lq     mean   median       uq      max neval
 #> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
-#> 2   NB 191.3742 191.4967 183.6086 189.8865 183.0692 148.2847    10
+#> 2   NB 238.9421 236.1484 222.1865 234.6285 218.1249 174.6597    10
 ```
 
 ## Plot
@@ -203,18 +200,18 @@ summary(benchmark_complete_01, unit = "relative")
 
 
 ``` r
-fit <- sem(
+fit <- lavaan::sem(
   data = df,
   model = model
 )
 benchmark_complete_02 <- microbenchmark(
   MC = MC(
-    fit,
+    lav = fit,
     R = R,
     decomposition = "chol",
     pd = FALSE
   ),
-  NB = sem(
+  NB = lavaan::sem(
     data = df,
     model = model,
     se = "bootstrap",
@@ -228,10 +225,10 @@ benchmark_complete_02 <- microbenchmark(
 
 
 ``` r
-summary(benchmark_complete_02, unit = "ms")
+summary(object = benchmark_complete_02, unit = "ms")
 #>   expr         min          lq        mean      median         uq         max
-#> 1   MC    16.40516    16.70091    17.53686    16.73903    18.6218    20.88521
-#> 2   NB 10341.15770 10374.74209 10584.52426 10633.36941 10753.5520 10814.98250
+#> 1   MC    3.386479    3.409973    3.758715    3.515756    3.78742    5.379376
+#> 2   NB 5398.897442 5452.497545 5468.211716 5462.170404 5487.69659 5546.548406
 #>   neval
 #> 1    10
 #> 2    10
@@ -241,10 +238,10 @@ summary(benchmark_complete_02, unit = "ms")
 
 
 ``` r
-summary(benchmark_complete_02, unit = "relative")
+summary(object = benchmark_complete_02, unit = "relative")
 #>   expr      min       lq     mean   median       uq      max neval
-#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
-#> 2   NB 630.3601 621.2081 603.5585 635.2442 577.4711 517.8297    10
+#> 1   MC    1.000    1.000    1.000    1.000    1.000    1.000    10
+#> 2   NB 1594.251 1598.986 1454.809 1553.626 1448.927 1031.077    10
 ```
 
 ## Plot

@@ -6,7 +6,7 @@
 #' @param Z Numeric matrix.
 #'   `n` by `k` matrix of independent random variates
 #'   from the standard univariate normal distribution
-#'   \eqn{\mathbf{Z}}.
+#'   \eqn{\boldsymbol{Z}}.
 #' @param chol Object.
 #'   Result of [chol()].
 #'

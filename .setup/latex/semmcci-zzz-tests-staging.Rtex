@@ -76,12 +76,12 @@
 \maketitle
 
 %% begin.rcode
-% library(semmcci)
-% library(lavaan)
+% library(package = semmcci)
+% library(package = lavaan)
 %
 % # Data ---------------------------------------------------------------------
-% data("Tal.Or", package = "psych")
-% df <- mice::ampute(Tal.Or)$amp
+% utils::data("Tal.Or", package = "psych")
+% df <- mice::ampute(data = Tal.Or)$amp
 %
 % # Monte Carlo --------------------------------------------------------------
 % ## Fit Model in lavaan -----------------------------------------------------
@@ -93,17 +93,17 @@
 %   direct := cp
 %   total := cp + (a * b)
 % "
-% fit <- sem(data = df, model = model, missing = "fiml")
+% fit <- lavaan::sem(data = df, model = model, missing = "fiml")
 %
 % ## MC() --------------------------------------------------------------------
 % unstd <- MC(
-%   fit,
+%   lav = fit,
 %   R = 100L, # use a large value e.g., 20000L for actual research
 %   alpha = 0.05
 % )
 %
 % ## Standardized Monte Carlo ------------------------------------------------
-% MCStd(unstd, alpha = 0.05)
+% MCStd(mc = unstd, alpha = 0.05)
 %
 % # Monte Carlo (Multiple Imputation) ----------------------------------------
 % ## Multiple Imputation -----------------------------------------------------
@@ -115,18 +115,18 @@
 % )
 %
 % ## Fit Model in lavaan -----------------------------------------------------
-% fit <- sem(data = df, model = model) # use default listwise deletion
+% fit <- lavaan::sem(data = df, model = model) # use default listwise deletion
 %
 % ## MCMI() ------------------------------------------------------------------
 % unstd <- MCMI(
-%   fit,
+%   lav = fit,
 %   mi = mi,
 %   R = 100L, # use a large value e.g., 20000L for actual research
 %   alpha = 0.05
 % )
 %
 % ## Standardized Monte Carlo ------------------------------------------------
-% MCStd(unstd, alpha = 0.05)
+% MCStd(mc = unstd, alpha = 0.05)
 %% end.rcode
 
 \nocite{RCoreTeam-2026}

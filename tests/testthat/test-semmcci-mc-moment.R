@@ -5,18 +5,13 @@ lapply(
                  text) {
     message(text)
 
-    set.seed(42)
+    set.seed(seed = 42)
 
-    if (!identical(Sys.getenv("NOT_CRAN"), "true") && !interactive()) {
-      message("CRAN: tests skipped.")
-      # nolint start
-      return(invisible(NULL))
-      # nolint end
-    }
+    testthat::skip_on_cran()
 
     testthat::test_that(
-      paste(text, "MCCI error"),
-      {
+      desc = paste(text, "MCCI error"),
+      code = {
         testthat::skip_on_cran()
         lower <- "
           11.834
@@ -27,7 +22,7 @@ lapply(
           -21.899 -18.831 -21.748 -18.775 35.522 450.288
         "
         sample_cov <- lavaan::lav_getcov(
-          lower,
+          x = lower,
           names = c(
             "anomia67",
             "powerless67",
@@ -56,9 +51,9 @@ lapply(
           sample.nobs = 932
         )
         testthat::expect_error(
-          MCMI(fit)
+          object = MCMI(lav = fit)
         )
-        MC(fit)
+        MC(lav = fit)
       }
     )
   },

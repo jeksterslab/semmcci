@@ -6,7 +6,7 @@
 #' @param Z Numeric matrix.
 #'   `n` by `k` matrix of independent random variates
 #'   from the standard univariate normal distribution
-#'   \eqn{\mathbf{Z}}.
+#'   \eqn{\boldsymbol{Z}}.
 #' @param eigen Object.
 #'   Result of [eigen()].
 #'
@@ -18,8 +18,8 @@
 .RandomGaussianEigen <- function(Z,
                                  eigen) {
   Z %*% (
-    t(eigen$vectors) * sqrt(
-      pmax(
+    t(x = eigen$vectors) * sqrt(
+      x = pmax(
         eigen$values,
         0
       )

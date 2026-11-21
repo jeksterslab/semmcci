@@ -41,9 +41,9 @@ dir <- root$find_file(
   "data-raw",
   "benchmark"
 )
-if (!dir.exists(dir)) {
+if (!dir.exists(paths = dir)) {
   dir.create(
-    dir,
+    path = dir,
     recursive = TRUE
   )
 }
@@ -51,7 +51,7 @@ if (!dir.exists(dir)) {
 
 ```{r}
 #| include = FALSE
-set.seed(42)
+set.seed(seed = 42)
 ```
 
 We compare the Monte Carlo (MC) method with nonparametric bootstrapping (NB) using the simple mediation model with missing data
@@ -62,9 +62,9 @@ This is because the model is only fitted once in MC whereas it is fitted many ti
 
 ```{r}
 #| message = FALSE
-library(semmcci)
-library(lavaan)
-library(microbenchmark)
+library(package = semmcci)
+library(package = lavaan)
+library(package = microbenchmark)
 ```
 
 ## Data
@@ -76,16 +76,16 @@ b <- 0.50
 cp <- 0.25
 s2_em <- 1 - a^2
 s2_ey <- 1 - cp^2 - a^2 * b^2 - b^2 * s2_em - 2 * cp * a * b
-em <- rnorm(n = n, mean = 0, sd = sqrt(s2_em))
-ey <- rnorm(n = n, mean = 0, sd = sqrt(s2_ey))
-X <- rnorm(n = n)
+em <- stats::rnorm(n = n, mean = 0, sd = sqrt(x = s2_em))
+ey <- stats::rnorm(n = n, mean = 0, sd = sqrt(x = s2_ey))
+X <- stats::rnorm(n = n)
 M <- a * X + em
 Y <- cp * X + b * M + ey
 df <- data.frame(X, M, Y)
 
 # Create data set with missing values.
 
-miss <- sample(1:dim(df)[1], 300)
+miss <- sample(x = 1:dim(x = df)[1], size = 300)
 df[miss[1:100], "X"] <- NA
 df[miss[101:200], "M"] <- NA
 df[miss[201:300], "Y"] <- NA
@@ -116,7 +116,7 @@ We can now fit the model using the `sem()` function from `lavaan`.
 We are using `missing = "fiml"` to handle missing data in `lavaan`.
 
 ```{r}
-fit <- sem(data = df, model = model)
+fit <- lavaan::sem(data = df, model = model)
 ```
 
 ## Monte Carlo Confidence Intervals
@@ -125,7 +125,7 @@ The `fit` `lavaan` object can then be passed to the `MC()` function from `semmcc
 to generate Monte Carlo confidence intervals.
 
 ```{r}
-MC(fit, R = 100L, alpha = 0.05)
+MC(lav = fit, R = 100L, alpha = 0.05)
 ```
 
 ## Nonparametric Bootstrap Confidence Intervals
@@ -135,8 +135,8 @@ Nonparametric bootstrap confidence intervals can be generated in `lavaan` using 
 ```{r}
 #| message = FALSE,
 #| warning = FALSE
-parameterEstimates(
-  sem(
+lavaan::parameterEstimates(
+  object = lavaan::sem(
     data = df,
     model = model,
     missing = "fiml",
@@ -197,19 +197,19 @@ benchmark_fiml_01_file <- file.path(
 if (!file.exists(benchmark_fiml_01_file)) {
   benchmark_fiml_01 <- microbenchmark(
     MC = {
-      fit <- sem(
+      fit <- lavaan::sem(
         data = df,
         model = model,
         missing = "fiml"
       )
       MC(
-        fit,
+        lav = fit,
         R = R,
         decomposition = "chol",
         pd = FALSE
       )
     },
-    NB = sem(
+    NB = lavaan::sem(
       data = df,
       model = model,
       missing = "fiml",
@@ -233,19 +233,19 @@ benchmark_fiml_01 <- readRDS(
 #| eval = FALSE
 benchmark_fiml_01 <- microbenchmark(
   MC = {
-    fit <- sem(
+    fit <- lavaan::sem(
       data = df,
       model = model,
       missing = "fiml"
     )
     MC(
-      fit,
+      lav = fit,
       R = R,
       decomposition = "chol",
       pd = FALSE
     )
   },
-  NB = sem(
+  NB = lavaan::sem(
     data = df,
     model = model,
     missing = "fiml",
@@ -259,13 +259,13 @@ benchmark_fiml_01 <- microbenchmark(
 ### Summary of Benchmark Results
 
 ```{r}
-summary(benchmark_fiml_01, unit = "ms")
+summary(object = benchmark_fiml_01, unit = "ms")
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
 
 ```{r}
-summary(benchmark_fiml_01, unit = "relative")
+summary(object = benchmark_fiml_01, unit = "relative")
 ```
 
 ## Plot
@@ -274,7 +274,7 @@ summary(benchmark_fiml_01, unit = "relative")
 #| echo = FALSE,
 #| warning = FALSE,
 #| message = FALSE
-boxplot(benchmark_fiml_01)
+graphics::boxplot(x = benchmark_fiml_01)
 ```
 
 ## Benchmark - Monte Carlo Method with Precalculated Estimates
@@ -283,7 +283,7 @@ boxplot(benchmark_fiml_01)
 #| echo = FALSE,
 #| message = FALSE,
 #| warning = FALSE
-fit <- sem(
+fit <- lavaan::sem(
   data = df,
   model = model,
   missing = "fiml"
@@ -295,12 +295,12 @@ benchmark_fiml_02_file <- file.path(
 if (!file.exists(benchmark_fiml_02_file)) {
   benchmark_fiml_02 <- microbenchmark(
     MC = MC(
-      fit,
+      lav = fit,
       R = R,
       decomposition = "chol",
       pd = FALSE
     ),
-    NB = sem(
+    NB = lavaan::sem(
       data = df,
       model = model,
       missing = "fiml",
@@ -322,19 +322,19 @@ benchmark_fiml_02 <- readRDS(
 
 ```{r}
 #| eval = FALSE
-fit <- sem(
+fit <- lavaan::sem(
   data = df,
   model = model,
   missing = "fiml"
 )
 benchmark_fiml_02 <- microbenchmark(
   MC = MC(
-    fit,
+    lav = fit,
     R = R,
     decomposition = "chol",
     pd = FALSE
   ),
-  NB = sem(
+  NB = lavaan::sem(
     data = df,
     model = model,
     missing = "fiml",
@@ -348,13 +348,13 @@ benchmark_fiml_02 <- microbenchmark(
 ### Summary of Benchmark Results
 
 ```{r}
-summary(benchmark_fiml_02, unit = "ms")
+summary(object = benchmark_fiml_02, unit = "ms")
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
 
 ```{r}
-summary(benchmark_fiml_02, unit = "relative")
+summary(object = benchmark_fiml_02, unit = "relative")
 ```
 
 ## Plot
@@ -363,7 +363,7 @@ summary(benchmark_fiml_02, unit = "relative")
 #| echo = FALSE,
 #| warning = FALSE,
 #| message = FALSE
-boxplot(benchmark_fiml_02)
+graphics::boxplot(x = benchmark_fiml_02)
 ```
 
 ## References

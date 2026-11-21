@@ -25,7 +25,7 @@
                       est = NULL) {
   # extract all estimates including fixed parameters
   thetahat_names_free <- names(
-    lavaan::coef(object)
+    x = lavaan::coef(object = object)
   )
   thetahat_eq <- paste0(
     object@ParTable$lhs,
@@ -35,18 +35,18 @@
   thetahat_names <- thetahat_eq
   label <- object@ParTable$label
   thetahat_names <- ifelse(
-    label == "",
+    test = label == "",
     yes = thetahat_names,
     no = label
   )
-  for (i in seq_along(object@ParTable$free)) {
+  for (i in seq_along(along.with = object@ParTable$free)) {
     if (object@ParTable$free[i] > 0) {
       thetahat_names[i] <- thetahat_names_free[
         object@ParTable$free[i]
       ]
     }
   }
-  if (is.null(est)) {
+  if (is.null(x = est)) {
     # extract estimates from parameter table
     thetahat_est <- object@ParTable$est
   } else {
@@ -58,79 +58,5 @@
     thetahat_est = thetahat_est,
     thetahat_names_free = thetahat_names_free,
     thetahat_names = thetahat_names
-  )
-}
-
-.ThetaHatDef <- function(object,
-                         thetahat_est,
-                         thetahat_names_free,
-                         thetahat_names) {
-  thetahat_fixed <- thetahat_def <- thetahat_cin <- thetahat_ceq <- rep(
-    x = NA,
-    times = length(thetahat_est)
-  )
-  for (i in seq_along(thetahat_est)) {
-    if (object@ParTable$op[i] == "==") {
-      thetahat_names[i] <- paste0(
-        object@ParTable$lhs[i],
-        "_ceq"
-      )
-      thetahat_ceq[i] <- object@ParTable$lhs[i]
-    }
-    if (
-      object@ParTable$op[i] %in% c(
-        ">",
-        "<",
-        ">=",
-        "<="
-      )
-    ) {
-      thetahat_names[i] <- paste0(
-        object@ParTable$lhs[i],
-        "_cin"
-      )
-      thetahat_cin[i] <- object@ParTable$lhs[i]
-    }
-    if (object@ParTable$op[i] == ":=") {
-      thetahat_def[i] <- object@ParTable$lhs[i]
-    }
-    if (object@ParTable$free[i] == 0) {
-      fixed <- TRUE
-      if (
-        object@ParTable$op[i] %in% c(
-          ":=",
-          "==",
-          ">",
-          "<",
-          ">=",
-          "<="
-        )
-      ) {
-        fixed <- FALSE
-      }
-      if (fixed) {
-        thetahat_fixed[i] <- thetahat_names[i]
-      }
-    }
-  }
-  names(
-    thetahat_est
-  ) <- thetahat_names
-  list(
-    est = thetahat_est,
-    par_names = thetahat_names,
-    def = thetahat_def[
-      stats::complete.cases(thetahat_def)
-    ],
-    ceq = thetahat_ceq[
-      stats::complete.cases(thetahat_ceq)
-    ],
-    cin = thetahat_cin[
-      stats::complete.cases(thetahat_cin)
-    ],
-    fixed = thetahat_fixed[
-      stats::complete.cases(thetahat_fixed)
-    ],
-    free = thetahat_names_free
   )
 }

@@ -10,9 +10,9 @@
 #' @keywords nBootstrap ci internal
 #' @noRd
 .PCProbs <- function(alpha) {
-  alpha <- sort(alpha)
+  alpha <- sort(x = alpha)
   prob_ll <- alpha / 2
-  prob_ul <- rev(1 - prob_ll)
+  prob_ul <- rev(x = 1 - prob_ll)
   c(
     prob_ll,
     prob_ul

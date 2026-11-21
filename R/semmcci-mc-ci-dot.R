@@ -26,7 +26,7 @@
                   alpha = NULL) {
   thetahatstar <- object$thetahatstar
   thetahat <- object$thetahat
-  if (is.null(alpha)) {
+  if (is.null(x = alpha)) {
     alpha <- object$args$alpha
   }
   stopifnot(
@@ -35,9 +35,9 @@
   probs <- .PCProbs(alpha = alpha)
   ci <- vector(
     mode = "list",
-    length = dim(thetahatstar)[2]
+    length = dim(x = thetahatstar)[2]
   )
-  for (i in seq_len(dim(thetahatstar)[2])) {
+  for (i in seq_len(length.out = dim(x = thetahatstar)[2])) {
     ci[[i]] <- .PCCI(
       thetahatstar = thetahatstar[, i],
       thetahat = thetahat$est[[i]],
@@ -48,9 +48,9 @@
     what = "rbind",
     args = ci
   )
-  varnames <- colnames(thetahatstar)
-  if (!is.null(varnames)) {
-    rownames(ci) <- varnames
+  varnames <- colnames(x = thetahatstar)
+  if (!is.null(x = varnames)) {
+    rownames(x = ci) <- varnames
   }
   ci
 }

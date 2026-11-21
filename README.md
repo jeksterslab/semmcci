@@ -1,33 +1,32 @@
 semmcci
 ================
 Ivan Jacob Agaloos Pesigan
-2026-06-14
+2026-11-21
 
 <!-- README.md is generated from .setup/readme/README.Rmd. Please edit that file -->
 
 <!-- badges: start -->
-
 [![DOI](https://zenodo.org/badge/DOI/10.3758/s13428-023-02114-4.svg)](https://doi.org/10.3758/s13428-023-02114-4)
-[![CRAN
-Status](https://www.r-pkg.org/badges/version/semmcci)](https://cran.r-project.org/package=semmcci)
-[![R-Universe
-Status](https://jeksterslab.r-universe.dev/badges/semmcci)](https://jeksterslab.r-universe.dev/semmcci)
-[![Make
-Project](https://github.com/jeksterslab/semmcci/actions/workflows/make.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/make.yml)
-[![R-CMD-check-standard](https://github.com/jeksterslab/semmcci/actions/workflows/check-standard.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/check-standard.yml)
-[![R-CMD-check-oldrel](https://github.com/jeksterslab/semmcci/actions/workflows/check-oldrel.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/check-oldrel.yml)
-[![R Package Test
-Coverage](https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yml)
-[![Lint R
-Package](https://github.com/jeksterslab/semmcci/actions/workflows/lint.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/lint.yml)
-[![Package Website (GitHub
-Pages)](https://github.com/jeksterslab/semmcci/actions/workflows/pkgdown-gh-pages.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/pkgdown-gh-pages.yml)
-[![Compile
-LaTeX](https://github.com/jeksterslab/semmcci/actions/workflows/latex.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/latex.yml)
-[![Shell
-Check](https://github.com/jeksterslab/semmcci/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/shellcheck.yml)
+[![CRAN Status](https://www.r-pkg.org/badges/version/semmcci)](https://cran.r-project.org/package=semmcci)
+[![R-Universe Status](https://jeksterslab.r-universe.dev/badges/semmcci)](https://jeksterslab.r-universe.dev/semmcci)
 [![pages-build-deployment](https://github.com/jeksterslab/semmcci/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/pages/pages-build-deployment)
 [![codecov](https://codecov.io/gh/jeksterslab/semmcci/branch/main/graph/badge.svg?token=KVLUET3DJ6)](https://codecov.io/gh/jeksterslab/semmcci)
+[![Make Project (make all)](https://github.com/jeksterslab/semmcci/actions/workflows/make-all.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/make-all.yml)
+[![Make Project](https://github.com/jeksterslab/semmcci/actions/workflows/make.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/make.yml)
+[![R-CMD-check-full](https://github.com/jeksterslab/semmcci/actions/workflows/check-full.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/check-full.yml)
+[![R-CMD-check-oldrel](https://github.com/jeksterslab/semmcci/actions/workflows/check-oldrel.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/check-oldrel.yml)
+[![R-CMD-check-standard](https://github.com/jeksterslab/semmcci/actions/workflows/check-standard.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/check-standard.yml)
+[![Compile LaTeX](https://github.com/jeksterslab/semmcci/actions/workflows/latex.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/latex.yml)
+[![Lint R Package](https://github.com/jeksterslab/semmcci/actions/workflows/lint.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/lint.yml)
+[![Non-ASCII Check](https://github.com/jeksterslab/semmcci/actions/workflows/non-ascii-check.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/non-ascii-check.yml)
+[![Package Website (GitHub Pages)](https://github.com/jeksterslab/semmcci/actions/workflows/pkgdown-gh-pages.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/pkgdown-gh-pages.yml)
+[![rhub 1 (essential)](https://github.com/jeksterslab/semmcci/actions/workflows/rhub-1-essential.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/rhub-1-essential.yml)
+[![rhub 2 (memory)](https://github.com/jeksterslab/semmcci/actions/workflows/rhub-2-memory.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/rhub-2-memory.yml)
+[![rhub 3 (numerics), review only](https://github.com/jeksterslab/semmcci/actions/workflows/rhub-3-numerics.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/rhub-3-numerics.yml)
+[![rhub 4 (compilers), review only](https://github.com/jeksterslab/semmcci/actions/workflows/rhub-4-compilers.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/rhub-4-compilers.yml)
+[![Shell Check](https://github.com/jeksterslab/semmcci/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/shellcheck.yml)
+[![Source Code](https://github.com/jeksterslab/semmcci/actions/workflows/source.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/source.yml)
+[![R Package Test Coverage](https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yml/badge.svg)](https://github.com/jeksterslab/semmcci/actions/workflows/test-coverage.yml)
 <!-- badges: end -->
 
 ## Installation
@@ -64,8 +63,15 @@ functions, namely, `MC()`, `MCMI()`, and `MCStd()`. The output of
 Carlo confidence intervals for the standardized estimates can also be
 generated by passing the output of the `MC()` function or the `MCMI()`
 function to the `MCStd()` function. A description of the package and
-code examples are presented in Pesigan and Cheung (2023:
-<https://doi.org/10.3758/s13428-023-02114-4>).
+code examples are presented in Pesigan and Cheung (2024)
+<https://doi.org/10.3758/s13428-023-02114-4>.
+
+| Function | Description |
+|:---|:---|
+| `MC()` | Monte Carlo confidence intervals from a `lavaan` model. |
+| `MCMI()` | Monte Carlo confidence intervals from a `lavaan` model fitted to multiply imputed data. |
+| `MCStd()` | Monte Carlo confidence intervals for the standardized estimates. |
+| `MCGeneric()`, `MCFunc()`, `Func()` | Monte Carlo confidence intervals for functions of supplied parameters. |
 
 ## Example
 
@@ -76,22 +82,22 @@ variable `X` has an effect on variable `Y`, through a mediating variable
 from the fitted model.
 
 ``` r
-library(semmcci)
-library(lavaan)
+library(package = semmcci)
+library(package = lavaan)
 ```
 
 ### Data
 
 ``` r
-summary(df)
-#>        X                  M                 Y           
-#>  Min.   :-3.24635   Min.   :-3.2758   Min.   :-2.96764  
-#>  1st Qu.:-0.61936   1st Qu.:-0.7034   1st Qu.:-0.67348  
-#>  Median : 0.01012   Median :-0.0570   Median :-0.03637  
-#>  Mean   : 0.01241   Mean   :-0.0120   Mean   :-0.01110  
-#>  3rd Qu.: 0.66866   3rd Qu.: 0.6921   3rd Qu.: 0.61656  
-#>  Max.   : 3.25659   Max.   : 3.4264   Max.   : 3.42824  
-#>  NAs    :100        NAs    :100       NAs    :100
+summary(object = df)
+#>        X                  M                  Y           
+#>  Min.   :-3.33881   Min.   :-3.60058   Min.   :-3.06005  
+#>  1st Qu.:-0.64696   1st Qu.:-0.73993   1st Qu.:-0.68379  
+#>  Median :-0.02193   Median :-0.05603   Median :-0.07012  
+#>  Mean   :-0.02884   Mean   :-0.04049   Mean   :-0.02438  
+#>  3rd Qu.: 0.60164   3rd Qu.: 0.64738   3rd Qu.: 0.60255  
+#>  Max.   : 3.08222   Max.   : 2.94878   Max.   : 3.43050  
+#>  NAs    :100        NAs    :100        NAs    :100
 ```
 
 ### Model Specification
@@ -119,29 +125,29 @@ We can now fit the model using the `sem()` function from `lavaan`. We
 use full-information maximum likelihood to deal with missing values.
 
 ``` r
-fit <- sem(data = df, model = model, missing = "fiml")
+fit <- lavaan::sem(data = df, model = model, missing = "fiml")
 ```
 
 The `fit` `lavaan` object can then be passed to the `MC()` function to
 generate Monte Carlo confidence intervals.
 
 ``` r
-mc <- MC(fit, R = 20000L, alpha = 0.05)
+mc <- MC(lav = fit, R = 20000L, alpha = 0.05)
 mc
 #> Monte Carlo Confidence Intervals
 #>              est     se     R    2.5%  97.5%
-#> cp        0.2189 0.0304 20000  0.1584 0.2780
-#> b         0.5131 0.0279 20000  0.4585 0.5684
-#> a         0.5079 0.0320 20000  0.4451 0.5709
-#> X~~X      0.9654 0.0452 20000  0.8769 1.0556
-#> Y~~Y      0.5308 0.0260 20000  0.4801 0.5822
-#> M~~M      0.8348 0.0403 20000  0.7562 0.9148
-#> Y~1      -0.0216 0.0248 20000 -0.0692 0.0279
-#> M~1      -0.0252 0.0305 20000 -0.0844 0.0344
-#> X~1       0.0093 0.0324 20000 -0.0551 0.0719
-#> indirect  0.2606 0.0217 20000  0.2194 0.3042
-#> direct    0.2189 0.0304 20000  0.1584 0.2780
-#> total     0.4795 0.0302 20000  0.4202 0.5386
+#> cp        0.2209 0.0319 20000  0.1583 0.2838
+#> b         0.5176 0.0297 20000  0.4598 0.5753
+#> a         0.5341 0.0315 20000  0.4726 0.5959
+#> X~~X      0.9146 0.0433 20000  0.8303 0.9994
+#> Y~~Y      0.5496 0.0270 20000  0.4970 0.6025
+#> M~~M      0.7722 0.0372 20000  0.6999 0.8452
+#> Y~1      -0.0122 0.0252 20000 -0.0613 0.0368
+#> M~1      -0.0271 0.0294 20000 -0.0846 0.0303
+#> X~1      -0.0260 0.0313 20000 -0.0873 0.0357
+#> indirect  0.2765 0.0226 20000  0.2337 0.3215
+#> direct    0.2209 0.0319 20000  0.1583 0.2838
+#> total     0.4974 0.0310 20000  0.4368 0.5579
 ```
 
 ### Monte Carlo Confidence Intervals - Multiple Imputation
@@ -153,7 +159,7 @@ example, we impute multivariate missing data under the normal model.
 
 ``` r
 mi <- mice::mice(
-  df,
+  data = df,
   method = "norm",
   m = 100,
   print = FALSE,
@@ -164,26 +170,26 @@ mi <- mice::mice(
 We fit the model using lavaan using the default listwise deletion.
 
 ``` r
-fit <- sem(data = df, model = model)
+fit <- lavaan::sem(data = df, model = model)
 ```
 
 The `fit` `lavaan` object and `mi` object can then be passed to the
 `MCMI()` function to generate Monte Carlo confidence intervals.
 
 ``` r
-mcmi <- MCMI(fit, mi = mi, R = 20000L, alpha = 0.05, seed = 42)
+mcmi <- MCMI(lav = fit, mi = mi, R = 20000L, alpha = 0.05, seed = 42)
 mcmi
 #> Monte Carlo Confidence Intervals (Multiple Imputation Estimates)
 #>             est     se     R   2.5%  97.5%
-#> cp       0.2195 0.0308 20000 0.1579 0.2791
-#> b        0.5124 0.0284 20000 0.4565 0.5684
-#> a        0.5085 0.0320 20000 0.4450 0.5711
-#> X~~X     0.9671 0.0454 20000 0.8780 1.0557
-#> Y~~Y     0.5311 0.0269 20000 0.4784 0.5844
-#> M~~M     0.8342 0.0410 20000 0.7545 0.9137
-#> indirect 0.2606 0.0219 20000 0.2188 0.3047
-#> direct   0.2195 0.0308 20000 0.1579 0.2791
-#> total    0.4800 0.0301 20000 0.4204 0.5382
+#> cp       0.2202 0.0324 20000 0.1567 0.2835
+#> b        0.5172 0.0302 20000 0.4586 0.5760
+#> a        0.5349 0.0319 20000 0.4727 0.5978
+#> X~~X     0.9173 0.0431 20000 0.8331 1.0017
+#> Y~~Y     0.5491 0.0274 20000 0.4956 0.6030
+#> M~~M     0.7714 0.0371 20000 0.6987 0.8438
+#> indirect 0.2766 0.0228 20000 0.2327 0.3222
+#> direct   0.2202 0.0324 20000 0.1567 0.2835
+#> total    0.4968 0.0310 20000 0.4366 0.5576
 ```
 
 ### Standardized Monte Carlo Confidence Intervals
@@ -193,33 +199,33 @@ passing the result of the `MC()` function or the `MCMI()` function to
 `MCStd()`.
 
 ``` r
-MCStd(mc, alpha = 0.05)
+MCStd(mc = mc, alpha = 0.05)
 #> Standardized Monte Carlo Confidence Intervals
 #>              est     se     R   2.5%  97.5%
-#> cp        0.2181 0.0299 20000 0.1588 0.2757
-#> b         0.5417 0.0266 20000 0.4886 0.5931
-#> a         0.4793 0.0266 20000 0.4260 0.5302
+#> cp        0.2131 0.0307 20000 0.1525 0.2735
+#> b         0.5307 0.0275 20000 0.4759 0.5837
+#> a         0.5026 0.0260 20000 0.4502 0.5523
 #> X~~X      1.0000 0.0000 20000 1.0000 1.0000
-#> Y~~Y      0.5458 0.0255 20000 0.4958 0.5956
-#> M~~M      0.7702 0.0254 20000 0.7189 0.8186
-#> indirect -0.0219 0.0195 20000 0.2214 0.2979
-#> direct   -0.0242 0.0299 20000 0.1588 0.2757
-#> total     0.0094 0.0264 20000 0.4240 0.5280
+#> Y~~Y      0.5593 0.0255 20000 0.5083 0.6083
+#> M~~M      0.7474 0.0261 20000 0.6949 0.7973
+#> indirect -0.0123 0.0197 20000 0.2286 0.3057
+#> direct   -0.0267 0.0307 20000 0.1525 0.2735
+#> total    -0.0272 0.0267 20000 0.4263 0.5307
 ```
 
 ``` r
-MCStd(mcmi, alpha = 0.05)
+MCStd(mc = mcmi, alpha = 0.05)
 #> Standardized Monte Carlo Confidence Intervals
 #>             est     se     R   2.5%  97.5%
-#> cp       0.2253 0.0305 20000 0.1581 0.2781
-#> b        0.5379 0.0269 20000 0.4870 0.5923
-#> a        0.4787 0.0269 20000 0.4257 0.5312
+#> cp       0.2180 0.0310 20000 0.1521 0.2729
+#> b        0.5082 0.0285 20000 0.4740 0.5853
+#> a        0.4957 0.0265 20000 0.4511 0.5549
 #> X~~X     1.0000 0.0000 20000 1.0000 1.0000
-#> Y~~Y     0.5439 0.0258 20000 0.4956 0.5963
-#> M~~M     0.7709 0.0257 20000 0.7178 0.8188
-#> indirect 0.2575 0.0196 20000 0.2213 0.2981
-#> direct   0.2253 0.0305 20000 0.1581 0.2781
-#> total    0.4828 0.0266 20000 0.4243 0.5287
+#> Y~~Y     0.5843 0.0253 20000 0.5098 0.6087
+#> M~~M     0.7543 0.0267 20000 0.6921 0.7965
+#> indirect 0.2519 0.0201 20000 0.2283 0.3068
+#> direct   0.2180 0.0310 20000 0.1521 0.2729
+#> total    0.4699 0.0267 20000 0.4264 0.5308
 ```
 
 ## Documentation

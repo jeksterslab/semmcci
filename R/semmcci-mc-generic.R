@@ -111,20 +111,20 @@ MCGeneric <- function(object,
     }
   )
   def_vars <- unique(
-    unlist(
-      sapply(
+    x = unlist(
+      x = sapply(
         X = defs_exp, FUN = all.vars
       )
     )
   )
   ## def to be used as names
   def_vec <- def
-  dim(def_vec) <- NULL
+  dim(x = def_vec) <- NULL
   ## set up Monte Carlo
-  if (!is.null(seed)) {
-    set.seed(seed)
+  if (!is.null(x = seed)) {
+    set.seed(seed = seed)
   }
-  if (!is.null(decomposition)) {
+  if (!is.null(x = decomposition)) {
     if (decomposition == "chol") {
       pd <- FALSE
     }
@@ -135,11 +135,11 @@ MCGeneric <- function(object,
       what = "lavaan"
     )
   ) {
-    location <- lavaan::coef(object)[def_vars]
-    scale <- lavaan::vcov(object)[def_vars, def_vars]
+    location <- lavaan::coef(object = object)[def_vars]
+    scale <- lavaan::vcov(object = object)[def_vars, def_vars]
   } else {
-    location <- stats::coef(object)[def_vars]
-    scale <- stats::vcov(object)[def_vars, def_vars]
+    location <- stats::coef(object = object)[def_vars]
+    scale <- stats::vcov(object = object)[def_vars, def_vars]
   }
   thetahatstar <- .ThetaHatStar(
     R = R,
@@ -152,22 +152,22 @@ MCGeneric <- function(object,
   ## defined parameters
   ### single replication
   thetahatstar_orig <- thetahatstar$thetahatstar
-  var_names <- colnames(thetahatstar_orig)
+  var_names <- colnames(x = thetahatstar_orig)
   foo <- function(def,
                   thetahat) {
-    names(thetahat) <- var_names
+    names(x = thetahat) <- var_names
     env <- list2env(
-      as.list(thetahat)
+      x = as.list(x = thetahat)
     )
     eval(
-      parse(text = def),
+      expr = parse(text = def),
       envir = env
     )
   }
   ### R replications for 1 def
   bar <- function(def) {
     thetahatstar_dist <- rep(x = NA, times = R)
-    for (i in seq_len(R)) {
+    for (i in seq_len(length.out = R)) {
       thetahatstar_i <- thetahatstar_orig[i, ]
       thetahatstar_dist[i] <- foo(
         def = def,
@@ -184,16 +184,16 @@ MCGeneric <- function(object,
       FUN = bar
     )
   )
-  colnames(thetahatstar) <- def_vec
+  colnames(x = thetahatstar) <- def_vec
   ## estimates
-  thetahat <- rep(x = NA, times = length(def))
-  for (i in seq_along(thetahat)) {
+  thetahat <- rep(x = NA, times = length(x = def))
+  for (i in seq_along(along.with = thetahat)) {
     thetahat[i] <- foo(
       def = def[[i]],
       thetahat = location
     )
   }
-  names(thetahat) <- def_vec
+  names(x = thetahat) <- def_vec
   # output
   out <- list(
     call = match.call(),
@@ -204,9 +204,9 @@ MCGeneric <- function(object,
     thetahatstar = thetahatstar,
     fun = "MCGeneric"
   )
-  class(out) <- c(
+  class(x = out) <- c(
     "semmcci",
-    class(out)
+    class(x = out)
   )
   out
 }

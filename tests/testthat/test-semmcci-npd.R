@@ -5,18 +5,13 @@ lapply(
                  text) {
     message(text)
 
-    set.seed(42)
+    set.seed(seed = 42)
 
-    if (!identical(Sys.getenv("NOT_CRAN"), "true") && !interactive()) {
-      message("CRAN: tests skipped.")
-      # nolint start
-      return(invisible(NULL))
-      # nolint end
-    }
+    testthat::skip_on_cran()
 
     testthat::test_that(
-      paste(text, "chol"),
-      {
+      desc = paste(text, "chol"),
+      code = {
         testthat::skip_on_cran()
         location <- c(
           y1 = 0,
@@ -28,7 +23,7 @@ lapply(
           ncol = 3
         )
         testthat::expect_error(
-          semmcci:::.ThetaHatStar(
+          object = semmcci:::.ThetaHatStar(
             R = 2000L,
             scale = scale,
             location = location,
@@ -39,8 +34,8 @@ lapply(
       }
     )
     testthat::test_that(
-      paste(text, "eigen"),
-      {
+      desc = paste(text, "eigen"),
+      code = {
         testthat::skip_on_cran()
         location <- c(
           y1 = 0,
@@ -52,7 +47,7 @@ lapply(
           ncol = 3
         )
         testthat::expect_error(
-          semmcci:::.ThetaHatStar(
+          object = semmcci:::.ThetaHatStar(
             R = 2000L,
             scale = scale,
             location = location,
@@ -63,8 +58,8 @@ lapply(
       }
     )
     testthat::test_that(
-      paste(text, "svd"),
-      {
+      desc = paste(text, "svd"),
+      code = {
         testthat::skip_on_cran()
         location <- c(
           y1 = 0,
@@ -76,7 +71,7 @@ lapply(
           ncol = 3
         )
         testthat::expect_error(
-          semmcci:::.ThetaHatStar(
+          object = semmcci:::.ThetaHatStar(
             R = 2000L,
             scale = scale,
             location = location,
@@ -87,8 +82,8 @@ lapply(
       }
     )
     testthat::test_that(
-      paste(text, "wrong"),
-      {
+      desc = paste(text, "wrong"),
+      code = {
         testthat::skip_on_cran()
         location <- c(
           y1 = 0,
@@ -100,7 +95,7 @@ lapply(
           ncol = 3
         )
         testthat::expect_error(
-          semmcci:::.ThetaHatStar(
+          object = semmcci:::.ThetaHatStar(
             R = 2000L,
             scale = scale,
             location = location,
@@ -111,8 +106,8 @@ lapply(
       }
     )
     testthat::test_that(
-      paste(text, "coverage"),
-      {
+      desc = paste(text, "coverage"),
+      code = {
         testthat::skip_on_cran()
         location <- c(
           y1 = 0,
@@ -131,7 +126,30 @@ lapply(
           pd = FALSE
         )
         testthat::expect_true(
-          TRUE
+          object = TRUE
+        )
+      }
+    )
+    testthat::test_that(
+      desc = paste(text, "chol falls back to eigen for a singular matrix"),
+      code = {
+        testthat::skip_on_cran()
+        v <- c(1, 2, 3)
+        scale <- tcrossprod(x = v)
+        out <- semmcci:::.ThetaHatStar(
+          R = 100L,
+          scale = scale,
+          location = c(y1 = 0, y2 = 0, y3 = 0),
+          decomposition = "chol",
+          pd = FALSE
+        )
+        testthat::expect_identical(
+          object = out$decomposition,
+          expected = "eigen"
+        )
+        testthat::expect_identical(
+          object = dim(x = out$thetahatstar),
+          expected = c(100L, 3L)
         )
       }
     )

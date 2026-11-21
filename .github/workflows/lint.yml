@@ -6,26 +6,75 @@ on:
     types:
       - completed
   workflow_dispatch:
+    inputs:
+      latest:
+        description: "Run in the latest image and packages, not the lock's"
+        type: boolean
+        default: false
 
 permissions: read-all
 
 jobs:
+  # the image and packages of the release (.setup/scripts/rproject.lock);
+  # a scheduled run, or a manual run with latest, uses the latest
+  image:
+    runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.lock.outputs.image }}
+      snapshot: ${{ steps.lock.outputs.snapshot }}
+      r_version: ${{ steps.lock.outputs.r_version }}
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v7
+        with:
+          sparse-checkout: .setup/scripts
+      -
+        name: Read the lock
+        id: lock
+        env:
+          EVENT: ${{ github.event_name }}
+          LATEST: ${{ inputs.latest }}
+        run: bash .setup/scripts/image-lock.sh
+
   lint:
+    needs: image
     runs-on: ubuntu-latest
     env:
+      RPROJECT_SNAPSHOT: ${{ needs.image.outputs.snapshot }}
       GITHUB_PAT: ${{ secrets.PAT }}
       GITHUB_ACTIONS: "true"
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - uses: r-lib/actions/setup-r@v2
         with:
           use-public-rspm: true
 
+      - name: Pin packages to the lock's snapshot
+        if: needs.image.outputs.snapshot != 'latest'
+        shell: Rscript {0}
+        run: |
+          # R-devel keeps the latest packages: an old snapshot may not build there
+          if (!grepl("devel|unstable", R.version$status, ignore.case = TRUE)) {
+            repo <- "https://packagemanager.posit.co/cran/"
+            if (Sys.info()[["sysname"]] == "Linux" && nzchar(Sys.which("lsb_release"))) {
+              codename <- system2("lsb_release", "-cs", stdout = TRUE)
+              repo <- paste0(repo, "__linux__/", codename, "/")
+            }
+            repo <- paste0(repo, Sys.getenv("RPROJECT_SNAPSHOT"))
+            cat(
+              sprintf("options(repos = c(CRAN = \"%s\"))\n", repo),
+              file = path.expand("~/.Rprofile"),
+              append = TRUE
+            )
+            message("Packages from ", repo)
+          }
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::lintr, local::.
+          extra-packages: any::lintr, github::ijapesigan/rProject, local::.
           needs: lint
 
       - name: Lint
@@ -51,6 +100,51 @@ jobs:
             FUN.VALUE = logical(1)
           )
           exclusions <- exclusions[keep]
+          # .Rtex chunk options (`% #| label = ...`): lintr counts the `%`
+          # as indentation; every other linter still checks the .Rtex files
+          rtex <- list.files(
+            path = ".",
+            pattern = "\\.Rtex$",
+            recursive = TRUE
+          )
+          exclusions <- c(
+            exclusions,
+            stats::setNames(
+              object = rep(
+                x = list(list(indentation_linter = Inf)),
+                times = length(rtex)
+              ),
+              nm = rtex
+            )
+          )
+          # texHelper helpers call each other but are not a package:
+          # object_usage_linter cannot see them. The template's smoke test has
+          # a {{pkg}} placeholder.
+          tex_tools <- list.files(
+            path = ".",
+            pattern = "^texHelper-.*\\.R$",
+            recursive = TRUE,
+            all.files = TRUE
+          )
+          smoke <- file.path("inst", "template", "once", "test-pkg-smoke.R")
+          smoke <- smoke[file.exists(smoke)]
+          exclusions <- c(
+            exclusions,
+            stats::setNames(
+              object = rep(
+                x = list(list(object_usage_linter = Inf)),
+                times = length(tex_tools)
+              ),
+              nm = tex_tools
+            ),
+            stats::setNames(
+              object = rep(
+                x = list(list(commented_code_linter = Inf)),
+                times = length(smoke)
+              ),
+              nm = smoke
+            )
+          )
           if (length(exclusions) == 0L) {
             lintr::lint_dir(
               path = ".",
@@ -66,3 +160,18 @@ jobs:
         shell: Rscript {0}
         env:
           LINTR_ERROR_ON_LINT: true
+
+      # the style guides' checks; warnings are reported, errors fail once the
+      # project has lint_error <- TRUE in .setup/scripts/project.R
+      - name: House checks
+        if: always()
+        run: |
+          house <- rProject:::.LintHouse(
+            path = getwd(),
+            type = rProject:::.TemplateType(path = getwd())
+          )
+          rProject:::.LintReport(rows = house)
+          if (any(house$level == "error")) {
+            stop("house checks failed")
+          }
+        shell: Rscript {0}

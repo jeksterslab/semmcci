@@ -21,9 +21,9 @@ lapply(
       sigmasqy = 1,
       ab = a * b
     )
-    x <- rnorm(n = n)
-    m <- a * x + rnorm(n = n)
-    y <- cp * x + b * m + rnorm(n = n)
+    x <- stats::rnorm(n = n)
+    m <- a * x + stats::rnorm(n = n)
+    y <- cp * x + b * m + stats::rnorm(n = n)
     data <- data.frame(x, m, y)
     model <- "
       y ~ cp * x + b * m
@@ -39,13 +39,13 @@ lapply(
       fixed.x = FALSE
     )
     results <- .MCCI(
-      MCMI(
-        fit,
+      object = MCMI(
+        lav = fit,
         R = R,
         alpha = alpha,
         seed = seed,
         mi = mice::mice(
-          data,
+          data = data,
           m = 5,
           seed = seed,
           print = FALSE
@@ -53,23 +53,23 @@ lapply(
       )
     )
     results <- results[, c(1, 2, 4, 5)]
-    colnames(results) <- column_names
-    set.seed(seed)
+    colnames(x = results) <- column_names
+    set.seed(seed = seed)
     answer <- MASS::mvrnorm(
       n = R,
-      mu = lavaan::coef(fit),
-      Sigma = lavaan::vcov(fit)
+      mu = lavaan::coef(object = fit),
+      Sigma = lavaan::vcov(object = fit)
     )
     answer <- cbind(
       answer,
       ab = answer[, "a"] * answer[, "b"]
     )
-    expected <- colMeans(answer)
-    se <- sqrt(diag(stats::var(answer)))
+    expected <- colMeans(x = answer)
+    se <- sqrt(x = diag(x = stats::var(x = answer)))
     prob_ll <- alpha / 2
     prob_ul <- 1 - prob_ll
     answer <- lapply(
-      X = as.data.frame(answer),
+      X = as.data.frame(x = answer),
       FUN = stats::quantile,
       probs = c(prob_ll, prob_ul)
     )
@@ -82,15 +82,15 @@ lapply(
       se = se,
       answer
     )
-    colnames(answer) <- column_names
+    colnames(x = answer) <- column_names
     testthat::test_that(
-      paste(text, "coefs"),
-      {
+      desc = paste(text, "coefs"),
+      code = {
         testthat::expect_true(
-          all(abs(coefs - as.vector(results[, "est"])) <= tol)
+          object = all(abs(x = coefs - as.vector(x = results[, "est"])) <= tol)
         )
         testthat::expect_true(
-          all(abs(coefs - expected) <= tol)
+          object = all(abs(x = coefs - expected) <= tol)
         )
       }
     )

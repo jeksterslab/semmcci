@@ -1,0 +1,159 @@
+name: rhub 2 (memory)
+
+# Memory errors in compiled code, which CRAN can report after acceptance. Runs at
+# every PUB of a package with src/.
+on:
+  workflow_run:
+    workflows: [ "Source Code" ]
+    types:
+      - completed
+  workflow_dispatch:
+    inputs:
+      latest:
+        description: "Run in the latest image and packages, not the lock's"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  # the image and packages of the release (.setup/scripts/rproject.lock);
+  # a scheduled run, or a manual run with latest, uses the latest
+  image:
+    runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.lock.outputs.image }}
+      snapshot: ${{ steps.lock.outputs.snapshot }}
+      r_version: ${{ steps.lock.outputs.r_version }}
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v7
+        with:
+          sparse-checkout: .setup/scripts
+      -
+        name: Read the lock
+        id: lock
+        env:
+          EVENT: ${{ github.event_name }}
+          LATEST: ${{ inputs.latest }}
+        run: bash .setup/scripts/image-lock.sh
+
+  # memory checks are for compiled code; rProject has none, and runs them
+  # anyway as the testbed for these workflows
+  compiled:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.src.outputs.run }}
+    steps:
+      -
+        name: Checkout src repo
+        uses: actions/checkout@v7
+        with:
+          ref: 'src'
+      -
+        name: Compiled code, or the testbed
+        id: src
+        run: |
+          if [ -d src ] || [ "${{ github.event.repository.name }}" = "rProject" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  check:
+    needs: [image, compiled]
+    if: needs.compiled.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    env:
+      RPROJECT_SNAPSHOT: ${{ needs.image.outputs.snapshot }}
+      GITHUB_PAT: ${{ secrets.PAT }}
+      GITHUB_ACTIONS: "true"
+    strategy:
+      fail-fast: false
+      matrix:
+        container:
+          - name: clang-asan
+            image: ghcr.io/r-hub/containers/clang-asan:latest
+          - name: clang-ubsan
+            image: ghcr.io/r-hub/containers/clang-ubsan:latest
+          - name: gcc-asan
+            image: ghcr.io/r-hub/containers/gcc-asan:latest
+          - name: valgrind
+            image: ghcr.io/r-hub/containers/valgrind:latest
+          - name: rchk
+            image: ghcr.io/r-hub/containers/rchk:latest
+    name: ${{ matrix.container.name }}
+    container:
+      image: ${{ matrix.container.image }}
+    steps:
+      - name: Checkout src repo
+        uses: actions/checkout@v7
+        with:
+          ref: 'src'
+
+      - name: Pin packages to the lock's snapshot
+        if: needs.image.outputs.snapshot != 'latest'
+        shell: Rscript {0}
+        run: |
+          # R-devel keeps the latest packages: an old snapshot may not build there
+          if (!grepl("devel|unstable", R.version$status, ignore.case = TRUE)) {
+            repo <- "https://packagemanager.posit.co/cran/"
+            if (Sys.info()[["sysname"]] == "Linux" && nzchar(Sys.which("lsb_release"))) {
+              codename <- system2("lsb_release", "-cs", stdout = TRUE)
+              repo <- paste0(repo, "__linux__/", codename, "/")
+            }
+            repo <- paste0(repo, Sys.getenv("RPROJECT_SNAPSHOT"))
+            cat(
+              sprintf("options(repos = c(CRAN = \"%s\"))\n", repo),
+              file = path.expand("~/.Rprofile"),
+              append = TRUE
+            )
+            message("Packages from ", repo)
+          }
+
+      - name: Install dependencies
+        run: |
+          R -q -e 'if (!require("pak")) install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))'
+          R -q -e 'pak::pkg_install(c("deps::.", "any::rcmdcheck"), dependencies = TRUE)'
+
+      - name: R-CMD-check
+        uses: r-lib/actions/check-r-package@v2
+        with:
+          error-on: '"error"'
+
+  # ASAN and UBSAN on macOS: r-hub's m1-san platform and its setup script
+  m1-san:
+    needs: [image, compiled]
+    if: needs.compiled.outputs.run == 'true'
+    runs-on: macos-15
+    env:
+      GITHUB_PAT: ${{ secrets.PAT }}
+      GITHUB_ACTIONS: "true"
+    steps:
+      - name: Checkout src repo
+        uses: actions/checkout@v7
+        with:
+          ref: 'src'
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::rcmdcheck
+          needs: check
+
+      - name: Compile with sanitizers
+        run: |
+          curl -fsSL -o mac-asan.sh \
+            https://raw.githubusercontent.com/r-hub/actions/v1/run-check/scripts/mac-asan.sh
+          bash mac-asan.sh
+          rm mac-asan.sh
+
+      - name: R-CMD-check
+        uses: r-lib/actions/check-r-package@v2
+        with:
+          error-on: '"error"'

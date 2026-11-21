@@ -8,30 +8,25 @@ lapply(
                  text) {
     message(text)
 
-    set.seed(42)
+    set.seed(seed = 42)
 
-    if (!identical(Sys.getenv("NOT_CRAN"), "true") && !interactive()) {
-      message("CRAN: tests skipped.")
-      # nolint start
-      return(invisible(NULL))
-      # nolint end
-    }
+    testthat::skip_on_cran()
 
     testthat::test_that(
-      paste(text, "chol"),
-      {
+      desc = paste(text, "chol"),
+      code = {
         testthat::skip_on_cran()
         seed <- 42
-        set.seed(seed)
+        set.seed(seed = seed)
         cp <- 0.00
         b <- 0.10
         a <- 0.10
         sigma2ey <- 1 - b^2 - cp^2 - 2 * a * b * cp
         sigma2em <- 1 - a^2
         sigma2x <- 1
-        x <- rnorm(n = n, sd = sqrt(sigma2x))
-        m <- a * x + rnorm(n = n, sd = sqrt(sigma2em))
-        y <- cp * x + b * m + rnorm(n = n, sd = sqrt(sigma2ey))
+        x <- stats::rnorm(n = n, sd = sqrt(x = sigma2x))
+        m <- a * x + stats::rnorm(n = n, sd = sqrt(x = sigma2em))
+        y <- cp * x + b * m + stats::rnorm(n = n, sd = sqrt(x = sigma2ey))
         data <- data.frame(x, m, y)
         model <- "
           y ~ cp * x + b * m
@@ -43,46 +38,46 @@ lapply(
           fixed.x = FALSE
         )
         results_chol <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "chol",
           seed = seed
         )
         results_eigen <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "eigen",
           seed = seed
         )
         results_svd <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "svd",
           seed = seed
         )
-        set.seed(seed)
+        set.seed(seed = seed)
         answers <- MASS::mvrnorm(
           n = R,
-          mu = lavaan::coef(fit),
-          Sigma = lavaan::vcov(fit)
+          mu = lavaan::coef(object = fit),
+          Sigma = lavaan::vcov(object = fit)
         )
         answers <- cbind(
           answers
         )
         testthat::expect_equal(
-          results_chol$thetahat$est,
-          lavaan::parameterEstimates(fit)$est,
+          object = results_chol$thetahat$est,
+          expected = lavaan::parameterEstimates(object = fit)$est,
           check.attributes = FALSE
         )
         testthat::expect_true(
-          abs(
-            .MCCI(
-              results_chol
-            )["cp", "97.5%"] - quantile(
-              answers[, "cp"],
+          object = abs(
+            x = .MCCI(
+              object = results_chol
+            )["cp", "97.5%"] - stats::quantile(
+              x = answers[, "cp"],
               .975,
               na.rm = TRUE
             )
@@ -91,20 +86,20 @@ lapply(
       }
     )
     testthat::test_that(
-      paste(text, "eigen"),
-      {
+      desc = paste(text, "eigen"),
+      code = {
         testthat::skip_on_cran()
         seed <- 42
-        set.seed(seed)
+        set.seed(seed = seed)
         cp <- 0.00
         b <- 0.10
         a <- 0.10
         sigma2ey <- 1 - b^2 - cp^2 - 2 * a * b * cp
         sigma2em <- 1 - a^2
         sigma2x <- 1
-        x <- rnorm(n = n, sd = sqrt(sigma2x))
-        m <- a * x + rnorm(n = n, sd = sqrt(sigma2em))
-        y <- cp * x + b * m + rnorm(n = n, sd = sqrt(sigma2ey))
+        x <- stats::rnorm(n = n, sd = sqrt(x = sigma2x))
+        m <- a * x + stats::rnorm(n = n, sd = sqrt(x = sigma2em))
+        y <- cp * x + b * m + stats::rnorm(n = n, sd = sqrt(x = sigma2ey))
         data <- data.frame(x, m, y)
         model <- "
           y ~ cp * x + b * m
@@ -116,46 +111,46 @@ lapply(
           fixed.x = FALSE
         )
         results_chol <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "chol",
           seed = seed
         )
         results_eigen <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "eigen",
           seed = seed
         )
         results_svd <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "svd",
           seed = seed
         )
-        set.seed(seed)
+        set.seed(seed = seed)
         answers <- MASS::mvrnorm(
           n = R,
-          mu = lavaan::coef(fit),
-          Sigma = lavaan::vcov(fit)
+          mu = lavaan::coef(object = fit),
+          Sigma = lavaan::vcov(object = fit)
         )
         answers <- cbind(
           answers
         )
         testthat::expect_equal(
-          results_eigen$thetahat$est,
-          lavaan::parameterEstimates(fit)$est,
+          object = results_eigen$thetahat$est,
+          expected = lavaan::parameterEstimates(object = fit)$est,
           check.attributes = FALSE
         )
         testthat::expect_true(
-          abs(
-            .MCCI(
-              results_eigen
-            )["cp", "97.5%"] - quantile(
-              answers[, "cp"],
+          object = abs(
+            x = .MCCI(
+              object = results_eigen
+            )["cp", "97.5%"] - stats::quantile(
+              x = answers[, "cp"],
               .975
             )
           ) <= tol
@@ -163,20 +158,20 @@ lapply(
       }
     )
     testthat::test_that(
-      paste(text, "svd"),
-      {
+      desc = paste(text, "svd"),
+      code = {
         testthat::skip_on_cran()
         seed <- 42
-        set.seed(seed)
+        set.seed(seed = seed)
         cp <- 0.00
         b <- 0.10
         a <- 0.10
         sigma2ey <- 1 - b^2 - cp^2 - 2 * a * b * cp
         sigma2em <- 1 - a^2
         sigma2x <- 1
-        x <- rnorm(n = n, sd = sqrt(sigma2x))
-        m <- a * x + rnorm(n = n, sd = sqrt(sigma2em))
-        y <- cp * x + b * m + rnorm(n = n, sd = sqrt(sigma2ey))
+        x <- stats::rnorm(n = n, sd = sqrt(x = sigma2x))
+        m <- a * x + stats::rnorm(n = n, sd = sqrt(x = sigma2em))
+        y <- cp * x + b * m + stats::rnorm(n = n, sd = sqrt(x = sigma2ey))
         data <- data.frame(x, m, y)
         model <- "
           y ~ cp * x + b * m
@@ -188,46 +183,46 @@ lapply(
           fixed.x = FALSE
         )
         results_chol <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "chol",
           seed = seed
         )
         results_eigen <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "eigen",
           seed = seed
         )
         results_svd <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "svd",
           seed = seed
         )
-        set.seed(seed)
+        set.seed(seed = seed)
         answers <- MASS::mvrnorm(
           n = R,
-          mu = lavaan::coef(fit),
-          Sigma = lavaan::vcov(fit)
+          mu = lavaan::coef(object = fit),
+          Sigma = lavaan::vcov(object = fit)
         )
         answers <- cbind(
           answers
         )
         testthat::expect_equal(
-          results_svd$thetahat$est,
-          lavaan::parameterEstimates(fit)$est,
+          object = results_svd$thetahat$est,
+          expected = lavaan::parameterEstimates(object = fit)$est,
           check.attributes = FALSE
         )
         testthat::expect_true(
-          abs(
-            .MCCI(
-              results_svd
-            )["cp", "97.5%"] - quantile(
-              answers[, "cp"],
+          object = abs(
+            x = .MCCI(
+              object = results_svd
+            )["cp", "97.5%"] - stats::quantile(
+              x = answers[, "cp"],
               .975,
               na.rm = TRUE
             )

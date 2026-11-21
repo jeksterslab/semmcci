@@ -5,18 +5,13 @@ lapply(
                  text) {
     message(text)
 
-    set.seed(42)
+    set.seed(seed = 42)
 
-    if (!identical(Sys.getenv("NOT_CRAN"), "true") && !interactive()) {
-      message("CRAN: tests skipped.")
-      # nolint start
-      return(invisible(NULL))
-      # nolint end
-    }
+    testthat::skip_on_cran()
 
     testthat::test_that(
-      paste(text, "coverage"),
-      {
+      desc = paste(text, "coverage"),
+      code = {
         testthat::skip_on_cran()
         seed <- 42
         h0 <- "
@@ -38,7 +33,7 @@ lapply(
           ),
           nrow = 4
         )
-        colnames(sigmacap) <- rownames(sigmacap) <- paste0("y", 1:4)
+        colnames(x = sigmacap) <- rownames(x = sigmacap) <- paste0("y", 1:4)
         model <- "
           eta1 =~ y1 + y2 + y3 + y4
         "
@@ -47,10 +42,10 @@ lapply(
           sample.cov = sigmacap,
           sample.nobs = 50
         )
-        print(lavaan::summary(fit))
-        print(MCStd(MC(fit)))
+        print(x = lavaan::summary(object = fit))
+        print(x = MCStd(mc = MC(lav = fit)))
         testthat::expect_true(
-          TRUE
+          object = TRUE
         )
       }
     )

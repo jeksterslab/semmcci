@@ -1,9 +1,9 @@
 #!/usr/bin/env Rscript
 
 args <- commandArgs(trailingOnly = TRUE)
-path <- as.character(args[1])
+path <- as.character(x = args[1])
 source(
-  file.path(
+  file = file.path(
     path,
     ".setup",
     "scripts",
@@ -15,7 +15,7 @@ dot_library_folder <- file.path(
   ".library"
 )
 .libPaths(
-  dot_library_folder
+  new = dot_library_folder
 )
 Sys.setenv(
   R_LIBS_USER = dot_library_folder
@@ -30,7 +30,7 @@ rProject::PkgProject(
   path = path,
   pkg = pkg_cran
 )
-if (length(pkg_github_ref) == 0) {
+if (length(x = pkg_github_ref) == 0) {
   rProject::PkgProjectGitHub(
     path = path,
     pkg = pkg_github

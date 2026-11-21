@@ -1,14 +1,14 @@
-# --------------------------------------------
-# CITATION file created with {cffr} R package
+# ------------------------------------------------
+# CITATION.cff file created with {cffr} R package
 # See also: https://docs.ropensci.org/cffr/
-# --------------------------------------------
+# ------------------------------------------------
  
 cff-version: 1.2.0
 message: 'To cite package "semmcci" in publications use:'
 type: software
 license: MIT
 title: 'semmcci: Monte Carlo Confidence Intervals in Structural Equation Modeling'
-version: 1.1.6.9000
+version: 1.1.7
 doi: 10.3758/s13428-023-02114-4
 identifiers:
 - type: doi
@@ -20,8 +20,10 @@ abstract: Monte Carlo confidence intervals for free and defined parameters in mo
   function or the MCMI() function to generate Monte Carlo confidence intervals. Monte
   Carlo confidence intervals for the standardized estimates can also be generated
   by passing the output of the MC() function or the MCMI() function to the MCStd()
-  function. A description of the package and code examples are presented in Pesigan
-  and Cheung (2024) <https://doi.org/10.3758/s13428-023-02114-4>.
+  function. The functions MCGeneric(), MCFunc(), and Func() generate Monte Carlo confidence
+  intervals for functions of parameters when the estimates and their sampling covariance
+  matrix are supplied. A description of the package and code examples are presented
+  in Pesigan and Cheung (2024) <https://doi.org/10.3758/s13428-023-02114-4>.
 authors:
 - family-names: Pesigan
   given-names: Ivan Jacob Agaloos

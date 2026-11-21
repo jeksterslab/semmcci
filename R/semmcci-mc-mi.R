@@ -97,9 +97,9 @@ MCMI <- function(lav,
       "The \'data\' argument in \'lavaan\' is required by \'MCMI()\'."
     )
   }
-  call0 <- stats::getCall(lav)
+  call0 <- stats::getCall(x = lav)
   call1 <- call0
-  for (i in seq_along(call0)) {
+  for (i in seq_along(along.with = call0)) {
     call1[[i]] <- eval(
       expr = call0[[i]],
       envir = parent.frame()
@@ -112,7 +112,7 @@ MCMI <- function(lav,
     )
   ) {
     imp <- mice::complete(
-      mi,
+      data = mi,
       action = "all"
     )
   } else if (
@@ -152,21 +152,21 @@ MCMI <- function(lav,
   pooled <- .MICombine(
     coefs = coefs,
     vcovs = vcovs,
-    M = length(coefs),
-    k = length(coefs[[1]]),
+    M = length(x = coefs),
+    k = length(x = coefs[[1]]),
     adj = TRUE
   )
   scale <- pooled$total
   location <- pooled$est
   # mc
-  if (!is.null(decomposition)) {
+  if (!is.null(x = decomposition)) {
     if (decomposition == "chol") {
       pd <- FALSE
     }
   }
   ## set up Monte Carlo
-  if (!is.null(seed)) {
-    set.seed(seed)
+  if (!is.null(x = seed)) {
+    set.seed(seed = seed)
   }
   thetahatstar <- .ThetaHatStar(
     R = R,
@@ -183,7 +183,7 @@ MCMI <- function(lav,
   thetahat <- .ThetaHat(
     object = lav,
     est = colMeans(
-      do.call(
+      x = do.call(
         what = "rbind",
         args = lapply(
           X = fits,
@@ -219,9 +219,9 @@ MCMI <- function(lav,
     thetahatstar = thetahatstar,
     fun = "MCMI"
   )
-  class(out) <- c(
+  class(x = out) <- c(
     "semmcci",
-    class(out)
+    class(x = out)
   )
   out
 }

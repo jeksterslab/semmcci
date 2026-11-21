@@ -27,13 +27,13 @@ knitr::opts_chunk$set(
 
 ```{r}
 #| include = FALSE
-set.seed(42)
+set.seed(seed = 42)
 ```
 
 ```{r}
 #| message = FALSE
-library(semmcci)
-library(lavaan)
+library(package = semmcci)
+library(package = lavaan)
 ```
 
 In this example,
@@ -42,7 +42,7 @@ for composite reliability
 using the Holzinger and Swineford (1939) data set.
 
 ```{r}
-data(HolzingerSwineford1939, package = "lavaan")
+utils::data(HolzingerSwineford1939, package = "lavaan")
 ```
 
 \noindent The confirmatory factor analysis model for $X_{1}, \dots, X_{9}$
@@ -122,7 +122,7 @@ model <- "
 We can now fit the model using the `cfa()` function from `lavaan`.
 
 ```{r}
-fit <- cfa(model = model, data = HolzingerSwineford1939)
+fit <- lavaan::cfa(model = model, data = HolzingerSwineford1939)
 ```
 
 ### Monte Carlo Confidence Intervals
@@ -131,7 +131,7 @@ The `fit` `lavaan` object can then be passed to the `MC()` function
 to generate Monte Carlo confidence intervals.
 
 ```{r}
-MC(fit, R = 20000L, alpha = 0.05)
+MC(lav = fit, R = 20000L, alpha = 0.05)
 ```
 
 ## References
