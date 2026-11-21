@@ -149,9 +149,9 @@ Nonparametric bootstrap confidence intervals can be generated in
 
 \
 [`summary`](https://rdrr.io/r/base/summary.html)`(``object ``=`` ``benchmark_fiml_01``, unit ``=`` ``"ms"``)`\
-`#>   expr         min          lq        mean      median          uq         max`\
-`#> 1   MC    37.77146    39.92133    40.77571    40.58206    41.13603    46.35725`\
-`#> 2   NB 11587.55921 11645.64092 11750.53263 11769.45657 11836.19515 11947.44924`\
+`#>   expr        min          lq        mean      median          uq         max`\
+`#> 1   MC    37.0192    37.57996    39.12464    38.40965    39.59125    45.58812`\
+`#> 2   NB 11520.7874 11623.49138 11665.35161 11679.24373 11698.38101 11853.45561`\
 `#>   neval`\
 `#> 1    10`\
 `#> 2    10`
@@ -162,7 +162,7 @@ Nonparametric bootstrap confidence intervals can be generated in
 [`summary`](https://rdrr.io/r/base/summary.html)`(``object ``=`` ``benchmark_fiml_01``, unit ``=`` ``"relative"``)`\
 `#>   expr      min       lq     mean   median      uq      max neval`\
 `#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.000   1.0000    10`\
-`#> 2   NB 306.7808 291.7148 288.1748 290.0163 287.733 257.7256    10`
+`#> 2   NB 311.2112 309.3003 298.1587 304.0706 295.479 260.0119    10`
 
 ## Plot
 
@@ -198,11 +198,11 @@ Nonparametric bootstrap confidence intervals can be generated in
 \
 [`summary`](https://rdrr.io/r/base/summary.html)`(``object ``=`` ``benchmark_fiml_02``, unit ``=`` ``"ms"``)`\
 `#>   expr          min           lq         mean       median           uq`\
-`#> 1   MC     3.457913     3.513447     3.933961     3.633398     3.922484`\
-`#> 2   NB 11637.799203 11666.021557 11717.663898 11707.785132 11772.217609`\
+`#> 1   MC     3.421935     3.624926     4.286445     3.673593     4.366908`\
+`#> 2   NB 11546.962728 11612.038576 11649.381346 11621.343301 11695.992658`\
 `#>            max neval`\
-`#> 1     5.779055    10`\
-`#> 2 11816.488511    10`
+`#> 1     6.822391    10`\
+`#> 2 11764.776207    10`
 
 ### Summary of Benchmark Results Relative to the Faster Method
 
@@ -210,7 +210,7 @@ Nonparametric bootstrap confidence intervals can be generated in
 [`summary`](https://rdrr.io/r/base/summary.html)`(``object ``=`` ``benchmark_fiml_02``, unit ``=`` ``"relative"``)`\
 `#>   expr      min       lq     mean   median       uq      max neval`\
 `#> 1   MC    1.000    1.000    1.000    1.000    1.000    1.000    10`\
-`#> 2   NB 3365.556 3320.392 2978.592 3222.269 3001.215 2044.709    10`
+`#> 2   NB 3374.396 3203.386 2717.726 3163.481 2678.324 1724.436    10`
 
 ## Plot
 

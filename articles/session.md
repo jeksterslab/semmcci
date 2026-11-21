@@ -524,6 +524,6 @@
 ### Memory
 
     #>                total        used        free      shared  buff/cache   available
-    #> Mem:            44Gi       2.4Gi        40Gi        13Mi       2.3Gi        42Gi
+    #> Mem:            44Gi       2.4Gi        40Gi        13Mi       2.5Gi        42Gi
     #> Swap:           22Gi          0B        22Gi
     #> Total:          66Gi       2.4Gi        62Gi
