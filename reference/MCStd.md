@@ -14,13 +14,13 @@ MCStd(mc, alpha = c(0.001, 0.01, 0.05))
 - mc:
 
   Output of the
-  [`MC()`](https://github.com/jeksterslab/semmcci/reference/MC.md) or
-  [`MCMI()`](https://github.com/jeksterslab/semmcci/reference/MCMI.md)
+  [`MC()`](https://jeksterslab.github.io/semmcci/reference/MC.md) or
+  [`MCMI()`](https://jeksterslab.github.io/semmcci/reference/MCMI.md)
   function.
 
 - alpha:
 
-  Numeric vector. Significance level \\\alpha\\.
+  Numeric vector. Significance level \\(\alpha\\).
 
 ## Value
 
@@ -37,11 +37,12 @@ elements:
 
 - thetahat:
 
-  Parameter estimates \\\hat{\theta}\\.
+  Parameter estimates \\(\hat{\theta}\\).
 
 - thetahatstar:
 
-  Sampling distribution of parameter estimates \\\hat{\theta}^{\ast}\\.
+  Sampling distribution of parameter estimates
+  \\(\hat{\theta}^{\ast}\\).
 
 - fun:
 
@@ -65,11 +66,11 @@ Methods*.
 ## See also
 
 Other Monte Carlo in Structural Equation Modeling Functions:
-[`Func()`](https://github.com/jeksterslab/semmcci/reference/Func.md),
-[`MC()`](https://github.com/jeksterslab/semmcci/reference/MC.md),
-[`MCFunc()`](https://github.com/jeksterslab/semmcci/reference/MCFunc.md),
-[`MCGeneric()`](https://github.com/jeksterslab/semmcci/reference/MCGeneric.md),
-[`MCMI()`](https://github.com/jeksterslab/semmcci/reference/MCMI.md)
+[`Func()`](https://jeksterslab.github.io/semmcci/reference/Func.md),
+[`MC()`](https://jeksterslab.github.io/semmcci/reference/MC.md),
+[`MCFunc()`](https://jeksterslab.github.io/semmcci/reference/MCFunc.md),
+[`MCGeneric()`](https://jeksterslab.github.io/semmcci/reference/MCGeneric.md),
+[`MCMI()`](https://jeksterslab.github.io/semmcci/reference/MCMI.md)
 
 ## Author
 
@@ -108,15 +109,15 @@ unstd <- MC(
 MCStd(unstd, alpha = 0.05)
 #> Standardized Monte Carlo Confidence Intervals
 #>                       est     se R    2.5%  97.5%
-#> cp                 0.0287 0.1014 5 -0.1926 0.0600
-#> b                  0.4144 0.0596 5  0.3900 0.5319
-#> a                  0.1591 0.0724 5  0.1106 0.2792
+#> cp                 0.0287 0.1234 5 -0.1719 0.1354
+#> b                  0.4144 0.0557 5  0.3699 0.5088
+#> a                  0.1591 0.0353 5  0.0117 0.1011
 #> cond~~cond         1.0000 0.0000 5  1.0000 1.0000
-#> reaction~~reaction 0.8237 0.0425 5  0.7317 0.8293
-#> pmi~~pmi           0.9747 0.0285 5  0.9220 0.9875
-#> indirect           0.4890 0.0407 5  0.0455 0.1473
-#> direct             4.0773 0.1014 5 -0.1926 0.0600
-#> total              0.9513 0.1268 5 -0.1471 0.1602
+#> reaction~~reaction 0.8237 0.0405 5  0.7394 0.8350
+#> pmi~~pmi           0.9747 0.0042 5  0.9897 0.9998
+#> indirect           0.4890 0.0145 5  0.0056 0.0424
+#> direct             4.0773 0.1234 5 -0.1719 0.1354
+#> total              0.9513 0.1269 5 -0.1542 0.1620
 
 # Monte Carlo (Multiple Imputation) ----------------------------------------
 ## Multiple Imputation -----------------------------------------------------

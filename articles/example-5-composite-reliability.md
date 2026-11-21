@@ -1,19 +1,15 @@
 # Example 5: Composite Reliability
 
-``` r
-
-library(semmcci)
-library(lavaan)
-```
+\
+[`library`](https://rdrr.io/r/base/library.html)`(``package ``=`` ``semmcci``)`\
+[`library`](https://rdrr.io/r/base/library.html)`(``package ``=`` ``lavaan``)`
 
 In this example, the Monte Carlo method is used to generate confidence
 intervals for composite reliability using the Holzinger and Swineford
 (1939) data set.
 
-``` r
-
-data(HolzingerSwineford1939, package = "lavaan")
-```
+\
+`utils``::`[`data`](https://rdrr.io/r/utils/data.html)`(``HolzingerSwineford1939``, package ``=`` ``"lavaan"``)`
 
 The confirmatory factor analysis model for $`X_{1}, \dots, X_{9}`$ is
 given by
@@ -36,7 +32,7 @@ Assuming that the latent variable variance is constrained to one, the
 omega total reliability coefficient is given by
 
 ``` math
-  \omega_{\mathrm{total}}
+\omega_{\mathrm{total}}
   =
   \frac{
   \left(
@@ -64,33 +60,31 @@ parameters are labeled particularly the factor loadings and the error
 variances, and the omega total reliability coefficient per latent
 variable are defined using the `:=` operator.
 
-``` r
-
-model <- "
-  # fix latent variable variances to 1
-  eta1 ~~ 1 * eta1
-  eta2 ~~ 1 * eta2
-  eta3 ~~ 1 * eta3
-  # factor loadings
-  eta1 =~ NA * x1 + l11 * x1 + l12 * x2 + l13 * x3
-  eta2 =~ NA * x4 + l24 * x4 + l25 * x5 + l26 * x6
-  eta3 =~ NA * x7 + l37 * x7 + l38 * x8 + l39 * x9
-  # error variances
-  x1 ~~ t1 * x1
-  x2 ~~ t2 * x2
-  x3 ~~ t3 * x3
-  x4 ~~ t4 * x4
-  x5 ~~ t5 * x5
-  x6 ~~ t6 * x6
-  x7 ~~ t7 * x7
-  x8 ~~ t8 * x8
-  x9 ~~ t9 * x9
-  # composite reliability
-  omega1 := (l11 + l12 + l13)^2 / ((l11 + l12 + l13)^2 + (t1 + t2 + t3))
-  omega2 := (l24 + l25 + l26)^2 / ((l24 + l25 + l26)^2 + (t4 + t5 + t6))
-  omega3 := (l37 + l38 + l39)^2 / ((l37 + l38 + l39)^2 + (t7 + t8 + t9))
-"
-```
+\
+`model`` ``<-`` ``"`\
+`  # fix latent variable variances to 1`\
+`  eta1 ~~ 1 * eta1`\
+`  eta2 ~~ 1 * eta2`\
+`  eta3 ~~ 1 * eta3`\
+`  # factor loadings`\
+`  eta1 =~ NA * x1 + l11 * x1 + l12 * x2 + l13 * x3`\
+`  eta2 =~ NA * x4 + l24 * x4 + l25 * x5 + l26 * x6`\
+`  eta3 =~ NA * x7 + l37 * x7 + l38 * x8 + l39 * x9`\
+`  # error variances`\
+`  x1 ~~ t1 * x1`\
+`  x2 ~~ t2 * x2`\
+`  x3 ~~ t3 * x3`\
+`  x4 ~~ t4 * x4`\
+`  x5 ~~ t5 * x5`\
+`  x6 ~~ t6 * x6`\
+`  x7 ~~ t7 * x7`\
+`  x8 ~~ t8 * x8`\
+`  x9 ~~ t9 * x9`\
+`  # composite reliability`\
+`  omega1 := (l11 + l12 + l13)^2 / ((l11 + l12 + l13)^2 + (t1 + t2 + t3))`\
+`  omega2 := (l24 + l25 + l26)^2 / ((l24 + l25 + l26)^2 + (t4 + t5 + t6))`\
+`  omega3 := (l37 + l38 + l39)^2 / ((l37 + l38 + l39)^2 + (t7 + t8 + t9))`\
+`"`
 
 ## Model Fitting
 
@@ -98,50 +92,46 @@ We can now fit the model using the
 [`cfa()`](https://rdrr.io/pkg/lavaan/man/cfa.html) function from
 `lavaan`.
 
-``` r
-
-fit <- cfa(model = model, data = HolzingerSwineford1939)
-```
+\
+`fit`` ``<-`` ``lavaan``::`[`cfa`](https://rdrr.io/pkg/lavaan/man/cfa.html)`(``model ``=`` ``model``, data ``=`` ``HolzingerSwineford1939``)`
 
 ### Monte Carlo Confidence Intervals
 
 The `fit` `lavaan` object can then be passed to the
-[`MC()`](https://github.com/jeksterslab/semmcci/reference/MC.md)
-function to generate Monte Carlo confidence intervals.
+[`MC()`](https://jeksterslab.github.io/semmcci/reference/MC.md) function
+to generate Monte Carlo confidence intervals.
 
-``` r
-
-MC(fit, R = 20000L, alpha = 0.05)
-#> Monte Carlo Confidence Intervals
-#>               est     se     R   2.5%  97.5%
-#> eta1~~eta1 1.0000 0.0000 20000 1.0000 1.0000
-#> eta2~~eta2 1.0000 0.0000 20000 1.0000 1.0000
-#> eta3~~eta3 1.0000 0.0000 20000 1.0000 1.0000
-#> l11        0.8996 0.0806 20000 0.7391 1.0567
-#> l12        0.4979 0.0770 20000 0.3474 0.6500
-#> l13        0.6562 0.0745 20000 0.5089 0.8028
-#> l24        0.9897 0.0566 20000 0.8785 1.1000
-#> l25        1.1016 0.0627 20000 0.9801 1.2255
-#> l26        0.9166 0.0533 20000 0.8110 1.0207
-#> l37        0.6195 0.0693 20000 0.4844 0.7561
-#> l38        0.7309 0.0654 20000 0.6026 0.8591
-#> l39        0.6700 0.0655 20000 0.5426 0.7989
-#> t1         0.5491 0.1140 20000 0.3264 0.7749
-#> t2         1.1338 0.1032 20000 0.9323 1.3370
-#> t3         0.8443 0.0916 20000 0.6643 1.0245
-#> t4         0.3712 0.0477 20000 0.2783 0.4654
-#> t5         0.4463 0.0592 20000 0.3310 0.5617
-#> t6         0.3562 0.0430 20000 0.2726 0.4411
-#> t7         0.7994 0.0816 20000 0.6413 0.9562
-#> t8         0.4877 0.0737 20000 0.3427 0.6317
-#> t9         0.5661 0.0708 20000 0.4253 0.7034
-#> eta1~~eta2 0.4585 0.0640 20000 0.3347 0.5861
-#> eta1~~eta3 0.4705 0.0727 20000 0.3282 0.6132
-#> eta2~~eta3 0.2830 0.0688 20000 0.1480 0.4182
-#> omega1     0.6253 0.0363 20000 0.5488 0.6910
-#> omega2     0.8852 0.0116 20000 0.8599 0.9058
-#> omega3     0.6878 0.0312 20000 0.6215 0.7436
-```
+\
+[`MC`](https://jeksterslab.github.io/semmcci/reference/MC.md)`(``lav ``=`` ``fit``, R ``=`` ``20000L``, alpha ``=`` ``0.05``)`\
+`#> Monte Carlo Confidence Intervals`\
+`#>               est     se     R   2.5%  97.5%`\
+`#> eta1~~eta1 1.0000 0.0000 20000 1.0000 1.0000`\
+`#> eta2~~eta2 1.0000 0.0000 20000 1.0000 1.0000`\
+`#> eta3~~eta3 1.0000 0.0000 20000 1.0000 1.0000`\
+`#> l11        0.8996 0.0807 20000 0.7399 1.0579`\
+`#> l12        0.4979 0.0772 20000 0.3483 0.6510`\
+`#> l13        0.6562 0.0746 20000 0.5101 0.8017`\
+`#> l24        0.9897 0.0565 20000 0.8797 1.1006`\
+`#> l25        1.1016 0.0626 20000 0.9788 1.2259`\
+`#> l26        0.9166 0.0534 20000 0.8105 1.0207`\
+`#> l37        0.6195 0.0694 20000 0.4832 0.7572`\
+`#> l38        0.7309 0.0655 20000 0.6042 0.8596`\
+`#> l39        0.6700 0.0655 20000 0.5423 0.7991`\
+`#> t1         0.5491 0.1140 20000 0.3257 0.7733`\
+`#> t2         1.1338 0.1032 20000 0.9320 1.3364`\
+`#> t3         0.8443 0.0913 20000 0.6643 1.0231`\
+`#> t4         0.3712 0.0474 20000 0.2781 0.4642`\
+`#> t5         0.4463 0.0593 20000 0.3295 0.5625`\
+`#> t6         0.3562 0.0431 20000 0.2722 0.4411`\
+`#> t7         0.7994 0.0816 20000 0.6410 0.9556`\
+`#> t8         0.4877 0.0737 20000 0.3427 0.6316`\
+`#> t9         0.5661 0.0708 20000 0.4262 0.7026`\
+`#> eta1~~eta2 0.4585 0.0640 20000 0.3339 0.5850`\
+`#> eta1~~eta3 0.4705 0.0726 20000 0.3282 0.6125`\
+`#> eta2~~eta3 0.2830 0.0692 20000 0.1471 0.4196`\
+`#> omega1     0.6253 0.0364 20000 0.5487 0.6907`\
+`#> omega2     0.8852 0.0117 20000 0.8599 0.9057`\
+`#> omega3     0.6878 0.0312 20000 0.6223 0.7442`
 
 ## References
 

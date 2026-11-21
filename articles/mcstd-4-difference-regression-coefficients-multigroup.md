@@ -1,16 +1,14 @@
 # MCStd Function Use Case 4: Difference of Standardized Regression Coefficients in Multiple Groups
 
 The
-[`MCStd()`](https://github.com/jeksterslab/semmcci/reference/MCStd.md)
+[`MCStd()`](https://jeksterslab.github.io/semmcci/reference/MCStd.md)
 function is used to generate Monte Carlo confidence intervals for
 differences between standardized regression coefficients in multiple
 groups.
 
-``` r
-
-library(semmcci)
-library(lavaan)
-```
+\
+[`library`](https://rdrr.io/r/base/library.html)`(``package ``=`` ``semmcci``)`\
+[`library`](https://rdrr.io/r/base/library.html)`(``package ``=`` ``lavaan``)`
 
 ## Data
 
@@ -20,7 +18,7 @@ is regressed on parental occupational status ($`X_{1}`$), parental
 educational level ($`X_{2}`$), and child’s home possession ($`X_{3}`$)
 
 ``` math
-    Y_{1}
+Y_{1}
     =
     \alpha_{1}
     +
@@ -46,13 +44,11 @@ Structure)](https://raw.githubusercontent.com/jeksterslab/semmcci/main/.setup/la
 
 A Three-Regressor Multiple Regression Model (Covariance Structure)
 
-``` r
-
-knitr::kable(
-  x = covs_hongkong, digits = 4,
-  caption = "Covariance Matrix for Hong Kong"
-)
-```
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(`\
+`  x ``=`` ``covs_hongkong``, digits ``=`` ``4``,`\
+`  caption ``=`` ``"Covariance Matrix for Hong Kong"`\
+`)`
 
 |     |        Y1 |      X1 |      X2 |      X3 |
 |:----|----------:|--------:|--------:|--------:|
@@ -63,19 +59,15 @@ knitr::kable(
 
 Covariance Matrix for Hong Kong {.table}
 
-``` r
+\
+`nobs_hongkong`\
+`#> [1] 4625`
 
-nobs_hongkong
-#> [1] 4625
-```
-
-``` r
-
-knitr::kable(
-  x = covs_japan, digits = 4,
-  caption = "Covariance Matrix for Japan"
-)
-```
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(`\
+`  x ``=`` ``covs_japan``, digits ``=`` ``4``,`\
+`  caption ``=`` ``"Covariance Matrix for Japan"`\
+`)`
 
 |     |        Y1 |      X1 |      X2 |      X3 |
 |:----|----------:|--------:|--------:|--------:|
@@ -86,19 +78,15 @@ knitr::kable(
 
 Covariance Matrix for Japan {.table}
 
-``` r
+\
+`nobs_japan`\
+`#> [1] 5943`
 
-nobs_japan
-#> [1] 5943
-```
-
-``` r
-
-knitr::kable(
-  x = covs_korea, digits = 4,
-  caption = "Covariance Matrix for Korea"
-)
-```
+\
+`knitr``::`[`kable`](https://rdrr.io/pkg/knitr/man/kable.html)`(`\
+`  x ``=`` ``covs_korea``, digits ``=`` ``4``,`\
+`  caption ``=`` ``"Covariance Matrix for Korea"`\
+`)`
 
 |     |        Y1 |      X1 |      X2 |      X3 |
 |:----|----------:|--------:|--------:|--------:|
@@ -109,11 +97,9 @@ knitr::kable(
 
 Covariance Matrix for Korea {.table}
 
-``` r
-
-nobs_korea
-#> [1] 5151
-```
+\
+`nobs_korea`\
+`#> [1] 5151`
 
 ## Model Specification
 
@@ -123,23 +109,21 @@ coefficient $`\gamma_{1}`$ for the three groups as `gamma1.g1`,
 `gamma2.g1`, `gamma2.g2`, and `gamma2.g3`, and $`\gamma_{3}`$ for the
 three groups as `gamma3.g1`, `gamma3.g2`, and `gamma3.g3`.
 
-``` r
-
-model <- "
-  Y1 ~ c(gamma1.g1, gamma1.g2, gamma1.g3) * X1
-  Y1 ~ c(gamma2.g1, gamma2.g2, gamma2.g3) * X2
-  Y1 ~ c(gamma3.g1, gamma3.g2, gamma3.g3) * X3
-  gamma1.g12 := gamma1.g1 - gamma1.g2
-  gamma1.g13 := gamma1.g1 - gamma1.g3
-  gamma1.g23 := gamma1.g2 - gamma1.g3
-  gamma2.g12 := gamma2.g1 - gamma2.g2
-  gamma2.g13 := gamma2.g1 - gamma2.g3
-  gamma2.g23 := gamma2.g2 - gamma2.g3
-  gamma3.g12 := gamma3.g1 - gamma3.g2
-  gamma3.g13 := gamma3.g1 - gamma3.g3
-  gamma3.g23 := gamma3.g2 - gamma3.g3
-"
-```
+\
+`model`` ``<-`` ``"`\
+`  Y1 ~ c(gamma1.g1, gamma1.g2, gamma1.g3) * X1`\
+`  Y1 ~ c(gamma2.g1, gamma2.g2, gamma2.g3) * X2`\
+`  Y1 ~ c(gamma3.g1, gamma3.g2, gamma3.g3) * X3`\
+`  gamma1.g12 := gamma1.g1 - gamma1.g2`\
+`  gamma1.g13 := gamma1.g1 - gamma1.g3`\
+`  gamma1.g23 := gamma1.g2 - gamma1.g3`\
+`  gamma2.g12 := gamma2.g1 - gamma2.g2`\
+`  gamma2.g13 := gamma2.g1 - gamma2.g3`\
+`  gamma2.g23 := gamma2.g2 - gamma2.g3`\
+`  gamma3.g12 := gamma3.g1 - gamma3.g2`\
+`  gamma3.g13 := gamma3.g1 - gamma3.g3`\
+`  gamma3.g23 := gamma3.g2 - gamma3.g3`\
+`"`
 
 ## Model Fitting
 
@@ -153,74 +137,70 @@ Kwan & Chan (2011).
 > and covariances of the exogenous observed variables if they are
 > assumed to be random. If `fixed.x = TRUE`, which is the default
 > setting in `lavaan`,
-> [`MC()`](https://github.com/jeksterslab/semmcci/reference/MC.md) will
+> [`MC()`](https://jeksterslab.github.io/semmcci/reference/MC.md) will
 > fix the variances and the covariances of the exogenous observed
 > variables to the sample values.
 
-``` r
-
-fit <- sem(
-  model = model, mimic = "eqs", fixed.x = FALSE,
-  sample.cov = list(covs_hongkong, covs_japan, covs_korea),
-  sample.nobs = list(nobs_hongkong, nobs_japan, nobs_korea)
-)
-```
+\
+`fit`` ``<-`` ``lavaan``::`[`sem`](https://rdrr.io/pkg/lavaan/man/sem.html)`(`\
+`  model ``=`` ``model``, mimic ``=`` ``"eqs"``, fixed.x ``=`` ``FALSE``,`\
+`  sample.cov ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``covs_hongkong``, ``covs_japan``, ``covs_korea``)``,`\
+`  sample.nobs ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(``nobs_hongkong``, ``nobs_japan``, ``nobs_korea``)`\
+`)`
 
 ## Standardized Monte Carlo Confidence Intervals
 
 Standardized Monte Carlo Confidence intervals can be generated by
 passing the result of the
-[`MC()`](https://github.com/jeksterslab/semmcci/reference/MC.md)
-function to the
-[`MCStd()`](https://github.com/jeksterslab/semmcci/reference/MCStd.md)
+[`MC()`](https://jeksterslab.github.io/semmcci/reference/MC.md) function
+to the
+[`MCStd()`](https://jeksterslab.github.io/semmcci/reference/MCStd.md)
 function.
 
-``` r
-
-unstd <- MC(fit, R = 20000L, alpha = 0.05)
-MCStd(unstd, alpha = 0.05)
-#> Standardized Monte Carlo Confidence Intervals
-#>                est     se     R    2.5%   97.5%
-#> gamma1.g1   0.0568 0.0191 20000  0.0194  0.0942
-#> gamma2.g1   0.1985 0.0186 20000  0.1616  0.2353
-#> gamma3.g1   0.2500 0.0150 20000  0.2208  0.2791
-#> Y1~~Y1      0.8215 0.0103 20000  0.8004  0.8409
-#> X1~~X1      1.0000 0.0000 20000  1.0000  1.0000
-#> X1~~X2      0.6917 0.0076 20000  0.6766  0.7064
-#> X1~~X3      0.4702 0.0115 20000  0.4474  0.4923
-#> X2~~X2      1.0000 0.0000 20000  1.0000  1.0000
-#> X2~~X3      0.4471 0.0117 20000  0.4237  0.4699
-#> X3~~X3      1.0000 0.0000 20000  1.0000  1.0000
-#> gamma1.g2   0.1390 0.0164 20000  0.1068  0.1711
-#> gamma2.g2   0.1792 0.0158 20000  0.1480  0.2098
-#> gamma3.g2   0.1688 0.0139 20000  0.1416  0.1961
-#> Y1~~Y1.g2   0.8371 0.0088 20000  0.8196  0.8539
-#> X1~~X1.g2   1.0000 0.0000 20000  1.0000  1.0000
-#> X1~~X2.g2   0.6525 0.0074 20000  0.6380  0.6670
-#> X1~~X3.g2   0.5023 0.0096 20000  0.4833  0.5208
-#> X2~~X2.g2   1.0000 0.0000 20000  1.0000  1.0000
-#> X2~~X3.g2   0.4452 0.0104 20000  0.4249  0.4651
-#> X3~~X3.g2   1.0000 0.0000 20000  1.0000  1.0000
-#> gamma1.g3   0.0863 0.0170 20000  0.0527  0.1193
-#> gamma2.g3   0.2557 0.0164 20000  0.2236  0.2877
-#> gamma3.g3   0.2289 0.0139 20000  0.2017  0.2563
-#> Y1~~Y1.g3   0.7761 0.0103 20000  0.7556  0.7958
-#> X1~~X1.g3   1.0000 0.0000 20000  1.0000  1.0000
-#> X1~~X2.g3   0.6580 0.0079 20000  0.6425  0.6734
-#> X1~~X3.g3   0.4738 0.0107 20000  0.4526  0.4945
-#> X2~~X2.g3   1.0000 0.0000 20000  1.0000  1.0000
-#> X2~~X3.g3   0.4353 0.0112 20000  0.4133  0.4570
-#> X3~~X3.g3   1.0000 0.0000 20000  1.0000  1.0000
-#> gamma1.g12 -0.0821 0.0251 20000 -0.1311 -0.0336
-#> gamma1.g13 -0.0294 0.0257 20000 -0.0802  0.0208
-#> gamma1.g23  0.0527 0.0236 20000  0.0070  0.0993
-#> gamma2.g12  0.0193 0.0244 20000 -0.0286  0.0674
-#> gamma2.g13 -0.0572 0.0248 20000 -0.1059 -0.0081
-#> gamma2.g23 -0.0765 0.0228 20000 -0.1213 -0.0320
-#> gamma3.g12  0.0811 0.0203 20000  0.0411  0.1209
-#> gamma3.g13  0.0211 0.0204 20000 -0.0191  0.0613
-#> gamma3.g23 -0.0601 0.0196 20000 -0.0988 -0.0217
-```
+\
+`unstd`` ``<-`` `[`MC`](https://jeksterslab.github.io/semmcci/reference/MC.md)`(``lav ``=`` ``fit``, R ``=`` ``20000L``, alpha ``=`` ``0.05``)`\
+[`MCStd`](https://jeksterslab.github.io/semmcci/reference/MCStd.md)`(``mc ``=`` ``unstd``, alpha ``=`` ``0.05``)`\
+`#> Standardized Monte Carlo Confidence Intervals`\
+`#>                est     se     R    2.5%   97.5%`\
+`#> gamma1.g1   0.0568 0.0191 20000  0.0195  0.0942`\
+`#> gamma2.g1   0.1985 0.0186 20000  0.1616  0.2350`\
+`#> gamma3.g1   0.2500 0.0150 20000  0.2207  0.2792`\
+`#> Y1~~Y1      0.8215 0.0103 20000  0.8005  0.8411`\
+`#> X1~~X1      1.0000 0.0000 20000  1.0000  1.0000`\
+`#> X1~~X2      0.6917 0.0076 20000  0.6766  0.7066`\
+`#> X1~~X3      0.4702 0.0115 20000  0.4475  0.4924`\
+`#> X2~~X2      1.0000 0.0000 20000  1.0000  1.0000`\
+`#> X2~~X3      0.4471 0.0117 20000  0.4240  0.4698`\
+`#> X3~~X3      1.0000 0.0000 20000  1.0000  1.0000`\
+`#> gamma1.g2   0.1390 0.0164 20000  0.1068  0.1712`\
+`#> gamma2.g2   0.1792 0.0158 20000  0.1479  0.2099`\
+`#> gamma3.g2   0.1688 0.0139 20000  0.1416  0.1961`\
+`#> Y1~~Y1.g2   0.8371 0.0088 20000  0.8196  0.8539`\
+`#> X1~~X1.g2   1.0000 0.0000 20000  1.0000  1.0000`\
+`#> X1~~X2.g2   0.6525 0.0075 20000  0.6375  0.6669`\
+`#> X1~~X3.g2   0.5023 0.0097 20000  0.4831  0.5209`\
+`#> X2~~X2.g2   1.0000 0.0000 20000  1.0000  1.0000`\
+`#> X2~~X3.g2   0.4452 0.0103 20000  0.4247  0.4652`\
+`#> X3~~X3.g2   1.0000 0.0000 20000  1.0000  1.0000`\
+`#> gamma1.g3   0.0863 0.0170 20000  0.0531  0.1197`\
+`#> gamma2.g3   0.2557 0.0163 20000  0.2242  0.2878`\
+`#> gamma3.g3   0.2289 0.0139 20000  0.2018  0.2564`\
+`#> Y1~~Y1.g3   0.7761 0.0102 20000  0.7557  0.7957`\
+`#> X1~~X1.g3   1.0000 0.0000 20000  1.0000  1.0000`\
+`#> X1~~X2.g3   0.6580 0.0079 20000  0.6425  0.6734`\
+`#> X1~~X3.g3   0.4738 0.0108 20000  0.4527  0.4947`\
+`#> X2~~X2.g3   1.0000 0.0000 20000  1.0000  1.0000`\
+`#> X2~~X3.g3   0.4353 0.0113 20000  0.4131  0.4571`\
+`#> X3~~X3.g3   1.0000 0.0000 20000  1.0000  1.0000`\
+`#> gamma1.g12 -0.0821 0.0251 20000 -0.1310 -0.0337`\
+`#> gamma1.g13 -0.0294 0.0257 20000 -0.0798  0.0205`\
+`#> gamma1.g23  0.0527 0.0236 20000  0.0067  0.0989`\
+`#> gamma2.g12  0.0193 0.0244 20000 -0.0287  0.0676`\
+`#> gamma2.g13 -0.0572 0.0248 20000 -0.1066 -0.0080`\
+`#> gamma2.g23 -0.0765 0.0227 20000 -0.1218 -0.0323`\
+`#> gamma3.g12  0.0811 0.0204 20000  0.0412  0.1208`\
+`#> gamma3.g13  0.0211 0.0204 20000 -0.0189  0.0610`\
+`#> gamma3.g23 -0.0601 0.0196 20000 -0.0990 -0.0217`
 
 ## References
 

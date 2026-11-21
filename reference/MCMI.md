@@ -38,13 +38,15 @@ MCMI(
 
 - alpha:
 
-  Numeric vector. Significance level \\\alpha\\.
+  Numeric vector. Significance level \\(\alpha\\).
 
 - decomposition:
 
   Character string. Matrix decomposition of the sampling
   variance-covariance matrix for the data generation. If
-  `decomposition = "chol"`, use Cholesky decomposition. If
+  `decomposition = "chol"`, use Cholesky decomposition; if the Cholesky
+  decomposition fails (for example, a singular matrix from equality
+  constraints), the eigenvalue decomposition is used. If
   `decomposition = "eigen"`, use eigenvalue decomposition. If
   `decomposition = "svd"`, use singular value decomposition.
 
@@ -76,11 +78,12 @@ elements:
 
 - thetahat:
 
-  Parameter estimates \\\hat{\theta}\\.
+  Parameter estimates \\(\hat{\theta}\\).
 
 - thetahatstar:
 
-  Sampling distribution of parameter estimates \\\hat{\theta}^{\ast}\\.
+  Sampling distribution of parameter estimates
+  \\(\hat{\theta}^{\ast}\\).
 
 - fun:
 
@@ -108,11 +111,11 @@ John Wiley & Sons, Inc.
 ## See also
 
 Other Monte Carlo in Structural Equation Modeling Functions:
-[`Func()`](https://github.com/jeksterslab/semmcci/reference/Func.md),
-[`MC()`](https://github.com/jeksterslab/semmcci/reference/MC.md),
-[`MCFunc()`](https://github.com/jeksterslab/semmcci/reference/MCFunc.md),
-[`MCGeneric()`](https://github.com/jeksterslab/semmcci/reference/MCGeneric.md),
-[`MCStd()`](https://github.com/jeksterslab/semmcci/reference/MCStd.md)
+[`Func()`](https://jeksterslab.github.io/semmcci/reference/Func.md),
+[`MC()`](https://jeksterslab.github.io/semmcci/reference/MC.md),
+[`MCFunc()`](https://jeksterslab.github.io/semmcci/reference/MCFunc.md),
+[`MCGeneric()`](https://jeksterslab.github.io/semmcci/reference/MCGeneric.md),
+[`MCStd()`](https://jeksterslab.github.io/semmcci/reference/MCStd.md)
 
 ## Examples
 
@@ -153,13 +156,13 @@ MCMI(
 )
 #> Monte Carlo Confidence Intervals (Multiple Imputation Estimates)
 #>                       est     se R    2.5%  97.5%
-#> cp                 0.1898 0.2146 5 -0.2255 0.2660
-#> b                  0.4956 0.0323 5  0.5484 0.6197
-#> a                  0.5468 0.2245 5  0.5823 1.0874
-#> cond~~cond         0.2491 0.0454 5  0.1903 0.2961
-#> reaction~~reaction 1.9358 0.1579 5  1.8539 2.1737
-#> pmi~~pmi           1.6766 0.2002 5  1.3031 1.7436
-#> indirect           0.2708 0.1480 5  0.3226 0.6713
-#> direct             0.1898 0.2146 5 -0.2255 0.2660
-#> total              0.4606 0.3050 5  0.2269 0.9266
+#> cp                 0.1898 0.2120 5 -0.2329 0.2508
+#> b                  0.4956 0.0457 5  0.3583 0.4688
+#> a                  0.5468 0.2241 5  0.5814 1.0848
+#> cond~~cond         0.2491 0.0454 5  0.1904 0.2961
+#> reaction~~reaction 1.9358 0.1588 5  1.8555 2.1767
+#> pmi~~pmi           1.6766 0.2001 5  1.3038 1.7446
+#> indirect           0.2708 0.0759 5  0.2451 0.4194
+#> direct             0.1898 0.2120 5 -0.2329 0.2508
+#> total              0.4606 0.2264 5  0.1693 0.6340
 ```

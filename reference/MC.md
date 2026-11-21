@@ -29,13 +29,15 @@ MC(
 
 - alpha:
 
-  Numeric vector. Significance level \\\alpha\\.
+  Numeric vector. Significance level \\(\alpha\\).
 
 - decomposition:
 
   Character string. Matrix decomposition of the sampling
   variance-covariance matrix for the data generation. If
-  `decomposition = "chol"`, use Cholesky decomposition. If
+  `decomposition = "chol"`, use Cholesky decomposition; if the Cholesky
+  decomposition fails (for example, a singular matrix from equality
+  constraints), the eigenvalue decomposition is used. If
   `decomposition = "eigen"`, use eigenvalue decomposition. If
   `decomposition = "svd"`, use singular value decomposition.
 
@@ -67,11 +69,12 @@ elements:
 
 - thetahat:
 
-  Parameter estimates \\\hat{\theta}\\.
+  Parameter estimates \\(\hat{\theta}\\).
 
 - thetahatstar:
 
-  Sampling distribution of parameter estimates \\\hat{\theta}^{\ast}\\.
+  Sampling distribution of parameter estimates
+  \\(\hat{\theta}^{\ast}\\).
 
 - fun:
 
@@ -106,11 +109,11 @@ Measures*, *6*(2), 77–98.
 ## See also
 
 Other Monte Carlo in Structural Equation Modeling Functions:
-[`Func()`](https://github.com/jeksterslab/semmcci/reference/Func.md),
-[`MCFunc()`](https://github.com/jeksterslab/semmcci/reference/MCFunc.md),
-[`MCGeneric()`](https://github.com/jeksterslab/semmcci/reference/MCGeneric.md),
-[`MCMI()`](https://github.com/jeksterslab/semmcci/reference/MCMI.md),
-[`MCStd()`](https://github.com/jeksterslab/semmcci/reference/MCStd.md)
+[`Func()`](https://jeksterslab.github.io/semmcci/reference/Func.md),
+[`MCFunc()`](https://jeksterslab.github.io/semmcci/reference/MCFunc.md),
+[`MCGeneric()`](https://jeksterslab.github.io/semmcci/reference/MCGeneric.md),
+[`MCMI()`](https://jeksterslab.github.io/semmcci/reference/MCMI.md),
+[`MCStd()`](https://jeksterslab.github.io/semmcci/reference/MCStd.md)
 
 ## Author
 
@@ -121,7 +124,7 @@ Ivan Jacob Agaloos Pesigan
 ``` r
 library(semmcci)
 library(lavaan)
-#> This is lavaan 0.6-21
+#> This is lavaan 0.7-3
 #> lavaan is FREE software! Please report any bugs.
 
 # Data ---------------------------------------------------------------------

@@ -36,7 +36,7 @@ Func(coef, func, ..., est, alpha = c(0.001, 0.01, 0.05), ncores = NULL)
 
 - alpha:
 
-  Numeric vector. Significance level \\\alpha\\.
+  Numeric vector. Significance level \\(\alpha\\).
 
 - ncores:
 
@@ -58,11 +58,12 @@ elements:
 
 - thetahat:
 
-  Parameter estimates \\\hat{\theta}\\.
+  Parameter estimates \\(\hat{\theta}\\).
 
 - thetahatstar:
 
-  Sampling distribution of parameter estimates \\\hat{\theta}^{\ast}\\.
+  Sampling distribution of parameter estimates
+  \\(\hat{\theta}^{\ast}\\).
 
 - fun:
 
@@ -95,11 +96,11 @@ Measures*, *6*(2), 77–98.
 ## See also
 
 Other Monte Carlo in Structural Equation Modeling Functions:
-[`MC()`](https://github.com/jeksterslab/semmcci/reference/MC.md),
-[`MCFunc()`](https://github.com/jeksterslab/semmcci/reference/MCFunc.md),
-[`MCGeneric()`](https://github.com/jeksterslab/semmcci/reference/MCGeneric.md),
-[`MCMI()`](https://github.com/jeksterslab/semmcci/reference/MCMI.md),
-[`MCStd()`](https://github.com/jeksterslab/semmcci/reference/MCStd.md)
+[`MC()`](https://jeksterslab.github.io/semmcci/reference/MC.md),
+[`MCFunc()`](https://jeksterslab.github.io/semmcci/reference/MCFunc.md),
+[`MCGeneric()`](https://jeksterslab.github.io/semmcci/reference/MCGeneric.md),
+[`MCMI()`](https://jeksterslab.github.io/semmcci/reference/MCMI.md),
+[`MCStd()`](https://jeksterslab.github.io/semmcci/reference/MCStd.md)
 
 ## Author
 

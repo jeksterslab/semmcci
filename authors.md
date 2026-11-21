@@ -17,10 +17,10 @@ Pesigan, I. J. A. & Cheung, S. F. (2024). Monte Carlo confidence
 intervals for the indirect effect with missing data. Behavior Research
 Methods. https://doi.org/10.3758/s13428-023-02114-4
 
-    @Article{,
-      author = {Ivan Jacob Agaloos Pesigan and Shu Fai Cheung},
-      title = {Monte Carlo confidence intervals for the indirect effect with missing data},
-      year = {2024},
-      doi = {10.3758/s13428-023-02114-4},
-      journal = {Behavior Research Methods},
-    }
+@Article{,\
+  author = {Ivan Jacob Agaloos Pesigan and Shu Fai Cheung},\
+  title = {Monte Carlo confidence intervals for the indirect effect with missing data},\
+  year = {2024},\
+  doi = {10.3758/s13428-023-02114-4},\
+  journal = {Behavior Research Methods},\
+}

@@ -1,5 +1,5 @@
-pandoc: '3.10'
-pkgdown: 2.2.0
+pandoc: '3.14'
+pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   benchmark-complete: benchmark-complete.html
@@ -20,7 +20,7 @@ articles:
   methods-mc: methods-mc.html
   semmcci: semmcci.html
   session: session.html
-last_built: 2026-06-14T00:23Z
+last_built: 2026-11-21T05:27Z
 urls:
-  reference: https://github.com/jeksterslab/semmcci/reference
-  article: https://github.com/jeksterslab/semmcci/articles
+  reference: https://jeksterslab.github.io/semmcci//reference
+  article: https://jeksterslab.github.io/semmcci//articles
