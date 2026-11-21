@@ -7,18 +7,13 @@ lapply(
                  text) {
     message(text)
 
-    set.seed(42)
+    set.seed(seed = 42)
 
-    if (!identical(Sys.getenv("NOT_CRAN"), "true") && !interactive()) {
-      message("CRAN: tests skipped.")
-      # nolint start
-      return(invisible(NULL))
-      # nolint end
-    }
+    testthat::skip_on_cran()
 
     testthat::test_that(
-      paste(text, "chol"),
-      {
+      desc = paste(text, "chol"),
+      code = {
         testthat::skip_on_cran()
         seed <- 42
         data <- lavaan::HolzingerSwineford1939
@@ -35,47 +30,47 @@ lapply(
           data = data
         )
         results_chol <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "chol",
           seed = seed
         )
         results_eigen <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "eigen",
           seed = seed
         )
         results_svd <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "svd",
           seed = seed
         )
-        set.seed(seed)
+        set.seed(seed = seed)
         answers <- MASS::mvrnorm(
           n = R,
-          mu = lavaan::coef(fit),
-          Sigma = lavaan::vcov(fit)
+          mu = lavaan::coef(object = fit),
+          Sigma = lavaan::vcov(object = fit)
         )
         answers <- cbind(
           answers,
           ab = answers[, "a"] * answers[, "b"]
         )
         testthat::expect_equal(
-          results_chol$thetahat$est,
-          lavaan::parameterEstimates(fit)$est,
+          object = results_chol$thetahat$est,
+          expected = lavaan::parameterEstimates(object = fit)$est,
           check.attributes = FALSE
         )
         testthat::expect_true(
-          abs(
-            .MCCI(
-              results_chol
-            )["ab", "97.5%"] - quantile(
-              answers[, "ab"],
+          object = abs(
+            x = .MCCI(
+              object = results_chol
+            )["ab", "97.5%"] - stats::quantile(
+              x = answers[, "ab"],
               .975,
               na.rm = TRUE
             )
@@ -84,8 +79,8 @@ lapply(
       }
     )
     testthat::test_that(
-      paste(text, "eigen"),
-      {
+      desc = paste(text, "eigen"),
+      code = {
         testthat::skip_on_cran()
         seed <- 42
         data <- lavaan::HolzingerSwineford1939
@@ -102,47 +97,47 @@ lapply(
           data = data
         )
         results_chol <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "chol",
           seed = seed
         )
         results_eigen <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "eigen",
           seed = seed
         )
         results_svd <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "svd",
           seed = seed
         )
-        set.seed(seed)
+        set.seed(seed = seed)
         answers <- MASS::mvrnorm(
           n = R,
-          mu = lavaan::coef(fit),
-          Sigma = lavaan::vcov(fit)
+          mu = lavaan::coef(object = fit),
+          Sigma = lavaan::vcov(object = fit)
         )
         answers <- cbind(
           answers,
           ab = answers[, "a"] * answers[, "b"]
         )
         testthat::expect_equal(
-          results_eigen$thetahat$est,
-          lavaan::parameterEstimates(fit)$est,
+          object = results_eigen$thetahat$est,
+          expected = lavaan::parameterEstimates(object = fit)$est,
           check.attributes = FALSE
         )
         testthat::expect_true(
-          abs(
-            .MCCI(
-              results_eigen
-            )["ab", "97.5%"] - quantile(
-              answers[, "ab"],
+          object = abs(
+            x = .MCCI(
+              object = results_eigen
+            )["ab", "97.5%"] - stats::quantile(
+              x = answers[, "ab"],
               .975,
               na.rm = TRUE
             )
@@ -151,8 +146,8 @@ lapply(
       }
     )
     testthat::test_that(
-      paste(text, "svd"),
-      {
+      desc = paste(text, "svd"),
+      code = {
         testthat::skip_on_cran()
         seed <- 42
         data <- lavaan::HolzingerSwineford1939
@@ -169,47 +164,47 @@ lapply(
           data = data
         )
         results_chol <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "chol",
           seed = seed
         )
         results_eigen <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "eigen",
           seed = seed
         )
         results_svd <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           decomposition = "svd",
           seed = seed
         )
-        set.seed(seed)
+        set.seed(seed = seed)
         answers <- MASS::mvrnorm(
           n = R,
-          mu = lavaan::coef(fit),
-          Sigma = lavaan::vcov(fit)
+          mu = lavaan::coef(object = fit),
+          Sigma = lavaan::vcov(object = fit)
         )
         answers <- cbind(
           answers,
           ab = answers[, "a"] * answers[, "b"]
         )
         testthat::expect_equal(
-          results_svd$thetahat$est,
-          lavaan::parameterEstimates(fit)$est,
+          object = results_svd$thetahat$est,
+          expected = lavaan::parameterEstimates(object = fit)$est,
           check.attributes = FALSE
         )
         testthat::expect_true(
-          abs(
-            .MCCI(
-              results_svd
-            )["ab", "97.5%"] - quantile(
-              answers[, "ab"],
+          object = abs(
+            x = .MCCI(
+              object = results_svd
+            )["ab", "97.5%"] - stats::quantile(
+              x = answers[, "ab"],
               .975,
               na.rm = TRUE
             )

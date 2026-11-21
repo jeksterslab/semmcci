@@ -21,7 +21,11 @@
 #' @param decomposition Character string.
 #'   Matrix decomposition of the sampling variance-covariance matrix
 #'   for the data generation.
-#'   If `decomposition = "chol"`, use Cholesky decomposition.
+#'   If `decomposition = "chol"`, use Cholesky decomposition;
+#'   if the Cholesky decomposition fails
+#'   (for example, a singular matrix
+#'   from equality constraints),
+#'   the eigenvalue decomposition is used.
 #'   If `decomposition = "eigen"`, use eigenvalue decomposition.
 #'   If `decomposition = "svd"`, use singular value decomposition.
 #' @param pd Logical.
@@ -114,19 +118,19 @@ MC <- function(lav,
     seed = seed
   )
   # mc
-  if (!is.null(decomposition)) {
+  if (!is.null(x = decomposition)) {
     if (decomposition == "chol") {
       pd <- FALSE
     }
   }
   ## set up Monte Carlo
-  if (!is.null(seed)) {
-    set.seed(seed)
+  if (!is.null(x = seed)) {
+    set.seed(seed = seed)
   }
   thetahatstar <- .ThetaHatStar(
     R = R,
-    scale = lavaan::vcov(lav),
-    location = lavaan::coef(lav),
+    scale = lavaan::vcov(object = lav),
+    location = lavaan::coef(object = lav),
     decomposition = decomposition,
     pd = pd,
     tol = tol
@@ -152,9 +156,9 @@ MC <- function(lav,
     thetahatstar = thetahatstar,
     fun = "MC"
   )
-  class(out) <- c(
+  class(x = out) <- c(
     "semmcci",
-    class(out)
+    class(x = out)
   )
   out
 }

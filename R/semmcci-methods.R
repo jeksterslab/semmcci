@@ -180,7 +180,7 @@ summary.semmcci <- function(object,
     x = ci,
     which = "digits"
   ) <- digits
-  class(ci) <- "summary.semmcci"
+  class(x = ci) <- "summary.semmcci"
   ci
 }
 
@@ -206,8 +206,8 @@ print.summary.semmcci <- function(x,
   if (object$fun == "MCStd") {
     cat("Standardized Monte Carlo Confidence Intervals\n")
   }
-  print(print_summary)
-  invisible(x)
+  print(x = print_summary)
+  invisible(x = x)
 }
 
 #' Parameter Estimates
@@ -349,7 +349,7 @@ coef.semmcci <- function(object,
 vcov.semmcci <- function(object,
                          ...) {
   stats::var(
-    object$thetahatstar
+    x = object$thetahatstar
   )
 }
 
@@ -428,26 +428,26 @@ confint.semmcci <- function(object,
                             level = 0.95,
                             ...) {
   ci <- .MCCI(
-    object,
+    object = object,
     alpha = 1 - level[1]
   )
-  if (is.null(parm)) {
+  if (is.null(x = parm)) {
     parameters <- rownames(
-      ci
+      x = ci
     )
-    if (!is.null(parameters)) {
+    if (!is.null(x = parameters)) {
       parm <- parameters
     } else {
-      parm <- seq_len(dim(ci)[1])
+      parm <- seq_len(length.out = dim(x = ci)[1])
     }
   }
   ci <- ci[parm, 4:5, drop = FALSE]
-  varnames <- colnames(ci)
+  varnames <- colnames(x = ci)
   varnames <- gsub(
     pattern = "%",
     replacement = " %",
     x = varnames
   )
-  colnames(ci) <- varnames
+  colnames(x = ci) <- varnames
   ci
 }

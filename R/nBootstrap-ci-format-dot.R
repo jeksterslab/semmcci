@@ -27,11 +27,11 @@
                       ci) {
   out <- c(
     thetahat,
-    stats::sd(thetahatstar),
-    length(thetahatstar),
+    stats::sd(x = thetahatstar),
+    length(x = thetahatstar),
     ci
   )
-  names(out) <- c(
+  names(x = out) <- c(
     "est",
     "se",
     "R",

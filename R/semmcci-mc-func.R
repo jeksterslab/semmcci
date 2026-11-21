@@ -98,14 +98,14 @@ MCFunc <- function(coef,
   )
   # mc
   ## set up Monte Carlo
-  if (!is.null(seed)) {
-    set.seed(seed)
+  if (!is.null(x = seed)) {
+    set.seed(seed = seed)
   }
   thetahatstar <- as.data.frame(
-    t(
-      .ThetaHatStar(
+    x = t(
+      x = .ThetaHatStar(
         R = R,
-        scale = as.matrix(vcov),
+        scale = as.matrix(x = vcov),
         location = coef,
         decomposition = decomposition,
         pd = pd,
@@ -113,56 +113,12 @@ MCFunc <- function(coef,
       )$thetahatstar
     )
   )
-  par <- FALSE
-  if (!is.null(ncores)) {
-    # nolint start
-    ncores <- as.integer(ncores)
-    if (ncores > 1) {
-      par <- TRUE
-    }
-    # nolint end
-  }
-  if (par) {
-    # nolint start
-    available_cores <- parallel::detectCores()
-    if (ncores >= available_cores) {
-      ncores <- available_cores
-    }
-    os_type <- Sys.info()["sysname"]
-    if (os_type == "Darwin") {
-      fork <- TRUE
-    } else if (os_type == "Linux") {
-      fork <- TRUE
-    } else {
-      fork <- FALSE
-    }
-    if (fork) {
-      thetahatstar <- parallel::mclapply(
-        X = thetahatstar,
-        FUN = func,
-        mc.cores = ncores,
-        ...
-      )
-    } else {
-      cl <- parallel::makeCluster(ncores)
-      on.exit(
-        parallel::stopCluster(cl = cl)
-      )
-      thetahatstar <- parallel::parLapply(
-        cl = cl,
-        X = thetahatstar,
-        fun = func,
-        ...
-      )
-    }
-    # nolint end
-  } else {
-    thetahatstar <- lapply(
-      X = thetahatstar,
-      FUN = func,
-      ...
-    )
-  }
+  thetahatstar <- .MCFuncApply(
+    X = thetahatstar,
+    FUN = func,
+    ...,
+    ncores = ncores
+  )
   thetahatstar <- do.call(
     what = "rbind",
     args = thetahatstar
@@ -177,9 +133,9 @@ MCFunc <- function(coef,
     thetahatstar = thetahatstar,
     fun = "Func"
   )
-  class(out) <- c(
+  class(x = out) <- c(
     "semmcci",
-    class(out)
+    class(x = out)
   )
   out
 }

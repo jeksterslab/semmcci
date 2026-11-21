@@ -26,7 +26,11 @@ Significance level \eqn{\alpha}.}
 \item{decomposition}{Character string.
 Matrix decomposition of the sampling variance-covariance matrix
 for the data generation.
-If \code{decomposition = "chol"}, use Cholesky decomposition.
+If \code{decomposition = "chol"}, use Cholesky decomposition;
+if the Cholesky decomposition fails
+(for example, a singular matrix
+from equality constraints),
+the eigenvalue decomposition is used.
 If \code{decomposition = "eigen"}, use eigenvalue decomposition.
 If \code{decomposition = "svd"}, use singular value decomposition.}
 

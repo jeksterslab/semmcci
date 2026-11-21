@@ -22,18 +22,18 @@
 #'   consists of combining between and within imputation variances
 #'   given by
 #'   \deqn{
-#'     \mathbf{V}_{\mathrm{within}}
+#'     \boldsymbol{V}_{\mathrm{within}}
 #'     =
 #'     M^{-1}
 #'     \sum_{m = 1}^{M}
-#'     \mathrm{Var}
+#'     \operatorname{Var}
 #'     \left(
 #'     \hat{\boldsymbol{\theta}}_{m}
 #'     \right)
 #'   }
 #'
 #'   \deqn{
-#'     \mathbf{V}_{\mathrm{between}}
+#'     \boldsymbol{V}_{\mathrm{between}}
 #'     =
 #'     \left(
 #'     M - 1
@@ -52,35 +52,39 @@
 #'   }
 #'
 #'   \deqn{
-#'     \mathbf{V}_{\mathrm{total}}
+#'     \boldsymbol{V}_{\mathrm{total}}
 #'     =
-#'     \mathbf{V}_{\mathrm{within}}
+#'     \boldsymbol{V}_{\mathrm{within}}
 #'     +
-#'     \mathbf{V}_{\mathrm{between}}
+#'     \boldsymbol{V}_{\mathrm{between}}
 #'     +
 #'     M^{-1}
-#'     \mathbf{V}_{\mathrm{between}} .
+#'     \boldsymbol{V}_{\mathrm{between}} .
 #'   }
 #'
 #'   An alternative total variance was introduced by
 #'   Li, Raghunathan, and Rubin (1991)
 #'   and is given by
 #'   \deqn{
-#'     \tilde{\mathbf{V}}_{\mathrm{total}}
+#'     \tilde{\boldsymbol{V}}_{\mathrm{total}}
 #'     =
-#'     \left( 1 + \mathrm{ARIV} \right)
-#'     \mathbf{V}_{\mathrm{within}}
+#'     \left( 1 + \operatorname{ARIV} \right)
+#'     \boldsymbol{V}_{\mathrm{within}}
 #'   }
-#'   where \eqn{\mathrm{ARIV}} is given by
+#'   where \eqn{\operatorname{ARIV}} is given by
 #'   \deqn{
-#'     \mathrm{ARIV}
+#'     \operatorname{ARIV}
 #'     =
-#'     \left( 1 + M^{-1} \right)
-#'     \mathrm{tr}
-#'     \left(
-#'        \mathbf{V}_{\mathrm{between}}
-#'        \mathbf{V}_{\mathrm{within}}^{-1}
-#'     \right)
+#'     \frac{
+#'       \left( 1 + M^{-1} \right)
+#'       \operatorname{tr}
+#'       \left(
+#'          \boldsymbol{V}_{\mathrm{between}}
+#'          \boldsymbol{V}_{\mathrm{within}}^{-1}
+#'       \right)
+#'     }{
+#'       k
+#'     }
 #'   }
 #'
 #' @param coefs List.
@@ -105,15 +109,15 @@
 #'     }
 #'     \item{`within`}{
 #'       Covariance within imputations
-#'       \eqn{\mathbf{V}_{\mathrm{within}}}.
+#'       \eqn{\boldsymbol{V}_{\mathrm{within}}}.
 #'     }
 #'     \item{`between`}{
 #'       Covariance between imputations
-#'       \eqn{\mathbf{V}_{\mathrm{between}}}.
+#'       \eqn{\boldsymbol{V}_{\mathrm{between}}}.
 #'     }
 #'     \item{`total`}{
 #'       Total covariance matrix
-#'       \eqn{\mathbf{V}_{\mathrm{total}}}.
+#'       \eqn{\boldsymbol{V}_{\mathrm{total}}}.
 #'     }
 #'   }
 #'
@@ -139,7 +143,7 @@
                        k,
                        adj = FALSE) {
   est <- colMeans(
-    do.call(
+    x = do.call(
       what = "rbind",
       args = coefs
     )
@@ -160,19 +164,19 @@
       X = coefs,
       FUN = function(i,
                      est) {
-        tcrossprod(i - est)
+        tcrossprod(x = i - est)
       },
       est = est
     )
   )
-  colnames(between) <- rownames(between) <- rownames(within)
+  colnames(x = between) <- rownames(x = between) <- rownames(x = within)
   total <- within + between + (1 / M) * between
   if (adj) {
     ariv <- .ARIV(
       between = between,
       within = within,
       M = M,
-      k = length(est)
+      k = length(x = est)
     )
     total_adj <- .TotalAdj(
       ariv = ariv,

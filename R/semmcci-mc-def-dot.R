@@ -16,36 +16,11 @@
                    thetahat,
                    thetahatstar_orig) {
   # generate defined parameters
-  if (length(thetahat$def) > 0) {
-    def <- function(i) {
-      out <- tryCatch(
-        {
-          object@Model@def.function(
-            thetahatstar_orig[
-              i,
-            ]
-          )
-        },
-        warning = function(w) {
-          NA
-        },
-        error = function(e) {
-          NA
-        }
-      )
-      out
-    }
-    thetahatstar_def <- lapply(
-      X = seq_len(
-        dim(
-          thetahatstar_orig
-        )[1]
-      ),
-      FUN = def
-    )
-    thetahatstar_def <- do.call(
-      what = "rbind",
-      args = thetahatstar_def
+  if (length(x = thetahat$def) > 0) {
+    thetahatstar_def <- .MCApply(
+      X = thetahatstar_orig,
+      FUN = object@Model@def.function,
+      p = length(x = thetahat$def)
     )
     thetahatstar <- cbind(
       thetahatstar_orig,
@@ -55,14 +30,14 @@
     thetahatstar <- thetahatstar_orig
   }
   # generate equality
-  if (length(thetahat$ceq) > 0) {
+  if (length(x = thetahat$ceq) > 0) {
     ceq <- function(i) {
       out <- object@Model@ceq.function(
         thetahatstar[
           i,
         ]
       )
-      names(out) <- paste0(
+      names(x = out) <- paste0(
         thetahat$ceq,
         "_ceq"
       )
@@ -70,8 +45,8 @@
     }
     thetahatstar_ceq <- lapply(
       X = seq_len(
-        dim(
-          thetahatstar
+        length.out = dim(
+          x = thetahatstar
         )[1]
       ),
       FUN = ceq
@@ -86,14 +61,14 @@
     )
   }
   # generate inequality
-  if (length(thetahat$cin) > 0) {
+  if (length(x = thetahat$cin) > 0) {
     cin <- function(i) {
       out <- object@Model@cin.function(
         thetahatstar[
           i,
         ]
       )
-      names(out) <- paste0(
+      names(x = out) <- paste0(
         thetahat$cin,
         "_cin"
       )
@@ -101,8 +76,8 @@
     }
     thetahatstar_cin <- lapply(
       X = seq_len(
-        dim(
-          thetahatstar
+        length.out = dim(
+          x = thetahatstar
         )[1]
       ),
       FUN = cin
@@ -117,20 +92,20 @@
     )
   }
   # generate fixed
-  if (length(thetahat$fixed) > 0) {
+  if (length(x = thetahat$fixed) > 0) {
     fixed <- matrix(
-      NA,
+      data = NA,
       ncol = length(
-        thetahat$fixed
+        x = thetahat$fixed
       ),
       nrow = dim(
-        thetahatstar
+        x = thetahatstar
       )[1]
     )
     colnames(
-      fixed
+      x = fixed
     ) <- thetahat$fixed
-    for (i in seq_len(dim(fixed)[2])) {
+    for (i in seq_len(length.out = dim(x = fixed)[2])) {
       fixed[
         ,
         i

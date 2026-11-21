@@ -6,18 +6,13 @@ lapply(
                  text) {
     message(text)
 
-    set.seed(42)
+    set.seed(seed = 42)
 
-    if (!identical(Sys.getenv("NOT_CRAN"), "true") && !interactive()) {
-      message("CRAN: tests skipped.")
-      # nolint start
-      return(invisible(NULL))
-      # nolint end
-    }
+    testthat::skip_on_cran()
 
     testthat::test_that(
-      paste(text, "methods"),
-      {
+      desc = paste(text, "methods"),
+      code = {
         testthat::skip_on_cran()
         seed <- 42
         data <- lavaan::HolzingerSwineford1939
@@ -31,14 +26,14 @@ lapply(
           model = model,
           data = data
         )
-        set.seed(seed)
+        set.seed(seed = seed)
         unstd <- MC(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05)
         )
         miunstd <- MCMI(
-          fit,
+          lav = fit,
           R = R,
           alpha = c(0.001, 0.01, 0.05),
           mi = mice::mice(
@@ -46,30 +41,30 @@ lapply(
             print = 0
           )
         )
-        std <- MCStd(unstd)
-        mistd <- MCStd(miunstd)
-        print.semmcci(unstd)
-        print.semmcci(miunstd)
-        print.semmcci(std)
-        print.semmcci(mistd)
-        summary.semmcci(unstd)
-        summary.semmcci(miunstd)
-        summary.semmcci(std)
-        summary.semmcci(mistd)
-        coef.semmcci(unstd)
-        coef.semmcci(miunstd)
-        coef.semmcci(std)
-        coef.semmcci(mistd)
-        vcov.semmcci(unstd)
-        vcov.semmcci(miunstd)
-        vcov.semmcci(std)
-        vcov.semmcci(mistd)
-        confint.semmcci(unstd)
-        confint.semmcci(miunstd)
-        confint.semmcci(std)
-        confint.semmcci(mistd)
+        std <- MCStd(mc = unstd)
+        mistd <- MCStd(mc = miunstd)
+        print.semmcci(x = unstd)
+        print.semmcci(x = miunstd)
+        print.semmcci(x = std)
+        print.semmcci(x = mistd)
+        summary.semmcci(object = unstd)
+        summary.semmcci(object = miunstd)
+        summary.semmcci(object = std)
+        summary.semmcci(object = mistd)
+        coef.semmcci(object = unstd)
+        coef.semmcci(object = miunstd)
+        coef.semmcci(object = std)
+        coef.semmcci(object = mistd)
+        vcov.semmcci(object = unstd)
+        vcov.semmcci(object = miunstd)
+        vcov.semmcci(object = std)
+        vcov.semmcci(object = mistd)
+        confint.semmcci(object = unstd)
+        confint.semmcci(object = miunstd)
+        confint.semmcci(object = std)
+        confint.semmcci(object = mistd)
         testthat::expect_true(
-          TRUE
+          object = TRUE
         )
       }
     )

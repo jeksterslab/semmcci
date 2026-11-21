@@ -100,16 +100,16 @@ Func <- function(coef,
     ncores = ncores
   )
   par <- FALSE
-  if (!is.null(ncores)) {
-    ncores <- as.integer(ncores)
+  if (!is.null(x = ncores)) {
+    ncores <- as.integer(x = ncores)
     if (ncores > 1) {
       par <- TRUE
     }
   }
   if (par) {
-    cl <- parallel::makeCluster(ncores)
+    cl <- parallel::makeCluster(spec = ncores)
     on.exit(
-      parallel::stopCluster(cl = cl)
+      expr = parallel::stopCluster(cl = cl)
     )
     thetahatstar <- parallel::parLapply(
       cl = cl,
@@ -138,9 +138,9 @@ Func <- function(coef,
     thetahatstar = thetahatstar,
     fun = "Func"
   )
-  class(out) <- c(
+  class(x = out) <- c(
     "semmcci",
-    class(out)
+    class(x = out)
   )
   out
 }

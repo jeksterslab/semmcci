@@ -9,13 +9,18 @@
 #' @param decomposition Character string.
 #'   Matrix decomposition of the sampling variance-covariance matrix
 #'   for the data generation.
-#'   If `decomposition = "chol"`, use Cholesky decomposition.
+#'   If `decomposition = "chol"`, use Cholesky decomposition;
+#'   if the Cholesky decomposition fails
+#'   (for example, a singular matrix),
+#'   the eigenvalue decomposition is used
+#'   and `decomposition` in the output is `"eigen"`.
 #'   If `decomposition = "eigen"`, use eigenvalue decomposition.
 #'   If `decomposition = "svd"`, use singular value decomposition.
 #' @param pd Logical.
 #'   If `pd = TRUE`,
 #'   check if the sampling variance-covariance matrix
-#'   is positive definite using `tol`.
+#'   is positive semidefinite using `tol`
+#'   (a singular matrix, with a zero eigenvalue, passes).
 #' @param tol Numeric.
 #'   Tolerance used for `pd`.
 #' @return Returns a list with the following elements:
@@ -41,27 +46,39 @@
       symmetric = TRUE,
       only.values = FALSE
     )
-    npd <- !.TestPositiveDefinite(
+    npd <- !.TestPositiveSemiDefinite(
       eigen = mat,
       tol = tol
     )
     if (npd) {
       stop(
-        "The sampling variance-covariance matrix is nonpositive definite."
+        "The sampling variance-covariance matrix is not positive semidefinite."
       )
     }
   }
   n <- R
-  k <- length(location)
+  k <- length(x = location)
   z <- .RandomGaussianZ(
     n = n,
     k = k
   )
   if (decomposition == "chol") {
-    dist <- .RandomGaussianChol(
-      Z = z,
-      chol = chol(x = scale)
+    # a singular matrix (for example, equality constraints)
+    # can fail in chol(); use the eigenvalue decomposition then
+    chol_scale <- tryCatch(
+      expr = chol(x = scale),
+      error = function(e) {
+        NULL
+      }
     )
+    if (is.null(x = chol_scale)) {
+      decomposition <- "eigen"
+    } else {
+      dist <- .RandomGaussianChol(
+        Z = z,
+        chol = chol_scale
+      )
+    }
   }
   if (decomposition == "eigen") {
     if (!pd) {
@@ -91,9 +108,9 @@
     k = k
   )
   colnames(
-    dist
+    x = dist
   ) <- names(
-    location
+    x = location
   )
   list(
     thetahatstar = dist,

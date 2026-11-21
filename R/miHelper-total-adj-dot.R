@@ -5,17 +5,17 @@
 #' @details The adjusted total sampling covariance matrix
 #'   is given by
 #'   \deqn{
-#'     \tilde{\mathbf{V}}_{\mathrm{total}}
+#'     \tilde{\boldsymbol{V}}_{\mathrm{total}}
 #'     =
-#'     \left( 1 + \mathrm{ARIV} \right)
-#'     \mathbf{V}_{\mathrm{within}}
+#'     \left( 1 + \operatorname{ARIV} \right)
+#'     \boldsymbol{V}_{\mathrm{within}}
 #'   }
 #'
 #' @param ariv Numeric.
 #'   Average relative increase in variance.
 #' @param within Numeric matrix.
 #'   Covariance within imputations
-#'   \eqn{\mathbf{V}_{\mathrm{within}}}.
+#'   \eqn{\boldsymbol{V}_{\mathrm{within}}}.
 #'
 #' @references
 #'   Li, K. H., Raghunathan, T. E., & Rubin, D. B. (1991).

@@ -30,13 +30,13 @@
   # This block works regardless of the number of groups
 
   glist_new <- lav_model_new@GLIST
-  for (i in seq_along(glist_new)) {
-    dimnames(glist_new[[i]]) <- lav_model@dimNames[[i]]
+  for (i in seq_along(along.with = glist_new)) {
+    dimnames(x = glist_new[[i]]) <- lav_model@dimNames[[i]]
   }
   ng <- lav_model@nblocks
   nmat <- lav_model@nmat
   gp_labels <- object@Data@group.label
-  if (length(gp_labels) == 0) {
+  if (length(x = gp_labels) == 0) {
     gp_labels <- "single_group"
   }
   out <- vector(
@@ -44,11 +44,11 @@
     length = ng
   )
   isum <- 0
-  for (i in seq_len(ng)) {
-    out[[i]] <- glist_new[seq_len(nmat[i]) + isum]
+  for (i in seq_len(length.out = ng)) {
+    out[[i]] <- glist_new[seq_len(length.out = nmat[i]) + isum]
     isum <- isum + nmat[i]
   }
-  names(out) <- unlist(gp_labels)
+  names(x = out) <- unlist(x = gp_labels)
 
   glist_new <- out
 
@@ -78,16 +78,14 @@
     lav_model_new@GLIST <- glist_std[[1]]
   } else {
     lav_model_new@GLIST <- unlist(
-      glist_std,
+      x = glist_std,
       recursive = FALSE
     )
   }
 
   # Get parameter values with type = "user" and extra = TRUE
 
-  lavaan::lav_model_get_parameters(
-    lavmodel = lav_model_new,
-    type = "user",
-    extra = TRUE
+  .GetUser(
+    lavmodel = lav_model_new
   )
 }

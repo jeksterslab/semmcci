@@ -1,4 +1,4 @@
-#' Test for a Positive Definite Matrix
+#' Test for a Positive Definite Matrix (Internal)
 #'
 #' Returns `TRUE` if input
 #' is a positive definite matrix,
@@ -7,13 +7,18 @@
 #' A
 #' \eqn{k \times k}
 #' symmetric matrix
-#' \eqn{\mathbf{A}}
+#' \eqn{\boldsymbol{A}}
 #' is positive definite
 #' if all of its eigenvalues are positive.
+#' Eigenvalues above `tol` times \eqn{\left| \lambda_{1} \right|},
+#' where \eqn{\lambda_{1}} is the largest eigenvalue, pass.
+#' Zero eigenvalues fail.
+#' No input checks: see `TestPositiveDefinite()`.
 #'
 #' @author Ivan Jacob Agaloos Pesigan
 #'
-#' @param eigen output of the [eigen()] function.
+#' @param eigen List.
+#'   Output of [eigen()], with eigenvalues in decreasing order.
 #' @param tol Numeric.
 #'   Tolerance.
 #'
@@ -22,14 +27,17 @@
 #'
 #' @return Logical.
 #'
+#' @examples
+#' .TestPositiveDefinite(eigen = eigen(x = diag(2), symmetric = TRUE))
+#'
 #' @family Linear Algebra Functions
 #' @keywords linearAlgebra test internal
 #' @noRd
 .TestPositiveDefinite <- function(eigen,
                                   tol = 1e-06) {
   all(
-    eigen$values >= -tol * abs(
-      eigen$values[1L]
+    eigen$values > tol * abs(
+      x = eigen$values[1L]
     )
   )
 }
