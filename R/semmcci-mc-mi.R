@@ -14,6 +14,36 @@
 #' in the `lavaan` model syntax.
 #'
 #' @inheritParams MC
+#' @author Ivan Jacob Agaloos Pesigan
+#'
+#' @details
+#' Let \eqn{\hat{\boldsymbol{\theta}}_{m}} and
+#' \eqn{\hat{\boldsymbol{V}}_{m}} be the estimates and their
+#' sampling covariance matrix in imputed data set \eqn{m = 1, \dots, M}.
+#' The pooled estimates and covariance matrices (Rubin's rules) are
+#' \deqn{\bar{\boldsymbol{\theta}} = \frac{1}{M} \sum_{m = 1}^{M}
+#' \hat{\boldsymbol{\theta}}_{m}, \quad \bar{\boldsymbol{W}} = \frac{1}{M}
+#' \sum_{m = 1}^{M} \hat{\boldsymbol{V}}_{m}, \quad \boldsymbol{B} =
+#' \frac{1}{M - 1} \sum_{m = 1}^{M} \left( \hat{\boldsymbol{\theta}}_{m} -
+#' \bar{\boldsymbol{\theta}} \right) \left( \hat{\boldsymbol{\theta}}_{m} -
+#' \bar{\boldsymbol{\theta}} \right)^{\prime},}
+#' \deqn{\boldsymbol{T} = \bar{\boldsymbol{W}} + \left( 1 + \frac{1}{M}
+#' \right) \boldsymbol{B}.}
+#' The draws are generated as in [MC()],
+#' with \eqn{\bar{\boldsymbol{\theta}}} and \eqn{\boldsymbol{T}}
+#' in place of \eqn{\hat{\boldsymbol{\theta}}} and
+#' \eqn{\hat{\boldsymbol{V}}}.
+#' A defined parameter \eqn{\phi = h \left( \boldsymbol{\theta} \right)},
+#' given by the `:=` operator in the model syntax,
+#' has the draws
+#' \eqn{\hat{\phi}^{\ast}_{r} = h \left( \hat{\boldsymbol{\theta}}^{\ast}_{r}
+#' \right)}.
+#' The confidence intervals are the percentile intervals
+#' \eqn{\left[ \hat{G}^{-1} \left( \alpha / 2 \right), \hat{G}^{-1} \left( 1 -
+#' \alpha / 2 \right) \right]},
+#' where \eqn{\hat{G}} is the empirical distribution function of the draws
+#' (Preacher & Selig, 2012).
+#'
 #' @param mi Object of class `mids` (output of [mice::mice()]),
 #'   object of class `amelia` (output of [Amelia::amelia()]),
 #'   or a list of multiply imputed data sets.
@@ -74,6 +104,11 @@
 #' Rubin, D. B. (1987).
 #' *Multiple imputation for nonresponse in surveys*.
 #' John Wiley & Sons, Inc.
+#'
+#' Preacher, K. J., & Selig, J. P. (2012).
+#' Advantages of Monte Carlo confidence intervals for indirect effects.
+#' *Communication Methods and Measures*, *6*(2), 77--98.
+#' \doi{10.1080/19312458.2012.679848}
 #'
 #' @family Monte Carlo in Structural Equation Modeling Functions
 #' @keywords semmcci mc

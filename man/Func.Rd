@@ -54,6 +54,21 @@ and the definition of the function of paremeters
 is provided by a function (\code{func}).
 Confidence intervals for defined parameters
 are generated using the generated sampling distribution.
+
+Let \eqn{\hat{\boldsymbol{\theta}}^{\ast}_{1}, \dots,
+\hat{\boldsymbol{\theta}}^{\ast}_{R}} be the elements of \code{coef},
+a sampling distribution of the parameters generated elsewhere,
+and \eqn{\hat{\boldsymbol{\theta}}} the estimates in \code{est}.
+A defined parameter \eqn{\phi = h \left( \boldsymbol{\theta} \right)},
+given by \code{func}, has the estimate
+\eqn{h \left( \hat{\boldsymbol{\theta}} \right)} and the draws
+\eqn{\hat{\phi}^{\ast}_{r} = h \left( \hat{\boldsymbol{\theta}}^{\ast}_{r}
+\right)}.
+The confidence intervals are the percentile intervals
+\eqn{\left[ \hat{G}^{-1} \left( \alpha / 2 \right), \hat{G}^{-1} \left( 1 -
+\alpha / 2 \right) \right]},
+where \eqn{\hat{G}} is the empirical distribution function of the draws
+(Preacher & Selig, 2012).
 }
 \examples{
 library(semmcci)

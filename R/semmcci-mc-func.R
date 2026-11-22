@@ -12,6 +12,38 @@
 #'
 #' @author Ivan Jacob Agaloos Pesigan
 #'
+#' @details
+#' Let \eqn{\hat{\boldsymbol{\theta}}} be the vector of parameter estimates
+#' and \eqn{\hat{\boldsymbol{V}}} its sampling covariance matrix,
+#' the arguments `coef` and `vcov`.
+#' The Monte Carlo draws are
+#' \deqn{\hat{\boldsymbol{\theta}}^{\ast}_{r} = \hat{\boldsymbol{\theta}} +
+#' \boldsymbol{A}^{\prime} \boldsymbol{z}_{r}, \quad \boldsymbol{z}_{r} \sim
+#' \mathcal{N} \left( \boldsymbol{0}, \boldsymbol{I} \right), \quad r = 1,
+#' \dots, R,}
+#' where \eqn{\boldsymbol{A}^{\prime} \boldsymbol{A} = \hat{\boldsymbol{V}}}.
+#' With `decomposition = "eigen"`,
+#' \eqn{\hat{\boldsymbol{V}} = \boldsymbol{Q} \boldsymbol{\Lambda}
+#' \boldsymbol{Q}^{\prime}} and
+#' \eqn{\boldsymbol{A} = \boldsymbol{\Lambda}_{+}^{1 / 2}
+#' \boldsymbol{Q}^{\prime}},
+#' with negative eigenvalues set to zero;
+#' with `decomposition = "chol"`, \eqn{\boldsymbol{A}} is the upper Cholesky
+#' factor (the eigenvalue decomposition is used if it fails);
+#' `decomposition = "svd"` uses the singular value decomposition.
+#' With `pd = TRUE`, the function stops unless every eigenvalue
+#' \eqn{\lambda_{l} \geq - \mathrm{tol} \left| \lambda_{1} \right|}.
+#' A defined parameter \eqn{\phi = h \left( \boldsymbol{\theta} \right)},
+#' given by `func`,
+#' has the draws
+#' \eqn{\hat{\phi}^{\ast}_{r} = h \left( \hat{\boldsymbol{\theta}}^{\ast}_{r}
+#' \right)}.
+#' The confidence intervals are the percentile intervals
+#' \eqn{\left[ \hat{G}^{-1} \left( \alpha / 2 \right), \hat{G}^{-1} \left( 1 -
+#' \alpha / 2 \right) \right]},
+#' where \eqn{\hat{G}} is the empirical distribution function of the draws
+#' (Preacher & Selig, 2012).
+#'
 #' @param coef Numeric vector.
 #'   Vector of estimated parameters.
 #' @param vcov Numeric matrix.
