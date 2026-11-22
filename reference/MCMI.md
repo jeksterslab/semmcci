@@ -98,6 +98,30 @@ Confidence intervals for free and defined parameters are generated using
 the simulated sampling distribution. Parameters can be defined using the
 `:=` operator in the `lavaan` model syntax.
 
+Let \\(\hat{\boldsymbol{\theta}}\_{m}\\) and
+\\(\hat{\boldsymbol{V}}\_{m}\\) be the estimates and their sampling
+covariance matrix in imputed data set \\(m = 1, \dots, M\\). The pooled
+estimates and covariance matrices (Rubin's rules) are
+\$\$\bar{\boldsymbol{\theta}} = \frac{1}{M} \sum\_{m = 1}^{M}
+\hat{\boldsymbol{\theta}}\_{m}, \quad \bar{\boldsymbol{W}} = \frac{1}{M}
+\sum\_{m = 1}^{M} \hat{\boldsymbol{V}}\_{m}, \quad \boldsymbol{B} =
+\frac{1}{M - 1} \sum\_{m = 1}^{M} \left(
+\hat{\boldsymbol{\theta}}\_{m} - \bar{\boldsymbol{\theta}} \right)
+\left( \hat{\boldsymbol{\theta}}\_{m} - \bar{\boldsymbol{\theta}}
+\right)^{\prime},\$\$ \$\$\boldsymbol{T} = \bar{\boldsymbol{W}} + \left(
+1 + \frac{1}{M} \right) \boldsymbol{B}.\$\$ The draws are generated as
+in [`MC()`](https://jeksterslab.github.io/semmcci/reference/MC.md), with
+\\(\bar{\boldsymbol{\theta}}\\) and \\(\boldsymbol{T}\\) in place of
+\\(\hat{\boldsymbol{\theta}}\\) and \\(\hat{\boldsymbol{V}}\\). A
+defined parameter \\(\phi = h \left( \boldsymbol{\theta} \right)\\),
+given by the `:=` operator in the model syntax, has the draws
+\\(\hat{\phi}^{\ast}\_{r} = h \left(
+\hat{\boldsymbol{\theta}}^{\ast}\_{r} \right)\\). The confidence
+intervals are the percentile intervals \\(\left\[ \hat{G}^{-1} \left(
+\alpha / 2 \right), \hat{G}^{-1} \left( 1 - \alpha / 2 \right)
+\right\]\\), where \\(\hat{G}\\) is the empirical distribution function
+of the draws (Preacher & Selig, 2012).
+
 ## References
 
 Pesigan, I. J. A., & Cheung, S. F. (2024). Monte Carlo confidence
@@ -108,6 +132,11 @@ Methods*.
 Rubin, D. B. (1987). *Multiple imputation for nonresponse in surveys*.
 John Wiley & Sons, Inc.
 
+Preacher, K. J., & Selig, J. P. (2012). Advantages of Monte Carlo
+confidence intervals for indirect effects. *Communication Methods and
+Measures*, *6*(2), 77–98.
+[doi:10.1080/19312458.2012.679848](https://doi.org/10.1080/19312458.2012.679848)
+
 ## See also
 
 Other Monte Carlo in Structural Equation Modeling Functions:
@@ -116,6 +145,10 @@ Other Monte Carlo in Structural Equation Modeling Functions:
 [`MCFunc()`](https://jeksterslab.github.io/semmcci/reference/MCFunc.md),
 [`MCGeneric()`](https://jeksterslab.github.io/semmcci/reference/MCGeneric.md),
 [`MCStd()`](https://jeksterslab.github.io/semmcci/reference/MCStd.md)
+
+## Author
+
+Ivan Jacob Agaloos Pesigan
 
 ## Examples
 

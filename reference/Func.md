@@ -76,6 +76,19 @@ definition of the function of paremeters is provided by a function
 (`func`). Confidence intervals for defined parameters are generated
 using the generated sampling distribution.
 
+Let \\(\hat{\boldsymbol{\theta}}^{\ast}\_{1}, \dots,
+\hat{\boldsymbol{\theta}}^{\ast}\_{R}\\) be the elements of `coef`, a
+sampling distribution of the parameters generated elsewhere, and
+\\(\hat{\boldsymbol{\theta}}\\) the estimates in `est`. A defined
+parameter \\(\phi = h \left( \boldsymbol{\theta} \right)\\), given by
+`func`, has the estimate \\(h \left( \hat{\boldsymbol{\theta}}
+\right)\\) and the draws \\(\hat{\phi}^{\ast}\_{r} = h \left(
+\hat{\boldsymbol{\theta}}^{\ast}\_{r} \right)\\). The confidence
+intervals are the percentile intervals \\(\left\[ \hat{G}^{-1} \left(
+\alpha / 2 \right), \hat{G}^{-1} \left( 1 - \alpha / 2 \right)
+\right\]\\), where \\(\hat{G}\\) is the empirical distribution function
+of the draws (Preacher & Selig, 2012).
+
 ## References
 
 MacKinnon, D. P., Lockwood, C. M., & Williams, J. (2004). Confidence

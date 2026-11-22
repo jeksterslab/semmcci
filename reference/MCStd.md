@@ -56,12 +56,37 @@ of parameters is standardized. Defined parameters are computed from the
 standardized component parameters. Confidence intervals are generated
 using the standardized empirical sampling distribution.
 
+Let \\(s \left( \boldsymbol{\theta} \right)\\) map the unstandardized
+parameters to the completely standardized solution
+(`lavaan::standardizedSolution(type = "std.all")`): a regression
+coefficient of \\(y\\) on \\(x\\) becomes \\(\beta \\, \sigma\_{x} /
+\sigma\_{y}\\) with model-implied standard deviations, a covariance
+becomes a correlation, and a variance becomes a proportion of the
+model-implied variance. The standardized draws are \\(s \left(
+\hat{\boldsymbol{\theta}}^{\ast}\_{r} \right)\\), with the draws
+\\(\hat{\boldsymbol{\theta}}^{\ast}\_{r}\\) from `mc` (see
+[`MC()`](https://jeksterslab.github.io/semmcci/reference/MC.md) and
+[`MCMI()`](https://jeksterslab.github.io/semmcci/reference/MCMI.md)),
+and a defined parameter \\(\phi = h \left( \boldsymbol{\theta}
+\right)\\) is computed from the standardized component parameters,
+\\(\hat{\phi}^{\ast}\_{r} = h \left( s \left(
+\hat{\boldsymbol{\theta}}^{\ast}\_{r} \right) \right)\\). The confidence
+intervals are the percentile intervals \\(\left\[ \hat{G}^{-1} \left(
+\alpha / 2 \right), \hat{G}^{-1} \left( 1 - \alpha / 2 \right)
+\right\]\\), where \\(\hat{G}\\) is the empirical distribution function
+of the draws (Preacher & Selig, 2012).
+
 ## References
 
 Pesigan, I. J. A., & Cheung, S. F. (2024). Monte Carlo confidence
 intervals for the indirect effect with missing data. *Behavior Research
 Methods*.
 [doi:10.3758/s13428-023-02114-4](https://doi.org/10.3758/s13428-023-02114-4)
+
+Preacher, K. J., & Selig, J. P. (2012). Advantages of Monte Carlo
+confidence intervals for indirect effects. *Communication Methods and
+Measures*, *6*(2), 77–98.
+[doi:10.1080/19312458.2012.679848](https://doi.org/10.1080/19312458.2012.679848)
 
 ## See also
 

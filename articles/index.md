@@ -29,7 +29,7 @@
 - [MCStd Function Use Case 5: Difference of R-Squared in Multiple
   Groups](https://jeksterslab.github.io/semmcci/articles/mcstd-5-difference-rsq-multigroup.md):
 
-### Methods
+### The Monte Carlo Method
 
 - [semmcci: Methods
   (MC)](https://jeksterslab.github.io/semmcci/articles/methods-mc.md):

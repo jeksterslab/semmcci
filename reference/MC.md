@@ -89,6 +89,31 @@ defined parameters are generated using the simulated sampling
 distribution. Parameters can be defined using the `:=` operator in the
 `lavaan` model syntax.
 
+Let \\(\hat{\boldsymbol{\theta}}\\) be the vector of parameter estimates
+and \\(\hat{\boldsymbol{V}}\\) its sampling covariance matrix,
+`lavaan::coef(lav)` and `lavaan::vcov(lav)`. The Monte Carlo draws are
+\$\$\hat{\boldsymbol{\theta}}^{\ast}\_{r} = \hat{\boldsymbol{\theta}} +
+\boldsymbol{A}^{\prime} \boldsymbol{z}\_{r}, \quad \boldsymbol{z}\_{r}
+\sim \mathcal{N} \left( \boldsymbol{0}, \boldsymbol{I} \right), \quad r
+= 1, \dots, R,\$\$ where \\(\boldsymbol{A}^{\prime} \boldsymbol{A} =
+\hat{\boldsymbol{V}}\\). With `decomposition = "eigen"`,
+\\(\hat{\boldsymbol{V}} = \boldsymbol{Q} \boldsymbol{\Lambda}
+\boldsymbol{Q}^{\prime}\\) and \\(\boldsymbol{A} =
+\boldsymbol{\Lambda}\_{+}^{1 / 2} \boldsymbol{Q}^{\prime}\\), with
+negative eigenvalues set to zero; with `decomposition = "chol"`,
+\\(\boldsymbol{A}\\) is the upper Cholesky factor (the eigenvalue
+decomposition is used if it fails); `decomposition = "svd"` uses the
+singular value decomposition. With `pd = TRUE`, the function stops
+unless every eigenvalue \\(\lambda\_{l} \geq - \mathrm{tol} \left\|
+\lambda\_{1} \right\|\\). A defined parameter \\(\phi = h \left(
+\boldsymbol{\theta} \right)\\), given by the `:=` operator in the model
+syntax, has the draws \\(\hat{\phi}^{\ast}\_{r} = h \left(
+\hat{\boldsymbol{\theta}}^{\ast}\_{r} \right)\\). The confidence
+intervals are the percentile intervals \\(\left\[ \hat{G}^{-1} \left(
+\alpha / 2 \right), \hat{G}^{-1} \left( 1 - \alpha / 2 \right)
+\right\]\\), where \\(\hat{G}\\) is the empirical distribution function
+of the draws (Preacher & Selig, 2012).
+
 ## References
 
 MacKinnon, D. P., Lockwood, C. M., & Williams, J. (2004). Confidence
@@ -151,16 +176,16 @@ MC(
 )
 #> Monte Carlo Confidence Intervals
 #>                       est     se R    2.5%  97.5%
-#> cp                 0.3796 0.2695 5  0.0821 0.6708
-#> b                  0.4880 0.0889 5  0.4749 0.6736
-#> a                  0.5426 0.3560 5 -0.0026 0.8971
-#> cond~~cond         0.2496 0.0128 5  0.2260 0.2568
+#> cp                 0.3796 0.2694 5  0.0822 0.6708
+#> b                  0.4880 0.0883 5  0.4753 0.6730
+#> a                  0.5426 0.3561 5 -0.0027 0.8971
+#> cond~~cond         0.2496 0.0122 5  0.2267 0.2556
 #> reaction~~reaction 1.7760 0.1978 5  1.4029 1.8400
-#> pmi~~pmi           1.7238 0.2483 5  1.4316 2.0547
-#> reaction~1         0.5868 0.4777 5 -0.3956 0.6504
-#> pmi~1              5.3616 0.1764 5  5.1393 5.5821
-#> cond~1             0.4939 0.0413 5  0.4566 0.5488
-#> indirect           0.2648 0.1950 5 -0.0091 0.4848
-#> direct             0.3796 0.2695 5  0.0821 0.6708
-#> total              0.6444 0.2665 5  0.2695 0.8630
+#> pmi~~pmi           1.7238 0.2483 5  1.4317 2.0548
+#> reaction~1         0.5868 0.4778 5 -0.3957 0.6505
+#> pmi~1              5.3616 0.1768 5  5.1389 5.5827
+#> cond~1             0.4939 0.0401 5  0.4377 0.5288
+#> indirect           0.2648 0.1951 5 -0.0091 0.4851
+#> direct             0.3796 0.2694 5  0.0822 0.6708
+#> total              0.6444 0.2664 5  0.2699 0.8628
 ```

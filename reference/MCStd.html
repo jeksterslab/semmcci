@@ -89,6 +89,27 @@ that is, each randomly generated vector of parameters is standardized.
 Defined parameters are computed from the standardized component parameters.
 Confidence intervals are generated
 using the standardized empirical sampling distribution.</p>
+<p>Let \(s \left( \boldsymbol{\theta} \right)\) map the unstandardized
+parameters to the completely standardized solution
+(<code>lavaan::standardizedSolution(type = "std.all")</code>):
+a regression coefficient of \(y\) on \(x\) becomes
+\(\beta \, \sigma_{x} / \sigma_{y}\) with model-implied standard
+deviations, a covariance becomes a correlation,
+and a variance becomes a proportion of the model-implied variance.
+The standardized draws are
+\(s \left( \hat{\boldsymbol{\theta}}^{\ast}_{r} \right)\),
+with the draws \(\hat{\boldsymbol{\theta}}^{\ast}_{r}\) from <code>mc</code>
+(see <code><a href="MC.html">MC()</a></code> and <code><a href="MCMI.html">MCMI()</a></code>),
+and a defined parameter
+\(\phi = h \left( \boldsymbol{\theta} \right)\) is computed from the
+standardized component parameters,
+\(\hat{\phi}^{\ast}_{r} = h \left( s \left(
+\hat{\boldsymbol{\theta}}^{\ast}_{r} \right) \right)\).
+The confidence intervals are the percentile intervals
+\(\left[ \hat{G}^{-1} \left( \alpha / 2 \right), \hat{G}^{-1} \left( 1 -
+\alpha / 2 \right) \right]\),
+where \(\hat{G}\) is the empirical distribution function of the draws
+(Preacher &amp; Selig, 2012).</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -96,6 +117,10 @@ using the standardized empirical sampling distribution.</p>
 Monte Carlo confidence intervals for the indirect effect with missing data.
 <em>Behavior Research Methods</em>.
 <a href="https://doi.org/10.3758/s13428-023-02114-4" class="external-link">doi:10.3758/s13428-023-02114-4</a></p>
+<p>Preacher, K. J., &amp; Selig, J. P. (2012).
+Advantages of Monte Carlo confidence intervals for indirect effects.
+<em>Communication Methods and Measures</em>, <em>6</em>(2), 77–98.
+<a href="https://doi.org/10.1080/19312458.2012.679848" class="external-link">doi:10.1080/19312458.2012.679848</a></p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
