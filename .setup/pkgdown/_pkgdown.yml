@@ -38,7 +38,7 @@ articles:
   - mcstd-3-rsqr
   - mcstd-4-difference-regression-coefficients-multigroup
   - mcstd-5-difference-rsq-multigroup
-- title: Methods
+- title: The Monte Carlo Method
   contents:
   - methods-mc
   - methods-mc-mi

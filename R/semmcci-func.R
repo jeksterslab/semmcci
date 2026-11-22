@@ -11,6 +11,22 @@
 #'
 #' @author Ivan Jacob Agaloos Pesigan
 #'
+#' @details
+#' Let \eqn{\hat{\boldsymbol{\theta}}^{\ast}_{1}, \dots,
+#' \hat{\boldsymbol{\theta}}^{\ast}_{R}} be the elements of `coef`,
+#' a sampling distribution of the parameters generated elsewhere,
+#' and \eqn{\hat{\boldsymbol{\theta}}} the estimates in `est`.
+#' A defined parameter \eqn{\phi = h \left( \boldsymbol{\theta} \right)},
+#' given by `func`, has the estimate
+#' \eqn{h \left( \hat{\boldsymbol{\theta}} \right)} and the draws
+#' \eqn{\hat{\phi}^{\ast}_{r} = h \left( \hat{\boldsymbol{\theta}}^{\ast}_{r}
+#' \right)}.
+#' The confidence intervals are the percentile intervals
+#' \eqn{\left[ \hat{G}^{-1} \left( \alpha / 2 \right), \hat{G}^{-1} \left( 1 -
+#' \alpha / 2 \right) \right]},
+#' where \eqn{\hat{G}} is the empirical distribution function of the draws
+#' (Preacher & Selig, 2012).
+#'
 #' @param coef List.
 #'   A list of parameters.
 #' @param func R function.

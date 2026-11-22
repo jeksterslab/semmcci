@@ -12,6 +12,29 @@
 #'
 #' @author Ivan Jacob Agaloos Pesigan
 #'
+#' @details
+#' Let \eqn{s \left( \boldsymbol{\theta} \right)} map the unstandardized
+#' parameters to the completely standardized solution
+#' (`lavaan::standardizedSolution(type = "std.all")`):
+#' a regression coefficient of \eqn{y} on \eqn{x} becomes
+#' \eqn{\beta \, \sigma_{x} / \sigma_{y}} with model-implied standard
+#' deviations, a covariance becomes a correlation,
+#' and a variance becomes a proportion of the model-implied variance.
+#' The standardized draws are
+#' \eqn{s \left( \hat{\boldsymbol{\theta}}^{\ast}_{r} \right)},
+#' with the draws \eqn{\hat{\boldsymbol{\theta}}^{\ast}_{r}} from `mc`
+#' (see [MC()] and [MCMI()]),
+#' and a defined parameter
+#' \eqn{\phi = h \left( \boldsymbol{\theta} \right)} is computed from the
+#' standardized component parameters,
+#' \eqn{\hat{\phi}^{\ast}_{r} = h \left( s \left(
+#' \hat{\boldsymbol{\theta}}^{\ast}_{r} \right) \right)}.
+#' The confidence intervals are the percentile intervals
+#' \eqn{\left[ \hat{G}^{-1} \left( \alpha / 2 \right), \hat{G}^{-1} \left( 1 -
+#' \alpha / 2 \right) \right]},
+#' where \eqn{\hat{G}} is the empirical distribution function of the draws
+#' (Preacher & Selig, 2012).
+#'
 #' @inheritParams MC
 #' @param mc Output of the [MC()] or [MCMI()] function.
 #'
@@ -84,6 +107,11 @@
 #' Monte Carlo confidence intervals for the indirect effect with missing data.
 #' *Behavior Research Methods*.
 #' \doi{10.3758/s13428-023-02114-4}
+#'
+#' Preacher, K. J., & Selig, J. P. (2012).
+#' Advantages of Monte Carlo confidence intervals for indirect effects.
+#' *Communication Methods and Measures*, *6*(2), 77--98.
+#' \doi{10.1080/19312458.2012.679848}
 #'
 #' @family Monte Carlo in Structural Equation Modeling Functions
 #' @keywords semmcci mc
