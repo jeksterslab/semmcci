@@ -38,7 +38,7 @@ LinkingTo: Rcpp, RcppArmadillo
 Suggests: knitr, rmarkdown, testthat, MASS, psych, Amelia, bmemLavaan
 Config/roxygen2/version: 8.1.1.9000
 NeedsCompilation: yes
-Packaged: 2026-11-22 15:55:50 UTC; root
+Packaged: 2026-11-23 04:02:40 UTC; root
 Author: Ivan Jacob Agaloos Pesigan [aut, cre, cph] (ORCID:
     <https://orcid.org/0000-0003-4818-8420>),
   Shu Fai Cheung [ctb] (ORCID: <https://orcid.org/0000-0002-9871-9448>)
