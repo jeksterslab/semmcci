@@ -1,7 +1,7 @@
 ---
 title: "semmcci"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "`r Sys.Date()`"
+date: "`r format(Sys.time(), '%Y-%m-%d %H:%M:%S')`"
 output: github_document
 bibliography: "vignettes.bib"
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/apa.csl
