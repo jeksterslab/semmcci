@@ -1,7 +1,5 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://jeksterslab.github.io/semmcci//404.html</loc></url>
-<url><loc>https://jeksterslab.github.io/semmcci//AGENTS.html</loc></url>
-<url><loc>https://jeksterslab.github.io/semmcci//CLAUDE.html</loc></url>
 <url><loc>https://jeksterslab.github.io/semmcci//LICENSE-text.html</loc></url>
 <url><loc>https://jeksterslab.github.io/semmcci//LICENSE.html</loc></url>
 <url><loc>https://jeksterslab.github.io/semmcci//articles/benchmark-complete.html</loc></url>
@@ -24,7 +22,6 @@
 <url><loc>https://jeksterslab.github.io/semmcci//articles/semmcci.html</loc></url>
 <url><loc>https://jeksterslab.github.io/semmcci//articles/session.html</loc></url>
 <url><loc>https://jeksterslab.github.io/semmcci//authors.html</loc></url>
-<url><loc>https://jeksterslab.github.io/semmcci//copilot-instructions.html</loc></url>
 <url><loc>https://jeksterslab.github.io/semmcci//index.html</loc></url>
 <url><loc>https://jeksterslab.github.io/semmcci//news/index.html</loc></url>
 <url><loc>https://jeksterslab.github.io/semmcci//reference/Func.html</loc></url>

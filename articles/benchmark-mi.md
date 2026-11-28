@@ -192,9 +192,9 @@ Nonparametric bootstrap confidence intervals can be generated in
 
 \
 [`summary`](https://rdrr.io/r/base/summary.html)`(``object ``=`` ``benchmark_mi_01``, unit ``=`` ``"ms"``)`\
-`#>   expr        min         lq      mean    median         uq       max neval`\
-`#> 1   MC   136.6896   142.4038   147.901   148.139   154.5169   155.842    10`\
-`#> 2   NB 14720.1472 14960.9787 15058.803 15088.589 15192.2327 15203.255    10`
+`#>   expr        min         lq       mean     median        uq        max neval`\
+`#> 1   MC   136.8093   139.4875   144.3714   144.2539   149.647   152.9219    10`\
+`#> 2   NB 14403.7347 14558.4382 14632.7547 14642.3160 14704.851 14878.2512    10`
 
 ### Summary of Benchmark Results Relative to the Faster Method
 
@@ -202,7 +202,7 @@ Nonparametric bootstrap confidence intervals can be generated in
 [`summary`](https://rdrr.io/r/base/summary.html)`(``object ``=`` ``benchmark_mi_01``, unit ``=`` ``"relative"``)`\
 `#>   expr      min       lq     mean   median       uq      max neval`\
 `#> 1   MC   1.0000   1.0000   1.0000   1.0000  1.00000  1.00000    10`\
-`#> 2   NB 107.6903 105.0602 101.8168 101.8543 98.32087 97.55554    10`
+`#> 2   NB 105.2833 104.3709 101.3549 101.5038 98.26358 97.29312    10`
 
 ## Plot
 
@@ -243,16 +243,16 @@ Nonparametric bootstrap confidence intervals can be generated in
 \
 [`summary`](https://rdrr.io/r/base/summary.html)`(``object ``=`` ``benchmark_mi_02``, unit ``=`` ``"ms"``)`\
 `#>   expr        min         lq       mean     median         uq        max neval`\
-`#> 1   MC   100.7493   105.9678   108.3853   107.5773   113.5425   115.1404    10`\
-`#> 2   NB 14626.0817 14815.1337 14941.6343 14931.5236 15070.9763 15240.4309    10`
+`#> 1   MC   100.3861   103.3304   108.6888   108.2072   113.8223   117.3528    10`\
+`#> 2   NB 14329.0833 14509.2065 14598.9134 14615.7016 14738.3156 14827.5973    10`
 
 ### Summary of Benchmark Results Relative to the Faster Method
 
 \
 [`summary`](https://rdrr.io/r/base/summary.html)`(``object ``=`` ``benchmark_mi_02``, unit ``=`` ``"relative"``)`\
-`#>   expr     min       lq     mean   median       uq      max neval`\
-`#> 1   MC   1.000   1.0000   1.0000   1.0000   1.0000   1.0000    10`\
-`#> 2   NB 145.173 139.8079 137.8566 138.7981 132.7342 132.3639    10`
+`#>   expr      min       lq     mean   median       uq      max neval`\
+`#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10`\
+`#> 2   NB 142.7397 140.4156 134.3184 135.0715 129.4853 126.3506    10`
 
 ## Plot
 

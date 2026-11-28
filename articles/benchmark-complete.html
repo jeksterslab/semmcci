@@ -7,9 +7,9 @@
 <title>Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping • semmcci</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.10/font.css" rel="stylesheet">
-<link href="../deps/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
-<link href="../deps/Roboto_Slab-0.4.10/font.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.5.0/font.css" rel="stylesheet">
+<link href="../deps/JetBrains_Mono-0.5.0/font.css" rel="stylesheet">
+<link href="../deps/Roboto_Slab-0.5.0/font.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Benchmark: Comparing the Monte Carlo Method with Nonparametric Bootstrapping">
@@ -59,7 +59,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2026-11-23</h4>
+            <h4 data-toc-skip class="date">2026-11-28</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/semmcci/blob/main/vignettes/benchmark-complete.Rmd" class="external-link"><code>vignettes/benchmark-complete.Rmd</code></a></small>
       <div class="d-none name"><code>benchmark-complete.Rmd</code></div>
@@ -220,8 +220,8 @@ Monte Carlo confidence intervals.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">benchmark_complete_01</span>, unit <span class="op">=</span> <span class="st">"ms"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   expr        min         lq       mean     median         uq        max neval</span></span>
-<span><span class="co">#&gt; 1   MC   22.59197   22.83412   24.50084   23.13035   25.26598   31.09966    10</span></span>
-<span><span class="co">#&gt; 2   NB 5328.08491 5379.24751 5425.14561 5423.74184 5476.11176 5503.49099    10</span></span></code></pre></div>
+<span><span class="co">#&gt; 1   MC   22.88751   23.29013   24.77872   23.63868   24.90285   33.35495    10</span></span>
+<span><span class="co">#&gt; 2   NB 5366.36058 5434.68588 5469.37173 5475.40795 5487.12449 5578.83127    10</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="summary-of-benchmark-results-relative-to-the-faster-method">Summary of Benchmark Results Relative to the Faster Method<a class="anchor" aria-label="anchor" href="#summary-of-benchmark-results-relative-to-the-faster-method"></a>
@@ -230,7 +230,7 @@ Monte Carlo confidence intervals.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">benchmark_complete_01</span>, unit <span class="op">=</span> <span class="st">"relative"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   expr      min       lq     mean   median       uq      max neval</span></span>
 <span><span class="co">#&gt; 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10</span></span>
-<span><span class="co">#&gt; 2   NB 235.8398 235.5794 221.4269 234.4859 216.7385 176.9631    10</span></span></code></pre></div>
+<span><span class="co">#&gt; 2   NB 234.4668 233.3472 220.7286 231.6292 220.3412 167.2565    10</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -266,9 +266,9 @@ Monte Carlo confidence intervals.</p>
 </h3>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">benchmark_complete_02</span>, unit <span class="op">=</span> <span class="st">"ms"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   expr         min          lq        mean      median          uq         max</span></span>
-<span><span class="co">#&gt; 1   MC    3.389044    3.412939    3.771938    3.522264    3.578299    5.725585</span></span>
-<span><span class="co">#&gt; 2   NB 5234.243068 5267.375306 5294.474777 5290.788819 5305.071170 5378.222029</span></span>
+<span><span class="co">#&gt;   expr         min          lq        mean     median          uq         max</span></span>
+<span><span class="co">#&gt; 1   MC    3.452824    3.539666    3.823525    3.58416    3.660413    5.482228</span></span>
+<span><span class="co">#&gt; 2   NB 5268.129761 5287.421831 5306.089146 5307.07607 5329.313722 5340.187129</span></span>
 <span><span class="co">#&gt;   neval</span></span>
 <span><span class="co">#&gt; 1    10</span></span>
 <span><span class="co">#&gt; 2    10</span></span></code></pre></div>
@@ -278,9 +278,9 @@ Monte Carlo confidence intervals.</p>
 </h3>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">benchmark_complete_02</span>, unit <span class="op">=</span> <span class="st">"relative"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   expr     min       lq     mean   median       uq      max neval</span></span>
-<span><span class="co">#&gt; 1   MC    1.00    1.000    1.000    1.000    1.000   1.0000    10</span></span>
-<span><span class="co">#&gt; 2   NB 1544.46 1543.355 1403.648 1502.099 1482.568 939.3314    10</span></span></code></pre></div>
+<span><span class="co">#&gt;   expr      min       lq     mean   median       uq      max neval</span></span>
+<span><span class="co">#&gt; 1   MC    1.000    1.000    1.000    1.000    1.000   1.0000    10</span></span>
+<span><span class="co">#&gt; 2   NB 1525.745 1493.763 1387.748 1480.703 1455.932 974.0907    10</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">

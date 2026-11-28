@@ -7,9 +7,9 @@
 <title>semmcci: Session • semmcci</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.4.10/font.css" rel="stylesheet">
-<link href="../deps/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
-<link href="../deps/Roboto_Slab-0.4.10/font.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/Roboto-0.5.0/font.css" rel="stylesheet">
+<link href="../deps/JetBrains_Mono-0.5.0/font.css" rel="stylesheet">
+<link href="../deps/Roboto_Slab-0.5.0/font.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="semmcci: Session">
@@ -59,7 +59,7 @@
                         <h4 data-toc-skip class="author">Ivan Jacob
 Agaloos Pesigan</h4>
             
-            <h4 data-toc-skip class="date">2026-11-23 03:24:24</h4>
+            <h4 data-toc-skip class="date">2026-11-28 03:55:42 UTC</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/jeksterslab/semmcci/blob/main/vignettes/session.Rmd" class="external-link"><code>vignettes/session.Rmd</code></a></small>
       <div class="d-none name"><code>session.Rmd</code></div>
@@ -68,12 +68,12 @@ Agaloos Pesigan</h4>
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jeksterslab/semmcci" class="external-link">semmcci</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"semmcci"</span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="session">Session<a class="anchor" aria-label="anchor" href="#session"></a>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; R version 4.6.2 (2026-10-29)</span></span>
 <span><span class="co">#&gt; Platform: x86_64-pc-linux-gnu</span></span>
 <span><span class="co">#&gt; Running under: Ubuntu 26.04.1 LTS</span></span>
@@ -105,11 +105,11 @@ Agaloos Pesigan</h4>
 <span><span class="co">#&gt;  [5] lattice_0.23-1    quadprog_1.5-8    vctrs_0.7.3       tools_4.6.2      </span></span>
 <span><span class="co">#&gt;  [9] Rdpack_2.6.6      generics_0.1.4    stats4_4.6.2      parallel_4.6.2   </span></span>
 <span><span class="co">#&gt; [13] tibble_3.3.1      pan_2.0           pkgconfig_2.0.3   jomo_2.7-6       </span></span>
-<span><span class="co">#&gt; [17] Matrix_1.7-6      arm_1.15-3        lifecycle_1.0.5   compiler_4.6.2   </span></span>
+<span><span class="co">#&gt; [17] Matrix_1.7-6      arm_1.15-4        lifecycle_1.0.5   compiler_4.6.2   </span></span>
 <span><span class="co">#&gt; [21] mnormt_2.1.2      codetools_0.2-20  mi_1.3.1          snow_0.4-4       </span></span>
 <span><span class="co">#&gt; [25] glmnet_5.2        mice_3.19.0       pillar_1.11.1     nloptr_2.2.1     </span></span>
 <span><span class="co">#&gt; [29] tidyr_1.3.2       MASS_7.3-66       reformulas_0.4.4  iterators_1.0.14 </span></span>
-<span><span class="co">#&gt; [33] rpart_4.1.27      boot_1.3-32       abind_1.4-8       rProject_0.0.76  </span></span>
+<span><span class="co">#&gt; [33] rpart_4.1.27      boot_1.3-32       abind_1.4-8       rProject_0.0.81  </span></span>
 <span><span class="co">#&gt; [37] foreach_1.5.2     mitml_0.4-5       nlme_3.1-171      tidyselect_1.2.1 </span></span>
 <span><span class="co">#&gt; [41] dplyr_1.2.1       purrr_1.2.2       splines_4.6.2     snowfall_1.84-6.3</span></span>
 <span><span class="co">#&gt; [45] rprojroot_2.1.1   grid_4.6.2        cli_3.6.6.9000    magrittr_2.0.5   </span></span>
@@ -123,11 +123,11 @@ Agaloos Pesigan</h4>
 <h2 id="packages">Packages<a class="anchor" aria-label="anchor" href="#packages"></a>
 </h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html" class="external-link">installed.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Package"</span>, <span class="st">"Version"</span><span class="op">)</span><span class="op">]</span></span>
+<code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html" class="external-link">installed.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Package"</span>, <span class="st">"Version"</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co">#&gt;                   Package             Version     </span></span>
 <span><span class="co">#&gt; bmemLavaan        "bmemLavaan"        "0.7"       </span></span>
 <span><span class="co">#&gt; mi                "mi"                "1.3.1"     </span></span>
-<span><span class="co">#&gt; rProject          "rProject"          "0.0.76"    </span></span>
+<span><span class="co">#&gt; rProject          "rProject"          "0.0.81"    </span></span>
 <span><span class="co">#&gt; rsem              "rsem"              "0.5.1"     </span></span>
 <span><span class="co">#&gt; sem               "sem"               "3.1-16"    </span></span>
 <span><span class="co">#&gt; semmcci           "semmcci"           "1.1.7"     </span></span>
@@ -135,8 +135,8 @@ Agaloos Pesigan</h4>
 <span><span class="co">#&gt; snowfall          "snowfall"          "1.84-6.3"  </span></span>
 <span><span class="co">#&gt; abind             "abind"             "1.4-8"     </span></span>
 <span><span class="co">#&gt; Amelia            "Amelia"            "1.8.3"     </span></span>
-<span><span class="co">#&gt; arm               "arm"               "1.15-3"    </span></span>
-<span><span class="co">#&gt; arrow             "arrow"             "26.0.1"    </span></span>
+<span><span class="co">#&gt; arm               "arm"               "1.15-4"    </span></span>
+<span><span class="co">#&gt; arrow             "arrow"             "26.0.1.1"  </span></span>
 <span><span class="co">#&gt; ash               "ash"               "1.0-15"    </span></span>
 <span><span class="co">#&gt; AsioHeaders       "AsioHeaders"       "1.30.2-1"  </span></span>
 <span><span class="co">#&gt; askpass           "askpass"           "1.2.1"     </span></span>
@@ -146,15 +146,15 @@ Agaloos Pesigan</h4>
 <span><span class="co">#&gt; base64enc         "base64enc"         "0.1-6"     </span></span>
 <span><span class="co">#&gt; bench             "bench"             "1.1.4"     </span></span>
 <span><span class="co">#&gt; betaDelta         "betaDelta"         "1.1.0"     </span></span>
-<span><span class="co">#&gt; betaLB            "betaLB"            "0.0.0.9002"</span></span>
-<span><span class="co">#&gt; betaMC            "betaMC"            "1.3.4.9001"</span></span>
+<span><span class="co">#&gt; betaLB            "betaLB"            "0.1.0"     </span></span>
+<span><span class="co">#&gt; betaMC            "betaMC"            "1.3.5"     </span></span>
 <span><span class="co">#&gt; betaNB            "betaNB"            "1.1.0"     </span></span>
 <span><span class="co">#&gt; betaSandwich      "betaSandwich"      "1.1.0"     </span></span>
 <span><span class="co">#&gt; BH                "BH"                "1.90.0-1"  </span></span>
 <span><span class="co">#&gt; bibtex            "bibtex"            "0.5.3"     </span></span>
-<span><span class="co">#&gt; biocmake          "biocmake"          "1.4.0"     </span></span>
+<span><span class="co">#&gt; biocmake          "biocmake"          "1.6.0"     </span></span>
 <span><span class="co">#&gt; BiocManager       "BiocManager"       "1.30.27"   </span></span>
-<span><span class="co">#&gt; BiocVersion       "BiocVersion"       "3.23.1"    </span></span>
+<span><span class="co">#&gt; BiocVersion       "BiocVersion"       "3.24.0"    </span></span>
 <span><span class="co">#&gt; bit               "bit"               "4.6.0"     </span></span>
 <span><span class="co">#&gt; bit64             "bit64"             "4.8.6"     </span></span>
 <span><span class="co">#&gt; blob              "blob"              "1.3.0"     </span></span>
@@ -190,7 +190,7 @@ Agaloos Pesigan</h4>
 <span><span class="co">#&gt; crosstalk         "crosstalk"         "1.2.2"     </span></span>
 <span><span class="co">#&gt; cTMed             "cTMed"             "1.0.10"    </span></span>
 <span><span class="co">#&gt; ctsem             "ctsem"             "3.11.1"    </span></span>
-<span><span class="co">#&gt; curl              "curl"              "8.1.0"     </span></span>
+<span><span class="co">#&gt; curl              "curl"              "8.2.0"     </span></span>
 <span><span class="co">#&gt; data.table        "data.table"        "1.18.6.1"  </span></span>
 <span><span class="co">#&gt; DBI               "DBI"               "1.3.0"     </span></span>
 <span><span class="co">#&gt; dbplyr            "dbplyr"            "2.6.0"     </span></span>
@@ -203,7 +203,7 @@ Agaloos Pesigan</h4>
 <span><span class="co">#&gt; DiceDesign        "DiceDesign"        "1.10"      </span></span>
 <span><span class="co">#&gt; diffobj           "diffobj"           "0.3.10"    </span></span>
 <span><span class="co">#&gt; digest            "digest"            "0.6.39"    </span></span>
-<span><span class="co">#&gt; dir.expiry        "dir.expiry"        "1.20.0"    </span></span>
+<span><span class="co">#&gt; dir.expiry        "dir.expiry"        "1.22.0"    </span></span>
 <span><span class="co">#&gt; distributional    "distributional"    "0.9.0"     </span></span>
 <span><span class="co">#&gt; distro            "distro"            "0.1.1"     </span></span>
 <span><span class="co">#&gt; doBy              "doBy"              "4.7.2"     </span></span>
@@ -212,7 +212,7 @@ Agaloos Pesigan</h4>
 <span><span class="co">#&gt; dplyr             "dplyr"             "1.2.1"     </span></span>
 <span><span class="co">#&gt; DT                "DT"                "0.34.0"    </span></span>
 <span><span class="co">#&gt; dtplyr            "dtplyr"            "1.3.3"     </span></span>
-<span><span class="co">#&gt; duckdb            "duckdb"            "2.0.0"     </span></span>
+<span><span class="co">#&gt; duckdb            "duckdb"            "2.0.1"     </span></span>
 <span><span class="co">#&gt; dynr              "dynr"              "0.1.16-112"</span></span>
 <span><span class="co">#&gt; dynTools          "dynTools"          "0.0.0.9000"</span></span>
 <span><span class="co">#&gt; dynUtils          "dynUtils"          "0.9.2"     </span></span>
@@ -321,7 +321,7 @@ Agaloos Pesigan</h4>
 <span><span class="co">#&gt; markdown          "markdown"          "2.1"       </span></span>
 <span><span class="co">#&gt; MatrixModels      "MatrixModels"      "0.5-4"     </span></span>
 <span><span class="co">#&gt; matrixStats       "matrixStats"       "1.5.0"     </span></span>
-<span><span class="co">#&gt; mclust            "mclust"            "6.1.3"     </span></span>
+<span><span class="co">#&gt; mclust            "mclust"            "6.1.4"     </span></span>
 <span><span class="co">#&gt; memoise           "memoise"           "2.0.1"     </span></span>
 <span><span class="co">#&gt; metaDyn           "metaDyn"           "1.0.4"     </span></span>
 <span><span class="co">#&gt; metaSEM           "metaSEM"           "2.0"       </span></span>
@@ -338,14 +338,14 @@ Agaloos Pesigan</h4>
 <span><span class="co">#&gt; modeldata         "modeldata"         "1.6.0"     </span></span>
 <span><span class="co">#&gt; modelenv          "modelenv"          "0.2.0"     </span></span>
 <span><span class="co">#&gt; modelr            "modelr"            "0.1.11"    </span></span>
-<span><span class="co">#&gt; MplusAutomation   "MplusAutomation"   "1.3"       </span></span>
+<span><span class="co">#&gt; MplusAutomation   "MplusAutomation"   "1.4"       </span></span>
 <span><span class="co">#&gt; multicool         "multicool"         "1.0.2"     </span></span>
-<span><span class="co">#&gt; mvtnorm           "mvtnorm"           "1.4-2"     </span></span>
+<span><span class="co">#&gt; mvtnorm           "mvtnorm"           "1.5-0"     </span></span>
 <span><span class="co">#&gt; nloptr            "nloptr"            "2.2.1"     </span></span>
 <span><span class="co">#&gt; numDeriv          "numDeriv"          "2016.8-1.1"</span></span>
 <span><span class="co">#&gt; nycflights13      "nycflights13"      "1.0.2"     </span></span>
-<span><span class="co">#&gt; OpenMx            "OpenMx"            "2.22.11"   </span></span>
-<span><span class="co">#&gt; openssl           "openssl"           "2.5.0"     </span></span>
+<span><span class="co">#&gt; OpenMx            "OpenMx"            "2.23.1"    </span></span>
+<span><span class="co">#&gt; openssl           "openssl"           "2.6.0"     </span></span>
 <span><span class="co">#&gt; ordinal           "ordinal"           "2026.7-26" </span></span>
 <span><span class="co">#&gt; otel              "otel"              "0.3.0"     </span></span>
 <span><span class="co">#&gt; pak               "pak"               "0.11.2"    </span></span>
@@ -366,12 +366,12 @@ Agaloos Pesigan</h4>
 <span><span class="co">#&gt; pkgload           "pkgload"           "1.5.3"     </span></span>
 <span><span class="co">#&gt; plyr              "plyr"              "1.8.9"     </span></span>
 <span><span class="co">#&gt; png               "png"               "0.1-9"     </span></span>
-<span><span class="co">#&gt; posterior         "posterior"         "1.7.0"     </span></span>
+<span><span class="co">#&gt; posterior         "posterior"         "1.8.0"     </span></span>
 <span><span class="co">#&gt; pracma            "pracma"            "2.4.6"     </span></span>
 <span><span class="co">#&gt; praise            "praise"            "1.0.0"     </span></span>
 <span><span class="co">#&gt; prettyunits       "prettyunits"       "1.2.0"     </span></span>
 <span><span class="co">#&gt; printr            "printr"            "0.3"       </span></span>
-<span><span class="co">#&gt; processx          "processx"          "3.9.0"     </span></span>
+<span><span class="co">#&gt; processx          "processx"          "3.10.0"    </span></span>
 <span><span class="co">#&gt; prodlim           "prodlim"           "2026.03.11"</span></span>
 <span><span class="co">#&gt; profmem           "profmem"           "0.7.0"     </span></span>
 <span><span class="co">#&gt; profvis           "profvis"           "0.4.0"     </span></span>
@@ -402,7 +402,7 @@ Agaloos Pesigan</h4>
 <span><span class="co">#&gt; rcmdcheck         "rcmdcheck"         "1.4.0"     </span></span>
 <span><span class="co">#&gt; RColorBrewer      "RColorBrewer"      "1.1-3"     </span></span>
 <span><span class="co">#&gt; Rcpp              "Rcpp"              "1.1.2"     </span></span>
-<span><span class="co">#&gt; RcppArmadillo     "RcppArmadillo"     "15.6.2-1"  </span></span>
+<span><span class="co">#&gt; RcppArmadillo     "RcppArmadillo"     "15.8.0-1"  </span></span>
 <span><span class="co">#&gt; RcppEigen         "RcppEigen"         "0.3.4.0.2" </span></span>
 <span><span class="co">#&gt; RcppParallel      "RcppParallel"      "6.2.1"     </span></span>
 <span><span class="co">#&gt; RcppTOML          "RcppTOML"          "0.2.3"     </span></span>
@@ -420,18 +420,18 @@ Agaloos Pesigan</h4>
 <span><span class="co">#&gt; reshape2          "reshape2"          "1.4.5"     </span></span>
 <span><span class="co">#&gt; reticulate        "reticulate"        "1.47.0"    </span></span>
 <span><span class="co">#&gt; rex               "rex"               "1.2.2"     </span></span>
-<span><span class="co">#&gt; rhdf5             "rhdf5"             "2.56.1"    </span></span>
-<span><span class="co">#&gt; rhdf5filters      "rhdf5filters"      "1.24.1"    </span></span>
-<span><span class="co">#&gt; Rhdf5lib          "Rhdf5lib"          "2.0.0"     </span></span>
+<span><span class="co">#&gt; rhdf5             "rhdf5"             "2.58.0"    </span></span>
+<span><span class="co">#&gt; rhdf5filters      "rhdf5filters"      "1.26.0"    </span></span>
+<span><span class="co">#&gt; Rhdf5lib          "Rhdf5lib"          "2.2.0"     </span></span>
 <span><span class="co">#&gt; rhub              "rhub"              "2.0.1"     </span></span>
-<span><span class="co">#&gt; rjags             "rjags"             "4-18"      </span></span>
+<span><span class="co">#&gt; rjags             "rjags"             "5-5"       </span></span>
 <span><span class="co">#&gt; rlang             "rlang"             "1.3.0"     </span></span>
 <span><span class="co">#&gt; RMariaDB          "RMariaDB"          "1.3.5"     </span></span>
 <span><span class="co">#&gt; rmarkdown         "rmarkdown"         "2.32"      </span></span>
 <span><span class="co">#&gt; roxygen2          "roxygen2"          "8.1.1.9000"</span></span>
 <span><span class="co">#&gt; rpf               "rpf"               "1.0.15"    </span></span>
 <span><span class="co">#&gt; RPostgres         "RPostgres"         "1.4.10"    </span></span>
-<span><span class="co">#&gt; rProject          "rProject"          "0.0.75"    </span></span>
+<span><span class="co">#&gt; rProject          "rProject"          "0.0.81"    </span></span>
 <span><span class="co">#&gt; rprojroot         "rprojroot"         "2.1.1"     </span></span>
 <span><span class="co">#&gt; rsample           "rsample"           "1.3.2"     </span></span>
 <span><span class="co">#&gt; RSQLite           "RSQLite"           "3.53.3"    </span></span>
@@ -440,18 +440,18 @@ Agaloos Pesigan</h4>
 <span><span class="co">#&gt; rstudioapi        "rstudioapi"        "0.19.0"    </span></span>
 <span><span class="co">#&gt; rversions         "rversions"         "3.0.0"     </span></span>
 <span><span class="co">#&gt; rvest             "rvest"             "1.0.5"     </span></span>
-<span><span class="co">#&gt; S7                "S7"                "0.2.2"     </span></span>
+<span><span class="co">#&gt; S7                "S7"                "1.0.0"     </span></span>
 <span><span class="co">#&gt; sandwich          "sandwich"          "3.1-3"     </span></span>
-<span><span class="co">#&gt; sass              "sass"              "0.4.10"    </span></span>
+<span><span class="co">#&gt; sass              "sass"              "0.5.0"     </span></span>
 <span><span class="co">#&gt; scales            "scales"            "1.4.0"     </span></span>
 <span><span class="co">#&gt; selectr           "selectr"           "0.8-0"     </span></span>
 <span><span class="co">#&gt; semlbci           "semlbci"           "0.12.1"    </span></span>
-<span><span class="co">#&gt; semmcci           "semmcci"           "1.1.6.9000"</span></span>
+<span><span class="co">#&gt; semmcci           "semmcci"           "1.1.7"     </span></span>
 <span><span class="co">#&gt; semPlot           "semPlot"           "1.2.0"     </span></span>
 <span><span class="co">#&gt; sessioninfo       "sessioninfo"       "1.2.4"     </span></span>
 <span><span class="co">#&gt; sfd               "sfd"               "0.1.0"     </span></span>
 <span><span class="co">#&gt; shape             "shape"             "1.4.6.1"   </span></span>
-<span><span class="co">#&gt; shiny             "shiny"             "1.14.0"    </span></span>
+<span><span class="co">#&gt; shiny             "shiny"             "1.15.0"    </span></span>
 <span><span class="co">#&gt; simStateSpace     "simStateSpace"     "1.2.17"    </span></span>
 <span><span class="co">#&gt; slider            "slider"            "0.3.3"     </span></span>
 <span><span class="co">#&gt; sourcetools       "sourcetools"       "0.1.7-2"   </span></span>
@@ -466,12 +466,12 @@ Agaloos Pesigan</h4>
 <span><span class="co">#&gt; styler            "styler"            "1.11.0"    </span></span>
 <span><span class="co">#&gt; symSEM            "symSEM"            "0.4"       </span></span>
 <span><span class="co">#&gt; sys               "sys"               "3.4.3"     </span></span>
-<span><span class="co">#&gt; systemfonts       "systemfonts"       "1.3.3"     </span></span>
+<span><span class="co">#&gt; systemfonts       "systemfonts"       "1.3.4"     </span></span>
 <span><span class="co">#&gt; tailor            "tailor"            "0.1.0"     </span></span>
 <span><span class="co">#&gt; tensorA           "tensorA"           "0.36.2.1"  </span></span>
 <span><span class="co">#&gt; testthat          "testthat"          "3.3.2"     </span></span>
 <span><span class="co">#&gt; texreg            "texreg"            "1.40"      </span></span>
-<span><span class="co">#&gt; textshaping       "textshaping"       "1.0.5"     </span></span>
+<span><span class="co">#&gt; textshaping       "textshaping"       "1.1.0"     </span></span>
 <span><span class="co">#&gt; tibble            "tibble"            "3.3.1"     </span></span>
 <span><span class="co">#&gt; tidymodels        "tidymodels"        "1.5.0"     </span></span>
 <span><span class="co">#&gt; tidyr             "tidyr"             "1.3.2"     </span></span>
@@ -479,7 +479,7 @@ Agaloos Pesigan</h4>
 <span><span class="co">#&gt; tidyverse         "tidyverse"         "2.0.0"     </span></span>
 <span><span class="co">#&gt; timechange        "timechange"        "0.4.0"     </span></span>
 <span><span class="co">#&gt; timeDate          "timeDate"          "4052.112"  </span></span>
-<span><span class="co">#&gt; tinytex           "tinytex"           "0.61.5"    </span></span>
+<span><span class="co">#&gt; tinytex           "tinytex"           "0.62.1"    </span></span>
 <span><span class="co">#&gt; tune              "tune"              "2.1.0"     </span></span>
 <span><span class="co">#&gt; tzdb              "tzdb"              "0.5.0"     </span></span>
 <span><span class="co">#&gt; ucminf            "ucminf"            "1.2.3"     </span></span>
@@ -489,13 +489,14 @@ Agaloos Pesigan</h4>
 <span><span class="co">#&gt; usethis           "usethis"           "3.2.2"     </span></span>
 <span><span class="co">#&gt; utf8              "utf8"              "1.2.6"     </span></span>
 <span><span class="co">#&gt; uuid              "uuid"              "1.2-2"     </span></span>
-<span><span class="co">#&gt; V8                "V8"                "8.2.1"     </span></span>
+<span><span class="co">#&gt; V8                "V8"                "8.3.0"     </span></span>
 <span><span class="co">#&gt; vars              "vars"              "1.6-1"     </span></span>
 <span><span class="co">#&gt; vctrs             "vctrs"             "0.7.3"     </span></span>
 <span><span class="co">#&gt; viridisLite       "viridisLite"       "0.4.3"     </span></span>
 <span><span class="co">#&gt; vroom             "vroom"             "1.7.1"     </span></span>
 <span><span class="co">#&gt; waldo             "waldo"             "0.6.2"     </span></span>
 <span><span class="co">#&gt; warp              "warp"              "0.2.3"     </span></span>
+<span><span class="co">#&gt; watcher           "watcher"           "0.2.2"     </span></span>
 <span><span class="co">#&gt; whisker           "whisker"           "0.4.1"     </span></span>
 <span><span class="co">#&gt; whoami            "whoami"            "1.3.0"     </span></span>
 <span><span class="co">#&gt; withr             "withr"             "3.0.3"     </span></span>
@@ -507,7 +508,7 @@ Agaloos Pesigan</h4>
 <span><span class="co">#&gt; xopen             "xopen"             "1.0.1"     </span></span>
 <span><span class="co">#&gt; xtable            "xtable"            "1.8-8"     </span></span>
 <span><span class="co">#&gt; yaml              "yaml"              "2.3.12"    </span></span>
-<span><span class="co">#&gt; yardstick         "yardstick"         "1.4.0"     </span></span>
+<span><span class="co">#&gt; yardstick         "yardstick"         "1.5.0"     </span></span>
 <span><span class="co">#&gt; zip               "zip"               "3.0.2"     </span></span>
 <span><span class="co">#&gt; zoo               "zoo"               "1.9-1"     </span></span>
 <span><span class="co">#&gt; base              "base"              "4.6.2"     </span></span>
@@ -558,7 +559,7 @@ Agaloos Pesigan</h4>
 <span><span class="co">#&gt; Socket(s):                               1</span></span>
 <span><span class="co">#&gt; Stepping:                                0</span></span>
 <span><span class="co">#&gt; Frequency boost:                         enabled</span></span>
-<span><span class="co">#&gt; CPU(s) scaling MHz:                      50%</span></span>
+<span><span class="co">#&gt; CPU(s) scaling MHz:                      52%</span></span>
 <span><span class="co">#&gt; CPU max MHz:                             5060.9761</span></span>
 <span><span class="co">#&gt; CPU min MHz:                             1219.5129</span></span>
 <span><span class="co">#&gt; BogoMIPS:                                4990.62</span></span>
@@ -594,9 +595,9 @@ Agaloos Pesigan</h4>
 <h2 id="memory">Memory<a class="anchor" aria-label="anchor" href="#memory"></a>
 </h2>
 <pre><code><span><span class="co">#&gt;                total        used        free      shared  buff/cache   available</span></span>
-<span><span class="co">#&gt; Mem:            44Gi       2.5Gi        39Gi        13Mi       2.8Gi        42Gi</span></span>
+<span><span class="co">#&gt; Mem:            44Gi       2.8Gi        29Gi        21Mi        12Gi        41Gi</span></span>
 <span><span class="co">#&gt; Swap:           22Gi          0B        22Gi</span></span>
-<span><span class="co">#&gt; Total:          66Gi       2.5Gi        62Gi</span></span></code></pre>
+<span><span class="co">#&gt; Total:          66Gi       2.8Gi        51Gi</span></span></code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

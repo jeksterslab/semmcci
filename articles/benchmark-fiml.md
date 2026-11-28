@@ -149,9 +149,9 @@ Nonparametric bootstrap confidence intervals can be generated in
 
 \
 [`summary`](https://rdrr.io/r/base/summary.html)`(``object ``=`` ``benchmark_fiml_01``, unit ``=`` ``"ms"``)`\
-`#>   expr         min          lq        mean      median          uq         max`\
-`#> 1   MC    36.81698    37.74781    39.33811    38.82081    40.00712    45.64501`\
-`#> 2   NB 11483.23161 11500.47079 11542.49683 11549.23218 11568.10881 11597.34090`\
+`#>   expr         min          lq        mean     median         uq        max`\
+`#> 1   MC    36.76394    37.71999    39.26737    38.7003    40.0641    45.2655`\
+`#> 2   NB 11512.48975 11534.25390 11585.23912 11580.0225 11619.5208 11668.3871`\
 `#>   neval`\
 `#> 1    10`\
 `#> 2    10`
@@ -162,7 +162,7 @@ Nonparametric bootstrap confidence intervals can be generated in
 [`summary`](https://rdrr.io/r/base/summary.html)`(``object ``=`` ``benchmark_fiml_01``, unit ``=`` ``"relative"``)`\
 `#>   expr      min       lq     mean   median       uq      max neval`\
 `#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10`\
-`#> 2   NB 311.9004 304.6659 293.4177 297.5011 289.1513 254.0769    10`
+`#> 2   NB 313.1463 305.7862 295.0347 299.2231 290.0232 257.7766    10`
 
 ## Plot
 
@@ -197,20 +197,20 @@ Nonparametric bootstrap confidence intervals can be generated in
 
 \
 [`summary`](https://rdrr.io/r/base/summary.html)`(``object ``=`` ``benchmark_fiml_02``, unit ``=`` ``"ms"``)`\
-`#>   expr          min          lq         mean       median           uq`\
-`#> 1   MC     3.399544     3.58443     4.027836     3.640165     4.188713`\
-`#> 2   NB 11461.006121 11476.06625 11531.785245 11546.347695 11578.994043`\
+`#>   expr         min           lq         mean       median           uq`\
+`#> 1   MC     3.49368     3.522985     3.904526     3.596894     3.855107`\
+`#> 2   NB 11451.29317 11505.774285 11636.369590 11600.227592 11749.413154`\
 `#>            max neval`\
-`#> 1     6.697427    10`\
-`#> 2 11597.821511    10`
+`#> 1     6.006852    10`\
+`#> 2 11913.781762    10`
 
 ### Summary of Benchmark Results Relative to the Faster Method
 
 \
 [`summary`](https://rdrr.io/r/base/summary.html)`(``object ``=`` ``benchmark_fiml_02``, unit ``=`` ``"relative"``)`\
-`#>   expr      min       lq     mean  median       uq      max neval`\
-`#> 1   MC    1.000    1.000    1.000    1.00    1.000    1.000    10`\
-`#> 2   NB 3371.336 3201.643 2863.023 3171.93 2764.332 1731.683    10`
+`#>   expr      min       lq     mean   median       uq      max neval`\
+`#> 1   MC    1.000    1.000    1.000    1.000    1.000    1.000    10`\
+`#> 2   NB 3277.717 3265.916 2980.226 3225.068 3047.753 1983.365    10`
 
 ## Plot
 
