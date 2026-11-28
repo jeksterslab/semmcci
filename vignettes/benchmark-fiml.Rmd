@@ -191,9 +191,9 @@ benchmark_fiml_01 <- microbenchmark(
 
 ``` r
 summary(object = benchmark_fiml_01, unit = "ms")
-#>   expr         min          lq        mean     median         uq        max
-#> 1   MC    36.76394    37.71999    39.26737    38.7003    40.0641    45.2655
-#> 2   NB 11512.48975 11534.25390 11585.23912 11580.0225 11619.5208 11668.3871
+#>   expr         min         lq        mean      median          uq        max
+#> 1   MC    36.37293    37.5578    39.31523    38.36877    40.13705    46.1255
+#> 2   NB 11345.09199 11501.0517 11584.28557 11573.39931 11688.34344 11791.1946
 #>   neval
 #> 1    10
 #> 2    10
@@ -206,7 +206,7 @@ summary(object = benchmark_fiml_01, unit = "ms")
 summary(object = benchmark_fiml_01, unit = "relative")
 #>   expr      min       lq     mean   median       uq      max neval
 #> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10
-#> 2   NB 313.1463 305.7862 295.0347 299.2231 290.0232 257.7766    10
+#> 2   NB 311.9103 306.2228 294.6514 301.6359 291.2108 255.6329    10
 ```
 
 ## Plot
@@ -247,12 +247,12 @@ benchmark_fiml_02 <- microbenchmark(
 
 ``` r
 summary(object = benchmark_fiml_02, unit = "ms")
-#>   expr         min           lq         mean       median           uq
-#> 1   MC     3.49368     3.522985     3.904526     3.596894     3.855107
-#> 2   NB 11451.29317 11505.774285 11636.369590 11600.227592 11749.413154
+#>   expr          min           lq         mean       median           uq
+#> 1   MC     3.427476     3.487329     3.860294     3.562629     3.683577
+#> 2   NB 11294.875519 11358.066805 11376.409554 11373.634603 11402.028516
 #>            max neval
-#> 1     6.006852    10
-#> 2 11913.781762    10
+#> 1     6.032049    10
+#> 2 11474.052432    10
 ```
 
 ### Summary of Benchmark Results Relative to the Faster Method
@@ -262,7 +262,7 @@ summary(object = benchmark_fiml_02, unit = "ms")
 summary(object = benchmark_fiml_02, unit = "relative")
 #>   expr      min       lq     mean   median       uq      max neval
 #> 1   MC    1.000    1.000    1.000    1.000    1.000    1.000    10
-#> 2   NB 3277.717 3265.916 2980.226 3225.068 3047.753 1983.365    10
+#> 2   NB 3295.392 3256.953 2947.032 3192.484 3095.369 1902.182    10
 ```
 
 ## Plot

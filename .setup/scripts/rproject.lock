@@ -1,7 +1,7 @@
 # Written by rProject::Lock() at make auto. Do not edit.
 # make project restores it (locally and in GitHub Actions);
 # make upgrade moves it forward at the next make auto.
-rproject_sha <- "8771349141056397a05d37fe27c5eb0184ef4c7c"
+rproject_sha <- "65bba4f5669a4445792e5bd1654d5bb74af85aee"
 rproject_version <- "0.0.81"
 # the image: CI runs `image` (a digest), or `image_name`:latest
 # when it has no digest; packages the image lacks come from the
