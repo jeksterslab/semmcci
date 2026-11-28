@@ -1,7 +1,7 @@
 ---
 title: "semmcci: Session"
 author: "Ivan Jacob Agaloos Pesigan"
-date: "`r format(Sys.time(), '%Y-%m-%d %H:%M:%S')`"
+date: "`r format(Sys.time(), '%Y-%m-%d %H:%M:%S', tz = 'UTC')` UTC"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{semmcci: Session}
@@ -19,31 +19,31 @@ knitr::opts_chunk$set(
 ```
 
 ```{r}
-library(semmcci)
+library(package = "semmcci")
 ```
 
-# Session
+## Session
 
 ```{r}
-sessionInfo()
+utils::sessionInfo()
 ```
 
-# Packages
+## Packages
 
 ```{r}
-installed.packages()[, c("Package", "Version")]
+utils::installed.packages()[, c("Package", "Version")]
 ```
 
-# CPU
-
-```{r}
-#| echo = FALSE
-cat(system("lscpu", intern = TRUE), sep = "\n")
-```
-
-# Memory
+## CPU
 
 ```{r}
 #| echo = FALSE
-cat(system("free -g -h -t", intern = TRUE), sep = "\n")
+cat(system(command = "lscpu", intern = TRUE), sep = "\n")
+```
+
+## Memory
+
+```{r}
+#| echo = FALSE
+cat(system(command = "free -g -h -t", intern = TRUE), sep = "\n")
 ```

@@ -40,25 +40,27 @@ if (length(x = x) > 0) {
 }
 rm(x)
 # run tests_benchmark
-lapply(
-  X = rproj$find_file(
-    ".setup",
-    "tests-benchmark"
-  ),
-  FUN = function(x) {
-    x <- list.files(
-      path = x,
-      pattern = "\\.R$",
-      full.names = TRUE,
-      all.files = TRUE,
-      recursive = TRUE
-    )
-    if (length(x = x) > 0) {
-      lapply(
-        X = x,
-        FUN = source
+invisible(
+  x = lapply(
+    X = rproj$find_file(
+      ".setup",
+      "tests-benchmark"
+    ),
+    FUN = function(x) {
+      x <- list.files(
+        path = x,
+        pattern = "\\.R$",
+        full.names = TRUE,
+        all.files = TRUE,
+        recursive = TRUE
       )
+      if (length(x = x) > 0) {
+        lapply(
+          X = x,
+          FUN = source
+        )
+      }
     }
-  }
+  )
 )
 rm(rproj)

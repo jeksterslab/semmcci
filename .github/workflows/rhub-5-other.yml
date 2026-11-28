@@ -95,6 +95,18 @@ jobs:
             message("Packages from ", repo)
           }
 
+      - name: Build packages from source outside Ubuntu
+        shell: bash
+        run: |
+          # P3M's binaries for other distributions (fedora-44) need libraries
+          # that r-hub's R builds lack (libRlapack.so, libopenblasp.so.0)
+          if [ -f /etc/os-release ]; then
+            . /etc/os-release
+            if [ "${ID:-}" != "ubuntu" ]; then
+              echo "PKG_PLATFORMS=source" >> "$GITHUB_ENV"
+            fi
+          fi
+
       - name: Install dependencies
         run: |
           R -q -e 'if (!require("pak")) install.packages("pak", repos = sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))'
@@ -155,6 +167,18 @@ jobs:
       # fs builds its bundled libuv with cmake
       - name: Install cmake
         run: dnf install -y cmake
+
+      - name: Build packages from source outside Ubuntu
+        shell: bash
+        run: |
+          # P3M's binaries for other distributions (fedora-44) need libraries
+          # that r-hub's R builds lack (libRlapack.so, libopenblasp.so.0)
+          if [ -f /etc/os-release ]; then
+            . /etc/os-release
+            if [ "${ID:-}" != "ubuntu" ]; then
+              echo "PKG_PLATFORMS=source" >> "$GITHUB_ENV"
+            fi
+          fi
 
       - name: Install dependencies
         run: |

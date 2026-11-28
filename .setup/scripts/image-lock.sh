@@ -8,7 +8,7 @@
 #   LATEST  the workflow_dispatch input `latest` (true or false)
 #   IMAGE   the latest image (default ijapesigan/docs)
 
-set -u
+set -Eeuo pipefail
 
 lock=".setup/scripts/rproject.lock"
 latest="${IMAGE:-ijapesigan/docs}"
@@ -16,8 +16,11 @@ image="${latest}"
 snapshot="latest"
 r_version="release"
 
+# a missing field (or lock) is empty; under pipefail, head closing the pipe
+# early must not fail the job
 field() {
-  sed -n "s/^$1 <- \"\(.*\)\"$/\1/p" "${lock}" 2> /dev/null | head -n 1
+  { sed -n "s/^$1 <- \"\(.*\)\"$/\1/p" "${lock}" 2> /dev/null || true; } |
+    head -n 1
 }
 
 if [ "${EVENT:-}" = "schedule" ]; then
