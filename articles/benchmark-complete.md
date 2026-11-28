@@ -134,9 +134,9 @@ Nonparametric bootstrap confidence intervals can be generated in
 
 \
 [`summary`](https://rdrr.io/r/base/summary.html)`(``object ``=`` ``benchmark_complete_01``, unit ``=`` ``"ms"``)`\
-`#>   expr        min         lq       mean     median         uq        max neval`\
-`#> 1   MC   22.88751   23.29013   24.77872   23.63868   24.90285   33.35495    10`\
-`#> 2   NB 5366.36058 5434.68588 5469.37173 5475.40795 5487.12449 5578.83127    10`
+`#>   expr       min        lq       mean     median         uq        max neval`\
+`#> 1   MC   22.9251   23.1223   24.57732   23.27523   24.59732   33.31854    10`\
+`#> 2   NB 5428.3261 5452.5009 5470.74694 5467.23770 5489.35267 5530.02829    10`
 
 ### Summary of Benchmark Results Relative to the Faster Method
 
@@ -144,7 +144,7 @@ Nonparametric bootstrap confidence intervals can be generated in
 [`summary`](https://rdrr.io/r/base/summary.html)`(``object ``=`` ``benchmark_complete_01``, unit ``=`` ``"relative"``)`\
 `#>   expr      min       lq     mean   median       uq      max neval`\
 `#> 1   MC   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000    10`\
-`#> 2   NB 234.4668 233.3472 220.7286 231.6292 220.3412 167.2565    10`
+`#> 2   NB 236.7853 235.8113 222.5933 234.8951 223.1688 165.9745    10`
 
 ## Plot
 
@@ -178,8 +178,8 @@ Nonparametric bootstrap confidence intervals can be generated in
 \
 [`summary`](https://rdrr.io/r/base/summary.html)`(``object ``=`` ``benchmark_complete_02``, unit ``=`` ``"ms"``)`\
 `#>   expr         min          lq        mean     median          uq         max`\
-`#> 1   MC    3.452824    3.539666    3.823525    3.58416    3.660413    5.482228`\
-`#> 2   NB 5268.129761 5287.421831 5306.089146 5307.07607 5329.313722 5340.187129`\
+`#> 1   MC    3.409182    3.514339    3.783775    3.55976    3.714584    5.398702`\
+`#> 2   NB 5348.021557 5392.992511 5414.027466 5413.84800 5438.617722 5475.474272`\
 `#>   neval`\
 `#> 1    10`\
 `#> 2    10`
@@ -189,8 +189,8 @@ Nonparametric bootstrap confidence intervals can be generated in
 \
 [`summary`](https://rdrr.io/r/base/summary.html)`(``object ``=`` ``benchmark_complete_02``, unit ``=`` ``"relative"``)`\
 `#>   expr      min       lq     mean   median       uq      max neval`\
-`#> 1   MC    1.000    1.000    1.000    1.000    1.000   1.0000    10`\
-`#> 2   NB 1525.745 1493.763 1387.748 1480.703 1455.932 974.0907    10`
+`#> 1   MC    1.000    1.000    1.000    1.000    1.000    1.000    10`\
+`#> 2   NB 1568.711 1534.568 1430.853 1520.847 1464.126 1014.221    10`
 
 ## Plot
 
