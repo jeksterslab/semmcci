@@ -11,6 +11,9 @@
 - The percentile intervals use C++ quantiles (`.Quantile()`, from nBootstrap 0.1.0), identical to `stats::quantile(type = 7)`;
   semmcci now links to `Rcpp` and `RcppArmadillo`.
 - Internal helper copies refreshed from lavHelper 0.0.2, nBootstrap 0.1.0, and miHelper 0.1.0.
+- Internal `.ThetaHatStarScreen()` (used by betaMC through processLM) returns the counts of the screened draws as the
+  attribute `"screen"`: requested, retained, rejected, redraws, and exhausted (dropped after `iter` failed redraws).
+  The redraws use the same `pd` and `tol` as the first pass. The draws are unchanged.
 
 # semmcci 1.1.6
 

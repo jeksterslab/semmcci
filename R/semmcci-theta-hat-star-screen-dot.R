@@ -4,6 +4,7 @@
 #' screens every draw at once with `screen`,
 #' and redraws each inadmissible draw, one at a time and in row order,
 #' until it passes.
+#' Every draw follows the same `pd` and `tol`.
 #' The random number stream is the same as drawing all rows first
 #' and then redrawing the inadmissible ones in order.
 #'
@@ -20,7 +21,15 @@
 #' @param iter Positive integer.
 #'   Maximum number of redraws for one draw.
 #'   A draw that fails `iter` times is dropped.
-#' @return Returns a numeric matrix of admissible draws.
+#' @return Returns a numeric matrix of admissible draws,
+#'   with the attribute `"screen"`:
+#'   a named integer vector of the counts
+#'   `requested` (`R`),
+#'   `retained` (rows returned),
+#'   `rejected` (first-pass draws that fail `screen`),
+#'   `redraws` (all redraws, passed and failed),
+#'   `exhausted` (rejected draws dropped after `iter` failed redraws),
+#'   and `iter`.
 #'
 #' @family Monte Carlo in Structural Equation Modeling Functions
 #' @keywords semmcci parameters internal
@@ -54,7 +63,10 @@
     )
   }
   ok <- screen(draws)
-  for (i in which(x = !ok)) {
+  rejected <- which(x = !ok)
+  redraws <- 0L
+  exhausted <- 0L
+  for (i in rejected) {
     count <- 0L
     repeat {
       x <- .ThetaHatStar(
@@ -62,8 +74,10 @@
         scale = scale,
         location = location,
         decomposition = decomposition,
-        pd = FALSE
+        pd = pd,
+        tol = tol
       )$thetahatstar
+      redraws <- redraws + 1L
       if (!is.null(x = append)) {
         x <- cbind(
           x,
@@ -80,9 +94,19 @@
       }
       count <- count + 1L
       if (count >= iter) {
+        exhausted <- exhausted + 1L
         break
       }
     }
   }
-  draws[ok, , drop = FALSE]
+  out <- draws[ok, , drop = FALSE]
+  attr(x = out, which = "screen") <- c(
+    requested = as.integer(x = R),
+    retained = nrow(x = out),
+    rejected = length(x = rejected),
+    redraws = redraws,
+    exhausted = exhausted,
+    iter = as.integer(x = iter)
+  )
+  out
 }
